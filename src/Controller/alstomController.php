@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Clients;
+use App\Entity\Engineers;
 use App\Form\ClientsType;
+use App\Form\EngineerType;
 use App\Repository\ClientsRepository;
+use App\Repository\EngineersRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,14 +38,16 @@ class alstomController extends AbstractController
         ]);
     }
 
+
+//    PAGE CLIENT -------------------------------------------------------------
     /**
      * @return Response
      */
-//    Vue de la page client
+//    Vue de tout les client
     public function clients(ClientsRepository $clientsRepository): Response
     {
         $clients = $clientsRepository->findAll();
-        return $this->render(('alstom\clients.html.twig'), [
+        return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',
             'clients' => $clients
         ]);
@@ -67,7 +72,7 @@ class alstomController extends AbstractController
             return $this->redirectToRoute('alstom.client');
         }
 
-        return $this->render('alstom/create-client.html.twig',[
+        return $this->render('alstom/clients/create-client.html.twig',[
             'current_menu' => 'client',
             'button' =>'Create',
             'form' => $form->createView()
@@ -93,7 +98,7 @@ class alstomController extends AbstractController
             return $this->redirectToRoute('alstom.client');
         }
 
-        return $this->render('alstom/edit-client.html.twig', [
+        return $this->render('alstom/clients/edit-client.html.twig', [
             'current_menu' => 'client',
             'button' =>'Edit',
             'client' => $clients,
@@ -101,6 +106,7 @@ class alstomController extends AbstractController
         ]);
 
     }
+
 
     //    suppresion de clients
     /**
@@ -117,6 +123,81 @@ class alstomController extends AbstractController
 
         }
             return $this->redirectToRoute('alstom.client');
+
+
+    }
+
+//    PAGE ENGINEER -------------------------------------------------------------
+
+//    Vue de la page client
+    public function engineers(EngineersRepository $engineersRepository): Response
+    {
+        $engineersRepository = $engineersRepository->findAll();
+        return $this->render(('alstom/engineers/engineers.html.twig'), [
+            'current_menu' => 'engineers',
+            'engineers' => $engineersRepository
+        ]);
+    }
+
+//    page création engineer
+
+    public function create_engineer(Request $request): Response
+    {
+        $engineer = new Engineers();
+        $form = $this->createForm(EngineerType::class, $engineer);
+        $form->handleRequest($request);
+
+//        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+            $this->em->persist($engineer);
+            $this->em->flush();
+            $this->addFlash('success', 'Engineer create with success');
+            return $this->redirectToRoute('alstom.engineers');
+        }
+
+        return $this->render('alstom/engineers/create-engineer.html.twig',[
+            'current_menu' => 'engineers',
+            'button' =>'Create',
+            'form' => $form->createView()
+        ]);
+    }
+
+//    Page d'edit d'ingénieur
+    public function edit_engineer(Request $request, Engineers $engineers): Response
+    {
+        $form = $this->createForm(EngineerType::class, $engineers);
+        $form->handleRequest($request);
+
+        //        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+
+            $this->em->flush();
+            $this->addFlash('success', 'Engineer modified with success');
+            return $this->redirectToRoute('alstom.engineers');
+        }
+
+        return $this->render('alstom/engineers/edit-engineer.html.twig', [
+            'current_menu' => 'engineers',
+            'button' =>'Edit',
+            'client' => $engineers,
+            'form' => $form->createView()
+        ]);
+    }
+    //    suppresion d'ingénieur
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function delete_engineer(Engineers $engineers, Request $request): Response
+    {
+        if($this->isCsrfTokenValid('delete'.$engineers->getId(), $request->get('_token'))){
+
+            $this->em->remove($engineers);
+            $this->em->flush();
+            $this->addFlash('success', 'Engineer delete with success');
+
+        }
+        return $this->redirectToRoute('alstom.engineers');
 
 
     }

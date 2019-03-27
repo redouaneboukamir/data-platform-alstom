@@ -1,0 +1,46 @@
+{% extends 'alstom/index.html.twig' %}
+
+            {% block body %}
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1>Engineers</h1>
+                        <a href="{{ path('alstom.create-engineer') }}"><button class="btn btn-primary">New</button></a>
+                    </div>
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm table-all-engineers">
+                            <thead>
+                            <tr class="title-table-engineers">
+                                <th>Name</th>
+                                <th class="title-surname-engineer">Surname</th>
+                                <th class="title-nbBadge-engineer">Number of badge</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for engineer in engineers %}
+                                {% dump(engineer) %}
+                                <tr>
+                                    <td class="name-engineer-table">{{ engineer.name }}</td>
+                                    <td class="surname-engineer-table">{{ engineer.surname }}</td>
+                                    <td class="number-badge-engineer">{{ engineer.NumBadge }}</td>
+
+                                    <td class="content-btn-edit-delete">
+                                        <a href="{{ path('alstom.edit-engineer', {id: engineer.id}) }}"><button class="btn btn-secondary">Edit</button> </a>
+                                        <form method="post" action="{{ path('alstom.delete-engineer' ,{id:engineer.id}) }}" onsubmit="return confirm('Are you sure to delete this engineer?')">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ engineer.id) }}">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            {% endblock %}
