@@ -5,9 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraint as Assert;
 
+//Nom unique pur chaque client, à laisser ou retirer a voir
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientsRepository")
+ * @UniqueEntity("name")
  */
 class Clients
 {
@@ -20,6 +24,7 @@ class Clients
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $name;
 
@@ -29,9 +34,10 @@ class Clients
     private $trains;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Country", mappedBy="clients")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Country", inversedBy="clients")
      */
     private $countries;
+
 
     public function __construct()
     {
@@ -56,18 +62,6 @@ class Clients
         return $this;
     }
 
-    public function getTrains(): ?int
-    {
-        return $this->trains;
-    }
-
-    public function setTrains(?int $trains): self
-    {
-        $this->trains = $trains;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Country[]
      */
@@ -80,7 +74,6 @@ class Clients
     {
         if (!$this->countries->contains($country)) {
             $this->countries[] = $country;
-            $country->setClients($this);
         }
 
         return $this;
@@ -90,13 +83,26 @@ class Clients
     {
         if ($this->countries->contains($country)) {
             $this->countries->removeElement($country);
-            // set the owning side to null (unless already changed)
-            if ($country->getClients() === $this) {
-                $country->setClients(null);
-            }
         }
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTrains()
+    {
+        return $this->trains;
+    }
+
+    /**
+     * @param mixed $trains
+     */
+    public function setTrains($trains): void
+    {
+        $this->trains = $trains;
+    }
+
 
 }

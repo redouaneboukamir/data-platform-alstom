@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,9 +50,15 @@ class Country
     private $phonecode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Clients", inversedBy="countries")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Clients", mappedBy="countries")
      */
     private $clients;
+
+    public function __construct()
+    {
+        $this->clients = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -129,15 +137,32 @@ class Country
         return $this;
     }
 
-    public function getClients(): ?Clients
+    /**
+     * @return Collection|Clients[]
+     */
+    public function getClients(): Collection
     {
         return $this->clients;
     }
 
-    public function setClients(?Clients $clients): self
+    public function addClient(Clients $client): self
     {
-        $this->clients = $clients;
+        if (!$this->clients->contains($client)) {
+            $this->clients[] = $client;
+            $client->addCountry($this);
+        }
 
         return $this;
     }
+
+    public function removeClient(Clients $client): self
+    {
+        if ($this->clients->contains($client)) {
+            $this->clients->removeElement($client);
+            $client->removeCountry($this);
+        }
+
+        return $this;
+    }
+
 }

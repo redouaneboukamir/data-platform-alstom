@@ -1,0 +1,34 @@
+.content-form-client{
+
+}
+.table-all-clients{
+  .title-table-clients{
+    .title-nbtrains-clients{
+      text-align: center;
+    }
+    .title-countries-clients{
+      text-align: right;
+    }
+  }
+  .name-client-table{
+    display: flex;
+    align-items: center;
+    border-top: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .nbtrains-client-table{
+    text-align: center;
+    vertical-align: middle;
+
+  }
+  .content-btn-edit-delete{
+    a{
+      margin-right: 2vh;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 5vh;
+  }
+}

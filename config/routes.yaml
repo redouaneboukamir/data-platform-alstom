@@ -8,8 +8,18 @@ alstom.home:
 alstom.client:
   path: /alstom/clients
   controller: App\Controller\alstomController:clients
-
+alstom.create-client:
+  path: /alstom/create-clients
+  controller: App\Controller\alstomController:create_clients
+alstom.edit-client:
+  path: /alstom/client/{id}
+  controller: App\Controller\alstomController:edit_client
+  methods: GET|POST
+alstom.delete-client:
+  path: /alstom/client/{id}
+  controller: App\Controller\alstomController:delete_client
+  methods: DELETE
 
 client.home:
-  path: /client
+  path: /client/{id}
   controller: App\Controller\clientController:index
