@@ -55,12 +55,13 @@ class alstomController extends AbstractController
 //    Vue de tout les client
     public function clients(ClientsRepository $clientsRepository, Request $request): Response
     {
+        $client = new Clients();
         $search = new ClientsSearch();
         $form = $this->createForm(ClientsSearchType::class, $search);
         $form->handleRequest($request);
 
         $clients = $clientsRepository->findAllClients($search);
-
+        dump($client->getCountries());
         return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',
             'clients' => $clients,
