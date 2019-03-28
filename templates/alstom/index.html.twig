@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if(current_menu == "projects") %}active{% endif %}" href="#">
+                        <a class="nav-link {% if(current_menu == "projects") %}active{% endif %}" href="{{ path('alstom.projects') }}">
                             <span data-feather="layers"></span>
                             Projects
                         </a>
@@ -91,7 +91,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if(current_menu == "projects") %}active{% endif %}" href="#">
+                            <a class="nav-link {% if(current_menu == "projects") %}active{% endif %}" href="{{ path('alstom.projects') }}">
                                 <span data-feather="layers"></span>
                                 Projects
                             </a>

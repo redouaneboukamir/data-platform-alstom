@@ -2,8 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\ClientsSearch;
 use App\Entity\Engineers;
+use App\Entity\EnginSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,6 +23,32 @@ class EngineersRepository extends ServiceEntityRepository
         parent::__construct($registry, Engineers::class);
     }
 
+    private function findASCEngineer(): QueryBuilder
+    {
+
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.Name', 'ASC');
+
+    }
+
+
+    /**
+     * @return Query
+     */
+    public function findAllEngineer(EnginSearch $search): array
+    {
+        $query =  $this->findASCEngineer();
+
+        if($search->getNameEngineer()){
+
+            $query =  $query
+                ->where('e.Name = :name')
+                ->setParameter('name',$search->getNameEngineer());
+
+        }
+
+        return $query->getQuery()->getResult();
+    }
     // /**
     //  * @return Engineers[] Returns an array of Engineers objects
     //  */

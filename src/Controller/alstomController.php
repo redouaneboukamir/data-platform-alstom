@@ -3,11 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Clients;
+use App\Entity\ClientsSearch;
 use App\Entity\Engineers;
+use App\Entity\EnginSearch;
+use App\Entity\Projects;
+use App\Entity\ProjectSearch;
+use App\Form\ClientsSearchType;
 use App\Form\ClientsType;
 use App\Form\EngineerType;
+use App\Form\EnginSearchType;
+use App\Form\ProjectSearchType;
+use App\Form\ProjectType;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
+use App\Repository\ProjectsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,14 +53,21 @@ class alstomController extends AbstractController
      * @return Response
      */
 //    Vue de tout les client
-    public function clients(ClientsRepository $clientsRepository): Response
+    public function clients(ClientsRepository $clientsRepository, Request $request): Response
     {
-        $clients = $clientsRepository->findAll();
+        $search = new ClientsSearch();
+        $form = $this->createForm(ClientsSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $clients = $clientsRepository->findAllClients($search);
+
         return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',
-            'clients' => $clients
+            'clients' => $clients,
+            'form' => $form->createView()
         ]);
     }
+
 //    Page d'ajouts de clients
     /**
      * @param Request $request
@@ -129,13 +145,18 @@ class alstomController extends AbstractController
 
 //    PAGE ENGINEER -------------------------------------------------------------
 
-//    Vue de la page client
-    public function engineers(EngineersRepository $engineersRepository): Response
+//    Vue de la page engineers
+    public function engineers(EngineersRepository $engineersRepository, Request $request): Response
     {
-        $engineersRepository = $engineersRepository->findAll();
+        $search = new EnginSearch();
+        $form = $this->createForm(EnginSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $engineersRepository = $engineersRepository->findAllEngineer($search);
         return $this->render(('alstom/engineers/engineers.html.twig'), [
             'current_menu' => 'engineers',
-            'engineers' => $engineersRepository
+            'engineers' => $engineersRepository,
+            'form' => $form->createView()
         ]);
     }
 
@@ -198,6 +219,89 @@ class alstomController extends AbstractController
 
         }
         return $this->redirectToRoute('alstom.engineers');
+
+
+    }
+
+
+    //    PAGE Projects -------------------------------------------------------------
+//    Vue de la page projects
+    public function projects(ProjectsRepository $projectsRepository, Request $request): Response
+    {
+        $search = new ProjectSearch();
+        $form = $this->createForm(ProjectSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $project = $projectsRepository->findAllProjects($search);
+
+
+        return $this->render(('alstom/projects/projects.html.twig'), [
+            'current_menu' => 'projects',
+            'projects' => $project,
+            'form' => $form->createView()
+        ]);
+    }
+
+    //    page création projects
+
+    public function create_project(Request $request): Response
+    {
+        $project = new Projects();
+        $form = $this->createForm(ProjectType::class, $project);
+        $form->handleRequest($request);
+
+//        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+            $project->getAvailable(true);
+            $this->em->persist($project);
+            $this->em->flush();
+            $this->addFlash('success', 'Project create with success');
+            return $this->redirectToRoute('alstom.projects');
+        }
+
+        return $this->render('alstom/projects/create-project.html.twig',[
+            'current_menu' => 'projects',
+            'button' =>'Create',
+            'form' => $form->createView()
+        ]);
+    }
+    //    Page d'edit de project
+    public function edit_project(Request $request, Projects $projects): Response
+    {
+        $form = $this->createForm(ProjectType::class, $projects);
+        $form->handleRequest($request);
+        //        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+
+            $this->em->flush();
+            $this->addFlash('success', 'Project edit with success');
+            return $this->redirectToRoute('alstom.projects');
+        }
+
+        return $this->render('alstom/projects/edit-project.html.twig', [
+            'current_menu' => 'projects',
+            'button' =>'Edit',
+            'client' => $projects,
+            'form' => $form->createView()
+        ]);
+    }
+    //    suppresion de project
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function delete_project(Projects $projects, Request $request): Response
+    {
+        if($this->isCsrfTokenValid('delete'.$projects->getId(), $request->get('_token'))){
+
+            $projects->setAvailable(false);
+            $name_project = $projects->getName()."-".$projects->getId();
+            $projects->setName($name_project.'-delete');
+            $this->em->flush();
+            $this->addFlash('success', 'Project delete with success');
+
+        }
+        return $this->redirectToRoute('alstom.projects');
 
 
     }

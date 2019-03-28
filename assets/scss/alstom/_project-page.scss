@@ -1,25 +1,26 @@
-.content-form-client{
+.content-form-project{
 
 }
-.table-all-clients{
-  .title-table-clients{
-    .title-nbtrains-clients, .title-email-clients, .title-countries-clients{
+.table-all-projects{
+
+  .title-table-projects{
+
+    .title-numberTrain-projects{
       text-align: center;
     }
+
   }
-  .name-client-table{
+  .name-project-table{
     display: flex;
     align-items: center;
     border-top: 0;
     font-weight: bold;
     font-size: 1.1em;
   }
-  .nbtrains-client-table, .email-client-table, .countries-client-table{
+  .nbtrain-project-table{
+    border-left: 1px solid lightgray;
     text-align: center;
     vertical-align: middle;
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-
   }
   .content-btn-edit-delete{
     a{
@@ -29,19 +30,6 @@
     align-items: center;
     justify-content: flex-end;
     margin-right: 5vh;
-  }
-}
-.search-bar-client{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding-bottom:0.8em;
-  padding-top: 2em;
-  margin-bottom: 2vh;
-  button{
-    margin: 0 !important;
-
   }
 }
 @media (max-width: 420px) {
@@ -54,22 +42,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin-right: 0 !important;
-  .btn-edit-client{
-    margin: 0;
-    margin-bottom: 1vh;
-
-    //padding-right: 1vh;
-    //padding-left: 1vh;
-    font-size: 0.8em;
-  }
-    .btn-delete-client{
+    .btn-edit-project{
       margin: 0;
+      margin-bottom: 1vh;
 
+      //padding-right: 1vh;
+      //padding-left: 1vh;
+      font-size: 0.8em;
+    }
+    .btn-delete-project{
+      margin: 0;
       padding-right: 0.5em;
       padding-left: 0.5em;
       font-size: 0.8em;
     }
   }
 }
+

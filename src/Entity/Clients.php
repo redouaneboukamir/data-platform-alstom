@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraint as Assert;
 //Nom unique pur chaque client, à laisser ou retirer a voir
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientsRepository")
- * @UniqueEntity("name")
+ * @UniqueEntity("email")
  */
 class Clients
 {
@@ -37,6 +37,11 @@ class Clients
      * @ORM\ManyToMany(targetEntity="App\Entity\Country", inversedBy="clients")
      */
     private $countries;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
 
 
     public function __construct()
@@ -102,6 +107,18 @@ class Clients
     public function setTrains($trains): void
     {
         $this->trains = $trains;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
 

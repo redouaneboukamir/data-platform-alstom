@@ -1,9 +1,10 @@
+
 #Partie de toutes les vue d'alstom
-#Homepage
+#Homepage Alstom
 alstom.home:
   path: /alstom
   controller: App\Controller\alstomController:index
-#  Vue ce rapportant à l'onglet client
+#  Vue se rapportant à l'onglet client
 alstom.client:
   path: /alstom/clients
   controller: App\Controller\alstomController:clients
@@ -18,7 +19,7 @@ alstom.delete-client:
   path: /alstom/client/{id}
   controller: App\Controller\alstomController:delete_client
   methods: DELETE
-#  Vue ce rapportant à l'onglet engineers
+#  Vue se rapportant à l'onglet engineers
 alstom.engineers:
   path: /alstom/engineers
   controller: App\Controller\alstomController:engineers
@@ -32,6 +33,21 @@ alstom.edit-engineer:
 alstom.delete-engineer:
   path: /alstom/engineer/{id}
   controller: App\Controller\alstomController:delete_engineer
+  methods: DELETE
+# Vue se rapportant à l'onglet projects
+alstom.projects:
+  path: /alstom/projects
+  controller: App\Controller\alstomController:projects
+alstom.create-project:
+  path: /alstom/create-project
+  controller: App\Controller\alstomController:create_project
+alstom.edit-project:
+  path: /alstom/project/{id}
+  controller: App\Controller\alstomController:edit_project
+  methods: GET|POST
+alstom.delete-project:
+  path: /alstom/project/{id}
+  controller: App\Controller\alstomController:delete_project
   methods: DELETE
 
 

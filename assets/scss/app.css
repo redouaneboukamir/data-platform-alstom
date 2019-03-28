@@ -36,11 +36,8 @@
   justify-content: space-between;
 }
 
-.table-all-clients .title-table-clients .title-nbtrains-clients {
+.table-all-clients .title-table-clients .title-nbtrains-clients, .table-all-clients .title-table-clients .title-email-clients, .table-all-clients .title-table-clients .title-countries-clients {
   text-align: center;
-}
-.table-all-clients .title-table-clients .title-countries-clients {
-  text-align: right;
 }
 .table-all-clients .name-client-table {
   display: flex;
@@ -49,7 +46,7 @@
   font-weight: bold;
   font-size: 1.1em;
 }
-.table-all-clients .nbtrains-client-table {
+.table-all-clients .nbtrains-client-table, .table-all-clients .email-client-table, .table-all-clients .countries-client-table {
   text-align: center;
   vertical-align: middle;
   border-left: 1px solid lightgray;
@@ -65,6 +62,44 @@
   margin-right: 2vh;
 }
 
+.search-bar-client {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-bottom: 0.8em;
+  padding-top: 2em;
+  margin-bottom: 2vh;
+}
+.search-bar-client button {
+  margin: 0 !important;
+}
+
+@media (max-width: 420px) {
+  .content-btn-edit-delete {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0 !important;
+  }
+  .content-btn-edit-delete a {
+    margin-right: 0 !important;
+  }
+  .content-btn-edit-delete .btn-edit-client {
+    margin: 0;
+    margin-bottom: 1vh;
+    font-size: 0.8em;
+  }
+  .content-btn-edit-delete .btn-delete-client {
+    margin: 0;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    font-size: 0.8em;
+  }
+}
 .table-all-engineers .title-table-engineers .title-nbBadge-engineer {
   text-align: center;
 }
@@ -92,17 +127,105 @@
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
   text-align: center;
+  vertical-align: middle;
 }
 .table-all-engineers .content-btn-edit-delete {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   margin-right: 5vh;
 }
 .table-all-engineers .content-btn-edit-delete a {
   margin-right: 2vh;
 }
 
+.search-bar-engineer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-bottom: 0.8em;
+  padding-top: 2em;
+  margin-bottom: 2vh;
+}
+.search-bar-engineer button {
+  margin: 0 !important;
+}
+
+@media (max-width: 420px) {
+  .content-btn-edit-delete {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0 !important;
+  }
+  .content-btn-edit-delete a {
+    margin-right: 0 !important;
+  }
+  .content-btn-edit-delete .btn-edit-engineer {
+    margin: 0;
+    margin-bottom: 1vh;
+    font-size: 0.8em;
+  }
+  .content-btn-edit-delete .btn-delete-engineer {
+    margin: 0;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    font-size: 0.8em;
+  }
+}
+.table-all-projects .title-table-projects .title-numberTrain-projects {
+  text-align: center;
+}
+.table-all-projects .name-project-table {
+  display: flex;
+  align-items: center;
+  border-top: 0;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.table-all-projects .nbtrain-project-table {
+  border-left: 1px solid lightgray;
+  text-align: center;
+  vertical-align: middle;
+}
+.table-all-projects .content-btn-edit-delete {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 5vh;
+}
+.table-all-projects .content-btn-edit-delete a {
+  margin-right: 2vh;
+}
+
+@media (max-width: 420px) {
+  .content-btn-edit-delete {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0 !important;
+  }
+  .content-btn-edit-delete a {
+    margin-right: 0 !important;
+  }
+  .content-btn-edit-delete .btn-edit-project {
+    margin: 0;
+    margin-bottom: 1vh;
+    font-size: 0.8em;
+  }
+  .content-btn-edit-delete .btn-delete-project {
+    margin: 0;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    font-size: 0.8em;
+  }
+}
 .client {
   color: red;
 }
