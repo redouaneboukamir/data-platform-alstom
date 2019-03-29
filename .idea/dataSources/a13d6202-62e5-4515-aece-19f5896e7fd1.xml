@@ -13,7 +13,7 @@
       <ObjectId>32827</ObjectId>
       <StateNumber>730</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>843</IntrospectionStateNumber>
+      <IntrospectionStateNumber>884</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -106,7 +106,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>844</IntrospectionStateNumber>
+      <IntrospectionStateNumber>885</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>

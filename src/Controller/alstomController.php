@@ -19,6 +19,7 @@ use App\Repository\EngineersRepository;
 use App\Repository\ProjectsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -61,7 +62,7 @@ class alstomController extends AbstractController
         $form->handleRequest($request);
 
         $clients = $clientsRepository->findAllClients($search);
-//        $countries = $clientsRepository->findClientCountry();
+
 
         return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',

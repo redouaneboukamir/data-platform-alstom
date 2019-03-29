@@ -1,5 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
-
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
@@ -18,7 +18,7 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addStyleEntry('css/app','./assets/scss/app.scss')
+    /*.addStyleEntry('css/app','./assets/scss/app.scss')*/
     .enableSassLoader()
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
@@ -44,7 +44,7 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // enables Sass/SCSS support
-    .enableSassLoader()
+    // .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -55,6 +55,9 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+    .addPlugin(new CopyWebpackPlugin([
+        { from: './assets/img', to: 'img' }
+    ]))
 ;
 
 module.exports = Encore.getWebpackConfig();

@@ -5,10 +5,8 @@ namespace App\Repository;
 use App\Entity\Clients;
 use App\Entity\ClientsSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use phpDocumentor\Reflection\Types\Object_;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -33,20 +31,45 @@ class ClientsRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * @param ClientsSearch $search
+     * @return array
+     */
     public function findAllClients(ClientsSearch $search): array
     {
-        $query =  $this->findASCClients();
+
+        $query = $this->findASCClients();
+        $AllClients = $this->findAll();
+        $findClients = [];
+
+        if ($search->getNameClient()) {
+
+            foreach ($AllClients as $currentClient){
 
 
-        if($search->getNameClient()){
+                    for ($i = 0; $i < (strlen($currentClient->getName())); $i++) {
 
-            $query =  $query
-                ->where('c.name = :name')
-                ->setParameter('name',$search->getNameClient());
+                        if (strtolower($currentClient->getName()[$i]) === strtolower($search->getNameClient())) {
+
+                                        array_push($findClients, $currentClient);
+
+
+                        }
+
+
+                }
+
+            }
+                $query = $query
+                    ->where('c.name = :name')
+                    ->setParameter('name',$findClients)
+                    ->getQuery()->getParameters()->getValues()[0]->getValue();
+                return $query;
+        }else{
+            return $query->getQuery()->getResult();
 
         }
 
-        return $query->getQuery()->getResult();
     }
 
     // /**
