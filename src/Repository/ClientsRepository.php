@@ -42,22 +42,29 @@ class ClientsRepository extends ServiceEntityRepository
         $AllClients = $this->findAll();
         $findClients = [];
 
+
         if ($search->getNameClient()) {
 
             foreach ($AllClients as $currentClient){
+                    $find = false;
+                    $compar = "";
 
 
-                    for ($i = 0; $i < (strlen($currentClient->getName())); $i++) {
+                        for ($i = 0; $i < (strlen($currentClient->getName())); $i++) {
 
-                        if (strtolower($currentClient->getName()[$i]) === strtolower($search->getNameClient())) {
+                            $compar .= $currentClient->getName()[$i];
+                            if($find === false) {
 
-                                        array_push($findClients, $currentClient);
+                                if (strtolower($currentClient->getName()[$i]) === strtolower($search->getNameClient()) ||
+                                    strtolower($compar) === strtolower($search->getNameClient())) {
 
+                                    array_push($findClients, $currentClient);
+                                    $find = true;
+
+                                }
 
                         }
-
-
-                }
+                    }
 
             }
                 $query = $query

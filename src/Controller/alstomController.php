@@ -299,8 +299,6 @@ class alstomController extends AbstractController
         if($this->isCsrfTokenValid('delete'.$projects->getId(), $request->get('_token'))){
 
             $projects->setAvailable(false);
-            $name_project = $projects->getName()."-".$projects->getId();
-            $projects->setName($name_project.'-delete');
             $this->em->flush();
             $this->addFlash('success', 'Project delete with success');
 

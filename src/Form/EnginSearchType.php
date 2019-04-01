@@ -19,6 +19,7 @@ class EnginSearchType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
+                    'value' => '',
                     'placeholder' => 'Name engineer'
                 ]
             ])

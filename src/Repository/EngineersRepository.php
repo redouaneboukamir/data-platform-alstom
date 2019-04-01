@@ -38,16 +38,41 @@ class EngineersRepository extends ServiceEntityRepository
     public function findAllEngineer(EnginSearch $search): array
     {
         $query =  $this->findASCEngineer();
+        $AllEngin = $this->findAll();
+        $findEngin = [];
+
 
         if($search->getNameEngineer()){
 
+            foreach ($AllEngin as $currentEngin){
+                $find = false;
+                $compar = "";
+
+                for($i=0; $i < (strlen($currentEngin->getName())); $i++){
+
+                    $compar .= $currentEngin->getName()[$i];
+                    if($find === false){
+                        if(strtolower($currentEngin->getName()[$i]) === strtolower($search->getNameEngineer())||
+                            strtolower($compar) === strtolower($search->getNameEngineer())){
+
+                            array_push($findEngin, $currentEngin);
+                            $find = true;
+                        }
+                    }
+
+                }
+            }
             $query =  $query
                 ->where('e.Name = :name')
-                ->setParameter('name',$search->getNameEngineer());
+                ->setParameter('name',$findEngin)
+                ->getQuery()->getParameters()->getValues()[0]->getValue();
+            return $query;
 
+        }else{
+
+            return $query->getQuery()->getResult();
         }
 
-        return $query->getQuery()->getResult();
     }
     // /**
     //  * @return Engineers[] Returns an array of Engineers objects

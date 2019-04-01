@@ -19,6 +19,7 @@ class ClientsSearchType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
+                    'value' => '',
                     'placeholder' => 'Name client'
                 ]
             ])
