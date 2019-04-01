@@ -43,10 +43,16 @@ class Clients
      */
     private $email;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Projects", inversedBy="clients")
+     */
+    private $Projects;
+
 
     public function __construct()
     {
         $this->countries = new ArrayCollection();
+        $this->Projects = new ArrayCollection();
     }
 
 
@@ -117,6 +123,32 @@ class Clients
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Projects[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->Projects;
+    }
+
+    public function addProject(Projects $project): self
+    {
+        if (!$this->Projects->contains($project)) {
+            $this->Projects[] = $project;
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Projects $project): self
+    {
+        if ($this->Projects->contains($project)) {
+            $this->Projects->removeElement($project);
+        }
 
         return $this;
     }

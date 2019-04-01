@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraint as Assert;
 
@@ -35,6 +37,16 @@ class Engineers
      */
     //  @Assert\Range(min=9) A tester
     private $Num_Badge;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Projects", inversedBy="engineers")
+     */
+    private $Projects;
+
+    public function __construct()
+    {
+        $this->Projects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -73,6 +85,32 @@ class Engineers
     public function setNumBadge(int $Num_Badge): self
     {
         $this->Num_Badge = $Num_Badge;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Projects[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->Projects;
+    }
+
+    public function addProject(Projects $project): self
+    {
+        if (!$this->Projects->contains($project)) {
+            $this->Projects[] = $project;
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Projects $project): self
+    {
+        if ($this->Projects->contains($project)) {
+            $this->Projects->removeElement($project);
+        }
 
         return $this;
     }

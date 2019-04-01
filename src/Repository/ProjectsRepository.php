@@ -24,7 +24,7 @@ class ProjectsRepository extends ServiceEntityRepository
     }
 
 
-    private function  findAvailable():QueryBuilder
+    public function  findAvailable():QueryBuilder
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.name', 'ASC')

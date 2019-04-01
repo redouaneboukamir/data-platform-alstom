@@ -1,0 +1,44 @@
+{% extends 'alstom/index.html.twig' %}
+
+
+{% block body %}
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1>{{ client.name }}</h1>
+                        <a href="{{ path('alstom.edit-client',{id: client.id}) }}"><button class="btn btn-primary">Edit</button></a>
+                </div>
+                <div class="row mt-5">
+                        <div class="col-md-10">
+                                <table class="table table-stripped table-show-client">
+                                        <tr class="row">
+                                                <td class="title-show-client col-lg-7 col-md-7 col-xs-10 col-sm-10 ">Email : </td>
+                                                <td class="item-show-client col-4">{{ client.email }}</td>
+                                        </tr>
+                                        <tr class="row">
+                                                <td class="title-show-client col-md-7 col-xs-10 col-sm-10 ">Projects :</td>
+{#                                                Boucle sur les projets du clients #}
+                                                <td class="content-project-client row">
+                                                {% for project in client.projects %}
+                                                        <p> {{ project.name }} </p>
+                                                {% endfor %}
+
+                                                </td>
+                                        </tr>
+                                        <tr class="row">
+                                                <td class="title-show-client col-md-7 col-xs-10 col-sm-10 ">Number of trains :</td>
+                                                <td class="item-show-client col-4">{{ client.trains }}</td>
+                                        </tr>
+                                        <tr class="row">
+                                                <td class="title-show-client col-md-7 col-xs-10 col-sm-10">Countries :</td>
+                                                <td class="item-show-client col-4">{% for country in client.countries %}
+                                                                <p class="flag flag-{{ country.iso|lower }}"></p>
+                                                        {% endfor %}</td>
+
+                                        </tr>
+                                </table>
+                        </div>
+                </div>
+        </main>
+
+{% endblock %}

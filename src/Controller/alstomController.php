@@ -67,10 +67,20 @@ class alstomController extends AbstractController
         return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',
             'clients' => $clients,
-//            'countries' => $countries,
             'form' => $form->createView()
         ]);
     }
+    //    Vue de Client individuel
+    public function show_clients(Clients $clients): Response
+    {
+
+
+        return $this->render('alstom/clients/show-clients.html.twig', [
+            'current_menu' => 'client',
+            'client' => $clients,
+        ]);
+    }
+
 
 //    Page d'ajouts de clients
     /**
@@ -164,6 +174,13 @@ class alstomController extends AbstractController
         ]);
     }
 
+    public function show_engineer(Engineers $engineers)
+    {
+        return $this->render('alstom/engineers/show-engineer.html.twig', [
+            'current_menu' => 'engineer',
+            'engineer' => $engineers,
+        ]);
+    }
 //    page création engineer
 
     public function create_engineer(Request $request): Response
@@ -245,6 +262,14 @@ class alstomController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    public function show_project(Projects $projects){
+
+        return $this->render('alstom/projects/show-project.html.twig', [
+            'current_menu' => 'projects',
+            'project' => $projects,
+        ]);
+    }
+
 
     //    page création projects
 

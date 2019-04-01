@@ -37,7 +37,7 @@
                             <tbody>
                             {% for project in projects %}
                                 <tr>
-                                    <td class="name-project-table">{{ project.name }}</td>
+                                    <td class="name-project-table"><a href="{{ path('alstom.project-show', {id: project.id}) }}">{{  project.name }}</td>
                                     <td class="nbtrain-project-table">{{ project.numbertrains }}</td>
 
                                     <td class="content-btn-edit-delete">
@@ -45,7 +45,7 @@
                                         <form method="post" action="{{ path('alstom.delete-project' ,{id:project.id}) }}" onsubmit="return confirm('Are you sure to delete this project?')">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
-                                            <button class="btn btn-danger btn-delete-project">Delete</button>
+                                            <button class="btn btn-danger btn-delete-project">X</button>
                                         </form>
                                     </td>
                                 </tr>

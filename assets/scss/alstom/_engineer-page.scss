@@ -16,14 +16,20 @@
       padding-right: 0;
       margin-right: 0 !important;
     }
+    .title-project-engineer{
+      text-align: center;
+    }
   }
   .name-engineer-table{
-
-    display: flex;
-    align-items: center;
+    text-align: center;
+    vertical-align: middle;
     border-top: 0;
     font-weight: bold;
     font-size: 1.1em;
+    a{
+      text-decoration: none;
+      color: black;
+    }
   }
   .surname-engineer-table{
     border-left: 1px solid lightgray;
@@ -35,6 +41,13 @@
     border-right: 1px solid lightgray;
     text-align: center;
     vertical-align: middle;
+  }
+  .number-project-engineer{
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
   }
   .content-btn-edit-delete{
     a{
@@ -60,31 +73,62 @@
 
   }
 }
+.table-show-engineer{
+  td{
+    display: flex;
+    align-items: center;
+  }
+  .title-show-engineer{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 2px;
+
+  }
+  .item-show-engineer{
+    font-size: 1.2em;
+  }
+}
+.content-project-engineer{
+  display: flex;
+  p{
+
+    margin: 2vh;
+    padding-right: 2vh;
+    text-transform: uppercase;
+  }
+}
 @media (max-width: 420px) {
   .content-btn-edit-delete{
-    a{
-      margin-right: 0 !important;
-    }
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-right: 0 !important;
-    .btn-edit-engineer{
-      margin: 0;
-      margin-bottom: 1vh;
+    display: none !important;
+    //a{
+    //  margin-right: 0 !important;
+    //}
+    //margin: 0;
+    //padding: 0;
+    //display: flex;
+    //flex-direction: column;
+    //align-items: center;
+    //justify-content: center;
+    //margin-right: 0 !important;
+    //.btn-edit-engineer{
+    //  margin: 0;
+    //  margin-bottom: 1vh;
+    //
+    //  //padding-right: 1vh;
+    //  //padding-left: 1vh;
+    //  font-size: 0.8em;
+    //}
+    //.btn-delete-engineer{
+    //  margin: 0;
+    //  padding-right: 0.5em;
+    //  padding-left: 0.5em;
+    //  font-size: 0.8em;
+    //}
+  }
+  .number-project-engineer{
+    p{
 
-      //padding-right: 1vh;
-      //padding-left: 1vh;
-      font-size: 0.8em;
-    }
-    .btn-delete-engineer{
-      margin: 0;
-      padding-right: 0.5em;
-      padding-left: 0.5em;
-      font-size: 0.8em;
+    border-bottom: 1px solid lightgray;
     }
   }
 }

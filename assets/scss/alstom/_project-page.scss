@@ -16,6 +16,10 @@
     border-top: 0;
     font-weight: bold;
     font-size: 1.1em;
+    a{
+      text-decoration: none;
+      color: black;
+    }
   }
   .nbtrain-project-table{
     border-left: 1px solid lightgray;
@@ -30,6 +34,31 @@
     align-items: center;
     justify-content: flex-end;
     margin-right: 5vh;
+  }
+}
+
+.table-show-project{
+  td{
+    display: flex;
+    align-items: center;
+  }
+  .title-show-project{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 2px;
+
+  }
+  .item-show-project{
+    font-size: 1.2em;
+  }
+}
+.content-project-project{
+  display: flex;
+  p{
+
+    margin: 2vh;
+    padding-right: 2vh;
+    text-transform: uppercase;
   }
 }
 @media (max-width: 420px) {

@@ -8,11 +8,14 @@ alstom.home:
 alstom.client:
   path: /alstom/clients
   controller: App\Controller\alstomController:clients
+alstom.client-show:
+  path: /alstom/clients/{id}
+  controller: App\Controller\alstomController:show_clients
 alstom.create-client:
   path: /alstom/create-clients
   controller: App\Controller\alstomController:create_clients
 alstom.edit-client:
-  path: /alstom/client/{id}
+  path: /alstom/edit-client/{id}
   controller: App\Controller\alstomController:edit_client
   methods: GET|POST
 alstom.delete-client:
@@ -23,11 +26,14 @@ alstom.delete-client:
 alstom.engineers:
   path: /alstom/engineers
   controller: App\Controller\alstomController:engineers
+alstom.engineer-show:
+    path: /alstom/engineer/{id}
+    controller: App\Controller\alstomController:show_engineer
 alstom.create-engineer:
     path: /alstom/create-engineer
     controller: App\Controller\alstomController:create_engineer
 alstom.edit-engineer:
-    path: /alstom/engineer/{id}
+    path: /alstom/edit-engineer/{id}
     controller: App\Controller\alstomController:edit_engineer
     methods: GET|POST
 alstom.delete-engineer:
@@ -38,11 +44,14 @@ alstom.delete-engineer:
 alstom.projects:
   path: /alstom/projects
   controller: App\Controller\alstomController:projects
+alstom.project-show:
+    path: /alstom/project/{id}
+    controller: App\Controller\alstomController:show_project
 alstom.create-project:
   path: /alstom/create-project
   controller: App\Controller\alstomController:create_project
 alstom.edit-project:
-  path: /alstom/project/{id}
+  path: /alstom/edit-project/{id}
   controller: App\Controller\alstomController:edit_project
   methods: GET|POST
 alstom.delete-project:
@@ -55,5 +64,5 @@ alstom.delete-project:
 
 
 client.home:
-  path: /client/{id}
+  path: /client
   controller: App\Controller\clientController:index

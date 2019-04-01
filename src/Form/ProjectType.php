@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Clients;
+use App\Entity\Engineers;
 use App\Entity\Projects;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,7 +17,20 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('number_trains')
+            ->add('clients', EntityType::class, [
+                'label' => 'Add a client to project',
+                'class' => Clients::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false
+            ])
+            ->add('engineers', EntityType::class, [
+                'class' => Engineers::class,
+                'label' => 'Add a engineer to project',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false
+            ])
             ->add('available', HiddenType::class, [
                 'data' => true
             ])

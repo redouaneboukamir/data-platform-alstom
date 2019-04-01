@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Clients;
 use App\Entity\Country;
+use App\Entity\Projects;
+use App\Repository\ProjectsRepository;
 use function PHPSTORM_META\type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -20,8 +22,14 @@ class ClientsType extends AbstractType
             ->add('name', null, [
                 'label' => 'Name client'
             ])
-            ->add('trains', null, [
-                'label' => 'Number of trains'
+            ->add('projects', EntityType::class, [
+                'class' => Projects::class,
+                'query_builder' => function(ProjectsRepository $projectsRepository){
+                    return $projectsRepository->findAvailable();
+                },
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false
             ])
             ->add('countries', EntityType::class,[
                 'class' => Country::class,
@@ -33,6 +41,7 @@ class ClientsType extends AbstractType
                 'label' => 'Email'
 //                'required' => false
             ])
+
         ;
     }
 

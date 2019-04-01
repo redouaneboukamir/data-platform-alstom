@@ -35,6 +35,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col" class="title-surname-engineer">Surname</th>
                                 <th scope="col" class="title-nbBadge-engineer">Number of badge</th>
+                                <th scope="col" class="title-project-engineer">Projects</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -42,16 +43,21 @@
                             {% for engineer in engineers %}
 
                                 <tr>
-                                    <td class="name-engineer-table">{{ engineer.name }}</td>
+                                    <td class="name-engineer-table"><a href="{{ path('alstom.engineer-show', {id: engineer.id}) }}">{{ engineer.name }}</a></td>
                                     <td class="surname-engineer-table">{{ engineer.surname }}</td>
                                     <td class="number-badge-engineer">{{ engineer.NumBadge }}</td>
+                                    <td class="number-project-engineer">
+                                        {% for project in engineer.projects %}
+                                            <p>{{ project.name }}</p>
+                                        {% endfor %}
+                                    </td>
 
                                     <td class="content-btn-edit-delete">
                                         <a href="{{ path('alstom.edit-engineer', {id: engineer.id}) }}"><button class="btn btn-secondary btn-edit-engineer">Edit</button> </a>
                                         <form method="post" action="{{ path('alstom.delete-engineer' ,{id:engineer.id}) }}" onsubmit="return confirm('Are you sure to delete this engineer?')">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ engineer.id) }}">
-                                            <button class="btn btn-danger btn-delete-engineer">Delete</button>
+                                            <button class="btn btn-danger btn-delete-engineer">X</button>
                                         </form>
                                     </td>
                                 </tr>

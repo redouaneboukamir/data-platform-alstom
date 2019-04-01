@@ -23,7 +23,7 @@ class ClientsRepository extends ServiceEntityRepository
     }
 
 
-    private function findASCClients(): QueryBuilder
+    public function findASCClients(): QueryBuilder
     {
 
         return $this->createQueryBuilder('c')

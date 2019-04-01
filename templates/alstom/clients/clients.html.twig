@@ -42,7 +42,7 @@
                         <tbody>
                         {% for client in clients %}
                             <tr>
-                                <td class="name-client-table">{{ client.name }}</td>
+                                <td class="name-client-table"><a href="{{ path('alstom.client-show', {id: client.id}) }}">{{ client.name }}</a></td>
                                 <td class="nbtrains-client-table">{{ client.trains }}</td>
                                 <td class="email-client-table">{{ client.email }}</td>
 {#                                Recuperer country des clients et afficher drapeau en fonction #}
@@ -57,7 +57,7 @@
                                     <form method="post" action="{{ path('alstom.delete-client' ,{id:client.id}) }}" onsubmit="return confirm('Are you sure to delete this client?')">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">
-                                        <button class="btn btn-danger btn-delete-client">Delete</button>
+                                        <button class="btn btn-danger btn-delete-client">X</button>
                                     </form>
                                 </td>
                             </tr>

@@ -13,6 +13,10 @@
     border-top: 0;
     font-weight: bold;
     font-size: 1.1em;
+    a{
+      text-decoration: none;
+      color: black;
+    }
   }
   .nbtrains-client-table, .email-client-table, .countries-client-table{
     text-align: center;
@@ -44,32 +48,57 @@
 
   }
 }
+.table-show-client{
+  td{
+    display: flex;
+    align-items: center;
+  }
+  .title-show-client{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 2px;
+
+  }
+  .item-show-client{
+    font-size: 1.2em;
+  }
+}
+.content-project-client{
+  display: flex;
+  p{
+
+    margin: 2vh;
+    padding-right: 2vh;
+    text-transform: uppercase;
+  }
+}
 @media (max-width: 420px) {
   .content-btn-edit-delete{
-    a{
-      margin-right: 0 !important;
-    }
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-right: 0 !important;
-  .btn-edit-client{
-    margin: 0;
-    margin-bottom: 1vh;
-
-    //padding-right: 1vh;
-    //padding-left: 1vh;
-    font-size: 0.8em;
-  }
-    .btn-delete-client{
-      margin: 0;
-
-      padding-right: 0.5em;
-      padding-left: 0.5em;
-      font-size: 0.8em;
-    }
+    display: none;
+  //  a{
+  //    margin-right: 0 !important;
+  //  }
+  //  margin: 0;
+  //  padding: 0;
+  //  display: flex;
+  //  flex-direction: column;
+  //  align-items: center;
+  //  justify-content: center;
+  //  margin-right: 0 !important;
+  //.btn-edit-client{
+  //  margin: 0;
+  //  margin-bottom: 1vh;
+  //
+  //  //padding-right: 1vh;
+  //  //padding-left: 1vh;
+  //  font-size: 0.8em;
+  //}
+  //  .btn-delete-client{
+  //    margin: 0;
+  //
+  //    padding-right: 0.5em;
+  //    padding-left: 0.5em;
+  //    font-size: 0.8em;
+  //  }
   }
 }
