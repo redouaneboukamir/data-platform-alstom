@@ -1,0 +1,80 @@
+.table-all-trains{
+
+  .title-table-trains{
+
+    .title-project-trains{
+      text-align: center;
+      color: red;
+    }
+
+  }
+  .name-train-table{
+    display: flex;
+    align-items: center;
+    border-top: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    a{
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .nameProject-train-table{
+    border-left: 1px solid lightgray;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .content-btn-edit-delete{
+    a{
+      margin-right: 2vh;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 5vh;
+  }
+}
+
+.table-show-train{
+  td{
+    display: flex;
+    align-items: center;
+  }
+  .title-show-train{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 2px;
+
+  }
+  .item-show-train{
+    font-size: 1.2em;
+  }
+  .item-show-engineer{
+
+  }
+}
+.content-train-project{
+  display: flex;
+  p{
+    margin: 2vh;
+    padding-right: 2vh;
+    text-transform: uppercase;
+  }
+}
+
+//.nbtrains-client-table, .email-client-table, .countries-client-table{
+//  text-align: center;
+//  vertical-align: middle;
+//  border-left: 1px solid lightgray;
+//  border-right: 1px solid lightgray;
+//
+//}
+.content-btn-edit-delete{
+  a{
+    margin-right: 2vh;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 5vh;
+}

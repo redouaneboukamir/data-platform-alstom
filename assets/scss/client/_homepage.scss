@@ -1,3 +1,46 @@
-.client{
-  color: red;
+
+.sidebar-client{
+
+  .title-sidebar{
+    font-size: 1.8em;
+    color: black;
+    border-bottom: 1px solid darkgray;
+    padding-left: 0;
+    margin-left: 2vh;
+    margin-bottom: 3vh;
+  }
+  .item-sidebar-client{
+
+    font-size: 1.2em;
+    a:hover{
+      opacity: 0.5;
+    }
+
+  }
+}
+.navbar-smallscreen{
+  .navbar-brand{
+    &:hover{
+      opacity: 1;
+    }
+  }
+  a{
+    color: white;
+
+    &:hover{
+      opacity: 0.5;
+    }
+  }
+  .signout-burger{
+    color:lightgray;
+    opacity: 0.5;
+    &:hover{
+      color: white;
+      opacity: 0.8;
+    }
+  }
+}
+.content-api-logs{
+  display: flex;
+  justify-content: space-between;
 }

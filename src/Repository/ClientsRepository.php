@@ -57,7 +57,6 @@ class ClientsRepository extends ServiceEntityRepository
 
                                 if (strtolower($currentClient->getName()[$i]) === strtolower($search->getNameClient()) ||
                                     strtolower($compar) === strtolower($search->getNameClient())) {
-
                                     array_push($findClients, $currentClient);
                                     $find = true;
 

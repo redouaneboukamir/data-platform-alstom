@@ -1,0 +1,42 @@
+{% extends 'client/index.html.twig' %}
+
+
+{% block body %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1>{{ project.name }}</h1>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-10">
+                <table class="table table-stripped table-show-project">
+                    <tr class="row">
+                        <td class="title-show-project col-lg-7 col-md-7 col-xs-10 col-sm-10 ">Name : </td>
+                        <td class="item-show-project col-4">{{ project.name }}</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="title-show-project col-md-7 col-xs-10 col-sm-10 ">Clients :</td>
+                        {#  Boucle sur les projets des projects #}
+                        <td class="content-project-project row">
+                            {% for client in project.clients %}
+                                <p> {{ client.name }} </p>
+                            {% endfor %}
+
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="title-show-project col-md-7 col-xs-10 col-sm-10 ">Engineers :</td>
+                        {#  Boucle sur les projets des projects #}
+                        <td class="content-project-project row">
+                            {% for engineer in project.engineers %}
+                                <p> {{ engineer.name }} </p>
+                            {% endfor %}
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

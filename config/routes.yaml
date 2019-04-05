@@ -60,9 +60,31 @@ alstom.delete-project:
   methods: DELETE
 
 
-
-
-
+#Vue du client
 client.home:
   path: /client
   controller: App\Controller\clientController:index
+#Projects
+client.projects:
+  path: /client/projects
+  controller: App\Controller\clientController:projects
+client.project-show:
+  path: /client/project/{id}
+  controller: App\Controller\clientController:show_project
+#Trains
+client.trains:
+  path: /client/trains
+  controller: App\Controller\clientController:trains
+client.create-train:
+  path: /client/create-train
+  controller: App\Controller\clientController:create_train
+client.show-train:
+  path: /client/trains/{id}
+  controller: App\Controller\clientController:show_train
+client.edit-train:
+  path: /client/edit-train/{id}
+  controller: App\Controller\clientController:edit_train
+client.delete-train:
+  path: /client/train/{id}
+  controller: App\Controller\clientController:delete_train
+  methods: DELETE

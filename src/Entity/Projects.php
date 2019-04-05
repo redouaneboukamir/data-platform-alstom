@@ -47,10 +47,16 @@ class Projects
      */
     private $engineers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Trains", mappedBy="Projects")
+     */
+    private $trains;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
         $this->engineers = new ArrayCollection();
+        $this->trains = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +151,37 @@ class Projects
         if ($this->engineers->contains($engineer)) {
             $this->engineers->removeElement($engineer);
             $engineer->removeProject($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trains[]
+     */
+    public function getTrains(): Collection
+    {
+        return $this->trains;
+    }
+
+    public function addTrain(Trains $train): self
+    {
+        if (!$this->trains->contains($train)) {
+            $this->trains[] = $train;
+            $train->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrain(Trains $train): self
+    {
+        if ($this->trains->contains($train)) {
+            $this->trains->removeElement($train);
+            // set the owning side to null (unless already changed)
+            if ($train->getProject() === $this) {
+                $train->setProject(null);
+            }
         }
 
         return $this;

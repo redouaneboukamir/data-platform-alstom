@@ -255,7 +255,6 @@ class alstomController extends AbstractController
 
         $project = $projectsRepository->findAllProjects($search);
 
-
         return $this->render(('alstom/projects/projects.html.twig'), [
             'current_menu' => 'projects',
             'projects' => $project,

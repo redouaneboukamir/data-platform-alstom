@@ -1,0 +1,42 @@
+{% extends 'client/index.html.twig' %}
+
+{% block body %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Projects</h1>
+        </div>
+        <div class="jumbotron search-bar-client">
+            <div class="container">
+                {{ form_start(form) }}
+                <div class="form-row row">
+                    <div class="col-8">
+                        {{ form_row(form.name_project) }}
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm table-all-projects">
+                <thead class="thead-dark">
+                <tr class="title-table-projects">
+                    <th scope="col">Name</th>
+                    <th scope="col" class="title-numberTrain-projects">Number of trains</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for project in projects %}
+                    <tr>
+                        <td class="name-project-table"><a href="{{ path('client.project-show', {id: project.id}) }}">{{  project.name }}</td>
+                        <td class="nbtrain-project-table">{{ project.numbertrains }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}
