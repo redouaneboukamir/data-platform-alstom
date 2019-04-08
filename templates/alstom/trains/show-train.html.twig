@@ -1,0 +1,47 @@
+{% extends 'alstom/index.html.twig' %}
+
+
+{% block body %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1>{{ train.name }}</h1>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-10">
+                <table class="table table-stripped table-show-train">
+                    <tr class="row">
+                        <td class="title-show-train col-lg-7 col-md-7 col-xs-10 col-sm-10 ">Name : </td>
+                        <td class="item-show-train col-4">{{ train.name }}</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="title-show-train col-md-7 col-xs-10 col-sm-10 ">Project :</td>
+
+                        <td class="content-train-project row">
+                            <p>{{ train.Projects.name }}</p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>{{ train.Projects.name|upper }}</h2>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-10">
+                <table class="table table-stripped table-show-project">
+                    <tr class="row">
+                        <td class="title-show-project col-lg-4 col-md-4 col-xs-10 col-sm-10 ">Engineers : </td>
+                        {% for engineer in train.Projects.engineers  %}
+                            <td class="item-show-engineer col-2">{{ engineer.name }}</td>
+                        {% endfor %}
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

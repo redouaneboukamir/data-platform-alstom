@@ -22,6 +22,7 @@ alstom.delete-client:
   path: /alstom/client/{id}
   controller: App\Controller\alstomController:delete_client
   methods: DELETE
+
 #  Vue se rapportant à l'onglet engineers
 alstom.engineers:
   path: /alstom/engineers
@@ -40,6 +41,7 @@ alstom.delete-engineer:
   path: /alstom/engineer/{id}
   controller: App\Controller\alstomController:delete_engineer
   methods: DELETE
+
 # Vue se rapportant à l'onglet projects
 alstom.projects:
   path: /alstom/projects
@@ -58,6 +60,15 @@ alstom.delete-project:
   path: /alstom/project/{id}
   controller: App\Controller\alstomController:delete_project
   methods: DELETE
+
+# Vue se rapportant à l'onglet trains
+alstom.trains:
+  path: /alstom/trains
+  controller: App\Controller\alstomController:trains
+alstom.show-train:
+  path: /alstom/trains/{id}
+  controller: App\Controller\alstomController:show_train
+
 
 
 #Vue du client

@@ -8,15 +8,20 @@ use App\Entity\Engineers;
 use App\Entity\EnginSearch;
 use App\Entity\Projects;
 use App\Entity\ProjectSearch;
+use App\Entity\Trains;
+use App\Entity\TrainsSearch;
 use App\Form\ClientsSearchType;
 use App\Form\ClientsType;
 use App\Form\EngineerType;
 use App\Form\EnginSearchType;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
+use App\Form\TrainsSearchType;
+use App\Form\TrainsType;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
 use App\Repository\ProjectsRepository;
+use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -232,6 +237,7 @@ class alstomController extends AbstractController
      */
     public function delete_engineer(Engineers $engineers, Request $request): Response
     {
+
         if($this->isCsrfTokenValid('delete'.$engineers->getId(), $request->get('_token'))){
 
             $this->em->remove($engineers);
@@ -336,7 +342,95 @@ class alstomController extends AbstractController
         }
         return $this->redirectToRoute('alstom.projects');
 
-
     }
+
+// Page TRAINS ---------------------------------------------
+
+    public function trains(TrainsRepository $trainsRepository, Request $request): Response
+    {
+
+        $search = new TrainsSearch();
+        $form = $this->createForm(TrainsSearchType::class, $search);
+        $form->handleRequest($request);
+        $trains = $trainsRepository->findAllTrains($search);
+
+        return $this->render('alstom/trains/trains.html.twig', [
+            'current_menu' => 'trains',
+            'trains' => $trains,
+            'form' => $form->createView()
+        ]);
+    }
+//
+//    public function create_train(Request $request): Response
+//    {
+//        $train = new Trains();
+//        $form = $this->createForm(TrainsType::class, $train);
+//        $form->handleRequest($request);
+//
+//
+//        //        Validation du formulaire
+//        if($form->isSubmitted() && $form->isValid()){
+//
+//            $this->em->persist($train);
+//            $this->em->flush();
+//            $this->addFlash('success', 'Train create with success');
+//            return $this->redirectToRoute('client.trains');
+//        }
+//        return $this->render('client/trains/create-trains.html.twig', [
+//            'current_menu' => 'trains',
+//            'button' => 'Create',
+//            'form' => $form->createView()
+//        ]);
+//
+//    }
+
+//
+//
+//    public function edit_train(Request $request, Trains $trains)
+//    {
+//        $form = $this->createForm(TrainsType::class, $trains);
+//        $form->handleRequest($request);
+//
+//        //        Validation du formulaire
+//        if($form->isSubmitted() && $form->isValid()){
+//
+//            $this->em->flush();
+//            $this->addFlash('success', 'Trains modified with success');
+//            return $this->redirectToRoute('client.trains');
+//        }
+//
+//        return $this->render('client/trains/edit-train.html.twig', [
+//            'current_menu' => 'trains',
+//            'button' =>'Edit',
+//            'train' => $trains,
+//            'form' => $form->createView()
+//        ]);
+//    }
+
+    public function show_train(Trains $trains)
+    {
+        return $this->render('alstom/trains/show-train.html.twig', [
+            'current_menu' => 'trains',
+            'train' => $trains
+        ]);
+    }
+//    //    suppresion de train
+//    /**
+//     * @param Request $request
+//     * @return Response
+//     */
+//    public function delete_train(Trains $trains, Request $request): Response
+//    {
+//        if($this->isCsrfTokenValid('delete'.$trains->getId(), $request->get('_token'))){
+//
+//            $this->em->remove($trains);
+//            $this->em->flush();
+//            $this->addFlash('success', 'Train delete with success');
+//
+//        }
+//        return $this->redirectToRoute('client.trains');
+//
+//
+//    }
 
 }

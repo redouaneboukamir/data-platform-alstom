@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="#">
+                        <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('alstom.trains') }}">
                             <span data-feather="layers"></span>
                             Trains
                         </a>
@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="#">
+                            <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('alstom.trains') }}">
                                 <span data-feather="layers"></span>
                                 Trains
                             </a>
