@@ -31,7 +31,11 @@ class ProjectsRepository extends ServiceEntityRepository
             ->where('p.available = true');
     }
 
+    public function findTrainsInProjects():Query
+    {
+        return $this->createQueryBuilder('p');
 
+    }
 
     public function findAllProjects(ProjectSearch $search): array
     {

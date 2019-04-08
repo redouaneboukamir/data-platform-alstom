@@ -84,11 +84,12 @@ class clientController extends AbstractController
         ]);
     }
 
-    public function create_train(Request $request, ProjectsRepository $projectsRepository, TrainsRepository $trainsRepository): Response
+    public function create_train(Request $request): Response
     {
         $train = new Trains();
         $form = $this->createForm(TrainsType::class, $train);
         $form->handleRequest($request);
+
 
         //        Validation du formulaire
         if($form->isSubmitted() && $form->isValid()){

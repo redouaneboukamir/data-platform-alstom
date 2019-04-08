@@ -39,8 +39,10 @@
                                 <tr>
                                     <td class="name-project-table"><a href="{{ path('alstom.project-show', {id: project.id}) }}">{{  project.name }}</td>
                                     <td class="nbtrain-project-table">
-                                        {{ dump(project.trains) }}
-{#                                        {% for train in project.trains %}{{ dump(train) }}{% endfor %}#}
+{#                                       {% for train in project.trains %}#}
+                                           {{  project.trains|length }}
+{#                                        {% endfor %}#}
+
                                     </td>
 
                                     <td class="content-btn-edit-delete">

@@ -35,6 +35,16 @@
 
                         </td>
                     </tr>
+                    <tr class="row">
+                        <td class="title-show-project col-md-7 col-xs-10 col-sm-10 ">Trains :</td>
+                        {#  Boucle sur les trains des projects #}
+                        <td class="content-project-project row">
+                            {% for train in project.trains %}
+                                <p> {{ train.name }} </p>
+                            {% endfor %}
+
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

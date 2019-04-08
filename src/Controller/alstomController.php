@@ -255,6 +255,13 @@ class alstomController extends AbstractController
 
         $project = $projectsRepository->findAllProjects($search);
 
+        foreach ($project as $item){
+            $item->setNumberTrains(count($item->getTrains()));
+            $this->em->persist($item);
+            $this->em->flush();
+
+        }
+
         return $this->render(('alstom/projects/projects.html.twig'), [
             'current_menu' => 'projects',
             'projects' => $project,
