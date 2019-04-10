@@ -1,66 +1,76 @@
-.content-form-project{
+//Vue du récapitulatif de tous les projets
+//
 
-}
-.table-all-projects{
-
-  .title-table-projects{
-
-    .title-numberTrain-projects{
-      text-align: center;
-    }
-
-  }
-  .name-project-table{
-    display: flex;
-    align-items: center;
-    border-top: 0;
-    font-weight: bold;
-    font-size: 1.1em;
-    a{
-      text-decoration: none;
-      color: black;
-    }
-  }
-  .nbtrain-project-table{
-    border-left: 1px solid lightgray;
-    text-align: center;
-    vertical-align: middle;
-  }
-  .content-btn-edit-delete{
-    a{
-      margin-right: 2vh;
-    }
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 5vh;
-  }
-}
+//Vue du projet indivicduellement
+//
 
 .table-show-project{
-  td{
-    display: flex;
-    align-items: center;
-  }
-  .title-show-project{
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-right: 2px;
+   td{
+     display: flex;
+     align-items: center;
+   }
+   .title-show-project{
+     font-size: 1.5em;
+     font-weight: bold;
+     margin-right: 2px;
 
-  }
-  .item-show-project{
-    font-size: 1.2em;
-  }
-}
+   }
+   .item-show-project{
+     font-size: 1.2em;
+   }
+ }
 .content-project-project{
   display: flex;
   p{
-
     margin: 2vh;
     padding-right: 2vh;
     text-transform: uppercase;
   }
 }
+.content-img-project{
+  .img-description-project{
+    width: 100vw;
+    height: 20em;
+    //background: url(/public/build/img/Alstom_Avelia_Liberty_tilting_very_high_speed_train_edit.jpg) no-repeat;
+    margin: 0;
+    overflow: hidden;
+    text-align: right;
+    .img-project{
+      width: 100%;
+    }
+  }
+  .content-img-project-show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: red;
+    display: none;
+      z-index: 999;
+    .img-project-show{
+
+    }
+  }
+  .content-panel{
+    margin-top: 2em;
+    h2{
+      margin-bottom: 1em;
+    }
+    .text-descrip-project{
+      text-align: justify;
+    }
+  }
+
+}
+
+
+
+
+//Responsive du récapitulatif des projets
+//
 @media (max-width: 420px) {
   .content-btn-edit-delete{
     a{
@@ -75,7 +85,6 @@
     .btn-edit-project{
       margin: 0;
       margin-bottom: 1vh;
-
       //padding-right: 1vh;
       //padding-left: 1vh;
       font-size: 0.8em;

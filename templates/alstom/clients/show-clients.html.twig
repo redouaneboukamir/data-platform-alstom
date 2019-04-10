@@ -4,9 +4,24 @@
 {% block body %}
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1>{{ client.name }}</h1>
-                        <a href="{{ path('alstom.edit-client',{id: client.id}) }}"><button class="btn btn-primary">Edit</button></a>
+
+                        <div class="jumbotron content-picture-name">
+                                <div class="name-btn-edit">
+                                        <h1>{{ client.name|upper }}</h1>
+
+                                </div>
+                                <div class="picture-client">
+                                        {% if client.filename  is empty %}
+                                                <img src="{{ asset('build/img/avatar-client.png') }}" alt="">
+                                        {% else %}
+                                                <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="card-img-top">
+                                        {% endif %}
+                                        <a href="{{ path('alstom.edit-client',{id: client.id}) }}"><button class="btn btn-primary">Edit</button></a>
+                                </div>
+                        </div>
+
                 </div>
                 <div class="row mt-5">
                         <div class="col-md-10">
@@ -32,7 +47,7 @@
                                         <tr class="row">
                                                 <td class="title-show-client col-md-7 col-xs-10 col-sm-10">Countries :</td>
                                                 <td class="item-show-client col-4">{% for country in client.countries %}
-                                                                <p class="flag flag-{{ country.iso|lower }}"></p>
+                                                                <p class="flag flag-{{ country.iso|lower }} flag-country-client"></p>
                                                         {% endfor %}</td>
 
                                         </tr>
@@ -41,4 +56,6 @@
                 </div>
         </main>
 
+{% endblock %}
+{% block javascripts %}
 {% endblock %}

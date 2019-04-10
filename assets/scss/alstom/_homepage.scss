@@ -1,26 +1,8 @@
-.active{
 
-}
-.sidebar-alstom{
-
-  .title-sidebar{
-    font-size: 1.8em;
-    color: black;
-    border-bottom: 1px solid darkgray;
-    padding-left: 0;
-    margin-left: 2vh;
-    margin-bottom: 3vh;
-  }
-  .item-sidebar-alstom{
-
-        font-size: 1.2em;
-        a:hover{
-          opacity: 0.5;
-        }
-
-  }
-}
 .navbar-smallscreen{
+  .navbar-nav{
+    width: 100vh;
+  }
   .navbar-brand{
     &:hover{
       opacity: 1;
@@ -30,6 +12,7 @@
     color: white;
 
     &:hover{
+
       opacity: 0.5;
     }
   }

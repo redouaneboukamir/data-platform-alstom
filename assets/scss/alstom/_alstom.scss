@@ -3,7 +3,63 @@
 @import "engineer-page";
 @import "project-page";
 
-.container-search{
-  //display: flex;
-  //justify-content: space-between !important;
+
+.search-bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-bottom:0.8em;
+  padding-top: 2em;
+  margin-bottom: 2vh;
+  button{
+    margin: 0 !important;
+
+  }
 }
+.table-content{
+  .title-table{
+    text-align: center;
+  }
+  .td-table{
+    font-size: 0.95em;
+    a{
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+    }
+    td{
+      padding: 0 !important;
+      text-align: center;
+      vertical-align: middle;
+      p{
+        margin-bottom: 0;
+      }
+    }
+  }
+  .content-btn-edit-delete{
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 0;
+    margin-right: 0 !important;
+    a{
+      margin-right: 1vh;
+    }
+    button{
+      margin: 5px;
+      padding: 0.3em 0.6em;
+    }
+  }
+
+}
+
+@media (max-width: 460px) {
+  .content-btn-edit-delete, .th-empty{
+    display: none !important;
+  }
+}
+
+

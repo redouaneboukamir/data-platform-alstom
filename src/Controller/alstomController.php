@@ -27,6 +27,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class alstomController extends AbstractController
 {
@@ -61,28 +62,42 @@ class alstomController extends AbstractController
 //    Vue de tout les client
     public function clients(ClientsRepository $clientsRepository, Request $request): Response
     {
+        $session = new Session();
 
         $search = new ClientsSearch();
         $form = $this->createForm(ClientsSearchType::class, $search);
         $form->handleRequest($request);
-
         $clients = $clientsRepository->findAllClients($search);
 
+        $result_found = $session->get('result_notfound');
 
         return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',
             'clients' => $clients,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'result_notfound' => $result_found
         ]);
     }
-    //    Vue de Client individuel
-    public function show_clients(Clients $clients): Response
-    {
 
+    //    Vue de Client individuel
+//
+    public function show_clients(Clients $clients, Request $request): Response
+    {
+        $form = $this->createForm(ClientsType::class, $clients);
+        $form->handleRequest($request);
+
+        //        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+
+            $this->em->flush();
+            $this->addFlash('success', 'Client modified with success');
+            return $this->redirectToRoute('alstom.client');
+        }
 
         return $this->render('alstom/clients/show-clients.html.twig', [
             'current_menu' => 'client',
             'client' => $clients,
+            'form' => $form->createView()
         ]);
     }
 
@@ -157,7 +172,7 @@ class alstomController extends AbstractController
             $this->addFlash('success', 'Client delete with success');
 
         }
-            return $this->redirectToRoute('alstom.client');
+        return $this->redirectToRoute('alstom.client');
 
 
     }
@@ -311,6 +326,7 @@ class alstomController extends AbstractController
     {
         $form = $this->createForm(ProjectType::class, $projects);
         $form->handleRequest($request);
+
         //        Validation du formulaire
         if($form->isSubmitted() && $form->isValid()){
 

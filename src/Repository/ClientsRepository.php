@@ -8,6 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * @method Clients|null find($id, $lockMode = null, $lockVersion = null)
@@ -30,14 +31,13 @@ class ClientsRepository extends ServiceEntityRepository
             ->orderBy('c.name', 'ASC');
 
     }
-
     /**
      * @param ClientsSearch $search
      * @return array
      */
     public function findAllClients(ClientsSearch $search): array
     {
-
+        $session = new Session();
         $query = $this->findASCClients();
         $AllClients = $this->findAll();
         $findClients = [];
@@ -59,6 +59,10 @@ class ClientsRepository extends ServiceEntityRepository
                                     strtolower($compar) === strtolower($search->getNameClient())) {
                                     array_push($findClients, $currentClient);
                                     $find = true;
+                                    $session->set('result_notfound',null);
+
+                                }else{
+                                    $session->set('result_notfound','No results found');
 
                                 }
 
@@ -66,6 +70,8 @@ class ClientsRepository extends ServiceEntityRepository
                     }
 
             }
+                                    dump($session->get('result_notfound'));
+
                 $query = $query
                     ->where('c.name = :name')
                     ->setParameter('name',$findClients)
@@ -77,7 +83,6 @@ class ClientsRepository extends ServiceEntityRepository
         }
 
     }
-
     // /**
     //  * @return Clients[] Returns an array of Clients objects
     //  */

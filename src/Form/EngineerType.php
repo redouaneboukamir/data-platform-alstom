@@ -7,6 +7,7 @@ use App\Entity\Projects;
 use App\Repository\ProjectsRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,6 +29,12 @@ class EngineerType extends AbstractType
             ])
             ->add('Num_Badge', null,[
                 'label' => 'Number of badge'
+            ])
+            ->add('profilePicture', FileType::class, [
+                'label' => 'Image profile (PNG, JPG, PDF)',
+                'required' => false,
+                'attr' => ['id' => 'logo-id', 'class' => 'attachment_upload']
+
             ])
 
         ;

@@ -5,8 +5,20 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1>{{ engineer.name }}</h1>
-            <a href="{{ path('alstom.edit-engineer',{id: engineer.id}) }}"><button class="btn btn-primary">Edit</button></a>
+            <div class="jumbotron content-picture-name">
+                <div class="name-btn-edit">
+                    <h1>{{ engineer.name|upper }}</h1>
+
+                </div>
+                <div class="picture-client">
+                    {% if engineer.filename  is empty %}
+                        <img src="{{ asset('build/img/avatar-engineer.png') }}" alt="">
+                    {% else %}
+                        <img class="img-fluid" src="/build/img/clients/{{ engineer.filename }}" alt="card-img-top">
+                    {% endif %}
+                    <a href="{{ path('alstom.edit-engineer',{id: engineer.id}) }}"><button class="btn btn-primary">Edit</button></a>
+                </div>
+            </div>
         </div>
         <div class="row mt-5">
             <div class="col-md-10">

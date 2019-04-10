@@ -1,23 +1,4 @@
 
-.sidebar-client{
-
-  .title-sidebar{
-    font-size: 1.8em;
-    color: black;
-    border-bottom: 1px solid darkgray;
-    padding-left: 0;
-    margin-left: 2vh;
-    margin-bottom: 3vh;
-  }
-  .item-sidebar-client{
-
-    font-size: 1.2em;
-    a:hover{
-      opacity: 0.5;
-    }
-
-  }
-}
 .navbar-smallscreen{
   .navbar-brand{
     &:hover{

@@ -3,9 +3,10 @@
 {% endblock %}
 {{ form_start(form) }}
 <div class="row">
-    <div class="col-md-5">{{ form_row(form.name) }}</div>
-    <div class="col-md-5">{{ form_row(form.clients) }}</div>
-    <div class="col-md-5">{{ form_row(form.engineers) }}</div>
+    <div class="col-md-10">{{ form_row(form.name) }}</div>
+    <div class="col-md-10">{{ form_row(form.clients) }}</div>
+    <div class="col-md-10">{{ form_row(form.engineers) }}</div>
+    <div  class="col-md-10">{{ form_row(form.profilePicture) }}</div>
 
 </div>
 <button class="btn btn-primary">{{ button|default('Send') }}</button>

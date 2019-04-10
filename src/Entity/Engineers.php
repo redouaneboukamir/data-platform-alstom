@@ -5,12 +5,16 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraint as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EngineersRepository")
+ * @Vich\Uploadable()
  */
 //* @UniqueEntity("Num_Badge") A tester
 class Engineers
@@ -21,6 +25,21 @@ class Engineers
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="engineer_image", fileNameProperty="filename")
+     *
+     * @var File|null
+     */
+    private $profile_picture;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $filename;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -42,6 +61,12 @@ class Engineers
      * @ORM\ManyToMany(targetEntity="App\Entity\Projects", inversedBy="engineers")
      */
     private $Projects;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
 
     public function __construct()
     {
@@ -114,4 +139,57 @@ class Engineers
 
         return $this;
     }
+
+
+    /**
+     * @return File|null
+     */
+    public function getProfilePicture(): ?File
+    {
+        return $this->profile_picture;
+    }
+
+    /**
+     * @param null|File $profile_picture
+     * @return Engineers
+     * @throws \Exception
+     */
+    public function setProfilePicture(?File $profile_picture): Engineers
+    {
+        $this->profile_picture = $profile_picture;
+        if ($this->profile_picture instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param string|null $filename
+     */
+    public function setFilename(?string $filename): void
+    {
+        $this->filename = $filename;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
 }

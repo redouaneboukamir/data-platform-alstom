@@ -1,15 +1,74 @@
 {#{% block stylesheets %}#}
 {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">#}
 {#{% endblock %}#}
-{{ form_start(form) }}
-<div class="row">
-    <div class="col-md-4">{{ form_row(form.name) }}</div>
-    <div class="col-md-4">{{ form_row(form.projects) }}</div>
-    <div class="col-md-4">{{ form_row(form.email) }}</div>
+{#{{ form_start(form) }}#}
+{#<div class="row">#}
+{#    <div class="col-md-10">{{ form_row(form.name) }}</div>#}
+{#    <div class="col-md-10">{{ form_row(form.email) }}</div>#}
+{#    <div class="col-md-10">{{ form_row(form.projects) }}</div>#}
+{#</div>#}
+{#<div class="row">#}
+{#    <div class="col-md-10 col-sm-10 col-xs-10">{{ form_row(form.countries) }}</div>#}
+{#    <div class="col-md-10">{{ form_row(form.profilePicture) }}</div>#}
 
+{#</div>#}
+
+{#<button class="btn btn-primary">{{ button|default('Send') }}</button>#}
+{#{{ form_end(form) }}#}
+
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-3"><!--left col-->
+
+            {{ form_start(form) }}
+            <div class="text-center">
+                {% if client.filename  is empty %}
+                    <img src="{{ asset('build/img/avatar-client.png') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                {% else %}
+                    <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="card-img-top">
+                {% endif %}
+                <span class="btn btn-default btn-file">
+                    {{ form_row(form.profilePicture) }}
+                </span>
+{#                <input type="file" class="text-center center-block file-upload">#}
+            </div>
+
+        </div><!--/col-3-->
+        <div class="col-sm-9 content-input">
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <hr>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                    {{ form_row(form.name) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                {{ form_row(form.email) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                {{ form_row(form.projects) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                {{ form_row(form.countries) }}
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">{{ button|default('Send') }}</button>
+                        {{ form_end(form) }}
+        </div><!--/tab-content-->
+
+    </div><!--/col-9-->
+</div><!--/row-->
+    </div>
 </div>
-<div class="row">
-    <div class="col-md-10 col-sm-10 col-xs-10">{{ form_row(form.countries) }}</div>
-</div>
-<button class="btn btn-primary">{{ button|default('Send') }}</button>
-{{ form_end(form) }}

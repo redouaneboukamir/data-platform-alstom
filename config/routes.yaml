@@ -38,7 +38,7 @@ alstom.edit-engineer:
     controller: App\Controller\alstomController:edit_engineer
     methods: GET|POST
 alstom.delete-engineer:
-  path: /alstom/engineer/{id}
+  path: /alstom/engineer/{id}/delete
   controller: App\Controller\alstomController:delete_engineer
   methods: DELETE
 
@@ -57,7 +57,7 @@ alstom.edit-project:
   controller: App\Controller\alstomController:edit_project
   methods: GET|POST
 alstom.delete-project:
-  path: /alstom/project/{id}
+  path: /alstom/project/{id}/delete
   controller: App\Controller\alstomController:delete_project
   methods: DELETE
 

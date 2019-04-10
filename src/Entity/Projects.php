@@ -7,10 +7,14 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Self_;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectsRepository")
  * @UniqueEntity("name")
+ * @Vich\Uploadable()
  */
 class Projects
 {
@@ -21,6 +25,20 @@ class Projects
      */
     private $id;
 
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="project_image", fileNameProperty="filename")
+     *
+     * @var File|null
+     */
+    private $profile_picture;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $filename;
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -52,12 +70,18 @@ class Projects
      */
     private $trains;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
         $this->engineers = new ArrayCollection();
         $this->trains = new ArrayCollection();
     }
+    
 
     public function getId(): ?int
     {
@@ -186,4 +210,60 @@ class Projects
 
         return $this;
     }
+
+    /**
+     * @return File|null
+     */
+    public function getProfilePicture(): ?File
+    {
+        return $this->profile_picture;
+    }
+
+    /**
+     * @param File|null $profile_picture
+     * @return Projects
+     * @throws \Exception
+     */
+    public function setProfilePicture(?File $profile_picture): Projects
+    {
+        $this->profile_picture = $profile_picture;
+        if ($this->profile_picture instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param string|null $filename
+     */
+    public function setFilename(?string $filename): void
+    {
+        $this->filename = $filename;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param mixed $updated_at
+     */
+    public function setUpdatedAt($updated_at): void
+    {
+        $this->updated_at = $updated_at;
+    }
+
+
 }

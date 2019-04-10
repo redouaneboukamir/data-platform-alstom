@@ -1,7 +1,16 @@
 @import "alstom/alstom";
 @import "client/client";
+
+$main-color: rgb(4, 70, 148);
+$color-item-active : #3987fd;
+$color-bg-active: #f2f2f2;
+
 body {
   font-size: .875rem;
+}
+.noresult_found{
+  padding: 20px;
+  font-size: 2em;
 }
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -26,7 +35,6 @@ body {
 /*
  * Sidebar
  */
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -35,6 +43,26 @@ body {
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  .title-sidebar{
+    font-size: 1.8em;
+    color: black;
+    border-bottom: 1px solid darkgray;
+    padding-left: 0;
+    margin-left: 2vh;
+    margin-bottom: 3vh;
+    border-left: 0 !important;
+  }
+  .item-sidebar{
+    a:hover{
+      border-left: 4px solid $color-item-active;
+      color: $color-item-active;
+    }
+    .active{
+      background: $color-bg-active;
+      border-left: 4px solid $color-item-active;
+      color: $color-item-active;
+    }
+  }
 }
 
 .sidebar-sticky {
