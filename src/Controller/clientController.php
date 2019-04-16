@@ -12,6 +12,7 @@ use App\Form\TrainsType;
 use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +32,7 @@ class clientController extends AbstractController
 
     }
     /**
+     * @Route("/client", name="client.home")
      * @return Response
      */
     public function index(): Response
@@ -41,6 +43,7 @@ class clientController extends AbstractController
     }
 // Page PROJECTS ---------------------------------------------
     /**
+     * @Route("/client/projects", name="client.projects")
      * @return Response
      */
     public function projects(ProjectsRepository $projectsRepository, Request $request): Response
@@ -56,7 +59,10 @@ class clientController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    /**
+     * @Route("/client/project/{id}", name="client.project-show")
+     * @return Response
+     */
     public function show_project(Projects $projects){
 
         return $this->render('client/projects/show-project.html.twig', [
@@ -68,7 +74,10 @@ class clientController extends AbstractController
 
 
 // Page TRAINS ---------------------------------------------
-
+    /**
+     * @Route("/client/trains", name="client.trains")
+     * @return Response
+     */
     public function trains(TrainsRepository $trainsRepository, Request $request): Response
     {
 
@@ -84,6 +93,10 @@ class clientController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/client/create-train", name="client.create-train")
+     * @return Response
+     */
     public function create_train(Request $request): Response
     {
         $train = new Trains();
@@ -108,7 +121,10 @@ class clientController extends AbstractController
     }
 
 
-
+    /**
+     * @Route("/client/edit-train/{id}", name="client.edit-train", methods={"POST","GET"})
+     * @return Response
+     */
     public function edit_train(Request $request, Trains $trains)
     {
         $form = $this->createForm(TrainsType::class, $trains);
@@ -129,7 +145,10 @@ class clientController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    /**
+     * @Route("/client/trains/{id}", name="client.show-train")
+     * @return Response
+     */
     public function show_train(Trains $trains)
     {
         return $this->render('client/trains/show-train.html.twig', [
@@ -139,6 +158,7 @@ class clientController extends AbstractController
     }
     //    suppresion de train
     /**
+     * @Route("/client/train/{id}", name="client.delete-train", methods={"DELETE"})
      * @param Request $request
      * @return Response
      */

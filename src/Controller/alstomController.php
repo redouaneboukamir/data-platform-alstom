@@ -17,17 +17,17 @@ use App\Form\EnginSearchType;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
 use App\Form\TrainsSearchType;
-use App\Form\TrainsType;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
 use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Annotation\Route;
 
 class alstomController extends AbstractController
 {
@@ -43,7 +43,9 @@ class alstomController extends AbstractController
         $this->em = $em;
 
     }
+
     /**
+     * @Route("/alstom", name="alstom.home")
      * @return Response
      */
 //    Vue de la homepage
@@ -57,6 +59,7 @@ class alstomController extends AbstractController
 
 //    PAGE CLIENT -------------------------------------------------------------
     /**
+     * @Route("/alstom/clients", name="alstom.client")
      * @return Response
      */
 //    Vue de tout les client
@@ -80,7 +83,12 @@ class alstomController extends AbstractController
     }
 
     //    Vue de Client individuel
-//
+
+    /**
+     * @Route("/alstom/clients/{id}", name="alstom.client-show")
+     * @return Response
+     */
+
     public function show_clients(Clients $clients, Request $request): Response
     {
         $form = $this->createForm(ClientsType::class, $clients);
@@ -104,6 +112,7 @@ class alstomController extends AbstractController
 
 //    Page d'ajouts de clients
     /**
+     * @Route("/alstom/create-clients", name="alstom.create-client")
      * @param Request $request
      * @return Response
      */
@@ -131,6 +140,7 @@ class alstomController extends AbstractController
 
     //    Page d'edit de clients
     /**
+     * @Route("/alstom/edit-client/{id}", name="alstom.edit-client", methods={"GET","POST"} )
      * @param Request $request
      * @return Response
      */
@@ -160,6 +170,7 @@ class alstomController extends AbstractController
 
     //    suppresion de clients
     /**
+     * @Route("/alstom/client/{id}", name="alstom.delete-client", methods={"DELETE"})
      * @param Request $request
      * @return Response
      */
@@ -179,6 +190,10 @@ class alstomController extends AbstractController
 
 //    PAGE ENGINEER -------------------------------------------------------------
 
+    /**
+     * @Route("/alstom/engineers", name="alstom.engineers")
+     * @return Response
+     */
 //    Vue de la page engineers
     public function engineers(EngineersRepository $engineersRepository, Request $request): Response
     {
@@ -194,6 +209,10 @@ class alstomController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/alstom/engineer/{id}", name="alstom.engineer-show")
+     * @return Response
+     */
     public function show_engineer(Engineers $engineers)
     {
         return $this->render('alstom/engineers/show-engineer.html.twig', [
@@ -202,7 +221,10 @@ class alstomController extends AbstractController
         ]);
     }
 //    page création engineer
-
+    /**
+     * @Route("/alstom/create-engineer", name="alstom.create-engineer")
+     * @return Response
+     */
     public function create_engineer(Request $request): Response
     {
         $engineer = new Engineers();
@@ -225,6 +247,10 @@ class alstomController extends AbstractController
     }
 
 //    Page d'edit d'ingénieur
+    /**
+     * @Route("/alstom/edit-engineer/{id}", name="alstom.edit-engineer", methods={"POST", "GET"})
+     * @return Response
+     */
     public function edit_engineer(Request $request, Engineers $engineers): Response
     {
         $form = $this->createForm(EngineerType::class, $engineers);
@@ -247,6 +273,7 @@ class alstomController extends AbstractController
     }
     //    suppresion d'ingénieur
     /**
+     * @Route("/alstom/engineer/{id}/delete", name="alstom.delete-engineer", methods={"DELETE"})
      * @param Request $request
      * @return Response
      */
@@ -267,6 +294,10 @@ class alstomController extends AbstractController
 
 
     //    PAGE Projects -------------------------------------------------------------
+    /**
+     * @Route("/alstom/projects", name="alstom.projects")
+     * @return Response
+     */
 //    Vue de la page projects
     public function projects(ProjectsRepository $projectsRepository, Request $request): Response
     {
@@ -289,6 +320,11 @@ class alstomController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/alstom/project/{id}", name="alstom.project-show")
+     * @return Response
+     */
     public function show_project(Projects $projects){
 
         return $this->render('alstom/projects/show-project.html.twig', [
@@ -299,7 +335,10 @@ class alstomController extends AbstractController
 
 
     //    page création projects
-
+    /**
+     * @Route("/alstom/create-project", name="alstom.create-project")
+     * @return Response
+     */
     public function create_project(Request $request): Response
     {
         $project = new Projects();
@@ -321,7 +360,13 @@ class alstomController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+
     //    Page d'edit de project
+    /**
+     * @Route("/alstom/edit-project/{id}", name="alstom.edit-project", methods={"GET", "POST"})
+     * @return Response
+     */
     public function edit_project(Request $request, Projects $projects): Response
     {
         $form = $this->createForm(ProjectType::class, $projects);
@@ -344,6 +389,7 @@ class alstomController extends AbstractController
     }
     //    suppresion de project
     /**
+     * @Route("/alstom/project/{id}/delete", name="alstom.delete-project", methods={"DELETE"})
      * @param Request $request
      * @return Response
      */
@@ -361,6 +407,10 @@ class alstomController extends AbstractController
     }
 
 // Page TRAINS ---------------------------------------------
+    /**
+     * @Route("/alstom/trains", name="alstom.trains")
+     * @return Response
+     */
 
     public function trains(TrainsRepository $trainsRepository, Request $request): Response
     {
@@ -423,6 +473,10 @@ class alstomController extends AbstractController
 //        ]);
 //    }
 
+    /**
+     * @Route("/alstom/trains/{id}", name="alstom.show-train")
+     * @return Response
+     */
     public function show_train(Trains $trains)
     {
         return $this->render('alstom/trains/show-train.html.twig', [
