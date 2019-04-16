@@ -9,8 +9,10 @@ login_check:
 logout:
   path: /logout
 
-
-
+#Route vers hom
+#home:
+#  path: /
+#  controller: App\Controller\homeController::index
 
 #Partie de toutes les vue d'alstom
 #Homepage Alstom
