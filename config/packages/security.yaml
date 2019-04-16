@@ -29,9 +29,9 @@ security:
 #            pattern: ^/
             anonymous: true
 
-            form_login: true
+            form_login:
 #                login_path: login
-#                check_path: login_check
+#                check_path: login
 #            logout:
 #                path: logout
 #                target: login
@@ -50,5 +50,5 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-          - { path: ^/alstom, roles: ROLE_ALSTOM }
-          - { path: ^/client, roles: ROLE_CLIENT }
+#          - { path: ^/alstom, roles: ROLE_ALSTOM }
+#          - { path: ^/client, roles: ROLE_CLIENT }
