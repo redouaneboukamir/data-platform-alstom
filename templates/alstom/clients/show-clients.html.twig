@@ -2,60 +2,50 @@
 
 
 {% block body %}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 jumbotron">
+            <section class="card mt-3">
+                <a class="btn-edit" href="{{ path('alstom.edit-client',{id: client.id}) }}"><button class="btn btn-secondary "><i class="fas fa-user-edit"></i></button></a>
+                <figure class="panel meta">
+                    <picture class="picture-client">
+                        {% if client.filename  is empty %}
+                            <img class="avatar" src="{{ asset('build/img/avatar-client.svg') }}" alt="">
+                        {% else %}
+                            <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="card-img-top">
+                        {% endif %}
+                    </picture>
+                    <figcaption>
+                        <h1 class="name" >{{ client.name|upper }}</h1>
+                        <p class="item-show-client col-4 title">{% for country in client.countries %}
+                                <p class="flag flag-{{ country.iso|lower }} flag-country-client"></p>
+                            {% endfor %}</p>
+                    </figcaption>
+                </figure>
+                <div class="border-separate-picture-info"></div>
+                <dv class="panel info">
+                    <dl class="skillz">
+                        <dt><i class="fas fa-at"></i>   </dt>
+                        <dd>{{ client.email }}</dd>
+                        <dt><i class="fas fa-project-diagram"></i>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                            </dt>
+                        <dd>
+                            {% for project in client.projects %}
+                                <p> {{ project.name }} </p>
+                            {% endfor %}
+                        </dd>
+                        <dt><i class="fas fa-train"></i></dt>
+                        <dd>{{ client.trains }}</dd>
 
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    </dl>
 
-                        <div class="jumbotron content-picture-name">
-                                <div class="name-btn-edit">
-                                        <h1>{{ client.name|upper }}</h1>
+                </dv>
 
-                                </div>
-                                <div class="picture-client">
-                                        {% if client.filename  is empty %}
-                                                <img src="{{ asset('build/img/avatar-client.png') }}" alt="">
-                                        {% else %}
-                                                <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="card-img-top">
-                                        {% endif %}
-                                        <a href="{{ path('alstom.edit-client',{id: client.id}) }}"><button class="btn btn-primary">Edit</button></a>
-                                </div>
-                        </div>
+            </section>
 
-                </div>
-                <div class="row mt-5">
-                        <div class="col-md-10">
-                                <table class="table table-stripped table-show-client">
-                                        <tr class="row">
-                                                <td class="title-show-client col-lg-7 col-md-7 col-xs-10 col-sm-10 ">Email : </td>
-                                                <td class="item-show-client col-4">{{ client.email }}</td>
-                                        </tr>
-                                        <tr class="row">
-                                                <td class="title-show-client col-md-7 col-xs-10 col-sm-10 ">Projects :</td>
-{#                                                Boucle sur les projets du clients #}
-                                                <td class="content-project-client row">
-                                                {% for project in client.projects %}
-                                                        <p> {{ project.name }} </p>
-                                                {% endfor %}
-
-                                                </td>
-                                        </tr>
-                                        <tr class="row">
-                                                <td class="title-show-client col-md-7 col-xs-10 col-sm-10 ">Number of trains :</td>
-                                                <td class="item-show-client col-4">{{ client.trains }}</td>
-                                        </tr>
-                                        <tr class="row">
-                                                <td class="title-show-client col-md-7 col-xs-10 col-sm-10">Countries :</td>
-                                                <td class="item-show-client col-4">{% for country in client.countries %}
-                                                                <p class="flag flag-{{ country.iso|lower }} flag-country-client"></p>
-                                                        {% endfor %}</td>
-
-                                        </tr>
-                                </table>
-                        </div>
-                </div>
         </main>
 
 {% endblock %}
 {% block javascripts %}
+    <script>
+    </script>
 {% endblock %}

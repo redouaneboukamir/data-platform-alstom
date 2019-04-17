@@ -2,7 +2,44 @@
 
 
 {% block body %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <section class="card mt-3">
+            <a class="btn-edit" href="{{ path('alstom.edit-engineer',{id: engineer.id}) }}"><button class="btn btn-secondary "><i class="fas fa-user-edit"></i></button></a>
+            <figure class="panel meta">
+                <picture class="picture-client">
+                    {% if engineer.filename  is empty %}
+                        <img class="avatar" src="{{ asset('build/img/engineer/avatar-engineer.svg') }}" alt="">
+                    {% else %}
+                        <img class="img-fluid" src="/build/img/engineer/{{ engineer.filename }}" alt="card-img-top">
+                    {% endif %}
+                </picture>
+                <figcaption>
 
+                    <h2>{{ engineer.surname |upper }}</h2>
+                    <h1 class="name" >{{ engineer.name|upper }}</h1>
+                </figcaption>
+            </figure>
+
+            <dv class="panel info">
+                <dl class="skillz">
+                    <dt><i class="fas fa-at"></i>   </dt>
+                    <dd>{{ engineer.numBadge }}</dd>
+                    <dt><i class="fas fa-project-diagram"></i>
+
+                    </dt>
+                    <dd>
+                        {% for project in engineer.projects %}
+                            <p> {{ project.name }} </p>
+                        {% endfor %}
+                    </dd>
+
+                </dl>
+
+            </dv>
+
+        </section>
+
+    </main>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <div class="jumbotron content-picture-name">
