@@ -14,11 +14,11 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow navbar-fullscreen">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Client user</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-            </li>
-        </ul>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="{{ path('logout') }}">Sign out</a>
+                </li>
+            </ul>
         
     </nav>
 
@@ -42,8 +42,9 @@
                         </a>
                     </li>
                     <li class="nav-item text-nowrap">
-                        <a class="nav-link signout-burger" href="#">Sign out</a>
+                        <a class="nav-link signout-burger" href="{{ path('logout') }}">Sign out</a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -62,20 +63,23 @@
                     <ul class="nav flex-column item-sidebar">
                         <li class="nav-item ">
                             <a class="nav-link {% if(current_menu == "home") %}active{% endif %} title-sidebar" href="{{ path('client.home') }}">
-                                <span data-feather="home"></span>
-                                Home
+                                <i class="fas fa-home"></i>
+                                <span data-feather="home">Home</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "projects") %}active{% endif %}" href="{{ path('client.projects') }}">
-                                <span data-feather="layers"></span>
-                                Projects
+                                <i class="fas fa-project-diagram"></i>
+                                <span data-feather="layers">Projects</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('client.trains') }}">
-                                <span data-feather="layers"></span>
-                                Trains
+                                <i class="fas fa-subway"></i>
+                                <span data-feather="layers">Trains</span>
+
                             </a>
                         </li>
                     </ul>

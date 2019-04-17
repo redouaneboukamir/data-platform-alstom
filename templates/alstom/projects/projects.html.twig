@@ -48,7 +48,7 @@
                                         <form method="post" action="{{ path('alstom.delete-project' ,{id:project.id}) }}" onsubmit="return confirm('Are you sure to delete this project?')">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
-                                            <button class="btn btn-danger btn-delete-project"><i class="fas fa-backspace"></i></button>
+                                            <button class="btn btn-danger btn-delete-project"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     </td>
                                 </tr>

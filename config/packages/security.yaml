@@ -16,6 +16,19 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        main:
+            pattern: ^/
+            form_login:
+                login_path: /
+                check_path: /
+            logout:
+                path: /logout
+                target: /
+            anonymous: true
+
+#    role_hierarchy:
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
 
 #        secure_area: Pas de patern donc toutes url passeront pas securea_area
 #            anonymous: ~
@@ -27,17 +40,6 @@ security:
 #            guard:
 #                authenticators:
 #                    - App\Security\KeycloakAuthenticator
-        main:
-#            pattern: ^/
-            anonymous: true
-
-            form_login:
-#                login_path: login
-                check_path: login
-#            logout:
-#                path: logout
-#                target: login
-
 
             # activate different ways to authenticate
 
