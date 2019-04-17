@@ -26,11 +26,7 @@ class UserFixtures extends Fixture
         $user->setEmail("client-test@gmail.com");
         $user->setRoles(array('ROLE_CLIENT'));
         $user->setPassword($this->encoder->encodePassword($user, 'test'));
-
         $manager->persist($user);
-        // $product = new Product();
-        // $manager->persist($product);
-
         $manager->flush();
     }
 }

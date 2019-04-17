@@ -3,11 +3,11 @@
   <component name="JsonSchemaMappingsProjectConfiguration">
     <state>
       <map>
-        <entry key="JSON schema v4">
+        <entry key="ESLint">
           <value>
             <SchemaInfo>
-              <option name="name" value="JSON schema v4" />
-              <option name="relativePathToSchema" value="http://json-schema.org/draft-04/schema" />
+              <option name="name" value="ESLint" />
+              <option name="relativePathToSchema" value="http://json.schemastore.org/eslintrc" />
               <option name="applicationDefined" value="true" />
               <option name="patterns">
                 <list>
