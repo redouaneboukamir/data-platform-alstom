@@ -8,7 +8,7 @@
       <ObjectId>16394</ObjectId>
       <StateNumber>572</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>667</IntrospectionStateNumber>
+      <IntrospectionStateNumber>684</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -101,7 +101,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>668</IntrospectionStateNumber>
+      <IntrospectionStateNumber>685</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -281,9 +281,9 @@
       <StateNumber>606</StateNumber>
     </table>
     <table id="45" parent="18" name="user">
-      <ObjectId>16560</ObjectId>
+      <ObjectId>16578</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>665</StateNumber>
+      <StateNumber>683</StateNumber>
     </table>
     <column id="46" parent="34" name="id">
       <Position>1</Position>
@@ -836,46 +836,46 @@ projects_id</ColNames>
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>665</StateNumber>
+      <StateNumber>683</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="123" parent="45" name="email">
       <Position>2</Position>
       <DataType>varchar(180)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>665</StateNumber>
+      <StateNumber>683</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="124" parent="45" name="roles">
       <Position>3</Position>
       <DataType>json|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>665</StateNumber>
+      <StateNumber>683</StateNumber>
       <TypeId>114</TypeId>
     </column>
     <column id="125" parent="45" name="password">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>665</StateNumber>
+      <StateNumber>683</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="126" parent="45" name="user_pkey">
-      <ObjectId>16566</ObjectId>
-      <StateNumber>665</StateNumber>
+      <ObjectId>16584</ObjectId>
+      <StateNumber>683</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <index id="127" parent="45" name="uniq_8d93d649e7927c74">
-      <ObjectId>16568</ObjectId>
-      <StateNumber>665</StateNumber>
+      <ObjectId>16586</ObjectId>
+      <StateNumber>683</StateNumber>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="128" parent="45" name="user_pkey">
-      <ObjectId>16567</ObjectId>
-      <StateNumber>665</StateNumber>
+      <ObjectId>16585</ObjectId>
+      <StateNumber>683</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>user_pkey</UnderlyingIndexName>
