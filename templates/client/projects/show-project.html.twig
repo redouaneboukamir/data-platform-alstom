@@ -4,39 +4,55 @@
 {% block body %}
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1>{{ project.name }}</h1>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom content-title-project-btnedit">
+            <h1>{{ project.name|upper }}</h1>
         </div>
-        <div class="row mt-5">
-            <div class="col-md-10">
-                <table class="table table-stripped table-show-project">
-                    <tr class="row">
-                        <td class="title-show-project col-lg-7 col-md-7 col-xs-10 col-sm-10 ">Name : </td>
-                        <td class="item-show-project col-4">{{ project.name }}</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="title-show-project col-md-7 col-xs-10 col-sm-10 ">Clients :</td>
-                        {#  Boucle sur les projets des projects #}
-                        <td class="content-project-project row">
-                            {% for client in project.clients %}
-                                <p> {{ client.name }} </p>
-                            {% endfor %}
 
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td class="title-show-project col-md-7 col-xs-10 col-sm-10 ">Engineers :</td>
-                        {#  Boucle sur les projets des projects #}
-                        <td class="content-project-project row">
-                            {% for engineer in project.engineers %}
-                                <p> {{ engineer.name }} </p>
-                            {% endfor %}
+        <div class="container-fluid content-img-project">
 
-                        </td>
-                    </tr>
-                </table>
+            <div class="img-description-project">
+                <img id="img-project" class="img-project img-fluid" src="/build/img/projects/{{ project.filename }}">
+            </div>
+
+            <div id="img-project-show"  class="content-img-project-show">
+                <img class="img-project-show img-fluid" src="/build/img/projects/{{ project.filename }}">
+            </div>
+
+            <div class="row content-panel mt mb">
+                <div class="col-md-9">
+                    <div class="col-md-11">
+                        <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
+                    </div>
+                    <div class="text-descrip-project col-md-11">
+                        <p class="mt">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
+                            and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                        <p >For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
+                        <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
+                        <p>"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
+                            what is your wish you my father I am your son this understand what is your wish.</p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </main>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let click = false;
+        $('#img-project').click(function(){
+
+            if(click == false){
+                $('.img-description-project').css('height','auto');
+                click = true;
+            }else{
+                $('.img-description-project').css('height','20em');
+                click = false;
+            }
+
+        });
+
+    </script>
 {% endblock %}
