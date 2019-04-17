@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09ec0d77-5797-4a22-a62f-c41d6c8fbe85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jsonSchemas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/securityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/securityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/alstom/clients/clients.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/alstom/clients/clients.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/alstom/engineers/engineers.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/alstom/engineers/engineers.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/alstom/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/alstom/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/alstom/projects/projects.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/alstom/projects/projects.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/projects/project.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/projects/project.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/projects/show-project.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/projects/show-project.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/trains/trains.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/trains/trains.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,11 +78,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/securityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+            <state relative-caret-position="300">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#35#100#0#PHP" expanded="true" />
                 <element signature="e#1267#1280#1#PHP" expanded="true" />
@@ -92,17 +96,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="50" />
+            <state relative-caret-position="375">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/alstom/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="694">
+              <caret line="114" column="71" selection-start-line="114" selection-start-column="71" selection-end-line="114" selection-end-column="71" />
+              <folding>
+                <element signature="e#1264#1270#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/packages/vich_uploader.yaml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/services.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-start-column="1" selection-end-line="11" selection-end-column="31" />
+            <state>
+              <caret column="21" selection-start-column="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -125,11 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/scss/alstom/_alstom.scss" />
-        <option value="$PROJECT_DIR$/src/Migrations/Version20190409112050.php" />
-        <option value="$PROJECT_DIR$/src/Migrations/Version20190410091903.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Clients.php" />
-        <option value="$PROJECT_DIR$/templates/alstom/projects/_form-project.html.twig" />
         <option value="$PROJECT_DIR$/src/Migrations/Version20190410105657.php" />
         <option value="$PROJECT_DIR$/src/Form/ProjectType.php" />
         <option value="$PROJECT_DIR$/src/Migrations/Version20190410110554.php" />
@@ -165,17 +181,22 @@
         <option value="$PROJECT_DIR$/templates/home/login.html.twig" />
         <option value="$PROJECT_DIR$/config/routes.yaml" />
         <option value="$PROJECT_DIR$/assets/scss/home/_home.scss" />
-        <option value="$PROJECT_DIR$/templates/alstom/clients/clients.html.twig" />
-        <option value="$PROJECT_DIR$/templates/alstom/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/client/index.html.twig" />
         <option value="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" />
         <option value="$PROJECT_DIR$/src/Controller/redirectController.php" />
         <option value="$PROJECT_DIR$/src/Controller/AfterLoginRedirectionController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/AfterLoginRedirection.php" />
+        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/config/services.yaml" />
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
-        <option value="$PROJECT_DIR$/src/Controller/AfterLoginRedirection.php" />
         <option value="$PROJECT_DIR$/src/Controller/securityController.php" />
+        <option value="$PROJECT_DIR$/templates/client/projects/project.html.twig" />
+        <option value="$PROJECT_DIR$/templates/client/projects/show-project.html.twig" />
+        <option value="$PROJECT_DIR$/templates/client/trains/trains.html.twig" />
+        <option value="$PROJECT_DIR$/templates/alstom/projects/projects.html.twig" />
+        <option value="$PROJECT_DIR$/templates/alstom/engineers/engineers.html.twig" />
+        <option value="$PROJECT_DIR$/templates/alstom/clients/clients.html.twig" />
+        <option value="$PROJECT_DIR$/templates/alstom/index.html.twig" />
       </list>
     </option>
   </component>
@@ -369,6 +390,12 @@
             <path>
               <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -376,19 +403,26 @@
               <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="alstom" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="alstom" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="trains" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
@@ -669,11 +703,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555498505045</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Add redirect route login">
+      <created>1555500977839</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1555500977839</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206912000" />
+    <option name="totallyTimeSpent" value="210760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -686,7 +727,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23462088" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -801,68 +841,10 @@
     <MESSAGE value="Merge branch 'test-developpement' of https://github.com/redouaneboukamir/data-platform-alstom into dev-security&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;config/packages/security.yaml&#10;#&#9;config/routes.yaml&#10;#&#9;src/Entity/User.php" />
     <MESSAGE value="Login/Logout add ROLES OK" />
     <MESSAGE value="Save Before Redirect route user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Save Before Redirect route user" />
+    <MESSAGE value="Add redirect route login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add redirect route login" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/routes/annotations.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/knpuniversity/oauth2-client-bundle/src/DependencyInjection/Providers/KeycloakProviderConfigurator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Clients.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-403">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/framework-bundle/Tests/DependencyInjection/Fixtures/TestBundle/TestBundle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20190416115910.php" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2b1dfe5e-7cd1-482c-985d-11a17b26662c/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/clients">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/clients_country">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/security-core/User/UserInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-313">
@@ -1030,34 +1012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-          <column-attributes>
-            <column name="roles" languageId="JSON" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/alstom/clients/clients.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="55" column="182" selection-start-line="55" selection-start-column="182" selection-end-line="55" selection-end-column="182" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/alstom/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
-          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="61" />
-          <folding>
-            <element signature="e#1264#1270#0#Twig" expanded="true" />
-            <element signature="e#3254#3260#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/client/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -1144,29 +1098,144 @@
     <entry file="file://$PROJECT_DIR$/src/Controller/AfterLoginRedirection.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/services.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-start-column="1" selection-end-line="11" selection-end-column="31" />
+    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+          <column-attributes>
+            <column name="roles" languageId="JSON" />
+          </column-attributes>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+    <entry file="file://$PROJECT_DIR$/config/services.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="50" />
+        <state>
+          <caret column="21" selection-start-column="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/securityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#35#100#0#PHP" expanded="true" />
             <element signature="e#1267#1280#1#PHP" expanded="true" />
             <element signature="e#1424#1437#1#PHP" expanded="true" />
             <element signature="e#925#947#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/client/projects/show-project.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/alstom/projects/show-project.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="98" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/client/projects/project.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+            <element signature="e#1342#1361#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/alstom/trains/trains.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/alstom/clients/clients.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="59" column="125" selection-start-line="59" selection-start-column="125" selection-end-line="59" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/alstom/engineers/engineers.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="59" column="127" selection-start-line="59" selection-start-column="127" selection-end-line="59" selection-end-column="127" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/alstom/projects/projects.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="50" column="126" selection-start-line="50" selection-start-column="126" selection-end-line="50" selection-end-column="126" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/client/trains/trains.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="48" column="105" selection-start-line="48" selection-start-column="105" selection-end-line="48" selection-end-column="105" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/ClientsRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/ClientsType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/vich_uploader.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/alstom/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="694">
+          <caret line="114" column="71" selection-start-line="114" selection-start-column="71" selection-end-line="114" selection-end-column="71" />
+          <folding>
+            <element signature="e#1264#1270#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
