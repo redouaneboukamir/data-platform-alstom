@@ -1,17 +1,22 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    test:
-                        password: test
-                        roles: ROLE_ALSTOM
-
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
 #        secure_area: Pas de patern donc toutes url passeront pas securea_area
 #            anonymous: ~
 #            guard:
@@ -23,15 +28,15 @@ security:
 #                authenticators:
 #                    - App\Security\KeycloakAuthenticator
         main:
-            pattern: ^/
+#            pattern: ^/
             anonymous: true
 
             form_login:
-                login_path: login
-                check_path: login_check
-            logout:
-                path: logout
-                target: login
+#                login_path: login
+                check_path: login
+#            logout:
+#                path: logout
+#                target: login
 
 
             # activate different ways to authenticate
@@ -48,3 +53,4 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
           - { path: ^/alstom, roles: ROLE_ALSTOM }
+          - { path: ^/client, roles: ROLE_CLIENT }
