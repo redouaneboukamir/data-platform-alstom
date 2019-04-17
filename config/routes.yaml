@@ -5,8 +5,8 @@
 #    _controller: TestBundle:Security:login
 #login_check:
 #  path: /login_check
-#logout:
-#  path: /logout
+logout:
+  path: /logout
 
 #Route vers hom
 #home:
