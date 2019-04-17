@@ -74,33 +74,38 @@
                     <ul class="nav flex-column item-sidebar">
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "home") %}active{% endif %} title-sidebar" href="{{ path('alstom.home') }}">
-                                <span data-feather="home"></span>
-                                Home
+                                <i class="fas fa-home"></i>
+                                <span data-feather="home">Home</span>
+
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "client") %}active{% endif %}" href="{{ path('alstom.client') }}">
-                                <span data-feather="layers"></span>
-                                Clients
+                                <i class="fas fa-user-tie"></i>
+                                <span data-feather="layers">Clients</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "engineers") %}active{% endif %}" href="{{ path('alstom.engineers') }}">
-                                <span data-feather="layers"></span>
-                                Engineers
+                                <i class="fas fa-user-friends"></i>
+                                <span data-feather="layers">Engineers</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "projects") %}active{% endif %}" href="{{ path('alstom.projects') }}">
-                                <span data-feather="layers"></span>
-                                Projects
+                                <i class="fas fa-project-diagram"></i>
+                                <span data-feather="layers">Projects</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('alstom.trains') }}">
-                                <span data-feather="layers"></span>
-                                Trains
+                                <i class="fas fa-subway"></i>
+                                <span data-feather="layers">Trains</span>
+
                             </a>
                         </li>
                     </ul>

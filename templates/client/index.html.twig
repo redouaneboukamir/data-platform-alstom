@@ -63,20 +63,23 @@
                     <ul class="nav flex-column item-sidebar">
                         <li class="nav-item ">
                             <a class="nav-link {% if(current_menu == "home") %}active{% endif %} title-sidebar" href="{{ path('client.home') }}">
-                                <span data-feather="home"></span>
-                                Home
+                                <i class="fas fa-home"></i>
+                                <span data-feather="home">Home</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "projects") %}active{% endif %}" href="{{ path('client.projects') }}">
-                                <span data-feather="layers"></span>
-                                Projects
+                                <i class="fas fa-project-diagram"></i>
+                                <span data-feather="layers">Projects</span>
+
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('client.trains') }}">
-                                <span data-feather="layers"></span>
-                                Trains
+                                <i class="fas fa-subway"></i>
+                                <span data-feather="layers">Trains</span>
+
                             </a>
                         </li>
                     </ul>
