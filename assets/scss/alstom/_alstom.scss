@@ -64,7 +64,6 @@
 //
 //------ Mise en page du show-client et show-engineer
 //
-$colors: #E89B35 #36CBE9 #A137E7 #E83568;
 $main-color: rgb(4, 70, 148);
 
 h1, h2, h3, h4, h5, h6, p {  font-family: inherit; }
@@ -111,7 +110,7 @@ a {
 
 
   .panel {
-    background: rgba(255, 255, 255,0.2);
+    background: rgba(255, 255, 255,0.3);
     figcaption{
       margin-top: 2vh;
     }
