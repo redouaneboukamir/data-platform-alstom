@@ -5,24 +5,29 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <section class="card mt-3">
             <a class="btn-edit" href="{{ path('alstom.edit-engineer',{id: engineer.id}) }}"><button class="btn btn-secondary "><i class="fas fa-user-edit"></i></button></a>
-            <figure class="panel meta">
-                <picture class="picture-client">
-                    {% if engineer.filename  is empty %}
-                        <img class="avatar" src="{{ asset('build/img/engineer/avatar-engineer.svg') }}" alt="">
-                    {% else %}
-                        <img class="img-fluid" src="/build/img/engineer/{{ engineer.filename }}" alt="card-img-top">
-                    {% endif %}
-                </picture>
-                <figcaption>
+            <div class="background-panel-engin">
 
-                    <h2>{{ engineer.surname |upper }}</h2>
-                    <h1 class="name" >{{ engineer.name|upper }}</h1>
-                </figcaption>
-            </figure>
+                <figure class="panel meta">
+                    <picture class="picture-client">
+                        {% if engineer.filename  is empty %}
+                            <img class="avatar" src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" alt="">
+                        {% else %}
+                            <img class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}" alt="card-img-top">
+                        {% endif %}
+                    </picture>
 
+                    <figcaption>
+                        <h2 class="name">{{ engineer.name|upper }}</h2>
+                        <h2 class="name">{{ engineer.surname |upper }}</h2>
+                    </figcaption>
+                </figure>
+
+            </div>
+
+            <div class="border-separate-picture-info"></div>
             <dv class="panel info">
                 <dl class="skillz">
-                    <dt><i class="fas fa-at"></i>   </dt>
+                    <dt>Numero badge   </dt>
                     <dd>{{ engineer.numBadge }}</dd>
                     <dt><i class="fas fa-project-diagram"></i>
 
@@ -39,48 +44,6 @@
 
         </section>
 
-    </main>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <div class="jumbotron content-picture-name">
-                <div class="name-btn-edit">
-                    <h1>{{ engineer.name|upper }}</h1>
-
-                </div>
-                <div class="picture-client">
-                    {% if engineer.filename  is empty %}
-                        <img src="{{ asset('build/img/avatar-engineer.png') }}" alt="">
-                    {% else %}
-                        <img class="img-fluid" src="/build/img/clients/{{ engineer.filename }}" alt="card-img-top">
-                    {% endif %}
-                    <a href="{{ path('alstom.edit-engineer',{id: engineer.id}) }}"><button class="btn btn-primary">Edit</button></a>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-10">
-                <table class="table table-stripped table-show-engineer">
-                    <tr class="row">
-                        <td class="title-show-engineer col-lg-7 col-md-7 col-xs-10 col-sm-10 ">Surname : </td>
-                        <td class="item-show-engineer col-4">{{ engineer.surname }}</td>
-                    </tr>
-                    <tr class="row">
-                        <td class="title-show-engineer col-md-7 col-xs-10 col-sm-10 ">Projects :</td>
-                        {#  Boucle sur les projets des engineers #}
-                        <td class="content-project-engineer row">
-                            {% for project in engineer.projects %}
-                                <p> {{ project.name }} </p>
-                            {% endfor %}
-
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td class="title-show-engineer col-md-7 col-xs-10 col-sm-10 ">Number of badge :</td>
-                        <td class="item-show-engineer col-4">{{ engineer.numBadge }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
     </main>
 
 {% endblock %}

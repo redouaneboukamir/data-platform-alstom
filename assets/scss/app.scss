@@ -6,10 +6,12 @@ $main-color: rgb(4, 70, 148);
 $color-item-active : #3987fd;
 $color-bg-active: #f2f2f2;
 
+@import url('https://fonts.googleapis.com/css?family=Lato');
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,600,200,300,900);
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
+  //font-family: 'Lato', sans-serif;
+  font-weight: 350;
 }
 body {
   font-size: .875rem;

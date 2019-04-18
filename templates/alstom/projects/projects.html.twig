@@ -3,7 +3,7 @@
             {% block body %}
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1>Projects</h1>
+                        <h2><i class="fa fa-angle-right"></i> Projects</h2>
                         <a href="{{ path('alstom.create-project') }}"><button class="btn btn-primary">New</button></a>
                     </div>
                     {% for message in app.flashes('success') %}

@@ -1,19 +1,62 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
-{% endblock %}
-{{ form_start(form) }}
-<div class="row">
-    {% if button == 'Edit' %}
-        {% if engineer.filename %}
-            <img class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}" alt="card-img-top">
-        {% endif %}
-    {% else %}
-        <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
-    {% endif %}
-    <div class="col-md-10">{{ form_row(form.Name) }}</div>
-    <div class="col-md-10">{{ form_row(form.Surname) }}</div>
-    <div class="col-md-10">{{ form_row(form.Num_Badge) }}</div>
-    <div class="col-md-10">{{ form_row(form.projects) }}</div>
 
+{% endblock %}
+<div class="container bootstrap snippet">
+<div class="row">
+    <div class="col-sm-3">
+
+    {{ form_start(form) }}
+        <div class="text-center content-img-form">
+            {% if button == 'Edit' %}
+                {% if engineer.filename %}
+                    <img class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}" alt="card-img-top">
+                {% else %}
+                    <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                {% endif %}
+            {% else %}
+                <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+            {% endif %}
+            <span class="btn btn-default btn-file">
+                {{ form_row(form.profilePicture) }}
+            </span>
+        </div>
+
+    </div>
+    {{ form_row(form._token) }}
+    <div class="col-sm-9 content-input">
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                <div class="form-group">
+
+                    <div class="col-xs-6">
+                        {{ form_row(form.Name) }}
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-xs-6">
+                        {{ form_row(form.Surname) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="col-xs-6">
+                        {{ form_row(form.Num_Badge) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        {{ form_row(form.projects) }}
+                    </div>
+                </div>
+                <button class="btn btn-primary">{{ button|default('Send') }}</button>
+                {{ form_end(form) }}
+            </div><!--/tab-content-->
+
+        </div><!--/col-9-->
 </div>
-<button class="btn btn-primary">{{ button|default('Send') }}</button>
+

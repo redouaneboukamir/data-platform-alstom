@@ -5,21 +5,26 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 jumbotron">
             <section class="card mt-3">
                 <a class="btn-edit" href="{{ path('alstom.edit-client',{id: client.id}) }}"><button class="btn btn-secondary "><i class="fas fa-user-edit"></i></button></a>
-                <figure class="panel meta">
-                    <picture class="picture-client">
-                        {% if client.filename  is empty %}
-                            <img class="avatar" src="{{ asset('build/img/clients/avatar-client.svg') }}" alt="">
-                        {% else %}
-                            <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="card-img-top">
-                        {% endif %}
-                    </picture>
-                    <figcaption>
-                        <h1 class="name" >{{ client.name|upper }}</h1>
-                        <p class="item-show-client col-4 title">{% for country in client.countries %}
-                                <p class="flag flag-{{ country.iso|lower }} flag-country-client"></p>
-                            {% endfor %}</p>
-                    </figcaption>
-                </figure>
+                <div class="background-panel-client">
+
+                    <figure class="panel meta">
+                        <picture class="picture-client">
+                            {% if client.filename  is empty %}
+                                <img class="avatar" src="{{ asset('build/img/clients/avatar-client.svg') }}" alt="">
+                            {% else %}
+                                <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="card-img-top">
+                            {% endif %}
+                        </picture>
+                        <figcaption>
+                            <h1 class="name" >{{ client.name|upper }}</h1>
+                            <p class="item-show-client col-4 title">{% for country in client.countries %}
+                                    <p class="flag flag-{{ country.iso|lower }} flag-country-client"></p>
+                                {% endfor %}</p>
+                        </figcaption>
+                    </figure>
+
+                </div>
+
                 <div class="border-separate-picture-info"></div>
                 <dv class="panel info">
                     <dl class="skillz">

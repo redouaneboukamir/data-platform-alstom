@@ -61,5 +61,150 @@
     display: none !important;
   }
 }
+//
+//------ Mise en page du show-client et show-engineer
+//
+$colors: #E89B35 #36CBE9 #A137E7 #E83568;
+$main-color: rgb(4, 70, 148);
+
+h1, h2, h3, h4, h5, h6, p {  font-family: inherit; }
+
+//Image des formulaire
+.content-img-form{
+  .img-thumbnail{
+    background: transparent !important;
+    border: 0px !important;
+  }
+}
+a {
+  color: rgba(0,0,0,0.5);
+  transition: color 0.35s ease-in-out;
+  &:hover { color: #00a7c9; }
+}
+
+.card {
+
+  .border-separate-picture-info{
+    background: $main-color;
+    opacity: 0.8;
+    height: 3px;
+    width: 100%;
+  }
+  .btn-edit{
+    position: absolute;
+    z-index: 9;
+    right: 0;
+    margin: 3vh 3vh;
+  }
+  position: relative;
+  //position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media only screen and (max-width: 768px) {
+    width: 20rem;
+    .panel {
+      background: rgba(255, 255, 255, 0.5) !important;
+    }
+  }
+
+
+  .panel {
+    background: rgba(255, 255, 255,0.2);
+    figcaption{
+      margin-top: 2vh;
+    }
+    .picture-client {
+      img {
+        width: 12em;
+        height: 12em;
+        //background: white;
+        border-radius: 50%;
+      }
+    }
+    //transition: all 0.35s ease-in-out;
+    padding: 1.5rem 2rem;
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: hidden;
+  }
+
+  .meta {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    transform: translateX(0);
+    padding: 2rem 4rem;
+    padding-bottom: 0.5rem;
+    border-right: 1px solid transparent;
+
+    picture {
+      position: relative;
+      display: inline-block;
+
+    }
+
+
+    img {
+      object-fit: cover;
+    }
+    .avatar {
+      border-radius: 50%;
+    }
+    .name {
+      color: black;
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 300;
+    }
+    .title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1rem 0 0;
+    }
+  }
+
+  .info {
+    background-color: #fff;
+    dt {
+      margin: 0;
+      padding: 1rem 0;
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .social {
+    list-style: none;
+    margin: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      a {
+        display: block;
+        overflow: hidden;
+        text-indent: -1000px;
+        height: 1em;
+        font-size: 1.8rem;
+        padding: 0.1em;
+        margin: 0 0.1em;
+
+        &:before {
+          display: block;
+          text-indent: 0;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
 
 
