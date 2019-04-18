@@ -37,6 +37,14 @@ class securityController extends AbstractController{
         }
 
     }
+    /**
+     * @Route("/forbidden", name="alstom.forbidden")
+     * @return Response
+     */
+    public function forbidden_route(): Response
+    {
+        return $this->render('alstom\forbidden.html.twig');
+    }
 
 
 }

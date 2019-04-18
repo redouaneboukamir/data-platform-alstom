@@ -382,7 +382,7 @@ class alstomController extends AbstractController
         return $this->render('alstom/projects/edit-project.html.twig', [
             'current_menu' => 'projects',
             'button' =>'Edit',
-            'client' => $projects,
+            'project' => $projects,
             'form' => $form->createView()
         ]);
     }

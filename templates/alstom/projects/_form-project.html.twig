@@ -2,26 +2,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
 {% endblock %}
 {{ form_start(form) }}
-<div class="text-center content-img-form">
-    {% if button == 'Edit' %}
-        {% if project.filename %}
-            <img class="img-fluid" src="/build/img/engineers/{{ project.filename }}" alt="card-img-top">
-        {% else %}
-            <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
-        {% endif %}
-    {% else %}
-        <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
-    {% endif %}
-    <span class="btn btn-default btn-file">
-                {{ form_row(form.profilePicture) }}
-            </span>
-</div>
-<div class="row">
-    <div class="col-md-10">{{ form_row(form.name) }}</div>
-    <div class="col-md-10">{{ form_row(form.clients) }}</div>
-    <div class="col-md-10">{{ form_row(form.engineers) }}</div>
-    <div  class="col-md-10">{{ form_row(form.profilePicture) }}</div>
+<div class="text-left">
+    <div class="row">
+        <div class="col-md-10">{{ form_row(form.name) }}</div>
+        <div class="col-md-10">{{ form_row(form.clients) }}</div>
+        <div class="col-md-10">{{ form_row(form.engineers) }}</div>
+        <div  class="col-md-10">{{ form_row(form.profilePicture) }}</div>
+    </div>
 
+    <div class=" content-img-form-project">
+        {% if button == 'Edit' %}
+            {% if project.filename %}
+                <img class="img-project-form img-fluid" src="/build/img/projects/{{ project.filename }}">
+            {% else %}
+                <img class="img-project-form img-fluid" src="{{ asset('build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
+            {% endif %}
+
+        {% else %}
+            <img id="img-project-form" class="img-project-form img-fluid" src="{{ asset('build/img/projects/project-background.jpg') }}">
+        {% endif %}
+    </div>
+
+
+        {{ form_row(form.profilePicture) }}
+
+    <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
 </div>
-<button class="btn btn-primary">{{ button|default('Send') }}</button>
-{{ form_end(form) }}
+    {{ form_end(form) }}

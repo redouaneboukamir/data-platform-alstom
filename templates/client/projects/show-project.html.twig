@@ -2,39 +2,66 @@
 
 
 {% block body %}
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom content-title-project-btnedit">
-            <h1>{{ project.name|upper }}</h1>
-        </div>
+        <section class="card mt-3">
 
-        <div class="container-fluid content-img-project">
+            <div class="background-panel-project">
 
-            <div class="img-description-project">
-                <img id="img-project" class="img-project img-fluid" src="/build/img/projects/{{ project.filename }}">
+                <figure class="panel meta">
+                    <div class="img-description-project">
+                        {% if project.filename  is empty %}
+                            <img id="img-project" class="img-project img-fluid" src="{{ asset('build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
+                        {% else %}
+                            <img id="img-project" class="img-project img-fluid" src="/build/img/projects/{{ project.filename }}">
+                        {% endif %}
+                    </div>
+                    <figcaption>
+                        <h2 class="name" style="font-weight: bold">{{ project.name|upper }}</h2>
+                    </figcaption>
+                </figure>
+
             </div>
 
-            <div id="img-project-show"  class="content-img-project-show">
-                <img class="img-project-show img-fluid" src="/build/img/projects/{{ project.filename }}">
-            </div>
+            <div class="border-separate-picture-info"></div>
+            <dv class="panel info">
+                <div class="row content-panel mt mb">
+                    <div class="col-md-12">
+                        <div class="col-md-11">
+                            <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
+                        </div>
+                        <div class="text-descrip-project col-md-11">
+                            <p class="mt">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
+                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                            <p >For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
+                            <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
+                            <p>"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
+                                what is your wish you my father I am your son this understand what is your wish.</p>
+                        </div>
 
-            <div class="row content-panel mt mb">
-                <div class="col-md-9">
-                    <div class="col-md-11">
-                        <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
                     </div>
-                    <div class="text-descrip-project col-md-11">
-                        <p class="mt">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                            and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
-                        <p >For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
-                        <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
-                        <p>"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                            what is your wish you my father I am your son this understand what is your wish.</p>
-                    </div>
-
                 </div>
-            </div>
-        </div>
+                </div>
+                <dl class="skillz">
+                    {#                    <dt>Numero badge   </dt>#}
+                    {#                    <dd>{{ project.get }}</dd>#}
+                    <dt><i class="fas fa-project-diagram"></i>
+
+                    </dt>
+                    {#                    <dd>#}
+                    {#                        {% for project in engineer.projects %}#}
+                    {#                            <p> {{ project.name }} </p>#}
+                    {#                        {% endfor %}#}
+                    {#                    </dd>#}
+
+                </dl>
+
+            </dv>
+
+        </section>
+
+    </main>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
     </main>
 
 {% endblock %}

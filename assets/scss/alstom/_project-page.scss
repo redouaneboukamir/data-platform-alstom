@@ -27,7 +27,6 @@
     text-transform: uppercase;
   }
 }
-.content-img-project{
   .img-description-project{
     width: 100vw;
     height: 20em;
@@ -39,6 +38,7 @@
       width: 100%;
     }
   }
+.content-img-project{
   .content-img-project-show{
     display: flex;
     justify-content: center;
@@ -49,7 +49,7 @@
     width: 100vw;
     background: red;
     display: none;
-      z-index: 999;
+    z-index: 999;
     .img-project-show{
 
     }
@@ -66,7 +66,26 @@
 
 }
 
+.background-panel-project{
 
+  .panel{
+    padding:0 !important;
+  }
+}
+
+.content-img-form-project{
+  padding: 0 !important;
+  width: 100%;
+  height: 10rem;
+  overflow: hidden;
+  .img-project-form{
+    transform: translateY(-50px);
+    width: 100%;
+    //height: 100%;
+
+  }
+
+}
 
 
 //Responsive du récapitulatif des projets

@@ -21,6 +21,7 @@ security:
             form_login:
                 login_path: /
                 check_path: /
+            access_denied_url: /forbidden
             logout:
                 path: /logout
                 target: /

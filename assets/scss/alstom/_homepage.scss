@@ -28,4 +28,33 @@
 .content-api-logs{
   display: flex;
   justify-content: space-between;
+  .content-api-grafana{
+    background: gray;
+    height: 100vh;
+    background-image: url("./public/build/img/dashboard.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .content-btn-logs{
+
+    .btn-add-logs{
+      height: 100vh;
+      background:  #474e72;
+      width: 100%;
+      border-radius: 7px;
+      box-shadow: #93a2b6 10px 10px 10px;
+      border: none;
+      p{
+        color: white;
+        font-size: 2em;
+        font-family: 'Lato', sans-serif;
+      }
+    }
+
+  }
+  @media (max-width: 750px) {
+    .content-btn-logs{
+      display: none;
+    }
+  }
 }
