@@ -49,7 +49,6 @@ class ClientsRepository extends ServiceEntityRepository
                     $find = false;
                     $compar = "";
 
-
                         for ($i = 0; $i < (strlen($currentClient->getName())); $i++) {
 
                             $compar .= $currentClient->getName()[$i];
@@ -57,9 +56,11 @@ class ClientsRepository extends ServiceEntityRepository
 
                                 if (strtolower($currentClient->getName()[$i]) === strtolower($search->getNameClient()) ||
                                     strtolower($compar) === strtolower($search->getNameClient())) {
-                                    array_push($findClients, $currentClient);
-                                    $find = true;
-                                    $session->set('result_notfound',null);
+
+                                        array_push($findClients, $currentClient);
+                                        $find = true;
+                                        $session->set('result_notfound',null);
+
 
                                 }else{
                                     $session->set('result_notfound','No results found');
@@ -70,7 +71,7 @@ class ClientsRepository extends ServiceEntityRepository
                     }
 
             }
-                                    dump($session->get('result_notfound'));
+//                                    dump($session->get('result_notfound'));
 
                 $query = $query
                     ->where('c.name = :name')

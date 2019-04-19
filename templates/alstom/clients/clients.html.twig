@@ -11,33 +11,35 @@
                             {{ message }}
                         </div>
                     {% endfor %}
-                <div class="jumbotron search-bar">
-                    <div class="container">
-                        {{ form_start(form) }}
-                        <div class="form-row row">
-                            <div class="col-8">
-                                {{ form_row(form.name_client) }}
-                            </div>
-{#                            <div class="col">#}
-{#                                {{ form_row(form.country) }}#}
+{#                <div class="jumbotron search-bar">#}
+{#                    <div class="container">#}
+{#                        {{ form_start(form) }}#}
+{#                        <div class="form-row row">#}
+{#                            <div class="col-8">#}
+{#                                {{ form_row(form.name_client) }}#}
 {#                            </div>#}
-                            <div class="col-2">
-                                <button class="btn btn-primary">Search</button>
-                            </div>
+{#                            <div class="col-2">#}
+{#                                <button class="btn btn-primary">Search</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        {{ form_end(form) }}#}
+{#                    </div>#}
+{#                </div>#}
+
+                    <section id="unseen " class="">
+                        <div class="pull-left search">
+                            {{ form_start(form) }}
+                                {{ form_row(form.name_client) }}
+                            {{ form_end(form) }}
                         </div>
-                        {{ form_end(form) }}
-                    </div>
-                </div>
-                    <section id="unseen">
-                        <table class="table table-bordered table-striped table-condensed table-content">
-                            <thead>
-                                <tr class="title-table">
+                        <table class="table table-condensed table-content card-body table-full-width ">
+{#                        <table class="table  table-striped table-condensed table-content">#}
+                            <thead class="title-table">
                                     <th class="">Name</th>
                                     <th scope="col" class=" numeric">Number of trains</th>
                                     <th scope="col" class="">Email</th>
                                     <th scope="col" class=""> Countries</th>
                                     <th scope="col" class="th-empty"></th>
-                                </tr>
                             </thead>
                             <tbody>
                             {#                        <div class="noresult_found jumbotron">{{ result_notfound }}</div>#}
@@ -53,7 +55,7 @@
                                         {% endfor %}
                                     </td>
                                     <td class="content-btn-edit-delete">
-                                        <a href="{{ path('alstom.edit-client', {id: client.id}) }}"><button class="btn btn-secondary btn-edit-client"><i class="fas fa-user-edit"></i></button> </a>
+                                        <a href="{{ path('alstom.edit-client', {id: client.id}) }}"><i class="fas fa-user-edit btn-edit"></i> </a>
                                         <form method="post" action="{{ path('alstom.delete-client' ,{id:client.id}) }}" onsubmit="return confirm('Are you sure to delete this client?')">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">
@@ -66,4 +68,85 @@
                         </table>
                     </section>
                 </main>
+
             {% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    var $table = $('#bootstrap-table');
+
+    $().ready(function(){
+        $table.bootstrapTable({
+            toolbar: ".toolbar",
+            clickToSelect: true,
+            showRefresh: true,
+            search: true,
+            showToggle: true,
+            showColumns: true,
+            pagination: true,
+            searchAlign: 'left',
+            pageSize: 8,
+            clickToSelect: false,
+            pageList: [8,10,25,50,100],
+
+            formatShowingRows: function(pageFrom, pageTo, totalRows){
+                //do nothing here, we don't want to show the text "showing x of y from..."
+            },
+            formatRecordsPerPage: function(pageNumber){
+                return pageNumber + " rows visible";
+            },
+            icons: {
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-th-list',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus-circle',
+                detailClose: 'fa fa-minus-circle'
+            }
+        });
+
+        //activate the tooltips after the data table is initialized
+        $('[rel="tooltip"]').tooltip();
+
+        $(window).resize(function () {
+            $table.bootstrapTable('resetView');
+        });
+
+        window.operateEvents = {
+            'click .view': function (e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click view icon, row: ', info);
+                console.log(info);
+            },
+            'click .edit': function (e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click edit icon, row: ', info);
+                console.log(info);
+            },
+            'click .remove': function (e, value, row, index) {
+                console.log(row);
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                });
+            }
+        };
+    });
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a rel="tooltip" title="View" class="btn btn-link btn-info btn-icon table-action view" href="javascript:void(0)">',
+            '<i class="fa fa-image"></i>',
+            '</a>',
+            '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning btn-icon table-action edit" href="javascript:void(0)">',
+            '<i class="fa fa-edit"></i>',
+            '</a>',
+            '<a rel="tooltip" title="Remove" class="btn btn-link btn-danger btn-icon table-action remove" href="javascript:void(0)">',
+            '<i class="fa fa-remove"></i>',
+            '</a>'
+        ].join('');
+    }
+
+
+</script>
+{% endblock %}

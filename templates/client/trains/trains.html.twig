@@ -3,7 +3,7 @@
 {% block body %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Trains</h1>
+            <h2><i class="fa fa-angle-right"></i> Trains</h2>
             <a href="{{ path('client.create-train') }}"><button class="btn btn-primary">New</button></a>
         </div>
         {% for message in app.flashes('success') %}
@@ -11,22 +11,13 @@
                 {{ message }}
             </div>
         {% endfor %}
-        <div class="jumbotron search-bar-client">
-            <div class="container">
+        <section id="unseen">
+            <div class="pull-left search">
                 {{ form_start(form) }}
-                <div class="form-row row">
-                    <div class="col-8">
-                        {{ form_row(form.name_train) }}
-                    </div>
-                    <div class="col-2">
-                        <button class="btn btn-primary">Search</button>
-                    </div>
-                </div>
+                {{ form_row(form.name_train) }}
                 {{ form_end(form) }}
             </div>
-        </div>
-        <section id="unseen">
-            <table class="table table-bordered table-striped table-condensed table-content">
+            <table class="table table-condensed table-content">
                 <thead>
                 <tr class="title-table">
                     <th scope="col">Name</th>
@@ -42,7 +33,7 @@
 
 
                 <td class="content-btn-edit-delete">
-                    <a href="{{ path('client.edit-train', {id: train.id}) }}"><button class="btn btn-secondary btn-edit-train"><i class="fas fa-edit"></i></button> </a>
+                    <a href="{{ path('client.edit-train', {id: train.id}) }}"><i class="fas fa-edit"></i></a>
                     <form method="post" action="{{ path('client.delete-train' ,{id:train.id}) }}" onsubmit="return confirm('Are you sure to delete this train?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ train.id) }}">

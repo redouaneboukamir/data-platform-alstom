@@ -9,13 +9,82 @@ $color-bg-active: #f2f2f2;
 
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,600,200,300,900);
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   //font-family: 'Lato', sans-serif;
-  font-weight: 350;
-}
-body {
+  font-weight: 300;
   font-size: .875rem;
+}
+
+.table-content{
+
+  .title-table{
+    text-align: center;
+    opacity: 0.5;
+  }
+  tbody{
+    tr{
+      transition: all 0.3s;
+      &:hover{
+        background: #f1f1f1;
+      }
+    }
+  }
+  .td-table{
+    font-size: 0.95em;
+    .fa-user-edit, .fa-edit{
+      color: gray;
+      transition: all 0.3s;
+      &:hover{
+        transform: scale(1.5);
+      }
+    }
+
+    a{
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+    }
+    td{
+      padding: 0 !important;
+      text-align: center;
+      vertical-align: middle;
+
+      p{
+        margin-bottom: 0;
+      }
+    }
+  }
+  .content-btn-edit-delete{
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 0;
+    //margin-right: 0 !important;
+    .btn-delete-client{
+      margin: 0;
+      background: transparent;
+      border: 0;
+      i{
+        color: #c82233;
+        transition: all 0.3s;
+        &:hover{
+          transform: scale(1.5);
+        }
+      }
+    }
+    //a{
+    //  margin-right: -1vh;
+    //}
+    button{
+      margin: 5px;
+      padding: 0.3em 0.6em;
+    }
+  }
+
 }
 .noresult_found{
   padding: 20px;
@@ -62,9 +131,17 @@ body {
     border-left: 0 !important;
   }
   .item-sidebar{
+
+    i{
+      transition: transform 0.3s;
+    }
     a:hover{
       border-left: 4px solid $color-item-active;
       color: $color-item-active;
+      i{
+        transform: scale(1.5);
+        margin-right: 0.5rem;
+      }
     }
     .active{
       background: $color-bg-active;

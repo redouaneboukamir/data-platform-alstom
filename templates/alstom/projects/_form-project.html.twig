@@ -4,13 +4,13 @@
 {{ form_start(form) }}
 <div class="text-left">
     <div class="row">
-        <div class="col-md-10">{{ form_row(form.name) }}</div>
-        <div class="col-md-10">{{ form_row(form.clients) }}</div>
-        <div class="col-md-10">{{ form_row(form.engineers) }}</div>
-        <div  class="col-md-10">{{ form_row(form.profilePicture) }}</div>
+        <div class="col-md-12">{{ form_row(form.name) }}</div>
+        <div class="col-md-12">{{ form_row(form.clients) }}</div>
+        <div class="col-md-12">{{ form_row(form.engineers) }}</div>
+        <div  class="col-md-12">{{ form_row(form.profilePicture) }}</div>
     </div>
 
-    <div class=" content-img-form-project">
+    <div class=" content-img-form-project col-12">
         {% if button == 'Edit' %}
             {% if project.filename %}
                 <img class="img-project-form img-fluid" src="/build/img/projects/{{ project.filename }}">
