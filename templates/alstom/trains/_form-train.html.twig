@@ -1,0 +1,84 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+{% endblock %}
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-10">{{ form_row(form.name) }}</div>
+    <div class="col-md-10">{{ form_row(form.projects) }}</div>
+    <div class="col-md-10">{{ form_row(form.trainType) }}</div>
+
+    <div class="content-type-loco col-md-12 mt-4" id="select_locomotive">
+        <img src="{{ asset('/build/img/locomotive-test.jpeg') }}" alt="" class=" img img-fuild img-type-train">
+        <figure class="content-evc">
+            <img src="{{ asset('/build/img/evc1.png') }}" alt="" class="evc" id="evc1">
+            <img src="{{ asset('/build/img/evc2.png') }}" alt="" class="evc" id="evc2">
+            <img src="{{ asset('/build/img/evc3.png') }}" alt="" class="evc" id="evc3">
+        </figure>
+    </div>
+
+    <div class="content-type-train col-md-12 mt-4" id="select_train">
+        <img src="{{ asset('/build/img/train-test.jpg') }}" alt="" class="img img-fuild img-type-train">
+        <figure class="content-evc">
+            <img src="{{ asset('/build/img/evc1.png') }}" alt="" class="evc" id="">
+            <img src="{{ asset('/build/img/evc2.png') }}" alt="" class="evc" id="">
+        </figure>
+    </div>
+
+
+
+</div>
+<button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
+{{ form_end(form) }}
+
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+        $('#select_train').hide();
+        $('#select_locomotive').hide();
+
+        $('#trains_trainType')
+            .change(function () {
+
+                let current_choice = "";
+
+                $( "#trains_trainType option:selected" ).each(function() {
+
+                    current_choice += $( this ).text() + " ";
+
+                });
+
+                    if(current_choice.trim() == 'Train'){
+                        $('#select_train').show();
+                        $('#select_locomotive').hide();
+
+                    }else if(current_choice.trim() == 'Locomotive'){
+                        $('#select_locomotive').show();
+                        $('#select_train').hide();
+
+                        $('#evc1').click(function () {
+                            $('#evc1').css('border', "1px solid red");
+                            $('#evc2').css('border', "none");
+                            $('#evc3').css('border', "none");
+                        })
+                        $('#evc2').click(function () {
+                            $('#evc2').css('border', "1px solid red");
+                            $('#evc1').css('border', "none");
+                            $('#evc3').css('border', "none");
+                        })
+                        $('#evc3').click(function () {
+                            $('#evc3').css('border', "1px solid red");
+                            $('#evc1').css('border', "none");
+                            $('#evc2').css('border', "none");
+                        })
+
+                    }
+
+            }).change();
+
+
+    </script>
+{% endblock %}

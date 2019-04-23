@@ -10,5 +10,9 @@ require("../scss/app.scss");
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
+// //
+// Traitement des select d'image des trains
+console.log("test");
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+

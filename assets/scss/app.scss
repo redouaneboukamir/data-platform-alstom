@@ -4,7 +4,9 @@
 @import "security";
 
 $main-color: rgb(4, 70, 148);
-$color-item-active : #3987fd;
+$red-alstom: #ef193b;
+$blue-alstom: #034694;
+$color-item-active : #a5abb0;
 $color-bg-active: #f2f2f2;
 
 @import url('https://fonts.googleapis.com/css?family=Lato');
@@ -178,7 +180,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+  color: $color-item-active;
 }
 
 .sidebar .nav-link:hover .feather,

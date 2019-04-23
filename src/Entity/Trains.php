@@ -23,6 +23,11 @@ class Trains
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $train_type;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Projects", inversedBy="trains")
      */
     private $Projects;
@@ -54,5 +59,21 @@ class Trains
         $this->Projects = $Projects;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrainType()
+    {
+        return $this->train_type;
+    }
+
+    /**
+     * @param mixed $train_type
+     */
+    public function setTrainType($train_type): void
+    {
+        $this->train_type = $train_type;
     }
 }

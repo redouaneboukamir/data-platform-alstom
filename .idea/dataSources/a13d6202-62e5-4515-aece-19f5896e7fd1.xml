@@ -8,7 +8,7 @@
       <ObjectId>16394</ObjectId>
       <StateNumber>572</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>687</IntrospectionStateNumber>
+      <IntrospectionStateNumber>714</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -101,7 +101,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>688</IntrospectionStateNumber>
+      <IntrospectionStateNumber>715</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -273,7 +273,7 @@
     <table id="43" parent="18" name="trains">
       <ObjectId>16450</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>644</StateNumber>
+      <StateNumber>712</StateNumber>
     </table>
     <table id="44" parent="18" name="trains_search">
       <ObjectId>16455</ObjectId>
@@ -775,26 +775,33 @@ projects_id</ColNames>
       <StateNumber>602</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="114" parent="43" name="trains_pkey">
+    <column id="114" parent="43" name="train_type">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>712</StateNumber>
+      <DefaultExpression>NULL::character varying</DefaultExpression>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="115" parent="43" name="trains_pkey">
       <ObjectId>16479</ObjectId>
       <StateNumber>635</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="115" parent="43" name="idx_548d5bbd1ede0f55">
+    <index id="116" parent="43" name="idx_548d5bbd1ede0f55">
       <ObjectId>16483</ObjectId>
       <StateNumber>637</StateNumber>
       <ColNames>projects_id</ColNames>
     </index>
-    <key id="116" parent="43" name="trains_pkey">
+    <key id="117" parent="43" name="trains_pkey">
       <ObjectId>16480</ObjectId>
       <StateNumber>635</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>trains_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="117" parent="43" name="fk_548d5bbd1ede0f55">
+    <foreign-key id="118" parent="43" name="fk_548d5bbd1ede0f55">
       <ObjectId>16490</ObjectId>
       <StateNumber>644</StateNumber>
       <ColNames>projects_id</ColNames>
@@ -804,76 +811,76 @@ projects_id</ColNames>
       <RefKeyName>projects_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="118" parent="44" name="id">
+    <column id="119" parent="44" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>606</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="119" parent="44" name="name_train">
+    <column id="120" parent="44" name="name_train">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>606</StateNumber>
       <DefaultExpression>NULL::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
-    <index id="120" parent="44" name="trains_search_pkey">
+    <index id="121" parent="44" name="trains_search_pkey">
       <ObjectId>16481</ObjectId>
       <StateNumber>636</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="121" parent="44" name="trains_search_pkey">
+    <key id="122" parent="44" name="trains_search_pkey">
       <ObjectId>16482</ObjectId>
       <StateNumber>636</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>trains_search_pkey</UnderlyingIndexName>
     </key>
-    <column id="122" parent="45" name="id">
+    <column id="123" parent="45" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>683</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="123" parent="45" name="email">
+    <column id="124" parent="45" name="email">
       <Position>2</Position>
       <DataType>varchar(180)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>683</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="124" parent="45" name="roles">
+    <column id="125" parent="45" name="roles">
       <Position>3</Position>
       <DataType>json|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>683</StateNumber>
       <TypeId>114</TypeId>
     </column>
-    <column id="125" parent="45" name="password">
+    <column id="126" parent="45" name="password">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>683</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="126" parent="45" name="user_pkey">
+    <index id="127" parent="45" name="user_pkey">
       <ObjectId>16584</ObjectId>
       <StateNumber>683</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="127" parent="45" name="uniq_8d93d649e7927c74">
+    <index id="128" parent="45" name="uniq_8d93d649e7927c74">
       <ObjectId>16586</ObjectId>
       <StateNumber>683</StateNumber>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="128" parent="45" name="user_pkey">
+    <key id="129" parent="45" name="user_pkey">
       <ObjectId>16585</ObjectId>
       <StateNumber>683</StateNumber>
       <ColNames>id</ColNames>

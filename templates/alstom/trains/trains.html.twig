@@ -4,13 +4,13 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2><i class="fa fa-angle-right"></i> Trains</h2>
-            <a href="{{ path('client.create-train') }}"><button class="btn btn-primary">New</button></a>
+            <a href="{{ path('alstom.create-train') }}"><button class="btn btn-primary">New</button></a>
         </div>
-{#        {% for message in app.flashes('success') %}#}
-{#            <div class="alert alert-success">#}
-{#                {{ message }}#}
-{#            </div>#}
-{#        {% endfor %}#}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
         <section id="unseen">
             <div class="pull-left search">
                 {{ form_start(form) }}
@@ -23,6 +23,7 @@
                 <tr class="title-table">
                     <th scope="col">Name</th>
                     <th scope="col" class="">Projects</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,14 @@
                     <tr class="td-table">
                         <td class="mt-4"><a href="{{ path('alstom.show-train', {id: train.id}) }}">{{  train.name }}</td>
                         <td>{{ train.Projects.name|upper }}</td>
+                        <td class="content-btn-edit-delete">
+                            <a href="{{ path('alstom.edit-train', {id: train.id}) }}"><i class="fas fa-edit"></i></a>
+                            <form method="post" action="{{ path('alstom.delete-train' ,{id:train.id}) }}" onsubmit="return confirm('Are you sure to delete this train?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ train.id) }}">
+                                <button class="btn btn-danger btn-delete-client"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

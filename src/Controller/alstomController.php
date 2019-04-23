@@ -17,6 +17,7 @@ use App\Form\EnginSearchType;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
 use App\Form\TrainsSearchType;
+use App\Form\TrainsType;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
 use App\Repository\ProjectsRepository;
@@ -425,52 +426,58 @@ class alstomController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-//
-//    public function create_train(Request $request): Response
-//    {
-//        $train = new Trains();
-//        $form = $this->createForm(TrainsType::class, $train);
-//        $form->handleRequest($request);
-//
-//
-//        //        Validation du formulaire
-//        if($form->isSubmitted() && $form->isValid()){
-//
-//            $this->em->persist($train);
-//            $this->em->flush();
-//            $this->addFlash('success', 'Train create with success');
-//            return $this->redirectToRoute('client.trains');
-//        }
-//        return $this->render('client/trains/create-trains.html.twig', [
-//            'current_menu' => 'trains',
-//            'button' => 'Create',
-//            'form' => $form->createView()
-//        ]);
-//
-//    }
+    /**
+     * @Route("/alstom/create-train", name="alstom.create-train")
+     * @return Response
+     */
+    public function create_train(Request $request): Response
+    {
+        $train = new Trains();
+        $form = $this->createForm(TrainsType::class, $train);
+        $form->handleRequest($request);
 
-//
-//
-//    public function edit_train(Request $request, Trains $trains)
-//    {
-//        $form = $this->createForm(TrainsType::class, $trains);
-//        $form->handleRequest($request);
-//
-//        //        Validation du formulaire
-//        if($form->isSubmitted() && $form->isValid()){
-//
-//            $this->em->flush();
-//            $this->addFlash('success', 'Trains modified with success');
-//            return $this->redirectToRoute('client.trains');
-//        }
-//
-//        return $this->render('client/trains/edit-train.html.twig', [
-//            'current_menu' => 'trains',
-//            'button' =>'Edit',
-//            'train' => $trains,
-//            'form' => $form->createView()
-//        ]);
-//    }
+
+        //        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+
+            $this->em->persist($train);
+            $this->em->flush();
+            $this->addFlash('success', 'Train create with success');
+            return $this->redirectToRoute('alstom.trains');
+        }
+        return $this->render('alstom/trains/create-trains.html.twig', [
+            'current_menu' => 'trains',
+            'button' => 'Create',
+            'form' => $form->createView()
+        ]);
+
+    }
+
+
+    /**
+     * @Route("/alstom/edit-train/{id}", name="alstom.edit-train", methods={"POST","GET"})
+     * @return Response
+     */
+    public function edit_train(Request $request, Trains $trains)
+    {
+        $form = $this->createForm(TrainsType::class, $trains);
+        $form->handleRequest($request);
+
+        //        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+
+            $this->em->flush();
+            $this->addFlash('success', 'Trains modified with success');
+            return $this->redirectToRoute('alstom.trains');
+        }
+
+        return $this->render('alstom/trains/edit-train.html.twig', [
+            'current_menu' => 'trains',
+            'button' =>'Edit',
+            'train' => $trains,
+            'form' => $form->createView()
+        ]);
+    }
 
     /**
      * @Route("/alstom/trains/{id}", name="alstom.show-train")
@@ -483,23 +490,24 @@ class alstomController extends AbstractController
             'train' => $trains
         ]);
     }
-//    //    suppresion de train
-//    /**
-//     * @param Request $request
-//     * @return Response
-//     */
-//    public function delete_train(Trains $trains, Request $request): Response
-//    {
-//        if($this->isCsrfTokenValid('delete'.$trains->getId(), $request->get('_token'))){
-//
-//            $this->em->remove($trains);
-//            $this->em->flush();
-//            $this->addFlash('success', 'Train delete with success');
-//
-//        }
-//        return $this->redirectToRoute('client.trains');
-//
-//
-//    }
+    //    suppresion de train
+    /**
+     * @Route("/alstom/train/{id}", name="alstom.delete-train", methods={"DELETE"})
+     * @param Request $request
+     * @return Response
+     */
+    public function delete_train(Trains $trains, Request $request): Response
+    {
+        if($this->isCsrfTokenValid('delete'.$trains->getId(), $request->get('_token'))){
+
+            $this->em->remove($trains);
+            $this->em->flush();
+            $this->addFlash('success', 'Train delete with success');
+
+        }
+        return $this->redirectToRoute('alstom.trains');
+
+
+    }
 
 }

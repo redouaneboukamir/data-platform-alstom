@@ -43,7 +43,7 @@ class securityController extends AbstractController{
      */
     public function forbidden_route(): Response
     {
-        return $this->render('alstom\forbidden.html.twig');
+        return $this->render('forbidden.html.twig');
     }
 
 
