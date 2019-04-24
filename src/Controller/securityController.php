@@ -25,7 +25,9 @@ class securityController extends AbstractController{
 
         }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT')){
 
-            return $this->redirectToRoute('client.home');
+            return $this->redirectToRoute('client.home',[
+
+            ]);
 
         }else{
 

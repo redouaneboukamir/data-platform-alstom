@@ -32,6 +32,11 @@ class Trains
      */
     private $Projects;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\EVC", cascade={"persist", "remove"})
+     */
+    private $EVC;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,5 +80,17 @@ class Trains
     public function setTrainType($train_type): void
     {
         $this->train_type = $train_type;
+    }
+
+    public function getEVC(): ?EVC
+    {
+        return $this->EVC;
+    }
+
+    public function setEVC(?EVC $EVC): self
+    {
+        $this->EVC = $EVC;
+
+        return $this;
     }
 }

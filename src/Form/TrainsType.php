@@ -38,6 +38,9 @@ class TrainsType extends AbstractType
                     'class' => 'test'
                 ]
             ])
+//            ->add('eVC', ChoiceType::class, [
+//
+//            ])
         ;
     }
 

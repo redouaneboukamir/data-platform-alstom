@@ -35,6 +35,11 @@ class User implements UserInterface, Serializable
      */
     private $password;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Clients", cascade={"persist", "remove"})
+     */
+    private $Client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,5 +141,17 @@ class User implements UserInterface, Serializable
     public function unserialize($serialized)
     {
         // TODO: Implement unserialize() method.
+    }
+
+    public function getClient(): ?Clients
+    {
+        return $this->Client;
+    }
+
+    public function setClient(?Clients $Client): self
+    {
+        $this->Client = $Client;
+
+        return $this;
     }
 }

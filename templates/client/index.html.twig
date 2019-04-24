@@ -84,7 +84,22 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav flex-column item-sidebar">
+                        <li class="nav-item">
+                            <a class="nav-link {% if(current_menu == "home") %}active{% endif %} second-title-sidebar" href="{{ path('alstom.home') }}">
+                                <i class="fas fa-cog"></i>
+                                <span data-feather="home">Settings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('alstom.trains') }}">
+                                <i class="fas fa-user-plus"></i>
+                                <span data-feather="layers">Create user</span>
 
+                            </a>
+                        </li>
+
+                    </ul>
 
                 </div>
             </nav>
