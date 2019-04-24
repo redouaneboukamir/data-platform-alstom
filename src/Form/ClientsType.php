@@ -55,7 +55,7 @@ class ClientsType extends AbstractType
 //                'required' => false
             ])
             ->add('profilePicture', FileType::class, [
-                'label' => false,
+                'label' => 'Image profile (PNG, JPG, PDF)',
                 'required' => false,
                 'attr' => ['id' => 'logo-id',
                     'class' => 'text-center center-block file-upload'

@@ -24,7 +24,7 @@
             </div>
 
             <div class="border-separate-picture-info"></div>
-            <dv class="panel info">
+            <div class="panel info">
                 <div class="row content-panel mt mb">
                     <div class="col-md-9">
                         <div class="col-md-11">
@@ -81,21 +81,8 @@
                     </div>
                 </div>
                 </div>
-                <dl class="skillz">
-{#                    <dt>Numero badge   </dt>#}
-{#                    <dd>{{ project.get }}</dd>#}
-                    <dt><i class="fas fa-project-diagram"></i>
 
-                    </dt>
-{#                    <dd>#}
-{#                        {% for project in engineer.projects %}#}
-{#                            <p> {{ project.name }} </p>#}
-{#                        {% endfor %}#}
-{#                    </dd>#}
-
-                </dl>
-
-            </dv>
+            </div>
 
         </section>
 
@@ -112,10 +99,10 @@
         $('#img-project').click(function(){
 
             if(click == false){
-                $('.img-description-project').css('height','auto');
+                $('.img-description-project').addClass('clicked');
                 click = true;
             }else{
-                $('.img-description-project').css('height','20em');
+                $('.img-description-project').removeClass('clicked');
                 click = false;
             }
 

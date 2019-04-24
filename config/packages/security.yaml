@@ -56,4 +56,7 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
           - { path: ^/alstom, roles: ROLE_ALSTOM }
+          - { path: ^/alstom, roles: ROLE_ALSTOM_DESIGNER }
+          - { path: ^/alstom, roles: ROLE_ALSTOM_COMMISSIONER }
           - { path: ^/client, roles: ROLE_CLIENT }
+          - { path: ^/client, roles: ROLE_USER }

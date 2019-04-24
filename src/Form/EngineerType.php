@@ -33,7 +33,9 @@ class EngineerType extends AbstractType
             ->add('profilePicture', FileType::class, [
                 'label' => 'Image profile (PNG, JPG, PDF)',
                 'required' => false,
-                'attr' => ['id' => 'logo-id', 'class' => 'attachment_upload']
+                'attr' => ['id' => 'logo-id',
+                    'class' => 'text-center center-block file-upload'
+                ]
 
             ])
 

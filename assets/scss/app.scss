@@ -132,6 +132,24 @@ body {
     margin-bottom: 3vh;
     border-left: 0 !important;
   }
+  .second-title-sidebar{
+    font-size: 1.3em;
+    color: $color-item-active !important;
+    border-bottom: 1px solid darkgray;
+    padding-left: 0;
+    margin-left: 2vh;
+    margin-top: 2vh;
+    border-left: 0 !important;
+    margin-bottom: 2vh;
+    &:hover{
+      i{
+        transform: scale(1) !important;
+        margin-right: 0 !important;
+      }
+      transform: scale(1) !important;
+
+    }
+  }
   .item-sidebar{
 
     i{

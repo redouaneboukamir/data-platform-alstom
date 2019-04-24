@@ -9,12 +9,12 @@
         <div class="text-center content-img-form">
             {% if button == 'Edit' %}
                 {% if engineer.filename %}
-                    <img class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}" alt="card-img-top">
+                    <img class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}" alt="profile picture engineer">
                 {% else %}
-                    <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar engineer alstom">
                 {% endif %}
             {% else %}
-                <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar engineer alstom">
             {% endif %}
             <span class="btn btn-default btn-file">
                 {{ form_row(form.profilePicture) }}

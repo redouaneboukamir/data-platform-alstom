@@ -7,20 +7,22 @@
     <div class="col-md-10">{{ form_row(form.projects) }}</div>
     <div class="col-md-10">{{ form_row(form.trainType) }}</div>
 
-    <div class="content-type-loco col-md-12 mt-4" id="select_locomotive">
-        <img src="{{ asset('/build/img/locomotive-test.jpeg') }}" alt="" class=" img img-fuild img-type-train">
-        <figure class="content-evc">
-            <img src="{{ asset('/build/img/evc1.png') }}" alt="" class="evc" id="evc1">
-            <img src="{{ asset('/build/img/evc2.png') }}" alt="" class="evc" id="evc2">
-            <img src="{{ asset('/build/img/evc3.png') }}" alt="" class="evc" id="evc3">
+    <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
+        <h4>Select EVC : </h4>
+        <img src="{{ asset('/build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-10 img-type-train">
+        <figure class="content-evc col-md-10">
+            <img src="{{ asset('/build/img/trains/evc1.png') }}" alt="" class="evc " id="evc-loco-1">
+            <img src="{{ asset('/build/img/trains/evc2.png') }}" alt="" class="evc " id="evc-loco-2">
+            <img src="{{ asset('/build/img/trains/evc3.png') }}" alt="" class="evc " id="evc-loco-3">
         </figure>
     </div>
 
     <div class="content-type-train col-md-12 mt-4" id="select_train">
-        <img src="{{ asset('/build/img/train-test.jpg') }}" alt="" class="img img-fuild img-type-train">
-        <figure class="content-evc">
-            <img src="{{ asset('/build/img/evc1.png') }}" alt="" class="evc" id="">
-            <img src="{{ asset('/build/img/evc2.png') }}" alt="" class="evc" id="">
+        <h4>Select EVC : </h4>
+        <img src="{{ asset('/build/img/trains/train-select.svg') }}" alt="" class="col-md-10  img-type-train">
+        <figure class="content-evc col-md-10">
+            <img src="{{ asset('/build/img/evc1.png') }}" alt="" class="evc" id="evc-train-1">
+            <img src="{{ asset('/build/img/evc2.png') }}" alt="" class="evc" id="evc-train-2">
         </figure>
     </div>
 
@@ -37,10 +39,11 @@
 
     <script>
 
-        $('#select_train').hide();
-        $('#select_locomotive').hide();
+//        $('#select_train').hide();
+//        $('#select_locomotive').hide();
 
         $('#trains_trainType')
+
             .change(function () {
 
                 let current_choice = "";
@@ -55,25 +58,39 @@
                         $('#select_train').show();
                         $('#select_locomotive').hide();
 
+                        $('#evc-train-1').click(function () {
+                            $('#evc-train-1').addClass("selected");
+                            $('#evc-train-2').removeClass("selected");
+
+                        });
+                        $('#evc-train-2').click(function () {
+                            $('#evc-train-2').addClass("selected");
+                            $('#evc-train-1').removeClass("selected");
+
+                        });
+
+
                     }else if(current_choice.trim() == 'Locomotive'){
+
                         $('#select_locomotive').show();
                         $('#select_train').hide();
 
-                        $('#evc1').click(function () {
-                            $('#evc1').css('border', "1px solid red");
-                            $('#evc2').css('border', "none");
-                            $('#evc3').css('border', "none");
-                        })
-                        $('#evc2').click(function () {
-                            $('#evc2').css('border', "1px solid red");
-                            $('#evc1').css('border', "none");
-                            $('#evc3').css('border', "none");
-                        })
-                        $('#evc3').click(function () {
-                            $('#evc3').css('border', "1px solid red");
-                            $('#evc1').css('border', "none");
-                            $('#evc2').css('border', "none");
-                        })
+                        $('#evc-loco-1').click(function () {
+                            $('#evc-loco-1').addClass("selected");
+                            $('#evc-loco-2').removeClass("selected");
+
+                        });
+                        $('#evc-loco-2').click(function () {
+                            $('#evc-loco-2').addClass("selected");
+                            $('#evc-loco-1').removeClass("selected");
+                            $('#evc-loco-3').removeClass("selected");
+                        });
+                        $('#evc-loco-3').click(function () {
+                            $('#evc-loco-3').addClass("selected");
+                            $('#evc-loco-2').removeClass("selected");
+                        });
+
+
 
                     }
 

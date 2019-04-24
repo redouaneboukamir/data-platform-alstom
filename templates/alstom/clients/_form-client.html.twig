@@ -8,12 +8,12 @@
             <div class="text-center content-img-form">
                 {% if button == 'Edit' %}
                         {% if client.filename %}
-                            <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="card-img-top">
+                            <img class="img-fluid" src="/build/img/clients/{{ client.filename }}" alt="profile picture client">
                         {% else %}
-                            <img src="{{ asset('build/img/clients/avatar-client.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <img src="{{ asset('build/img/clients/avatar-client.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar client alstom">
                         {% endif %}
                     {% else %}
-                        <img src="{{ asset('build/img/clients/avatar-client.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                        <img src="{{ asset('build/img/clients/avatar-client.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar client alstom">
                 {% endif %}
                 <span class="btn btn-default btn-file">
                     {{ form_widget(form.profilePicture) }}
