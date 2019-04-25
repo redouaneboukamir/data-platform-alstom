@@ -37,6 +37,7 @@ class clientController extends AbstractController
      */
     public function index(): Response
     {
+
         return $this->render('client\index.html.twig', [
             'current_menu' => 'home'
         ]);

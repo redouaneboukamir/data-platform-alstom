@@ -439,20 +439,27 @@ class alstomController extends AbstractController
         $form = $this->createForm(TrainsType::class, $train);
         $form->handleRequest($request);
 
+        $evc = new EVC();
+
+        $form_evc = $this->createForm(EVCType::class, $evc);
+        $form_evc->handleRequest($request);
+
 
         //        Validation du formulaire
         if($form->isSubmitted() && $form->isValid()){
 
             $this->em->persist($train);
+            $this->em->persist($evc);
             $this->em->flush();
             $this->addFlash('success', 'Train create with success');
             return $this->redirectToRoute('alstom.trains');
         }
+
         return $this->render('alstom/trains/create-trains.html.twig', [
             'current_menu' => 'trains',
             'button' => 'Create',
             'form' => $form->createView(),
-//            'form_evc'
+            'form_evc' => $form_evc->createView()
         ]);
 
     }
@@ -467,9 +474,15 @@ class alstomController extends AbstractController
         $form = $this->createForm(TrainsType::class, $trains);
         $form->handleRequest($request);
 
+        $evc = new EVC();
+        $form_evc = $this->createForm(EVCType::class, $evc);
+        $form_evc->handleRequest($request);
+
+
         //        Validation du formulaire
         if($form->isSubmitted() && $form->isValid()){
 
+            $this->em->persist($evc);
             $this->em->flush();
             $this->addFlash('success', 'Trains modified with success');
             return $this->redirectToRoute('alstom.trains');
@@ -479,7 +492,8 @@ class alstomController extends AbstractController
             'current_menu' => 'trains',
             'button' =>'Edit',
             'train' => $trains,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'form_evc' => $form_evc->createView()
         ]);
     }
 

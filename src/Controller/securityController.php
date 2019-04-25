@@ -42,13 +42,21 @@ class securityController extends AbstractController{
 
         if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM')){
 
-            return $this->redirectToRoute('alstom.home');
+            $user = $this->getUser();
+            return $this->redirectToRoute('alstom.home',[
+                'user' => $user
+            ]);
 
         }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT')){
 
-            return $this->redirectToRoute('client.home',[
-
-            ]);
+            $user = $this->getUser();
+            dump($user);
+            return $this->redirect($this->generateUrl('client.home',[
+                'user' => $user
+            ] ));
+//            return $this->redirectToRoute('client.home',[
+//                'user' => $user
+//            ]);
 
         }else{
 
@@ -73,17 +81,14 @@ class securityController extends AbstractController{
      * @Route("/alstom/create-user", name="alstom.create-user")
      * @return Response
      */
-    public function create_user(Request $request): Response
+    public function create_user_alstom(Request $request): Response
     {
 
         $user = new User();
 
-//        $user->setRoles(array('ROLE_CLIENT'));
-
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-//        dump($form->getData()->getClient()->getEmail());
-//        Validation du formulaire
+
         if($form->isSubmitted() && $form->isValid()){
 
             $user->setEmail($form->getData()->getClient()->getEmail());
@@ -97,6 +102,37 @@ class securityController extends AbstractController{
         }
 
         return $this->render('alstom/user/create-user.html.twig',[
+            'current_menu' => 'create-user',
+            'button' =>'Create',
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+     * @Route("/client/create-user", name="client.create-user")
+     * @return Response
+     */
+    public function create_user_client(Request $request): Response
+    {
+
+        $user = new User();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $user->setEmail($form->getData()->getClient()->getEmail());
+            $user->setRoles(array('ROLE_USER'));
+            $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
+
+            $this->em->persist($user);
+            $this->em->flush();
+//            $this->addFlash('success', 'User create with success');
+            return $this->redirectToRoute('client.home');
+        }
+
+        return $this->render('client/user/create-user.html.twig',[
             'current_menu' => 'create-user',
             'button' =>'Create',
             'form' => $form->createView()

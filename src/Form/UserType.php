@@ -28,6 +28,7 @@ class UserType extends AbstractType
                 'multiple' => false,
                 'required' => true
             ])
+            
         ;
 
     }

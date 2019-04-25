@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
 {% endblock %}
 {{ form_start(form) }}
+{{ form_start(form_evc) }}
 <div class="row">
     <div class="col-md-10">{{ form_row(form.name) }}</div>
     <div class="col-md-10">{{ form_row(form.projects) }}</div>
@@ -13,7 +14,7 @@
         <figure class="content-evc col-md-10">
             <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc " id="evc-loco-1">
             <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc " id="evc-loco-2">
-            <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc " id="evc-loco-3">
+
         </figure>
     </div>
 
@@ -23,14 +24,29 @@
         <figure class="content-evc col-md-10">
             <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc" id="evc-train-1">
             <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc" id="evc-train-2">
+            <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc " id="evc-train-3">
         </figure>
     </div>
-    <div class="content-choice-evc col-md-10 mt-4" id="select-evc-train">
-       {{ form_row(form.eVC) }}
+
+    <div class="col-md-10 mt-4" id="btn-choice-evc">
+        <div class="content-btn-train col-12">
+            <p id="create-evc">Create EVC</p>
+            <p id="select-evc">Select EVC</p>
+        </div>
     </div>
+
+    <div class="col-md-10 mt-4" id="select-evc-train">
+        {{ form_row(form.eVC) }}
+    </div>
+
+    <div class="col-md-10 mt-4" id="create-evc-train">
+        {{ form_row(form_evc.ETCS_ID) }}
+    </div>
+
 
 </div>
 <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
+{{ form_end(form_evc) }}
 {{ form_end(form) }}
 
 
@@ -62,15 +78,25 @@ $(document).ready(function() {
                 $('#evc-train-1').click(function () {
                     $('#evc-train-1').addClass("selected");
                     $('#evc-train-2').removeClass("selected");
-                    $('#select-evc-train').show();
+                    $('#btn-choice-evc').show();
+
 
                 });
                 $('#evc-train-2').click(function () {
                     $('#evc-train-2').addClass("selected");
                     $('#evc-train-1').removeClass("selected");
-                    $('#select-evc-train').show();
+                    $('#evc-train-3').removeClass("selected");
+                    $('#btn-choice-evc').show();
+
 
                 });
+                $('#evc-train-3').click(function () {
+                    $('#evc-train-3').addClass("selected");
+                    $('#evc-train-2').removeClass("selected");
+                    $('#btn-choice-evc').show();
+                });
+
+
 
 
             } else if (current_choice.trim() == 'Locomotive') {
@@ -81,25 +107,29 @@ $(document).ready(function() {
                 $('#evc-loco-1').click(function () {
                     $('#evc-loco-1').addClass("selected");
                     $('#evc-loco-2').removeClass("selected");
-                    $('#select-evc-train').show();
+                    $('#btn-choice-evc').show();
 
                 });
                 $('#evc-loco-2').click(function () {
                     $('#evc-loco-2').addClass("selected");
                     $('#evc-loco-1').removeClass("selected");
-                    $('#evc-loco-3').removeClass("selected");
-                    $('#select-evc-train').show();
+                    $('#btn-choice-evc').show();
+
                 });
-                $('#evc-loco-3').click(function () {
-                    $('#evc-loco-3').addClass("selected");
-                    $('#evc-loco-2').removeClass("selected");
-                    $('#select-evc-train').show();
-                });
+
 
 
             }
 
         }).change();
+})
+    $('#select-evc').click(function () {
+        $('#create-evc-train').hide();
+        $('#select-evc-train').show();
+    })
+    $('#create-evc').click(function () {
+        $('#select-evc-train').hide();
+        $('#create-evc-train').show();
 })
 
     </script>

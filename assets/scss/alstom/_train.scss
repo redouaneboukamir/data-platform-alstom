@@ -26,7 +26,7 @@
       position: absolute;
       display: flex;
       justify-content: space-around;
-      margin-top: -28vh;
+      margin-top: -15rem;
       z-index: 9;
       .evc{
         width: 100px;
@@ -43,11 +43,44 @@
         }
     }
   }
+#btn-choice-evc{
+  display: none;
+}
 #select_train{
   display: none
 }
 #select_locomotive{
   display: none
+}
+#select-evc-train{
+  display: none;
+}
+#create-evc-train{
+  display: none;
+}
+.content-btn-train{
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  p{
+    background-color: #747474;
+    color: white;
+    padding: 12px;
+    border-radius: 7px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: center;
+    font-size: 1rem;
+    font-family: inherit;
+    &:hover{
+      cursor: pointer;
+    }
+
+    &:hover{
+      background: rgba(128, 128, 128, 0.8);
+    }
+  }
 }
 .content-choice-evc{
   display: none;
