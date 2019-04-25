@@ -57,6 +57,27 @@
                                  </tr>
                              </tbody>
                          </table>
+                         <table class="table table-striped table-show-project table-content">
+                             <thead class="thead-dark">
+                             <tr>
+                                 <th scope="col">EVC :</th>
+                             </tr>
+                             </thead>
+                             <tbody>
+                             <tr class="col-md-12 title-table">
+                                 <td class="td-table">
+                                     <a href="{{ path('alstom.project-show', {id: train.projects.id}) }}">
+
+                                         {% if train.eVC %}
+                                            {{ train.eVC.eTCSID }}
+                                         {% else %}
+                                            NO EVC
+                                         {% endif %}
+                                     </a>
+                                 </td>
+                             </tr>
+                             </tbody>
+                         </table>
 
                      </div>
                  </div>

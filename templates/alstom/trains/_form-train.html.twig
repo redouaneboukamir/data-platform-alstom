@@ -25,8 +25,9 @@
             <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc" id="evc-train-2">
         </figure>
     </div>
-
-
+    <div class="content-choice-evc col-md-10 mt-4" id="select-evc-train">
+       {{ form_row(form.eVC) }}
+    </div>
 
 </div>
 <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
@@ -41,61 +42,65 @@
 
 //        $('#select_train').hide();
 //        $('#select_locomotive').hide();
+$(document).ready(function() {
+    $('#trains_trainType')
 
-        $('#trains_trainType')
+        .change(function () {
 
-            .change(function () {
+            let current_choice = "";
 
-                let current_choice = "";
+            $("#trains_trainType option:selected").each(function () {
 
-                $( "#trains_trainType option:selected" ).each(function() {
+                current_choice += $(this).text() + " ";
 
-                    current_choice += $( this ).text() + " ";
+            });
+
+            if (current_choice.trim() == 'Train') {
+                $('#select_train').show();
+                $('#select_locomotive').hide();
+
+                $('#evc-train-1').click(function () {
+                    $('#evc-train-1').addClass("selected");
+                    $('#evc-train-2').removeClass("selected");
+                    $('#select-evc-train').show();
+
+                });
+                $('#evc-train-2').click(function () {
+                    $('#evc-train-2').addClass("selected");
+                    $('#evc-train-1').removeClass("selected");
+                    $('#select-evc-train').show();
 
                 });
 
-                    if(current_choice.trim() == 'Train'){
-                        $('#select_train').show();
-                        $('#select_locomotive').hide();
 
-                        $('#evc-train-1').click(function () {
-                            $('#evc-train-1').addClass("selected");
-                            $('#evc-train-2').removeClass("selected");
+            } else if (current_choice.trim() == 'Locomotive') {
 
-                        });
-                        $('#evc-train-2').click(function () {
-                            $('#evc-train-2').addClass("selected");
-                            $('#evc-train-1').removeClass("selected");
+                $('#select_locomotive').show();
+                $('#select_train').hide();
 
-                        });
+                $('#evc-loco-1').click(function () {
+                    $('#evc-loco-1').addClass("selected");
+                    $('#evc-loco-2').removeClass("selected");
+                    $('#select-evc-train').show();
 
-
-                    }else if(current_choice.trim() == 'Locomotive'){
-
-                        $('#select_locomotive').show();
-                        $('#select_train').hide();
-
-                        $('#evc-loco-1').click(function () {
-                            $('#evc-loco-1').addClass("selected");
-                            $('#evc-loco-2').removeClass("selected");
-
-                        });
-                        $('#evc-loco-2').click(function () {
-                            $('#evc-loco-2').addClass("selected");
-                            $('#evc-loco-1').removeClass("selected");
-                            $('#evc-loco-3').removeClass("selected");
-                        });
-                        $('#evc-loco-3').click(function () {
-                            $('#evc-loco-3').addClass("selected");
-                            $('#evc-loco-2').removeClass("selected");
-                        });
+                });
+                $('#evc-loco-2').click(function () {
+                    $('#evc-loco-2').addClass("selected");
+                    $('#evc-loco-1').removeClass("selected");
+                    $('#evc-loco-3').removeClass("selected");
+                    $('#select-evc-train').show();
+                });
+                $('#evc-loco-3').click(function () {
+                    $('#evc-loco-3').addClass("selected");
+                    $('#evc-loco-2').removeClass("selected");
+                    $('#select-evc-train').show();
+                });
 
 
+            }
 
-                    }
-
-            }).change();
-
+        }).change();
+})
 
     </script>
 {% endblock %}

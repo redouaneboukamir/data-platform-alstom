@@ -6,6 +6,7 @@ use App\Entity\Clients;
 use App\Entity\ClientsSearch;
 use App\Entity\Engineers;
 use App\Entity\EnginSearch;
+use App\Entity\EVC;
 use App\Entity\Projects;
 use App\Entity\ProjectSearch;
 use App\Entity\Trains;
@@ -14,12 +15,14 @@ use App\Form\ClientsSearchType;
 use App\Form\ClientsType;
 use App\Form\EngineerType;
 use App\Form\EnginSearchType;
+use App\Form\EVCType;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
+use App\Repository\EVCRepository;
 use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -448,7 +451,8 @@ class alstomController extends AbstractController
         return $this->render('alstom/trains/create-trains.html.twig', [
             'current_menu' => 'trains',
             'button' => 'Create',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+//            'form_evc'
         ]);
 
     }
@@ -506,6 +510,82 @@ class alstomController extends AbstractController
 
         }
         return $this->redirectToRoute('alstom.trains');
+
+
+    }
+
+
+//    EVC-----------------------------------------------------------
+//
+
+
+    /**
+     * @Route("/alstom/evc", name="alstom.evc")
+     * @return Response
+     */
+
+    public function evc(EVCRepository $EVCRepository, Request $request): Response
+    {
+
+//        $search = new TrainsSearch();
+//        $form = $this->createForm(TrainsSearchType::class, $search);
+//        $form->handleRequest($request);
+//        $trains = $trainsRepository->findAllTrains($search);
+        $evcs = $EVCRepository->findAll();
+
+        return $this->render('alstom/evc/evc.html.twig', [
+            'current_menu' => 'EVC',
+            'evcs' => $evcs,
+//            'form' => $form->createView()
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/alstom/create-evc", name="alstom.create-evc")
+     * @return Response
+     */
+    public function create_evc(Request $request): Response
+    {
+        $evc = new EVC();
+        $form = $this->createForm(EVCType::class, $evc);
+        $form->handleRequest($request);
+
+
+        //        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+
+            $this->em->persist($evc);
+            $this->em->flush();
+            $this->addFlash('success', 'EVC create with success');
+            return $this->redirectToRoute('alstom.evc');
+        }
+        return $this->render('alstom/evc/create-evc.html.twig', [
+            'current_menu' => 'trains',
+            'button' => 'Create',
+            'form' => $form->createView(),
+        ]);
+
+    }
+
+
+    //    suppresion de evc
+    /**
+     * @Route("/alstom/evc/{id}", name="alstom.delete-evc", methods={"DELETE"})
+     * @param Request $request
+     * @return Response
+     */
+    public function delete_evc(EVC $EVC, Request $request): Response
+    {
+        if($this->isCsrfTokenValid('delete'.$EVC->getId(), $request->get('_token'))){
+
+            $this->em->remove($EVC);
+            $this->em->flush();
+            $this->addFlash('success', 'EVC delete with success');
+
+        }
+        return $this->redirectToRoute('alstom.evc');
 
 
     }

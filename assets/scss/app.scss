@@ -147,18 +147,20 @@ body {
         margin-right: 0 !important;
       }
       transform: scale(1) !important;
+      opacity: 1 !important;
 
     }
   }
   .item-sidebar{
 
-    i{
+    i, svg{
       transition: transform 0.3s;
     }
     a:hover{
       border-left: 4px solid $color-item-active;
-      color: $color-item-active;
-      i{
+      //color: $color-item-active;
+      opacity: 0.6;
+      i, svg{
         transform: scale(1.5);
         margin-right: 0.5rem;
       }
