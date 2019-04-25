@@ -2,10 +2,26 @@
             {% block body %}
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1>Add client</h1>
+                        <h2><i class="fa fa-angle-right"></i> Create User</h2>
                     </div>
                     <div class="jumbotron content-form-client">
-                        {{ include ('alstom/clients/_form-client.html.twig', {form: form, button:'Create'}) }}
+{#                        {{ include ('alstom/clients/_form-client.html.twig', {form: form, button:'Create'}) }}#}
+
+                    {{ form_start(form) }}
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                {{ form_row(form.Client) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                {{ form_row(form.password) }}
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">{{ button|default('Send') }}</button>
+                        {{ form_end(form) }}
                     </div>
 
                     </div>
