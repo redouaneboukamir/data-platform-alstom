@@ -75,11 +75,17 @@ class Projects
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\ClientsUser", mappedBy="projects")
+     */
+    private $clientsUsers;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
         $this->engineers = new ArrayCollection();
         $this->trains = new ArrayCollection();
+        $this->clientsUsers = new ArrayCollection();
     }
     
 
@@ -263,6 +269,34 @@ class Projects
     public function setUpdatedAt($updated_at): void
     {
         $this->updated_at = $updated_at;
+    }
+
+    /**
+     * @return Collection|ClientsUser[]
+     */
+    public function getClientsUsers(): Collection
+    {
+        return $this->clientsUsers;
+    }
+
+    public function addClientsUser(ClientsUser $clientsUser): self
+    {
+        if (!$this->clientsUsers->contains($clientsUser)) {
+            $this->clientsUsers[] = $clientsUser;
+            $clientsUser->addProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClientsUser(ClientsUser $clientsUser): self
+    {
+        if ($this->clientsUsers->contains($clientsUser)) {
+            $this->clientsUsers->removeElement($clientsUser);
+            $clientsUser->removeProject($this);
+        }
+
+        return $this;
     }
 
 
