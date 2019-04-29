@@ -61,9 +61,9 @@
 $(document).ready(function() {
 
     //Vidage des inputs aux changement de select
-    $('select[name="trains[projects]"], select[name="trains[trainType]"]').change(function(){
-        $('input[name="trains[name]"]').val('');
-    });
+    // $('select[name="trains[projects]"], select[name="trains[trainType]"]').change(function(){
+    //     $('input[name="trains[name]"]').val('');
+    // });
 
 
 
@@ -137,10 +137,12 @@ $(document).ready(function() {
     $('#select-evc').click(function () {
         $('#create-evc-train').hide();
         $('#select-evc-train').show();
+        $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
     })
     $('#create-evc').click(function () {
         $('#select-evc-train').hide();
         $('#create-evc-train').show();
+        $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
 })
 
     </script>
