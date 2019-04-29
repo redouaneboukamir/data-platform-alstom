@@ -59,6 +59,15 @@
 //        $('#select_train').hide();
 //        $('#select_locomotive').hide();
 $(document).ready(function() {
+
+    //Vidage des inputs aux changement de select
+    $('select[name="trains[projects]"], select[name="trains[trainType]"]').change(function(){
+        $('input[name="trains[name]"]').val('');
+    });
+
+
+
+    //Traitement du choix du type de train
     $('#trains_trainType')
 
         .change(function () {
@@ -96,6 +105,8 @@ $(document).ready(function() {
                     $('#btn-choice-evc').show();
                 });
 
+                $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
+
 
 
 
@@ -116,7 +127,7 @@ $(document).ready(function() {
                     $('#btn-choice-evc').show();
 
                 });
-
+                $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
 
 
             }

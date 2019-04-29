@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <div class="content-formlogin-background">
         <div class="content-login col-lg-4 col-md-6 col-sm-8 col-xs-8">
-            <img src="./{{ asset('build/img/logo-alstom.svg') }}" alt="">
-            {% block formulaire %}
-            {% endblock %}
+            <div class="container">
+
+                <img src="./{{ asset('build/img/logo-alstom.svg') }}" alt="">
+                {% block formulaire %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -47,7 +47,7 @@ class securityController extends AbstractController{
                 'user' => $user
             ]);
 
-        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT')){
+        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_ADMIN')){
 
             $user = $this->getUser();
             dump($user);
@@ -92,7 +92,7 @@ class securityController extends AbstractController{
         if($form->isSubmitted() && $form->isValid()){
 
             $user->setEmail($form->getData()->getClient()->getEmail());
-            $user->setRoles(array('ROLE_CLIENT'));
+            $user->setRoles(array('ROLE_CLIENT_ADMIN'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
 
             $this->em->persist($user);
@@ -123,7 +123,7 @@ class securityController extends AbstractController{
         if($form->isSubmitted() && $form->isValid()){
 
             $user->setEmail($form->getData()->getClient()->getEmail());
-            $user->setRoles(array('ROLE_USER'));
+            $user->setRoles(array('ROLE_CLIENT_USER'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
 
             $this->em->persist($user);

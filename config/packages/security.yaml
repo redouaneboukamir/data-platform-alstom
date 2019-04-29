@@ -58,5 +58,5 @@ security:
           - { path: ^/alstom, roles: ROLE_ALSTOM }
           - { path: ^/alstom, roles: ROLE_ALSTOM_DESIGNER }
           - { path: ^/alstom, roles: ROLE_ALSTOM_COMMISSIONER }
-          - { path: ^/client, roles: ROLE_CLIENT }
-          - { path: ^/client, roles: ROLE_USER }
+          - { path: ^/client, roles: ROLE_CLIENT_ADMIN }
+          - { path: ^/client, roles: ROLE_CLIENT_USER }
