@@ -3,7 +3,7 @@
 {% block body %}
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2><i class="fa fa-angle-right"></i> Trains</h2>
+            <h2><i class="fa fa-angle-right"></i> Users</h2>
             <a href="{{ path('client.create-user') }}"><button class="btn btn-primary">New</button></a>
         </div>
         {% for message in app.flashes('success') %}
@@ -21,26 +21,26 @@
                 <thead>
                 <tr class="title-table">
                     <th scope="col">Name</th>
-                    <th scope="col">Name project</th>
+                    <th scope="col">Email</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for train in trains %}
+                {% for user in users %}
                     <tr class="td-table">
-                        <td ><a href="{{ path('client.show-train', {id: train.id}) }}">{{  train.name }}</td>
-                        <td>{{ train.Projects.name }}</td>
+                        <td ><a href="{{ path('client.show-user', {id: user.id}) }}">{{  user.name }}</td>
+                        <td>{{ user.email}}</td>
 
 
-                <td class="content-btn-edit-delete">
-                    <a href="{{ path('client.edit-train', {id: train.id}) }}"><i class="fas fa-edit"></i></a>
-                    <form method="post" action="{{ path('client.delete-train' ,{id:train.id}) }}" onsubmit="return confirm('Are you sure to delete this train?')">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ train.id) }}">
-                        <button class="btn btn-danger btn-delete-client"><i class="fas fa-trash-alt"></i></button>
-                    </form>
-                </td>
-                </tr>
+                        <td class="content-btn-edit-delete">
+                            <a href="{{ path('client.edit-user', {id: user.id}) }}"><i class="fas fa-edit"></i></a>
+                            <form method="post" action="{{ path('client.delete-user' ,{id:user.id}) }}" onsubmit="return confirm('Are you sure to delete this user?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ train.id) }}">
+                                <button class="btn btn-danger btn-delete-client"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>

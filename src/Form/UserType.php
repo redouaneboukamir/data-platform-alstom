@@ -17,16 +17,19 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'required' => true
+            ])
 //            ->add('roles')
             ->add('password', PasswordType::class,[
                 'required' => true
             ])
             ->add('Client', EntityType::class, [
                 'class' => Clients::class,
+                'label' => "If client exist, select this email",
                 'choice_label' => 'email',
                 'multiple' => false,
-                'required' => true
+                'required' => false
             ])
             
         ;

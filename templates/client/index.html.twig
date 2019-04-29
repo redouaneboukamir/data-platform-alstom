@@ -83,16 +83,23 @@
 
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if(current_menu == "users") %}active{% endif %}" href="{{ path('client.users') }}">
+                                <i class="fas fa-user-friends"></i>
+                                <span data-feather="layers">Users</span>
+
+                            </a>
+                        </li>
                     </ul>
                     <ul class="nav flex-column item-sidebar">
                         <li class="nav-item">
-                            <a class="nav-link {% if(current_menu == "home") %}active{% endif %} second-title-sidebar" href="{{ path('alstom.home') }}">
+                            <a class="nav-link {% if(current_menu == "home") %}active{% endif %} second-title-sidebar" href="{{ path('client.home') }}">
                                 <i class="fas fa-cog"></i>
                                 <span data-feather="home">Settings</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('alstom.trains') }}">
+                            <a class="nav-link {% if(current_menu == "create-user") %}active{% endif %}" href="{{ path('client.create-user') }}">
                                 <i class="fas fa-user-plus"></i>
                                 <span data-feather="layers">Create user</span>
 

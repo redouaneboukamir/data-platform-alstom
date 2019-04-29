@@ -40,6 +40,11 @@ class User implements UserInterface, Serializable
      */
     private $Client;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\ClientsUser", cascade={"persist", "remove"})
+     */
+    private $Client_user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +156,18 @@ class User implements UserInterface, Serializable
     public function setClient(?Clients $Client): self
     {
         $this->Client = $Client;
+
+        return $this;
+    }
+
+    public function getClientUser(): ?ClientsUser
+    {
+        return $this->Client_user;
+    }
+
+    public function setClientUser(?ClientsUser $Client_user): self
+    {
+        $this->Client_user = $Client_user;
 
         return $this;
     }

@@ -47,7 +47,7 @@ class securityController extends AbstractController{
                 'user' => $user
             ]);
 
-        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_ADMIN')){
+        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_ADMIN') ){
 
             $user = $this->getUser();
             dump($user);
@@ -58,9 +58,15 @@ class securityController extends AbstractController{
 //                'user' => $user
 //            ]);
 
-        }else{
+        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_USER')) {
 
-            return $this->render('home/login.html.twig', [
+            $user = $this->getUser();
+
+            return $this->redirect($this->generateUrl('client.home',[
+                'user' => $user
+            ] ));
+
+        }else{return $this->render('home/login.html.twig', [
                 'last_username' => $last_username,
                 'error' => $error
             ]);
@@ -122,7 +128,7 @@ class securityController extends AbstractController{
 
         if($form->isSubmitted() && $form->isValid()){
 
-            $user->setEmail($form->getData()->getClient()->getEmail());
+//            $user->setEmail($form->getData()->getClient()->getEmail());
             $user->setRoles(array('ROLE_CLIENT_USER'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
 

@@ -11,7 +11,10 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                {{ form_row(form.Client) }}
+                                {{ form_row(form.email) }}
+                                <div style="display: none">
+                                    {{ form_row(form.Client) }}
+                                </div>
                             </div>
                         </div>
 

@@ -9,7 +9,9 @@
 
                     {{ form_start(form) }}
                         <div class="form-group">
-
+                            <div class="col-xs-6">
+                                {{ form_row(form.email) }}
+                            </div>
                             <div class="col-xs-6">
                                 {{ form_row(form.Client) }}
                             </div>
@@ -18,6 +20,7 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 {{ form_row(form.password) }}
+
                             </div>
                         </div>
                         <button class="btn btn-primary">{{ button|default('Send') }}</button>

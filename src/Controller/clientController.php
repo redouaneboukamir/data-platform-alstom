@@ -9,6 +9,7 @@ use App\Entity\TrainsSearch;
 use App\Form\ProjectSearchType;
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
+use App\Repository\ClientsUserRepository;
 use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -176,4 +177,25 @@ class clientController extends AbstractController
 
 
     }
+//    Page user -----------------------------------------------------
+    /**
+     * @Route("/client/users", name="client.users")
+     * @return Response
+     */
+    public function users(ClientsUserRepository $clientsUserRepository, Request $request): Response
+    {
+
+//        $search = new TrainsSearch();
+//        $form = $this->createForm(TrainsSearchType::class, $search);
+//        $form->handleRequest($request);
+        $users = $clientsUserRepository->findAll();
+
+        return $this->render('client/client_user/user.html.twig', [
+            'current_menu' => 'users',
+            'users' => $users,
+//            'form' => $form->createView()
+        ]);
+    }
+
+
 }
