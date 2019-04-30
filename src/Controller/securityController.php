@@ -113,6 +113,8 @@ class securityController extends AbstractController{
             'form' => $form->createView()
         ]);
     }
+
+
     /**
      * @Route("/client/create-user", name="client.create-user")
      * @return Response
@@ -128,10 +130,10 @@ class securityController extends AbstractController{
 
         if($form->isSubmitted() && $form->isValid()){
 
+//            recuperer l'email du form de client_user et l'attribuer ici pour le compte user
 //            $user->setEmail($form->getData()->getClient()->getEmail());
             $user->setRoles(array('ROLE_CLIENT_USER'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
-
             $this->em->persist($user);
             $this->em->flush();
 //            $this->addFlash('success', 'User create with success');

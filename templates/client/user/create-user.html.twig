@@ -5,15 +5,19 @@
                         <h2><i class="fa fa-angle-right"></i> Create User</h2>
                     </div>
                     <div class="jumbotron content-form-client">
-                        {#                        {{ include ('alstom/clients/_form-client.html.twig', {form: form, button:'Create'}) }}#}
+{#                        formulaire de client_user, récupérer l'email du client user et creer le compte user avec#}
+
 
                         {{ form_start(form) }}
                         <div class="form-group">
 
                             <div class="col-xs-6">
+                                {{ form_row(form.clientUser.name) }}
+                                {{ form_row(form.clientUser.email) }}
                                 {{ form_row(form.email) }}
                                 <div style="display: none">
                                     {{ form_row(form.Client) }}
+                                    {{ form_row(form.clientUser.projects) }}
                                 </div>
                             </div>
                         </div>

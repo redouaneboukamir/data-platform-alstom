@@ -27,6 +27,15 @@ class UserRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findClientUser($roles)
+    {
+        return $this->createQueryBuilder('u')
+            ->andwhere('u.roles = :roles ')
+            ->setParameter('roles', $roles)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

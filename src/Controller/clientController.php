@@ -6,12 +6,14 @@ use App\Entity\Projects;
 use App\Entity\ProjectSearch;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
+use App\Entity\User;
 use App\Form\ProjectSearchType;
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
 use App\Repository\ClientsUserRepository;
 use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
+use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -182,13 +184,22 @@ class clientController extends AbstractController
      * @Route("/client/users", name="client.users")
      * @return Response
      */
-    public function users(ClientsUserRepository $clientsUserRepository, Request $request): Response
+    public function users(UserRepository $userRepository, Request $request): Response
     {
-
+        $users = [];
 //        $search = new TrainsSearch();
 //        $form = $this->createForm(TrainsSearchType::class, $search);
 //        $form->handleRequest($request);
-        $users = $clientsUserRepository->findAll();
+        $all_users = $userRepository->findAll();
+        foreach ($all_users as $val){
+            dump($val->getRoles()[0]);
+            if(($val->getRoles()[0]) == "ROLE_CLIENT_USER"){
+
+                array_push($users, $val);
+
+            }
+
+        }
 
         return $this->render('client/client_user/user.html.twig', [
             'current_menu' => 'users',

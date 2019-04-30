@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Clients;
+use App\Entity\ClientsUser;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -30,6 +31,9 @@ class UserType extends AbstractType
                 'choice_label' => 'email',
                 'multiple' => false,
                 'required' => false
+            ])
+            ->add('clientUser', ClientUserType::class,[
+
             ])
             
         ;
