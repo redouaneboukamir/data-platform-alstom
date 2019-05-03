@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09ec0d77-5797-4a22-a62f-c41d6c8fbe85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/alstom/Baseline/baseline.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/alstom/Baseline/create-baseline.html.Twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/alstom/association/association.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a13d6202-62e5-4515-aece-19f5896e7fd1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a13d6202-62e5-4515-aece-19f5896e7fd1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a13d6202-62e5-4515-aece-19f5896e7fd1/storage_v2/_src_/database/alstom-data-platform.U4EUxA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a13d6202-62e5-4515-aece-19f5896e7fd1/storage_v2/_src_/database/alstom-data-platform.U4EUxA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/alstomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/alstomController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/securityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/securityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/alstom/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/alstom/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/alstom/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="122" column="51" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+            <state relative-caret-position="248">
+              <caret line="284" column="70" lean-forward="true" selection-start-line="284" selection-start-column="70" selection-end-line="284" selection-end-column="70" />
               <folding>
                 <element signature="e#1074#1085#0#Twig" expanded="true" />
                 <element signature="e#6474#6484#0#Twig" expanded="true" />
@@ -472,7 +462,7 @@
       <workItem from="1556604313205" duration="7282000" />
       <workItem from="1556655511597" duration="1000" />
       <workItem from="1556778548085" duration="984000" />
-      <workItem from="1556864278106" duration="6867000" />
+      <workItem from="1556864278106" duration="7149000" />
     </task>
     <task id="LOCAL-00001" summary="Add table country and clients">
       <created>1553601639324</created>
@@ -775,11 +765,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556620811863</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Add different role_ALSTOM">
+      <created>1556889701051</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1556889701051</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="314052000" />
+    <option name="totallyTimeSpent" value="314334000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -814,7 +811,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.21959943" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.21173105" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20028612" />
@@ -884,7 +881,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modif form" />
     <MESSAGE value="Add Background home and Route Annotations" />
     <MESSAGE value="Push before Add Entity User" />
     <MESSAGE value="Add Entity User" />
@@ -909,7 +905,8 @@
     <MESSAGE value="ADD ROLE CLIENT_ADMIN CLIENT_USER" />
     <MESSAGE value="Add Client_user" />
     <MESSAGE value="Add Create Client_user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Create Client_user" />
+    <MESSAGE value="Add different role_ALSTOM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add different role_ALSTOM" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Entity/Projects.php">
@@ -1301,8 +1298,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/alstom/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="122" column="51" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+        <state relative-caret-position="248">
+          <caret line="284" column="70" lean-forward="true" selection-start-line="284" selection-start-column="70" selection-end-line="284" selection-end-column="70" />
           <folding>
             <element signature="e#1074#1085#0#Twig" expanded="true" />
             <element signature="e#6474#6484#0#Twig" expanded="true" />
