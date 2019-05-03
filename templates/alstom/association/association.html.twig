@@ -1,0 +1,42 @@
+{% extends 'alstom/index.html.twig' %}
+
+            {% block body %}
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2><i class="fa fa-angle-right"></i> Association</h2>
+                    </div>
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="jumbotron">
+
+                    {{ form_start(form ) }}
+                    {{ form_row(form.baseline) }}
+                    {{ form_row(form.VersionLogiciel) }}
+                    {{ form_row(form.ConfigLogiciel) }}
+                    {{ form_row(form.ERTMS) }}
+                    {{ form_row(form.Status) }}
+
+                    <button class="btn btn-primary">{{ button|default('Send') }}</button>
+                    {{ form_end(form) }}
+                    </div>
+
+
+                </main>
+            {% endblock %}
+{% block javascripts %}
+
+    <script>
+        
+        $('#association_baseline').change(function () {
+
+            $('#association_VersionLogiciel').val('');
+            $('#association_ConfigLogiciel').val('');
+            $('#association_ERTMS').val('');
+            $('#association_Status').val('');
+
+        })
+    </script>
+{% endblock %}

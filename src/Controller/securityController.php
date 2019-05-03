@@ -40,7 +40,9 @@ class securityController extends AbstractController{
         $last_username = $authenticationUtils->getLastUsername();
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM')){
+        if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_ADMIN')
+        || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_MAINTENER'))
+                || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_DESIGN'))){
 
             $user = $this->getUser();
             return $this->redirectToRoute('alstom.home',[
@@ -97,7 +99,9 @@ class securityController extends AbstractController{
 
         if($form->isSubmitted() && $form->isValid()){
 
-            $user->setEmail($form->getData()->getClient()->getEmail());
+            if(($form->getData()->getClient()) != null){
+                $user->setEmail($form->getData()->getClient()->getEmail());
+            }
             $user->setRoles(array('ROLE_CLIENT_ADMIN'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
 

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\AssociationBaseline;
+use App\Entity\Baseline;
 use App\Entity\Clients;
 use App\Entity\ClientsSearch;
 use App\Entity\Engineers;
@@ -11,6 +13,8 @@ use App\Entity\Projects;
 use App\Entity\ProjectSearch;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
+use App\Form\AssociationType;
+use App\Form\BaselineType;
 use App\Form\ClientsSearchType;
 use App\Form\ClientsType;
 use App\Form\EngineerType;
@@ -20,6 +24,7 @@ use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
+use App\Repository\BaselineRepository;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
 use App\Repository\EVCRepository;
@@ -603,5 +608,108 @@ class alstomController extends AbstractController
 
 
     }
+
+
+//    PART ASSOCIATION ---------------------------------------------------------
+    /**
+     * @Route("/alstom/maintener/association", name="alstom.association")
+     * @param Request $request
+     * @return Response
+     */
+        public function association(Request $request):Response
+        {
+            $Association = new AssociationBaseline();
+            $form =  $this->createForm(AssociationType::class, $Association);
+
+            $form->handleRequest($request);
+
+
+            //        Validation du formulaire
+            if($form->isSubmitted() && $form->isValid()){
+
+                $this->em->persist($Association);
+                $this->em->flush();
+                $this->addFlash('success', 'Association create with success');
+                return $this->redirectToRoute('alstom.association');
+            }
+
+
+
+            return $this->render('alstom/association/association.html.twig', [
+                'current_menu' => 'association',
+                'form' => $form->createView(),
+                'button' => 'Associate'
+            ]);
+        }
+// PAGE BASELINE-------------------------------------------------------
+    /**
+     * @Route("/alstom/design/baseline", name="alstom.baseline")
+     * @param Request $request
+     * @return Response
+     */
+    public function baseline(Request $request, BaselineRepository $baselineRepository):Response
+    {
+        //        $search = new TrainsSearch();
+//        $form = $this->createForm(TrainsSearchType::class, $search);
+//        $form->handleRequest($request);
+//        $trains = $trainsRepository->findAllTrains($search);
+
+        $baseline = $baselineRepository->findAll();
+
+        return $this->render('alstom/baseline/baseline.html.twig', [
+            'current_menu' => 'baseline',
+            'baselines' => $baseline,
+//            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/alstom/design/create-baseline", name="alstom.create-baseline")
+     * @return Response
+     */
+    public function create_baseline(Request $request): Response
+    {
+        $baseline = new Baseline();
+        $form = $this->createForm(BaselineType::class, $baseline);
+        $form->handleRequest($request);
+
+
+        //        Validation du formulaire
+        if($form->isSubmitted() && $form->isValid()){
+
+            $this->em->persist($baseline);
+            $this->em->flush();
+            $this->addFlash('success', 'Baseline create with success');
+            return $this->redirectToRoute('alstom.baseline');
+        }
+
+        return $this->render('alstom/baseline/create-baseline.html.twig', [
+            'current_menu' => 'baseline',
+            'button' => 'Create',
+            'form' => $form->createView(),
+        ]);
+
+    }
+
+    //    suppresion de baeline
+    /**
+     * @Route("/alstom/design/baseline/{id}", name="alstom.delete-baseline", methods={"DELETE"})
+     * @param Request $request
+     * @return Response
+     */
+    public function delete_baseline(Baseline $baseline, Request $request): Response
+    {
+        if($this->isCsrfTokenValid('delete'.$baseline->getId(), $request->get('_token'))){
+
+            $this->em->remove($baseline);
+            $this->em->flush();
+            $this->addFlash('success', 'Baseline delete with success');
+
+        }
+        return $this->redirectToRoute('alstom.baseline');
+
+
+    }
+
 
 }

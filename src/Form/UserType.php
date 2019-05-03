@@ -33,6 +33,7 @@ class UserType extends AbstractType
                 'required' => false
             ])
             ->add('clientUser', ClientUserType::class,[
+                'required' => false
 
             ])
             
