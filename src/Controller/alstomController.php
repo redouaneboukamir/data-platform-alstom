@@ -622,6 +622,7 @@ class alstomController extends AbstractController
             $form =  $this->createForm(AssociationType::class, $Association);
 
             $form->handleRequest($request);
+            dump($Association);
 
 
             //        Validation du formulaire
@@ -691,7 +692,7 @@ class alstomController extends AbstractController
 
     }
 
-    //    suppresion de baeline
+    //    suppresion de baseline
     /**
      * @Route("/alstom/design/baseline/{id}", name="alstom.delete-baseline", methods={"DELETE"})
      * @param Request $request

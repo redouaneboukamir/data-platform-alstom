@@ -12,12 +12,12 @@
                     {% endfor %}
                     <div class="jumbotron">
 
-                    {{ form_start(form ) }}
-                    {{ form_row(form.baseline) }}
-                    {{ form_row(form.VersionLogiciel) }}
-                    {{ form_row(form.ConfigLogiciel) }}
-                    {{ form_row(form.ERTMS) }}
-                    {{ form_row(form.Status) }}
+                    {{ form_start(form) }}
+                        {{ form_row(form.baseline) }}
+                        {{ form_row(form.VersionLogiciel) }}
+                        {{ form_row(form.ConfigLogiciel) }}
+                        {{ form_row(form.ERTMS) }}
+                        {{ form_row(form.Status) }}
 
                     <button class="btn btn-primary">{{ button|default('Send') }}</button>
                     {{ form_end(form) }}

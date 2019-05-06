@@ -41,8 +41,9 @@ class securityController extends AbstractController{
         $error = $authenticationUtils->getLastAuthenticationError();
 
         if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_ADMIN')
-        || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_MAINTENER'))
-                || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_DESIGN'))){
+            || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_MAINTENER'))
+            || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_DESIGN'))
+            || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_COMMISSIONER'))){
 
             $user = $this->getUser();
             return $this->redirectToRoute('alstom.home',[

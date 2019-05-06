@@ -133,6 +133,7 @@ $(document).ready(function() {
 
         }).change();
 })
+
     $('#select-evc').click(function () {
         $('#create-evc-train').hide();
         $('#select-evc-train').show();
@@ -143,6 +144,14 @@ $(document).ready(function() {
         $('#create-evc-train').show();
         $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
 })
+        
+        $('#trains_projects').change(function () {
+            $('.content-type-train').hide();
+            $('#trains_trainType').val('');
+            $('#btn-choice-evc').hide();
+
+
+        })
 
     </script>
 {% endblock %}
