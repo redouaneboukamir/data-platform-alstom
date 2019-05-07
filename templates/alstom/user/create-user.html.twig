@@ -22,6 +22,10 @@
                                 {{ form_row(form.password) }}
 
                             </div>
+                            <div class="col-xs-6">
+                                {{ form_row(form.roles) }}
+                            </div>
+{#                            {% if is_grandet('ROLE_CLIENT_ADMIN') %}#}
                         </div>
                         <button class="btn btn-primary">{{ button|default('Send') }}</button>
                         {{ form_end(form) }}

@@ -103,7 +103,7 @@ class securityController extends AbstractController{
             if(($form->getData()->getClient()) != null){
                 $user->setEmail($form->getData()->getClient()->getEmail());
             }
-            $user->setRoles(array('ROLE_CLIENT_ADMIN'));
+//            $user->setRoles(array('ROLE_CLIENT_ADMIN'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
 
             $this->em->persist($user);

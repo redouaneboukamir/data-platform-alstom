@@ -125,6 +125,7 @@
 
                             </a>
                         </li>
+                        {% if is_granted('ROLE_ALSTOM_COMMISSIONER') or is_granted('ROLE_ALSTOM_ADMIN')%}
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "trains") %}active{% endif %}" href="{{ path('alstom.trains') }}">
                                 <i class="fas fa-subway"></i>
@@ -132,6 +133,8 @@
 
                             </a>
                         </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ALSTOM_COMMISSIONER') or is_granted('ROLE_ALSTOM_MAINTENER') or is_granted('ROLE_ALSTOM_ADMIN') %}
                         <li class="nav-item">
                             <a class="nav-link {% if(current_menu == "EVC") %}active{% endif %}" href="{{ path('alstom.evc') }}">
                                 <svg width="20px" height="30px" viewBox="0 0 80 80" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
@@ -301,7 +304,8 @@
 
                             </a>
                         </li>
-                        {% if is_granted('ROLE_ALSTOM_DESIGN') %}
+                        {% endif %}
+                        {% if is_granted('ROLE_ALSTOM_DESIGN') or is_granted('ROLE_ALSTOM_ADMIN') %}
                             <li class="nav-item">
                                 <a class="nav-link {% if(current_menu == "baseline") %}active{% endif %}" href="{{ path('alstom.baseline') }}">
                                     <svg width="20px" height="30px" viewBox="0 0 80 80" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
@@ -472,13 +476,13 @@
                                 </a>
                             </li>
                         {% endif %}
-                        {% if is_granted('ROLE_ALSTOM_COMMISSIONER') %}
-                        <li class="nav-item">
-                            <a class="nav-link {% if(current_menu == "association") %}active{% endif %}" href="{{ path('alstom.association') }}">
-                                <i class="fas fa-layer-group"></i>
-                                <span data-feather="layers">Association</span>
-                            </a>
-                        </li>
+                        {% if is_granted('ROLE_ALSTOM_COMMISSIONER') or is_granted('ROLE_ALSTOM_ADMIN')%}
+                            <li class="nav-item">
+                                <a class="nav-link {% if(current_menu == "association") %}active{% endif %}" href="{{ path('alstom.association') }}">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span data-feather="layers">Association</span>
+                                </a>
+                            </li>
                         {% endif %}
 
 
@@ -491,12 +495,12 @@
                             </a>
                         </li>
                         {% if  is_granted('ROLE_ALSTOM_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link {% if(current_menu == "create-user") %}active{% endif %}" href="{{ path('alstom.create-user') }}">
-                                <i class="fas fa-user-plus"></i>
-                                <span data-feather="layers">Create user</span>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if(current_menu == "create-user") %}active{% endif %}" href="{{ path('alstom.create-user') }}">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span data-feather="layers">Create user</span>
+                                </a>
+                            </li>
                         {% endif %}
 
                     </ul>
@@ -506,22 +510,22 @@
             </nav>
 
             {% block body %}
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2"><i class="fas fa-chart-pie"></i> Dashboard</h1>
-                </div>
-                <div class="content-api-logs row">
-                    <div class="col-md-10 content-api-grafana">
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2"><i class="fas fa-chart-pie"></i> Dashboard</h1>
+                    </div>
+                    <div class="content-api-logs row">
+                        <div class="col-md-10 content-api-grafana">
 
+                        </div>
+                        <div  class="col-md-2 content-btn-logs">
+                            <a href="">
+                                <button class="btn-add-logs">
+                                    <p><i class="fas fa-plus"> </i> Add Logs</p>
+                                </button></a>
+                        </div>
                     </div>
-                    <div  class="col-md-2 content-btn-logs">
-                        <a href="">
-                            <button class="btn-add-logs">
-                                <p><i class="fas fa-plus"> </i> Add Logs</p>
-                            </button></a>
-                    </div>
-                </div>
-            </main>
+                </main>
             {% endblock %}
         </div>
     </div>

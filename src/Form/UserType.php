@@ -7,6 +7,7 @@ use App\Entity\ClientsUser;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +22,17 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'required' => true
             ])
-//            ->add('roles')
+            ->add('roles', ChoiceType::class,[
+                'multiple' => true,
+//                'expanded' => true,
+                'choices' =>  [
+                    'Maintener' => 'ROLE_ALSTOM_MAINTENER',
+                    'Designer' => 'ROLE_ALSTOM_DESIGNER',
+                    'Commissioner' => 'ROLE_ALSTOM_COMMISSIONER',
+                    'Service' => 'ROLE_ALSTOM_SERVICE',
+                    'Client' => 'ROLE_CLIENT_ADMIN'
+                ]
+            ])
             ->add('password', PasswordType::class,[
                 'required' => true
             ])
