@@ -58,7 +58,11 @@
 #create-ertms-train{
   display: none;
 }
-
+.module-ertms{
+  height: 100vh;
+  background: red;
+  padding: 20px;
+  position: absolute;
 .type-equipement{
   display: flex;
   align-items: center;
@@ -79,6 +83,7 @@
       cursor: pointer;
     }
   }
+}
 }
 
 .content-btn-train{

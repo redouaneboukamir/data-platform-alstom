@@ -33,45 +33,45 @@
             <p id="create-ertms-2">Add ERTMS</p>
         </div>
 
-        <div class="col-md-12 mt-4" id="create-ertms-train-1">
-            <div class="name-ertms">
-                {{ form_start(form_ertms) }}
-                {{ form_end(form_ertms) }}
-            </div>
-            {{ form_start(form_equipement) }}
-
-                <div class="type-equipement row">
-                    <div class="col-md-10">
-                        {{ form_row(form_equipement.Type) }}
-                    </div>
-                    <div id="btn-create-type" class="col-md-2">
-                        <p class=" btn-create-type">+</p>
-                    </div>
-                    <div id="create_type" class="col-md-12">
-                        {{ form_start(form_type) }}
-                        <div class="col-md-8">{{ form_row(form_type.name) }}</div>
-                        {{ form_end(form_type) }}
-                    </div>
-                </div>
-                <div class="type-equipement row">
-                    <div class="col-md-10">
-                        {{ form_row(form_equipement.Sous_type) }}
-                    </div>
-                    <div id="btn-create-soustype" class="col-md-2">
-                        <p class=" btn-create-type">+</p>
-                    </div>
-                    <div id="create_soustype"  class="col-md-12">
-                        {{ form_start(form_soustype) }}
-                        <div class="col-md-8">{{ form_row(form_soustype.name) }}</div>
-                        {{ form_end(form_soustype) }}
-                    </div>
-                </div>
-
-            {{ form_end(form_equipement) }}
-        </div>
         <div class="col-md-12 mt-4" id="create-ertms-train-2">
-            add ertms 2
+
         </div>
+    </div>
+    <div class="col-md-12 mt-4 module-ertms" id="create-ertms-train-1">
+        <div class="name-ertms">
+            {{ form_start(form_ertms) }}
+            {{ form_end(form_ertms) }}
+        </div>
+        {{ form_start(form_equipement) }}
+
+        <div class="type-equipement row">
+            <div class="col-md-10">
+                {{ form_row(form_equipement.Type) }}
+            </div>
+            <div id="btn-create-type" class="col-md-2">
+                <p class=" btn-create-type">+</p>
+            </div>
+            <div id="create_type" class="col-md-12">
+                {{ form_start(form_type) }}
+                <div class="col-md-8">{{ form_row(form_type.name) }}</div>
+                {{ form_end(form_type) }}
+            </div>
+        </div>
+        <div class="type-equipement row">
+            <div class="col-md-10">
+                {{ form_row(form_equipement.Sous_type) }}
+            </div>
+            <div id="btn-create-soustype" class="col-md-2">
+                <p class=" btn-create-type">+</p>
+            </div>
+            <div id="create_soustype"  class="col-md-12">
+                {{ form_start(form_soustype) }}
+                <div class="col-md-8">{{ form_row(form_soustype.name) }}</div>
+                {{ form_end(form_soustype) }}
+            </div>
+        </div>
+
+        {{ form_end(form_equipement) }}
     </div>
 
 
@@ -95,10 +95,11 @@ $(document).ready(function() {
     // });
 
 
-                $('#create-ertms-1').hide();
-                $('#create-ertms-2').hide();
-                $('#create_soustype').hide();
-                $('#create_type').hide();
+    $('#create-ertms-1').hide();
+    $('#create-ertms-2').hide();
+    $("#create-ertms-train-1").hide();
+    $('#create_soustype').hide();
+    $('#create_type').hide();
 
     //Traitement du choix du type de train
     $('#trains_trainType')
