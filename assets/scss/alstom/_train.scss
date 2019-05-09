@@ -58,6 +58,29 @@
 #create-ertms-train{
   display: none;
 }
+
+.type-equipement{
+  display: flex;
+  align-items: center;
+  .btn-create-type {
+    margin: 0;
+    margin-top: 5px;
+    text-align: center;
+    height: auto;
+    display: table;
+    padding: 2px 12px;
+    background-color: #747474;
+    color: white;
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 1rem;
+    font-family: inherit;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
 .content-btn-train{
   margin: auto;
   display: flex;

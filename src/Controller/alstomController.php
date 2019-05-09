@@ -3,27 +3,37 @@
 namespace App\Controller;
 
 use App\Entity\AssociationBaseline;
+use App\Entity\AssociationEquiptERTMS;
 use App\Entity\Baseline;
 use App\Entity\Clients;
 use App\Entity\ClientsSearch;
 use App\Entity\Engineers;
 use App\Entity\EnginSearch;
+use App\Entity\Equipement;
+use App\Entity\ERTMSEquipement;
 use App\Entity\EVC;
 use App\Entity\Projects;
 use App\Entity\ProjectSearch;
+use App\Entity\SoustypeEquipement;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
+use App\Entity\TypeEquipement;
+use App\Form\AssociationERTMSType;
 use App\Form\AssociationType;
 use App\Form\BaselineType;
 use App\Form\ClientsSearchType;
 use App\Form\ClientsType;
 use App\Form\EngineerType;
 use App\Form\EnginSearchType;
+use App\Form\EquipementType;
+use App\Form\ErtmsType;
 use App\Form\EVCType;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
+use App\Form\SousTypeEquipementType;
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
+use App\Form\TypeEquipementType;
 use App\Repository\BaselineRepository;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
@@ -444,16 +454,39 @@ class alstomController extends AbstractController
         $form = $this->createForm(TrainsType::class, $train);
         $form->handleRequest($request);
 
+        $type = new TypeEquipement();
+        $form_type = $this->createForm(TypeEquipementType::class, $type);
+        $form_type->handleRequest($request);
 
-/*        $form_evc = $this->createForm();
-        $form_evc->handleRequest($request);*/
+        $soustype = new SoustypeEquipement();
+        $form_soustype = $this->createForm(SousTypeEquipementType::class, $soustype);
+        $form_soustype->handleRequest($request);
 
+
+        $ertms = new ERTMSEquipement();
+        $form_ertms = $this->createForm(ErtmsType::class, $ertms);
+        $form_ertms->handleRequest($request);
+
+        $equipement = new Equipement();
+        $form_equipt = $this->createForm(EquipementType::class, $equipement);
+        $form_equipt->handleRequest($request);
+
+        $assoc_ertms = new AssociationEquiptERTMS();
+/*        $form_assoc_ertms = $this->createForm(AssociationERTMSType::class, $assoc_ertms);
+        $form_assoc_ertms->handleRequest($request);*/
+
+        $assoc_ertms->setSolution($ertms);
+        $assoc_ertms->addEquipement($equipement);
+
+
+        dump($form_ertms->getData());
 
         //        Validation du formulaire
         if($form->isSubmitted() && $form->isValid()){
 
+/*            $assoc_ertms->setSolution($form_ertms->getData());*/
             $this->em->persist($train);
-            $this->em->persist();
+            $this->em->persist($assoc_ertms);
             $this->em->flush();
             $this->addFlash('success', 'Train create with success');
             return $this->redirectToRoute('alstom.trains');
@@ -463,7 +496,10 @@ class alstomController extends AbstractController
             'current_menu' => 'trains',
             'button' => 'Create',
             'form' => $form->createView(),
-//            'form_evc' => $form_evc->createView()
+            'form_ertms' => $form_ertms->createView(),
+            'form_equipement' => $form_equipt->createView(),
+            'form_type' => $form_type->createView(),
+            'form_soustype' => $form_soustype->createView()
         ]);
 
 

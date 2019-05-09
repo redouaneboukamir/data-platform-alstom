@@ -41,16 +41,7 @@ class TrainsType extends AbstractType
                     'class' => 'test'
                 ]
             ])
-            ->add('eVC', EntityType::class, [
-                'label' => 'Choose EVC',
-                'class' => EVC::class,
-                'choice_label' => 'ETCSID',
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Choose EVC to train',
-                ]
-            ])
-            ->add('eVC',EVCType::class)
+
         ;
     }
 

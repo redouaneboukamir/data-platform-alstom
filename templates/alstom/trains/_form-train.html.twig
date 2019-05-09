@@ -34,7 +34,40 @@
         </div>
 
         <div class="col-md-12 mt-4" id="create-ertms-train-1">
-            add ertms 1
+            <div class="name-ertms">
+                {{ form_start(form_ertms) }}
+                {{ form_end(form_ertms) }}
+            </div>
+            {{ form_start(form_equipement) }}
+
+                <div class="type-equipement row">
+                    <div class="col-md-10">
+                        {{ form_row(form_equipement.Type) }}
+                    </div>
+                    <div id="btn-create-type" class="col-md-2">
+                        <p class=" btn-create-type">+</p>
+                    </div>
+                    <div id="create_type" class="col-md-12">
+                        {{ form_start(form_type) }}
+                        <div class="col-md-8">{{ form_row(form_type.name) }}</div>
+                        {{ form_end(form_type) }}
+                    </div>
+                </div>
+                <div class="type-equipement row">
+                    <div class="col-md-10">
+                        {{ form_row(form_equipement.Sous_type) }}
+                    </div>
+                    <div id="btn-create-soustype" class="col-md-2">
+                        <p class=" btn-create-type">+</p>
+                    </div>
+                    <div id="create_soustype"  class="col-md-12">
+                        {{ form_start(form_soustype) }}
+                        <div class="col-md-8">{{ form_row(form_soustype.name) }}</div>
+                        {{ form_end(form_soustype) }}
+                    </div>
+                </div>
+
+            {{ form_end(form_equipement) }}
         </div>
         <div class="col-md-12 mt-4" id="create-ertms-train-2">
             add ertms 2
@@ -54,8 +87,6 @@
 
     <script>
 
-//        $('#select_train').hide();
-//        $('#select_locomotive').hide();
 $(document).ready(function() {
 
     //Vidage des inputs aux changement de select
@@ -64,13 +95,17 @@ $(document).ready(function() {
     // });
 
 
+                $('#create-ertms-1').hide();
+                $('#create-ertms-2').hide();
+                $('#create_soustype').hide();
+                $('#create_type').hide();
 
     //Traitement du choix du type de train
     $('#trains_trainType')
 
         .change(function () {
 
-            let current_choice = "";
+            let current_choice = "", ertms_left = "", ertms_middle = "", ertms_right= "";
 
             $("#trains_trainType option:selected").each(function () {
 
@@ -82,36 +117,61 @@ $(document).ready(function() {
                 $('#select_train').show();
                 $('#select_locomotive').hide();
 
+                $('#btn-create-type').click(function () {
+                    $('#create_type').show();
+                })
+                $('#btn-create-soustype').click(function () {
+                    $('#create_soustype').show();
+                })
+
                 $('#ertms-train-1').click(function () {
                     //l'ertms de gauche selectionner
                     $('#ertms-train-1').addClass("selected");
+                    ertms_left = true;
+                    ertms_middle = false;
 
                     $('#ertms-train-2').removeClass("selected");
                     $('#btn-choice-ertms').show();
+                    $('#create-ertms-1').show();
 
 
                 });
                 $('#ertms-train-2').click(function () {
                     // l'ertms du milieu selectionner
                     $('#ertms-train-2').addClass("selected");
+                    ertms_left = false;
+                    ertms_right = false;
+                    ertms_middle = true;
 
                     $('#ertms-train-1').removeClass("selected");
                     $('#ertms-train-3').removeClass("selected");
                     $('#btn-choice-ertms').show();
+                    $('#create-ertms-1').show();
+                    $('#create-ertms-2').hide();
 
 
                 });
                 $('#ertms-train-3').click(function () {
                     // l'ertms de droite selectionner
                     $('#ertms-train-3').addClass("selected");
+                    ertms_right = true;
+                    ertms_middle = false;
+                    if(ertms_left== true && ertms_middle == false){
+                        $('#create-ertms-1').show();
+                        $('#create-ertms-2').show();
+                    }else if (ertms_right == true && ertms_left== false){
+                        $('#create-ertms-1').hide();
+                        $('#create-ertms-2').show();
+                    }
 
                     $('#ertms-train-2').removeClass("selected");
                     $('#btn-choice-ertms').show();
+
+
                 });
 
+
                 $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
-
-
 
 
             } else if (current_choice.trim() == 'Locomotive') {
@@ -125,6 +185,7 @@ $(document).ready(function() {
                     $('#ertms-loco-2').removeClass("selected");
                     $('#btn-choice-ertms').show();
 
+
                 });
                 $('#ertms-loco-2').click(function () {
                     //l'ertms de droite selectionner
@@ -132,8 +193,10 @@ $(document).ready(function() {
                     $('#ertms-loco-1').removeClass("selected");
                     $('#btn-choice-ertms').show();
 
+
                 });
                 $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
+
 
 
             }
@@ -141,17 +204,6 @@ $(document).ready(function() {
         }).change();
 })
 
-    $('#select-ertms').click(function () {
-        $('#create-ertms-train').hide();
-        $('#select-ertms-train').show();
-        $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
-    })
-    $('#create-ertms').click(function () {
-        $('#select-ertms-train').hide();
-        $('#create-ertms-train').show();
-        $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
-        })
-        
         $('#trains_projects').change(function () {
             $('.content-type-train').hide();
             $('#trains_trainType').val('');
