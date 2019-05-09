@@ -2,7 +2,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
 {% endblock %}
 {{ form_start(form) }}
-{{ form_start(form_evc) }}
 <div class="row">
     <div class="col-md-10">{{ form_row(form.name) }}</div>
     <div class="col-md-10">{{ form_row(form.projects) }}</div>
@@ -11,9 +10,9 @@
     <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
         <h4>Select EVC : </h4>
         <img src="{{ asset('/build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-10 img-type-train">
-        <figure class="content-evc col-md-10">
-            <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc " id="evc-loco-1">
-            <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc " id="evc-loco-2">
+        <figure class="content-ertms col-md-10">
+            <img src="{{ asset('/build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-1">
+            <img src="{{ asset('/build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-2">
 
         </figure>
     </div>
@@ -21,31 +20,31 @@
     <div class="content-type-train col-md-12 mt-4" id="select_train">
         <h4>Select EVC : </h4>
         <img src="{{ asset('/build/img/trains/train-select.svg') }}" alt="" class="col-md-10  img-type-train">
-        <figure class="content-evc col-md-10">
-            <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc" id="evc-train-1">
-            <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc" id="evc-train-2">
-            <img src="{{ asset('/build/img/trains/evc.svg') }}" alt="" class="evc " id="evc-train-3">
+        <figure class="content-ertms col-md-10">
+            <img src="{{ asset('/build/img/trains/ertms.svg') }}" alt="" class="ertms" id="ertms-train-1">
+            <img src="{{ asset('/build/img/trains/ertms.svg') }}" alt="" class="ertms" id="ertms-train-2">
+            <img src="{{ asset('/build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-train-3">
         </figure>
     </div>
 
-    <div class="col-md-10 mt-4" id="btn-choice-evc">
+    <div class="col-md-10 mt-4" id="btn-choice-ertms">
         <div class="content-btn-train col-12">
-            <p id="create-evc">Create EVC</p>
-            <p id="select-evc">Select EVC</p>
+            <p id="create-ertms-1">Add ERTMS</p>
+            <p id="create-ertms-2">Add ERTMS</p>
         </div>
 
-        <div class="col-md-12 mt-4" id="select-evc-train">
-            {{ form_row(form.eVC) }}
+        <div class="col-md-12 mt-4" id="create-ertms-train-1">
+            add ertms 1
         </div>
-        <div class="col-md-12 mt-4" id="create-evc-train">
-            {{ form_row(form_evc.ETCS_ID) }}
+        <div class="col-md-12 mt-4" id="create-ertms-train-2">
+            add ertms 2
         </div>
     </div>
 
 
 </div>
 <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
-{{ form_end(form_evc) }}
+
 {{ form_end(form) }}
 
 
@@ -83,28 +82,34 @@ $(document).ready(function() {
                 $('#select_train').show();
                 $('#select_locomotive').hide();
 
-                $('#evc-train-1').click(function () {
-                    $('#evc-train-1').addClass("selected");
-                    $('#evc-train-2').removeClass("selected");
-                    $('#btn-choice-evc').show();
+                $('#ertms-train-1').click(function () {
+                    //l'ertms de gauche selectionner
+                    $('#ertms-train-1').addClass("selected");
+
+                    $('#ertms-train-2').removeClass("selected");
+                    $('#btn-choice-ertms').show();
 
 
                 });
-                $('#evc-train-2').click(function () {
-                    $('#evc-train-2').addClass("selected");
-                    $('#evc-train-1').removeClass("selected");
-                    $('#evc-train-3').removeClass("selected");
-                    $('#btn-choice-evc').show();
+                $('#ertms-train-2').click(function () {
+                    // l'ertms du milieu selectionner
+                    $('#ertms-train-2').addClass("selected");
+
+                    $('#ertms-train-1').removeClass("selected");
+                    $('#ertms-train-3').removeClass("selected");
+                    $('#btn-choice-ertms').show();
 
 
                 });
-                $('#evc-train-3').click(function () {
-                    $('#evc-train-3').addClass("selected");
-                    $('#evc-train-2').removeClass("selected");
-                    $('#btn-choice-evc').show();
+                $('#ertms-train-3').click(function () {
+                    // l'ertms de droite selectionner
+                    $('#ertms-train-3').addClass("selected");
+
+                    $('#ertms-train-2').removeClass("selected");
+                    $('#btn-choice-ertms').show();
                 });
 
-                $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
+                $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
 
 
 
@@ -114,19 +119,21 @@ $(document).ready(function() {
                 $('#select_locomotive').show();
                 $('#select_train').hide();
 
-                $('#evc-loco-1').click(function () {
-                    $('#evc-loco-1').addClass("selected");
-                    $('#evc-loco-2').removeClass("selected");
-                    $('#btn-choice-evc').show();
+                $('#ertms-loco-1').click(function () {
+                    //l'ertms de gauche selectionner
+                    $('#ertms-loco-1').addClass("selected");
+                    $('#ertms-loco-2').removeClass("selected");
+                    $('#btn-choice-ertms').show();
 
                 });
-                $('#evc-loco-2').click(function () {
-                    $('#evc-loco-2').addClass("selected");
-                    $('#evc-loco-1').removeClass("selected");
-                    $('#btn-choice-evc').show();
+                $('#ertms-loco-2').click(function () {
+                    //l'ertms de droite selectionner
+                    $('#ertms-loco-2').addClass("selected");
+                    $('#ertms-loco-1').removeClass("selected");
+                    $('#btn-choice-ertms').show();
 
                 });
-                $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
+                $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
 
 
             }
@@ -134,21 +141,21 @@ $(document).ready(function() {
         }).change();
 })
 
-    $('#select-evc').click(function () {
-        $('#create-evc-train').hide();
-        $('#select-evc-train').show();
-        $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
+    $('#select-ertms').click(function () {
+        $('#create-ertms-train').hide();
+        $('#select-ertms-train').show();
+        $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
     })
-    $('#create-evc').click(function () {
-        $('#select-evc-train').hide();
-        $('#create-evc-train').show();
-        $('#trains_trainType').change(function () {$('#btn-choice-evc').hide();});
-})
+    $('#create-ertms').click(function () {
+        $('#select-ertms-train').hide();
+        $('#create-ertms-train').show();
+        $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
+        })
         
         $('#trains_projects').change(function () {
             $('.content-type-train').hide();
             $('#trains_trainType').val('');
-            $('#btn-choice-evc').hide();
+            $('#btn-choice-ertms').hide();
 
 
         })

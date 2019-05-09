@@ -2,11 +2,11 @@
 .content-type-train{
   position: relative;
 
-  .content-evc{
+  .content-ertms{
     position: absolute;
     z-index: 9;
 
-    .evc{
+    .ertms{
       &:nth-child(2){
 
       }
@@ -22,13 +22,13 @@
     opacity: 0.8;
 
   }
-    .content-evc{
+    .content-ertms{
       position: absolute;
       display: flex;
       justify-content: space-around;
       margin-top: -15rem;
       z-index: 9;
-      .evc{
+      .ertms{
         width: 100px;
         height: 100px;
         opacity: 0.5;
@@ -43,7 +43,7 @@
         }
     }
   }
-#btn-choice-evc{
+#btn-choice-ertms{
   display: none;
 }
 #select_train{
@@ -52,10 +52,10 @@
 #select_locomotive{
   display: none
 }
-#select-evc-train{
+#select-ertms-train{
   display: none;
 }
-#create-evc-train{
+#create-ertms-train{
   display: none;
 }
 .content-btn-train{
@@ -82,6 +82,6 @@
     }
   }
 }
-.content-choice-evc{
+.content-choice-ertms{
   display: none;
 }

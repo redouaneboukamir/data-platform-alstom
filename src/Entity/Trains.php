@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +34,20 @@ class Trains
     private $Projects;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\EVC", cascade={"persist", "remove"})
+     * @ORM\Column(type="json_array", nullable=true)
      */
-    private $EVC;
+    private $position_ERTMS;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ERTMSEquipement", mappedBy="trains")
+     */
+    private $ERTMS;
+
+    public function __construct()
+    {
+        $this->ERTMS = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -82,15 +94,47 @@ class Trains
         $this->train_type = $train_type;
     }
 
-    public function getEVC(): ?EVC
+    public function getPositionERTMS()
     {
-        return $this->EVC;
+        return $this->position_ERTMS;
     }
 
-    public function setEVC(?EVC $EVC): self
+    public function setPositionERTMS($position_ERTMS): self
     {
-        $this->EVC = $EVC;
+        $this->position_ERTMS = $position_ERTMS;
 
         return $this;
     }
+
+    /**
+     * @return Collection|ERTMSEquipement[]
+     */
+    public function getERTMS(): Collection
+    {
+        return $this->ERTMS;
+    }
+
+    public function addERTM(ERTMSEquipement $eRTM): self
+    {
+        if (!$this->ERTMS->contains($eRTM)) {
+            $this->ERTMS[] = $eRTM;
+            $eRTM->setTrains($this);
+        }
+
+        return $this;
+    }
+
+    public function removeERTM(ERTMSEquipement $eRTM): self
+    {
+        if ($this->ERTMS->contains($eRTM)) {
+            $this->ERTMS->removeElement($eRTM);
+            // set the owning side to null (unless already changed)
+            if ($eRTM->getTrains() === $this) {
+                $eRTM->setTrains(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

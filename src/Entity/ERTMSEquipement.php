@@ -21,6 +21,11 @@ class ERTMSEquipement
      */
     private $name_configuration;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trains", inversedBy="ERTMS")
+     */
+    private $trains;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,18 @@ class ERTMSEquipement
     public function setNameConfiguration(string $name_configuration): self
     {
         $this->name_configuration = $name_configuration;
+
+        return $this;
+    }
+
+    public function getTrains(): ?Trains
+    {
+        return $this->trains;
+    }
+
+    public function setTrains(?Trains $trains): self
+    {
+        $this->trains = $trains;
 
         return $this;
     }

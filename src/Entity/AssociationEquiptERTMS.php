@@ -24,7 +24,8 @@ class AssociationEquiptERTMS
     private $solution;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Equipement", mappedBy="AssociationEquiptERTMS")
+     * @ORM\OneToMany(targetEntity="App\Entity\Equipement" , cascade={"persist", "remove"}
+     *     ,mappedBy="AssociationEquiptERTMS")
      */
     private $equipements;
 
