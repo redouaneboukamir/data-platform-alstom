@@ -40,7 +40,7 @@ class Equipement
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Indive_DTR;
+    private $Indice_DTR;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -104,14 +104,14 @@ class Equipement
         return $this;
     }
 
-    public function getIndiveDTR(): ?string
+    public function getIndiceDTR(): ?string
     {
-        return $this->Indive_DTR;
+        return $this->Indice_DTR;
     }
 
-    public function setIndiveDTR(string $Indive_DTR): self
+    public function setIndiceDTR(string $Indice_DTR): self
     {
-        $this->Indive_DTR = $Indive_DTR;
+        $this->Indice_DTR = $Indice_DTR;
 
         return $this;
     }

@@ -7,6 +7,7 @@ use App\Entity\SoustypeEquipement;
 use App\Entity\TypeEquipement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,8 +27,11 @@ class EquipementType extends AbstractType
                 'required' => true
             ])
             ->add('DTR_board')
-            ->add('Indive_DTR')
+            ->add('Indice_DTR')
             ->add('Num_serie')
+            ->add('save', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary']
+            ])
         ;
     }
 

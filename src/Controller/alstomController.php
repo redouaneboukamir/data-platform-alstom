@@ -466,7 +466,11 @@ class alstomController extends AbstractController
         $ertms = new ERTMSEquipement();
         $form_ertms = $this->createForm(ErtmsType::class, $ertms);
         $form_ertms->handleRequest($request);
-
+        $train->addERTM($ertms);
+        dump($train->getERTMS());
+/*        if($form_ertms->get('save')->isClicked()){
+            $this->em->persist($ertms);
+        }*/
         $equipement = new Equipement();
         $form_equipt = $this->createForm(EquipementType::class, $equipement);
         $form_equipt->handleRequest($request);

@@ -29,50 +29,92 @@
 
     <div class="col-md-10 mt-4" id="btn-choice-ertms">
         <div class="content-btn-train col-12">
-            <p id="create-ertms-1">Add ERTMS</p>
-            <p id="create-ertms-2">Add ERTMS</p>
-        </div>
-
-        <div class="col-md-12 mt-4" id="create-ertms-train-2">
-
+            <button id="create-ertms-1" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPoll-1">Add ERTMS</button>
+            <button id="create-ertms-2" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPoll-1">Add ERTMS</button>
         </div>
     </div>
-    <div class="col-md-12 mt-4 module-ertms" id="create-ertms-train-1">
-        <div class="name-ertms">
-            {{ form_start(form_ertms) }}
-            {{ form_end(form_ertms) }}
-        </div>
-        {{ form_start(form_equipement) }}
 
-        <div class="type-equipement row">
-            <div class="col-md-10">
-                {{ form_row(form_equipement.Type) }}
-            </div>
-            <div id="btn-create-type" class="col-md-2">
-                <p class=" btn-create-type">+</p>
-            </div>
-            <div id="create_type" class="col-md-12">
-                {{ form_start(form_type) }}
-                <div class="col-md-8">{{ form_row(form_type.name) }}</div>
-                {{ form_end(form_type) }}
-            </div>
-        </div>
-        <div class="type-equipement row">
-            <div class="col-md-10">
-                {{ form_row(form_equipement.Sous_type) }}
-            </div>
-            <div id="btn-create-soustype" class="col-md-2">
-                <p class=" btn-create-type">+</p>
-            </div>
-            <div id="create_soustype"  class="col-md-12">
-                {{ form_start(form_soustype) }}
-                <div class="col-md-8">{{ form_row(form_soustype.name) }}</div>
-                {{ form_end(form_soustype) }}
-            </div>
-        </div>
 
-        {{ form_end(form_equipement) }}
+    <div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" >
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <p class="heading lead" id="add-ertms"></p>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body" id="modal-body">
+                    <div class="col-md-12 mt-4 modal-ertms" id="create-ertms-train-1">
+                        <div class="name-ertms">
+                            {{ form_start(form_ertms) }}
+                            <div class="content-form-ertms-name row">
+                                <div class="col-10">
+                                    {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS'}) }}
+                                </div>
+                                <div class="col-2 mt-4">
+                                    {{ form_row(form_ertms.save, {'label': 'Save'}) }}
+                                </div>
+                            </div>
+
+                            {{ form_end(form_ertms) }}
+                        </div>
+                        {{ form_start(form_equipement) }}
+
+                        <div class="type-equipement row">
+                            <div class="col-md-10">
+                                {{ form_row(form_equipement.Type) }}
+                            </div>
+                            <div id="btn-create-type" class="col-md-2">
+                                <p class="btn-create-type">+</p>
+                            </div>
+                            <div id="create_type" class="col-md-12">
+                                {{ form_start(form_type) }}
+                                <div class="col-md-8">{{ form_row(form_type.name) }}</div>
+                                {{ form_end(form_type) }}
+                            </div>
+                        </div>
+                        <div class="type-equipement row">
+                            <div class="col-md-10">
+                                {{ form_row(form_equipement.Sous_type) }}
+                            </div>
+                            <div id="btn-create-soustype" class="col-md-2">
+                                <p class=" btn-create-type">+</p>
+                            </div>
+                            <div id="create_soustype"  class="col-md-12">
+                                {{ form_start(form_soustype) }}
+                                <div class="col-md-8">{{ form_row(form_soustype.name) }}</div>
+                                {{ form_end(form_soustype) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form_equipement.DTR_board) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form_equipement.Indice_DTR) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(form_equipement.Num_serie) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <button id="create-equipment" type="button" class="btn btn-info col-5 ml-5 mt-4 mb-5" >Add equipement</button>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                        {{ form_widget(form_equipement.save, {'label' : 'Create Ertms'}) }}
+                    {{ form_end(form_equipement) }}
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Modal: modalPoll -->
 
 
 </div>
@@ -95,11 +137,25 @@ $(document).ready(function() {
     // });
 
 
+    /*Masquage de certains élement */
     $('#create-ertms-1').hide();
     $('#create-ertms-2').hide();
     $("#create-ertms-train-1").hide();
     $('#create_soustype').hide();
     $('#create_type').hide();
+    $('#modal-body').hide();
+
+    /*au click de l'add Equipment afficher le formulaire d'ajout d'équipement*/
+    $('#create-equipment').click(function () {
+        $('#modal-body').show();
+        $('#create-equipment').hide();
+    });
+
+    /* Créer ertms avec le clique tu premier boutton */
+    $('#create-ertms-1').click(function () {
+        $("#create-ertms-train-1").show();
+
+    })
 
     //Traitement du choix du type de train
     $('#trains_trainType')
@@ -114,6 +170,7 @@ $(document).ready(function() {
 
             });
 
+            /* traitement dans le choix train */
             if (current_choice.trim() == 'Train') {
                 $('#select_train').show();
                 $('#select_locomotive').hide();
@@ -134,6 +191,7 @@ $(document).ready(function() {
                     $('#ertms-train-2').removeClass("selected");
                     $('#btn-choice-ertms').show();
                     $('#create-ertms-1').show();
+                    $('#add-ertms').text('add ERTMS left')
 
 
                 });
@@ -149,6 +207,7 @@ $(document).ready(function() {
                     $('#btn-choice-ertms').show();
                     $('#create-ertms-1').show();
                     $('#create-ertms-2').hide();
+                    $('#add-ertms').text('add ERTMS middle')
 
 
                 });
@@ -168,6 +227,8 @@ $(document).ready(function() {
                     $('#ertms-train-2').removeClass("selected");
                     $('#btn-choice-ertms').show();
 
+                    $('#add-ertms').text('add ERTMS right');
+
 
                 });
 
@@ -185,7 +246,8 @@ $(document).ready(function() {
                     $('#ertms-loco-1').addClass("selected");
                     $('#ertms-loco-2').removeClass("selected");
                     $('#btn-choice-ertms').show();
-
+                    $('#add-ertms').text('add ERTMS left')
+                    $('#create-ertms-1').show();
 
                 });
                 $('#ertms-loco-2').click(function () {
@@ -193,6 +255,8 @@ $(document).ready(function() {
                     $('#ertms-loco-2').addClass("selected");
                     $('#ertms-loco-1').removeClass("selected");
                     $('#btn-choice-ertms').show();
+                    $('#add-ertms').text('add ERTMS right')
+                    $('#create-ertms-1').show();
 
 
                 });
