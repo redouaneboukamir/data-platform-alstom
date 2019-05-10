@@ -72,9 +72,10 @@
                             <div id="btn-create-type" class="col-md-2">
                                 <p class="btn-create-type">+</p>
                             </div>
-                            <div id="create_type" class="col-md-12">
+                            <div id="create_type" class="col-md-12 row">
                                 {{ form_start(form_type) }}
                                 <div class="col-md-8">{{ form_row(form_type.name) }}</div>
+                                <div class="col-md-2">{{ form_row(form_type.save , {'label' : 'Add'}) }}</div>
                                 {{ form_end(form_type) }}
                             </div>
                         </div>
@@ -85,11 +86,16 @@
                             <div id="btn-create-soustype" class="col-md-2">
                                 <p class=" btn-create-type">+</p>
                             </div>
-                            <div id="create_soustype"  class="col-md-12">
-                                {{ form_start(form_soustype) }}
-                                <div class="col-md-8">{{ form_row(form_soustype.name) }}</div>
+                            <div id="create_soustype"  class="col-md-12 row">
+
+                                <div class="col-md-8">
+                                    {{ form_start(form_soustype) }}{{ form_row(form_soustype.name) }}
+                                </div>
+                                <div class="col-md-2">{{ form_row(form_soustype.save, {'label' : 'Add'}) }}</div>
                                 {{ form_end(form_soustype) }}
                             </div>
+                        </div>
+
                             <div class="col-md-12">
                                 {{ form_row(form_equipement.DTR_board) }}
                             </div>
@@ -99,7 +105,6 @@
                             <div class="col-md-12">
                                 {{ form_row(form_equipement.Num_serie) }}
                             </div>
-                        </div>
 
                     </div>
                 </div>
@@ -157,6 +162,14 @@ $(document).ready(function() {
 
     })
 
+    $('#btn-create-type').click(function () {
+        $('#create_type').show();
+    })
+    $('#btn-create-soustype').click(function () {
+        $('#create_soustype').show();
+    })
+
+
     //Traitement du choix du type de train
     $('#trains_trainType')
 
@@ -174,13 +187,6 @@ $(document).ready(function() {
             if (current_choice.trim() == 'Train') {
                 $('#select_train').show();
                 $('#select_locomotive').hide();
-
-                $('#btn-create-type').click(function () {
-                    $('#create_type').show();
-                })
-                $('#btn-create-soustype').click(function () {
-                    $('#create_soustype').show();
-                })
 
                 $('#ertms-train-1').click(function () {
                     //l'ertms de gauche selectionner

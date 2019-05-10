@@ -17,13 +17,11 @@ class ErtmsType extends AbstractType
             ->add('name_configuration', null,[
                 'attr' => [
                     'label' => "test",
-
                     ]
-
             ])
-            ->add('save', SubmitType::class, [
+/*            ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary']
-            ])
+            ])*/
 
         ;
     }

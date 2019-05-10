@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\TypeEquipement;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,6 +15,9 @@ class TypeEquipementType extends AbstractType
         $builder
             ->add('name' , null, [
                 'label' => "Name type"
+            ])
+            ->add('save', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-secondary  mt-4']
             ])
         ;
     }

@@ -490,7 +490,9 @@ class alstomController extends AbstractController
 
 /*            $assoc_ertms->setSolution($form_ertms->getData());*/
             $this->em->persist($train);
-            $this->em->persist($assoc_ertms);
+            $this->em->persist($ertms);
+            $this->em->persist($type);
+            $this->em->persist($soustype);
             $this->em->flush();
             $this->addFlash('success', 'Train create with success');
             return $this->redirectToRoute('alstom.trains');
