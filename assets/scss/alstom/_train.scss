@@ -94,7 +94,35 @@
 
 }
 }
+.entry:not(:first-of-type)
+{
+  margin-top: 10px;
+}
+.entry-2:not(:first-of-type)
+{
+  margin-top: 10px;
+}
+.btn-create-ertms{
+  text-decoration: underline;
+}
+.btn-cancel-ertms{
+  background: none;
+  border: none;
+  color: #e60000;
+  text-decoration: underline;
+}
+.btn-add-equipment{
+  background: none;
+  border: none;
+  color: #22a7a4;
+  text-decoration: underline;
+}
 
+#create_soustype{
+
+  margin:0;
+  padding: 0;
+}
 .content-btn-train{
   margin: auto;
   display: flex;

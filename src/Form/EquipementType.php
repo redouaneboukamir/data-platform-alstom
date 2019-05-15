@@ -30,7 +30,7 @@ class EquipementType extends AbstractType
             ->add('Indice_DTR')
             ->add('Num_serie')
             ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary']
+                'attr' => ['class' => 'btn-create-ertms']
             ])
         ;
     }

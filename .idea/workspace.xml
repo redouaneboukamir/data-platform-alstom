@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09ec0d77-5797-4a22-a62f-c41d6c8fbe85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/alstomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/alstomController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ErtmsType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ErtmsType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/alstom/_train.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/alstom/_train.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/EquipementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EquipementType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/SousTypeEquipementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SousTypeEquipementType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/TypeEquipementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TypeEquipementType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig" afterDir="false" />
@@ -76,17 +77,38 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+            <state relative-caret-position="499">
+              <caret line="189" column="47" selection-start-line="189" selection-start-column="47" selection-end-line="189" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
+        <entry file="file://$PROJECT_DIR$/src/Form/SousTypeEquipementType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            <state relative-caret-position="180">
+              <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="21" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Form/TypeEquipementType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/alstomController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7275">
+              <caret line="485" column="37" selection-start-line="485" selection-start-column="37" selection-end-line="485" selection-end-column="37" />
+              <folding>
+                <element signature="e#34#69#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,17 +116,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/scss/alstom/_train.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
+            <state relative-caret-position="1500">
+              <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Form/ErtmsType.php">
+        <entry file="file://$PROJECT_DIR$/src/Form/EquipementType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="21" column="2" selection-start-line="21" selection-end-line="23" selection-end-column="16" />
+            <state relative-caret-position="375">
+              <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -184,15 +206,15 @@
         <option value="$PROJECT_DIR$/src/Entity/AssociationEquiptERTMS.php" />
         <option value="$PROJECT_DIR$/src/Entity/Trains.php" />
         <option value="$PROJECT_DIR$/src/Form/TrainsType.php" />
-        <option value="$PROJECT_DIR$/assets/scss/home/_home.scss" />
         <option value="$PROJECT_DIR$/src/Entity/Equipement.php" />
-        <option value="$PROJECT_DIR$/src/Form/EquipementType.php" />
-        <option value="$PROJECT_DIR$/assets/scss/alstom/_train.scss" />
-        <option value="$PROJECT_DIR$/src/Form/SousTypeEquipementType.php" />
-        <option value="$PROJECT_DIR$/src/Form/TypeEquipementType.php" />
-        <option value="$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/alstomController.php" />
         <option value="$PROJECT_DIR$/src/Form/ErtmsType.php" />
+        <option value="$PROJECT_DIR$/assets/scss/home/_home.scss" />
+        <option value="$PROJECT_DIR$/src/Form/EquipementType.php" />
+        <option value="$PROJECT_DIR$/src/Form/SousTypeEquipementType.php" />
+        <option value="$PROJECT_DIR$/src/Form/TypeEquipementType.php" />
+        <option value="$PROJECT_DIR$/assets/scss/alstom/_train.scss" />
+        <option value="$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig" />
       </list>
     </option>
   </component>
@@ -333,7 +355,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -391,6 +412,12 @@
             <path>
               <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data-platform-alstom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data-platform-alstom" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -417,6 +444,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -427,7 +455,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/alstom/trains" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -528,7 +556,13 @@
       <workItem from="1557296419481" duration="3151000" />
       <workItem from="1557320115248" duration="1142000" />
       <workItem from="1557384649545" duration="18022000" />
-      <workItem from="1557469947477" duration="6782000" />
+      <workItem from="1557469947477" duration="7037000" />
+      <workItem from="1557814623251" duration="5822000" />
+      <workItem from="1557829275171" duration="214000" />
+      <workItem from="1557830596379" duration="572000" />
+      <workItem from="1557902826399" duration="56000" />
+      <workItem from="1557928682449" duration="218000" />
+      <workItem from="1557929023220" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="Add table country and clients">
       <created>1553601639324</created>
@@ -863,7 +897,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="354053000" />
+    <option name="totallyTimeSpent" value="361195000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -876,9 +910,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18884121" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20529328" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -892,13 +925,13 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49713877" weight="0.26987952" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49213162" weight="0.14216867" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5078684" side_tool="true" weight="0.16506024" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49213162" weight="0.21445782" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="11" sideWeight="0.5078684" side_tool="true" visible="true" weight="0.16506024" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.23319027" />
+      <window_info anchor="right" id="Database" order="3" weight="0.23319027" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1154,13 +1187,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/AssociationType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/AssociationEquiptERTMS.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
@@ -1203,20 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/AssociationERTMSType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/home/_home.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1278,64 +1290,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/EquipementType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/SousTypeEquipementType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/type_equipement">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true">
             <filter text="" />
           </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/alstomController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="492" column="37" selection-start-line="492" selection-start-column="37" selection-end-line="492" selection-end-column="37" />
-          <folding>
-            <element signature="e#34#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/TypeEquipementType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/alstom/_train.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/ErtmsType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" column="2" selection-start-line="21" selection-end-line="23" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1357,10 +1317,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/home/_home.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="95" selection-start-line="3" selection-start-column="95" selection-end-line="3" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/ErtmsType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="2" selection-start-line="21" selection-end-line="23" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/AssociationERTMSType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/AssociationType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        <state relative-caret-position="499">
+          <caret line="189" column="47" selection-start-line="189" selection-start-column="47" selection-end-line="189" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/SousTypeEquipementType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/TypeEquipementType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/alstomController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7275">
+          <caret line="485" column="37" selection-start-line="485" selection-start-column="37" selection-end-line="485" selection-end-column="37" />
+          <folding>
+            <element signature="e#34#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/alstom/_train.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/EquipementType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
         </state>
       </provider>
     </entry>

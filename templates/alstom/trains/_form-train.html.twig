@@ -43,58 +43,73 @@
                 <div class="modal-header">
                     <p class="heading lead" id="add-ertms"></p>
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
                         <span aria-hidden="true" class="white-text">×</span>
                     </button>
                 </div>
                 <!--Body-->
                 <div class="modal-body" id="modal-body">
+                    <button type="button" class="close" id="close-equipement" data-dismiss="modal-body" aria-label="Close">
+                        <span aria-hidden="true" class="white-text" style="color:red">×</span>
+                    </button>
                     <div class="col-md-12 mt-4 modal-ertms" id="create-ertms-train-1">
                         <div class="name-ertms">
                             {{ form_start(form_ertms) }}
                             <div class="content-form-ertms-name row">
-                                <div class="col-10">
+                                <div class="col-md-12">
                                     {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS'}) }}
                                 </div>
-                                <div class="col-2 mt-4">
+                                {#<div class="col-2 mt-4">
                                     {{ form_row(form_ertms.save, {'label': 'Save'}) }}
-                                </div>
+                                </div>#}
                             </div>
 
                             {{ form_end(form_ertms) }}
                         </div>
                         {{ form_start(form_equipement) }}
 
-                        <div class="type-equipement row">
-                            <div class="col-md-10">
-                                {{ form_row(form_equipement.Type) }}
-                            </div>
-                            <div id="btn-create-type" class="col-md-2">
-                                <p class="btn-create-type">+</p>
-                            </div>
-                            <div id="create_type" class="col-md-12 row">
-                                {{ form_start(form_type) }}
-                                <div class="col-md-8">{{ form_row(form_type.name) }}</div>
-                                <div class="col-md-2">{{ form_row(form_type.save , {'label' : 'Add'}) }}</div>
-                                {{ form_end(form_type) }}
-                            </div>
-                        </div>
-                        <div class="type-equipement row">
-                            <div class="col-md-10">
-                                {{ form_row(form_equipement.Sous_type) }}
-                            </div>
-                            <div id="btn-create-soustype" class="col-md-2">
-                                <p class=" btn-create-type">+</p>
-                            </div>
-                            <div id="create_soustype"  class="col-md-12 row">
-
-                                <div class="col-md-8">
-                                    {{ form_start(form_soustype) }}{{ form_row(form_soustype.name) }}
+                            <div class="type-equipement row">
+                                <div class="col-md-10">
+                                    {{ form_row(form_equipement.Type) }}
                                 </div>
-                                <div class="col-md-2">{{ form_row(form_soustype.save, {'label' : 'Add'}) }}</div>
-                                {{ form_end(form_soustype) }}
+
+                                <div id="btn-create-type" class="col-md-2">
+                                    <p class="btn-create-type">+</p>
+                                </div>
+
+                                <div id="create_type" class="col-md-12 row">
+                                    <div class="controls-2 row col-md-10">
+                                        {{ form_start(form_type) }}
+                                            <div class="entry-2 input-group col-12">
+                                                {{ form_widget(form_type.name) }}
+                                                <span class="input-group-btn-">{{ form_widget(form_type.save, {'label' : '+'}) }}</span>
+                                            </div>
+                                        {{ form_end(form_type) }}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="type-equipement row">
+                                <div class="col-md-10">
+                                    {{ form_row(form_equipement.Sous_type) }}
+                                </div>
+
+                                <div id="btn-create-soustype" class="col-md-2">
+                                    <p class=" btn-create-type">+</p>
+                                </div>
+
+                                <div id="create_soustype"  class="col-md-12 row">
+                                    <div class="controls row col-md-10">
+                                        {{ form_start(form_soustype) }}
+                                            <div class="entry input-group col-12">
+                                                {{ form_widget(form_soustype.name) }}
+                                                <span class="input-group-btn">{{ form_widget(form_soustype.save, {'label' : '+'}) }}</span>
+                                            </div>
+                                        {{ form_end(form_soustype) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="row">
 
                             <div class="col-md-12">
                                 {{ form_row(form_equipement.DTR_board) }}
@@ -105,16 +120,17 @@
                             <div class="col-md-12">
                                 {{ form_row(form_equipement.Num_serie) }}
                             </div>
+                        </div>
 
                     </div>
                 </div>
-                <button id="create-equipment" type="button" class="btn btn-info col-5 ml-5 mt-4 mb-5" >Add equipement</button>
+                <button id="create-equipment" type="button" class="btn-add-equipment col-5 ml-5 mt-4 mb-5" >Add equipement</button>
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                        {{ form_widget(form_equipement.save, {'label' : 'Create Ertms'}) }}
+                    {{ form_widget(form_equipement.save, {'label' : 'Create Ertms'}) }}
                     {{ form_end(form_equipement) }}
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-cancel-ertms" data-dismiss="modal" id="cancel-ertms">Cancel</button>
                 </div>
             </div>
         </div>
@@ -133,6 +149,58 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
+        $(function()
+        {
+
+                $(document).on('click', '.btn-add', function(e)
+                {
+                        e.preventDefault();
+
+                        var controlForm = $('.controls form:first'),
+                            currentEntry = $(this).parents('.entry:first'),
+                            newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+
+                        newEntry.find('input').val('');
+                        controlForm.find('.entry:not(:last) .btn-add')
+                            .removeClass('btn-add').addClass('btn-remove')
+                            .removeClass('btn-success').addClass('btn-danger')
+                            .html('<span>-</span>');
+
+                    }).on('click', '.btn-remove', function(e)
+                {
+                    $(this).parents('.entry:first').remove();
+
+                    e.preventDefault();
+                    return false;
+                });
+
+
+        });
+        $(function()
+        {
+            $(document).on('click', '.btn-add', function(e)
+            {
+                e.preventDefault();
+
+                var controlForm = $('.controls-2 form:first'),
+                    currentEntry = $(this).parents('.entry-2:first'),
+                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+                newEntry.find('input').val('');
+
+                controlForm.find('.entry-2:not(:last) .btn-add')
+                    .removeClass('btn-add').addClass('btn-remove')
+                    .removeClass('btn-success').addClass('btn-danger')
+                    .html('<span>-</span>');
+            }).on('click', '.btn-remove', function(e)
+            {
+                $(this).parents('.entry-2:first').remove();
+
+                e.preventDefault();
+                return false;
+            });
+        });
 
 $(document).ready(function() {
 
@@ -155,6 +223,12 @@ $(document).ready(function() {
         $('#modal-body').show();
         $('#create-equipment').hide();
     });
+    $('#close-equipement').click(function () {
+        $('#modal-body').hide();
+        $('#create-equipment').show();
+        $('#create_type').hide();
+        $('#create_soustype').hide();
+    })
 
     /* Créer ertms avec le clique tu premier boutton */
     $('#create-ertms-1').click(function () {
@@ -169,6 +243,14 @@ $(document).ready(function() {
         $('#create_soustype').show();
     })
 
+    $('#close-modal').click(function () {
+        $('#modal-body').hide();
+        $('#create-equipment').show();
+    })
+    $('#cancel-ertms').click(function () {
+        $('#modal-body').hide();
+        $('#create-equipment').show();
+    })
 
     //Traitement du choix du type de train
     $('#trains_trainType')

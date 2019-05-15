@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\SoustypeEquipement;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,10 +15,16 @@ class SousTypeEquipementType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => "Name sous type"
+                'label' => false ,
+                'attr' => [
+                    'class' => '',
+                    'placeholder' => 'add sous type'
+                ]
             ])
-            ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-secondary  mt-4']
+            ->add('save', ButtonType::class, [
+                'attr' => [
+                    'class' => 'btn-success btn-add'
+                ]
             ])
         ;
     }
