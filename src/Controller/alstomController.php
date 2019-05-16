@@ -523,10 +523,6 @@ class alstomController extends AbstractController
         $form->handleRequest($request);
 
 
-        $form_evc = $this->createForm();
-        $form_evc->handleRequest($request);
-
-
         //        Validation du formulaire
         if($form->isSubmitted() && $form->isValid()){
 
