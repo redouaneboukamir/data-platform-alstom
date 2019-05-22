@@ -15,11 +15,11 @@
             {% if project.filename %}
                 <img class="img-project-form img-fluid" src="/build/img/projects/{{ project.filename }}">
             {% else %}
-                <img class="img-project-form img-fluid" src="{{ asset('build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
+                <img class="img-project-form img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
             {% endif %}
 
         {% else %}
-            <img id="img-project-form" class="img-project-form img-fluid" src="{{ asset('build/img/projects/project-background.jpg') }}">
+            <img id="img-project-form" class="img-project-form img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}">
         {% endif %}
     </div>
 

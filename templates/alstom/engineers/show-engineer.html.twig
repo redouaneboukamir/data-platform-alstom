@@ -10,7 +10,7 @@
                 <figure class="panel meta">
                     <picture class="picture-client">
                         {% if engineer.filename  is empty %}
-                            <img class="avatar" src="{{ asset('build/img/engineers/avatar-engineer.svg') }}" alt="">
+                            <img class="avatar" src="{{ asset('../build/img/engineers/avatar-engineer.svg') }}" alt="">
                         {% else %}
                             <img class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}" alt="card-img-top">
                         {% endif %}

@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+    
+    app:
+        build: 
+            context: .
+            dockerfile: ./Dockerfile
+        image: image-platform:latest
+        volumes:
+            - .:/app
+        ports:
+            - 8000:8000
+        working_dir: /app
+        command: ["bin/console", "server:run", "0.0.0.0"]
+
+    encore:
+        image: node:10-alpine
+        volumes:
+            - .:/app
+        ports:
+            - 8080:8080
+        working_dir: /app
+        command: ["yarn", "dev-server", "--host=0.0.0.0"]
