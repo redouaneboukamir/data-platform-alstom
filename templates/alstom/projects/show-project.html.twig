@@ -11,9 +11,9 @@
                 <figure class="panel meta">
                 <div class="img-description-project">
                     {% if project.filename  is empty %}
-                        <img id="img-project" class="img-project img-fluid" src="{{ asset('build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
+                        <img id="img-project" class="img-project img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
                     {% else %}
-                        <img id="img-project" class="img-project img-fluid" src="/build/img/projects/{{ project.filename }}">
+                        <img id="img-project" class="img-project img-fluid" src="../build/img/projects/{{ project.filename }}">
                     {% endif %}
                 </div>
                     <figcaption>
