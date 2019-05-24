@@ -4,12 +4,12 @@ clean:
 		docker system prune -a -f
 
 build:
-		cd $(path) && docker build -t symfony .
+		cd $(path) && docker build -t image-platform .
 rebuild: 
 		clean build
 
 run:
-   		cd $(path) && docker run --rm -p 81:80 symfony
+   		cd $(path) && docker run --rm -p 81:80 image-platform
 
 rerun: 
 		rebuild run
