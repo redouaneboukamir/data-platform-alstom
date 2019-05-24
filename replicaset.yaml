@@ -1,0 +1,39 @@
+
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: image-platform
+  namespace: trb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-platform
+  template:
+    metadata:
+      labels:
+        app: image-platform
+    spec:
+      containers:
+      - args:
+        - bin/console
+        - server:run
+        - 0.0.0.0
+        name: image-platform
+        image: management:4567/mdp/rancher/image-platform:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+        workingDir: /app
+      - args:
+        - yarn
+        - dev-server
+        - --host=0.0.0.0
+        image: management:4567/mdp/rancher/node:10-alpine
+        name: encore
+        ports:
+        - containerPort: 8080
+        resources: {}
+        workingDir: /app
+
