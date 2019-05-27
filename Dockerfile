@@ -1,5 +1,7 @@
 FROM php:7.3-alpine
 
-COPY . /
+COPY . /var/www/app
 
-CMD php -S 0.0.0.0:80 app/public/index.php
+WORKDIR /var/www/app
+
+CMD php -S 0.0.0.0:80 public/index.php
