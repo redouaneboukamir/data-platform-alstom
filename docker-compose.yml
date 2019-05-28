@@ -1,18 +1,30 @@
-version: "3"
+#version: "3"
+#services:
+#    app:
+#        build:
+#           context: .
+#            dockerfile: ./Dockerfile
+#        image: image-platform
+#        p3rts:
+#            - 81:80
+#        env_file: .env
+#        volumes:
+#            - .:/var/www/app
+#        working_dir: /var/www/app
+version: '2'
 services:
-    app:
-        build: 
-            context: .
-            dockerfile: ./Dockerfile
-        image: image-platform
-        ports:
-            - 81:80
-        env_file: .env
+    php:
+        build: ./php-fpm
         volumes:
-            - .:/var/www/app
-        working_dir: /var/www/app
-    # yarn:
-    #   working_dir: /var/www/app/
-    #   command: bash -c "yarn install && yarn watch"
-    #   volumes:
-    #       - source_sync:/var/www/app:nocopy
+            - ./trb-platform:/var/www/trb-platform
+            - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
+            #- ./assets/vocabulary-gc-project.json:/var/www/vocabulary-gc-project.json
+    web:
+        image: nginx:latest
+        ports:
+            - "8888:80"
+        volumes:
+            - ./trb-platform:/var/www/trb-platform
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - php

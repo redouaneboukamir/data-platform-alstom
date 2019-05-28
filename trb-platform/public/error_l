@@ -1,0 +1,64 @@
+[28-May-2019 12:21:08 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
+[28-May-2019 12:21:12 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
+[28-May-2019 12:21:17 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
+[28-May-2019 12:21:21 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
+[28-May-2019 12:23:19 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
+[28-May-2019 12:23:26 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
+[28-May-2019 12:26:06 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
+[28-May-2019 12:26:11 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ClassNotFoundException: Attempted to load class "Translator" from namespace "Symfony\Bundle\FrameworkBundle\Translation".
+Did you forget a "use" statement for "Symfony\Component\CssSelector\XPath\Translator"? in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php:546
+Stack trace:
+#0 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(953): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorService()
+#1 /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php(390): ContainerJUmxvdd\srcApp_KernelProdContainer->getTranslatorListenerService()
+#2 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(229): ContainerJUmxvdd\srcApp_KernelProdContainer->ContainerJUmxvdd\{closure}()
+#3 /var/www/trb-platform/vendor/symfony/event-dispatcher/EventDispatcher.php(61): Symfony\Component\EventDispatcher\EventDispatcher->sortListeners('kernel.request')
+#4 /var/www/t in /var/www/trb-platform/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php on line 546
