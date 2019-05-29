@@ -19,12 +19,12 @@ security:
         main:
             pattern: ^/
             form_login:
-                login_path: /
-                check_path: /
+                login_path: /home
+                check_path: /home
             access_denied_url: /forbidden
             logout:
                 path: /logout
-                target: /
+                target: /home
             anonymous: true
 
     role_hierarchy:

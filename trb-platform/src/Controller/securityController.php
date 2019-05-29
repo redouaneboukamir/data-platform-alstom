@@ -34,7 +34,7 @@ class securityController extends AbstractController{
 
     }
     /**
-     * @Route("/", name="login")
+     * @Route("/home", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
