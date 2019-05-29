@@ -11,14 +11,15 @@
 #        volumes:
 #            - .:/var/www/app
 #        working_dir: /var/www/app
-version: '2'
+version: '3'
 services:
     php:
+        image: image-platform
         build: ./php-fpm
         volumes:
             - ./trb-platform:/var/www/trb-platform
             - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
-            #- ./assets/vocabulary-gc-project.json:/var/www/vocabulary-gc-project.json
+
     web:
         image: nginx:latest
         ports:

@@ -7,6 +7,7 @@
 #CMD php -S 0.0.0.0:80 public/index.php
 FROM php:7.2-fpm-alpine
 
+#RUN echo 'Acquire::http::proxy "http://185.46.212.88:80/";' > /etc/apt/apt.conf
 RUN set -ex \
 	&& apk --no-cache add postgresql-libs postgresql-dev \
 	&& docker-php-ext-install pdo pgsql pdo_pgsql \
@@ -18,15 +19,6 @@ RUN apk update \
     && pecl install xdebug redis \
     && docker-php-ext-enable xdebug redis \
     && docker-php-source delete \
-#    && docker-php-ext-install -j$(nproc) pgsql \
-#    && docker-php-ext-install -j$(nproc) pdo_pgsql \
-#    && docker-php-ext-install pdo_mysql soap intl zip \
-#    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-#    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-#    && echo "xdebug.remote_port=10000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-#    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-#    && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    #&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && rm -rf /tmp/*
 
 CMD ["php-fpm", "-F"]

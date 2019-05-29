@@ -75,7 +75,7 @@ class AssociationEquiptERTMS
         return $this;
     }
 
-    public function removeEquipement(Equipements $equipement): self
+    public function removeEquipement(Equipement $equipement): self
     {
         if ($this->equipements->contains($equipement)) {
             $this->equipements->removeElement($equipement);

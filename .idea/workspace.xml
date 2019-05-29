@@ -2,231 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09ec0d77-5797-4a22-a62f-c41d6c8fbe85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/php-fpm/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php-fpm/php.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/console" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/phpunit" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/assets.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/cache.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/debug.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/easy_log_handler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/swiftmailer.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine_migrations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/prod/doctrine.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/prod/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/swiftmailer.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/test/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/validator.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/webpack_encore.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/annotations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/dev/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/dev/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/data-platform.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/alstomController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/clientController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/homeController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/securityController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/AssociationBaseline.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/AssociationEVCConfig.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/AssociationEquiptERTMS.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Baseline.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Clients.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ClientsSearch.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ClientsUser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ConfigLogiciel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Country.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ERTMSEquipement.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/EVC.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/EnginSearch.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Engineers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Equipement.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ProjectSearch.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Projects.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/SoustypeEquipement.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Trains.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TrainsSearch.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TypeEquipement.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/VersionLogiciel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/AssociationERTMSType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/AssociationType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/BaselineType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ClientUserType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ClientsSearchType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ClientsType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EVCType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EnginSearchType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EngineerType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EquipementType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ErtmsType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProjectSearchType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProjectType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SousTypeEquipementType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/TrainsSearchType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/TrainsType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/TypeEquipementType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190326093547.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190326115609.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190326120515.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190326124134.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190326125336.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190326134040.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190327074435.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190327122502.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190327131829.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190328080011.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190328082026.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190328122300.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190329073718.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190401105637.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190401111508.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190405072016.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190405072533.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190405073411.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190405075756.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190405080656.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190405082735.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190410091147.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190410091903.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190410105657.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190410110554.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190410110945.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190410130349.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190416115910.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190417073524.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190423083931.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190424111652.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190424142821.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190424144840.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190425065417.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190425065513.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190429131617.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190429132046.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190503124241.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190503124508.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190503124802.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190503125155.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190508131645.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509074456.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509074719.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509080106.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509080653.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509080840.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509081525.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509081726.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509083738.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509103248.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509104824.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509105949.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509110022.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509111520.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190509122333.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190510074554.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AssociationBaselineRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AssociationEVCConfigRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AssociationEquiptERTMSRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/BaselineRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ClientsRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ClientsUserRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ConfigLogicielRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CountryRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ERTMSEquipementRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EVCRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EngineersRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EquipementRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ProjectSearchRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ProjectsRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/SoustypeEquipementRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TrainsRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TrainsSearchRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TypeEquipementRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VersionLogicielRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/Baseline/baseline.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/Baseline/create-baseline.html.Twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/association/association.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/clients/_form-client.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/clients/clients.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/clients/create-client.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/clients/edit-client.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/clients/show-clients.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/engineers/_form-engineer.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/engineers/create-engineer.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/engineers/edit-engineer.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/engineers/engineers.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/engineers/show-engineer.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/evc/create-evc.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/evc/evc.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/projects/_form-project.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/projects/create-project.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/projects/edit-project.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/projects/projects.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/projects/show-project.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/trains/create-trains.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/trains/edit-train.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/trains/show-train.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/trains/trains.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/alstom/user/create-user.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/client_user/user.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/projects/project.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/projects/show-project.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/trains/_form-train.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/trains/create-trains.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/trains/edit-train.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/trains/show-train.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/trains/trains.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/user/create-user.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/forbidden.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/login.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/default.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/default.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php-fpm/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/php-fpm/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php-fpm/php.ini" beforeDir="false" afterPath="$PROJECT_DIR$/php-fpm/php.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/.env" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/src/Entity/AssociationEquiptERTMS.php" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/src/Entity/AssociationEquiptERTMS.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/templates/alstom/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/templates/alstom/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/templates/client/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/templates/client/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trb-platform/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/templates/home/home.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -237,7 +27,7 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <executable />
+      <executable path="composer" />
     </execution>
   </component>
   <component name="DatabaseView">
@@ -251,74 +41,25 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="alstom-data-platform@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="alstom-data-platform@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="alstom-data-platform@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="alstom-data-platform: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="alstom-data-platform@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="alstom-data-platform: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="alstom-data-platform@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="alstom-data-platform: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="alstom-data-platform@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="alstom-data-platform: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/trb-platform/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="16" column="11" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="11" />
+            <state relative-caret-position="176">
+              <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php-fpm/Dockerfile">
+        <entry file="file://$PROJECT_DIR$/trb-platform/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+            <state relative-caret-position="231">
+              <caret line="30" column="73" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -349,6 +90,10 @@
       <find>type-eq</find>
       <find>btn-create-type</find>
       <find>getTranslatorService</find>
+      <find>5432</find>
+      <find>xdebug.max_nesting_level = 100</find>
+      <find>xa</find>
+      <find>server</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -358,17 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/client/trains/trains.html.twig" />
-        <option value="$PROJECT_DIR$/templates/client/trains/_form-train.html.twig" />
-        <option value="$PROJECT_DIR$/templates/client/user/create-user.html.twig" />
-        <option value="$PROJECT_DIR$/templates/alstom/Baseline/baseline.html.twig" />
-        <option value="$PROJECT_DIR$/templates/alstom/association/association.html.twig" />
-        <option value="$PROJECT_DIR$/src/Entity/Baseline.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
-        <option value="$PROJECT_DIR$/src/Controller/securityController.php" />
-        <option value="$PROJECT_DIR$/src/Form/UserType.php" />
         <option value="$PROJECT_DIR$/templates/alstom/user/create-user.html.twig" />
         <option value="$PROJECT_DIR$/assets/scss/alstom/_client-page.scss" />
         <option value="$PROJECT_DIR$/templates/alstom/index.html.twig" />
@@ -404,10 +138,21 @@
         <option value="$PROJECT_DIR$/nginx/individual-vocabulary.conf" />
         <option value="$PROJECT_DIR$/individual-vocabulary/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/individual-vocabulary/templates/home/home.html.twig" />
+        <option value="$PROJECT_DIR$/trb-platform/config/services.yaml" />
         <option value="$PROJECT_DIR$/nginx/default.conf" />
+        <option value="$PROJECT_DIR$/trb-platform/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/trb-platform/templates/home/home.html.twig" />
+        <option value="$PROJECT_DIR$/trb-platform/var/log/prod.log" />
+        <option value="$PROJECT_DIR$/trb-platform/src/Entity/AssociationEquiptERTMS.php" />
         <option value="$PROJECT_DIR$/php-fpm/php.ini" />
-        <option value="$PROJECT_DIR$/php-fpm/Dockerfile" />
+        <option value="$PROJECT_DIR$/trb-platform/config/packages/doctrine.yaml" />
+        <option value="$PROJECT_DIR$/pgdata/pg_hba.conf" />
+        <option value="$PROJECT_DIR$/pgdata/postgresql.conf" />
+        <option value="$PROJECT_DIR$/trb-platform/var/log/dev.log" />
+        <option value="$PROJECT_DIR$/trb-platform/templates/alstom/index.html.twig" />
+        <option value="$PROJECT_DIR$/trb-platform/templates/client/index.html.twig" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/php-fpm/Dockerfile" />
         <option value="$PROJECT_DIR$/trb-platform/.env" />
       </list>
     </option>
@@ -537,9 +282,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2278" />
-    <option name="width" value="659" />
-    <option name="height" value="982" />
+    <option name="x" value="2770" />
+    <option name="y" value="-15" />
+    <option name="width" value="664" />
+    <option name="height" value="988" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -566,24 +312,6 @@
               <item name="data-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-platform" type="462c0819:PsiDirectoryNode" />
               <item name="php-fpm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="trb-platform" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="trb-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="trb-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -711,7 +439,11 @@
       <workItem from="1558967845244" duration="5647000" />
       <workItem from="1559027982075" duration="227000" />
       <workItem from="1559028224916" duration="1602000" />
-      <workItem from="1559030081222" duration="5425000" />
+      <workItem from="1559030081222" duration="15777000" />
+      <workItem from="1559046091688" duration="8635000" />
+      <workItem from="1559055440035" duration="22000" />
+      <workItem from="1559055476792" duration="1599000" />
+      <workItem from="1559112079076" duration="10486000" />
     </task>
     <task id="LOCAL-00001" summary="Add table country and clients">
       <created>1553601639324</created>
@@ -1046,7 +778,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="375311000" />
+    <option name="totallyTimeSpent" value="406405000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1059,14 +791,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1913" y="-7" width="959" height="730" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.236404" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23529412" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32888147" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49570817" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1075,21 +806,21 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49713877" weight="0.2687813" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49213162" visible="true" weight="0.31051752" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49213162" visible="true" weight="0.19866444" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5078684" side_tool="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.021849964" />
+      <window_info anchor="right" id="Database" order="3" weight="0.21198668" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18062636" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27192008" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32888147" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49570817" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1097,14 +828,14 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49713877" weight="0.26987952" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49213162" visible="true" weight="0.49921995" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49713877" weight="0.2687813" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49213162" visible="true" weight="0.22704507" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5078684" side_tool="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.021849964" />
+      <window_info anchor="right" id="Database" order="3" weight="0.21198668" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1179,105 +910,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Add form ERTMS" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/type_equipement">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/ertmsequipement">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/soustype_equipement">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/ErtmsType.php" />
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" />
-    <entry file="file://$PROJECT_DIR$/src/Form/AssociationERTMSType.php" />
-    <entry file="file://$PROJECT_DIR$/src/Form/AssociationType.php" />
-    <entry file="file://$PROJECT_DIR$/assets/scss/home/_home.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/evc">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/trains">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
-          <column-attributes>
-            <column name="position_ertms" languageId="JSON" position="5" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/alstom/trains/show-train.html.twig" />
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/association_baseline">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a13d6202-62e5-4515-aece-19f5896e7fd1/database/alstom-data-platform/schema/public/table/baseline">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/alstom/trains/edit-train.html.twig" />
-    <entry file="file://$PROJECT_DIR$/templates/alstom/trains/_form-train.html.twig" />
-    <entry file="file://$PROJECT_DIR$/src/Form/SousTypeEquipementType.php" />
-    <entry file="file://$PROJECT_DIR$/src/Form/TypeEquipementType.php" />
-    <entry file="file://$PROJECT_DIR$/assets/scss/alstom/_train.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/alstom/trains/trains.html.twig" />
-    <entry file="file://$PROJECT_DIR$/src/Controller/alstomController.php" />
-    <entry file="file://$PROJECT_DIR$/src/Form/EquipementType.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/dependency-injection/Compiler/CheckExceptionOnInvalidReferenceBehaviorPass.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/translation/DataCollector/TranslationDataCollector.php" />
-    <entry file="file://$PROJECT_DIR$/src/Kernel.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/framework-bundle/CacheWarmer/TranslationsCacheWarmer.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/framework-bundle/Command/TranslationDebugCommand.php" />
-    <entry file="file://$PROJECT_DIR$/var/cache/prod/ContainerJUmxvdd/srcApp_KernelProdContainer.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/translation/composer.json" />
     <entry file="file://$PROJECT_DIR$/vendor/symfony/profiler-pack/composer.json" />
     <entry file="file://$PROJECT_DIR$/vendor/symfony/translation/Translator.php" />
     <entry file="file://$PROJECT_DIR$/vendor/symfony/translation/DataCollectorTranslator.php" />
@@ -1288,89 +920,246 @@
     <entry file="file://$PROJECT_DIR$/templates/home/home.html.twig" />
     <entry file="file://$PROJECT_DIR$/.env" />
     <entry file="file://$PROJECT_DIR$/nginx.conf" />
-    <entry file="file://$PROJECT_DIR$/nginx/individual-vocabulary.conf">
+    <entry file="file://$PROJECT_DIR$/nginx/individual-vocabulary.conf" />
+    <entry file="file://$PROJECT_DIR$/individual-vocabulary/public/build/app.css" />
+    <entry file="file://$PROJECT_DIR$/individual-vocabulary/templates/base.html.twig" />
+    <entry file="file://$PROJECT_DIR$/individual-vocabulary/templates/home/home.html.twig" />
+    <entry file="file://$PROJECT_DIR$/replicaset.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        <state relative-caret-position="-144" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/config/services.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/individual-vocabulary/public/build/app.css">
+    <entry file="file://$PROJECT_DIR$/trb-platform/templates/home/home.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-768" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/individual-vocabulary/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="80" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/individual-vocabulary/templates/home/home.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        <state relative-caret-position="96">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/replicaset.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php-fpm/php.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="112" column="14" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trb-platform/config/packages/doctrine.yaml">
+    <entry file="file://$PROJECT_DIR$/trb-platform/var/log/prod.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/nginx/default.conf">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2e12a5a3-b31b-4ed0-a645-c0d07e692694/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/.env.test">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/var/cache/pro_/doctrine/orm/Proxies/__CG__AppEntityProjects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        <state relative-caret-position="-224">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trb-platform/var/log/dev.log">
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/security-core/User/UserProviderInterface.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="49491" selection-start-line="49491" selection-end-line="49491" />
+        <state>
+          <caret line="54" column="60" selection-start-line="49" selection-end-line="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/security-http/Firewall/ContextListener.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        <state relative-caret-position="120">
+          <caret line="171" column="50" selection-start-line="170" selection-start-column="16" selection-end-line="202" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/security-core/Authentication/Token/TokenInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="66" column="23" lean-forward="true" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/security-core/Authentication/Token/AbstractToken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/security-core/Authentication/Provider/DaoAuthenticationProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a13d6202-62e5-4515-aece-19f5896e7fd1/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/http-kernel/Tests/HttpCache/HttpCacheTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="144" column="82" selection-start-line="144" selection-start-column="82" selection-end-line="144" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trb-platform/src/Entity/AssociationEquiptERTMS.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
-          <caret line="77" column="51" lean-forward="true" selection-start-line="77" selection-start-column="51" selection-end-line="77" selection-end-column="51" />
+          <caret line="77" column="47" lean-forward="true" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/http-kernel/DataCollector/ConfigDataCollector.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="276" column="20" selection-start-line="276" selection-start-column="20" selection-end-line="276" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/composer/ClassLoader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5100">
+          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/debug/FatalErrorHandler/FatalErrorHandlerInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/symfony/debug/ErrorHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1904">
+          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/autoload.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/vendor/doctrine/common/lib/Doctrine/Common/ClassLoader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="229" column="7" selection-start-line="229" selection-start-column="7" selection-end-line="229" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php-fpm/php.ini">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/config/packages/doctrine.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pgdata/pg_ident.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pgdata/postgresql.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-496">
+          <caret line="62" column="1" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pgdata/pg_hba.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1248">
+          <caret line="84" column="64" selection-start-line="84" selection-start-column="64" selection-end-line="84" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/var/log/dev.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="224">
+          <caret line="20" column="230" selection-start-line="20" selection-start-column="230" selection-end-line="20" selection-end-column="230" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/templates/client/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1136">
+          <caret line="7" column="54" lean-forward="true" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/templates/alstom/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/templates/client/client_user/user.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trb-platform/templates/client/projects/project.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx/default.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php-fpm/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        <state relative-caret-position="247">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trb-platform/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="11" />
+        <state relative-caret-position="231">
+          <caret line="30" column="73" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
         </state>
       </provider>
     </entry>
