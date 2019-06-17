@@ -2,7 +2,9 @@ version: '3'
 services:
     php:
         image: image-platform
-        build: ./Dockerfile
+        build:
+          context: .
+          dockerfile: ./Dockerfile
         volumes:
             - ./trb-platform:/var/www/trb-platform
             #- ./php-fpm/php.ini:/usr/local/etc/php/php.ini

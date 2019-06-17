@@ -34,7 +34,7 @@ class securityController extends AbstractController{
 
     }
     /**
-     * @Route("/home", name="login")
+     * @Route("/", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -51,7 +51,8 @@ class securityController extends AbstractController{
                 'user' => $user
             ]);
 
-        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_ADMIN') ){
+        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_ADMIN')
+                || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_USER'))){
 
             $user = $this->getUser();
             dump($user);
@@ -62,13 +63,13 @@ class securityController extends AbstractController{
 //                'user' => $user
 //            ]);
 
-        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_USER')) {
+/*        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_USER')) {
 
             $user = $this->getUser();
 
             return $this->redirect($this->generateUrl('client.home',[
                 'user' => $user
-            ] ));
+            ] ));*/
 
         }else{return $this->render('home/login.html.twig', [
                 'last_username' => $last_username,
