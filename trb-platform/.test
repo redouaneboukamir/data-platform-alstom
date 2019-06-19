@@ -1,0 +1,70 @@
+# This file defines all environment variables that the application needs.
+# Use ".env.local" for local overrides during development.
+# Use real environment variables when deploying to production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+
+APP_ENV=prod
+
+KEYCLOAK_SERVICE=
+
+## START USERS REALM ##
+OAUTH_KEYCLOAK_IP=http://23.102.8.221
+OAUTH_KEYCLOAK_REALM=Alstom-MDP-Users-0.1
+OAUTH_KEYCLOAK_AUTH_URL=${OAUTH_KEYCLOAK_IP}/auth
+OAUTH_KEYCLOAK_CLIENT_ID=portal
+OAUTH_KEYCLOAK_CLIENT_SECRET=030a93af-01b6-49cb-95cd-d06c93579329
+## END USERS REALM ##
+
+## START DEVICES REALM ##
+DEVICES_KEYCLOAK_REALM=Alstom-MDP-Devices-0.1
+DEVICES_KEYCLOAK_AUTH_URL=${OAUTH_KEYCLOAK_IP}/auth
+DEVICES_KEYCLOAK_CLIENT_ID=portal
+DEVICES_KEYCLOAK_CLIENT_SECRET=620728f5-9779-4bf0-935c-0cef1826b5c8
+## END DEVICES REALM ##
+
+# Services acces out the portal
+SERVICES_ON_NEW_TAB="nifi,reg-http"
+
+# Clients by default in Keycloak, have not take in account
+KEYCLOAK_ORIGIN_CLIENTS="account, admin-cli, broker, realm-management, security-admin-console, portal"
+
+# Roles by default in Keycloak, have not take in account
+KEYCLOAK_ORIGIN_ROLES="offline_access, uma_authorization, requester"
+
+# Profile add at admin groups
+KEYCLOAK_ADMIN_ROLE=admin
+
+# Profile add at all groups to request Keycloak entities
+KEYCLOAK_REQUEST_ROLE_ID=5461e933-2286-4f8e-ade5-ef3b56cf2781
+KEYCLOAK_REQUEST_ROLE_NAME=requester
+
+## START API RANCHER ##
+RANCHER_IP=https://management:443
+RANCHER_CLUSTER_ID=c-t6jm5
+RANCHER_ENVIRONMENTS_IDS="p-ldwq4, p-bwf6r"
+RANCHER_BEARER_TOKEN=token-9mxk2:ms2dl9cg2dsp52cx85w42mjcg977dt9gcr9c7h4hxwg9k4cf6rk447
+PROJECT_APPS=p-bwf6r
+CUSTOM_NAMESPACE_ID=custom
+RANCHER_NODEPORT_SUFFIX=nodeport
+RANCHER_INGRESS_IP=https://rancher.deploy2.smart-mobility.alstom.com
+## END API RANCHER ##
+
+## START SSH Server ##
+SSH_SERVER_IP=management
+SSH_SERVER_USERNAME=beroot
+SSH_SERVER_PORT=22
+SSH_SERVER_PASSWORD=1@mMobilityuser
+## END SERVER SSH ##
+
+## START GOOGLE ANALYTICS ##
+ACTIVATE_GOOGLE_ANALYTICS=1
+TRACKER_ID_ANALYTICS=UA-130995189-1
+## END GOOGLE ANAALYTICS ##
+
+## START PYTHON API  ##
+API_PYTHON_ENDPOINT=${OAUTH_KEYCLOAK_IP}
+## END PYTHON API  ##
+
+## GRAPHANA METRICS ##
+PROMETHEUS_SERVER_ENDPOINT=http://prometheus-server.default.svc.cluster.local/
+## END GRAPHANA METRICS ##

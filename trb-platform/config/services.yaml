@@ -26,3 +26,21 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    factory.manager:
+        class: App\Factory\ManagerFactory
+
+    App\Services\HttpClientKeycloakInterface:
+        factory: ['@factory.manager', switchService]
+
+        #  App\Security\ProviderInterface:
+        #    factory: ['App\Factory\AuthenticatorFactory', switchService]
+
+    App\Listener\KeycloakExceptionListener:
+      tags:
+      - { name: kernel.event_listener, event: kernel.exception }
+    app.mdp.utility:
+      class: App\Helper\Utility
+      public: true
+
+    #  twig.extension:
+    #    class: App\Twig\AppExtension

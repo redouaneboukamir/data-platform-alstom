@@ -16,16 +16,27 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            pattern: ^/
-            form_login:
-                login_path: /
-                check_path: /
-            access_denied_url: /forbidden
-            logout:
-                path: /logout
-                target: /
-            anonymous: true
+        secure_area:
+          anonymous: ~
+          #            form_login:
+          #                login_path: app_login
+          #                check_path: app_login
+          #                csrf_token_generator: security.csrf.token_manager
+          #                default_target_path: home
+          #                failure_path: /
+          guard:
+            authenticators:
+              - App\Security\KeycloakAuthenticator
+#        main:
+ #           pattern: ^/
+  #          form_login:
+   #             login_path: /
+    #            check_path: /
+     #       access_denied_url: /forbidden
+      #      logout:
+       #         path: /logout
+        #        target: /
+         #   anonymous: true
 
     role_hierarchy:
 #        ROLE_TEST : ROLE_CLIENT_USER,
