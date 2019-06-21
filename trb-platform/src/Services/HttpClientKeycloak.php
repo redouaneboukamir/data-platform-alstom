@@ -54,7 +54,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	public function getKeycloakClient(): Client
 	{
 		$token = $this->container->get(KEY_SESSION)->get(KEY_ACCESS_TOKEN);
-        dump(getenv('OAUTH_KEYCLOAK_REQUEST_URL'));
+/*        dump(getenv('OAUTH_KEYCLOAK_REQUEST_URL'));*/
 		return new Client([
 			GUZZLE_BASE_URI => getenv('OAUTH_KEYCLOAK_REQUEST_URL'),
 			GUZZLE_HEADERS => [
@@ -998,6 +998,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	 */
 	public function getGroupOfUser($id): array
 	{
+	    dump($id);
 		if (null === $id) {
 			return [];
 		}
