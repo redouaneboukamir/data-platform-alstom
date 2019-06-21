@@ -38,7 +38,7 @@ class KeyCloakAuthController extends AbstractController
 		// ** if you want to *authenticate* the user, then
 		// leave this method blank and create a Guard authenticator
 		// (read below)
-		return $this->redirectToRoute(ROUTE_HOME);
+		return $this->redirectToRoute('alstom.home');
 	}
 
 	/**

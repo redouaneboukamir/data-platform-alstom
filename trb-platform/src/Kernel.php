@@ -131,8 +131,6 @@ class Kernel extends BaseKernel
         $usersRequestUrl = getenv('OAUTH_KEYCLOAK_AUTH_URL');
         $usersRealm = getenv('OAUTH_KEYCLOAK_REALM');
 
-/*        dump($usersRealm);
-        dump($usersRequestUrl);*/
 
         if (isset($usersRequestUrl) && isset($usersRealm)) {
             $dotenv->populate(

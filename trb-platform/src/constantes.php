@@ -63,9 +63,11 @@ if (!defined('ROUTE_GROUPS')) {
 if (!defined('ROUTE_GROUP_EDIT')) {
 	define('ROUTE_GROUP_EDIT', 'group_edit');
 }
-if (!defined('ROUTE_HOME')) {
-	define('ROUTE_HOME', 'home');
-}
+
+
+/*if (!defined('ROUTE_HOME')) {
+	define('ROUTE_HOME', 'alstom.home');
+}*/
 if (!defined('ROUTE_DOCKER_IMAGES')) {
 	define('ROUTE_DOCKER_IMAGES', 'docker_images');
 }
