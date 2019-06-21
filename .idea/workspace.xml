@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09ec0d77-5797-4a22-a62f-c41d6c8fbe85" name="Default Changelist" comment="Déploiment du dockerfile et du site Sur la plateform OK">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trb-platform/cacert.pem" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trb-platform/php_server.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trb-platform/src/Controller/MainController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trb-platform/src/constantes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/.env" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/config/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/config/bootstrap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/src/Entity/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/src/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trb-platform/src/Services/HttpClientKeycloak.php" beforeDir="false" afterPath="$PROJECT_DIR$/trb-platform/src/Services/HttpClientKeycloak.php" afterDir="false" />
-    </list>
+    <list default="true" id="09ec0d77-5797-4a22-a62f-c41d6c8fbe85" name="Default Changelist" comment="Déploiment du dockerfile et du site Sur la plateform OK" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/trb-platform/public/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            <state relative-caret-position="35">
+              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -374,18 +357,6 @@
               <item name="trb-platform" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="data-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="trb-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="trb-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -520,7 +491,7 @@
       <workItem from="1559123907137" duration="14155000" />
       <workItem from="1560751353333" duration="11436000" />
       <workItem from="1560843094353" duration="7416000" />
-      <workItem from="1560856673359" duration="33601000" />
+      <workItem from="1560856673359" duration="34128000" />
     </task>
     <task id="LOCAL-00001" summary="Add table country and clients">
       <created>1553601639324</created>
@@ -855,7 +826,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="476327000" />
+    <option name="totallyTimeSpent" value="476854000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -868,14 +839,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1431" height="772" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.201748" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.201748" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3505843" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.349454" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49570817" weight="0.32888147" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -884,7 +854,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49713877" weight="0.2687813" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49056605" weight="0.42433697" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49056605" visible="true" weight="0.42433697" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.509434" side_tool="true" weight="0.442404" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.32891566" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.36727878" />
@@ -1343,8 +1313,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trb-platform/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        <state relative-caret-position="35">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
         </state>
       </provider>
     </entry>
