@@ -16,6 +16,7 @@ RUN apk update \
 
 COPY ./trb-platform /var/www/trb-platform
 WORKDIR /var/www/trb-platform
+RUN cp php_server.ini /etc/php
 
 #Add last git commit as a label.
 ARG GIT_COMMIT=unspecified
