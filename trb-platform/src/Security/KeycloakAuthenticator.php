@@ -25,6 +25,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class KeycloakAuthenticator extends SocialAuthenticator
 {
     const ADMINPROFILE = 'admin';
+    const TRB_ROLE = 'alstom_test';
     const SESSION = 'session';
 
     /**
@@ -172,10 +173,17 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $username = $keycloakUser->toArray()['preferred_username'];
         $userId = $keycloakUser->toArray()['sub'];
         $group = $this->httpClientKeycloak->getGroupOfUser($userId);
+
+
+       
+
+
         $profilesArray = [];
+
         if (isset($group['id'])) {
             $profilesArray = $this->httpClientKeycloak->getProfilesFromGroup($group['id']);
         }
+
         $services = $this->httpClientKeycloak->getUserServices($userId);
 
         //Get Available services
@@ -193,19 +201,51 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $services = $this->httpClientKeycloak->servicesFilter($servicesAvailables, $services);
 
         $user = new User();
-        foreach ($profilesArray as $profile) {
-            if (in_array('name', array_keys($profile, self::ADMINPROFILE))) {
-                $this->container->get(self::SESSION)->set('admin', 'true');
-                $user->setRoles(['ROLE_ADMIN']);
+        // foreach ($profilesArray as $profile) {
+        //     if (in_array('name', array_keys($profile, self::ADMINPROFILE))) {
+        //         $this->container->get(self::SESSION)->set('admin', 'true');
+        //         $user->setRoles(['ROLE_ADMIN']);
+        //         break;
+        //     }
+        // }
+         //Attribution des rôles en fonction des rôles présent sur keycloak
 
-                break;
-            }
-        }
+         $current_group=$this->httpClientKeycloak->getGroupOfUser($userId);
+         foreach ($this->httpClientKeycloak->getGroups() as $group){
+             
+             if($current_group['name'] == $group['name']){
+                 $roleUser = 'users/' . $userId . '/role-mappings';
+                 $response = $this->httpClientKeycloak->getKeycloakClient()->request('GET', $roleUser);
+ 
+                 if (null !== $response->getBody()) {
+                     $body = json_decode($response->getBody(), true);
+ 
+                      foreach($body['clientMappings']['trb-platform']['mappings'] as $role){
+         
+                               dump($role['name']);
+                               switch($role['name']){
+                                   case 'alstom_admin': $user->addRole('ROLE_ALSTOM_ADMIN');break;
+                                   case 'alstom_designer': $user->addRole('ROLE_ALSTOM_DESIGN');break;
+                                   case 'alstom_maintener': $user->addRole('ROLE_ALSTOM_MAINTENER');  break;
+                                   case 'alstom_commissioner': $user->addRole('ROLE_ALSTOM_COMMISSIONER');  break;
+                                   case 'alstom_service': $user->addRole('ROLE_ALSTOM_SERVICE');  break;
+                                   case 'alstom_client_user': $user->addRole('ROLE_CLIENT_USER');  break;
+                                   case 'alstom_client_admin': $user->addRole('ROLE_CLIENT_ADMIN');  break;
+
+                               }
+                        }                    
+                 }
+                 
+             }
+             // $attributes = $this->httpClientKeycloak->getGroup($group[KEY_ID]);
+         }
+
 
         $this->container->get(self::SESSION)->set('userId', $userId);
         $this->container->get(self::SESSION)->set('services', $services);
 
         $user->setEmail($username);
+
 
         return $user;
     }

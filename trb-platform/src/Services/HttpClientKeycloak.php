@@ -309,6 +309,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 		if (null !== $response->getBody()) {
 			$body = json_decode($response->getBody(), true);
 			$group = ['id' => $body['id'], 'name' => $body['name'], GUZZLE_PROFILES => $body['realmRoles']];
+			// dump($body);
+			// dump($body['clientRoles']);
 			if (isset($body['attributes']['admin'])) {
 				$group['isSuperAdmin'] = true;
 			}
@@ -932,7 +934,10 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 		return new JsonResponse(true, Response::HTTP_OK);
 	}
-
+/*    public function __toString()
+    {
+        return (string) $this->getUsers();
+    }*/
 	/***** USER  MANAGEMENT *****/
 
 	/**
@@ -966,6 +971,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 						$userArray = ['id' => $user['id'], GUZZLE_USERNAME => $user[GUZZLE_USERNAME], GUZZLE_GROUP => $group['name']];
 						if (isset($user['attributes']['admin'])) {
+							
 							$userArray['isSuperAdmin'] = true;
 						}
 						$usersArray[] = $userArray;
@@ -998,7 +1004,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	 */
 	public function getGroupOfUser($id): array
 	{
-	    dump($id);
+
 		if (null === $id) {
 			return [];
 		}
@@ -1073,6 +1079,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 						$group['id'] = '';
 					}
 					$user = ['id' => $body['id'], GUZZLE_USERNAME => $body[GUZZLE_USERNAME], GUZZLE_GROUP => $group['id']];
+					dump($user);
 				}
 			}
 		} catch (GuzzleException $ex) {

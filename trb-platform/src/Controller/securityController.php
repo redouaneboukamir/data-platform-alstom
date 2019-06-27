@@ -26,7 +26,7 @@ class securityController extends AbstractController{
     private $encoder;
 
 
-        public function __construct(ObjectManager $em, UserPasswordEncoderInterface $encoder)
+    public function __construct(ObjectManager $em, UserPasswordEncoderInterface $encoder)
     {
 
         $this->em = $em;
@@ -38,6 +38,8 @@ class securityController extends AbstractController{
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+
+        
         $last_username = $authenticationUtils->getLastUsername();
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -59,17 +61,6 @@ class securityController extends AbstractController{
             return $this->redirect($this->generateUrl('client.home',[
                 'user' => $user
             ] ));
-//            return $this->redirectToRoute('client.home',[
-//                'user' => $user
-//            ]);
-
-/*        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_USER')) {
-
-            $user = $this->getUser();
-
-            return $this->redirect($this->generateUrl('client.home',[
-                'user' => $user
-            ] ));*/
 
         }else{return $this->render('home/login.html.twig', [
                 'last_username' => $last_username,

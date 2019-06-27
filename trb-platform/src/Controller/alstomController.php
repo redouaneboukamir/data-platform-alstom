@@ -46,6 +46,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Services\HttpClientKeycloak;
+use App\Security\KeycloakAuthenticator;
 
 class alstomController extends AbstractController
 {
@@ -53,7 +55,7 @@ class alstomController extends AbstractController
      * @var ObjectManager
      */
     private $em;
-
+    const SESSION = 'session';
 
     public function __construct(ObjectManager $em)
     {
@@ -67,8 +69,16 @@ class alstomController extends AbstractController
      * @return Response
      */
 //    Vue de la homepage
-    public function index(): Response
+    public function index(HttpClientKeycloak $clientKeycloak): Response
     {
+
+        $userRoles = $this->getUser()->getRoles();
+        $userId = $this->container->get(KEY_SESSION)->get('userId');
+        
+        // dump($clientKeycloak->getUser($userId));   
+    
+        dump($userRoles);
+
         return $this->render(('alstom\index.html.twig'), [
             'current_menu' => 'home'
         ]);
@@ -94,6 +104,7 @@ class alstomController extends AbstractController
 
         return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',
+
             'clients' => $clients,
             'form' => $form->createView(),
             'result_notfound' => $result_found

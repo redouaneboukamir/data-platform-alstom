@@ -69,8 +69,8 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-          #- { path: ^/alstom, roles: [ROLE_ALSTOM_ADMIN, ROLE_ALSTOM_DESIGN, ROLE_ALSTOM_COMMISSIONER,
-           #                           ROLE_ALSTOM_MAINTENER, ROLE_ALSTOM_SERVICE]  }
-          #- { path: ^/alstom/maintener/association, roles: ROLE_ALSTOM_MAINTENER }
-          #- { path: ^/client, roles: [ROLE_CLIENT_USER,ROLE_CLIENT_ADMIN]  }
+          - { path: ^/alstom, roles: [ROLE_ALSTOM_ADMIN, ROLE_ALSTOM_DESIGN, ROLE_ALSTOM_COMMISSIONER,
+                                      ROLE_ALSTOM_MAINTENER, ROLE_ALSTOM_SERVICE] }
+          - { path: ^/alstom/maintener/association, roles: ROLE_ALSTOM_MAINTENER }
+          - { path: ^/client, roles: [ROLE_CLIENT_USER,ROLE_CLIENT_ADMIN] }
 
