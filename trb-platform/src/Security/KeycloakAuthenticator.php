@@ -231,7 +231,6 @@ class KeycloakAuthenticator extends SocialAuthenticator
                                    case 'alstom_service': $user->addRole('ROLE_ALSTOM_SERVICE');  break;
                                    case 'alstom_client_user': $user->addRole('ROLE_CLIENT_USER');  break;
                                    case 'alstom_client_admin': $user->addRole('ROLE_CLIENT_ADMIN');  break;
-
                                }
                         }                    
                  }
