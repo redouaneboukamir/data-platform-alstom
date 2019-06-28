@@ -1,0 +1,238 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = \Symfony\Component\VarExporter\Internal\Registry::unserialize([
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        ], [
+            1 => 'C:33:"Doctrine\\ORM\\Id\\SequenceGenerator":87:{a:2:{s:14:"allocationSize";i:1;s:12:"sequenceName";s:27:"association_baseline_id_seq";}}',
+        ]),
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\AssociationBaseline',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\AssociationBaseline',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\AssociationBaselineRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    2,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'Status' => [
+                            'fieldName' => 'Status',
+                            'type' => 'boolean',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'status',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'status' => 'Status',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'Status' => 'status',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'association_baseline',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'baseline' => [
+                            'fieldName' => 'baseline',
+                            'targetEntity' => 'App\\Entity\\Baseline',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'baseline_id',
+                                    'referencedColumnName' => 'id',
+                                    'unique' => true,
+                                ],
+                            ],
+                            'mappedBy' => null,
+                            'inversedBy' => null,
+                            'cascade' => [
+                                'persist',
+                                'remove',
+                            ],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 1,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\AssociationBaseline',
+                            'isCascadeRemove' => true,
+                            'isCascadePersist' => true,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'baseline_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'baseline_id' => 'baseline_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'baseline_id',
+                            ],
+                        ],
+                        'VersionLogiciel' => [
+                            'fieldName' => 'VersionLogiciel',
+                            'targetEntity' => 'App\\Entity\\VersionLogiciel',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'version_logiciel_id',
+                                    'referencedColumnName' => 'id',
+                                    'unique' => true,
+                                ],
+                            ],
+                            'mappedBy' => null,
+                            'inversedBy' => null,
+                            'cascade' => [
+                                'persist',
+                                'remove',
+                            ],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 1,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\AssociationBaseline',
+                            'isCascadeRemove' => true,
+                            'isCascadePersist' => true,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'version_logiciel_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'version_logiciel_id' => 'version_logiciel_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'version_logiciel_id',
+                            ],
+                        ],
+                        'ConfigLogiciel' => [
+                            'fieldName' => 'ConfigLogiciel',
+                            'targetEntity' => 'App\\Entity\\ConfigLogiciel',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'config_logiciel_id',
+                                    'referencedColumnName' => 'id',
+                                    'unique' => true,
+                                ],
+                            ],
+                            'mappedBy' => null,
+                            'inversedBy' => null,
+                            'cascade' => [
+                                'persist',
+                                'remove',
+                            ],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 1,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\AssociationBaseline',
+                            'isCascadeRemove' => true,
+                            'isCascadePersist' => true,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'config_logiciel_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'config_logiciel_id' => 'config_logiciel_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'config_logiciel_id',
+                            ],
+                        ],
+                        'ERTMS' => [
+                            'fieldName' => 'ERTMS',
+                            'targetEntity' => 'App\\Entity\\ERTMSEquipement',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'ertms_id',
+                                    'referencedColumnName' => 'id',
+                                    'unique' => true,
+                                ],
+                            ],
+                            'mappedBy' => null,
+                            'inversedBy' => null,
+                            'cascade' => [
+                                'persist',
+                                'remove',
+                            ],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 1,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\AssociationBaseline',
+                            'isCascadeRemove' => true,
+                            'isCascadePersist' => true,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'ertms_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'ertms_id' => 'ertms_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'ertms_id',
+                            ],
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+                'sequenceGeneratorDefinition' => [
+                    [
+                        'sequenceName' => 'association_baseline_id_seq',
+                        'allocationSize' => 1,
+                        'initialValue' => 1,
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

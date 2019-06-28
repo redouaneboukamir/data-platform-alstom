@@ -1,0 +1,90 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = \Symfony\Component\VarExporter\Internal\Registry::unserialize([
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        ], [
+            1 => 'C:33:"Doctrine\\ORM\\Id\\SequenceGenerator":81:{a:2:{s:14:"allocationSize";i:1;s:12:"sequenceName";s:21:"project_search_id_seq";}}',
+        ]),
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\ProjectSearch',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\ProjectSearch',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\ProjectSearchRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    2,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'name_project' => [
+                            'fieldName' => 'name_project',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => true,
+                            'precision' => 0,
+                            'columnName' => 'name_project',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'name_project' => 'name_project',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'name_project' => 'name_project',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'project_search',
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+                'sequenceGeneratorDefinition' => [
+                    [
+                        'sequenceName' => 'project_search_id_seq',
+                        'allocationSize' => 1,
+                        'initialValue' => 1,
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

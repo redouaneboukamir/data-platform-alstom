@@ -1,0 +1,151 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = \Symfony\Component\VarExporter\Internal\Registry::unserialize([
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        ], [
+            1 => 'C:33:"Doctrine\\ORM\\Id\\SequenceGenerator":79:{a:2:{s:14:"allocationSize";i:1;s:12:"sequenceName";s:19:"clients_user_id_seq";}}',
+        ]),
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\ClientsUser',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\ClientsUser',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\ClientsUserRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    2,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'email' => [
+                            'fieldName' => 'email',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'email',
+                        ],
+                        'name' => [
+                            'fieldName' => 'name',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'name',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'email' => 'email',
+                        'name' => 'name',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'email' => 'email',
+                        'name' => 'name',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'clients_user',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'projects' => [
+                            'fieldName' => 'projects',
+                            'joinTable' => [
+                                'name' => 'clients_user_projects',
+                                'joinColumns' => [
+                                    [
+                                        'name' => 'clients_user_id',
+                                        'referencedColumnName' => 'id',
+                                        'onDelete' => 'CASCADE',
+                                    ],
+                                ],
+                                'inverseJoinColumns' => [
+                                    [
+                                        'name' => 'projects_id',
+                                        'referencedColumnName' => 'id',
+                                        'onDelete' => 'CASCADE',
+                                    ],
+                                ],
+                            ],
+                            'targetEntity' => 'App\\Entity\\Projects',
+                            'mappedBy' => null,
+                            'inversedBy' => 'clientsUsers',
+                            'cascade' => [],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 8,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\ClientsUser',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'joinTableColumns' => [
+                                'clients_user_id',
+                                'projects_id',
+                            ],
+                            'isOnDeleteCascade' => true,
+                            'relationToSourceKeyColumns' => [
+                                'clients_user_id' => 'id',
+                            ],
+                            'relationToTargetKeyColumns' => [
+                                'projects_id' => 'id',
+                            ],
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+                'sequenceGeneratorDefinition' => [
+                    [
+                        'sequenceName' => 'clients_user_id_seq',
+                        'allocationSize' => 1,
+                        'initialValue' => 1,
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

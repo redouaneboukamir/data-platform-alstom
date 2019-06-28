@@ -1,0 +1,90 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = \Symfony\Component\VarExporter\Internal\Registry::unserialize([
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        ], [
+            1 => 'C:33:"Doctrine\\ORM\\Id\\SequenceGenerator":83:{a:2:{s:14:"allocationSize";i:1;s:12:"sequenceName";s:23:"version_logiciel_id_seq";}}',
+        ]),
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\VersionLogiciel',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\VersionLogiciel',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\VersionLogicielRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    2,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'release_note' => [
+                            'fieldName' => 'release_note',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'release_note',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'release_note' => 'release_note',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'release_note' => 'release_note',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'version_logiciel',
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+                'sequenceGeneratorDefinition' => [
+                    [
+                        'sequenceName' => 'version_logiciel_id_seq',
+                        'allocationSize' => 1,
+                        'initialValue' => 1,
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

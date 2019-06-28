@@ -1,0 +1,174 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = \Symfony\Component\VarExporter\Internal\Registry::unserialize([
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        ], [
+            1 => 'C:33:"Doctrine\\ORM\\Id\\SequenceGenerator":77:{a:2:{s:14:"allocationSize";i:1;s:12:"sequenceName";s:17:"equipement_id_seq";}}',
+        ]),
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\Equipement',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Equipement',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\EquipementRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    2,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'Type' => [
+                            'fieldName' => 'Type',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'type',
+                        ],
+                        'Sous_type' => [
+                            'fieldName' => 'Sous_type',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'sous_type',
+                        ],
+                        'DTR_board' => [
+                            'fieldName' => 'DTR_board',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'dtr_board',
+                        ],
+                        'Indice_DTR' => [
+                            'fieldName' => 'Indice_DTR',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'indice_dtr',
+                        ],
+                        'Num_serie' => [
+                            'fieldName' => 'Num_serie',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'num_serie',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'type' => 'Type',
+                        'sous_type' => 'Sous_type',
+                        'dtr_board' => 'DTR_board',
+                        'indice_dtr' => 'Indice_DTR',
+                        'num_serie' => 'Num_serie',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'Type' => 'type',
+                        'Sous_type' => 'sous_type',
+                        'DTR_board' => 'dtr_board',
+                        'Indice_DTR' => 'indice_dtr',
+                        'Num_serie' => 'num_serie',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'equipement',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'AssociationEquiptERTMS' => [
+                            'fieldName' => 'AssociationEquiptERTMS',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'association_equipt_ertms_id',
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'equipement',
+                            'targetEntity' => 'App\\Entity\\AssociationEquiptERTMS',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\Equipement',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'association_equipt_ertms_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'association_equipt_ertms_id' => 'association_equipt_ertms_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'association_equipt_ertms_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+                'sequenceGeneratorDefinition' => [
+                    [
+                        'sequenceName' => 'equipement_id_seq',
+                        'allocationSize' => 1,
+                        'initialValue' => 1,
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];

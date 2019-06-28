@@ -1,0 +1,150 @@
+<?php return [PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = \Symfony\Component\VarExporter\Internal\Registry::unserialize([
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        ], [
+            1 => 'C:33:"Doctrine\\ORM\\Id\\SequenceGenerator":91:{a:2:{s:14:"allocationSize";i:1;s:12:"sequenceName";s:31:"association_equipt_ertms_id_seq";}}',
+        ]),
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\AssociationEquiptERTMS',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\AssociationEquiptERTMS',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\AssociationEquiptERTMSRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    2,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'status' => [
+                            'fieldName' => 'status',
+                            'type' => 'boolean',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'status',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'status' => 'status',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'status' => 'status',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'association_equipt_ertms',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'solution' => [
+                            'fieldName' => 'solution',
+                            'targetEntity' => 'App\\Entity\\ERTMSEquipement',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'solution_id',
+                                    'referencedColumnName' => 'id',
+                                    'unique' => true,
+                                ],
+                            ],
+                            'mappedBy' => null,
+                            'inversedBy' => null,
+                            'cascade' => [
+                                'persist',
+                                'remove',
+                            ],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 1,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\AssociationEquiptERTMS',
+                            'isCascadeRemove' => true,
+                            'isCascadePersist' => true,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'solution_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'solution_id' => 'solution_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'solution_id',
+                            ],
+                        ],
+                        'equipements' => [
+                            'fieldName' => 'equipements',
+                            'mappedBy' => 'AssociationEquiptERTMS',
+                            'targetEntity' => 'App\\Entity\\Equipement',
+                            'cascade' => [
+                                'persist',
+                                'remove',
+                            ],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 4,
+                            'inversedBy' => null,
+                            'isOwningSide' => false,
+                            'sourceEntity' => 'App\\Entity\\AssociationEquiptERTMS',
+                            'isCascadeRemove' => true,
+                            'isCascadePersist' => true,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+                'sequenceGeneratorDefinition' => [
+                    [
+                        'sequenceName' => 'association_equipt_ertms_id_seq',
+                        'allocationSize' => 1,
+                        'initialValue' => 1,
+                    ],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+}];
