@@ -1,0 +1,76 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+#        app_user_provider:
+ #           entity:
+  #              class: App\Entity\User
+   #             property: email
+        app_user_provider:
+          id: App\Security\ProviderInterface
+        # used to reload user from session & other features (e.g. switch_user)
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        secure_area:
+          anonymous: ~
+          #            form_login:
+          #                login_path: app_login
+          #                check_path: app_login
+          #                csrf_token_generator: security.csrf.token_manager
+          #                default_target_path: home
+          #                failure_path: /
+          guard:
+            authenticators:
+              - App\Security\KeycloakAuthenticator
+#        main:
+ #           pattern: ^/
+  #          form_login:
+   #             login_path: /
+    #            check_path: /
+     #       access_denied_url: /forbidden
+      #      logout:
+       #         path: /logout
+        #        target: /
+         #   anonymous: true
+
+    role_hierarchy:
+#        ROLE_TEST : ROLE_CLIENT_USER,
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+
+#        secure_area: Pas de patern donc toutes url passeront pas securea_area
+#            anonymous: ~
+#            guard:
+#                authentificators:
+#        secure_area:
+#            anonymous: ~
+#
+#            guard:
+#                authenticators:
+#                    - App\Security\KeycloakAuthenticator
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+          - { path: ^/alstom, roles: [ROLE_ALSTOM_ADMIN, ROLE_ALSTOM_DESIGN, ROLE_ALSTOM_COMMISSIONER,
+                                      ROLE_ALSTOM_MAINTENER, ROLE_ALSTOM_SERVICE] }
+          - { path: ^/alstom/maintener/association, roles: ROLE_ALSTOM_MAINTENER }
+          - { path: ^/client, roles: [ROLE_CLIENT_USER,ROLE_CLIENT_ADMIN] }
+

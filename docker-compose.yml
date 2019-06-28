@@ -1,24 +1,19 @@
-version: "3"
-
+version: '3'
 services:
-    
-    app:
-        build: 
-            context: .
-            dockerfile: ./Dockerfile
-        image: image-platform:latest
+    php:
+        image: image-platform
+        build:
+          context: .
+          dockerfile: ./Dockerfile
         volumes:
-            - .:/app
+            - ./trb-platform:/var/www/trb-platform
+            #- ./php-fpm/php.ini:/usr/local/etc/php/php.ini
+    web:
+        image: nginx:latest
         ports:
-            - 8000:8000
-        working_dir: /app
-        command: ["bin/console", "server:run", "0.0.0.0"]
-
-    encore:
-        image: node:10-alpine
+            - "8888:80"
         volumes:
-            - .:/app
-        ports:
-            - 8080:8080
-        working_dir: /app
-        command: ["yarn", "dev-server", "--host=0.0.0.0"]
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./trb-platform:/var/www/trb-platform
+        depends_on:
+            - php
