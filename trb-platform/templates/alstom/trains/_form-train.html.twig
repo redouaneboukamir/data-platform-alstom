@@ -1,14 +1,15 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
 {% endblock %}
-{{ form_start(form) }}
+{{ form_start(form_train) }}
 <div class="row">
-    <div class="col-md-10">{{ form_row(form.name) }}</div>
-    <div class="col-md-10">{{ form_row(form.projects) }}</div>
-    <div class="col-md-10">{{ form_row(form.trainType) }}</div>
+    <div class="col-md-10">{{ form_row(form_train.name) }}</div>
+    <div class="col-md-10">{{ form_row(form_train.projects) }}</div>
+    <div class="col-md-10">{{ form_row(form_train.trainType) }}</div>
 
     <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
-        <h4>Select EVC : </h4>
+        <h4>Select EVC :
+        </h4>
         <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-10 img-type-train">
         <figure class="content-ertms col-md-10">
             <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-1">
@@ -18,7 +19,8 @@
     </div>
 
     <div class="content-type-train col-md-12 mt-4" id="select_train">
-        <h4>Select EVC : </h4>
+        <h4>Select EVC :
+        </h4>
         <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="" class="col-md-10  img-type-train">
         <figure class="content-ertms col-md-10">
             <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms" id="ertms-train-1">
@@ -29,85 +31,80 @@
 
     <div class="col-md-10 mt-4" id="btn-choice-ertms">
         <div class="content-btn-train col-12">
-            <button id="create-ertms-1" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPoll-1">Add ERTMS</button>
-            <button id="create-ertms-2" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPoll-1">Add ERTMS</button>
+            <button class="btn btn-secondary" data-target="#modalPoll-1" data-toggle="modal" id="create-ertms-1" type="button">Add ERTMS</button>
+            <button class="btn btn-secondary" data-target="#modalPoll-1" data-toggle="modal" id="create-ertms-2" type="button">Add ERTMS</button>
         </div>
     </div>
 
 
-    <div class="modal fade right" id="modalPoll-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true" data-backdrop="false">
-        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" >
-            <div class="modal-content">
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade right" data-backdrop="false" id="modalPoll-1" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info">
+            <div
+                class="modal-content">
                 <!--Header-->
                 <div class="modal-header">
                     <p class="heading lead" id="add-ertms"></p>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal" type="button">
                         <span aria-hidden="true" class="white-text">×</span>
                     </button>
                 </div>
                 <!--Body-->
                 <div class="modal-body" id="modal-body">
-                    <button type="button" class="close" id="close-equipement" data-dismiss="modal-body" aria-label="Close">
+                    <button aria-label="Close" class="close" data-dismiss="modal-body" id="close-equipement" type="button">
                         <span aria-hidden="true" class="white-text" style="color:red">×</span>
                     </button>
                     <div class="col-md-12 mt-4 modal-ertms" id="create-ertms-train-1">
-                        <div class="name-ertms">
-                            {{ form_start(form_ertms) }}
-                            <div class="content-form-ertms-name row">
-                                <div class="col-md-12">
-                                    {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS'}) }}
-                                </div>
-                                {#<div class="col-2 mt-4">
-                                    {{ form_row(form_ertms.save, {'label': 'Save'}) }}
-                                </div>#}
-                            </div>
+                        <div
+                            class="name-ertms">{# {{ form_start(form_ertms) }}
+                                                                                        <div class="content-form-ertms-name row">
+                                                                                            <div class="col-md-12">
+                                                                                                {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS Equipment'}) }                                    </div>
+                                                                                        </div>
+                                                                                        {{ form_end(form_ertms) }} #}
 
-                            {{ form_end(form_ertms) }}
                         </div>
                         {{ form_start(form_equipement) }}
 
-                            <div class="type-equipement row">
-                                <div class="col-md-10">
-                                    {{ form_row(form_equipement.Type) }}
-                                </div>
+                        <div class="type-equipement row">
+                            <div class="col-md-10">
+                                {{ form_row(form_equipement.Type) }}
+                            </div>
 
-                                <div id="btn-create-type" class="col-md-2">
-                                    <p class="btn-create-type">+</p>
-                                </div>
+                            <div class="col-md-2" id="btn-create-type">
+                                <p class="btn-create-type">+</p>
+                            </div>
 
-                                <div id="create_type" class="col-md-12 row">
-                                    <div class="controls-2 row col-md-10">
-                                        {{ form_start(form_type) }}
-                                            <div class="entry-2 input-group col-12">
-                                                {{ form_widget(form_type.name) }}
-                                                <span class="input-group-btn-">{{ form_widget(form_type.save, {'label' : '+'}) }}</span>
-                                            </div>
-                                        {{ form_end(form_type) }}
+                            <div class="col-md-12 row" id="create_type">
+                                <div class="controls-2 row col-md-10">
+                                    {{ form_start(form_type) }}
+                                    <div class="entry-2 input-group col-12">
+                                        {{ form_widget(form_type.name) }}
+                                        <a href="{{ path('alstom.addType') }}" class="input-group-btn-">{{ form_widget(form_type.save, {'label' : '+'}) }}</a>
                                     </div>
+                                    {{ form_end(form_type) }}
                                 </div>
                             </div>
-                            <div class="type-equipement row">
-                                <div class="col-md-10">
-                                    {{ form_row(form_equipement.Sous_type) }}
-                                </div>
+                        </div>
+                        <div class="type-equipement row">
+                            <div class="col-md-10">
+                                {{ form_row(form_equipement.Sous_type) }}
+                            </div>
 
-                                <div id="btn-create-soustype" class="col-md-2">
-                                    <p class=" btn-create-type">+</p>
-                                </div>
+                            <div class="col-md-2" id="btn-create-soustype">
+                                <p class=" btn-create-type">+</p>
+                            </div>
 
-                                <div id="create_soustype"  class="col-md-12 row">
-                                    <div class="controls row col-md-10">
-                                        {{ form_start(form_soustype) }}
-                                            <div class="entry input-group col-12">
-                                                {{ form_widget(form_soustype.name) }}
-                                                <span class="input-group-btn">{{ form_widget(form_soustype.save, {'label' : '+'}) }}</span>
-                                            </div>
-                                        {{ form_end(form_soustype) }}
+                            <div class="col-md-12 row" id="create_soustype">
+                                <div class="controls row col-md-10">
+                                    {{ form_start(form_soustype) }}
+                                    <div class="entry input-group col-12">
+                                        {{ form_widget(form_soustype.name) }}
+                                        <span class="input-group-btn">{{ form_widget(form_soustype.save, {'label' : '+'}) }}</span>
                                     </div>
+                                    {{ form_end(form_soustype) }}
                                 </div>
                             </div>
+                        </div>
 
                         <div class="row">
 
@@ -124,13 +121,13 @@
 
                     </div>
                 </div>
-                <button id="create-equipment" type="button" class="btn-add-equipment col-5 ml-5 mt-4 mb-5" >Add equipement</button>
+                <a class="btn-add-equipment col-5 ml-5 mt-4 mb-5" id="create-equipment" type="button">Add equipement</a>
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
                     {{ form_widget(form_equipement.save, {'label' : 'Create Ertms'}) }}
                     {{ form_end(form_equipement) }}
-                    <button type="button" class="btn-cancel-ertms" data-dismiss="modal" id="cancel-ertms">Cancel</button>
+                    <button class="btn-cancel-ertms" data-dismiss="modal" id="cancel-ertms" type="button">Cancel</button>
                 </div>
             </div>
         </div>
@@ -141,46 +138,37 @@
 </div>
 <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
 
-{{ form_end(form) }}
-
+{{ form_end(form_train) }}
 
 
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
-        $(function()
-        {
+        $(function () {
 
-                $(document).on('click', '.btn-add', function(e)
-                {
-                        e.preventDefault();
+            $(document).on('click', '.btn-add', function (e) {
+                e.preventDefault();
 
-                        var controlForm = $('.controls form:first'),
-                            currentEntry = $(this).parents('.entry:first'),
-                            newEntry = $(currentEntry.clone()).appendTo(controlForm);
+                var controlForm = $('.controls form:first'),
+                    currentEntry = $(this).parents('.entry:first'),
+                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
 
 
-                        newEntry.find('input').val('');
-                        controlForm.find('.entry:not(:last) .btn-add')
-                            .removeClass('btn-add').addClass('btn-remove')
-                            .removeClass('btn-success').addClass('btn-danger')
-                            .html('<span>-</span>');
+                newEntry.find('input').val('');
+                controlForm.find('.entry:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
 
-                    }).on('click', '.btn-remove', function(e)
-                {
-                    $(this).parents('.entry:first').remove();
+            }).on('click', '.btn-remove', function (e) {
+                $(this).parents('.entry:first').remove();
 
-                    e.preventDefault();
-                    return false;
-                });
+                e.preventDefault();
+                return false;
+            });
 
 
         });
-        $(function()
-        {
-            $(document).on('click', '.btn-add', function(e)
-            {
+        $(function () {
+            $(document).on('click', '.btn-add', function (e) {
                 e.preventDefault();
 
                 var controlForm = $('.controls-2 form:first'),
@@ -189,12 +177,8 @@
 
                 newEntry.find('input').val('');
 
-                controlForm.find('.entry-2:not(:last) .btn-add')
-                    .removeClass('btn-add').addClass('btn-remove')
-                    .removeClass('btn-success').addClass('btn-danger')
-                    .html('<span>-</span>');
-            }).on('click', '.btn-remove', function(e)
-            {
+                controlForm.find('.entry-2:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
+            }).on('click', '.btn-remove', function (e) {
                 $(this).parents('.entry-2:first').remove();
 
                 e.preventDefault();
@@ -202,160 +186,159 @@
             });
         });
 
-$(document).ready(function() {
+        $(document).ready(function () {
 
-    //Vidage des inputs aux changement de select
-    // $('select[name="trains[projects]"], select[name="trains[trainType]"]').change(function(){
-    //     $('input[name="trains[name]"]').val('');
-    // });
+            // Vidage des inputs aux changement de select
+            // $('select[name="trains[projects]"], select[name="trains[trainType]"]').change(function(){
+            //     $('input[name="trains[name]"]').val('');
+            // });
 
 
-    /*Masquage de certains élement */
-    $('#create-ertms-1').hide();
-    $('#create-ertms-2').hide();
-    $("#create-ertms-train-1").hide();
-    $('#create_soustype').hide();
-    $('#create_type').hide();
-    $('#modal-body').hide();
+            /*Masquage de certains élement */
+            $('#create-ertms-1').hide();
+            $('#create-ertms-2').hide();
+            $("#create-ertms-train-1").hide();
+            $('#create_soustype').hide();
+            $('#create_type').hide();
+            $('#modal-body').hide();
 
-    /*au click de l'add Equipment afficher le formulaire d'ajout d'équipement*/
-    $('#create-equipment').click(function () {
-        $('#modal-body').show();
-        $('#create-equipment').hide();
-    });
-    $('#close-equipement').click(function () {
-        $('#modal-body').hide();
-        $('#create-equipment').show();
-        $('#create_type').hide();
-        $('#create_soustype').hide();
-    })
-
-    /* Créer ertms avec le clique tu premier boutton */
-    $('#create-ertms-1').click(function () {
-        $("#create-ertms-train-1").show();
-
-    })
-
-    $('#btn-create-type').click(function () {
-        $('#create_type').show();
-    })
-    $('#btn-create-soustype').click(function () {
-        $('#create_soustype').show();
-    })
-
-    $('#close-modal').click(function () {
-        $('#modal-body').hide();
-        $('#create-equipment').show();
-    })
-    $('#cancel-ertms').click(function () {
-        $('#modal-body').hide();
-        $('#create-equipment').show();
-    })
-
-    //Traitement du choix du type de train
-    $('#trains_trainType')
-
-        .change(function () {
-
-            let current_choice = "", ertms_left = "", ertms_middle = "", ertms_right= "";
-
-            $("#trains_trainType option:selected").each(function () {
-
-                current_choice += $(this).text() + " ";
-
+            /*au click de l'add Equipment afficher le formulaire d'ajout d'équipement*/
+            $('#create-equipment').click(function () {
+                $('#modal-body').show();
+                $('#create-equipment').hide();
             });
+            $('#close-equipement').click(function () {
+                $('#modal-body').hide();
+                $('#create-equipment').show();
+                $('#create_type').hide();
+                $('#create_soustype').hide();
+            })
 
-            /* traitement dans le choix train */
-            if (current_choice.trim() == 'Train') {
-                $('#select_train').show();
-                $('#select_locomotive').hide();
+            /* Créer ertms avec le clique tu premier boutton */
+            $('#create-ertms-1').click(function () {
+                $("#create-ertms-train-1").show();
 
-                $('#ertms-train-1').click(function () {
-                    //l'ertms de gauche selectionner
-                    $('#ertms-train-1').addClass("selected");
-                    ertms_left = true;
-                    ertms_middle = false;
+            })
 
-                    $('#ertms-train-2').removeClass("selected");
-                    $('#btn-choice-ertms').show();
-                    $('#create-ertms-1').show();
-                    $('#add-ertms').text('add ERTMS left')
+            $('#btn-create-type').click(function () {
+                $('#create_type').show();
+            })
+            $('#btn-create-soustype').click(function () {
+                $('#create_soustype').show();
+            })
 
+            $('#close-modal').click(function () {
+                $('#modal-body').hide();
+                $('#create-equipment').show();
+            })
+            $('#cancel-ertms').click(function () {
+                $('#modal-body').hide();
+                $('#create-equipment').show();
+            })
+
+            // Traitement du choix du type de train
+            $('#trains_trainType').change(function () {
+
+                let current_choice = "",
+                    ertms_left = "",
+                    ertms_middle = "",
+                    ertms_right = "";
+
+                $("#trains_trainType option:selected").each(function () {
+
+                    current_choice += $(this).text() + " ";
 
                 });
-                $('#ertms-train-2').click(function () {
-                    // l'ertms du milieu selectionner
-                    $('#ertms-train-2').addClass("selected");
-                    ertms_left = false;
-                    ertms_right = false;
-                    ertms_middle = true;
 
-                    $('#ertms-train-1').removeClass("selected");
-                    $('#ertms-train-3').removeClass("selected");
-                    $('#btn-choice-ertms').show();
-                    $('#create-ertms-1').show();
-                    $('#create-ertms-2').hide();
-                    $('#add-ertms').text('add ERTMS middle')
+                /* traitement dans le choix train */
+                if (current_choice.trim() == 'Train') {
+                    $('#select_train').show();
+                    $('#select_locomotive').hide();
 
+                    $('#ertms-train-1').click(function () { // l'ertms de gauche selectionner
+                        $('#ertms-train-1').addClass("selected");
+                        ertms_left = true;
+                        ertms_middle = false;
 
-                });
-                $('#ertms-train-3').click(function () {
-                    // l'ertms de droite selectionner
-                    $('#ertms-train-3').addClass("selected");
-                    ertms_right = true;
-                    ertms_middle = false;
-                    if(ertms_left== true && ertms_middle == false){
+                        $('#ertms-train-2').removeClass("selected");
+                        $('#btn-choice-ertms').show();
                         $('#create-ertms-1').show();
-                        $('#create-ertms-2').show();
-                    }else if (ertms_right == true && ertms_left== false){
-                        $('#create-ertms-1').hide();
-                        $('#create-ertms-2').show();
-                    }
-
-                    $('#ertms-train-2').removeClass("selected");
-                    $('#btn-choice-ertms').show();
-
-                    $('#add-ertms').text('add ERTMS right');
+                        $('#add-ertms').text('add ERTMS left')
 
 
-                });
+                    });
+                    $('#ertms-train-2').click(function () { // l'ertms du milieu selectionner
+                        $('#ertms-train-2').addClass("selected");
+                        ertms_left = false;
+                        ertms_right = false;
+                        ertms_middle = true;
+
+                        $('#ertms-train-1').removeClass("selected");
+                        $('#ertms-train-3').removeClass("selected");
+                        $('#btn-choice-ertms').show();
+                        $('#create-ertms-1').show();
+                        $('#create-ertms-2').hide();
+                        $('#add-ertms').text('add ERTMS middle')
 
 
-                $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
+                    });
+                    $('#ertms-train-3').click(function () { // l'ertms de droite selectionner
+                        $('#ertms-train-3').addClass("selected");
+                        ertms_right = true;
+                        ertms_middle = false;
+                        if (ertms_left == true && ertms_middle == false) {
+                            $('#create-ertms-1').show();
+                            $('#create-ertms-2').show();
+                        } else if (ertms_right == true && ertms_left == false) {
+                            $('#create-ertms-1').hide();
+                            $('#create-ertms-2').show();
+                        }
+
+                        $('#ertms-train-2').removeClass("selected");
+                        $('#btn-choice-ertms').show();
+
+                        $('#add-ertms').text('add ERTMS right');
 
 
-            } else if (current_choice.trim() == 'Locomotive') {
-
-                $('#select_locomotive').show();
-                $('#select_train').hide();
-
-                $('#ertms-loco-1').click(function () {
-                    //l'ertms de gauche selectionner
-                    $('#ertms-loco-1').addClass("selected");
-                    $('#ertms-loco-2').removeClass("selected");
-                    $('#btn-choice-ertms').show();
-                    $('#add-ertms').text('add ERTMS left')
-                    $('#create-ertms-1').show();
-
-                });
-                $('#ertms-loco-2').click(function () {
-                    //l'ertms de droite selectionner
-                    $('#ertms-loco-2').addClass("selected");
-                    $('#ertms-loco-1').removeClass("selected");
-                    $('#btn-choice-ertms').show();
-                    $('#add-ertms').text('add ERTMS right')
-                    $('#create-ertms-1').show();
+                    });
 
 
-                });
-                $('#trains_trainType').change(function () {$('#btn-choice-ertms').hide();});
+                    $('#trains_trainType').change(function () {
+                        $('#btn-choice-ertms').hide();
+                    });
 
 
+                } else if (current_choice.trim() == 'Locomotive') {
 
-            }
+                    $('#select_locomotive').show();
+                    $('#select_train').hide();
 
-        }).change();
-})
+                    $('#ertms-loco-1').click(function () { // l'ertms de gauche selectionner
+                        $('#ertms-loco-1').addClass("selected");
+                        $('#ertms-loco-2').removeClass("selected");
+                        $('#btn-choice-ertms').show();
+                        $('#add-ertms').text('add ERTMS left')
+                        $('#create-ertms-1').show();
+
+                    });
+                    $('#ertms-loco-2').click(function () { // l'ertms de droite selectionner
+                        $('#ertms-loco-2').addClass("selected");
+                        $('#ertms-loco-1').removeClass("selected");
+                        $('#btn-choice-ertms').show();
+                        $('#add-ertms').text('add ERTMS right')
+                        $('#create-ertms-1').show();
+
+
+                    });
+                    $('#trains_trainType').change(function () {
+                        $('#btn-choice-ertms').hide();
+                    });
+
+
+                }
+
+            }).change();
+        })
 
         $('#trains_projects').change(function () {
             $('.content-type-train').hide();
@@ -364,6 +347,5 @@ $(document).ready(function() {
 
 
         })
-
     </script>
 {% endblock %}

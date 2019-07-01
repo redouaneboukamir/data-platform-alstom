@@ -4860,6 +4860,12 @@
         <argument key="trainsRepository" type="service" id="App\Repository\TrainsRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.LOBNyNG" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="typeEquipementRepository" type="service" id="App\Repository\TypeEquipementRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.59.A7DW" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4902,10 +4908,11 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.G0fc3r5" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.JlXZQMK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\KeyCloakAuthController::connectAction" type="service" id=".service_locator.no19fnv"/>
+        <argument key="App\Controller\alstomController::addType" type="service" id=".service_locator.LOBNyNG"/>
         <argument key="App\Controller\alstomController::baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController::clients" type="service" id=".service_locator.jNTV7Lm"/>
         <argument key="App\Controller\alstomController::delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
@@ -4936,6 +4943,7 @@
         <argument key="App\Controller\clientController::users" type="service" id=".service_locator.JkextnA"/>
         <argument key="App\Controller\securityController::login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\KeyCloakAuthController:connectAction" type="service" id=".service_locator.no19fnv"/>
+        <argument key="App\Controller\alstomController:addType" type="service" id=".service_locator.LOBNyNG"/>
         <argument key="App\Controller\alstomController:baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController:clients" type="service" id=".service_locator.jNTV7Lm"/>
         <argument key="App\Controller\alstomController:delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
@@ -5355,7 +5363,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.G0fc3r5"/>
+      <argument type="service" id=".service_locator.JlXZQMK"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5723,7 +5731,7 @@
     <service id="KnpU\OAuth2ClientBundle\Client\ClientRegistry" alias="knpu.oauth2.registry" public="false"/>
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.G0fc3r5"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.JlXZQMK"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.tSKDlY7" alias=".1_ServiceLocator~cEpRI.J" public="false"/>

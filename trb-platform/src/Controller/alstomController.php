@@ -48,6 +48,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Services\HttpClientKeycloak;
 use App\Security\KeycloakAuthenticator;
+use App\Repository\TypeEquipementRepository;
 
 class alstomController extends AbstractController
 {
@@ -61,22 +62,21 @@ class alstomController extends AbstractController
     {
 
         $this->em = $em;
-
     }
 
     /**
      * @Route("/alstom", name="alstom.home")
      * @return Response
      */
-//    Vue de la homepage
+    //    Vue de la homepage
     public function index(HttpClientKeycloak $clientKeycloak): Response
     {
 
         $userRoles = $this->getUser()->getRoles();
         $userId = $this->container->get(KEY_SESSION)->get('userId');
-        
+
         // dump($clientKeycloak->getUser($userId));   
-    
+
         dump($userRoles);
 
         return $this->render(('alstom\index.html.twig'), [
@@ -85,12 +85,12 @@ class alstomController extends AbstractController
     }
 
 
-//    PAGE CLIENT -------------------------------------------------------------
+    //    PAGE CLIENT -------------------------------------------------------------
     /**
      * @Route("/alstom/clients", name="alstom.client")
      * @return Response
      */
-//    Vue de tout les client
+    //    Vue de tout les client
     public function clients(ClientsRepository $clientsRepository, Request $request): Response
     {
         $session = new Session();
@@ -124,7 +124,7 @@ class alstomController extends AbstractController
         $form->handleRequest($request);
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->flush();
             $this->addFlash('success', 'Client modified with success');
@@ -139,7 +139,7 @@ class alstomController extends AbstractController
     }
 
 
-//    Page d'ajouts de clients
+    //    Page d'ajouts de clients
     /**
      * @Route("/alstom/create-clients", name="alstom.create-client")
      * @param Request $request
@@ -151,8 +151,8 @@ class alstomController extends AbstractController
         $form = $this->createForm(ClientsType::class, $client);
         $form->handleRequest($request);
 
-//        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        //        Validation du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->persist($client);
             $this->em->flush();
@@ -160,9 +160,9 @@ class alstomController extends AbstractController
             return $this->redirectToRoute('alstom.client');
         }
 
-        return $this->render('alstom/clients/create-client.html.twig',[
+        return $this->render('alstom/clients/create-client.html.twig', [
             'current_menu' => 'client',
-            'button' =>'Create',
+            'button' => 'Create',
             'form' => $form->createView()
         ]);
     }
@@ -180,7 +180,7 @@ class alstomController extends AbstractController
         $form->handleRequest($request);
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->flush();
             $this->addFlash('success', 'Client modified with success');
@@ -189,11 +189,10 @@ class alstomController extends AbstractController
 
         return $this->render('alstom/clients/edit-client.html.twig', [
             'current_menu' => 'client',
-            'button' =>'Edit',
+            'button' => 'Edit',
             'client' => $clients,
             'form' => $form->createView()
         ]);
-
     }
 
 
@@ -205,25 +204,22 @@ class alstomController extends AbstractController
      */
     public function delete_client(Clients $clients, Request $request): Response
     {
-        if($this->isCsrfTokenValid('delete'.$clients->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $clients->getId(), $request->get('_token'))) {
 
             $this->em->remove($clients);
             $this->em->flush();
             $this->addFlash('success', 'Client delete with success');
-
         }
         return $this->redirectToRoute('alstom.client');
-
-
     }
 
-//    PAGE ENGINEER -------------------------------------------------------------
+    //    PAGE ENGINEER -------------------------------------------------------------
 
     /**
      * @Route("/alstom/engineers", name="alstom.engineers")
      * @return Response
      */
-//    Vue de la page engineers
+    //    Vue de la page engineers
     public function engineers(EngineersRepository $engineersRepository, Request $request): Response
     {
         $search = new EnginSearch();
@@ -249,7 +245,7 @@ class alstomController extends AbstractController
             'engineer' => $engineers,
         ]);
     }
-//    page création engineer
+    //    page création engineer
     /**
      * @Route("/alstom/create-engineer", name="alstom.create-engineer")
      * @return Response
@@ -260,22 +256,22 @@ class alstomController extends AbstractController
         $form = $this->createForm(EngineerType::class, $engineer);
         $form->handleRequest($request);
 
-//        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        //        Validation du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($engineer);
             $this->em->flush();
             $this->addFlash('success', 'Engineer create with success');
             return $this->redirectToRoute('alstom.engineers');
         }
 
-        return $this->render('alstom/engineers/create-engineer.html.twig',[
+        return $this->render('alstom/engineers/create-engineer.html.twig', [
             'current_menu' => 'engineers',
-            'button' =>'Create',
+            'button' => 'Create',
             'form' => $form->createView()
         ]);
     }
 
-//    Page d'edit d'ingénieur
+    //    Page d'edit d'ingénieur
     /**
      * @Route("/alstom/edit-engineer/{id}", name="alstom.edit-engineer", methods={"POST", "GET"})
      * @return Response
@@ -286,7 +282,7 @@ class alstomController extends AbstractController
         $form->handleRequest($request);
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->flush();
             $this->addFlash('success', 'Engineer modified with success');
@@ -295,7 +291,7 @@ class alstomController extends AbstractController
 
         return $this->render('alstom/engineers/edit-engineer.html.twig', [
             'current_menu' => 'engineers',
-            'button' =>'Edit',
+            'button' => 'Edit',
             'engineer' => $engineers,
             'form' => $form->createView()
         ]);
@@ -309,16 +305,13 @@ class alstomController extends AbstractController
     public function delete_engineer(Engineers $engineers, Request $request): Response
     {
 
-        if($this->isCsrfTokenValid('delete'.$engineers->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $engineers->getId(), $request->get('_token'))) {
 
             $this->em->remove($engineers);
             $this->em->flush();
             $this->addFlash('success', 'Engineer delete with success');
-
         }
         return $this->redirectToRoute('alstom.engineers');
-
-
     }
 
 
@@ -327,7 +320,7 @@ class alstomController extends AbstractController
      * @Route("/alstom/projects", name="alstom.projects")
      * @return Response
      */
-//    Vue de la page projects
+    //    Vue de la page projects
     public function projects(ProjectsRepository $projectsRepository, Request $request): Response
     {
         $search = new ProjectSearch();
@@ -336,11 +329,10 @@ class alstomController extends AbstractController
 
         $project = $projectsRepository->findAllProjects($search);
 
-        foreach ($project as $item){
+        foreach ($project as $item) {
             $item->setNumberTrains(count($item->getTrains()));
             $this->em->persist($item);
             $this->em->flush();
-
         }
 
         return $this->render(('alstom/projects/projects.html.twig'), [
@@ -354,7 +346,8 @@ class alstomController extends AbstractController
      * @Route("/alstom/project/{id}", name="alstom.project-show")
      * @return Response
      */
-    public function show_project(Projects $projects){
+    public function show_project(Projects $projects)
+    {
 
         return $this->render('alstom/projects/show-project.html.twig', [
             'current_menu' => 'projects',
@@ -374,8 +367,8 @@ class alstomController extends AbstractController
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
-//        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        //        Validation du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
             $project->getAvailable(true);
             $this->em->persist($project);
             $this->em->flush();
@@ -383,9 +376,9 @@ class alstomController extends AbstractController
             return $this->redirectToRoute('alstom.projects');
         }
 
-        return $this->render('alstom/projects/create-project.html.twig',[
+        return $this->render('alstom/projects/create-project.html.twig', [
             'current_menu' => 'projects',
-            'button' =>'Create',
+            'button' => 'Create',
             'form' => $form->createView()
         ]);
     }
@@ -402,7 +395,7 @@ class alstomController extends AbstractController
         $form->handleRequest($request);
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->flush();
             $this->addFlash('success', 'Project edit with success');
@@ -411,7 +404,7 @@ class alstomController extends AbstractController
 
         return $this->render('alstom/projects/edit-project.html.twig', [
             'current_menu' => 'projects',
-            'button' =>'Edit',
+            'button' => 'Edit',
             'project' => $projects,
             'form' => $form->createView()
         ]);
@@ -424,18 +417,16 @@ class alstomController extends AbstractController
      */
     public function delete_project(Projects $projects, Request $request): Response
     {
-        if($this->isCsrfTokenValid('delete'.$projects->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $projects->getId(), $request->get('_token'))) {
 
             $projects->setAvailable(false);
             $this->em->flush();
             $this->addFlash('success', 'Project delete with success');
-
         }
         return $this->redirectToRoute('alstom.projects');
-
     }
 
-// Page TRAINS ---------------------------------------------
+    // Page TRAINS ---------------------------------------------
     /**
      * @Route("/alstom/trains", name="alstom.trains")
      * @return Response
@@ -461,9 +452,21 @@ class alstomController extends AbstractController
      */
     public function create_train(Request $request): Response
     {
+        //formulaire du train
         $train = new Trains();
-        $form = $this->createForm(TrainsType::class, $train);
-        $form->handleRequest($request);
+        $form_train = $this->createForm(TrainsType::class, $train);
+        $form_train->handleRequest($request);
+
+        //formulaire ertms comprenant tout le reste des formulaire ci dessous
+        $ertms = new ERTMSEquipement();
+        $form_ertms = $this->createForm(ErtmsType::class, $ertms);
+        $form_ertms->handleRequest($request);
+        $train->addERTM($ertms);
+
+
+        $equipement = new Equipement();
+        $form_equipt = $this->createForm(EquipementType::class, $equipement);
+        $form_equipt->handleRequest($request);
 
         $type = new TypeEquipement();
         $form_type = $this->createForm(TypeEquipementType::class, $type);
@@ -474,32 +477,19 @@ class alstomController extends AbstractController
         $form_soustype->handleRequest($request);
 
 
-        $ertms = new ERTMSEquipement();
-        $form_ertms = $this->createForm(ErtmsType::class, $ertms);
-        $form_ertms->handleRequest($request);
-        $train->addERTM($ertms);
-        dump($train->getERTMS());
-/*        if($form_ertms->get('save')->isClicked()){
-            $this->em->persist($ertms);
-        }*/
-        $equipement = new Equipement();
-        $form_equipt = $this->createForm(EquipementType::class, $equipement);
-        $form_equipt->handleRequest($request);
-
         $assoc_ertms = new AssociationEquiptERTMS();
-/*        $form_assoc_ertms = $this->createForm(AssociationERTMSType::class, $assoc_ertms);
+        /*      $form_assoc_ertms = $this->createForm(AssociationERTMSType::class, $assoc_ertms);
         $form_assoc_ertms->handleRequest($request);*/
 
         $assoc_ertms->setSolution($ertms);
         $assoc_ertms->addEquipement($equipement);
 
-
-        dump($form_ertms->getData());
+        dump($form_type->getData());
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form_train->isSubmitted() && $form_train->isValid()) {
 
-/*            $assoc_ertms->setSolution($form_ertms->getData());*/
+            /*          $assoc_ertms->setSolution($form_ertms->getData());*/
             $this->em->persist($train);
             $this->em->persist($ertms);
             $this->em->persist($type);
@@ -509,20 +499,36 @@ class alstomController extends AbstractController
             return $this->redirectToRoute('alstom.trains');
         }
 
-        return $this->render('alstom/trains/create-trains.html.twig', [
-            'current_menu' => 'trains',
-            'button' => 'Create',
-            'form' => $form->createView(),
-            'form_ertms' => $form_ertms->createView(),
-            'form_equipement' => $form_equipt->createView(),
-            'form_type' => $form_type->createView(),
-            'form_soustype' => $form_soustype->createView()
-        ]);
 
-
-
+        return $this
+            ->render('alstom/trains/create-trains.html.twig', [
+                'current_menu' => 'trains',
+                'button' => 'Create',
+                'form_train' => $form_train->createView(),
+                'form_ertms' => $form_ertms->createView(),
+                'form_equipement' => $form_equipt->createView(),
+                'form_type' => $form_type->createView(),
+                'form_soustype' => $form_soustype->createView()
+            ]);
     }
 
+    /**
+     * @Route("alstom/addType", name="alstom.addType")
+     * @return Response
+     */
+    public function addType(Request $request, TypeEquipementRepository $typeEquipementRepository): Response
+    {
+
+
+        // foreach ($typeEquipementRepository as $typeEquipment) {
+        //     if ($type != $typeEquipment) {
+
+        //      };
+        // };
+
+
+        return $this->json(['code' => 200, 'messsage' => "on y arrive!"], 200);
+    }
 
     /**
      * @Route("/alstom/edit-train/{id}", name="alstom.edit-train", methods={"POST","GET"})
@@ -535,9 +541,8 @@ class alstomController extends AbstractController
 
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->em->persist();
             $this->em->flush();
             $this->addFlash('success', 'Trains modified with success');
             return $this->redirectToRoute('alstom.trains');
@@ -545,7 +550,7 @@ class alstomController extends AbstractController
 
         return $this->render('alstom/trains/edit-train.html.twig', [
             'current_menu' => 'trains',
-            'button' =>'Edit',
+            'button' => 'Edit',
             'train' => $trains,
             'form' => $form->createView(),
         ]);
@@ -570,21 +575,18 @@ class alstomController extends AbstractController
      */
     public function delete_train(Trains $trains, Request $request): Response
     {
-        if($this->isCsrfTokenValid('delete'.$trains->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $trains->getId(), $request->get('_token'))) {
 
             $this->em->remove($trains);
             $this->em->flush();
             $this->addFlash('success', 'Train delete with success');
-
         }
         return $this->redirectToRoute('alstom.trains');
-
-
     }
 
 
-//    EVC-----------------------------------------------------------
-//
+    //    EVC-----------------------------------------------------------
+    //
 
 
     /**
@@ -595,16 +597,16 @@ class alstomController extends AbstractController
     public function evc(EVCRepository $EVCRepository, Request $request): Response
     {
 
-//        $search = new TrainsSearch();
-//        $form = $this->createForm(TrainsSearchType::class, $search);
-//        $form->handleRequest($request);
-//        $trains = $trainsRepository->findAllTrains($search);
+        //        $search = new TrainsSearch();
+        //        $form = $this->createForm(TrainsSearchType::class, $search);
+        //        $form->handleRequest($request);
+        //        $trains = $trainsRepository->findAllTrains($search);
         $evcs = $EVCRepository->findAll();
 
         return $this->render('alstom/evc/evc.html.twig', [
             'current_menu' => 'EVC',
             'evcs' => $evcs,
-//            'form' => $form->createView()
+            //            'form' => $form->createView()
         ]);
     }
 
@@ -622,7 +624,7 @@ class alstomController extends AbstractController
 
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->persist($evc);
             $this->em->flush();
@@ -634,7 +636,6 @@ class alstomController extends AbstractController
             'button' => 'Create',
             'form' => $form->createView(),
         ]);
-
     }
 
 
@@ -646,70 +647,63 @@ class alstomController extends AbstractController
      */
     public function delete_evc(EVC $EVC, Request $request): Response
     {
-        if($this->isCsrfTokenValid('delete'.$EVC->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $EVC->getId(), $request->get('_token'))) {
 
             $this->em->remove($EVC);
             $this->em->flush();
             $this->addFlash('success', 'EVC delete with success');
-
         }
         return $this->redirectToRoute('alstom.evc');
-
-
     }
 
 
-//    PART ASSOCIATION ---------------------------------------------------------
+    //    PART ASSOCIATION ---------------------------------------------------------
     /**
      * @Route("/alstom/maintener/association", name="alstom.association")
      * @param Request $request
      * @return Response
      */
-        public function association(Request $request):Response
-        {
-            $Association = new AssociationBaseline();
-            $form =  $this->createForm(AssociationType::class, $Association);
+    public function association(Request $request): Response
+    {
+        $Association = new AssociationBaseline();
+        $form =  $this->createForm(AssociationType::class, $Association);
 
-            $form->handleRequest($request);
-            dump($Association);
+        $form->handleRequest($request);
+        dump($Association);
 
+        //        Validation du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            //        Validation du formulaire
-            if($form->isSubmitted() && $form->isValid()){
-
-                $this->em->persist($Association);
-                $this->em->flush();
-                $this->addFlash('success', 'Association create with success');
-                return $this->redirectToRoute('alstom.association');
-            }
-
-
-
-            return $this->render('alstom/association/association.html.twig', [
-                'current_menu' => 'association',
-                'form' => $form->createView(),
-                'button' => 'Associate'
-            ]);
+            $this->em->persist($Association);
+            $this->em->flush();
+            $this->addFlash('success', 'Association create with success');
+            return $this->redirectToRoute('alstom.association');
         }
-// PAGE BASELINE-------------------------------------------------------
+
+        return $this->render('alstom/association/association.html.twig', [
+            'current_menu' => 'association',
+            'form' => $form->createView(),
+            'button' => 'Associate'
+        ]);
+    }
+    // PAGE BASELINE-------------------------------------------------------
     /**
      * @Route("/alstom/design/baseline", name="alstom.baseline")
      * @param Request $request
      * @return Response
      */
-    public function baseline(Request $request, BaselineRepository $baselineRepository):Response
+    public function baseline(Request $request, BaselineRepository $baselineRepository): Response
     {
         //        $search = new TrainsSearch();
-//        $form = $this->createForm(TrainsSearchType::class, $search);
-//        $form->handleRequest($request);
-//        $trains = $trainsRepository->findAllTrains($search);
-
+        //        $form = $this->createForm(TrainsSearchType::class, $search);
+        //        $form->handleRequest($request);
+        //        $trains = $trainsRepository->findAllTrains($search);
         $baseline = $baselineRepository->findAll();
 
         return $this->render('alstom/baseline/baseline.html.twig', [
             'current_menu' => 'baseline',
             'baselines' => $baseline,
-//            'form' => $form->createView()
+            //            'form' => $form->createView()
         ]);
     }
 
@@ -723,9 +717,8 @@ class alstomController extends AbstractController
         $form = $this->createForm(BaselineType::class, $baseline);
         $form->handleRequest($request);
 
-
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->persist($baseline);
             $this->em->flush();
@@ -738,7 +731,6 @@ class alstomController extends AbstractController
             'button' => 'Create',
             'form' => $form->createView(),
         ]);
-
     }
 
     //    suppresion de baseline
@@ -749,17 +741,12 @@ class alstomController extends AbstractController
      */
     public function delete_baseline(Baseline $baseline, Request $request): Response
     {
-        if($this->isCsrfTokenValid('delete'.$baseline->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $baseline->getId(), $request->get('_token'))) {
 
             $this->em->remove($baseline);
             $this->em->flush();
             $this->addFlash('success', 'Baseline delete with success');
-
         }
         return $this->redirectToRoute('alstom.baseline');
-
-
     }
-
-
 }

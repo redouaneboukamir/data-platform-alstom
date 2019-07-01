@@ -38,6 +38,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/alstom/create-project' => [[['_route' => 'alstom.create-project', '_controller' => 'App\\Controller\\alstomController::create_project'], null, null, null, false, false, null]],
             '/alstom/trains' => [[['_route' => 'alstom.trains', '_controller' => 'App\\Controller\\alstomController::trains'], null, null, null, false, false, null]],
             '/alstom/create-train' => [[['_route' => 'alstom.create-train', '_controller' => 'App\\Controller\\alstomController::create_train'], null, null, null, false, false, null]],
+            '/alstom/addType' => [[['_route' => 'alstom.addType', '_controller' => 'App\\Controller\\alstomController::addType'], null, null, null, false, false, null]],
             '/alstom/evc' => [[['_route' => 'alstom.evc', '_controller' => 'App\\Controller\\alstomController::evc'], null, null, null, false, false, null]],
             '/alstom/create-evc' => [[['_route' => 'alstom.create-evc', '_controller' => 'App\\Controller\\alstomController::create_evc'], null, null, null, false, false, null]],
             '/alstom/maintener/association' => [[['_route' => 'alstom.association', '_controller' => 'App\\Controller\\alstomController::association'], null, null, null, false, false, null]],

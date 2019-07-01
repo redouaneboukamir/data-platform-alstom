@@ -14,16 +14,10 @@ class ErtmsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name_configuration', null,[
-                'attr' => [
-                    'label' => "test",
-                    ]
-            ])
-/*            ->add('save', SubmitType::class, [
+            ->add('name_configuration', null, [])
+            /*            ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary']
-            ])*/
-
-        ;
+            ])*/;
     }
 
     public function configureOptions(OptionsResolver $resolver)

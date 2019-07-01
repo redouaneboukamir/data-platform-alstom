@@ -73,7 +73,7 @@ class __TwigTemplate_9afb7a2201007aa89df2a36495feccaceb1efa76f412fcb883e652eba48
                     <div class=\"jumbotron content-form-engineer\">
                         ";
         // line 8
-        echo twig_include($this->env, $context, "alstom/trains/_form-train.html.twig", ["form" => (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 8, $this->source); })()), "button" => "Create"]);
+        echo twig_include($this->env, $context, "alstom/trains/_form-train.html.twig", ["form" => (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 8, $this->source); })()), "button" => "Create"]);
         echo "
                     </div>
 
@@ -136,7 +136,7 @@ class __TwigTemplate_9afb7a2201007aa89df2a36495feccaceb1efa76f412fcb883e652eba48
                         <h1>Add train</h1>
                     </div>
                     <div class=\"jumbotron content-form-engineer\">
-                        {{ include ('alstom/trains/_form-train.html.twig', {form: form, button:'Create'}) }}
+                        {{ include ('alstom/trains/_form-train.html.twig', {form: form_train, button:'Create'}) }}
                     </div>
 
                     </div>

@@ -78,6 +78,7 @@ class AssociationEquiptERTMS
     public function removeEquipement(Equipement $equipement): self
     {
         if ($this->equipements->contains($equipement)) {
+
             $this->equipements->removeElement($equipement);
             // set the owning side to null (unless already changed)
             if ($equipement->getAssociationEquiptERTMS() === $this) {
@@ -87,8 +88,8 @@ class AssociationEquiptERTMS
 
         return $this;
     }
-//
-//
+    
+
 //    public function setEquipement(?Equipement $equipement): self
 //    {
 //        $this->equipement = $equipement;
