@@ -14,16 +14,16 @@ class TypeEquipementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name' , null, [
-                'label' => false ,
+            ->add('name', null, [
+                'label' => false,
                 'attr' => [
                     'class' => '',
                     'placeholder' => 'add type'
                 ]
             ])
-            ->add('save', ButtonType::class, [
-                'attr' => ['class' => 'btn-success btn-add']
-            ])
+            // ->add('save', ButtonType::class, [
+            //     'attr' => ['class' => 'btn-success btn-add']
+            // ])
         ;
     }
 

@@ -29,9 +29,9 @@ class EquipementType extends AbstractType
             ->add('DTR_board')
             ->add('Indice_DTR')
             ->add('Num_serie')
-            ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'btn-create-ertms']
-            ])
+            // ->add('save', SubmitType::class, [
+            //     'attr' => ['class' => 'btn-create-ertms']
+            // ])
         ;
     }
 

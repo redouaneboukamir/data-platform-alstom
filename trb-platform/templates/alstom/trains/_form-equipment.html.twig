@@ -1,0 +1,96 @@
+<div class="content-form-equipment row col-12" id="content-form-equipment">
+    <div class="col-md-12">
+        <h4>Equipments
+        </h4>
+        {% for equipment in equipments %}
+            <h5>{{equipment.type}}</h5>
+            <h6>{{equipment.sousType}}</h6>
+            <div>
+                <p>{{equipment.DTRBoard}}</p>
+
+                <p>{{equipment.IndiceDTR}}</p>
+
+                <p>{{equipment.NumSerie}}</p>
+            </div>
+
+        {% endfor %}
+        <div class="form-equipment" id="formulaire-equipment">
+            {{ form_start(form_equipement) }}
+            <div class="type-equipement row">
+                <div class="col-md-10">
+                    {{ form_row(form_equipement.Type) }}
+                </div>
+                <div class="col-md-2" id="btn-create-type">
+                    <p class="btn-create-type">+</p>
+                </div>
+            </div>
+            <div class="type-equipement row">
+                <div class="col-md-10">
+                    {{ form_row(form_equipement.Sous_type) }}
+                </div>
+                <div class="col-md-2" id="btn-create-sousType">
+                    <p class="btn-create-type">+</p>
+                </div>
+            </div>
+
+
+            {{form_end(form_equipement)}}
+            <button class="btn btn-primary">Add</button>
+        </div>
+        <div class=" mt-4">
+
+            <a class="btn-add-equipment col-5 ml-5 mb-5" id="create-equipment">Add equipement</a>
+        </div>
+        <div class="mt-5">
+            <a class="btn-previous-equipment col-5 ml-5 " id="previous-equipment">Previous</a>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        let previous = "";
+
+        $('#formulaire-equipment').hide();
+        $('#content-form-equipment').hide();
+        /*au click de l'add Equipment afficher le formulaire d'ajout d'équipement*/
+        $('#create-equipment').click(function () { // $('#modal-body').show();
+            $('#formulaire-equipment').show();
+            $('#create-equipment').hide();
+            previous = "equipment";
+
+        });
+        $("#previous-equipment").click(function () {
+
+            if (previous == "equipment") {
+                $('#formulaire-equipment').hide();
+                $('#create-equipment').show();
+                previous = "add-equipment";
+            } else if (previous == "add-equipment") {
+                $('#content-form-equipment').hide();
+                $("#content-form-ertms").show();
+            }
+        })
+        $('#close-equipement').click(function () {
+            $('#modal-body').hide();
+            $('#create-equipment').show();
+            $('#create_type').hide();
+            $('#create_soustype').hide();
+        })
+
+        $('#create-ertms-1').click(function () {})
+
+        $('#btn-create-type').click(function () {
+            $('#create_type').show();
+        })
+        $('#btn-create-soustype').click(function () {
+            $('#create_soustype').show();
+        })
+        $('#valid-equipment').click(function () {})
+    </script>
+{% endblock %}

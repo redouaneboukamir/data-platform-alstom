@@ -49,6 +49,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Services\HttpClientKeycloak;
 use App\Security\KeycloakAuthenticator;
 use App\Repository\TypeEquipementRepository;
+use App\Repository\EquipementRepository;
 
 class alstomController extends AbstractController
 {
@@ -450,8 +451,9 @@ class alstomController extends AbstractController
      * @Route("/alstom/create-train", name="alstom.create-train")
      * @return Response
      */
-    public function create_train(Request $request): Response
+    public function create_train(Request $request, EquipementRepository $equipementRepository): Response
     {
+        $equipments = $equipementRepository->findAll();
         //formulaire du train
         $train = new Trains();
         $form_train = $this->createForm(TrainsType::class, $train);
@@ -461,40 +463,43 @@ class alstomController extends AbstractController
         $ertms = new ERTMSEquipement();
         $form_ertms = $this->createForm(ErtmsType::class, $ertms);
         $form_ertms->handleRequest($request);
-        $train->addERTM($ertms);
-
 
         $equipement = new Equipement();
         $form_equipt = $this->createForm(EquipementType::class, $equipement);
         $form_equipt->handleRequest($request);
 
-        $type = new TypeEquipement();
-        $form_type = $this->createForm(TypeEquipementType::class, $type);
-        $form_type->handleRequest($request);
 
-        $soustype = new SoustypeEquipement();
-        $form_soustype = $this->createForm(SousTypeEquipementType::class, $soustype);
-        $form_soustype->handleRequest($request);
+        // $type = new TypeEquipement();
+        // $form_type = $this->createForm(TypeEquipementType::class, $type);
+        // $form_type->handleRequest($request);
 
 
-        $assoc_ertms = new AssociationEquiptERTMS();
-        /*      $form_assoc_ertms = $this->createForm(AssociationERTMSType::class, $assoc_ertms);
-        $form_assoc_ertms->handleRequest($request);*/
+        // $soustype = new SoustypeEquipement();
+        // $form_soustype = $this->createForm(SousTypeEquipementType::class, $soustype);
+        // $form_soustype->handleRequest($request);
 
-        $assoc_ertms->setSolution($ertms);
-        $assoc_ertms->addEquipement($equipement);
 
-        dump($form_type->getData());
+        // $assoc_ertms = new AssociationEquiptERTMS();
+        // /*      $form_assoc_ertms = $this->createForm(AssociationERTMSType::class, $assoc_ertms);
+        // $form_assoc_ertms->handleRequest($request);*/
+
+        // $assoc_ertms->setSolution($ertms);
+        // $assoc_ertms->addEquipement($equipement);
+
+        // dump($form_type->getData());
+        // $type_data = $form_type->getData();
 
         //        Validation du formulaire
-        if ($form_train->isSubmitted() && $form_train->isValid()) {
+        if ($form_train->isSubmitted()) {
 
             /*          $assoc_ertms->setSolution($form_ertms->getData());*/
             $this->em->persist($train);
             $this->em->persist($ertms);
-            $this->em->persist($type);
-            $this->em->persist($soustype);
+            $this->em->persist($equipement);
+            // $this->em->persist($type);
+            // $this->em->persist($soustype);
             $this->em->flush();
+
             $this->addFlash('success', 'Train create with success');
             return $this->redirectToRoute('alstom.trains');
         }
@@ -507,27 +512,29 @@ class alstomController extends AbstractController
                 'form_train' => $form_train->createView(),
                 'form_ertms' => $form_ertms->createView(),
                 'form_equipement' => $form_equipt->createView(),
-                'form_type' => $form_type->createView(),
-                'form_soustype' => $form_soustype->createView()
+                'equipments' => $equipments,
+                // 'form_type' => $form_type->createView(),
+                // 'type_data' => $type_data,
+                // 'form_soustype' => $form_soustype->createView()
             ]);
     }
 
     /**
-     * @Route("alstom/addType", name="alstom.addType")
+     * @Route("alstom/addErtms", name="alstom.addErtms")
      * @return Response
      */
-    public function addType(Request $request, TypeEquipementRepository $typeEquipementRepository): Response
+    public function addErtms(Request $request, $train, TrainsRepository $trainsRepository): Response
     {
+        $test = $trainsRepository->find($train);
+        // $this->em->persist($type);
+        // $this->em->flush();
 
+        return $this->json([
+            'code' => 200,
+            'messsage' => "type ajouté",
+            'train' => $test->getName()
 
-        // foreach ($typeEquipementRepository as $typeEquipment) {
-        //     if ($type != $typeEquipment) {
-
-        //      };
-        // };
-
-
-        return $this->json(['code' => 200, 'messsage' => "on y arrive!"], 200);
+        ], 200);
     }
 
     /**
@@ -536,12 +543,12 @@ class alstomController extends AbstractController
      */
     public function edit_train(Request $request, Trains $trains)
     {
-        $form = $this->createForm(TrainsType::class, $trains);
-        $form->handleRequest($request);
+        $form_train = $this->createForm(TrainsType::class, $trains);
+        $form_train->handleRequest($request);
 
 
         //        Validation du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form_train->isSubmitted() && $form_train->isValid()) {
 
             $this->em->flush();
             $this->addFlash('success', 'Trains modified with success');
@@ -552,7 +559,7 @@ class alstomController extends AbstractController
             'current_menu' => 'trains',
             'button' => 'Edit',
             'train' => $trains,
-            'form' => $form->createView(),
+            'form_train' => $form_train->createView(),
         ]);
     }
 

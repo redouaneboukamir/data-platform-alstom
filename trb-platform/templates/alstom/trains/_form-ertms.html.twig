@@ -1,0 +1,28 @@
+{{ form_start(form_ertms) }}
+<div class="content-form-ertms-name row col-12" id="content-form-ertms">
+    <div class="col-md-12">
+        <p class="heading lead position-ertms" id="add-ertms"></p>
+        {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS Equipment'}) }}
+
+        {# <a href="{{path('alstom.addErtms') }}"> #}
+        <a class="btn-valid-ertms" id="valid-ertms-name">OK</a>
+        {# </a> #}
+
+    </div>
+</div>
+{{ form_end(form_ertms) }}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+
+        $('#valid-ertms-name').click(function () {
+            $("#content-form-ertms").hide();
+            $('#content-form-equipment').show();
+            previous = "add-equipment";
+
+        })
+    </script>
+{% endblock %}

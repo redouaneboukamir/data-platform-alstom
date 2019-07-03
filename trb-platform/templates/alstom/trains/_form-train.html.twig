@@ -31,118 +31,34 @@
 
     <div class="col-md-10 mt-4" id="btn-choice-ertms">
         <div class="content-btn-train col-12">
+            <a href=""></a>
             <button class="btn btn-secondary" data-target="#modalPoll-1" data-toggle="modal" id="create-ertms-1" type="button">Add ERTMS</button>
             <button class="btn btn-secondary" data-target="#modalPoll-1" data-toggle="modal" id="create-ertms-2" type="button">Add ERTMS</button>
         </div>
     </div>
+    <div class="name-ertms">
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade right" data-backdrop="false" id="modalPoll-1" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-full-height modal-right modal-notify modal-info">
 
-
-    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade right" data-backdrop="false" id="modalPoll-1" role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info">
-            <div
-                class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                    <p class="heading lead" id="add-ertms"></p>
+                <div class="modal-content">
                     <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal" type="button">
-                        <span aria-hidden="true" class="white-text">×</span>
+                        <span aria-hidden="true" class="white-text close-name-ertms">×</span>
                     </button>
-                </div>
-                <!--Body-->
-                <div class="modal-body" id="modal-body">
-                    <button aria-label="Close" class="close" data-dismiss="modal-body" id="close-equipement" type="button">
-                        <span aria-hidden="true" class="white-text" style="color:red">×</span>
-                    </button>
-                    <div class="col-md-12 mt-4 modal-ertms" id="create-ertms-train-1">
-                        <div
-                            class="name-ertms">{# {{ form_start(form_ertms) }}
-                                                                                        <div class="content-form-ertms-name row">
-                                                                                            <div class="col-md-12">
-                                                                                                {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS Equipment'}) }                                    </div>
-                                                                                        </div>
-                                                                                        {{ form_end(form_ertms) }} #}
-
-                        </div>
-                        {{ form_start(form_equipement) }}
-
-                        <div class="type-equipement row">
-                            <div class="col-md-10">
-                                {{ form_row(form_equipement.Type) }}
-                            </div>
-
-                            <div class="col-md-2" id="btn-create-type">
-                                <p class="btn-create-type">+</p>
-                            </div>
-
-                            <div class="col-md-12 row" id="create_type">
-                                <div class="controls-2 row col-md-10">
-                                    {{ form_start(form_type) }}
-                                    <div class="entry-2 input-group col-12">
-                                        {{ form_widget(form_type.name) }}
-                                        <a href="{{ path('alstom.addType') }}" class="input-group-btn-">{{ form_widget(form_type.save, {'label' : '+'}) }}</a>
-                                    </div>
-                                    {{ form_end(form_type) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="type-equipement row">
-                            <div class="col-md-10">
-                                {{ form_row(form_equipement.Sous_type) }}
-                            </div>
-
-                            <div class="col-md-2" id="btn-create-soustype">
-                                <p class=" btn-create-type">+</p>
-                            </div>
-
-                            <div class="col-md-12 row" id="create_soustype">
-                                <div class="controls row col-md-10">
-                                    {{ form_start(form_soustype) }}
-                                    <div class="entry input-group col-12">
-                                        {{ form_widget(form_soustype.name) }}
-                                        <span class="input-group-btn">{{ form_widget(form_soustype.save, {'label' : '+'}) }}</span>
-                                    </div>
-                                    {{ form_end(form_soustype) }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                {{ form_row(form_equipement.DTR_board) }}
-                            </div>
-                            <div class="col-md-12">
-                                {{ form_row(form_equipement.Indice_DTR) }}
-                            </div>
-                            <div class="col-md-12">
-                                {{ form_row(form_equipement.Num_serie) }}
-                            </div>
-                        </div>
-
+                    <!--Header-->
+                    <div class="modal-header">
+                        {% include('alstom/trains/_form-ertms.html.twig') %}
+                        {% include('alstom/trains/_form-equipment.html.twig') %}
                     </div>
-                </div>
-                <a class="btn-add-equipment col-5 ml-5 mt-4 mb-5" id="create-equipment" type="button">Add equipement</a>
 
-                <!--Footer-->
-                <div class="modal-footer justify-content-center">
-                    {{ form_widget(form_equipement.save, {'label' : 'Create Ertms'}) }}
-                    {{ form_end(form_equipement) }}
-                    <button class="btn-cancel-ertms" data-dismiss="modal" id="cancel-ertms" type="button">Cancel</button>
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal: modalPoll -->
-
-
 </div>
-<button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
-
 {{ form_end(form_train) }}
-
-
+<button class="btn btn-primary mt-4" type="submit">{{ button|default('Send') }}</button>
 {% block javascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
         $(function () {
@@ -202,35 +118,20 @@
             $('#create_type').hide();
             $('#modal-body').hide();
 
-            /*au click de l'add Equipment afficher le formulaire d'ajout d'équipement*/
-            $('#create-equipment').click(function () {
-                $('#modal-body').show();
-                $('#create-equipment').hide();
-            });
-            $('#close-equipement').click(function () {
-                $('#modal-body').hide();
-                $('#create-equipment').show();
-                $('#create_type').hide();
-                $('#create_soustype').hide();
-            })
 
             /* Créer ertms avec le clique tu premier boutton */
-            $('#create-ertms-1').click(function () {
-                $("#create-ertms-train-1").show();
 
-            })
-
-            $('#btn-create-type').click(function () {
-                $('#create_type').show();
-            })
-            $('#btn-create-soustype').click(function () {
-                $('#create_soustype').show();
-            })
 
             $('#close-modal').click(function () {
                 $('#modal-body').hide();
                 $('#create-equipment').show();
+                $('#content-form-ertms').show();
+                $('#content-form-equipment').hide();
+                $('#formulaire-equipment').hide();
+
+
             })
+
             $('#cancel-ertms').click(function () {
                 $('#modal-body').hide();
                 $('#create-equipment').show();
@@ -250,6 +151,7 @@
 
                 });
 
+
                 /* traitement dans le choix train */
                 if (current_choice.trim() == 'Train') {
                     $('#select_train').show();
@@ -263,7 +165,7 @@
                         $('#ertms-train-2').removeClass("selected");
                         $('#btn-choice-ertms').show();
                         $('#create-ertms-1').show();
-                        $('#add-ertms').text('add ERTMS left')
+                        $('#add-ertms').text(' left')
 
 
                     });
@@ -278,7 +180,7 @@
                         $('#btn-choice-ertms').show();
                         $('#create-ertms-1').show();
                         $('#create-ertms-2').hide();
-                        $('#add-ertms').text('add ERTMS middle')
+                        $('#add-ertms').text('middle')
 
 
                     });
@@ -297,7 +199,7 @@
                         $('#ertms-train-2').removeClass("selected");
                         $('#btn-choice-ertms').show();
 
-                        $('#add-ertms').text('add ERTMS right');
+                        $('#add-ertms').text('right');
 
 
                     });
@@ -317,7 +219,7 @@
                         $('#ertms-loco-1').addClass("selected");
                         $('#ertms-loco-2').removeClass("selected");
                         $('#btn-choice-ertms').show();
-                        $('#add-ertms').text('add ERTMS left')
+                        $('#add-ertms').text('left')
                         $('#create-ertms-1').show();
 
                     });
@@ -325,7 +227,7 @@
                         $('#ertms-loco-2').addClass("selected");
                         $('#ertms-loco-1').removeClass("selected");
                         $('#btn-choice-ertms').show();
-                        $('#add-ertms').text('add ERTMS right')
+                        $('#add-ertms').text('right')
                         $('#create-ertms-1').show();
 
 
