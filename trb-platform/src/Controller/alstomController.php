@@ -479,13 +479,17 @@ class alstomController extends AbstractController
 
         if (isset($_POST['soumission_train'])) {
 
+            $ertms->setNameConfiguration('test');
+            dump($form_train->getData());
+            // $train->setPositionERTMS();
             $train->addERTM($ertms);
             $ertms->setTrains($train);
-            $this->em->persist($assoc_ertms);
-            $this->em->persist($equipement);
+            // $this->em->persist($assoc_ertms);
+            // $this->em->persist($equipement);
             $this->em->persist($ertms);
             $this->em->persist($train);
-            $this->em->flush();
+            // $this->em->flush();
+
         } else if (isset($_POST['soumission_ertms'])) {
 
             $ertms->setNameConfiguration($form_ertms->getData()->getNameConfiguration());
@@ -546,26 +550,24 @@ class alstomController extends AbstractController
 
         return $this->json([
             'code' => 200,
-            'messsage' => "ertms ajouté",
+            'messsage' => "train ",
             'trains' => $trains_name,
             'trains_projects' => $trains_projects,
             'trains_type' => $trains_type
         ], 200);
     }
     /**
-     * @Route("alstom/addErtms", name="alstom.addErtms", methods={"POST"})
+     * @Route("alstom/addErtms", name="alstom.addErtms")
      * @return Response
      */
     public function addErtms(Request $request): Response
     {
-        $ertms = $request->get('ertms[name_configuration]');
+
         // $this->em->persist($type);
         // $this->em->flush();
 
         return $this->json([
-            'code' => 200,
-            'messsage' => "ertms ajouté",
-            'ertms' => $ertms
+            'code' => 200
         ], 200);
     }
     /**

@@ -1,19 +1,13 @@
-{{ form_start(form_ertms,{
-    'attr': {
-        'class' : 'form_ertms js-new-rep-log-form'
-    }
-}, {'action': path('alstom.create-train'), 'method': 'POST'}) }}
+{{ form_start(form_ertms, {'action': path('alstom.addErtms'), 'method': 'POST'}) }}
 
 <div class="content-form-ertms-name form_ertms row col-12" id="content-form-ertms">
     <div class="col-md-12">
         <p class="heading lead position-ertms" id="add-ertms"></p>
         {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS configuration'}) }}
 
-        {# <a href="{{path('alstom.addErtms') }}"> #}
-        <p><input class="btn-valid-ertms" id="valid-ertms-name" name="soumission_ertms" type="submit" value="OK"/></p>
-        {#
-                         </a> #}
 
+        <p>
+            <input class="btn-valid-ertms" id="valid-ertms-name" name="soumission_ertms" type="submit" value="OK"/></p>
     </div>
 </div>
 {{ form_end(form_ertms) }}
@@ -21,47 +15,5 @@
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script>
-
-        $(document).ready(function () {
-            $('#form').submit(function (e) {
-
-                e.preventDefault();
-
-            })
-            let $ertms = $('#ertms_name_configuration');
-
-            let $token = $('equipement_token')
-            $ertms.change(function () {
-
-                let $form = $(this).closest('form');
-                let data = {};
-
-                data[$token.attr('name')] = $token.val();
-                data[$ertms.attr('name')] = $ertms.val();
-                console.log(data);
-
-                $.ajax($form.attr('action'), data).then(function (response) {
-
-                    console.log(data);
-                });
-
-            })
-        })
-
-        $('#valid-ertms-name').click(function () {
-            if ($('#ertms_name_configuration').val()) {
-
-                $("#content-form-ertms").hide();
-
-
-                $('#content-form-equipment').show();
-                previous = "add-equipment";
-            } else {
-                alert('Please enter name configuration');
-            }
-
-
-        })
-    </script>
+    <script></script>
 {% endblock %}

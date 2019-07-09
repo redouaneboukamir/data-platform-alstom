@@ -714,15 +714,6 @@
       <argument>en</argument>
       <argument type="service" id="router.default" on-invalid="ignore"/>
     </service>
-    <service id="http_exception_listener" class="Symfony\Component\HttpKernel\EventListener\ExceptionListener" public="false">
-      <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" priority="-2048"/>
-      <tag name="kernel.reset" method="reset"/>
-      <argument>null</argument>
-      <argument>null</argument>
-      <argument>true</argument>
-      <argument>UTF-8</argument>
-      <argument>null</argument>
-    </service>
     <service id="validate_request_listener" class="Symfony\Component\HttpKernel\EventListener\ValidateRequestListener" public="false">
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
@@ -775,7 +766,6 @@
     </service>
     <service id="services_resetter" class="Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter" public="true">
       <argument type="iterator">
-        <argument key="http_exception_listener" type="service" id="http_exception_listener" on-invalid="ignore_uninitialized"/>
         <argument key="form.choice_list_factory.cached" type="service" id="form.choice_list_factory.cached" on-invalid="ignore_uninitialized"/>
         <argument key="profiler" type="service" id="profiler" on-invalid="ignore_uninitialized"/>
         <argument key="debug.validator" type="service" id="debug.validator" on-invalid="ignore_uninitialized"/>
@@ -785,9 +775,10 @@
         <argument key="swiftmailer.email_sender.listener" type="service" id="swiftmailer.email_sender.listener" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.console" type="service" id="monolog.handler.console" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.tag_renderer" type="service" id="webpack_encore.tag_renderer" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.entrypoint_lookup[_default]" type="service" id="webpack_encore.entrypoint_lookup[_default]" on-invalid="ignore_uninitialized"/>
       </argument>
       <argument type="collection">
-        <argument key="http_exception_listener">reset</argument>
         <argument key="form.choice_list_factory.cached">reset</argument>
         <argument key="profiler">reset</argument>
         <argument key="debug.validator">reset</argument>
@@ -797,6 +788,8 @@
         <argument key="swiftmailer.email_sender.listener">reset</argument>
         <argument key="monolog.handler.main">reset</argument>
         <argument key="monolog.handler.console">reset</argument>
+        <argument key="webpack_encore.tag_renderer">reset</argument>
+        <argument key="webpack_encore.entrypoint_lookup[_default]">reset</argument>
       </argument>
     </service>
     <service id="fragment.handler" class="Symfony\Component\HttpKernel\DependencyInjection\LazyLoadingFragmentHandler" public="false">
@@ -947,6 +940,7 @@
         <argument>App\Form\UserType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
+        <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type\EntityType</argument>
         <argument>Vich\UploaderBundle\Form\Type\VichFileType</argument>
         <argument>Vich\UploaderBundle\Form\Type\VichImageType</argument>
@@ -1187,7 +1181,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.CBJupN_"/>
+      <argument type="service" id=".service_locator.IFuFVmj"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -1230,6 +1224,7 @@
       <argument type="service" id="form.choice_list_factory.cached"/>
     </service>
     <service id="form.type.file" class="Symfony\Component\Form\Extension\Core\Type\FileType" public="true">
+      <tag name="form.type"/>
       <argument>null</argument>
     </service>
     <service id="form.type_extension.form.transformation_failure_handling" class="Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension" public="false">
@@ -1544,6 +1539,7 @@
       <argument>true</argument>
       <argument type="service" id="debug.file_link_formatter"/>
       <argument>true</argument>
+      <argument>UTF-8</argument>
     </service>
     <service id="debug.file_link_formatter" class="Symfony\Component\HttpKernel\Debug\FileLinkFormatter" public="false">
       <argument>null</argument>
@@ -1568,14 +1564,6 @@
           <argument>onKernelException</argument>
         </argument>
         <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>kernel.exception</argument>
-        <argument type="collection">
-          <argument type="service" id="http_exception_listener"/>
-          <argument>onKernelException</argument>
-        </argument>
-        <argument>-2048</argument>
       </call>
       <call method="addListener">
         <argument>kernel.controller</argument>
@@ -1728,6 +1716,14 @@
           <argument>configure</argument>
         </argument>
         <argument>2048</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.exception</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>onKernelException</argument>
+        </argument>
+        <argument>-2048</argument>
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
@@ -4165,8 +4161,10 @@
     </service>
     <service id="webpack_encore.entrypoint_lookup_collection" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollection" public="false">
       <argument type="service" id=".service_locator._faFGeI"/>
+      <argument>_default</argument>
     </service>
     <service id="webpack_encore.tag_renderer" class="Symfony\WebpackEncoreBundle\Asset\TagRenderer" public="false">
+      <tag name="kernel.reset" method="reset"/>
       <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
       <argument type="service" id="assets.packages"/>
       <argument type="collection"/>
@@ -4193,6 +4191,7 @@
       <argument type="service" id="cache.webpack_encore.recorder_inner"/>
     </service>
     <service id="webpack_encore.entrypoint_lookup[_default]" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookup">
+      <tag name="kernel.reset" method="reset"/>
       <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform/public/build/entrypoints.json</argument>
       <argument>null</argument>
       <argument>_default</argument>
@@ -4375,6 +4374,7 @@
       <argument type="service" id="vich_uploader.current_date_time_helper" on-invalid="null"/>
       <argument type="service" id="property_accessor" on-invalid="null"/>
     </service>
+    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true"/>
     <service id="vich_uploader.download_handler" class="Vich\UploaderBundle\Handler\DownloadHandler" public="true">
       <argument type="service" id="vich_uploader.property_mapping_factory"/>
       <argument type="service" id="vich_uploader.storage.file_system"/>
@@ -5031,7 +5031,7 @@
       <argument type="service" id="debug.argument_resolver.variadic.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.CBJupN_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.IFuFVmj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AssociationERTMSType" type="service" id="App\Form\AssociationERTMSType"/>
@@ -5054,6 +5054,7 @@
         <argument key="App\Form\UserType" type="service" id="App\Form\UserType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
+        <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service" id="form.type.file"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service" id="form.type.form"/>
         <argument key="Vich\UploaderBundle\Form\Type\VichFileType" type="service" id="vich_uploader.form.type.file"/>
         <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service" id="vich_uploader.form.type.image"/>
@@ -5725,6 +5726,7 @@
     <service id="vich_uploader.directory_namer_subdir" alias="Vich\UploaderBundle\Naming\SubdirDirectoryNamer" public="true"/>
     <service id="vich_uploader.namer_directory_property" alias="Vich\UploaderBundle\Naming\PropertyDirectoryNamer" public="true"/>
     <service id="vich_uploader.namer_directory_current_date_time" alias="Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer" public="true"/>
+    <service id="vich_uploader.namer_smart_unique" alias="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true"/>
     <service id="Vich\UploaderBundle\Handler\DownloadHandler" alias="vich_uploader.download_handler" public="false"/>
     <service id="Vich\UploaderBundle\Handler\UploadHandler" alias="vich_uploader.upload_handler" public="false"/>
     <service id="Vich\UploaderBundle\Form\Type\VichFileType" alias="vich_uploader.form.type.file" public="false"/>

@@ -22,14 +22,14 @@ class TrainsType extends AbstractType
             ->add('name')
             ->add('projects', EntityType::class, [
                 'class' => Projects::class,
-                'query_builder' => static function(ProjectsRepository $projectsRepository){
+                'query_builder' => static function (ProjectsRepository $projectsRepository) {
                     return $projectsRepository->findAvailable();
                 },
                 'attr' => [
                     'id' => 'choice_project'
                 ],
                 'choice_label' => 'name',
-//                'multiple' => true,
+                //                'multiple' => true,
                 'required' => false
             ])
             ->add('trainType', ChoiceType::class, [
@@ -41,8 +41,7 @@ class TrainsType extends AbstractType
                     'class' => 'test'
                 ]
             ])
-
-        ;
+            ->add('position_ERTMS');
     }
 
     public function configureOptions(OptionsResolver $resolver)

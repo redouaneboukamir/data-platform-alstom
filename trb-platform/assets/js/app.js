@@ -1,14 +1,15 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import '../scss/app.scss';
+import './train';
+import './ertms';
+import './equipement';
 
-// any CSS you require will output into a single css file (app.css in this case)
-require("../scss/app.scss");
+// loads the jquery package from node_modules
+const $ = require('jquery');
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
-// //
-var train = require('./train');
+// import the function from greet.js (the .js extension is optional)
+// ./ (or ../) means to look for a local file
+var greet = require('./greet');
+
+let Routing = require('../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router');
+let Routes = //
+    console.log(Routing);

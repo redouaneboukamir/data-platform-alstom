@@ -1,8 +1,8 @@
 {
+  "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
-  "build/app~css/app.css": "/build/app~css/app.css",
-  "build/app~css/app.js": "/build/app~css/app.js",
   "build/runtime.js": "/build/runtime.js",
+  "build/vendors~app.js": "/build/vendors~app.js",
   "build/images/flags.png": "/build/images/flags.f8428f83.png",
   "build/img/.DS_Store": "/build/img/.DS_Store",
   "build/img/._dashboard.png": "/build/img/._dashboard.png",

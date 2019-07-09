@@ -138,6 +138,7 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         array (
             'Firebase\\JWT\\' => 13,
             'Fig\\Link\\' => 9,
+            'FOS\\JsRoutingBundle\\' => 20,
         ),
         'E' => 
         array (
@@ -496,6 +497,10 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         array (
             0 => __DIR__ . '/..' . '/fig/link-util/src',
         ),
+        'FOS\\JsRoutingBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/jsrouting-bundle',
+        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
@@ -590,6 +595,13 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
             'ProxyManager\\' => 
             array (
                 0 => __DIR__ . '/..' . '/ocramius/proxy-manager/src',
+            ),
+        ),
+        'J' => 
+        array (
+            'JsonpCallbackValidator' => 
+            array (
+                0 => __DIR__ . '/..' . '/willdurand/jsonp-callback-validator/src',
             ),
         ),
         'B' => 

@@ -25,22 +25,20 @@ class Cache extends BaseCache
     private $versionParser;
     private $symfonyRequire;
     private $symfonyConstraints;
+    private $io;
 
     public function setSymfonyRequire(string $symfonyRequire, array $versions, IOInterface $io = null)
     {
         $this->versionParser = new VersionParser();
         $this->symfonyRequire = $symfonyRequire;
         $this->symfonyConstraints = $this->versionParser->parseConstraints($symfonyRequire);
+        $this->io = $io;
 
         foreach ($versions['splits'] as $name => $vers) {
             foreach ($vers as $i => $v) {
                 $v = $this->versionParser->normalize($v);
 
                 if (!$this->symfonyConstraints->matches(new Constraint('==', $v))) {
-                    if (null !== $io) {
-                        $io->writeError(sprintf('<info>Restricting packages listed in "symfony/symfony" to "%s"</info>', $this->symfonyRequire));
-                        $io = null;
-                    }
                     unset($vers[$i]);
                 }
             }
@@ -71,12 +69,16 @@ class Cache extends BaseCache
         }
 
         foreach ($data['packages'] as $name => $versions) {
-            if (!isset($this->versions['splits'][$name]) || null === $devMasterAlias = $versions['dev-master']['extra']['branch-alias']['dev-master'] ?? null) {
+            if (!isset($this->versions['splits'][$name])) {
                 continue;
             }
 
             foreach ($versions as $version => $composerJson) {
                 if ('dev-master' === $version) {
+                    if (null === $devMasterAlias = $versions['dev-master']['extra']['branch-alias']['dev-master'] ?? null) {
+                        continue;
+                    }
+
                     $normalizedVersion = $this->versionParser->normalize($devMasterAlias);
                 } elseif (!isset($composerJson['version_normalized'])) {
                     continue;
@@ -85,6 +87,10 @@ class Cache extends BaseCache
                 }
 
                 if (!$this->symfonyConstraints->matches(new Constraint('==', $normalizedVersion))) {
+                    if (null !== $this->io) {
+                        $this->io->writeError(sprintf('<info>Restricting packages listed in "symfony/symfony" to "%s"</info>', $this->symfonyRequire));
+                        $this->io = null;
+                    }
                     unset($versions[$version]);
                 }
             }

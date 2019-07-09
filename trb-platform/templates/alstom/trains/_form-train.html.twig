@@ -8,7 +8,7 @@
 <!-- Ici ton contenu 2 -->
 
 
-{{ form_start(form_train, {'action': path('alstom.create-train'), 'method': 'POST'},{
+{{ form_start(form_train, {'action': path('alstom.addTrains'), 'method': 'POST'},{
     'id' : 'train'
 }) }}
 
@@ -16,7 +16,11 @@
     <div class="col-md-10">{{ form_row(form_train.name) }}</div>
     <div class="col-md-10">{{ form_row(form_train.projects) }}</div>
     <div class="col-md-10">{{ form_row(form_train.trainType) }}</div>
-    {{ form_row(form._token) }}
+    {{form_widget(form_train.position_ERTMS, {
+        'attr' : {
+            'style' : 'display:none !important'
+        }
+    })}}
 
 
     {# {{ form_row(form_train._token) }} #}
@@ -60,12 +64,11 @@
                         <span aria-hidden="true" class="white-text close-name-ertms">×</span>
                     </button>
                     <!--Header-->
-                    <div class="modal-header" id="modal-header">
-
-                        {% include('alstom/trains/_form-ertms.html.twig') %}
-                        {% include('alstom/trains/_form-equipment.html.twig') %}
+                    <div class="modal-header" id="modal-header">{# 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% include('alstom/trains/_form-ertms.html.twig') %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% include('alstom/trains/_form-equipment.html.twig') %} #}
                         {# {% include('alstom/trains/_form-typeEquipment.html.twig') %}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
                     </div>
 
 
@@ -76,155 +79,5 @@
 </div>
 <p><input class="btn btn-primary mt-4" id="soumission-train" name="soumission_train" type="submit" value="Create"/></p>
 {{ form_end(form_train) }}
-{% block javascripts %}
 
-    <script>
-        $(document).ready(function () {})
-
-        $(document).ready(function () {
-
-            // Vidage des inputs aux changement de select
-            // $('select[name="trains[projects]"], select[name="trains[trainType]"]').change(function(){
-            //     $('input[name="trains[name]"]').val('');
-            // });
-
-
-            /*Masquage de certains élement */
-            $('#create-ertms-1').hide();
-            $('#create-ertms-2').hide();
-            $("#create-ertms-train-1").hide();
-            $('#create_soustype').hide();
-            $('#create_type').hide();
-
-            $('#modal-body').hide();
-
-
-            /* Créer ertms avec le clique tu premier boutton */
-
-
-            $('#close-modal').click(function () {
-                $('#modal-body').hide();
-                $('#create-equipment').show();
-                $('#content-form-ertms').show();
-                $('#content-form-equipment').hide();
-                $('#formulaire-equipment').hide();
-                $('#create_soustype').hide();
-                $('#create_type').hide();
-
-
-            })
-
-            // Traitement du choix du type de train
-            $('#trains_trainType').change(function () {
-
-                let current_choice = "",
-                    ertms_left = "",
-                    ertms_middle = "",
-                    ertms_right = "";
-
-                $("#trains_trainType option:selected").each(function () {
-
-                    current_choice += $(this).text() + " ";
-
-                });
-
-
-                /* traitement dans le choix train */
-                if (current_choice.trim() == 'Train') {
-                    $('#select_train').show();
-                    $('#select_locomotive').hide();
-
-                    $('#ertms-train-1').click(function () { // l'ertms de gauche selectionner
-                        $('#ertms-train-1').addClass("selected");
-                        ertms_left = true;
-                        ertms_middle = false;
-
-                        $('#ertms-train-2').removeClass("selected");
-                        $('#btn-choice-ertms').show();
-                        $('#create-ertms-1').show();
-                        $('#add-ertms').text(' left')
-
-
-                    });
-                    $('#ertms-train-2').click(function () { // l'ertms du milieu selectionner
-                        $('#ertms-train-2').addClass("selected");
-                        ertms_left = false;
-                        ertms_right = false;
-                        ertms_middle = true;
-
-                        $('#ertms-train-1').removeClass("selected");
-                        $('#ertms-train-3').removeClass("selected");
-                        $('#btn-choice-ertms').show();
-                        $('#create-ertms-1').show();
-                        $('#create-ertms-2').hide();
-                        $('#add-ertms').text('middle')
-
-
-                    });
-                    $('#ertms-train-3').click(function () { // l'ertms de droite selectionner
-                        $('#ertms-train-3').addClass("selected");
-                        ertms_right = true;
-                        ertms_middle = false;
-                        if (ertms_left == true && ertms_middle == false) {
-                            $('#create-ertms-1').show();
-                            $('#create-ertms-2').show();
-                        } else if (ertms_right == true && ertms_left == false) {
-                            $('#create-ertms-1').hide();
-                            $('#create-ertms-2').show();
-                        }
-
-                        $('#ertms-train-2').removeClass("selected");
-                        $('#btn-choice-ertms').show();
-
-                        $('#add-ertms').text('right');
-
-
-                    });
-
-
-                    $('#trains_trainType').change(function () {
-                        $('#btn-choice-ertms').hide();
-                    });
-
-
-                } else if (current_choice.trim() == 'Locomotive') {
-
-                    $('#select_locomotive').show();
-                    $('#select_train').hide();
-
-                    $('#ertms-loco-1').click(function () { // l'ertms de gauche selectionner
-                        $('#ertms-loco-1').addClass("selected");
-                        $('#ertms-loco-2').removeClass("selected");
-                        $('#btn-choice-ertms').show();
-                        $('#add-ertms').text('left')
-                        $('#create-ertms-1').show();
-
-                    });
-                    $('#ertms-loco-2').click(function () { // l'ertms de droite selectionner
-                        $('#ertms-loco-2').addClass("selected");
-                        $('#ertms-loco-1').removeClass("selected");
-                        $('#btn-choice-ertms').show();
-                        $('#add-ertms').text('right')
-                        $('#create-ertms-1').show();
-
-
-                    });
-                    $('#trains_trainType').change(function () {
-                        $('#btn-choice-ertms').hide();
-                    });
-
-
-                }
-
-            }).change();
-        })
-
-        $('#trains_projects').change(function () {
-            $('.content-type-train').hide();
-            $('#trains_trainType').val('');
-            $('#btn-choice-ertms').hide();
-
-
-        })
-    </script>
-{% endblock %}
+{% block javascripts %}{% endblock %}

@@ -263,7 +263,7 @@ abstract class AbstractObjectNormalizer extends AbstractNormalizer
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return \class_exists($type) || (\interface_exists($type, false) && $this->classDiscriminatorResolver && null !== $this->classDiscriminatorResolver->getMappingForClass($type));
+        return class_exists($type) || (interface_exists($type, false) && $this->classDiscriminatorResolver && null !== $this->classDiscriminatorResolver->getMappingForClass($type));
     }
 
     /**
@@ -507,7 +507,7 @@ abstract class AbstractObjectNormalizer extends AbstractNormalizer
     protected function createChildContext(array $parentContext, $attribute/*, string $format = null */)
     {
         if (\func_num_args() >= 3) {
-            $format = \func_get_arg(2);
+            $format = func_get_arg(2);
         } else {
             // will be deprecated in version 4
             $format = null;

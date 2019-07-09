@@ -39,6 +39,9 @@ final class WebpackEncoreExtension extends Extension
         if (false !== $config['output_path']) {
             $factories['_default'] = $this->entrypointFactory($container, '_default', $config['output_path'], $config['cache'], $config['strict_mode']);
             $cacheKeys['_default'] = $config['output_path'].'/'.self::ENTRYPOINTS_FILE_NAME;
+
+            $container->getDefinition('webpack_encore.entrypoint_lookup_collection')
+                ->setArgument(1, '_default');
         }
 
         foreach ($config['builds'] as $name => $path) {
@@ -82,7 +85,9 @@ final class WebpackEncoreExtension extends Extension
             $name,
             $strictMode,
         ];
-        $container->setDefinition($id, new Definition(EntrypointLookup::class, $arguments));
+        $definition = new Definition(EntrypointLookup::class, $arguments);
+        $definition->addTag('kernel.reset', ['method'=>'reset']);
+        $container->setDefinition($id, $definition);
 
         return new Reference($id);
     }
