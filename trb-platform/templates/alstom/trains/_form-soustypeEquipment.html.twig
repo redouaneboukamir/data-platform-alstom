@@ -1,0 +1,29 @@
+<div class="content-form-typeEquipment col-md-12 row" id="create_soustype">
+    <div class="col-md-12">
+        <h4>Enter name sous type of type equipment :
+        </h4>
+
+        {{ form_start(form_soustype) }}
+
+        {{ form_row(form_soustype.name) }}
+
+        <a class="btn-valid-typeEquipment" href="#" id="valid-soustypeEquipment-name">Add</a>
+        <button class="btn-cancel" id="cancel-soustype" type="button">Cancel</button>
+
+        {{ form_end(form_soustype) }}
+
+    </div>
+</div>
+
+{% block javascripts %}
+    <script>
+        $('#btn-create-sousType').click(function () {
+            $('#create_soustype').show();
+            $("#content-form-equipment").hide();
+        });
+        $('#cancel-soustype').click(function () {
+            $('#create_soustype').hide();
+            $("#content-form-equipment").show();
+        })
+    </script>
+{% endblock %}

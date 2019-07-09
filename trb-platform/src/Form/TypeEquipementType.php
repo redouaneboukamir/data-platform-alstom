@@ -18,7 +18,7 @@ class TypeEquipementType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'class' => '',
-                    'placeholder' => 'add type'
+                    'placeholder' => '  '
                 ]
             ])
             // ->add('save', ButtonType::class, [

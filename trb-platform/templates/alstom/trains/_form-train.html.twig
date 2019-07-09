@@ -1,11 +1,26 @@
 {% block stylesheets %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
 {% endblock %}
-{{ form_start(form_train) }}
+
+
+<!-- Ici ton contenu 1 -->
+
+<!-- Ici ton contenu 2 -->
+
+
+{{ form_start(form_train, {'action': path('alstom.create-train'), 'method': 'POST'},{
+    'id' : 'train'
+}) }}
+
 <div class="row">
     <div class="col-md-10">{{ form_row(form_train.name) }}</div>
     <div class="col-md-10">{{ form_row(form_train.projects) }}</div>
     <div class="col-md-10">{{ form_row(form_train.trainType) }}</div>
+    {{ form_row(form._token) }}
+
+
+    {# {{ form_row(form_train._token) }} #}
+
 
     <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
         <h4>Select EVC :
@@ -45,9 +60,12 @@
                         <span aria-hidden="true" class="white-text close-name-ertms">×</span>
                     </button>
                     <!--Header-->
-                    <div class="modal-header">
+                    <div class="modal-header" id="modal-header">
+
                         {% include('alstom/trains/_form-ertms.html.twig') %}
                         {% include('alstom/trains/_form-equipment.html.twig') %}
+                        {# {% include('alstom/trains/_form-typeEquipment.html.twig') %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
                     </div>
 
 
@@ -56,51 +74,12 @@
         </div>
     </div>
 </div>
+<p><input class="btn btn-primary mt-4" id="soumission-train" name="soumission_train" type="submit" value="Create"/></p>
 {{ form_end(form_train) }}
-<button class="btn btn-primary mt-4" type="submit">{{ button|default('Send') }}</button>
 {% block javascripts %}
 
     <script>
-        $(function () {
-
-            $(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-
-                var controlForm = $('.controls form:first'),
-                    currentEntry = $(this).parents('.entry:first'),
-                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-
-                newEntry.find('input').val('');
-                controlForm.find('.entry:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
-
-            }).on('click', '.btn-remove', function (e) {
-                $(this).parents('.entry:first').remove();
-
-                e.preventDefault();
-                return false;
-            });
-
-
-        });
-        $(function () {
-            $(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-
-                var controlForm = $('.controls-2 form:first'),
-                    currentEntry = $(this).parents('.entry-2:first'),
-                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-                newEntry.find('input').val('');
-
-                controlForm.find('.entry-2:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
-            }).on('click', '.btn-remove', function (e) {
-                $(this).parents('.entry-2:first').remove();
-
-                e.preventDefault();
-                return false;
-            });
-        });
+        $(document).ready(function () {})
 
         $(document).ready(function () {
 
@@ -116,6 +95,7 @@
             $("#create-ertms-train-1").hide();
             $('#create_soustype').hide();
             $('#create_type').hide();
+
             $('#modal-body').hide();
 
 
@@ -128,13 +108,10 @@
                 $('#content-form-ertms').show();
                 $('#content-form-equipment').hide();
                 $('#formulaire-equipment').hide();
+                $('#create_soustype').hide();
+                $('#create_type').hide();
 
 
-            })
-
-            $('#cancel-ertms').click(function () {
-                $('#modal-body').hide();
-                $('#create-equipment').show();
             })
 
             // Traitement du choix du type de train

@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EquipementRepository")
@@ -17,18 +20,7 @@ class Equipement
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Type;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Sous_type;
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\AssociationEquiptERTMS", inversedBy="equipement")
+     * @ORM\ManyToOne(targetEntity="App\Entity\AssociationEquiptERTMS", inversedBy="equipements")
      */
     private $AssociationEquiptERTMS;
 
@@ -47,38 +39,24 @@ class Equipement
      */
     private $Num_serie;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeEquipement", inversedBy="equipements",cascade={"persist"})
+     */
+    private $Type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SoustypeEquipement", inversedBy="equipements", cascade={"persist"})
+     */
+    private $SousType;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getType(): ?string
-    {
-        return $this->Type;
-    }
-
-    public function setType(string $Type): self
-    {
-        $this->Type = $Type;
-
-        return $this;
-    }
-
-    public function getSousType(): ?string
-    {
-        return $this->Sous_type;
-    }
-
-    public function setSousType(string $Sous_type): self
-    {
-        $this->Sous_type = $Sous_type;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
+    // /**
+    //  * @return mixed
+    //  */
     public function getAssociationEquiptERTMS()
     {
         return $this->AssociationEquiptERTMS;
@@ -124,6 +102,30 @@ class Equipement
     public function setNumSerie(string $Num_serie): self
     {
         $this->Num_serie = $Num_serie;
+
+        return $this;
+    }
+
+    public function getType(): ?TypeEquipement
+    {
+        return $this->Type;
+    }
+
+    public function setType(?TypeEquipement $Type): self
+    {
+        $this->Type = $Type;
+
+        return $this;
+    }
+
+    public function getSousType(): ?SoustypeEquipement
+    {
+        return $this->SousType;
+    }
+
+    public function setSousType(?SoustypeEquipement $SousType): self
+    {
+        $this->SousType = $SousType;
 
         return $this;
     }

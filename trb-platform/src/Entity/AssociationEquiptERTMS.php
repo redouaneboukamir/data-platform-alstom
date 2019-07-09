@@ -24,8 +24,7 @@ class AssociationEquiptERTMS
     private $solution;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Equipement" , cascade={"persist", "remove"}
-     *     ,mappedBy="AssociationEquiptERTMS")
+     * @ORM\OneToMany(targetEntity="App\Entity\Equipement" ,mappedBy="AssociationEquiptERTMS")
      */
     private $equipements;
 
@@ -69,7 +68,7 @@ class AssociationEquiptERTMS
     {
         if (!$this->equipements->contains($equipement)) {
             $this->equipements[] = $equipement;
-            $equipement->setAssociationEquiptERTMS($this);
+            // $equipement->setAssociationEquiptERTMS($this);
         }
 
         return $this;
@@ -81,21 +80,21 @@ class AssociationEquiptERTMS
 
             $this->equipements->removeElement($equipement);
             // set the owning side to null (unless already changed)
-            if ($equipement->getAssociationEquiptERTMS() === $this) {
-                $equipement->setAssociationEquiptERTMS(null);
-            }
+            // if ($equipement->getAssociationEquiptERTMS() === $this) {
+            //     $equipement->setAssociationEquiptERTMS(null);
+            // }
         }
 
         return $this;
     }
-    
 
-//    public function setEquipement(?Equipement $equipement): self
-//    {
-//        $this->equipement = $equipement;
-//
-//        return $this;
-//    }
+
+    public function setEquipement(?Equipement $equipement): self
+    {
+        $this->equipement = $equipement;
+
+        return $this;
+    }
 
     public function getStatus(): ?bool
     {

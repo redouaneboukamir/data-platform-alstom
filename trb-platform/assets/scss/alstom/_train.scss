@@ -133,7 +133,7 @@
   text-decoration: underline;
 }
 
-.btn-cancel-ertms {
+.btn-cancel {
   background: none;
   border: none;
   color: #e60000;
@@ -202,6 +202,36 @@
 }
 
 .btn-valid-ertms {
+  background-color: #008CBA;
+  border-radius: 5px;
+
+  border: none;
+  color: white !important;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn-valid-Equipment {
+  background-color: #4CAF50;
+  border-radius: 5px;
+
+  border: none;
+  color: white !important;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+
   &:hover {
     cursor: pointer;
   }

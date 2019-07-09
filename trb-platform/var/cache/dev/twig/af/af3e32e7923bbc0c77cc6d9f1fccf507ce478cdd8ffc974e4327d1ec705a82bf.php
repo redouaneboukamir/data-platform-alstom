@@ -44,36 +44,56 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         // line 1
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 4
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 4, $this->source); })()), 'form_start');
         echo "
+
+<!-- Ici ton contenu 1 -->
+
+<!-- Ici ton contenu 2 -->
+
+
+";
+        // line 11
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 11, $this->source); })()), 'form_start', ["action" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.create-train"), "method" => "POST"]);
+        // line 13
+        echo "
+
 <div class=\"row\">
     <div class=\"col-md-10\">";
-        // line 6
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 6, $this->source); })()), "name", [], "any", false, false, false, 6), 'row');
+        // line 16
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 16, $this->source); })()), "name", [], "any", false, false, false, 16), 'row');
         echo "</div>
     <div class=\"col-md-10\">";
-        // line 7
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 7, $this->source); })()), "projects", [], "any", false, false, false, 7), 'row');
+        // line 17
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 17, $this->source); })()), "projects", [], "any", false, false, false, 17), 'row');
         echo "</div>
     <div class=\"col-md-10\">";
-        // line 8
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 8, $this->source); })()), "trainType", [], "any", false, false, false, 8), 'row');
+        // line 18
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 18, $this->source); })()), "trainType", [], "any", false, false, false, 18), 'row');
         echo "</div>
+    ";
+        // line 19
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 19, $this->source); })()), "_token", [], "any", false, false, false, 19), 'row');
+        echo "
+
+
+    ";
+        // line 23
+        echo "
 
     <div class=\"content-type-train col-md-12 mt-4\" id=\"select_locomotive\">
         <h4>Select EVC :
         </h4>
         <img src=\"";
-        // line 13
+        // line 28
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/locomotive-select.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"col-md-10 img-type-train\">
         <figure class=\"content-ertms col-md-10\">
             <img src=\"";
-        // line 15
+        // line 30
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms \" id=\"ertms-loco-1\">
             <img src=\"";
-        // line 16
+        // line 31
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms \" id=\"ertms-loco-2\">
 
@@ -84,20 +104,20 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         <h4>Select EVC :
         </h4>
         <img src=\"";
-        // line 24
+        // line 39
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/train-select.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"col-md-10  img-type-train\">
         <figure class=\"content-ertms col-md-10\">
             <img src=\"";
-        // line 26
+        // line 41
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms\" id=\"ertms-train-1\">
             <img src=\"";
-        // line 27
+        // line 42
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms\" id=\"ertms-train-2\">
             <img src=\"";
-        // line 28
+        // line 43
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms \" id=\"ertms-train-3\">
         </figure>
@@ -119,14 +139,17 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
                         <span aria-hidden=\"true\" class=\"white-text close-name-ertms\">×</span>
                     </button>
                     <!--Header-->
-                    <div class=\"modal-header\">
+                    <div class=\"modal-header\" id=\"modal-header\">
+
                         ";
-        // line 49
-        $this->loadTemplate("alstom/trains/_form-ertms.html.twig", "alstom/trains/_form-train.html.twig", 49)->display($context);
-        // line 50
+        // line 65
+        $this->loadTemplate("alstom/trains/_form-ertms.html.twig", "alstom/trains/_form-train.html.twig", 65)->display($context);
+        // line 66
         echo "                        ";
-        $this->loadTemplate("alstom/trains/_form-equipment.html.twig", "alstom/trains/_form-train.html.twig", 50)->display($context);
-        // line 51
+        $this->loadTemplate("alstom/trains/_form-equipment.html.twig", "alstom/trains/_form-train.html.twig", 66)->display($context);
+        // line 67
+        echo "                        ";
+        // line 69
         echo "                    </div>
 
 
@@ -135,16 +158,13 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         </div>
     </div>
 </div>
+<p><input class=\"btn btn-primary mt-4\" id=\"soumission-train\" name=\"soumission_train\" type=\"submit\" value=\"Create\"/></p>
 ";
-        // line 59
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 59, $this->source); })()), 'form_end');
+        // line 78
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 78, $this->source); })()), 'form_end');
         echo "
-<button class=\"btn btn-primary mt-4\" type=\"submit\">";
-        // line 60
-        echo twig_escape_filter($this->env, (((isset($context["button"]) || array_key_exists("button", $context))) ? (_twig_default_filter((isset($context["button"]) || array_key_exists("button", $context) ? $context["button"] : (function () { throw new RuntimeError('Variable "button" does not exist.', 60, $this->source); })()), "Send")) : ("Send")), "html", null, true);
-        echo "</button>
 ";
-        // line 61
+        // line 79
         $this->displayBlock('javascripts', $context, $blocks);
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
@@ -175,7 +195,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 
     }
 
-    // line 61
+    // line 79
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -185,49 +205,10 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 62
+        // line 80
         echo "
     <script>
-        \$(function () {
-
-            \$(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-
-                var controlForm = \$('.controls form:first'),
-                    currentEntry = \$(this).parents('.entry:first'),
-                    newEntry = \$(currentEntry.clone()).appendTo(controlForm);
-
-
-                newEntry.find('input').val('');
-                controlForm.find('.entry:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
-
-            }).on('click', '.btn-remove', function (e) {
-                \$(this).parents('.entry:first').remove();
-
-                e.preventDefault();
-                return false;
-            });
-
-
-        });
-        \$(function () {
-            \$(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-
-                var controlForm = \$('.controls-2 form:first'),
-                    currentEntry = \$(this).parents('.entry-2:first'),
-                    newEntry = \$(currentEntry.clone()).appendTo(controlForm);
-
-                newEntry.find('input').val('');
-
-                controlForm.find('.entry-2:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
-            }).on('click', '.btn-remove', function (e) {
-                \$(this).parents('.entry-2:first').remove();
-
-                e.preventDefault();
-                return false;
-            });
-        });
+        \$(document).ready(function () {})
 
         \$(document).ready(function () {
 
@@ -243,6 +224,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
             \$(\"#create-ertms-train-1\").hide();
             \$('#create_soustype').hide();
             \$('#create_type').hide();
+
             \$('#modal-body').hide();
 
 
@@ -255,13 +237,10 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
                 \$('#content-form-ertms').show();
                 \$('#content-form-equipment').hide();
                 \$('#formulaire-equipment').hide();
+                \$('#create_soustype').hide();
+                \$('#create_type').hide();
 
 
-            })
-
-            \$('#cancel-ertms').click(function () {
-                \$('#modal-body').hide();
-                \$('#create-equipment').show();
             })
 
             // Traitement du choix du type de train
@@ -398,7 +377,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 
     public function getDebugInfo()
     {
-        return array (  189 => 62,  179 => 61,  168 => 2,  158 => 1,  148 => 61,  144 => 60,  140 => 59,  130 => 51,  127 => 50,  125 => 49,  101 => 28,  97 => 27,  93 => 26,  88 => 24,  77 => 16,  73 => 15,  68 => 13,  60 => 8,  56 => 7,  52 => 6,  47 => 4,  45 => 1,);
+        return array (  209 => 80,  199 => 79,  188 => 2,  178 => 1,  168 => 79,  164 => 78,  153 => 69,  151 => 67,  148 => 66,  146 => 65,  121 => 43,  117 => 42,  113 => 41,  108 => 39,  97 => 31,  93 => 30,  88 => 28,  81 => 23,  75 => 19,  71 => 18,  67 => 17,  63 => 16,  58 => 13,  56 => 11,  47 => 4,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -406,11 +385,26 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         return new Source("{% block stylesheets %}
     <link href=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css\" rel=\"stylesheet\">
 {% endblock %}
-{{ form_start(form_train) }}
+
+
+<!-- Ici ton contenu 1 -->
+
+<!-- Ici ton contenu 2 -->
+
+
+{{ form_start(form_train, {'action': path('alstom.create-train'), 'method': 'POST'},{
+    'id' : 'train'
+}) }}
+
 <div class=\"row\">
     <div class=\"col-md-10\">{{ form_row(form_train.name) }}</div>
     <div class=\"col-md-10\">{{ form_row(form_train.projects) }}</div>
     <div class=\"col-md-10\">{{ form_row(form_train.trainType) }}</div>
+    {{ form_row(form._token) }}
+
+
+    {# {{ form_row(form_train._token) }} #}
+
 
     <div class=\"content-type-train col-md-12 mt-4\" id=\"select_locomotive\">
         <h4>Select EVC :
@@ -450,9 +444,12 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
                         <span aria-hidden=\"true\" class=\"white-text close-name-ertms\">×</span>
                     </button>
                     <!--Header-->
-                    <div class=\"modal-header\">
+                    <div class=\"modal-header\" id=\"modal-header\">
+
                         {% include('alstom/trains/_form-ertms.html.twig') %}
                         {% include('alstom/trains/_form-equipment.html.twig') %}
+                        {# {% include('alstom/trains/_form-typeEquipment.html.twig') %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
                     </div>
 
 
@@ -461,51 +458,12 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         </div>
     </div>
 </div>
+<p><input class=\"btn btn-primary mt-4\" id=\"soumission-train\" name=\"soumission_train\" type=\"submit\" value=\"Create\"/></p>
 {{ form_end(form_train) }}
-<button class=\"btn btn-primary mt-4\" type=\"submit\">{{ button|default('Send') }}</button>
 {% block javascripts %}
 
     <script>
-        \$(function () {
-
-            \$(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-
-                var controlForm = \$('.controls form:first'),
-                    currentEntry = \$(this).parents('.entry:first'),
-                    newEntry = \$(currentEntry.clone()).appendTo(controlForm);
-
-
-                newEntry.find('input').val('');
-                controlForm.find('.entry:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
-
-            }).on('click', '.btn-remove', function (e) {
-                \$(this).parents('.entry:first').remove();
-
-                e.preventDefault();
-                return false;
-            });
-
-
-        });
-        \$(function () {
-            \$(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-
-                var controlForm = \$('.controls-2 form:first'),
-                    currentEntry = \$(this).parents('.entry-2:first'),
-                    newEntry = \$(currentEntry.clone()).appendTo(controlForm);
-
-                newEntry.find('input').val('');
-
-                controlForm.find('.entry-2:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').addClass('btn-danger').html('<span>-</span>');
-            }).on('click', '.btn-remove', function (e) {
-                \$(this).parents('.entry-2:first').remove();
-
-                e.preventDefault();
-                return false;
-            });
-        });
+        \$(document).ready(function () {})
 
         \$(document).ready(function () {
 
@@ -521,6 +479,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
             \$(\"#create-ertms-train-1\").hide();
             \$('#create_soustype').hide();
             \$('#create_type').hide();
+
             \$('#modal-body').hide();
 
 
@@ -533,13 +492,10 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
                 \$('#content-form-ertms').show();
                 \$('#content-form-equipment').hide();
                 \$('#formulaire-equipment').hide();
+                \$('#create_soustype').hide();
+                \$('#create_type').hide();
 
 
-            })
-
-            \$('#cancel-ertms').click(function () {
-                \$('#modal-body').hide();
-                \$('#create-equipment').show();
             })
 
             // Traitement du choix du type de train

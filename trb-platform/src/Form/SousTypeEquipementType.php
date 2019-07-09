@@ -15,17 +15,17 @@ class SousTypeEquipementType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => false ,
+                'label' => false,
                 'attr' => [
                     'class' => '',
-                    'placeholder' => 'add sous type'
+                    'placeholder' => '  '
                 ]
             ])
-            ->add('save', ButtonType::class, [
-                'attr' => [
-                    'class' => 'btn-success btn-add'
-                ]
-            ])
+            // ->add('save', ButtonType::class, [
+            //     'attr' => [
+            //         'class' => 'btn-success btn-add'
+            //     ]
+            // ])
         ;
     }
 

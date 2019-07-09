@@ -1,12 +1,18 @@
-{{ form_start(form_ertms) }}
-<div class="content-form-ertms-name row col-12" id="content-form-ertms">
+{{ form_start(form_ertms,{
+    'attr': {
+        'class' : 'form_ertms js-new-rep-log-form'
+    }
+}, {'action': path('alstom.create-train'), 'method': 'POST'}) }}
+
+<div class="content-form-ertms-name form_ertms row col-12" id="content-form-ertms">
     <div class="col-md-12">
         <p class="heading lead position-ertms" id="add-ertms"></p>
-        {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS Equipment'}) }}
+        {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS configuration'}) }}
 
         {# <a href="{{path('alstom.addErtms') }}"> #}
-        <a class="btn-valid-ertms" id="valid-ertms-name">OK</a>
-        {# </a> #}
+        <p><input class="btn-valid-ertms" id="valid-ertms-name" name="soumission_ertms" type="submit" value="OK"/></p>
+        {#
+                         </a> #}
 
     </div>
 </div>
@@ -17,11 +23,44 @@
 
     <script>
 
+        $(document).ready(function () {
+            $('#form').submit(function (e) {
+
+                e.preventDefault();
+
+            })
+            let $ertms = $('#ertms_name_configuration');
+
+            let $token = $('equipement_token')
+            $ertms.change(function () {
+
+                let $form = $(this).closest('form');
+                let data = {};
+
+                data[$token.attr('name')] = $token.val();
+                data[$ertms.attr('name')] = $ertms.val();
+                console.log(data);
+
+                $.ajax($form.attr('action'), data).then(function (response) {
+
+                    console.log(data);
+                });
+
+            })
+        })
 
         $('#valid-ertms-name').click(function () {
-            $("#content-form-ertms").hide();
-            $('#content-form-equipment').show();
-            previous = "add-equipment";
+            if ($('#ertms_name_configuration').val()) {
+
+                $("#content-form-ertms").hide();
+
+
+                $('#content-form-equipment').show();
+                previous = "add-equipment";
+            } else {
+                alert('Please enter name configuration');
+            }
+
 
         })
     </script>

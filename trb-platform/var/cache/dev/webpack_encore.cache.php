@@ -13,15 +13,20 @@ return [[
         'app' => [
             'js' => [
                 '/build/runtime.js',
+                '/build/app~css/app.js',
                 '/build/app.js',
+            ],
+            'css' => [
+                '/build/app~css/app.css',
             ],
         ],
         'css/app' => [
             'js' => [
                 '/build/runtime.js',
+                '/build/app~css/app.js',
             ],
             'css' => [
-                '/build/css/app.css',
+                '/build/app~css/app.css',
             ],
         ],
     ],

@@ -2644,7 +2644,7 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+        <argument type="service" id="App\Security\KeycloakProvider"/>
       </argument>
       <argument></argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -2946,12 +2946,6 @@
       <argument type="service" id="debug.event_dispatcher"/>
       <argument type="service" id="security.logout_url_generator"/>
     </service>
-    <service id="security.user.provider.concrete.app_user_provider" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
-      <argument type="service" id="doctrine"/>
-      <argument>App\Entity\User</argument>
-      <argument>email</argument>
-      <argument>null</argument>
-    </service>
     <service id="security.firewall.map.config.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
       <argument>dev</argument>
       <argument>security.user_checker</argument>
@@ -2981,7 +2975,7 @@
       <argument>null</argument>
       <argument>true</argument>
       <argument>false</argument>
-      <argument>security.user.provider.concrete.app_user_provider</argument>
+      <argument>App\Security\ProviderInterface</argument>
       <argument>secure_area</argument>
       <argument>App\Security\KeycloakAuthenticator</argument>
       <argument>null</argument>
@@ -2995,7 +2989,7 @@
     <service id="security.context_listener.0" class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
       <argument type="service" id="security.token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+        <argument type="service" id="App\Security\KeycloakProvider"/>
       </argument>
       <argument>secure_area</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -3006,12 +3000,12 @@
       <argument type="iterator">
         <argument type="service" id="App\Security\KeycloakAuthenticator"/>
       </argument>
-      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+      <argument type="service" id="App\Security\KeycloakProvider"/>
       <argument>secure_area</argument>
       <argument type="service" id="security.user_checker"/>
     </service>
     <service id="security.authentication.listener.guard.secure_area" class="Symfony\Component\Security\Guard\Firewall\GuardAuthenticationListener" public="false">
-      <tag name="security.remember_me_aware" id="secure_area" provider="security.user.provider.concrete.app_user_provider"/>
+      <tag name="security.remember_me_aware" id="secure_area" provider="App\Security\ProviderInterface"/>
       <argument type="service" id="security.authentication.guard_handler"/>
       <argument type="service" id="security.authentication.manager"/>
       <argument>secure_area</argument>
@@ -4039,6 +4033,12 @@
         <argument key="clientRegistry" type="service" id="knpu.oauth2.registry"/>
       </argument>
     </service>
+    <service id=".service_locator.RopKonk" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="clientKeycloak" type="service" id="App\Services\HttpClientKeycloak"/>
+      </argument>
+    </service>
     <service id=".service_locator.jNTV7Lm" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4079,6 +4079,14 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="trainsRepository" type="service" id="App\Repository\TrainsRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.J5wL_c1" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="equipementRepository" type="service" id="App\Repository\EquipementRepository"/>
+        <argument key="soustypeEquipementRepository" type="service" id="App\Repository\SoustypeEquipementRepository"/>
+        <argument key="typeEquipementRepository" type="service" id="App\Repository\TypeEquipementRepository"/>
       </argument>
     </service>
     <service id=".service_locator.59.A7DW" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4123,12 +4131,13 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.97G5N6m" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.kUwL7bC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\KeyCloakAuthController::connectAction" type="service" id=".service_locator.no19fnv"/>
         <argument key="App\Controller\alstomController::baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController::clients" type="service" id=".service_locator.jNTV7Lm"/>
+        <argument key="App\Controller\alstomController::create_train" type="service" id=".service_locator.J5wL_c1"/>
         <argument key="App\Controller\alstomController::delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
         <argument key="App\Controller\alstomController::delete_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController::delete_engineer" type="service" id=".service_locator.tx3hRNe"/>
@@ -4141,6 +4150,7 @@
         <argument key="App\Controller\alstomController::edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController::engineers" type="service" id=".service_locator.MWuXu_8"/>
         <argument key="App\Controller\alstomController::evc" type="service" id=".service_locator.kRdOC71"/>
+        <argument key="App\Controller\alstomController::index" type="service" id=".service_locator.RopKonk"/>
         <argument key="App\Controller\alstomController::projects" type="service" id=".service_locator.MnNiUch"/>
         <argument key="App\Controller\alstomController::show_clients" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController::show_engineer" type="service" id=".service_locator.tx3hRNe"/>
@@ -4158,6 +4168,7 @@
         <argument key="App\Controller\KeyCloakAuthController:connectAction" type="service" id=".service_locator.no19fnv"/>
         <argument key="App\Controller\alstomController:baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController:clients" type="service" id=".service_locator.jNTV7Lm"/>
+        <argument key="App\Controller\alstomController:create_train" type="service" id=".service_locator.J5wL_c1"/>
         <argument key="App\Controller\alstomController:delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
         <argument key="App\Controller\alstomController:delete_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController:delete_engineer" type="service" id=".service_locator.tx3hRNe"/>
@@ -4170,6 +4181,7 @@
         <argument key="App\Controller\alstomController:edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController:engineers" type="service" id=".service_locator.MWuXu_8"/>
         <argument key="App\Controller\alstomController:evc" type="service" id=".service_locator.kRdOC71"/>
+        <argument key="App\Controller\alstomController:index" type="service" id=".service_locator.RopKonk"/>
         <argument key="App\Controller\alstomController:projects" type="service" id=".service_locator.MnNiUch"/>
         <argument key="App\Controller\alstomController:show_clients" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController:show_engineer" type="service" id=".service_locator.tx3hRNe"/>
@@ -4529,7 +4541,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.97G5N6m"/>
+      <argument type="service" id=".service_locator.kUwL7bC"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -4748,7 +4760,8 @@
     <service id="Symfony\Component\Security\Http\HttpUtils" alias="security.http_utils" public="false"/>
     <service id="Symfony\Component\Security\Guard\GuardAuthenticatorHandler" alias="security.authentication.guard_handler" public="false"/>
     <service id="security.firewall" alias="debug.security.firewall" public="false"/>
-    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.app_user_provider"/>
+    <service id="security.user.provider.concrete.app_user_provider" alias="App\Security\KeycloakProvider" public="false"/>
+    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="App\Security\KeycloakProvider"/>
     <service id="security.authentication.session_strategy.secure_area" alias="security.authentication.session_strategy"/>
     <service id="security.user_checker.secure_area" alias="security.user_checker" public="false"/>
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
@@ -4793,7 +4806,7 @@
     <service id="KnpU\OAuth2ClientBundle\Client\ClientRegistry" alias="knpu.oauth2.registry" public="false"/>
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.97G5N6m"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.kUwL7bC"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.tSKDlY7" alias=".1_ServiceLocator~cEpRI.J" public="false"/>
