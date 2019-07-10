@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use App\Entity\AssociationBaseline;
 use App\Entity\AssociationEquiptERTMS;
 use App\Entity\Baseline;
@@ -50,6 +54,8 @@ use App\Services\HttpClientKeycloak;
 use App\Repository\TypeEquipementRepository;
 use App\Repository\EquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\Services\ApiService;
 
 class alstomController extends AbstractController
 {
@@ -63,6 +69,12 @@ class alstomController extends AbstractController
     {
 
         $this->em = $em;
+
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $this->encoders = $encoders;
+        $serializer = new Serializer($normalizers, $encoders);
+        $this->serializer = $serializer;
     }
 
     /**
@@ -453,14 +465,22 @@ class alstomController extends AbstractController
      */
     public function create_train(
         Request $request,
-        EquipementRepository $equipementRepository
+        EquipementRepository $equipementRepository,
+        TrainsRepository $trainsRepository,
+        ApiService $apiService
+
     ): Response {
 
+
+        $jsonContent = "";
         $equipments = $equipementRepository->findAll();
 
         //formulaire du train
         $train = new Trains();
-        $form_train = $this->createForm(TrainsType::class, $train);
+        $form_train = $this->createForm(TrainsType::class, $train, [
+            'action' => $this->generateUrl('alstom.addTrains'),
+            'method' => 'POST',
+        ]);
         $form_train->handleRequest($request);
 
         //formulaire ertms comprenant tout le reste des formulaire ci dessous
@@ -479,24 +499,23 @@ class alstomController extends AbstractController
 
         if (isset($_POST['soumission_train'])) {
 
-            $ertms->setNameConfiguration('test');
-            dump($form_train->getData());
+            $ertms->setNameConfiguration($form_ertms->getData()->getNameConfiguration());
+            $assoc_ertms->setStatus(true);
+            $assoc_ertms->setSolution($ertms);
             // $train->setPositionERTMS();
             $train->addERTM($ertms);
             $ertms->setTrains($train);
             // $this->em->persist($assoc_ertms);
             // $this->em->persist($equipement);
-            $this->em->persist($ertms);
-            $this->em->persist($train);
+            // $this->em->persist($ertms);
+            // $this->em->persist($train);
+
+
             // $this->em->flush();
-
-        } else if (isset($_POST['soumission_ertms'])) {
-
-            $ertms->setNameConfiguration($form_ertms->getData()->getNameConfiguration());
-            $assoc_ertms->setStatus(true);
-            $assoc_ertms->setSolution($ertms);
-        } else if (isset($_POST['soumission_equipement'])) {
-
+        } else if (isset($_POST['soumission_ertms'])) { } else if (isset($_POST['soumission_equipement'])) {
+            $data = $request->getContent();
+            if (empty($data)) throw new CustomApiException(Response::HTTP_BAD_REQUEST, "Data sent null.");
+            $equipement = $apiService->validateAndCreate($data, Equipement::class);
             // $type->setName($form_equipt->getData()->getType()->getName());
             // $soustype->setName($form_equipt->getData()->getSousType()->getName());
             // $equipement->setType($type);
@@ -511,16 +530,13 @@ class alstomController extends AbstractController
         if ($form_equipt->isSubmitted() && $form_equipt->isValid()) { }
         if ($form_train->isSubmitted() && $form_train->isValid()) {
 
-
-
-
             //     $this->addFlash('success', 'Train create with success');
             //     return $this->redirectToRoute('alstom.trains');
         }
         dump($equipement);
         dump($ertms);
         dump($train);
-        // dump($train->getERTMS()->getValues()[0]);
+        dump($request->request->get('trains'));
 
         return $this
             ->render('alstom/trains/create-trains.html.twig', [
@@ -528,8 +544,7 @@ class alstomController extends AbstractController
                 'button' => 'Create',
                 'form_train' => $form_train->createView(),
                 'form_ertms' => $form_ertms->createView(),
-                'form_equipement' => $form_equipt->createView(),
-                'equipments' => $equipments,
+                'form_equipement' => $form_equipt->createView()
                 // 'form_type' => $form_type->createView(),
                 // 'form_soustype' => $form_soustype->createView(),
 
@@ -542,18 +557,21 @@ class alstomController extends AbstractController
     public function addTrains(Request $request): Response
     {
 
-        $trains_name = $request->get('trains[name]');
-        $trains_projects = $request->get('trains[projects]');
-        $trains_type = $request->get('trains[type]');
-        // $this->em->persist($type);
+        $trains = $request->request->get('trains');
+        // $trains = $this->serializer->deserialize($train, Trains::class, 'json');
+        // $train->setName($trains['name']);
+        // $train->setTrainType($trains['trainType']);
+
+        // $this->em->persist($trains);
         // $this->em->flush();
 
         return $this->json([
             'code' => 200,
             'messsage' => "train ",
-            'trains' => $trains_name,
-            'trains_projects' => $trains_projects,
-            'trains_type' => $trains_type
+            'trains' => $trains['name'],
+            'trains_projects' => $trains['projects'],
+            'trains_type' => $trains['trainType'],
+
         ], 200);
     }
     /**
@@ -574,18 +592,16 @@ class alstomController extends AbstractController
      * @Route("alstom/addEquipment", name="alstom.addEquipment")
      * @return Response
      */
-    public function addType(Request $request): Response
+    public function addEquipement(Request $request): Response
     {
-        $type = $_SESSION['equipment'];
-        $soustype = $_SESSION['soustype'];
+        $trains = $request->request;
         // $this->em->persist($type);
         // $this->em->flush();
 
         return $this->json([
             'code' => 200,
             'messsage' => "type ajouté",
-            'type' => $type,
-            'soustype' => $soustype
+            'type' => $trains
         ], 200);
     }
 

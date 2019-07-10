@@ -6,7 +6,7 @@
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
     <parameter key="kernel.name">src</parameter>
-    <parameter key="kernel.cache_dir">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev</parameter>
+    <parameter key="kernel.cache_dir">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev</parameter>
     <parameter key="kernel.logs_dir">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
@@ -26,6 +26,7 @@
       <parameter key="VichUploaderBundle">Vich\UploaderBundle\VichUploaderBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="KnpUOAuth2ClientBundle">KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle</parameter>
+      <parameter key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -96,6 +97,10 @@
         <parameter key="path">C:\Users\L_200606688\Desktop\data-platform\trb-platform\vendor\knpuniversity\oauth2-client-bundle\src</parameter>
         <parameter key="namespace">KnpU\OAuth2ClientBundle</parameter>
       </parameter>
+      <parameter key="FOSJsRoutingBundle" type="collection">
+        <parameter key="path">C:\Users\L_200606688\Desktop\data-platform\trb-platform\vendor\friendsofsymfony\jsrouting-bundle</parameter>
+        <parameter key="namespace">FOS\JsRoutingBundle</parameter>
+      </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">srcApp_KernelDevDebugContainer</parameter>
@@ -116,20 +121,20 @@
       <parameter key="cookie_samesite">lax</parameter>
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/sessions</parameter>
+    <parameter key="session.save_path">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="form.type_extension.csrf.enabled">true</parameter>
     <parameter key="form.type_extension.csrf.field_name">_token</parameter>
     <parameter key="asset.request_context.base_path"></parameter>
     <parameter key="asset.request_context.secure">false</parameter>
     <parameter key="validator.mapping.cache.prefix"></parameter>
-    <parameter key="validator.mapping.cache.file">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/validation.php</parameter>
+    <parameter key="validator.mapping.cache.file">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/validation.php</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="profiler_listener.only_exceptions">false</parameter>
     <parameter key="profiler_listener.only_master_requests">false</parameter>
-    <parameter key="profiler.storage.dsn">file:C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/profiler</parameter>
+    <parameter key="profiler.storage.dsn">file:C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/profiler</parameter>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/srcApp_KernelDevDebugContainer.xml</parameter>
+    <parameter key="debug.container.dump">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/srcApp_KernelDevDebugContainer.xml</parameter>
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
@@ -137,7 +142,7 @@
     <parameter key="router.cache_class_prefix">srcApp_KernelDevDebugContainer</parameter>
     <parameter key="request_listener.http_port">80</parameter>
     <parameter key="request_listener.https_port">443</parameter>
-    <parameter key="serializer.mapping.cache.file">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/serialization.php</parameter>
+    <parameter key="serializer.mapping.cache.file">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/serialization.php</parameter>
     <parameter key="serializer.mapping.cache.prefix"></parameter>
     <parameter key="doctrine_cache.apc.class">Doctrine\Common\Cache\ApcCache</parameter>
     <parameter key="doctrine_cache.apcu.class">Doctrine\Common\Cache\ApcuCache</parameter>
@@ -246,7 +251,7 @@
     <parameter key="doctrine.orm.second_level_cache.cache_configuration.class">Doctrine\ORM\Cache\CacheConfiguration</parameter>
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="doctrine_migrations.dir_name">C:\Users\L_200606688\Desktop\data-platform\trb-platform/src/Migrations</parameter>
     <parameter key="doctrine_migrations.namespace">DoctrineMigrations</parameter>
@@ -267,7 +272,7 @@
     <parameter key="security.access.always_authenticate_before_granting">false</parameter>
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
     <parameter key="swiftmailer.mailer.default.transport.name">dynamic</parameter>
-    <parameter key="swiftmailer.spool.default.memory.path">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/swiftmailer/spool/default</parameter>
+    <parameter key="swiftmailer.spool.default.memory.path">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/swiftmailer/spool/default</parameter>
     <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
     <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
@@ -359,6 +364,15 @@
       </parameter>
     </parameter>
     <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
+    <parameter key="fos_js_routing.extractor.class">FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor</parameter>
+    <parameter key="fos_js_routing.controller.class">FOS\JsRoutingBundle\Controller\Controller</parameter>
+    <parameter key="fos_js_routing.normalizer.route_collection.class">FOS\JsRoutingBundle\Serializer\Normalizer\RouteCollectionNormalizer</parameter>
+    <parameter key="fos_js_routing.normalizer.routes_response.class">FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer</parameter>
+    <parameter key="fos_js_routing.denormalizer.route_collection.class">FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer</parameter>
+    <parameter key="fos_js_routing.request_context_base_url">null</parameter>
+    <parameter key="fos_js_routing.cache_control" type="collection">
+      <parameter key="enabled">false</parameter>
+    </parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -737,7 +751,7 @@
     <service id="cache_warmer" class="Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate" public="true">
       <argument type="tagged" tag="kernel.cache_warmer"/>
       <argument>true</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/srcApp_KernelDevDebugContainerDeprecations.log</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/srcApp_KernelDevDebugContainerDeprecations.log</argument>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer" public="true">
       <argument type="tagged" tag="kernel.cache_clearer"/>
@@ -994,7 +1008,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -1023,7 +1037,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -1111,7 +1125,7 @@
       </argument>
     </service>
     <service id=".1_NativeFileSessionHandler~8LwBsXH" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/sessions</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/sessions</argument>
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
       <argument type="service" id="session.storage.native"/>
@@ -1134,7 +1148,7 @@
     <service id="session.flash_bag" class="Symfony\Component\HttpFoundation\Session\Flash\FlashBag" public="false"/>
     <service id="session.attribute_bag" class="Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag" public="false"/>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/sessions</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
@@ -1299,7 +1313,7 @@
       <argument type="service" id="assets.context"/>
     </service>
     <service id=".1_PhpArrayAdapter~BP8gGsM" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/validation.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/validation.php</argument>
       <argument type="service" id="cache.validator"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -1331,7 +1345,7 @@
     <service id="validator.mapping.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ValidatorCacheWarmer" public="false">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="validator.builder"/>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/validation.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/validation.php</argument>
     </service>
     <service id="validator.mapping.cache.symfony" class="Symfony\Component\Validator\Mapping\Cache\Psr6Cache" public="false">
       <argument type="service" id=".1_PhpArrayAdapter~BP8gGsM"/>
@@ -1408,7 +1422,7 @@
       </call>
     </service>
     <service id="profiler.storage" class="Symfony\Component\HttpKernel\Profiler\FileProfilerStorage" public="false">
-      <argument>file:C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/profiler</argument>
+      <argument>file:C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/profiler</argument>
     </service>
     <service id="profiler_listener" class="Symfony\Component\HttpKernel\EventListener\ProfilerListener" public="false">
       <tag name="kernel.event_subscriber"/>
@@ -1445,7 +1459,7 @@
       <tag name="data_collector" template="@WebProfiler/Collector/logger.html.twig" id="logger" priority="300"/>
       <tag name="monolog.logger" channel="profiler"/>
       <argument type="service" id="monolog.logger.profiler" on-invalid="ignore"/>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/srcApp_KernelDevDebugContainer</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/srcApp_KernelDevDebugContainer</argument>
       <argument type="service" id="request_stack" on-invalid="ignore"/>
     </service>
     <service id="data_collector.time" class="Symfony\Component\HttpKernel\DataCollector\TimeDataCollector" public="false">
@@ -1703,14 +1717,6 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -2028,7 +2034,7 @@
       <argument type="service" id=".service_locator.g1PHc2m.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev</argument>
+        <argument key="cache_dir">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
         <argument key="generator_base_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
@@ -2098,7 +2104,7 @@
       <argument type="service" id="routing.loader.annotation"/>
     </service>
     <service id=".2_PhpArrayAdapter~Rsy_Ewj" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/annotations.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/annotations.php</argument>
       <argument type="service" id="cache.annotations"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -2127,7 +2133,7 @@
     <service id="annotations.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\AnnotationsCacheWarmer" public="false">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="annotations.reader"/>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/annotations.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/annotations.php</argument>
       <argument>#^Symfony\\(?:Component\\HttpKernel\\|Bundle\\FrameworkBundle\\Controller\\(?!AbstractController$|Controller$))#</argument>
       <argument>true</argument>
     </service>
@@ -2209,10 +2215,10 @@
           </service>
         </argument>
       </argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/serialization.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/serialization.php</argument>
     </service>
     <service id="serializer.mapping.cache.symfony" class="Psr\Cache\CacheItemPoolInterface" public="false">
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/serialization.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/serialization.php</argument>
       <argument type="service" id="cache.serializer"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -2668,7 +2674,7 @@
         <argument type="service" id="doctrine.orm.default_metadata_driver"/>
       </call>
       <call method="setProxyDir">
-        <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/doctrine/orm/Proxies</argument>
+        <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/doctrine/orm/Proxies</argument>
       </call>
       <call method="setProxyNamespace">
         <argument>Proxies</argument>
@@ -3501,7 +3507,7 @@
         </argument>
         <argument key="exception_controller">twig.controller.exception::showAction</argument>
         <argument key="autoescape">name</argument>
-        <argument key="cache">C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/twig</argument>
+        <argument key="cache">C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="paths" type="collection"/>
         <argument key="date" type="collection">
@@ -4178,11 +4184,11 @@
       <argument type="collection">
         <argument key="_default">C:\Users\L_200606688\Desktop\data-platform\trb-platform/public/build/entrypoints.json</argument>
       </argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/webpack_encore.cache.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/webpack_encore.cache.php</argument>
       <argument type="service" id="cache.webpack_encore"/>
     </service>
     <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/webpack_encore.cache.php</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/webpack_encore.cache.php</argument>
       <argument type="service" id="cache.webpack_encore"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -4341,7 +4347,7 @@
       </argument>
     </service>
     <service id="vich_uploader.metadata.cache.file_cache" class="Metadata\Cache\FileCache" public="false">
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/vich_uploader</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/vich_uploader</argument>
     </service>
     <service id="vich_uploader.metadata_factory" class="Metadata\MetadataFactory" public="false">
       <argument type="service" id="vich_uploader.metadata_driver.chain"/>
@@ -4549,6 +4555,50 @@
       <argument type="service" id="knpu.oauth2.provider.keycloak"/>
       <argument type="service" id="request_stack"/>
     </service>
+    <service id="fos_js_routing.extractor" class="FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor" public="true">
+      <argument type="service" id="router.default"/>
+      <argument type="collection"/>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev</argument>
+      <argument>%kernel.bundles%</argument>
+    </service>
+    <service id="fos_js_routing.dump_command" class="FOS\JsRoutingBundle\Command\DumpCommand">
+      <tag name="console.command"/>
+      <argument type="service" id="fos_js_routing.extractor"/>
+      <argument type="service" id="fos_js_routing.serializer"/>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\src</argument>
+      <argument>null</argument>
+      <call method="setName">
+        <argument>fos:js-routing:dump</argument>
+      </call>
+    </service>
+    <service id="fos_js_routing.router_debug_exposed_command" class="FOS\JsRoutingBundle\Command\RouterDebugExposedCommand">
+      <tag name="console.command"/>
+      <argument type="service" id="fos_js_routing.extractor"/>
+      <argument type="service" id="router.default"/>
+      <call method="setName">
+        <argument>fos:js-routing:debug</argument>
+      </call>
+    </service>
+    <service id="fos_js_routing.controller" class="FOS\JsRoutingBundle\Controller\Controller" public="true">
+      <argument type="service" id="fos_js_routing.serializer"/>
+      <argument type="service" id="fos_js_routing.extractor"/>
+      <argument>%fos_js_routing.cache_control%</argument>
+      <argument>true</argument>
+    </service>
+    <service id="fos_js_routing.serializer" class="Symfony\Component\Serializer\Serializer" public="true">
+      <argument type="collection">
+        <argument type="service" id="fos_js_routing.normalizer.route_collection"/>
+        <argument type="service" id="fos_js_routing.normalizer.routes_response"/>
+        <argument type="service" id="fos_js_routing.denormalizer.route_collection"/>
+      </argument>
+      <argument type="collection">
+        <argument key="json" type="service" id="fos_js_routing.encoder"/>
+      </argument>
+    </service>
+    <service id="fos_js_routing.normalizer.route_collection" class="FOS\JsRoutingBundle\Serializer\Normalizer\RouteCollectionNormalizer" public="false"/>
+    <service id="fos_js_routing.normalizer.routes_response" class="FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer" public="false"/>
+    <service id="fos_js_routing.denormalizer.route_collection" class="FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer" public="false"/>
+    <service id="fos_js_routing.encoder" class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\KeyCloakAuthController" class="App\Controller\KeyCloakAuthController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\KeyCloakAuthController" class="App\Controller\KeyCloakAuthController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\KeyCloakAuthController" class="App\Controller\KeyCloakAuthController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4863,10 +4913,12 @@
         <argument key="trainsRepository" type="service" id="App\Repository\TrainsRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.1glAHgc" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.i8ES8Rs" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="apiService" type="service" id="App\Services\ApiService"/>
         <argument key="equipementRepository" type="service" id="App\Repository\EquipementRepository"/>
+        <argument key="trainsRepository" type="service" id="App\Repository\TrainsRepository"/>
       </argument>
     </service>
     <service id=".service_locator.59.A7DW" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4911,13 +4963,13 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.X.Nwg3w" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.3qBPp3d" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\KeyCloakAuthController::connectAction" type="service" id=".service_locator.no19fnv"/>
         <argument key="App\Controller\alstomController::baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController::clients" type="service" id=".service_locator.jNTV7Lm"/>
-        <argument key="App\Controller\alstomController::create_train" type="service" id=".service_locator.1glAHgc"/>
+        <argument key="App\Controller\alstomController::create_train" type="service" id=".service_locator.i8ES8Rs"/>
         <argument key="App\Controller\alstomController::delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
         <argument key="App\Controller\alstomController::delete_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController::delete_engineer" type="service" id=".service_locator.tx3hRNe"/>
@@ -4948,7 +5000,7 @@
         <argument key="App\Controller\KeyCloakAuthController:connectAction" type="service" id=".service_locator.no19fnv"/>
         <argument key="App\Controller\alstomController:baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController:clients" type="service" id=".service_locator.jNTV7Lm"/>
-        <argument key="App\Controller\alstomController:create_train" type="service" id=".service_locator.1glAHgc"/>
+        <argument key="App\Controller\alstomController:create_train" type="service" id=".service_locator.i8ES8Rs"/>
         <argument key="App\Controller\alstomController:delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
         <argument key="App\Controller\alstomController:delete_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController:delete_engineer" type="service" id=".service_locator.tx3hRNe"/>
@@ -5367,7 +5419,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.X.Nwg3w"/>
+      <argument type="service" id=".service_locator.3qBPp3d"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5378,7 +5430,7 @@
     <service id=".errored..service_locator.3t_vtDk.App\Entity\EVC" class="App\Entity\EVC"/>
     <service id=".errored..service_locator.2hlHMKT.App\Entity\Baseline" class="App\Entity\Baseline"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
-      <argument type="service" id=".service_locator.MvR2oa0"/>
+      <argument type="service" id=".service_locator.t6nlTLd"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -5432,6 +5484,8 @@
         <argument key="vich:mapping:debug">vich_uploader.command.mapping_debug</argument>
         <argument key="vich:mapping:list-classes">vich_uploader.command.mapping_list_classes</argument>
         <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
+        <argument key="fos:js-routing:dump">fos_js_routing.dump_command</argument>
+        <argument key="fos:js-routing:debug">fos_js_routing.router_debug_exposed_command</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:controller">maker.auto_command.make_controller</argument>
@@ -5452,7 +5506,7 @@
         <argument key="make:migration">maker.auto_command.make_migration</argument>
       </argument>
     </service>
-    <service id=".service_locator.MvR2oa0" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.t6nlTLd" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service" id="console.command.about"/>
@@ -5492,6 +5546,8 @@
         <argument key="doctrine.schema_drop_command" type="service" id="doctrine.schema_drop_command"/>
         <argument key="doctrine.schema_update_command" type="service" id="doctrine.schema_update_command"/>
         <argument key="doctrine.schema_validate_command" type="service" id="doctrine.schema_validate_command"/>
+        <argument key="fos_js_routing.dump_command" type="service" id="fos_js_routing.dump_command"/>
+        <argument key="fos_js_routing.router_debug_exposed_command" type="service" id="fos_js_routing.router_debug_exposed_command"/>
         <argument key="maker.auto_command.make_auth" type="service" id="maker.auto_command.make_auth"/>
         <argument key="maker.auto_command.make_command" type="service" id="maker.auto_command.make_command"/>
         <argument key="maker.auto_command.make_controller" type="service" id="maker.auto_command.make_controller"/>
@@ -5530,7 +5586,7 @@
     <service id="cache.app.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="false">
       <argument>cKOigS2x0Y</argument>
       <argument>0</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -5540,7 +5596,7 @@
       <argument>GgefhokBFj</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -5548,7 +5604,7 @@
       <argument>2RuFICoZRC</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -5556,7 +5612,7 @@
       <argument>PBZ4s66q93</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -5564,7 +5620,7 @@
       <argument>EqTZY8Pz+T</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -5572,7 +5628,7 @@
       <argument>nsSGQLAixO</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -5580,7 +5636,7 @@
       <argument>yHXpaYJIWc</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/L_200606688/Desktop/data-platform/trb-platform/var/cache/dev/pools</argument>
+      <argument>C:\Users\L_200606688\Desktop\data-platform\trb-platform\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -5736,7 +5792,8 @@
     <service id="KnpU\OAuth2ClientBundle\Client\ClientRegistry" alias="knpu.oauth2.registry" public="false"/>
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.X.Nwg3w"/>
+    <service id="fos_js_routing.router" alias="router.default" public="false"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.3qBPp3d"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.tSKDlY7" alias=".1_ServiceLocator~cEpRI.J" public="false"/>

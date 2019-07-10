@@ -24,17 +24,16 @@ class ProjectsRepository extends ServiceEntityRepository
     }
 
 
-    public function  findAvailable():QueryBuilder
+    public function  findAvailable(): QueryBuilder
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.name', 'ASC')
             ->where('p.available = true');
     }
 
-    public function findTrainsInProjects():Query
+    public function findTrainsInProjects()
     {
         return $this->createQueryBuilder('p');
-
     }
 
     public function findAllProjects(ProjectSearch $search): array
@@ -43,37 +42,33 @@ class ProjectsRepository extends ServiceEntityRepository
         $AllProjects = $this->findAll();
         $findProjects = [];
 
-        if($search->getNameProject()){
-            foreach ($AllProjects as $currentProject){
+        if ($search->getNameProject()) {
+            foreach ($AllProjects as $currentProject) {
                 $find = false;
                 $compar = '';
 
-                for($i = 0; $i < (strlen($currentProject->getName())) ; $i++){
+                for ($i = 0; $i < (strlen($currentProject->getName())); $i++) {
 
                     $compar .= $currentProject->getName()[$i];
-                    if($find === false){
+                    if ($find === false) {
 
                         if ((strtolower($currentProject->getName()[$i]) === strtolower($search->getNameProject()) ||
                             strtolower($compar) === strtolower($search->getNameProject())) && $currentProject->getAvailable() === true) {
 
                             array_push($findProjects, $currentProject);
                             $find = true;
-
                         }
                     }
                 }
             }
             $query =  $query
                 ->where('p.name = :name')
-                ->setParameter('name',$findProjects)
+                ->setParameter('name', $findProjects)
                 ->getQuery()->getParameters()->getValues()[0]->getValue();
             return $query;
-
-        }else{
+        } else {
             return $query->getQuery()->getResult();
-
         }
-
     }
     // /**
     //  * @return Projects[] Returns an array of Projects objects

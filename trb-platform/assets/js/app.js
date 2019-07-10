@@ -11,5 +11,6 @@ const $ = require('jquery');
 var greet = require('./greet');
 
 let Routing = require('../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router');
-let Routes = //
-    console.log(Routing);
+let Routes = require('./js_routes.json');
+
+Routing.setRoutingData(Routes);

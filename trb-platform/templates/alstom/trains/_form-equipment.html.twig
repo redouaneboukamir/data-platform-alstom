@@ -2,50 +2,38 @@
     <div class="col-md-12">
         <h4 id="header-equipments">Equipments
         </h4>
-        <div class="show-equipment" id="show-equipment">
-            {% for equipment in equipments %}
-                <h5>{{equipment.type}}</h5>
-                <h6>{{equipment.sousType}}</h6>
-                <div>
-                    <p>{{equipment.DTRBoard}}</p>
-
-                    <p>{{equipment.IndiceDTR}}</p>
-
-                    <p>{{equipment.NumSerie}}</p>
-                </div>
-
-            {% endfor %}
-        </div>
+        <div class="show-equipment" id="show-equipment"></div>
         <div class="form-equipment" id="formulaire-equipment">
-            {{ form_start(form_equipement, {'action': path('alstom.create-train'), 'method': 'POST'}) }}
+            {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 'method': 'POST',
+               'attr': {'id': 'form_equipement'}}) }}
+
 
             <div class="type-equipement row">
                 <div class="col-md-12">
                     {{ form_row(form_equipement.Type) }}
                 </div>
                 {# <div class="col-md-2" id="btn-create-type">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="btn-create-type">+</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> #}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="btn-create-type">+</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> #}
             </div>
             <div class="type-equipement row">
                 <div
                     class="col-md-10">{# {{ form_row(form_equipement.Sous_type) }} #}
                 </div>
                 {# <div class="col-md-2" id="btn-create-sousType">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="btn-create-type">+</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> #}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p class="btn-create-type">+</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> #}
             </div>
             {# {{ form_row(form_equipement.DTR_board) }}
-                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                        {{ form_row(form_equipement.Indice_DTR) }}
-                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                        {{ form_row(form_equipement.Num_serie) }} #}
+                                                            
+                                                                        {{ form_row(form_equipement.Indice_DTR) }}
+                                                            
+                                                                        {{ form_row(form_equipement.Num_serie) }} #}
 
 
-            {{form_end(form_equipement)}}
             <p><input class="btn-valid-Equipment" id="soumission-equipement" name="soumission_equipement" type="submit" value="Add"/></p>
-
-
+            {{form_end(form_equipement)}}
+            {# <a href="{{path('alstom.addEquipment')}}">add</a> #}
         </div>
         <div class=" mt-4">
 
@@ -60,10 +48,4 @@
 </div>
 
 
-{% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script>
-
-
-    <script></script>
-{% endblock %}
+{% block javascripts %}{% endblock %}

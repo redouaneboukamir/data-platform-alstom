@@ -8,9 +8,10 @@
 <!-- Ici ton contenu 2 -->
 
 
-{{ form_start(form_train, {'action': path('alstom.addTrains'), 'method': 'POST'},{
-    'id' : 'train'
+{{ form_start(form_train, {'action': path('alstom.addTrains'), 'method': 'POST',
+               'attr': {'id': 'form_train'}
 }) }}
+
 
 <div class="row">
     <div class="col-md-10">{{ form_row(form_train.name) }}</div>
@@ -64,11 +65,12 @@
                         <span aria-hidden="true" class="white-text close-name-ertms">×</span>
                     </button>
                     <!--Header-->
-                    <div class="modal-header" id="modal-header">{# 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% include('alstom/trains/_form-ertms.html.twig') %}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% include('alstom/trains/_form-equipment.html.twig') %} #}
+                    <div class="modal-header" id="modal-header">
+                        {% include('alstom/trains/_form-ertms.html.twig') %}
+                        {% include('alstom/trains/_form-equipment.html.twig') %}
                         {# {% include('alstom/trains/_form-typeEquipment.html.twig') %}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
+                                                                        {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
+
                     </div>
 
 
@@ -77,7 +79,7 @@
         </div>
     </div>
 </div>
-<p><input class="btn btn-primary mt-4" id="soumission-train" name="soumission_train" type="submit" value="Create"/></p>
+{# <p><input class="btn btn-primary mt-4" id="soumission-train" name="soumission_train" type="submit" value="Create"/></p> #}
 {{ form_end(form_train) }}
 
 {% block javascripts %}{% endblock %}

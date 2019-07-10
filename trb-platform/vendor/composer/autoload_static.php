@@ -115,6 +115,10 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
             'PhpParser\\' => 10,
             'PackageVersions\\' => 16,
         ),
+        'N' => 
+        array (
+            'Nord\\Lumen\\Fractal\\' => 19,
+        ),
         'M' => 
         array (
             'Monolog\\' => 8,
@@ -123,6 +127,7 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         'L' => 
         array (
             'League\\OAuth2\\Client\\' => 21,
+            'League\\Fractal\\' => 15,
         ),
         'K' => 
         array (
@@ -461,6 +466,10 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         array (
             0 => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions',
         ),
+        'Nord\\Lumen\\Fractal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nordsoftware/lumen-fractal/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -472,6 +481,10 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         'League\\OAuth2\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/oauth2-client/src',
+        ),
+        'League\\Fractal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/fractal/src',
         ),
         'KnpU\\OAuth2ClientBundle\\' => 
         array (

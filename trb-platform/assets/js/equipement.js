@@ -1,22 +1,22 @@
 $(document).ready(function () {
 
-    let $equipement_type = $('#equipement_Type');
-    let $token = $('equipement_token')
-
-    $equipement_type.change(function () {
-
-        let $form = $(this).closest('form');
+    let Equipments = [],
+        i = 0;
+    $('#form_equipement').on('submit', function (e) {
+        e.preventDefault();
         let data = {};
-
-        data[$token.attr('name')] = $token.val();
-        data[$equipement_type.attr('name')] = $equipement_type.val();
-        console.log(data);
-
-        $.post($form.attr('action'), data).then(function (response) {
-            $('#equipement_Sous_Type').replaceWith($(response).find('#equipement_Sous_Type'))
+        $(this).serializeArray().forEach((object) => {
+            data[object.name] = object.value;
+            Equipments[i].push(object.value);
+            console.log(Equipments);
+            console.log(object.value)
         });
+        i++;
+        let test = JSON.stringify(data);
 
+        console.log(data);
     })
+
 })
 
 let previous = "";

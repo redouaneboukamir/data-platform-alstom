@@ -55,7 +55,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'alstom.create-train' => [[], ['_controller' => 'App\\Controller\\alstomController::create_train'], [], [['text', '/alstom/create-train']], [], []],
         'alstom.addTrains' => [[], ['_controller' => 'App\\Controller\\alstomController::addTrains'], [], [['text', '/alstom/addTrains']], [], []],
         'alstom.addErtms' => [[], ['_controller' => 'App\\Controller\\alstomController::addErtms'], [], [['text', '/alstom/addErtms']], [], []],
-        'alstom.addEquipment' => [[], ['_controller' => 'App\\Controller\\alstomController::addType'], [], [['text', '/alstom/addEquipment']], [], []],
+        'alstom.addEquipment' => [[], ['_controller' => 'App\\Controller\\alstomController::addEquipement'], [], [['text', '/alstom/addEquipment']], [], []],
         'alstom.edit-train' => [['id'], ['_controller' => 'App\\Controller\\alstomController::edit_train'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/edit-train']], [], []],
         'alstom.show-train' => [['id'], ['_controller' => 'App\\Controller\\alstomController::show_train'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/trains']], [], []],
         'alstom.delete-train' => [['id'], ['_controller' => 'App\\Controller\\alstomController::delete_train'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/train']], [], []],

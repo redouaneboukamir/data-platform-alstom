@@ -1,7 +1,24 @@
 $(document).ready(function () { // AJAXX
 
 
-    console.log($('#trains_position_ERTMS').val())
+    // $('#form_train').on('submit', function (e) {
+    //     e.preventDefault();
+    //     let data = {};
+    //     $(this).serializeArray().forEach((object) => {
+    //         data[object.name] = object.value;
+    //     });
+    //     console.log(data);
+    //     let test = JSON.stringify(data);
+
+    //     console.log(data['train[name]']);
+    //     // const url = "addTrains";
+    //     // axios.post(url).then((response) => {
+    //     //     console.log(response);
+    //     // }).catch((err) => {
+
+    //     // });
+    // })
+
 
     // Vidage des inputs aux changement de select
     // $('select[name="trains[projects]"], select[name="trains[trainType]"]').change(function(){

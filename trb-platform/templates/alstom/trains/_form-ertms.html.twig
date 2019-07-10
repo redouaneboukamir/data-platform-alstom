@@ -6,14 +6,9 @@
         {{ form_row(form_ertms.name_configuration, {'label': 'Name ERTMS configuration'}) }}
 
 
-        <p>
-            <input class="btn-valid-ertms" id="valid-ertms-name" name="soumission_ertms" type="submit" value="OK"/></p>
+        <p class="btn-valid-ertms" id="valid-ertms-name">OK</p>
     </div>
 </div>
 {{ form_end(form_ertms) }}
 
-{% block javascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script></script>
-{% endblock %}
+{% block javascripts %}{% endblock %}
