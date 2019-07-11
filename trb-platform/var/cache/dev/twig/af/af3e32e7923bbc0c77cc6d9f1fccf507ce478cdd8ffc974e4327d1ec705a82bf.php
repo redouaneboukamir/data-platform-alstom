@@ -303,7 +303,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
                         {% include('alstom/trains/_form-ertms.html.twig') %}
                         {% include('alstom/trains/_form-equipment.html.twig') %}
                         {# {% include('alstom/trains/_form-typeEquipment.html.twig') %}
-                                                                        {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
+                                                                                                {% include('alstom/trains/_form-soustypeEquipment.html.twig') %} #}
 
                     </div>
 

@@ -502,9 +502,11 @@ class alstomController extends AbstractController
             $ertms->setNameConfiguration($form_ertms->getData()->getNameConfiguration());
             $assoc_ertms->setStatus(true);
             $assoc_ertms->setSolution($ertms);
-            // $train->setPositionERTMS();
+            $train->setPositionERTMS("lefet");
             $train->addERTM($ertms);
             $ertms->setTrains($train);
+            $equipement->setAssociationEquiptERTMS($assoc_ertms);
+            $assoc_ertms->addEquipement($equipement);
             // $this->em->persist($assoc_ertms);
             // $this->em->persist($equipement);
             // $this->em->persist($ertms);
@@ -522,8 +524,7 @@ class alstomController extends AbstractController
             // $equipement->setSousType($soustype);
             // $type->addEquipement($equipement);
             // $soustype->addEquipement($equipement);
-            $equipement->setAssociationEquiptERTMS($assoc_ertms);
-            $assoc_ertms->addEquipement($equipement);
+
         }
 
         //        Validation des formulaire
@@ -594,14 +595,14 @@ class alstomController extends AbstractController
      */
     public function addEquipement(Request $request): Response
     {
-        $trains = $request->request;
+        $equipement = $request->request;
         // $this->em->persist($type);
         // $this->em->flush();
 
         return $this->json([
             'code' => 200,
             'messsage' => "type ajouté",
-            'type' => $trains
+            'equipement' => $equipement
         ], 200);
     }
 

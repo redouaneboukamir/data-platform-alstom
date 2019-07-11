@@ -1,22 +1,48 @@
 $(document).ready(function () {
-
+    const $type_equipement = $('#equipement_Type');
+    const $token = $('#equipement__token');
     let Equipments = [],
         i = 0;
     $('#form_equipement').on('submit', function (e) {
+
         e.preventDefault();
-        let data = {};
-        $(this).serializeArray().forEach((object) => {
-            data[object.name] = object.value;
-            Equipments[i].push(object.value);
-            console.log(Equipments);
-            console.log(object.value)
-        });
+        let $form = $(this).closest('#form_equipement');
+        let data = {}
+        data[$token.attr('name')] = $token.val()
+        data[$type_equipement.attr('name')] = $type_equipement.val()
+
+        $.post($form.attr('action'), data).then(function (response) {
+            console.log(response)
+            $('#equipement_Sous_Type').replaceWith(
+                $(response).find('#equipement_Sous_Type')
+            )
+        })
+        // let data = {};
+        Equipments.push(data);
+        // $(this).serializeArray().forEach((object) => {
+        //     data[object.name] = object.value;
+        // });
         i++;
         let test = JSON.stringify(data);
 
-        console.log(data);
+        console.log(Equipments);
     })
 
+
+    // $type_equipement.change(function () {
+
+    //     let $form = $(this).closest('#form_equipement');
+    //     let data = {}
+    //     data[$token.attr('name')] = $token.val()
+    //     data[$type_equipement.attr('name')] = $type_equipement.val()
+
+    //     $.post($form.attr('action'), data).then(function (response) {
+    //         console.log(response)
+    //         $('#equipement_Sous_Type').replaceWith(
+    //             $(response).find('#equipement_Sous_Type')
+    //         )
+    //     })
+    // })
 })
 
 let previous = "";

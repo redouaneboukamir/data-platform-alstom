@@ -23,10 +23,10 @@ class EquipementType extends AbstractType
                 'required' => true
             ]);
         $builder->get('Type')->addEventListener(
-            FormEvents::POST_SUBMIT,
+            FormEvents::SUBMIT,
             function (FormEvent $event) {
                 $form = $event->getForm();
-
+                dump($form);
                 $form->getParent()->add('Sous_type', EntityType::class, [
                     'class' => SoustypeEquipement::class,
                     'choices' => $form->getData()->getSousType()
