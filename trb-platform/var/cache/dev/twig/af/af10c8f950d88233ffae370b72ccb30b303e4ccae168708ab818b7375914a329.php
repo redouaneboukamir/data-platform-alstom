@@ -245,6 +245,6 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
                     </section>
                 </main>
             {% endblock %}
-", "alstom/projects/projects.html.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\templates\\alstom\\projects\\projects.html.twig");
+", "alstom/projects/projects.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\projects\\projects.html.twig");
     }
 }

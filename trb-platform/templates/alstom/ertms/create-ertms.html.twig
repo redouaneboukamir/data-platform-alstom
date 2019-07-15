@@ -1,0 +1,61 @@
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+{% endblock %}
+
+
+{% extends 'alstom/index.html.twig' %}
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1>Add ERTMS</h1>
+        </div>
+        <div class="jumbotron content-form-engineer">
+            {{ form_start(form, {'action': path('alstom.addErtms'), 
+               'attr': {'id': 'form_ertms'}})
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
+
+            <div class="row">
+                <div class="col-md-10">{{ form_row(form.name_configuration) }}</div>
+            </div>
+            <button class="btn btn-primary mt-4" data-target="#exampleModal" data-toggle="modal" id="create-ertms">{{ button|default('Send') }}</button>
+
+
+            {{ form_end(form) }}
+
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Equipments</h5>
+                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="show-equipment" id="show-equipment"></div>
+
+                            <div id="modal-content-form-equipement">
+                                {% include ("alstom/ertms/_form-equipment.html.twig") %}
+                            </div>
+
+
+                            <div class=" mt-4">
+                                <a class="btn-add-equipment col-5 ml-5 mb-5" id="create-equipment">Add equipement</a>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                            <button class="btn btn-primary" type="button">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    {% endblock %}
+    {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script>// $('select').select2();</script>{% endblock %}

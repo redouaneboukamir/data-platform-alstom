@@ -1,0 +1,53 @@
+{% extends 'alstom/index.html.twig' %}
+
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>
+                <i class="fa fa-angle-right"></i>
+                ERTMS</h2>
+            <a href="{{ path('alstom.create-ertms') }}">
+                <button class="btn btn-primary">New</button>
+            </a>
+        </div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <section class="" id="unseen ">
+            {#            <div class="pull-left search">#}
+            {#                {{ form_start(form) }}#}
+            {#                {{ form_row(form.name_client) }}#}
+            {#                {{ form_end(form) }}#}
+            {#            </div>#}
+
+                <table class="table table-condensed table-content card-body table-full-width "> <thead class="title-table">
+                    <th class="">Name configuration</th>
+                    <th class="th-empty" scope="col"></th>
+                </thead>
+                <tbody>
+                    {% for ertm in ertms %}
+                        <tr class="td-table">
+                            <td>{{ ertm.nameConfiguration }}</td>
+                            <td
+                                class="content-btn-edit-delete">
+                                {#                            <a href="{{ path('alstom.edit-evc', {id: evc.id}) }}"><i class="fas fa-user-edit btn-edit"></i> </a>#}
+                                <form method="post" action="{{ path('alstom.delete-evc' ,{id:ertms.id}) }}" onsubmit="return confirm('Are you sure to delete this evc?')">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ertms.id) }}">
+                                    <button class="btn btn-danger btn-delete-client">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+
+    </main>
+{% endblock %}

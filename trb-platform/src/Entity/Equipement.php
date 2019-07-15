@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Proxies\__CG__\App\Entity\SoustypeEquipement;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EquipementRepository")
@@ -40,14 +40,14 @@ class Equipement
     private $Num_serie;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeEquipement", inversedBy="equipements",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeEquipement")
      */
-    private $Type;
-
+    private $type;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SoustypeEquipement", inversedBy="equipements", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\SoustypeEquipement")
      */
     private $SousType;
+
 
     public function getId(): ?int
     {
@@ -99,34 +99,23 @@ class Equipement
         return $this->Num_serie;
     }
 
-    public function setNumSerie(string $Num_serie): self
-    {
-        $this->Num_serie = $Num_serie;
-
-        return $this;
-    }
-
     public function getType(): ?TypeEquipement
     {
-        return $this->Type;
+        return $this->type;
     }
-
-    public function setType(?TypeEquipement $Type): self
+    public function setType(?TypeEquipement $type)
     {
-        $this->Type = $Type;
-
-        return $this;
+        $this->type = $type;
+        return $this->type;
     }
 
     public function getSousType(): ?SoustypeEquipement
     {
         return $this->SousType;
     }
-
-    public function setSousType(?SoustypeEquipement $SousType): self
+    public function setSousType(?SoustypeEquipement $SousType)
     {
         $this->SousType = $SousType;
-
-        return $this;
+        return $this->SousType;
     }
 }

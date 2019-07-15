@@ -56,6 +56,7 @@ use App\Repository\EquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Services\ApiService;
+use App\Repository\ERTMSEquipementRepository;
 
 class alstomController extends AbstractController
 {
@@ -69,6 +70,7 @@ class alstomController extends AbstractController
     {
 
         $this->em = $em;
+        $this->tabEquipt = $tabEquipt = [];
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
@@ -466,7 +468,8 @@ class alstomController extends AbstractController
     public function create_train(
         Request $request,
         EquipementRepository $equipementRepository,
-        TrainsRepository $trainsRepository,
+        TypeEquipementRepository $typeEquipementRepository,
+        SoustypeEquipementRepository $SoustypeEquipementRepository,
         ApiService $apiService
 
     ): Response {
@@ -484,9 +487,6 @@ class alstomController extends AbstractController
         $form_train->handleRequest($request);
 
         //formulaire ertms comprenant tout le reste des formulaire ci dessous
-        $ertms = new ERTMSEquipement();
-        $form_ertms = $this->createForm(ErtmsType::class, $ertms);
-        $form_ertms->handleRequest($request);
 
         $equipement = new Equipement();
         $form_equipt = $this->createForm(EquipementType::class, $equipement);
@@ -497,9 +497,9 @@ class alstomController extends AbstractController
         $assoc_ertms = new AssociationEquiptERTMS();
 
 
+        $ertms->setNameConfiguration($form_ertms->getData()->getNameConfiguration());
         if (isset($_POST['soumission_train'])) {
 
-            $ertms->setNameConfiguration($form_ertms->getData()->getNameConfiguration());
             $assoc_ertms->setStatus(true);
             $assoc_ertms->setSolution($ertms);
             $train->setPositionERTMS("lefet");
@@ -514,11 +514,13 @@ class alstomController extends AbstractController
 
 
             // $this->em->flush();
-        } else if (isset($_POST['soumission_ertms'])) { } else if (isset($_POST['soumission_equipement'])) {
-            $data = $request->getContent();
-            if (empty($data)) throw new CustomApiException(Response::HTTP_BAD_REQUEST, "Data sent null.");
-            $equipement = $apiService->validateAndCreate($data, Equipement::class);
-            // $type->setName($form_equipt->getData()->getType()->getName());
+        } else if (isset($_POST['soumission_ertms'])) {
+            dump("test");
+        } else if (isset($_POST['soumission_equipement'])) {
+            // $data = $request->getContent();
+            // if (empty($data)) throw new CustomApiException(Response::HTTP_BAD_REQUEST, "Data sent null.");
+            // $equipement = $apiService->validateAndCreate($data, Equipement::class);
+
             // $soustype->setName($form_equipt->getData()->getSousType()->getName());
             // $equipement->setType($type);
             // $equipement->setSousType($soustype);
@@ -538,13 +540,13 @@ class alstomController extends AbstractController
         dump($ertms);
         dump($train);
         dump($request->request->get('trains'));
+        dump($soustype);
 
         return $this
             ->render('alstom/trains/create-trains.html.twig', [
                 'current_menu' => 'trains',
                 'button' => 'Create',
                 'form_train' => $form_train->createView(),
-                'form_ertms' => $form_ertms->createView(),
                 'form_equipement' => $form_equipt->createView()
                 // 'form_type' => $form_type->createView(),
                 // 'form_soustype' => $form_soustype->createView(),
@@ -575,36 +577,103 @@ class alstomController extends AbstractController
 
         ], 200);
     }
+
+    //    ERTMS-----------------------------------------------------------
+    //
+
+
     /**
-     * @Route("alstom/addErtms", name="alstom.addErtms")
+     * @Route("/alstom/ertms", name="alstom.ertms")
      * @return Response
      */
-    public function addErtms(Request $request): Response
+
+    public function ertms(ERTMSEquipementRepository $eRTMSEquipementRepository, Request $request): Response
     {
+        $ertms = $eRTMSEquipementRepository->findAll();
 
-        // $this->em->persist($type);
-        // $this->em->flush();
-
-        return $this->json([
-            'code' => 200
-        ], 200);
+        return $this->render('alstom/ertms/ertms.html.twig', [
+            'current_menu' => 'Ertms',
+            'ertms' => $ertms
+        ]);
     }
+
     /**
      * @Route("alstom/addEquipment", name="alstom.addEquipment")
      * @return Response
      */
-    public function addEquipement(Request $request): Response
+    public function addEquipement(Request $request)
     {
-        $equipement = $request->request;
-        // $this->em->persist($type);
-        // $this->em->flush();
+
+        $equipement = new Equipement;
+        $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_equipement->handleRequest($request);
+
+        return  $form_equipement->createView();
+    }
+
+    /**
+     * @Route("alstom/addErtms", name="alstom.addErtms", methods={"POST"})
+     * @return Response
+     */
+    public function addErtms(Request $request): Response
+    {
+        $ertms = new ERTMSEquipement;
+        $assoc_ertms_equipement = new AssociationEquiptERTMS;
+
+        $ertms_request = $request->request->get('ertms');
+        $ertms->setNameConfiguration($ertms_request['name_configuration']);
+        $assoc_ertms_equipement->setSolution($ertms);
 
         return $this->json([
             'code' => 200,
-            'messsage' => "type ajouté",
-            'equipement' => $equipement
+            'ertms' => $ertms,
+            'asssoc' => $assoc_ertms_equipement,
+
         ], 200);
     }
+
+    /**
+     * @Route("/alstom/create-ertms", name="alstom.create-ertms")
+     * @return Response
+     */
+    public function create_ertms(Request $request): Response
+    {
+        $new_ertms = new ERTMSEquipement;
+        $form_ertms = $this->createForm(ErtmsType::class, $new_ertms);
+        $form_ertms->handleRequest($request);
+
+        $equipement = new Equipement;
+        $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_equipement->handleRequest($request);
+
+
+        return $this->render('alstom/ertms/create-ertms.html.twig', [
+            'current_menu' => 'ertms',
+            'button' => 'Create',
+            'form' => $form_ertms->createView(),
+            'form_equipement' => $form_equipement->createView()
+        ]);
+    }
+
+
+    // //    suppresion de ertms
+    // /**
+    //  * @Route("/alstom/evc/{id}", name="alstom.delete-evc", methods={"DELETE"})
+    //  * @param Request $request
+    //  * @return Response
+    //  */
+    // public function delete_evc(EVC $EVC, Request $request): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete' . $EVC->getId(), $request->get('_token'))) {
+
+    //         $this->em->remove($EVC);
+    //         $this->em->flush();
+    //         $this->addFlash('success', 'EVC delete with success');
+    //     }
+    //     return $this->redirectToRoute('alstom.evc');
+    // }
+
+
 
     /**
      * @Route("/alstom/edit-train/{id}", name="alstom.edit-train", methods={"POST","GET"})
@@ -666,77 +735,6 @@ class alstomController extends AbstractController
         return $this->redirectToRoute('alstom.trains');
     }
 
-
-    //    EVC-----------------------------------------------------------
-    //
-
-
-    /**
-     * @Route("/alstom/evc", name="alstom.evc")
-     * @return Response
-     */
-
-    public function evc(EVCRepository $EVCRepository, Request $request): Response
-    {
-
-        //        $search = new TrainsSearch();
-        //        $form = $this->createForm(TrainsSearchType::class, $search);
-        //        $form->handleRequest($request);
-        //        $trains = $trainsRepository->findAllTrains($search);
-        $evcs = $EVCRepository->findAll();
-
-        return $this->render('alstom/evc/evc.html.twig', [
-            'current_menu' => 'EVC',
-            'evcs' => $evcs,
-            //            'form' => $form->createView()
-        ]);
-    }
-
-
-
-    /**
-     * @Route("/alstom/create-evc", name="alstom.create-evc")
-     * @return Response
-     */
-    public function create_evc(Request $request): Response
-    {
-        $evc = new EVC();
-        $form = $this->createForm(EVCType::class, $evc);
-        $form->handleRequest($request);
-
-
-        //        Validation du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $this->em->persist($evc);
-            $this->em->flush();
-            $this->addFlash('success', 'EVC create with success');
-            return $this->redirectToRoute('alstom.evc');
-        }
-        return $this->render('alstom/evc/create-evc.html.twig', [
-            'current_menu' => 'trains',
-            'button' => 'Create',
-            'form' => $form->createView(),
-        ]);
-    }
-
-
-    //    suppresion de evc
-    /**
-     * @Route("/alstom/evc/{id}", name="alstom.delete-evc", methods={"DELETE"})
-     * @param Request $request
-     * @return Response
-     */
-    public function delete_evc(EVC $EVC, Request $request): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $EVC->getId(), $request->get('_token'))) {
-
-            $this->em->remove($EVC);
-            $this->em->flush();
-            $this->addFlash('success', 'EVC delete with success');
-        }
-        return $this->redirectToRoute('alstom.evc');
-    }
 
 
     //    PART ASSOCIATION ---------------------------------------------------------

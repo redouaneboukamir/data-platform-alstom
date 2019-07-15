@@ -148,6 +148,6 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
     <script>
         \$('select').select2();
     </script>
-{% endblock %}", "alstom/projects/edit-project.html.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\templates\\alstom\\projects\\edit-project.html.twig");
+{% endblock %}", "alstom/projects/edit-project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\projects\\edit-project.html.twig");
     }
 }

@@ -24,11 +24,6 @@ class SoustypeEquipement
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Equipement", mappedBy="SousType")
-     */
-    private $equipements;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypeEquipement", inversedBy="SousType")
      */
     private $typeEquipement;
@@ -36,11 +31,6 @@ class SoustypeEquipement
     public function __toString()
     {
         return $this->name;
-    }
-
-    public function __construct()
-    {
-        $this->equipements = new ArrayCollection();
     }
 
 
@@ -57,37 +47,6 @@ class SoustypeEquipement
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Equipement[]
-     */
-    public function getEquipements(): Collection
-    {
-        return $this->equipements;
-    }
-
-    public function addEquipement(Equipement $equipement): self
-    {
-        if (!$this->equipements->contains($equipement)) {
-            $this->equipements[] = $equipement;
-            $equipement->setSousType($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEquipement(Equipement $equipement): self
-    {
-        if ($this->equipements->contains($equipement)) {
-            $this->equipements->removeElement($equipement);
-            // set the owning side to null (unless already changed)
-            if ($equipement->getSousType() === $this) {
-                $equipement->setSousType(null);
-            }
-        }
 
         return $this;
     }

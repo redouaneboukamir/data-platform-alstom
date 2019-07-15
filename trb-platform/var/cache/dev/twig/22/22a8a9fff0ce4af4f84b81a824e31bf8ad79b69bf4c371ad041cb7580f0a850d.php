@@ -297,6 +297,6 @@ class __TwigTemplate_fa64970b75d4b2de3fcd5590930cbe374508ef336c1b3a08f91ea149ee0
 
     </script>
 {% endblock %}
-", "client/projects/show-project.html.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\templates\\client\\projects\\show-project.html.twig");
+", "client/projects/show-project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\client\\projects\\show-project.html.twig");
     }
 }

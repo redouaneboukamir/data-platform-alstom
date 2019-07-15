@@ -185,7 +185,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
             echo "active";
         }
         echo "\" href=\"";
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.evc");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.ertms");
         echo "\">
                             <span data-feather=\"layers\">EVC</span>
 
@@ -305,11 +305,11 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
             echo "                        <li class=\"nav-item\">
                             <a class=\"nav-link ";
             // line 139
-            if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 139, $this->source); })()) == "EVC")) {
+            if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 139, $this->source); })()) == "ertms")) {
                 echo "active";
             }
             echo "\" href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.evc");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.ertms");
             echo "\">
                                 <svg width=\"20px\" height=\"30px\" viewBox=\"0 0 80 80\" style=\"fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;\">
                                     <g id=\"Calque1\">
@@ -474,7 +474,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                                         </g>
                                     </g>
 </svg>
-                                <span data-feather=\"layers\">EVC</span>
+                                <span data-feather=\"layers\">ERTMS</span>
 
                             </a>
                         </li>
@@ -947,7 +947,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                         </a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link {% if(current_menu == \"EVC\") %}active{% endif %}\" href=\"{{ path('alstom.evc') }}\">
+                        <a class=\"nav-link {% if(current_menu == \"EVC\") %}active{% endif %}\" href=\"{{ path('alstom.ertms') }}\">
                             <span data-feather=\"layers\">EVC</span>
 
                         </a>
@@ -1013,7 +1013,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                         {% endif %}
                         {% if is_granted('ROLE_ALSTOM_COMMISSIONER') or is_granted('ROLE_ALSTOM_MAINTENER') or is_granted('ROLE_ALSTOM_ADMIN') %}
                         <li class=\"nav-item\">
-                            <a class=\"nav-link {% if(current_menu == \"EVC\") %}active{% endif %}\" href=\"{{ path('alstom.evc') }}\">
+                            <a class=\"nav-link {% if(current_menu == \"ertms\") %}active{% endif %}\" href=\"{{ path('alstom.ertms') }}\">
                                 <svg width=\"20px\" height=\"30px\" viewBox=\"0 0 80 80\" style=\"fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;\">
                                     <g id=\"Calque1\">
                                         <rect x=\"13.773\" y=\"24.283\" width=\"2.219\" height=\"30.991\" class=\"nav-link\"/>
@@ -1177,7 +1177,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                                         </g>
                                     </g>
 </svg>
-                                <span data-feather=\"layers\">EVC</span>
+                                <span data-feather=\"layers\">ERTMS</span>
 
                             </a>
                         </li>
@@ -1420,6 +1420,6 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 {% endblock %}
 </body>
 </html>
-", "alstom/index.html.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\templates\\alstom\\index.html.twig");
+", "alstom/index.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\index.html.twig");
     }
 }
