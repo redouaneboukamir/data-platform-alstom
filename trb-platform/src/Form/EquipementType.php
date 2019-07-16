@@ -15,59 +15,63 @@ use Symfony\Component\Form\FormInterface;
 use Doctrine\DBAL\Types\Type;
 use App\Repository\EquipementRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Repository\SoustypeEquipementRepository;
+use Symfony\Component\Form\Extension\Validator\Constraints\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 class EquipementType extends AbstractType
 {
+
     public function __construct(ObjectManager $em)
     {
         $this->em = $em;
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->builder = $builder;
+
         $builder
             ->add('Type', EntityType::class, [
                 'class' => TypeEquipement::class,
                 'choice_label' => 'name',
                 'required' => true
-            ])
-            // $formModifier = function (FormInterface $form, TypeEquipement $typeEquipement = null) {
-            //     $soustype = null === $typeEquipement ? [] : $typeEquipement->getSousType()->getValues();
-            //     $soustype = $typeEquipement->getSousType()->getValues();
-            //     dump($typeEquipement->getSousType()->getValues());
+            ]);
+        $builder->add('sous_type', EntityType::class, [
+            'class' => SoustypeEquipement::class,
+            'query_builder' => function (SoustypeEquipementRepository $soustypeEquipementRepository) {
 
-            //     $form->getParent()->add('Sous_type', EntityType::class, [
-            //         'class' => SoustypeEquipement::class,
-            //         'placeholder' => '',
-            //         'choices' => $soustype,
-            //     ]);
-            // };
-
-            ->add('sous_type', EntityType::class, [
-                'class' => SoustypeEquipement::class,
-                'choice_label' => 'name',
-                'required' => true
-            ])
+                $data = $this->builder->getData()->getType();
+                dump($data);
+                if ($data != null) {
+                    return $soustypeEquipementRepository->findTypeById($data->getId());
+                } else {
+                    return  $soustypeEquipementRepository->findTypeById('1');
+                }
+            },
+            'choice_label' => 'name',
+            'required' => true
+        ])
             // $builder->get('Type')->addEventListener(
-            //     FormEvents::PRE_SUBMIT,
-            //     function (FormEvent $event) use ($formModifier) {
+            //     FormEvents::PRE_SET_DATA,
+            //     function (FormEvent $event) {
             //         $form = $event->getForm();
             //         $data = $event->getData();
-            //         $type = $this->em->getRepository(TypeEquipement::class)->find($data);
+            //         $form->getParent()->add(
+            //             'sous_type',
+            //             EntityType::class,
+            //             [
+            //                 'class' => SoustypeEquipement::class,
+            //                 'query_builder' => function (SoustypeEquipementRepository $soustypeEquipementRepository) {
 
-            //         $formModifier($event->getForm(), $type);
-
-            //         $form->getParent()->add('Sous_type', EntityType::class, [
-            //             'class' => SoustypeEquipement::class,
-            //             'choices' => $form->getData()->getSousType(),
-            //             'attr' => [
-
-            //                 'id' => 'equipement_Sous_Type'
+            //                     dump($data);
+            //                     return $soustypeEquipementRepository->findTypeById($data);
+            //                 },
+            //                 'choice_label' => 'name',
+            //                 'required' => true
             //             ]
-            //         ]);
+            //         );
             //     }
             // );
-
-
             ->add('DTR_board')
             ->add('Indice_DTR')
             ->add('Num_serie');

@@ -99,6 +99,12 @@ class Equipement
         return $this->Num_serie;
     }
 
+    public function setNumSerie(string $Num_serie): ?self
+    {
+        $this->Num_serie = $Num_serie;
+        return $this;
+    }
+
     public function getType(): ?TypeEquipement
     {
         return $this->type;

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\SoustypeEquipement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\DBAL\Query\QueryBuilder;
 
 /**
  * @method SoustypeEquipement|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,12 @@ class SoustypeEquipementRepository extends ServiceEntityRepository
         parent::__construct($registry, SoustypeEquipement::class);
     }
 
+    public function findTypeById($id)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.typeEquipement = :id')
+            ->setParameter('id', $id);
+    }
     // /**
     //  * @return SoustypeEquipement[] Returns an array of SoustypeEquipement objects
     //  */

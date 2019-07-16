@@ -2,10 +2,12 @@
     {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 
                'attr': {'id': 'form_equipement'}}) }}
     {{form_row(form_equipement.Type)}}
+    <div id="test"></div>
     {{form_row(form_equipement.sous_type)}}
     {{form_row(form_equipement.DTR_board)}}
     {{form_row(form_equipement.Indice_DTR)}}
     {{form_row(form_equipement.Num_serie)}}
+    {{form_row(form_equipement._token)}}
 
 
     <p><input class="btn-valid-Equipment" id="soumission-equipement" name="soumission_equipement" type="submit" value="Add"/></p>

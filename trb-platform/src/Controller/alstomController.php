@@ -536,11 +536,6 @@ class alstomController extends AbstractController
             //     $this->addFlash('success', 'Train create with success');
             //     return $this->redirectToRoute('alstom.trains');
         }
-        dump($equipement);
-        dump($ertms);
-        dump($train);
-        dump($request->request->get('trains'));
-        dump($soustype);
 
         return $this
             ->render('alstom/trains/create-trains.html.twig', [
@@ -601,14 +596,20 @@ class alstomController extends AbstractController
      * @Route("alstom/addEquipment", name="alstom.addEquipment")
      * @return Response
      */
-    public function addEquipement(Request $request)
+    public function addEquipement(Request $request, TypeEquipementRepository $typeEquipementRepository, SoustypeEquipementRepository $soustypeEquipementRepository)
     {
+        if ($request->isXmlHttpRequest()) {
 
-        $equipement = new Equipement;
-        $form_equipement = $this->createForm(EquipementType::class, $equipement);
-        $form_equipement->handleRequest($request);
+            $type = $request->request->get('equipement')['Type'];
+            $typeEntity = $typeEquipementRepository->find($type);
 
-        return  $form_equipement->createView();
+            $test =  $soustypeEquipementRepository->findTypeById($type);
+        }
+
+        return  $this->json([
+            'test' => $request->request,
+            'SousType' => $test
+        ]);
     }
 
     /**
@@ -645,6 +646,7 @@ class alstomController extends AbstractController
         $equipement = new Equipement;
         $form_equipement = $this->createForm(EquipementType::class, $equipement);
         $form_equipement->handleRequest($request);
+
 
 
         return $this->render('alstom/ertms/create-ertms.html.twig', [

@@ -8,8 +8,6 @@ $('#form_ertms').on('submit', function (e) {
             value = that.val();
         // evc = data['equipement[Type]'];
         data[name] = value;
-        console.log(data)
-
     })
     $.ajax({
         url: $this.attr('action'),
@@ -18,7 +16,6 @@ $('#form_ertms').on('submit', function (e) {
         async: true,
         dataType: 'json', // JSON
         success: function (data) {
-            console.log($this.val())
             console.log(data)
         },
         error: function (xhr, textStatus, errorThrown) {
