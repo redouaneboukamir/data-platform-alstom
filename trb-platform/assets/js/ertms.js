@@ -15,8 +15,9 @@ $('#form_ertms').on('submit', function (e) {
         data: data,
         async: true,
         dataType: 'json', // JSON
-        success: function (data) {
+        success: function (response) {
             console.log(data)
+            console.log(response)
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');

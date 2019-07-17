@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EquipementType extends AbstractType
 {
-
     public function __construct(ObjectManager $em)
     {
         $this->em = $em;
@@ -38,40 +37,20 @@ class EquipementType extends AbstractType
             ]);
         $builder->add('sous_type', EntityType::class, [
             'class' => SoustypeEquipement::class,
-            'query_builder' => function (SoustypeEquipementRepository $soustypeEquipementRepository) {
+            // 'query_builder' => function (SoustypeEquipementRepository $soustypeEquipementRepository) {
 
-                $data = $this->builder->getData()->getType();
-                dump($data);
-                if ($data != null) {
-                    return $soustypeEquipementRepository->findTypeById($data->getId());
-                } else {
-                    return  $soustypeEquipementRepository->findTypeById('1');
-                }
-            },
+            //     $data = $this->builder->getData()->getType();
+            //     dump($data);
+            //     // if ($data != null) {
+            //     //     return $soustypeEquipementRepository->findTypeById($data->getId());
+            //     // } else {
+            //     //     return  $soustypeEquipementRepository->findTypeById('2');
+            //     // }
+            // },
             'choice_label' => 'name',
             'required' => true
         ])
-            // $builder->get('Type')->addEventListener(
-            //     FormEvents::PRE_SET_DATA,
-            //     function (FormEvent $event) {
-            //         $form = $event->getForm();
-            //         $data = $event->getData();
-            //         $form->getParent()->add(
-            //             'sous_type',
-            //             EntityType::class,
-            //             [
-            //                 'class' => SoustypeEquipement::class,
-            //                 'query_builder' => function (SoustypeEquipementRepository $soustypeEquipementRepository) {
 
-            //                     dump($data);
-            //                     return $soustypeEquipementRepository->findTypeById($data);
-            //                 },
-            //                 'choice_label' => 'name',
-            //                 'required' => true
-            //             ]
-            //         );
-            //     }
-            // );
             ->add('DTR_board')
             ->add('Indice_DTR')
             ->add('Num_serie');
@@ -85,5 +64,13 @@ class EquipementType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Equipement::class,
         ]);
+    }
+    public function getSubType($data, SoustypeEquipementRepository $soustypeEquipementRepository)
+    {
+        if ($data != null) {
+            return $soustypeEquipementRepository->findTypeById($data->getId());
+        } else {
+            return  $soustypeEquipementRepository->findTypeById('1');
+        }
     }
 }

@@ -15,14 +15,14 @@ use App\Entity\Engineers;
 use App\Entity\EnginSearch;
 use App\Entity\Equipement;
 use App\Entity\ERTMSEquipement;
-use App\Entity\EVC;
+
 use App\Entity\Projects;
 use App\Entity\ProjectSearch;
 use App\Entity\SoustypeEquipement;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
 use App\Entity\TypeEquipement;
-use App\Form\AssociationERTMSType;
+
 use App\Form\AssociationType;
 use App\Form\BaselineType;
 use App\Form\ClientsSearchType;
@@ -31,17 +31,16 @@ use App\Form\EngineerType;
 use App\Form\EnginSearchType;
 use App\Form\EquipementType;
 use App\Form\ErtmsType;
-use App\Form\EVCType;
+
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
-use App\Form\SousTypeEquipementType;
+
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
-use App\Form\TypeEquipementType;
+
 use App\Repository\BaselineRepository;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
-use App\Repository\EVCRepository;
 use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -54,9 +53,10 @@ use App\Services\HttpClientKeycloak;
 use App\Repository\TypeEquipementRepository;
 use App\Repository\EquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
-use Doctrine\Common\Collections\ArrayCollection;
+
 use App\Services\ApiService;
 use App\Repository\ERTMSEquipementRepository;
+
 
 class alstomController extends AbstractController
 {
@@ -70,7 +70,10 @@ class alstomController extends AbstractController
     {
 
         $this->em = $em;
-        $this->tabEquipt = $tabEquipt = [];
+        $tabEquipt = array();
+        $i = 0;
+        $this->i = $i;
+        $this->tabEquipt = $tabEquipt;
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
@@ -593,23 +596,51 @@ class alstomController extends AbstractController
     }
 
     /**
+     * @Route("alstom/checkSubtype", name="alstom.checkSubtype")
+     * @return Response
+     */
+    public function checkSubtype(Request $request, SoustypeEquipementRepository $soustypeEquipementRepository)
+    {
+        $soustype = $soustypeEquipementRepository->findTypeById($request->request->get('equipement')['Type']);
+
+        $jsonObjectSubtype = $this->serializer->serialize($soustype, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
+
+    /**
      * @Route("alstom/addEquipment", name="alstom.addEquipment")
      * @return Response
      */
     public function addEquipement(Request $request, TypeEquipementRepository $typeEquipementRepository, SoustypeEquipementRepository $soustypeEquipementRepository)
     {
         if ($request->isXmlHttpRequest()) {
-
-            $type = $request->request->get('equipement')['Type'];
-            $typeEntity = $typeEquipementRepository->find($type);
-
-            $test =  $soustypeEquipementRepository->findTypeById($type);
+            $this->i++;
+            $request_equipement = $request->request->get('equipement');
+            $jsonObjectEquipt = $this->serializer->serialize($request_equipement, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+            $this->tabEquipt[$this->i] = new Equipement;
+            $this->tabEquipt[$this->i]->setType($typeEquipementRepository->find($request_equipement['Type']));
+            if ($request_equipement['sous_type'] != "") {
+                $this->tabEquipt[$this->i]->setSousType($soustypeEquipementRepository->find($request_equipement['sous_type']));
+            }
+            $this->tabEquipt[$this->i]->setDTRBoard($request_equipement['DTR_board']);
+            $this->tabEquipt[$this->i]->setIndiceDTR($request_equipement['Indice_DTR']);
+            $this->tabEquipt[$this->i]->setNumSerie($request_equipement['Num_serie']);
+            $this->i++;
         }
+        dump($this->i);
+        dump($this->tabEquipt);
 
-        return  $this->json([
-            'test' => $request->request,
-            'SousType' => $test
-        ]);
+
+        return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
     }
 
     /**
@@ -639,6 +670,7 @@ class alstomController extends AbstractController
      */
     public function create_ertms(Request $request): Response
     {
+        $tableau = [];
         $new_ertms = new ERTMSEquipement;
         $form_ertms = $this->createForm(ErtmsType::class, $new_ertms);
         $form_ertms->handleRequest($request);
@@ -646,8 +678,6 @@ class alstomController extends AbstractController
         $equipement = new Equipement;
         $form_equipement = $this->createForm(EquipementType::class, $equipement);
         $form_equipement->handleRequest($request);
-
-
 
         return $this->render('alstom/ertms/create-ertms.html.twig', [
             'current_menu' => 'ertms',

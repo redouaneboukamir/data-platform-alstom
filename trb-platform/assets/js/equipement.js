@@ -5,18 +5,32 @@ $('#modal-content-form-equipement').hide();
 const $type = $('#equipement_Type')
 let Equipments = [],
     i = 0,
+    select = document.createElement("select"),
     previous = "";
+$(document).ready(function () {
+    $('#equipement_sous_type').empty();
+    $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');
+});
+
 
 $type.change(function () {
     const $form = $(this).closest('form')
     let data = {}
     data[$type.attr('name')] = $type.val()
 
-    $.post($form.attr('action'), data).then(function (response) {
-        console.log(response)
-        console.log(data)
+    $.post("/alstom/checkSubtype", data).then(function (response) {
+
+        $('#equipement_sous_type').empty();
+        elOption = new Array;
+
+        response.forEach(element => {
+            elOption.push(element);
+            $('#equipement_sous_type').append(new Option(element.name, element.id));
+        });
     })
 })
+
+
 $('#form_equipement').on('submit', function (e) {
     e.preventDefault();
     var $this = $(this);
@@ -25,19 +39,18 @@ $('#form_equipement').on('submit', function (e) {
         var that = $(this),
             name = that.attr('name'),
             value = that.val();
-        // evc = data['equipement[Type]'];
         data[name] = value;
     })
-    console.log(data)
     $.ajax({
         url: $this.attr('action'),
         type: $this.attr('method'),
         data: data,
         async: true,
         dataType: 'json', // JSON
-        success: function (data) {
-            console.log($this.val())
-            console.log(data)
+        success: function (response) {
+            console.log(response)
+            Equipments.push(response);
+            console.log(Equipments)
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');

@@ -24,7 +24,9 @@ class SoustypeEquipementRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('s')
             ->where('s.typeEquipement = :id')
-            ->setParameter('id', $id);
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
     }
     // /**
     //  * @return SoustypeEquipement[] Returns an array of SoustypeEquipement objects

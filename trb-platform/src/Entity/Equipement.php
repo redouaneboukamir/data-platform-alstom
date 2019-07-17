@@ -5,7 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Proxies\__CG__\App\Entity\SoustypeEquipement;
+use App\Entity\TypeEquipement;
+use App\Entity\SoustypeEquipement;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EquipementRepository")

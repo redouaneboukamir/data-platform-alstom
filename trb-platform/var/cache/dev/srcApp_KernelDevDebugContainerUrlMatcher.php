@@ -40,6 +40,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/alstom/create-train' => [[['_route' => 'alstom.create-train', '_controller' => 'App\\Controller\\alstomController::create_train'], null, null, null, false, false, null]],
             '/alstom/addTrains' => [[['_route' => 'alstom.addTrains', '_controller' => 'App\\Controller\\alstomController::addTrains'], null, ['POST' => 0], null, false, false, null]],
             '/alstom/ertms' => [[['_route' => 'alstom.ertms', '_controller' => 'App\\Controller\\alstomController::ertms'], null, null, null, false, false, null]],
+            '/alstom/checkSubtype' => [[['_route' => 'alstom.checkSubtype', '_controller' => 'App\\Controller\\alstomController::checkSubtype'], null, null, null, false, false, null]],
             '/alstom/addEquipment' => [[['_route' => 'alstom.addEquipment', '_controller' => 'App\\Controller\\alstomController::addEquipement'], null, null, null, false, false, null]],
             '/alstom/addErtms' => [[['_route' => 'alstom.addErtms', '_controller' => 'App\\Controller\\alstomController::addErtms'], null, ['POST' => 0], null, false, false, null]],
             '/alstom/create-ertms' => [[['_route' => 'alstom.create-ertms', '_controller' => 'App\\Controller\\alstomController::create_ertms'], null, null, null, false, false, null]],

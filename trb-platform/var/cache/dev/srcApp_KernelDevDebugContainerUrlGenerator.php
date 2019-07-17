@@ -55,6 +55,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'alstom.create-train' => [[], ['_controller' => 'App\\Controller\\alstomController::create_train'], [], [['text', '/alstom/create-train']], [], []],
         'alstom.addTrains' => [[], ['_controller' => 'App\\Controller\\alstomController::addTrains'], [], [['text', '/alstom/addTrains']], [], []],
         'alstom.ertms' => [[], ['_controller' => 'App\\Controller\\alstomController::ertms'], [], [['text', '/alstom/ertms']], [], []],
+        'alstom.checkSubtype' => [[], ['_controller' => 'App\\Controller\\alstomController::checkSubtype'], [], [['text', '/alstom/checkSubtype']], [], []],
         'alstom.addEquipment' => [[], ['_controller' => 'App\\Controller\\alstomController::addEquipement'], [], [['text', '/alstom/addEquipment']], [], []],
         'alstom.addErtms' => [[], ['_controller' => 'App\\Controller\\alstomController::addErtms'], [], [['text', '/alstom/addErtms']], [], []],
         'alstom.create-ertms' => [[], ['_controller' => 'App\\Controller\\alstomController::create_ertms'], [], [['text', '/alstom/create-ertms']], [], []],

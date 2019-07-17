@@ -490,10 +490,7 @@
     <service id="App\Controller\alstomController" class="App\Controller\alstomController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
-      <argument type="service" id="doctrine.orm.default_entity_manager"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\alstomController"/>
-      </call>
+      <call method="setContainer"/>
     </service>
     <service id="App\Controller\clientController" class="App\Controller\clientController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
@@ -4929,6 +4926,12 @@
         <argument key="eRTMSEquipementRepository" type="service" id="App\Repository\ERTMSEquipementRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.KZaf3.i" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="soustypeEquipementRepository" type="service" id="App\Repository\SoustypeEquipementRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator..edoj62" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4966,12 +4969,13 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.D78lPD_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.N.RUD15" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\KeyCloakAuthController::connectAction" type="service" id=".service_locator.no19fnv"/>
         <argument key="App\Controller\alstomController::addEquipement" type="service" id=".service_locator..edoj62"/>
         <argument key="App\Controller\alstomController::baseline" type="service" id=".service_locator.hzCL1kd"/>
+        <argument key="App\Controller\alstomController::checkSubtype" type="service" id=".service_locator.KZaf3.i"/>
         <argument key="App\Controller\alstomController::clients" type="service" id=".service_locator.jNTV7Lm"/>
         <argument key="App\Controller\alstomController::create_train" type="service" id=".service_locator.PP3GzJ5"/>
         <argument key="App\Controller\alstomController::delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
@@ -5003,6 +5007,7 @@
         <argument key="App\Controller\KeyCloakAuthController:connectAction" type="service" id=".service_locator.no19fnv"/>
         <argument key="App\Controller\alstomController:addEquipement" type="service" id=".service_locator..edoj62"/>
         <argument key="App\Controller\alstomController:baseline" type="service" id=".service_locator.hzCL1kd"/>
+        <argument key="App\Controller\alstomController:checkSubtype" type="service" id=".service_locator.KZaf3.i"/>
         <argument key="App\Controller\alstomController:clients" type="service" id=".service_locator.jNTV7Lm"/>
         <argument key="App\Controller\alstomController:create_train" type="service" id=".service_locator.PP3GzJ5"/>
         <argument key="App\Controller\alstomController:delete_baseline" type="service" id=".service_locator.2hlHMKT"/>
@@ -5422,7 +5427,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.D78lPD_"/>
+      <argument type="service" id=".service_locator.N.RUD15"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5795,7 +5800,7 @@
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
     <service id="fos_js_routing.router" alias="router.default" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.D78lPD_"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.N.RUD15"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.tSKDlY7" alias=".1_ServiceLocator~Woq3vn6" public="false"/>
