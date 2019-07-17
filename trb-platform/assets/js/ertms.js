@@ -6,18 +6,21 @@ $('#form_ertms').on('submit', function (e) {
         var that = $(this),
             name = that.attr('name'),
             value = that.val();
-        // evc = data['equipement[Type]'];
-        data[name] = value;
+        if (name == "ertms[name_configuration]") {
+            data[name] = value;
+
+        }
     })
     $.ajax({
         url: $this.attr('action'),
         type: $this.attr('method'),
-        data: data,
+        data: {
+            ertmsName: data
+        },
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
             console.log(data)
-            console.log(response)
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');

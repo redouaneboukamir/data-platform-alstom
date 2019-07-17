@@ -490,7 +490,10 @@
     <service id="App\Controller\alstomController" class="App\Controller\alstomController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
-      <call method="setContainer"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\alstomController"/>
+      </call>
     </service>
     <service id="App\Controller\clientController" class="App\Controller\clientController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>

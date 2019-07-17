@@ -31,13 +31,10 @@ use App\Form\EngineerType;
 use App\Form\EnginSearchType;
 use App\Form\EquipementType;
 use App\Form\ErtmsType;
-
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
-
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
-
 use App\Repository\BaselineRepository;
 use App\Repository\ClientsRepository;
 use App\Repository\EngineersRepository;
@@ -53,7 +50,6 @@ use App\Services\HttpClientKeycloak;
 use App\Repository\TypeEquipementRepository;
 use App\Repository\EquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
-
 use App\Services\ApiService;
 use App\Repository\ERTMSEquipementRepository;
 
@@ -71,8 +67,6 @@ class alstomController extends AbstractController
 
         $this->em = $em;
         $tabEquipt = array();
-        $i = 0;
-        $this->i = $i;
         $this->tabEquipt = $tabEquipt;
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
@@ -618,27 +612,24 @@ class alstomController extends AbstractController
      */
     public function addEquipement(Request $request, TypeEquipementRepository $typeEquipementRepository, SoustypeEquipementRepository $soustypeEquipementRepository)
     {
-        if ($request->isXmlHttpRequest()) {
-            $this->i++;
-            $request_equipement = $request->request->get('equipement');
-            $jsonObjectEquipt = $this->serializer->serialize($request_equipement, 'json', [
-                'circular_reference_handler' => function ($object) {
-                    return $object->getId();
-                }
-            ]);
-            $this->tabEquipt[$this->i] = new Equipement;
-            $this->tabEquipt[$this->i]->setType($typeEquipementRepository->find($request_equipement['Type']));
-            if ($request_equipement['sous_type'] != "") {
-                $this->tabEquipt[$this->i]->setSousType($soustypeEquipementRepository->find($request_equipement['sous_type']));
+        $tabEquipt = $request->request->get('tabEquipts');
+        dump($tabEquipt);
+        $request_equipement = $request->request->get('equipement');
+        $jsonObjectEquipt = $this->serializer->serialize($request_equipement, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
             }
-            $this->tabEquipt[$this->i]->setDTRBoard($request_equipement['DTR_board']);
-            $this->tabEquipt[$this->i]->setIndiceDTR($request_equipement['Indice_DTR']);
-            $this->tabEquipt[$this->i]->setNumSerie($request_equipement['Num_serie']);
-            $this->i++;
+        ]);
+        foreach ($tabEquipt as $key => $value) {
+            $equipement = new Equipement;
+            $equipement->setType($typeEquipementRepository->find($value['equipement[Type']));
+            if ($value['equipement[sous_type'] != "") {
+                $equipement->setSousType($soustypeEquipementRepository->find($value['equipement[sous_type']));
+            }
+            $equipement->setDTRBoard($value['equipement[DTR_board']);
+            $equipement->setIndiceDTR($value['equipement[Indice_DTR']);
+            $equipement->setNumSerie($value['equipement[Num_serie']);
         }
-        dump($this->i);
-        dump($this->tabEquipt);
-
 
         return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
     }
@@ -652,8 +643,8 @@ class alstomController extends AbstractController
         $ertms = new ERTMSEquipement;
         $assoc_ertms_equipement = new AssociationEquiptERTMS;
 
-        $ertms_request = $request->request->get('ertms');
-        $ertms->setNameConfiguration($ertms_request['name_configuration']);
+        $ertms_request = $request->request->get('ertmsName');
+        $ertms->setNameConfiguration($ertms_request['ertms[name_configuration']);
         $assoc_ertms_equipement->setSolution($ertms);
 
         return $this->json([
