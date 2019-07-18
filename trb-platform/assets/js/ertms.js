@@ -40,5 +40,7 @@ $('#create-ertms').click(function () {
         alert("Please enter a configuration name ");
         return false
     }
+    $('#show-equipment').show();
+
 
 })

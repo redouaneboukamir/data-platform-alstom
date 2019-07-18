@@ -12,7 +12,7 @@
         <div class="jumbotron content-form-engineer">
             {{ form_start(form, {'action': path('alstom.addErtms'), 
                'attr': {'id': 'form_ertms'}})
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }}
 
             <div class="row">
                 <div class="col-md-12">{{ form_row(form.name_configuration) }}</div>
@@ -34,7 +34,26 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="show-equipment" id="show-equipment"></div>
+                            <div
+                                class="show-equipment" id="show-equipment">{# <div class="description" id="description-equipement">
+                                                                        <h4 class="description-Type" id="description-type"></h4>
+                                                                        <h5 class="description-Subtype" id="description-Subtype"></h5>
+                                                                        <div class="content-description-dtr">
+                                                                            <p id="description-dtr"></p>
+                                                                            <p id="description-indice"></p>
+                                                                            <p id="description-numSerie"></p>
+                                                                        </div>
+                                                                        <p class="edit-delete-equipement">
+                                                                            <a href="#">
+                                                                                <i class="fas fa-edit"></i>
+                                                                            </a>
+                                                                            <a href="#">
+                                                                                <i class="fas fa-trash-alt poubelle"></i>
+                                                                            </a>
+                                                                        </p>
+                                                                    </div> #}
+
+                            </div>
 
                             <div id="modal-content-form-equipement">
                                 {% include ("alstom/ertms/_form-equipment.html.twig") %}

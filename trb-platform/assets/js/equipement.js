@@ -5,10 +5,16 @@ $('#modal-content-form-equipement').hide();
 
 //Delcaration variable
 const $type = $('#equipement_Type');
+$type.attr('required', 'required');
+
 let Equipments = [],
     i = 0,
-    select = document.createElement("select"),
-    previous = "";
+    index = 0,
+    tabIndexEquipt = []
+select = document.createElement("select"),
+    previous = "",
+    tabEquipementType = ["EVC", "CARTE", "SENSOR", "DMI"],
+    tabEquipementSubtype = ["CORE", "TUI", "SDMU", "SENSE", "TWINS"];
 
 //Vidage des inputs au refresh de la page
 $(document).ready(function () {
@@ -18,14 +24,15 @@ $(document).ready(function () {
 
 //AJAX Changement de sous-type en fonction du type
 $type.change(function () {
+
     let data = {}
     data[$type.attr('name')] = $type.val()
 
     $.post("/alstom/checkSubtype", data).then(function (response) {
+        //Vidage champ soustype
         $('#equipement_sous_type').empty();
-        elOption = new Array;
         response.forEach(element => {
-            elOption.push(element);
+            //Remplissage par les element reçu du controller
             $('#equipement_sous_type').append(new Option(element.name, element.id));
         })
 
@@ -34,12 +41,12 @@ $type.change(function () {
 
 //AJAX soumission formulaire d'ajout equipement
 $('#form_equipement').on('submit', function (e) {
-    //Empêche le chargement de la page
+
+    //Empêche le chargement de la page sois fait automatiquement
     e.preventDefault();
-    //test qu'il y"a un bien type sélectionner
+
     var $this = $(this);
     let data = {};
-
     //Rempli data a partir des valeur des inputs
     $this.find('[name]').each(function (index, value) {
         var that = $(this),
@@ -49,8 +56,10 @@ $('#form_equipement').on('submit', function (e) {
             data[name] = value;
         }
     })
+
     //Remplis le tableau des équipements
     Equipments.push(data);
+
     //Effecture la requête ajax de la fonction du controller
     $.ajax({
         url: $this.attr('action'),
@@ -62,20 +71,83 @@ $('#form_equipement').on('submit', function (e) {
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
-            console.log(response)
-
+            index++;
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');
         }
     });
-    console.log(Equipments);
+
     $('#modal-content-form-equipement').hide();
     $('#create-equipment').show();
     $('#show-equipment').show();
+    console.log(Equipments);
 
+    $("#show-equipment").append('<div class="description" id="description-equipement-' + index + '"></div>');
+    switch (Equipments[index]["equipement[Type]"]) {
+        case "1":
+            $("#description-equipement-" + index + "").append(writeType(0));
+            break;
+        case "2":
+            $("#description-equipement-" + index + "").append(writeType(1));
+            break;
+        case "3":
+            $("#description-equipement-" + index + "").append(writeType(2));
+            break;
+        case "4":
+            $("#description-equipement-" + index + "").append(writeType(3));
+            break;
+    }
+    switch (Equipments[index]["equipement[sous_type]"]) {
+        case "1":
+            $("#description-equipement-" + index + "").append(writeSubtype(0));
+            break;
+        case "2":
+            $("#description-equipement-" + index + "").append(writeSubtype(1));
+            break;
+        case "3":
+            $("#description-equipement-" + index + "").append(writeSubtype(2));
+            break;
+        case "4":
+            $("#description-equipement-" + index + "").append(writeSubtype(3));
+            break;
+        case "5":
+            $("#description-equipement-" + index + "").append(writeSubtype(4));
+            break;
+    }
+    $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
+        index + '"></div>');
+    $("#content-description-" + index + "").append('<p>' + Equipments[index]["equipement[DTR_board]"] + '</p>')
+    $("#content-description-" + index + "").append('<p>' + Equipments[index]["equipement[Indice_DTR]"] + '</p>')
+    $("#content-description-" + index + "").append('<p>' + Equipments[index]["equipement[Num_serie]"] + '</p>')
+    $("#content-description-" + index + "").append(writeEditDelete(index));
 
-})
+});
+$('#show-equipment').on('click', '.edit-delete-equipement', function () {
+
+    $('.edit-delete-equipement').on('click', 'a', function () {
+        $('#description-equipement-' + ($(this)[0]["id"][7])).remove();
+        Equipments.splice(($(this)[0]["id"][7]), 1);
+        console.log("l'index supprimer" + $(this)[0]["id"][7]);
+    })
+});
+
+Equipments.forEach(element => {
+
+});
+
+function writeType(index) {
+    return '<h4 class="description-Type " id="description-type ">' + tabEquipementType[index] + '</h4>';
+};
+
+function writeSubtype(index) {
+    return '<h5 class="description - Type " id="description-subType ">' + tabEquipementSubtype[index] + '</h5>';
+};
+
+function writeEditDelete(index) {
+    return ' <p class="edit-delete-equipement"> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a></p>';
+};
+
 
 
 
