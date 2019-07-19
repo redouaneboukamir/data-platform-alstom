@@ -661,6 +661,7 @@ class alstomController extends AbstractController
      */
     public function create_ertms(Request $request): Response
     {
+
         $new_ertms = new ERTMSEquipement;
         $form_ertms = $this->createForm(ErtmsType::class, $new_ertms);
         $form_ertms->handleRequest($request);

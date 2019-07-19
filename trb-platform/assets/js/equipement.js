@@ -9,7 +9,8 @@ $type.attr('required', 'required');
 
 let Equipments = [],
     i = 0,
-    index = 0,
+    indexEVC = 0,
+    posIndex = 0,
     tabIndexEquipt = []
 select = document.createElement("select"),
     previous = "",
@@ -39,6 +40,7 @@ $type.change(function () {
     })
 })
 
+
 //AJAX soumission formulaire d'ajout equipement
 $('#form_equipement').on('submit', function (e) {
 
@@ -55,8 +57,8 @@ $('#form_equipement').on('submit', function (e) {
             value = that.val();
             data[name] = value;
         }
-    })
 
+    })
     //Remplis le tableau des équipements
     Equipments.push(data);
 
@@ -71,7 +73,7 @@ $('#form_equipement').on('submit', function (e) {
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
-            index++;
+
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');
@@ -82,68 +84,98 @@ $('#form_equipement').on('submit', function (e) {
     $('#create-equipment').show();
     $('#show-equipment').show();
     console.log(Equipments);
+    //Boucle les équipements et les installe au front
+    Equipments.forEach(returnIndexElement);
+});
 
-    $("#show-equipment").append('<div class="description" id="description-equipement-' + index + '"></div>');
-    switch (Equipments[index]["equipement[Type]"]) {
-        case "1":
-            $("#description-equipement-" + index + "").append(writeType(0));
-            break;
-        case "2":
-            $("#description-equipement-" + index + "").append(writeType(1));
-            break;
-        case "3":
-            $("#description-equipement-" + index + "").append(writeType(2));
-            break;
-        case "4":
-            $("#description-equipement-" + index + "").append(writeType(3));
-            break;
+function returnIndexElement(element, index, array) {
+
+    //Test l'existence de la div dans le cas où elle existe la remplace si pas la met en place
+    if ($('#description-equipement-' + index).length) {
+        $('#description-equipement-' + index).replaceWith('<div class="description" id="description-equipement-' + index + '"></div>')
+    } else {
+        $("#show-equipment").append('<div class="description" id="description-equipement-' + index + '"></div>');
     }
-    switch (Equipments[index]["equipement[sous_type]"]) {
-        case "1":
-            $("#description-equipement-" + index + "").append(writeSubtype(0));
-            break;
-        case "2":
-            $("#description-equipement-" + index + "").append(writeSubtype(1));
-            break;
-        case "3":
-            $("#description-equipement-" + index + "").append(writeSubtype(2));
-            break;
-        case "4":
-            $("#description-equipement-" + index + "").append(writeSubtype(3));
-            break;
-        case "5":
-            $("#description-equipement-" + index + "").append(writeSubtype(4));
-            break;
+
+    //test si l'équipement est la carte ou non
+    if (element["equipement[Type]"] != "2") {
+        //Swith replacement de l'id du type avec son nom
+        switch (element["equipement[Type]"]) {
+            case "1":
+                $("#description-equipement-" + index + "").append(writeType(4, 0));
+                indexEVC = $("#description-equipement-" + index + "");
+                break;
+            case "3":
+                $("#description-equipement-" + index + "").append(writeType(4, 2));
+                break;
+            case "4":
+                $("#description-equipement-" + index + "").append(writeType(4, 3));
+                break;
+        }
+        switch (element["equipement[sous_type]"]) {
+            case "4":
+                $("#description-equipement-" + index + "").append(writeSubtype(3));
+                break;
+            case "5":
+                $("#description-equipement-" + index + "").append(writeSubtype(4));
+                break;
+        }
+        $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
+            index + '"></div>');
+        $("#content-description-" + index + "").append('<p>' + element["equipement[DTR_board]"] + '</p>')
+        $("#content-description-" + index + "").append('<p>' + element["equipement[Indice_DTR]"] + '</p>')
+        $("#content-description-" + index + "").append('<p>' + element["equipement[Num_serie]"] + '</p>')
+        $("#content-description-" + index + "").append(writeEditDelete(index));
+
+    } else {
+        //Ecris le nom du type "carte" sous le type  EVC
+        $(indexEVC).append(writeType(4, 1));
+        //Parcous le type de soustype 
+        switch (element["equipement[sous_type]"]) {
+            case "1":
+                $(indexEVC).append(writeSubtype(0));
+                break;
+            case "2":
+                $(indexEVC).append(writeSubtype(1));
+                break;
+            case "3":
+                $(indexEVC).append(writeSubtype(2));
+                break;
+        }
+
+        $(indexEVC).append('<div class="content-description-dtr" id="content-description-' +
+            index + '"></div>');
+        $("#content-description-" + index + "").append('<p>' + element["equipement[DTR_board]"] + '</p>')
+        $("#content-description-" + index + "").append('<p>' + element["equipement[Indice_DTR]"] + '</p>')
+        $("#content-description-" + index + "").append('<p>' + element["equipement[Num_serie]"] + '</p>')
+        $("#content-description-" + index + "").append(writeEditDelete(index));
     }
-    $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
-        index + '"></div>');
-    $("#content-description-" + index + "").append('<p>' + Equipments[index]["equipement[DTR_board]"] + '</p>')
-    $("#content-description-" + index + "").append('<p>' + Equipments[index]["equipement[Indice_DTR]"] + '</p>')
-    $("#content-description-" + index + "").append('<p>' + Equipments[index]["equipement[Num_serie]"] + '</p>')
-    $("#content-description-" + index + "").append(writeEditDelete(index));
-
+}
+//Gére le clique de la suppression
+$('#show-equipment').on('click', '.edit-delete-equipement > a', function () {
+    if ($(this)[0]["id"][0] == "d") {
+        deleteEquipment(extraitNombre($(this)[0]["id"]));
+    }
 });
-$('#show-equipment').on('click', '.edit-delete-equipement', function () {
-
-    $('.edit-delete-equipement').on('click', 'a', function () {
-        $('#description-equipement-' + ($(this)[0]["id"][7])).remove();
-        Equipments.splice(($(this)[0]["id"][7]), 1);
-        console.log("l'index supprimer" + $(this)[0]["id"][7]);
-    })
-});
-
-Equipments.forEach(element => {
-
-});
-
-function writeType(index) {
-    return '<h4 class="description-Type " id="description-type ">' + tabEquipementType[index] + '</h4>';
+//Supression de l'équipement dans le tableau et le front
+function deleteEquipment(position) {
+    Equipments.splice(position, 1);
+    $('.description').remove();
+    Equipments.forEach(returnIndexElement);
+}
+//Extrait le nombre de l'id des equipements
+function extraitNombre(str) {
+    return Number(str.replace(/[^\d]/g, ""))
+}
+//Ecris le titre du type d'équipement
+function writeType(size, index) {
+    return '<h' + size + ' class="description-Type " id="description-type ">' + tabEquipementType[index] + '</h' + size + '>';
 };
-
+//Ecris le titre du soustype d'équipement
 function writeSubtype(index) {
     return '<h5 class="description - Type " id="description-subType ">' + tabEquipementSubtype[index] + '</h5>';
 };
-
+//Ecrit les 2 icons d'edit et delete
 function writeEditDelete(index) {
     return ' <p class="edit-delete-equipement"> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a></p>';
 };
