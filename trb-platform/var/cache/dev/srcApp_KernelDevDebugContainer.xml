@@ -4972,7 +4972,7 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.N.RUD15" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.EW9CL8P" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\KeyCloakAuthController::connectAction" type="service" id=".service_locator.no19fnv"/>
@@ -4992,6 +4992,7 @@
         <argument key="App\Controller\alstomController::edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController::engineers" type="service" id=".service_locator.MWuXu_8"/>
         <argument key="App\Controller\alstomController::ertms" type="service" id=".service_locator.E_0pku0"/>
+        <argument key="App\Controller\alstomController::flush_all_equipt" type="service" id=".service_locator..edoj62"/>
         <argument key="App\Controller\alstomController::index" type="service" id=".service_locator.RopKonk"/>
         <argument key="App\Controller\alstomController::projects" type="service" id=".service_locator.MnNiUch"/>
         <argument key="App\Controller\alstomController::show_clients" type="service" id=".service_locator._IXm1YU"/>
@@ -5024,6 +5025,7 @@
         <argument key="App\Controller\alstomController:edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController:engineers" type="service" id=".service_locator.MWuXu_8"/>
         <argument key="App\Controller\alstomController:ertms" type="service" id=".service_locator.E_0pku0"/>
+        <argument key="App\Controller\alstomController:flush_all_equipt" type="service" id=".service_locator..edoj62"/>
         <argument key="App\Controller\alstomController:index" type="service" id=".service_locator.RopKonk"/>
         <argument key="App\Controller\alstomController:projects" type="service" id=".service_locator.MnNiUch"/>
         <argument key="App\Controller\alstomController:show_clients" type="service" id=".service_locator._IXm1YU"/>
@@ -5430,7 +5432,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.N.RUD15"/>
+      <argument type="service" id=".service_locator.EW9CL8P"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5803,7 +5805,7 @@
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
     <service id="fos_js_routing.router" alias="router.default" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.N.RUD15"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.EW9CL8P"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.tSKDlY7" alias=".1_ServiceLocator~Woq3vn6" public="false"/>

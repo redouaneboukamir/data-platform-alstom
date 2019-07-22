@@ -12,7 +12,7 @@
         <div class="jumbotron content-form-engineer">
             {{ form_start(form, {'action': path('alstom.addErtms'), 
                'attr': {'id': 'form_ertms'}})
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }}
 
             <div class="row">
                 <div class="col-md-12">{{ form_row(form.name_configuration) }}</div>
@@ -43,8 +43,9 @@
                                 <a class="btn-add-equipment col-5 ml-5 mb-5" id="create-equipment">Add equipement</a>
                             </div>
                         </div>
-
+                        <a class="previous-equipment" href="" id="previous-equipment">Previous</a>
                         <div class="modal-footer">
+                            <button class="btn btn-primary" id="valid-all-equipments" type="button">Valid All Equipments</button>
                             <button class="btn btn-secondary" data-dismiss="modal" id="close-equipement" type="button">Close</button>
                         </div>
                     </div>

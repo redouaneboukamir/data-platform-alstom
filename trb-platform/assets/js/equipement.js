@@ -2,6 +2,7 @@
 $('#formulaire-equipment').hide();
 $('#content-form-equipment').hide();
 $('#modal-content-form-equipement').hide();
+$('#previous-equipment').hide();
 
 //Delcaration variable
 const $type = $('#equipement_Type');
@@ -11,6 +12,7 @@ let Equipments = [],
     i = 0,
     indexEVC = 0,
     posIndex = 0,
+    PresenceEVC = false,
     tabIndexEquipt = []
 select = document.createElement("select"),
     previous = "",
@@ -83,7 +85,7 @@ $('#form_equipement').on('submit', function (e) {
     $('#modal-content-form-equipement').hide();
     $('#create-equipment').show();
     $('#show-equipment').show();
-    console.log(Equipments);
+    $('#previous-equipment').hide();
     //Boucle les équipements et les installe au front
     Equipments.forEach(returnIndexElement);
 });
@@ -103,6 +105,7 @@ function returnIndexElement(element, index, array) {
         switch (element["equipement[Type]"]) {
             case "1":
                 $("#description-equipement-" + index + "").append(writeType(4, 0));
+                $("#description-equipement-" + index + "").addClass("description-SubtypeCard")
                 indexEVC = $("#description-equipement-" + index + "");
                 break;
             case "3":
@@ -114,10 +117,10 @@ function returnIndexElement(element, index, array) {
         }
         switch (element["equipement[sous_type]"]) {
             case "4":
-                $("#description-equipement-" + index + "").append(writeSubtype(3));
+                $("#description-equipement-" + index + "").append(writeSubtype(5, 3));
                 break;
             case "5":
-                $("#description-equipement-" + index + "").append(writeSubtype(4));
+                $("#description-equipement-" + index + "").append(writeSubtype(5, 4));
                 break;
         }
         $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
@@ -128,27 +131,43 @@ function returnIndexElement(element, index, array) {
         $("#content-description-" + index + "").append(writeEditDelete(index));
 
     } else {
-        //Ecris le nom du type "carte" sous le type  EVC
-        $(indexEVC).append(writeType(4, 1));
-        //Parcous le type de soustype 
-        switch (element["equipement[sous_type]"]) {
-            case "1":
-                $(indexEVC).append(writeSubtype(0));
-                break;
-            case "2":
-                $(indexEVC).append(writeSubtype(1));
-                break;
-            case "3":
-                $(indexEVC).append(writeSubtype(2));
-                break;
-        }
+        for (i = 0; i < Equipments.length; i++) {
 
-        $(indexEVC).append('<div class="content-description-dtr" id="content-description-' +
-            index + '"></div>');
-        $("#content-description-" + index + "").append('<p>' + element["equipement[DTR_board]"] + '</p>')
-        $("#content-description-" + index + "").append('<p>' + element["equipement[Indice_DTR]"] + '</p>')
-        $("#content-description-" + index + "").append('<p>' + element["equipement[Num_serie]"] + '</p>')
-        $("#content-description-" + index + "").append(writeEditDelete(index));
+            if (Equipments[i]["equipement[Type]"] == "1") {
+                PresenceEVC = true;
+            }
+        };
+        if (PresenceEVC) {
+            //Ecris le nom du type "carte" sous le type  EVC
+            $(indexEVC).append(writeType(5, 1));
+            //Parcous le type de soustype 
+            switch (element["equipement[sous_type]"]) {
+                case "1":
+                    $(indexEVC).append(writeSubtype(6, 0));
+                    break;
+                case "2":
+                    $(indexEVC).append(writeSubtype(6, 1));
+                    break;
+                case "3":
+                    $(indexEVC).append(writeSubtype(6, 2));
+                    break;
+            }
+
+            $(indexEVC).append('<div class="content-description-dtr content-description-dtrCard" id="content-description-' +
+                index + '"></div>');
+            $("#content-description-" + index + "").append('<p>' + element["equipement[DTR_board]"] + '</p>')
+            $("#content-description-" + index + "").append('<p>' + element["equipement[Indice_DTR]"] + '</p>')
+            $("#content-description-" + index + "").append('<p>' + element["equipement[Num_serie]"] + '</p>')
+            $("#content-description-" + index + "").append(writeEditDelete(index));
+            $('#description-equipement-' + index).remove();
+        } else {
+            alert('Please enter EVC equipement before');
+            $('#description-equipement-' + index).remove();
+            Equipments.splice(index, 1);
+            $('#create-equipment').hide();
+            $('#show-equipment').hide();
+            $('#modal-content-form-equipement').show();
+        }
     }
 }
 //Gére le clique de la suppression
@@ -172,8 +191,12 @@ function writeType(size, index) {
     return '<h' + size + ' class="description-Type " id="description-type ">' + tabEquipementType[index] + '</h' + size + '>';
 };
 //Ecris le titre du soustype d'équipement
-function writeSubtype(index) {
-    return '<h5 class="description - Type " id="description-subType ">' + tabEquipementSubtype[index] + '</h5>';
+function writeSubtype(size, index) {
+    return '<h' + size + ' class="description-Type " id="description-subType ">' + tabEquipementSubtype[index] + '</h' + size + '>';
+};
+//Ecris le titre du soustype d'équipement
+function writeSubtypeCard(size, index) {
+    return '<h' + size + ' class="description-subtype" id="description-subType ">' + tabEquipementSubtype[index] + '</h' + size + '>';
 };
 //Ecrit les 2 icons d'edit et delete
 function writeEditDelete(index) {
@@ -189,6 +212,7 @@ $('#create-equipment').click(function () {
     $('#create-equipment').hide();
     $('#show-equipment').hide();
     $('#modal-content-form-equipement').show();
+    $('#previous-equipment').show();
     $('#equipement_sous_type').empty();
     $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');
     previous = "equipment";
@@ -196,18 +220,86 @@ $('#create-equipment').click(function () {
 });
 $('#close-equipement').click(function () {
     $('#modal-content-form-equipement').hide();
+    $('#show-equipment').show();
     $('#create-equipment').show();
+    $('#previous-equipment').hide();
 })
 
 
-$("#previous-equipment").click(function () {
 
-    if (previous == "equipment") {
-        $('#formulaire-equipment').hide();
-        $('#create-equipment').show();
-        previous = "add-equipment";
-    } else if (previous == "add-equipment") {
-        $('#content-form-equipment').hide();
-        $("#content-form-ertms").show();
-    }
+$("#previous-equipment").click(function (e) {
+    e.preventDefault();
+    $('#modal-content-form-equipement').hide();
+    $('#show-equipment').show();
+    $('#create-equipment').show();
+    $('#previous-equipment').hide();
 });
+
+//Requete AJAX de la partie ERTMS
+let ertmsName;
+$('#form_ertms').on('submit', function (e) {
+    e.preventDefault();
+    var $this = $(this);
+    let data = {};
+    $this.find('[name]').each(function (index, value) {
+        var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+        if (name == "ertms[name_configuration]") {
+            data[name] = value;
+            ertmsName = data[name];
+        }
+    })
+    $.ajax({
+        url: $this.attr('action'),
+        type: $this.attr('method'),
+        data: {
+            ertmsName: data
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            console.log(data)
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+
+})
+//Validation de l'ertms 
+$('#valid-ertms-name').click(function () {
+    $("#content-form-ertms").hide();
+    $('#content-form-equipment').show();
+})
+
+$('#create-ertms').click(function () {
+    if ($("#ertms_name_configuration").val() == "") {
+        alert("Please enter a configuration name ");
+        return false
+    }
+    $('#show-equipment').show();
+})
+
+//Validation de tous les équipements et de l'ertms
+
+$('#valid-all-equipments').on('click', function (e) {
+    e.preventDefault();
+    $.ajax({
+        url: '/alstom/flush-all-equipt',
+        type: 'POST',
+        data: {
+            ertmsName: ertmsName,
+            tabEquipts: Equipments
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            console.log()
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+
+})

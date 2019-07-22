@@ -462,18 +462,9 @@ class alstomController extends AbstractController
      * @Route("/alstom/create-train", name="alstom.create-train")
      * @return Response
      */
-    public function create_train(
-        Request $request,
-        EquipementRepository $equipementRepository,
-        TypeEquipementRepository $typeEquipementRepository,
-        SoustypeEquipementRepository $SoustypeEquipementRepository,
-        ApiService $apiService
+    public function create_train(Request $request): Response
+    {
 
-    ): Response {
-
-
-        $jsonContent = "";
-        $equipments = $equipementRepository->findAll();
 
         //formulaire du train
         $train = new Trains();
@@ -483,66 +474,12 @@ class alstomController extends AbstractController
         ]);
         $form_train->handleRequest($request);
 
-        //formulaire ertms comprenant tout le reste des formulaire ci dessous
-
-        $equipement = new Equipement();
-        $form_equipt = $this->createForm(EquipementType::class, $equipement);
-        $form_equipt->handleRequest($request);
-
-        $type = new TypeEquipement();
-        $soustype = new SoustypeEquipement();
-        $assoc_ertms = new AssociationEquiptERTMS();
-
-
-        $ertms->setNameConfiguration($form_ertms->getData()->getNameConfiguration());
-        if (isset($_POST['soumission_train'])) {
-
-            $assoc_ertms->setStatus(true);
-            $assoc_ertms->setSolution($ertms);
-            $train->setPositionERTMS("lefet");
-            $train->addERTM($ertms);
-            $ertms->setTrains($train);
-            $equipement->setAssociationEquiptERTMS($assoc_ertms);
-            $assoc_ertms->addEquipement($equipement);
-            // $this->em->persist($assoc_ertms);
-            // $this->em->persist($equipement);
-            // $this->em->persist($ertms);
-            // $this->em->persist($train);
-
-
-            // $this->em->flush();
-        } else if (isset($_POST['soumission_ertms'])) {
-            dump("test");
-        } else if (isset($_POST['soumission_equipement'])) {
-            // $data = $request->getContent();
-            // if (empty($data)) throw new CustomApiException(Response::HTTP_BAD_REQUEST, "Data sent null.");
-            // $equipement = $apiService->validateAndCreate($data, Equipement::class);
-
-            // $soustype->setName($form_equipt->getData()->getSousType()->getName());
-            // $equipement->setType($type);
-            // $equipement->setSousType($soustype);
-            // $type->addEquipement($equipement);
-            // $soustype->addEquipement($equipement);
-
-        }
-
-        //        Validation des formulaire
-        if ($form_equipt->isSubmitted() && $form_equipt->isValid()) { }
-        if ($form_train->isSubmitted() && $form_train->isValid()) {
-
-            //     $this->addFlash('success', 'Train create with success');
-            //     return $this->redirectToRoute('alstom.trains');
-        }
 
         return $this
             ->render('alstom/trains/create-trains.html.twig', [
                 'current_menu' => 'trains',
                 'button' => 'Create',
-                'form_train' => $form_train->createView(),
-                'form_equipement' => $form_equipt->createView()
-                // 'form_type' => $form_type->createView(),
-                // 'form_soustype' => $form_soustype->createView(),
-
+                'form_train' => $form_train->createView()
             ]);
     }
     /**
@@ -641,20 +578,53 @@ class alstomController extends AbstractController
     public function addErtms(Request $request): Response
     {
         $ertms = new ERTMSEquipement;
-        $assoc_ertms_equipement = new AssociationEquiptERTMS;
 
         $ertms_request = $request->request->get('ertmsName');
         $ertms->setNameConfiguration($ertms_request['ertms[name_configuration']);
-        $assoc_ertms_equipement->setSolution($ertms);
-
+        dump($request);
         return $this->json([
             'code' => 200,
-            'ertms' => $ertms,
-            'asssoc' => $assoc_ertms_equipement,
+            'ertms' => $ertms
 
         ], 200);
     }
 
+    /**
+     * @Route("/alstom/flush-all-equipt", name="alstom.flush-all-equipt")
+     * @return Response
+     */
+    public function flush_all_equipt(Request $request, TypeEquipementRepository $typeEquipementRepository, SoustypeEquipementRepository $soustypeEquipementRepository)
+    {
+        $assoc_ertms_equipement = new AssociationEquiptERTMS;
+        $ertms = new ERTMSEquipement;
+        $ertms_request = $request->request->get('ertmsName');
+        $tabEquipt = $request->request->get('tabEquipts');
+
+        //Nom de l'ertms ajouter a l'association et l'ertms lui-même
+        $ertms->setNameConfiguration($ertms_request);
+        $this->em->persist($ertms);
+        //Parcours du tableau d'equipement pour tous les flusher
+        foreach ($tabEquipt as $key => $value) {
+
+            $equipement = new Equipement;
+            $equipement->setType($typeEquipementRepository->find($value['equipement[Type']));
+            if ($value['equipement[sous_type'] != "") {
+                $equipement->setSousType($soustypeEquipementRepository->find($value['equipement[sous_type']));
+            }
+            $equipement->setDTRBoard($value['equipement[DTR_board']);
+            $equipement->setIndiceDTR($value['equipement[Indice_DTR']);
+            $equipement->setNumSerie($value['equipement[Num_serie']);
+            $this->em->persist($equipement);
+            $assoc_ertms_equipement->setSolution($ertms);
+            $assoc_ertms_equipement->addEquipement($equipement);
+        }
+        $this->em->persist($assoc_ertms_equipement);
+        $this->em - flush();
+        return $this->redirectToRoute('alstom.ertms');
+        return $this->json([
+            "test" => $request->request
+        ]);
+    }
     /**
      * @Route("/alstom/create-ertms", name="alstom.create-ertms")
      * @return Response
