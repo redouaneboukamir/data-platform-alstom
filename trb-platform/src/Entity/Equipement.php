@@ -49,6 +49,11 @@ class Equipement
      */
     private $SousType;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AssocEvcCarte", inversedBy="CARD")
+     */
+    private $assocEvcCarte;
+
 
     public function getId(): ?int
     {
@@ -124,5 +129,17 @@ class Equipement
     {
         $this->SousType = $SousType;
         return $this->SousType;
+    }
+
+    public function getAssocEvcCarte(): ?AssocEvcCarte
+    {
+        return $this->assocEvcCarte;
+    }
+
+    public function setAssocEvcCarte(?AssocEvcCarte $assocEvcCarte): self
+    {
+        $this->assocEvcCarte = $assocEvcCarte;
+
+        return $this;
     }
 }

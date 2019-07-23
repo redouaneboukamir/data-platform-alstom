@@ -12,13 +12,12 @@
         <div class="jumbotron content-form-engineer">
             {{ form_start(form, {'action': path('alstom.addErtms'), 
                'attr': {'id': 'form_ertms'}})
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }}
 
             <div class="row">
                 <div class="col-md-12">{{ form_row(form.name_configuration) }}</div>
             </div>
             <button class="btn btn-primary mt-4" data-target="#exampleModal" data-toggle="modal" id="create-ertms">{{ button|default('Send') }}</button>
-
 
             {{ form_end(form) }}
 
@@ -36,7 +35,7 @@
                             <div class="show-equipment" id="show-equipment"></div>
 
                             <div id="modal-content-form-equipement">
-                                {% include ("alstom/ertms/_form-equipment.html.twig") %}
+                                {{ include ("alstom/ertms/_form-equipment.html.twig", {form: form_equipement}) }}
                             </div>
 
                             <div class=" mt-4">

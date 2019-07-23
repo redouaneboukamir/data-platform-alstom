@@ -21,8 +21,20 @@ select = document.createElement("select"),
 
 //Vidage des inputs au refresh de la page
 $(document).ready(function () {
+    let data = {}
+    data[$type.attr('name')] = $type.val()
+
     $('#equipement_sous_type').empty();
-    $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');
+    $.post("/alstom/checkSubtype", data).then(function (response) {
+        //Vidage champ soustype
+        $('#equipement_sous_type').empty();
+        response.forEach(element => {
+            //Remplissage par les element reçu du controller
+            $('#equipement_sous_type').append(new Option(element.name, element.id));
+        })
+
+    })
+    // $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');
 });
 
 //AJAX Changement de sous-type en fonction du type
@@ -285,8 +297,34 @@ $('#create-ertms').click(function () {
 
 $('#valid-all-equipments').on('click', function (e) {
     e.preventDefault();
+    if (Equipments != "") {
+        $.ajax({
+            url: '/alstom/flush-all-equipt',
+            type: 'POST',
+            data: {
+                ertmsName: ertmsName,
+                tabEquipts: Equipments
+            },
+            async: true,
+            dataType: 'json', // JSON
+            success: function (response) {
+                window.location.href = "/alstom/ertms";
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                ('Ajax request failed.');
+            }
+        });
+
+    } else {
+        alert('Please enter Equipments before valid');
+    }
+
+})
+
+$('#edit-equipement').on('click', function () {
+    e.preventDefault();
     $.ajax({
-        url: '/alstom/flush-all-equipt',
+        url: '/alstom/edit-equipment',
         type: 'POST',
         data: {
             ertmsName: ertmsName,
@@ -295,7 +333,7 @@ $('#valid-all-equipments').on('click', function (e) {
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
-            console.log()
+
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');

@@ -68,7 +68,7 @@ class AssociationEquiptERTMS
     {
         if (!$this->equipements->contains($equipement)) {
             $this->equipements[] = $equipement;
-            // $equipement->setAssociationEquiptERTMS($this);
+            $equipement->setAssociationEquiptERTMS($this);
         }
 
         return $this;

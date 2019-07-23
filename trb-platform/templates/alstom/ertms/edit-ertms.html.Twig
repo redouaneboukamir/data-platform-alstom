@@ -1,0 +1,18 @@
+{% extends 'alstom/index.html.twig' %}
+
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>
+                <i class="fa fa-angle-right"></i>
+                {{equipement.Type.name}}</h2>
+        </div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        {{ include ("alstom/ertms/_form-equipment.html.twig", {form: form_equipement}) }}
+    {% endblock %}
