@@ -98,6 +98,6 @@ class __TwigTemplate_3ea479bbe5ca216b15442802666fa67355831ecf1776906ed5678235560
   {{ include('@Twig/Exception/trace.txt.twig', { trace: trace }, with_context = false) }}
 {% endfor %}
 {% endif %}
-", "@Twig/Exception/traces.txt.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\traces.txt.twig");
+", "@Twig/Exception/traces.txt.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\traces.txt.twig");
     }
 }

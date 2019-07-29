@@ -389,6 +389,6 @@ class __TwigTemplate_6fcfd87610cc4f543ed22b463387a8b9b66ba256b86cc97a5c1682c83a8
 {% block body %}
     {% include '@Twig/Exception/exception.html.twig' %}
 {% endblock %}
-", "@Twig/Exception/exception_full.html.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\exception_full.html.twig");
+", "@Twig/Exception/exception_full.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\exception_full.html.twig");
     }
 }

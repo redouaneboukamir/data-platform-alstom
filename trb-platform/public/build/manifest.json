@@ -52,5 +52,8 @@
   "build/img/trains/locomotive-select.svg": "/build/img/trains/locomotive-select.svg",
   "build/img/trains/train-select.png": "/build/img/trains/train-select.png",
   "build/img/trains/train-select.svg": "/build/img/trains/train-select.svg",
-  "build/img/trains/train.afdesign": "/build/img/trains/train.afdesign"
+  "build/img/trains/train.afdesign": "/build/img/trains/train.afdesign",
+  "build/img/home-tools.png": "/build/img/home-tools.png",
+  "build/img/home-logs.png": "/build/img/home-logs.png",
+  "build/img/home-fleet.png": "/build/img/home-fleet.png"
 }

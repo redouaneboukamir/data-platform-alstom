@@ -183,6 +183,6 @@ class __TwigTemplate_0b8dc9cc388868cac5554f36c4340e15e85a94b47e2d911bb5dd8f27f92
         </div>
     </div>
 </div>
-", "@Twig/Exception/traces.html.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\traces.html.twig");
+", "@Twig/Exception/traces.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\traces.html.twig");
     }
 }

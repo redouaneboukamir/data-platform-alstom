@@ -246,6 +246,17 @@ class AssociationEquiptERTMS extends \App\Entity\AssociationEquiptERTMS implemen
     /**
      * {@inheritDoc}
      */
+    public function setEquipement(?\App\Entity\Equipement $equipement): \App\Entity\AssociationEquiptERTMS
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEquipement', [$equipement]);
+
+        return parent::setEquipement($equipement);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getStatus(): ?bool
     {
 

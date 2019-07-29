@@ -64,10 +64,10 @@ class SoustypeEquipement extends \App\Entity\SoustypeEquipement implements \Doct
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'name'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'name', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'typeEquipement'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'name'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'name', '' . "\0" . 'App\\Entity\\SoustypeEquipement' . "\0" . 'typeEquipement'];
     }
 
     /**
@@ -176,6 +176,17 @@ class SoustypeEquipement extends \App\Entity\SoustypeEquipement implements \Doct
     /**
      * {@inheritDoc}
      */
+    public function __toString()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', []);
+
+        return parent::__toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId(): ?int
     {
         if ($this->__isInitialized__ === false) {
@@ -208,6 +219,28 @@ class SoustypeEquipement extends \App\Entity\SoustypeEquipement implements \Doct
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         return parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTypeEquipement(): ?\App\Entity\TypeEquipement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTypeEquipement', []);
+
+        return parent::getTypeEquipement();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTypeEquipement(?\App\Entity\TypeEquipement $typeEquipement): \App\Entity\SoustypeEquipement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTypeEquipement', [$typeEquipement]);
+
+        return parent::setTypeEquipement($typeEquipement);
     }
 
 }

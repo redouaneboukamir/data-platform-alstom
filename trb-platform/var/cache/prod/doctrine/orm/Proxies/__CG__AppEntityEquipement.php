@@ -64,10 +64,10 @@ class Equipement extends \App\Entity\Equipement implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Sous_type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'SousType', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'assocEvcCarte'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Sous_type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'SousType', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'assocEvcCarte'];
     }
 
     /**
@@ -191,50 +191,6 @@ class Equipement extends \App\Entity\Equipement implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function getType(): ?string
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', []);
-
-        return parent::getType();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setType(string $Type): \App\Entity\Equipement
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', [$Type]);
-
-        return parent::setType($Type);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSousType(): ?string
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSousType', []);
-
-        return parent::getSousType();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setSousType(string $Sous_type): \App\Entity\Equipement
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSousType', [$Sous_type]);
-
-        return parent::setSousType($Sous_type);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getAssociationEquiptERTMS()
     {
 
@@ -312,12 +268,78 @@ class Equipement extends \App\Entity\Equipement implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function setNumSerie(string $Num_serie): \App\Entity\Equipement
+    public function setNumSerie(string $Num_serie): ?\App\Entity\Equipement
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumSerie', [$Num_serie]);
 
         return parent::setNumSerie($Num_serie);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getType(): ?\App\Entity\TypeEquipement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', []);
+
+        return parent::getType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setType(?\App\Entity\TypeEquipement $type)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', [$type]);
+
+        return parent::setType($type);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSousType(): ?\App\Entity\SoustypeEquipement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSousType', []);
+
+        return parent::getSousType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSousType(?\App\Entity\SoustypeEquipement $SousType)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSousType', [$SousType]);
+
+        return parent::setSousType($SousType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssocEvcCarte(): ?\App\Entity\AssocEvcCarte
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAssocEvcCarte', []);
+
+        return parent::getAssocEvcCarte();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAssocEvcCarte(?\App\Entity\AssocEvcCarte $assocEvcCarte): \App\Entity\Equipement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAssocEvcCarte', [$assocEvcCarte]);
+
+        return parent::setAssocEvcCarte($assocEvcCarte);
     }
 
 }

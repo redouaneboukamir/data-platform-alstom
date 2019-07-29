@@ -1,3 +1,31 @@
+.main-home {
+  padding: 2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 50%),
+    url('/build/img/Alstom-home.jpg');
+  filter: contrast(1);
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+
+
+  .alstom-logo-home {
+    width: 40em;
+
+  }
+
+}
+
 .navbar-smallscreen {
   .navbar-nav {
     width: 100vh;
@@ -64,6 +92,7 @@
 }
 
 .post-module {
+  padding: 0;
   position: relative;
   z-index: 1;
   display: block;
@@ -98,17 +127,24 @@
   background: #000000;
   height: 400px;
   overflow: hidden;
+
+  @media screen and (max-width: 1000px)and(min-width:690px) {
+    height: 300px;
+  }
+
 }
 
 
 .post-module .thumbnail img {
   display: block;
-  width: 120%;
+  width: 100%;
   -webkit-transition: all 0.3s linear 0s;
   -moz-transition: all 0.3s linear 0s;
   -ms-transition: all 0.3s linear 0s;
   -o-transition: all 0.3s linear 0s;
   transition: all 0.3s linear 0s;
+
+
 }
 
 .post-module .post-content {
@@ -139,7 +175,7 @@
 .post-module .post-content .sub_title {
   margin: 0;
   padding: 0 0 20px;
-  color: #e74c3c;
+  color: rgb(1, 56, 122);
   font-size: 20px;
   font-weight: 400;
 }
@@ -149,6 +185,7 @@
   color: #666666;
   font-size: 14px;
   line-height: 1.8em;
+  border: none;
 }
 
 

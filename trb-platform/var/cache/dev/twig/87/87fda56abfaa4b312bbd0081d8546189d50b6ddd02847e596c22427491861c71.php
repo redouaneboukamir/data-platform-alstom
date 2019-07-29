@@ -209,29 +209,28 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
             ";
         // line 91
         $this->displayBlock('body', $context, $blocks);
-        // line 142
+        // line 157
+        echo "            ";
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 158
         echo "            <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
             <script crossorigin=\"anonymous\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>
             <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
             <script crossorigin=\"anonymous\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>
             <script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>
             <script src=\"";
-        // line 147
+        // line 163
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/runtime.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 148
+        // line 164
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/vendors~app.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 149
+        // line 165
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/app.js"), "html", null, true);
         echo "\"></script>
-            ";
-        // line 150
-        $this->displayBlock('javascripts', $context, $blocks);
-        // line 151
-        echo "        </body>
+        </body>
     </html>
 ";
         
@@ -289,46 +288,61 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 92
-        echo "                <main class=\"col-md-11 ml-sm-auto col-lg-12 px-4\" role=\"main\">
-                    <div class=\"header-home\">
-                        ALSTOM</div>
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mt-3\">
+        echo "                <main class=\"col-12 main-home container\" role=\"main\">
+                    <img alt=\"Alstom logo\" class=\"alstom-logo-home img-fluid\" src=\"build/img/logo-alstom.svg\">
+                    <div class=\"d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pb-2 \" style=\"background-color:transparent\">
                         <div
-                            class=\"post-module col-md-4\">
+                            class=\"post-module col-md-4 col-sm-9 col-xs-9 mr-2  mb-3\">
                             <!-- Thumbnail-->
                             <div class=\"thumbnail\">
-                                <img src=\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg\"/></div>
+                                <img src=\"/build/img/home-fleet.png\"/></div>
                             <!-- Post Content-->
                             <div class=\"post-content\">
                                 <h1 class=\"title\">Fleet management</h1>
-                                <h2 class=\"sub_title\">The city that never sleeps.</h2>
+                                <h2 class=\"sub_title\">Lorem ipsum</h2>
                                 <p class=\"description\">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
 
                             </div>
                         </div>
                         <div
-                            class=\"post-module col-md-4\">
+                            class=\"post-module col-md-4 col-sm-9 col-xs-9 mr-2 mb-3\">
                             <!-- Thumbnail-->
                             <div class=\"thumbnail\">
-                                <img src=\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg\"/></div>
+                                <img src=\"/build/img/home-logs.png\"/></div>
+
                             <!-- Post Content-->
-                            <div class=\"post-content\">
-                                <h1 class=\"title\">LOGS</h1>
-                                <h2 class=\"sub_title\">The city that never sleeps.</h2>
-                                <p class=\"description\">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
+                            <a href=\"#\">
+                                <div class=\"post-content\">
+                                    <h1 class=\"title\">LOGS</h1>
+                                    <h2 class=\"sub_title\">Add / Search logs
+                                    </h2>
+                                    <p class=\"description\">
+                                        <button class=\"btn btn-warning\" type=\"button\">Add
+                                            <i class=\"fas fa-plus\"></i>
+                                        </button>
+                                        <button class=\"btn btn-info\" type=\"button\">Search
+                                            <i class=\"fas fa-search\"></i>
+                                        </button>
 
+                                    </p>
+
+
+                                </div>
                             </div>
-                        </div>
+                        </a>
 
                         <div
-                            class=\"post-module col-md-4\">
+                            class=\"post-module col-md-4 col-sm-9 col-xs-9 mr-2  mb-3\">
+
+
                             <!-- Thumbnail-->
                             <div class=\"thumbnail\">
-                                <img src=\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg\"/></div>
+                                <img src=\"/build/img/home-tools.png\"/></div>
+
                             <!-- Post Content-->
                             <div class=\"post-content\">
                                 <h1 class=\"title\">TOOLS</h1>
-                                <h2 class=\"sub_title\">The city that never sleeps.</h2>
+                                <h2 class=\"sub_title\">Lorem ipsum</h2>
                                 <p class=\"description\">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
 
                             </div>
@@ -347,7 +361,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     }
 
-    // line 150
+    // line 157
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -377,7 +391,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     public function getDebugInfo()
     {
-        return array (  351 => 150,  292 => 92,  282 => 91,  264 => 12,  246 => 6,  234 => 151,  232 => 150,  228 => 149,  224 => 148,  220 => 147,  213 => 142,  211 => 91,  196 => 79,  184 => 74,  171 => 68,  158 => 62,  145 => 56,  132 => 50,  123 => 43,  115 => 37,  108 => 32,  104 => 30,  100 => 28,  96 => 26,  92 => 24,  88 => 22,  84 => 20,  82 => 19,  78 => 18,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
+        return array (  365 => 157,  291 => 92,  281 => 91,  263 => 12,  245 => 6,  231 => 165,  227 => 164,  223 => 163,  216 => 158,  213 => 157,  211 => 91,  196 => 79,  184 => 74,  171 => 68,  158 => 62,  145 => 56,  132 => 50,  123 => 43,  115 => 37,  108 => 32,  104 => 30,  100 => 28,  96 => 26,  92 => 24,  88 => 22,  84 => 20,  82 => 19,  78 => 18,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -473,46 +487,61 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
             </div>
 
             {% block body %}
-                <main class=\"col-md-11 ml-sm-auto col-lg-12 px-4\" role=\"main\">
-                    <div class=\"header-home\">
-                        ALSTOM</div>
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mt-3\">
+                <main class=\"col-12 main-home container\" role=\"main\">
+                    <img alt=\"Alstom logo\" class=\"alstom-logo-home img-fluid\" src=\"build/img/logo-alstom.svg\">
+                    <div class=\"d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pb-2 \" style=\"background-color:transparent\">
                         <div
-                            class=\"post-module col-md-4\">
+                            class=\"post-module col-md-4 col-sm-9 col-xs-9 mr-2  mb-3\">
                             <!-- Thumbnail-->
                             <div class=\"thumbnail\">
-                                <img src=\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg\"/></div>
+                                <img src=\"/build/img/home-fleet.png\"/></div>
                             <!-- Post Content-->
                             <div class=\"post-content\">
                                 <h1 class=\"title\">Fleet management</h1>
-                                <h2 class=\"sub_title\">The city that never sleeps.</h2>
+                                <h2 class=\"sub_title\">Lorem ipsum</h2>
                                 <p class=\"description\">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
 
                             </div>
                         </div>
                         <div
-                            class=\"post-module col-md-4\">
+                            class=\"post-module col-md-4 col-sm-9 col-xs-9 mr-2 mb-3\">
                             <!-- Thumbnail-->
                             <div class=\"thumbnail\">
-                                <img src=\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg\"/></div>
+                                <img src=\"/build/img/home-logs.png\"/></div>
+
                             <!-- Post Content-->
-                            <div class=\"post-content\">
-                                <h1 class=\"title\">LOGS</h1>
-                                <h2 class=\"sub_title\">The city that never sleeps.</h2>
-                                <p class=\"description\">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
+                            <a href=\"#\">
+                                <div class=\"post-content\">
+                                    <h1 class=\"title\">LOGS</h1>
+                                    <h2 class=\"sub_title\">Add / Search logs
+                                    </h2>
+                                    <p class=\"description\">
+                                        <button class=\"btn btn-warning\" type=\"button\">Add
+                                            <i class=\"fas fa-plus\"></i>
+                                        </button>
+                                        <button class=\"btn btn-info\" type=\"button\">Search
+                                            <i class=\"fas fa-search\"></i>
+                                        </button>
 
+                                    </p>
+
+
+                                </div>
                             </div>
-                        </div>
+                        </a>
 
                         <div
-                            class=\"post-module col-md-4\">
+                            class=\"post-module col-md-4 col-sm-9 col-xs-9 mr-2  mb-3\">
+
+
                             <!-- Thumbnail-->
                             <div class=\"thumbnail\">
-                                <img src=\"https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg\"/></div>
+                                <img src=\"/build/img/home-tools.png\"/></div>
+
                             <!-- Post Content-->
                             <div class=\"post-content\">
                                 <h1 class=\"title\">TOOLS</h1>
-                                <h2 class=\"sub_title\">The city that never sleeps.</h2>
+                                <h2 class=\"sub_title\">Lorem ipsum</h2>
                                 <p class=\"description\">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
 
                             </div>
@@ -523,6 +552,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
                 </main>
             {% endblock %}
+            {% block javascripts %}{% endblock %}
             <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
             <script crossorigin=\"anonymous\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>
             <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
@@ -531,7 +561,6 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
             <script src=\"{{ asset('build/runtime.js') }}\"></script>
             <script src=\"{{ asset('build/vendors~app.js') }}\"></script>
             <script src=\"{{ asset('build/app.js') }}\"></script>
-            {% block javascripts %}{% endblock %}
         </body>
     </html>
 ", "alstom\\index.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\index.html.twig");

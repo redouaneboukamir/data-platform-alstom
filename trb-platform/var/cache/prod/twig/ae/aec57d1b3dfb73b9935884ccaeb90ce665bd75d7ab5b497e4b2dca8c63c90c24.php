@@ -155,6 +155,6 @@ class __TwigTemplate_6cebed94ffefdeec10a7244e8048b96f87ebef3ad2a00e6544c6f827f05
         </tr>
     </tbody>
 </table>
-", "@Twig/Exception/traces_text.html.twig", "C:\\Users\\L_200606688\\Desktop\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\traces_text.html.twig");
+", "@Twig/Exception/traces_text.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\traces_text.html.twig");
     }
 }

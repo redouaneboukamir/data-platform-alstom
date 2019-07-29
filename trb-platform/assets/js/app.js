@@ -14,3 +14,6 @@ $('.post-module').hover(function () {
         opacity: "toggle"
     }, 300);
 });
+$(document).ready(function () {
+    $('pre').remove()
+})

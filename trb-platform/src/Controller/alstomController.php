@@ -90,7 +90,7 @@ class alstomController extends AbstractController
 
         // dump($clientKeycloak->getUser($userId));   
 
-        dump($userRoles);
+        // dump($userRoles);
 
         return $this->render(('alstom\index.html.twig'), [
             'current_menu' => 'home'

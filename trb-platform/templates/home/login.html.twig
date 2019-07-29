@@ -1,26 +1,23 @@
 {% extends 'home/home.html.twig' %}
 
 {% block formulaire %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey}}
+        </div>
+    {% endif %}
+    <form action="{{ path('login') }}" method="post" class="formulaire-login">
 
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_username" class="form-control" value="{{ last_username }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" id="password" name="_password" type="password">
+        </div>
 
-        {% if error %}
-            <div class="alert alert-danger">
-                {{ error.messageKey}}
-            </div>
-        {% endif %}
-        <form action="{{ path('login') }}" method="post" class="formulaire-login">
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="_username" class="form-control" value="{{ last_username }}">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="_password" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
+        <button class="btn btn-primary" type="submit">Sign in</button>
+    </form>
 
 {% endblock %}
-
