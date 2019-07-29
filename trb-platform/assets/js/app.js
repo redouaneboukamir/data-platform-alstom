@@ -8,9 +8,9 @@ const $ = require('jquery');
 
 // import the function from greet.js (the .js extension is optional)
 // ./ (or ../) means to look for a local file
-var greet = require('./greet');
-
-let Routing = require('../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router');
-let Routes = require('./js_routes.json');
-
-Routing.setRoutingData(Routes);
+$('.post-module').hover(function () {
+    $(this).find('.description').stop().animate({
+        height: "toggle",
+        opacity: "toggle"
+    }, 300);
+});

@@ -76,7 +76,6 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'client.delete-train' => [['id'], ['_controller' => 'App\\Controller\\clientController::delete_train'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/client/train']], [], []],
         'client.users' => [[], ['_controller' => 'App\\Controller\\clientController::users'], [], [['text', '/client/users']], [], []],
         'login' => [[], ['_controller' => 'App\\Controller\\securityController::login'], [], [['text', '/']], [], []],
-        'alstom.forbidden' => [[], ['_controller' => 'App\\Controller\\securityController::forbidden_route'], [], [['text', '/forbidden']], [], []],
         'alstom.create-user' => [[], ['_controller' => 'App\\Controller\\securityController::create_user_alstom'], [], [['text', '/alstom/create-user']], [], []],
         'client.create-user' => [[], ['_controller' => 'App\\Controller\\securityController::create_user_client'], [], [['text', '/client/create-user']], [], []],
         'logout' => [[], [], [], [['text', '/logout']], [], []],

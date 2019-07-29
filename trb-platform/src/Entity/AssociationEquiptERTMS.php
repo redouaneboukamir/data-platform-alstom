@@ -33,7 +33,6 @@ class AssociationEquiptERTMS
      */
     private $status;
 
-
     public function __construct()
     {
         $this->equipements = new ArrayCollection();

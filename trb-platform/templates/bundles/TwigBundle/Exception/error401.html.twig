@@ -1,0 +1,8 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'errorBase.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block errorMessage %}
+    <b>Unauthorized (ERROR 401!)<br/>Authorization has been refused for those credentials</b>
+{% endblock %}

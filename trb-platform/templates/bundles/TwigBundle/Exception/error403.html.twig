@@ -1,0 +1,8 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'errorBase.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block errorMessage %}
+    <b>Forbidden (ERROR 403!)<br/>Access denied for this user.</b>
+{% endblock %}

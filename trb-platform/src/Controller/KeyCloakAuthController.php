@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: ltochapn
@@ -40,13 +41,14 @@ class KeyCloakAuthController extends AbstractController
 		// (read below)
 		$userRole = $this->getUser()->getRoles();
 		dump($userRole);
-		if($userRole == ['ROLE_ALSTOM_ADMIN'] || $userRole == ['ROLE_ALSTOM_DESIGN'] || $userRole == ['ROLE_ALSTOM_MAINTENER'] 
-		||  $userRole == ['ROLE_ALSTOM_COMMISSIONER'] ||  $userRole == ['ROLE_ALSTOM_SERVICE']){
+		if (
+			$userRole == ['ROLE_ALSTOM_ADMIN'] || $userRole == ['ROLE_ALSTOM_DESIGN'] || $userRole == ['ROLE_ALSTOM_MAINTENER']
+			||  $userRole == ['ROLE_ALSTOM_COMMISSIONER'] ||  $userRole == ['ROLE_ALSTOM_SERVICE']
+		) {
 			return $this->redirectToRoute('alstom.home');
-		}else if ($userRole == ['ROLE_CLIENT_USER'] || $userRole == ['ROLE_CLIENT_ADMIN']) {
+		} else if ($userRole == ['ROLE_CLIENT_USER'] || $userRole == ['ROLE_CLIENT_ADMIN']) {
 			return $this->redirectToRoute('client.home');
 		}
-		
 	}
 
 	/**

@@ -1,0 +1,8 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'errorBase.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block errorMessage %}
+    <b>PAGE NOT FOUND (ERROR 404!)</b>
+{% endblock %}

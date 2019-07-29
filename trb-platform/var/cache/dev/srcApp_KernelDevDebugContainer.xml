@@ -1729,6 +1729,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -3669,6 +3677,10 @@
         <argument>!Swiftmailer</argument>
       </call>
       <call method="addPath">
+        <argument>C:\Users\L_200606688\OneDrive - Alstom\data-platform\trb-platform/templates/bundles/TwigBundle</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\Users\L_200606688\OneDrive - Alstom\data-platform\trb-platform\vendor\symfony\twig-bundle/Resources/views</argument>
         <argument>Twig</argument>
       </call>
@@ -4952,12 +4964,12 @@
         <argument key="eRTMSEquipement" type="service" id=".errored..service_locator.cM4.5XE.App\Entity\ERTMSEquipement"/>
       </argument>
     </service>
-    <service id=".service_locator.hUciXVh" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Y.zCxek" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="equipement" type="service" id=".errored..service_locator.hUciXVh.App\Entity\Equipement"/>
-        <argument key="soustypeEquipementRepository" type="service" id="App\Repository\SoustypeEquipementRepository"/>
-        <argument key="typeEquipementRepository" type="service" id="App\Repository\TypeEquipementRepository"/>
+        <argument key="associationEquiptERTMSRepository" type="service" id="App\Repository\AssociationEquiptERTMSRepository"/>
+        <argument key="eRTMSEquipementRepository" type="service" id="App\Repository\ERTMSEquipementRepository"/>
+        <argument key="equipement" type="service" id=".errored..service_locator.Y.zCxek.App\Entity\Equipement"/>
       </argument>
     </service>
     <service id=".service_locator.JkextnA" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4972,7 +4984,7 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.gWRY3Ym" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.rsrScD." class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\KeyCloakAuthController::connectAction" type="service" id=".service_locator.no19fnv"/>
@@ -4985,7 +4997,7 @@
         <argument key="App\Controller\alstomController::delete_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController::edit_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController::edit_engineer" type="service" id=".service_locator.tx3hRNe"/>
-        <argument key="App\Controller\alstomController::edit_equipement" type="service" id=".service_locator.hUciXVh"/>
+        <argument key="App\Controller\alstomController::edit_equipement" type="service" id=".service_locator.Y.zCxek"/>
         <argument key="App\Controller\alstomController::edit_project" type="service" id=".service_locator.Ac1X4cR"/>
         <argument key="App\Controller\alstomController::edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController::engineers" type="service" id=".service_locator.MWuXu_8"/>
@@ -5017,7 +5029,7 @@
         <argument key="App\Controller\alstomController:delete_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController:edit_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController:edit_engineer" type="service" id=".service_locator.tx3hRNe"/>
-        <argument key="App\Controller\alstomController:edit_equipement" type="service" id=".service_locator.hUciXVh"/>
+        <argument key="App\Controller\alstomController:edit_equipement" type="service" id=".service_locator.Y.zCxek"/>
         <argument key="App\Controller\alstomController:edit_project" type="service" id=".service_locator.Ac1X4cR"/>
         <argument key="App\Controller\alstomController:edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController:engineers" type="service" id=".service_locator.MWuXu_8"/>
@@ -5431,7 +5443,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.gWRY3Ym"/>
+      <argument type="service" id=".service_locator.rsrScD."/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5440,7 +5452,7 @@
     <service id=".errored..service_locator.Ac1X4cR.App\Entity\Projects" class="App\Entity\Projects"/>
     <service id=".errored..service_locator.59.A7DW.App\Entity\Trains" class="App\Entity\Trains"/>
     <service id=".errored..service_locator.cM4.5XE.App\Entity\ERTMSEquipement" class="App\Entity\ERTMSEquipement"/>
-    <service id=".errored..service_locator.hUciXVh.App\Entity\Equipement" class="App\Entity\Equipement"/>
+    <service id=".errored..service_locator.Y.zCxek.App\Entity\Equipement" class="App\Entity\Equipement"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <argument type="service" id=".service_locator.t6nlTLd"/>
       <argument type="collection">
@@ -5805,7 +5817,7 @@
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
     <service id="fos_js_routing.router" alias="router.default" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.gWRY3Ym"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.rsrScD."/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.tSKDlY7" alias=".1_ServiceLocator~Woq3vn6" public="false"/>

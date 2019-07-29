@@ -14,7 +14,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
-class securityController extends AbstractController{
+class securityController extends AbstractController
+{
 
     /**
      * @var ObjectManager
@@ -31,7 +32,6 @@ class securityController extends AbstractController{
 
         $this->em = $em;
         $this->encoder = $encoder;
-
     }
     /**
      * @Route("/", name="login")
@@ -39,44 +39,37 @@ class securityController extends AbstractController{
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
 
-        
+
         $last_username = $authenticationUtils->getLastUsername();
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_ADMIN')
+        if (
+            TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_ADMIN')
             || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_MAINTENER'))
             || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_DESIGN'))
-            || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_COMMISSIONER'))){
+            || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_ALSTOM_COMMISSIONER'))
+        ) {
 
             $user = $this->getUser();
-            return $this->redirectToRoute('alstom.home',[
+            return $this->redirectToRoute('alstom.home', [
                 'user' => $user
             ]);
-
-        }else if (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_ADMIN')
-                || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_USER'))){
+        } else if (
+            TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_ADMIN')
+            || (TRUE === $this->get('security.authorization_checker')->isGranted('ROLE_CLIENT_USER'))
+        ) {
 
             $user = $this->getUser();
             dump($user);
-            return $this->redirect($this->generateUrl('client.home',[
+            return $this->redirect($this->generateUrl('client.home', [
                 'user' => $user
-            ] ));
-
-        }else{return $this->render('home/login.html.twig', [
+            ]));
+        } else {
+            return $this->render('home/login.html.twig', [
                 'last_username' => $last_username,
                 'error' => $error
             ]);
-
         }
-
-    }
-    /**
-     * @Route("/forbidden", name="alstom.forbidden")
-     * @return Response
-     */
-    public function forbidden_route(): Response
-    {
-        return $this->render('forbidden.html.twig');
     }
 
     /**
@@ -91,23 +84,23 @@ class securityController extends AbstractController{
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            if(($form->getData()->getClient()) != null){
+            if (($form->getData()->getClient()) != null) {
                 $user->setEmail($form->getData()->getClient()->getEmail());
             }
-//            $user->setRoles(array('ROLE_CLIENT_ADMIN'));
+            //            $user->setRoles(array('ROLE_CLIENT_ADMIN'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
 
             $this->em->persist($user);
             $this->em->flush();
-//            $this->addFlash('success', 'User create with success');
+            //            $this->addFlash('success', 'User create with success');
             return $this->redirectToRoute('alstom.home');
         }
 
-        return $this->render('alstom/user/create-user.html.twig',[
+        return $this->render('alstom/user/create-user.html.twig', [
             'current_menu' => 'create-user',
-            'button' =>'Create',
+            'button' => 'Create',
             'form' => $form->createView()
         ]);
     }
@@ -126,24 +119,22 @@ class securityController extends AbstractController{
         $form->handleRequest($request);
 
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
-//            recuperer l'email du form de client_user et l'attribuer ici pour le compte user
-//            $user->setEmail($form->getData()->getClient()->getEmail());
+            //            recuperer l'email du form de client_user et l'attribuer ici pour le compte user
+            //            $user->setEmail($form->getData()->getClient()->getEmail());
             $user->setRoles(array('ROLE_CLIENT_USER'));
             $user->setPassword($this->encoder->encodePassword($user, $form->getData()->getPassword()));
             $this->em->persist($user);
             $this->em->flush();
-//            $this->addFlash('success', 'User create with success');
+            //            $this->addFlash('success', 'User create with success');
             return $this->redirectToRoute('client.home');
         }
 
-        return $this->render('client/user/create-user.html.twig',[
+        return $this->render('client/user/create-user.html.twig', [
             'current_menu' => 'create-user',
-            'button' =>'Create',
+            'button' => 'Create',
             'form' => $form->createView()
         ]);
     }
-
-
 }

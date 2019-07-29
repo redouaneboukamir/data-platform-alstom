@@ -3,6 +3,7 @@ $('#formulaire-equipment').hide();
 $('#content-form-equipment').hide();
 $('#modal-content-form-equipement').hide();
 $('#previous-equipment').hide();
+$('#wait-spinner').hide();
 
 //Delcaration variable
 const $type = $('#equipement_Type');
@@ -13,6 +14,7 @@ let Equipments = [],
     indexEVC = 0,
     posIndex = 0,
     PresenceEVC = false,
+    idEquipment = 0,
     tabIndexEquipt = []
 select = document.createElement("select"),
     previous = "",
@@ -24,7 +26,6 @@ $(document).ready(function () {
     let data = {}
     data[$type.attr('name')] = $type.val()
 
-    $('#equipement_sous_type').empty();
     $.post("/alstom/checkSubtype", data).then(function (response) {
         //Vidage champ soustype
         $('#equipement_sous_type').empty();
@@ -34,6 +35,7 @@ $(document).ready(function () {
         })
 
     })
+    // $('#equipement_sous_type').empty();
     // $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');
 });
 
@@ -62,37 +64,65 @@ $('#form_equipement').on('submit', function (e) {
     e.preventDefault();
 
     var $this = $(this);
-    let data = {};
+    let data = {},
+        action;
     //Rempli data a partir des valeur des inputs
     $this.find('[name]').each(function (index, value) {
         var that = $(this),
             name = that.attr('name')
+
         if (name != ("equipement[_token]") && name != ("soumission_equipement")) {
             value = that.val();
             data[name] = value;
         }
+        if (name == 'soumission_edit_equipement') {
+            action = "edit";
+        } else {
+            action = "add";
+        }
 
     })
-    //Remplis le tableau des équipements
-    Equipments.push(data);
+    // Si le formulaire est pour ajouer un nouvel equipement
+    if (action == "add") {
+        //Remplis le tableau des équipements
+        Equipments.push(data);
+        //Effecture la requête ajax pour l'ajout d'équipement
+        $.ajax({
+            url: $this.attr('action'),
+            type: $this.attr('method'),
+            data: {
+                tabEquipts: Equipments
+            },
+            async: true,
+            dataType: 'json', // JSON
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                ('Ajax request failed.');
+            }
+        });
+        // Ou si le formulaire est pour éditer un equipement déja existant sur la page de l'ertms lié a celui-ci
+    } else if (action == "edit") {
+        let idErtms = extraitNombre(window.location.pathname);
 
-    //Effecture la requête ajax de la fonction du controller
-    $.ajax({
-        url: $this.attr('action'),
-        type: $this.attr('method'),
-        data: {
-            equipement: data,
-            tabEquipts: Equipments
-        },
-        async: true,
-        dataType: 'json', // JSON
-        success: function (response) {
-
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            ('Ajax request failed.');
-        }
-    });
+        $.ajax({
+            url: '/alstom/edit-equipment/' + idEquipment,
+            type: $this.attr('method'),
+            data: {
+                equipement: data,
+                idErtms: idErtms
+            },
+            async: true,
+            dataType: 'json', // JSON
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                ('Ajax request failed.');
+            }
+        });
+    }
 
     $('#modal-content-form-equipement').hide();
     $('#create-equipment').show();
@@ -230,15 +260,14 @@ $('#create-equipment').click(function () {
     previous = "equipment";
 
 });
+// Ferme le modal de formulaire d'ajout d'équipement
 $('#close-equipement').click(function () {
     $('#modal-content-form-equipement').hide();
     $('#show-equipment').show();
     $('#create-equipment').show();
     $('#previous-equipment').hide();
 })
-
-
-
+// Gere le click du previous
 $("#previous-equipment").click(function (e) {
     e.preventDefault();
     $('#modal-content-form-equipement').hide();
@@ -294,9 +323,10 @@ $('#create-ertms').click(function () {
 })
 
 //Validation de tous les équipements et de l'ertms
-
 $('#valid-all-equipments').on('click', function (e) {
     e.preventDefault();
+    $('.main-ertms').css("opacity", '0.4');
+    $('#wait-spinner').show();
     if (Equipments != "") {
         $.ajax({
             url: '/alstom/flush-all-equipt',
@@ -320,24 +350,70 @@ $('#valid-all-equipments').on('click', function (e) {
     }
 
 })
-
-$('#edit-equipement').on('click', function () {
+//cache le modal d'edit d'equipement
+$('#modal-content-form-equipement-edit').hide();
+// Gere la fermeture du modal d'edit d'equipement
+$('#close-modal-form-equipment-edit').click(function () {
+    $('#modal-content-form-equipement-edit').hide();
+    $('.main-ertms').css("opacity", '1');
+})
+// Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
+$('.content-description-dtr').on('click', '.edit-delete-equipement > a', function (e) {
     e.preventDefault();
+    $('.main-ertms').css("opacity", '0.4');
+    $('#wait-spinner').show();
+    idEquipment = extraitNombre($(this)[0]["classList"][0])
+    var $this = $("#form_equipement");
+    let data = {};
+
     $.ajax({
-        url: '/alstom/edit-equipment',
+        url: '/alstom/edit-equipment/' + idEquipment,
         type: 'POST',
-        data: {
-            ertmsName: ertmsName,
-            tabEquipts: Equipments
-        },
+        data: {},
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
 
+            $('#equipement_Type').val(response["type"]["id"]);
+            data[$('#equipement_Type').attr('name')] = $('#equipement_Type').val()
+            $.post("/alstom/checkSubtype", data).then(function (response) {
+                //Vidage champ soustype
+                $('#equipement_sous_type').empty();
+                response.forEach(element => {
+                    //Remplissage par les element reçu du controller
+                    $('#equipement_sous_type').append(new Option(element.name, element.id));
+                })
+            }).done(function () {
+                //Rempli input avec valeur recu de l'equipement
+                $this.find('[name]').each(function (index, value) {
+                    var that = $(this);
+                    switch (value.id) {
+                        case 'equipement_Type':
+                            // $('#' + value.id).val(response["Type"]['id']);
+                            // $('#' + value.id).css("margin-top", "10px");
+                            break;
+                        case 'equipement_sous_type':
+                            if (response["SousType"] != null) {
+                                $('#' + value.id).val(response["SousType"]["id"]);
+                            }
+                            break;
+                        case 'equipement_DTR_board':
+                            $('#' + value.id).val(response["dTRBoard"])
+                            break;
+                        case 'equipement_Indice_DTR':
+                            $('#' + value.id).val(response["indiceDTR"])
+                            break;
+                        case 'equipement_Num_serie':
+                            $('#' + value.id).val(response["numSerie"])
+                            break;
+                    }
+                })
+                $('#wait-spinner').hide();
+                $('#modal-content-form-equipement-edit').show();
+            })
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');
         }
     });
-
-})
+});

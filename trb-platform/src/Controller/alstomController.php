@@ -593,6 +593,7 @@ class alstomController extends AbstractController
      */
     public function checkSubtype(Request $request, SoustypeEquipementRepository $soustypeEquipementRepository)
     {
+
         $soustype = $soustypeEquipementRepository->findTypeById($request->request->get('equipement')['Type']);
 
         $jsonObjectSubtype = $this->serializer->serialize($soustype, 'json', [
@@ -614,13 +615,6 @@ class alstomController extends AbstractController
         SoustypeEquipementRepository $soustypeEquipementRepository
     ) {
         $tabEquipt = $request->request->get('tabEquipts');
-        dump($tabEquipt);
-        $request_equipement = $request->request->get('equipement');
-        $jsonObjectEquipt = $this->serializer->serialize($request_equipement, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
         foreach ($tabEquipt as $key => $value) {
             $equipement = new Equipement;
             $equipement->setType($typeEquipementRepository->find($value['equipement[Type']));
@@ -631,6 +625,12 @@ class alstomController extends AbstractController
             $equipement->setIndiceDTR($value['equipement[Indice_DTR']);
             $equipement->setNumSerie($value['equipement[Num_serie']);
         }
+
+        $jsonObjectEquipt = $this->serializer->serialize($equipement, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
 
         return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
     }
@@ -695,7 +695,11 @@ class alstomController extends AbstractController
                     break;
             }
         }
-        $assoc_ertms_equipement->setStatus(true);
+        if ($ertms->getTrains() != null) {
+            $assoc_ertms_equipement->setStatus(true);
+        } else {
+            $assoc_ertms_equipement->setStatus(false);
+        }
         $this->em->persist($assoc_ertms_equipement);
         dump($assoc_ertms_equipement);
         $this->em->persist($assoc_evc_carte);
@@ -740,20 +744,26 @@ class alstomController extends AbstractController
     ) {
         $idErtms = $request->attributes->get('id');
         $equipements = $associationEquiptERTMSRepository->find($idErtms)->getEquipements();
-        dump($associationEquiptERTMSRepository->find($idErtms));
-        foreach ($equipements as $key => $value) {
-            dump($value);
-        }
-        dump($equipements);
-        // $equipement = $request->request;
-        // $form_equipement = $this->createForm(EquipementType::class, $equipement);
-        // $form_equipement->handleRequest($request);
+        //$equipement = $request->request;
+        $equipement = new Equipement;
+        $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_equipement->handleRequest($request);
 
+        if ($form_equipement->isSubmitted() && $form_equipement->isValid()) {
+            dump($request->request->get('tabEquipts'));
+            foreach ($equipements as $key => $value) {
+                if ($equipement->getId() == $value->getId()) {
+                    dump($value);
+                }
+            }
+            // $this->em->persist($equipement);
+        }
         return $this->render('alstom/ertms/show-ertms.html.twig', [
             'current_menu' => 'ERTMS',
             'ertms' => $eRTMSEquipement,
+            'equipement' => $equipement,
             'equipements' => $equipements,
-            // 'form_equipement' => $form_equipement->createView(),
+            'form_equipement' => $form_equipement->createView(),
 
         ]);
     }
@@ -763,21 +773,33 @@ class alstomController extends AbstractController
      * @return Response
      */
     public function edit_equipement(
-        Request $request,
         Equipement $equipement,
-        TypeEquipementRepository $typeEquipementRepository,
-        SoustypeEquipementRepository $soustypeEquipementRepository
+        Request $request,
+        ERTMSEquipementRepository $eRTMSEquipementRepository,
+        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository
     ) {
-        $form_equipement = $this->createForm(EquipementType::class, $equipement);
-        $form_equipement->handleRequest($request);
+        $current_equipement = $equipement;
+        $new_equipement = $request->request->get('equipement');
+        $id_Ertms = (int) $request->request->get('idErtms');
 
+        $new_assoc_equipt_ertms = new AssociationEquiptERTMS;
+        $current_ertms = $eRTMSEquipementRepository->find($id_Ertms);
+        $all_equipt_assoc =  $associationEquiptERTMSRepository->find($id_Ertms);
+        dump($all_equipt_assoc);
+        dump($id_Ertms);
+        dump($current_equipement);
+        dump($new_equipement);
+        dump($current_ertms);
 
-        return $this->render('alstom/ertms/edit-ertms.html.twig', [
-            'current_menu' => 'ERTMS',
-            'button' => 'Edit',
-            'equipement' => $equipement,
-            'form_equipement' => $form_equipement->createView(),
+        $new_assoc_equipt_ertms->setSolution($current_ertms);
+
+        $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
         ]);
+
+        return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
     }
 
     //    suppresion de ertms

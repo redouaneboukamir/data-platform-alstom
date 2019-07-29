@@ -3,14 +3,41 @@
 
 {% block body %}
 
-    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+    <div id="modal-content-form-equipement-edit">
+        <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="form-equipment" id="formulaire-equipment">
+            {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 
+               'attr': {'id': 'form_equipement'}}) }}
+            {{form_row(form_equipement.Type)}}
+            {{form_row(form_equipement.sous_type)}}
+            {{form_row(form_equipement.DTR_board)}}
+            {{form_row(form_equipement.Indice_DTR)}}
+            {{form_row(form_equipement.Num_serie)}}
+            {{form_row(form_equipement._token)}}
+
+            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
+
+            {{form_end(form_equipement)}}</div>
+
+    </div>
+    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+        <span class="sr-only">
+            Loading...
+        </span>
+    </div>
+    {# --------------------------- #}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4 main-ertms" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1>{{ertms.nameConfiguration}}</h1>
         </div>
         <div class="show-equipment" id="show-equipment" style="">
+
+
             {% for equipement in equipements %}
                 {% if (equipement.Type.name == "EVC") or (equipement.Type.name == "CARTE") %}
-                    <div class="description description-SubtypeCard" id="description-equipement-0">
+                    <div class="description description-SubtypeCard" id="description-equipement">
 
                         {% if equipement.Type.name == "EVC" %}
 
@@ -29,13 +56,12 @@
 
                         {% endif %}
 
-                        <div class="content-description-dtr ml-2" id="content-description-0">
+                        <div class="content-description-dtr ml-2" id="content-description">
                             <p>{{equipement.DTRboard}}</p>
                             <p>{{equipement.IndiceDTR}}</p>
                             <p>{{equipement.Numserie}}</p>
                             <p class="edit-delete-equipement">
-                                <a id="edit-equipement" href='{{path("alstom.edit-equipment", {id: equipement.id})}}'>
-
+                                <a class="edit-{{equipement.id}}" id="edit-equipement">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a id="delete-{{equipement.id}}">
@@ -46,24 +72,25 @@
                     </div>
 
                 {% else %}
-                    <div class="description" id="description-equipement-0">
+                    <div class="description" id="description-equipement">
                         <h4 class="description-Type " id="description-type ">
                             {{equipement.Type.name}}
                         </h4>
-                        <h5 class="description-Type " id="description-subType ">
+                        <h5 class="description-Type " id="description-subType">
                             {% if equipement.SousType %}
                                 {{equipement.SousType.name}}
                             {% endif %}
                         </h5>
-                        <div class="content-description-dtr" id="content-description-0">
+                        <div class="content-description-dtr" id="content-description">
                             <p>{{equipement.DTRboard}}</p>
                             <p>{{equipement.IndiceDTR}}</p>
                             <p>{{equipement.Numserie}}</p>
                             <p class="edit-delete-equipement">
-                                <a id="edit-equipement" href='{{path("alstom.edit-equipment", {id: equipement.id})}}'>
+                                <a class="edit-{{equipement.id}}" id="edit-equipement*{{equipement.id}}">
+
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a id="delete-0">
+                                <a id="delete-">
                                     <i class="fas fa-trash-alt poubelle"></i>
                                 </a>
                             </p>
@@ -71,36 +98,10 @@
                     </div>
                 {% endif %}
             {% endfor %}
+
         </div>
+
     </main>
-    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade modal-equipement" id="exampleModal" role="dialog" tabindex="-1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Equipment</h5>
-                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body content-allEquipement">
-                    <div class="show-equipment" id="show-equipment"></div>
 
-                    <div id="modal-content-form-equipement">
-                        {{ include ("alstom/ertms/_form-equipment.html.twig", {form: form_equipement}) }}
-
-                    </div>
-
-                    <div class=" mt-4">
-                        <a class="btn-add-equipment col-5 ml-5 mb-5" id="create-equipment">Add equipement</a>
-                    </div>
-                </div>
-                <a class="previous-equipment" href="" id="previous-equipment">Previous</a>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" id="valid-all-equipments" type="button">Valid All Equipments</button>
-                    <button class="btn btn-secondary" data-dismiss="modal" id="close-equipement" type="button">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 {% endblock %}
