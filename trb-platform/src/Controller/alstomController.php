@@ -54,6 +54,10 @@ use App\Services\ApiService;
 use App\Repository\ERTMSEquipementRepository;
 use App\Entity\AssocEvcCarte;
 use App\Repository\AssociationEquiptERTMSRepository;
+use App\Entity\VersionLogiciel;
+use App\Form\VersionType;
+use App\Repository\VersionLogicielRepository;
+use App\Repository\ConfigLogicielRepository;
 
 class alstomController extends AbstractController
 {
@@ -776,22 +780,68 @@ class alstomController extends AbstractController
         Equipement $equipement,
         Request $request,
         ERTMSEquipementRepository $eRTMSEquipementRepository,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository
+        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
+        TypeEquipementRepository $typeEquipementRepository,
+        SoustypeEquipementRepository $soustypeEquipementRepository
     ) {
-        $current_equipement = $equipement;
-        $new_equipement = $request->request->get('equipement');
-        $id_Ertms = (int) $request->request->get('idErtms');
 
         $new_assoc_equipt_ertms = new AssociationEquiptERTMS;
-        $current_ertms = $eRTMSEquipementRepository->find($id_Ertms);
-        $all_equipt_assoc =  $associationEquiptERTMSRepository->find($id_Ertms);
-        dump($all_equipt_assoc);
-        dump($id_Ertms);
-        dump($current_equipement);
-        dump($new_equipement);
-        dump($current_ertms);
+        $assoc_evc_carte = new AssocEvcCarte;
+        $equipement_new = new Equipement;
+        $current_equipement = $equipement;
 
+        $new_equipement = $request->request->get('equipement');
+        if ($new_equipement != null) {
+
+            foreach ($new_equipement as $key => $value) {
+
+                switch ($key) {
+                    case 'equipement[Type':
+                        $equipement_new->setType($typeEquipementRepository->find($value));
+                        switch ($value) {
+                            case "1":
+                                $assoc_evc_carte->setEVC($equipement);
+                                dump($equipement);
+                                break;
+                            case "2":
+                                $assoc_evc_carte->addCARD($equipement);
+                                dump($equipement);
+                                break;
+                        }
+                        break;
+                    case 'equipement[sous_type':
+                        if ($value != "") {
+                            $equipement_new->setSousType($soustypeEquipementRepository->find($value));
+                        }
+                        break;
+                    case 'equipement[DTR_board':
+                        $equipement_new->setDTRBoard($value);
+                        break;
+                    case 'equipement[Indice_DTR':
+                        $equipement_new->setIndiceDTR($value);
+                        break;
+                    case 'equipement[Num_serie':
+                        $equipement_new->setNumSerie($value);
+                        break;
+                }
+            }
+        }
+        $this->em->persist($equipement_new);
+        dump($equipement_new);
+        $new_assoc_equipt_ertms->addEquipement($equipement_new);
+
+        $id_Ertms = (int) $request->request->get('idErtms');
+        $current_ertms = $eRTMSEquipementRepository->find($id_Ertms);
         $new_assoc_equipt_ertms->setSolution($current_ertms);
+        $this->em->persist($new_assoc_equipt_ertms);
+
+        dump($new_assoc_equipt_ertms);
+
+        $all_equipt_assoc =  $associationEquiptERTMSRepository->find($id_Ertms);
+
+        if ($all_equipt_assoc != null) {
+            dump($all_equipt_assoc->getEquipements());
+        }
 
         $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
             'circular_reference_handler' => function ($object) {
@@ -817,5 +867,200 @@ class alstomController extends AbstractController
         //     $this->addFlash('success', 'EVC delete with success');
         // }
         return $this->redirectToRoute('alstom.ertms');
+    }
+
+    // ----------------------LOGS
+    /**
+     * @Route("/alstom/logs", name="alstom.logs")
+     * @param Request $request
+     * @return Response
+     */
+    public function logs(): Response
+    {
+
+        return $this->render('alstom/logs/logs.html.twig', [
+            'current_menu' => "logs"
+        ]);
+    }
+    /**
+     * @Route("/alstom/add-logs", name="alstom.add-logs")
+     * @param Request $request
+     * @return Response
+     */
+    public function addLogs(Request $request): Response
+    {
+        $assoc_baseline = new AssociationBaseline;
+        dump($request->request);
+
+
+        return $this->render('alstom/logs/add_logs.html.twig', [
+            'current_menu' => "logs"
+        ]);
+    }
+    /**
+     * @Route("/alstom/create-logs", name="alstom.create-logs")
+     * @param Request $request
+     * @return Response
+     */
+    public function createLogs(
+        Request $request,
+        BaselineRepository $baselineRepository,
+        VersionLogicielRepository $versionLogicielRepository,
+        ConfigLogicielRepository $configLogicielRepository,
+        ERTMSEquipementRepository $eRTMSEquipementRepository
+    ): Response {
+        $assoc_baseline = new AssociationBaseline;
+
+        $request_assoc = $request->request->get("assoc");
+        dump($assoc_baseline);
+        dump($request_assoc['baseline']);
+        foreach ($request_assoc as $key => $value) {
+            switch ($key) {
+                case 'baseline':
+                    $name_baseline = $baselineRepository->findByName($value);
+                    if ($name_baseline == "") { }
+                    break;
+                case 'version':
+                    $release_note = $versionLogicielRepository->findByRelease($value);
+                    dump($release_note);
+                    break;
+                case 'config':
+                    $identif_plug = $configLogicielRepository->findByPlug($value);
+                    dump($identif_plug);
+                    break;
+                case 'ertms':
+                    $ertms = $eRTMSEquipementRepository->findByNameConfig($value);
+                    dump($ertms);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return $this->json([
+            'code' => 200
+        ], 200);
+    }
+    /**
+     * @Route("/alstom/search-logs", name="alstom.search-logs")
+     * @param Request $request
+     * @return Response
+     */
+    public function searchLogs(Request $request): Response
+    {
+        $assoc_baseline = new AssociationBaseline;
+
+        $form = $this->createform(AssociationType::class, $assoc_baseline);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $assoc_baseline->setStatus(true);
+            $this->em->persist($assoc_baseline);
+            $this->em->flush();
+        }
+
+        return $this->render('alstom/logs/search_logs.html.twig', [
+            'current_menu' => "logs",
+            'form' => $form->createView()
+        ]);
+    }
+
+
+
+
+    // ----------------------BASELINE
+    /**
+     * @Route("/alstom/baseline", name="alstom.baseline")
+     * @param Request $request
+     * @return Response
+     */
+    public function baseline(BaselineRepository $baselineRepository): Response
+    {
+        $baselines = $baselineRepository->findAll();
+        return $this->render('alstom/baseline/baseline.html.twig', [
+            'current_menu' => "baseline",
+            'baselines' => $baselines
+        ]);
+    }
+    /**
+     * @Route("/alstom/create_baseline", name="alstom.create-baseline")
+     * @param Request $request
+     * @return Response
+     */
+    public function create_baseline(Request $request, BaselineRepository $baselineRepository): Response
+    {
+        $baselines = $baselineRepository->findAll();
+        $baseline = new Baseline;
+        $form = $this->createform(BaselineType::class, $baseline);
+        $form->handleRequest($request);
+        //        Validation du formulaire baseline
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->persist($baseline);
+            $this->em->flush();
+        }
+        $version = new VersionLogiciel;
+        $form_version = $this->createform(VersionType::class, $version);
+        $form_version->handleRequest($request);
+        //        Validation du form version logiciel
+        if ($form_version->isSubmitted() && $form_version->isValid()) {
+            $this->em->persist($version);
+            $this->em->flush();
+        }
+
+        return $this->render('alstom/baseline/create-baseline.html.twig', [
+            'current_menu' => "baseline",
+            'baselines' => $baselines,
+            'form' => $form->createView(),
+            'form_version' => $form_version->createView()
+        ]);
+    }
+    /**
+     * @Route("alstom/addAssocBaseline", name="alstom.addAssocBaseline", methods={"POST"})
+     * @return Response
+     */
+    public function addAssocBaseline(Request $request): Response
+    {
+        dump($request->request);
+        return $this->json([
+            'code' => 200
+        ], 200);
+    }
+    /**
+     * @Route("alstom/addBaseline", name="alstom.addBaseline", methods={"POST"})
+     * @return Response
+     */
+    public function addBaseline(Request $request): Response
+    {
+        $baseline = new Baseline;
+
+        $name_baseline = $request->request->get('baseline')['baseline[name'];
+        $baseline->setName($name_baseline);
+        dump($baseline);
+        // $this->em->persist($baseline);
+        // $this->em->flush();
+
+        return $this->json([
+            'code' => 200,
+            'baseline' => $baseline
+        ], 200);
+    }
+    /**
+     * @Route("alstom/addVersion", name="alstom.addVersion", methods={"POST"})
+     * @return Response
+     */
+    public function addVersion(Request $request): Response
+    {
+        $version = new VersionLogiciel;
+
+        $name_version = $request->request->get('version')['version[release_note'];
+        $version->setReleaseNote($name_version);
+        dump($version);
+        // $this->em->persist($version);
+        // $this->em->flush();
+
+        return $this->json([
+            'code' => 200,
+            'version' => $version
+        ], 200);
     }
 }

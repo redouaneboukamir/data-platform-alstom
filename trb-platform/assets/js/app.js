@@ -2,6 +2,7 @@ import '../scss/app.scss';
 import './train';
 import './ertms';
 import './equipement';
+import './baseline';
 
 // loads the jquery package from node_modules
 const $ = require('jquery');

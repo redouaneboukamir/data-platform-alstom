@@ -66,90 +66,68 @@ class __TwigTemplate_cd05440fc76a5ad0c9bca525bdfd4bc5ba2f539aee6da7a7d0989ea5770
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "                <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
-                        <h2><i class=\"fa fa-angle-right\"></i> Baseline</h2>
-                        <a href=\"";
-        // line 7
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.create-baseline");
-        echo "\"><button class=\"btn btn-primary\">New</button></a>
-                    </div>
-                    ";
+        echo "    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+        <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
+            <h2>
+                <i class=\"fas fa-memory\"></i>
+                Baseline</h2>
+            <a href=\"";
         // line 9
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.create-baseline");
+        echo "\">
+                <button class=\"btn btn-primary\">New</button>
+            </a>
+        </div>
+        ";
+        // line 13
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 9, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 9));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 13));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 10
-            echo "                        <div class=\"alert alert-success\">
-                            ";
-            // line 11
+            // line 14
+            echo "            <div class=\"alert alert-success\">
+                ";
+            // line 15
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
-                        </div>
-                    ";
+            </div>
+        ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 14
-        echo "                    <section id=\"unseen \" class=\"\">
-                        ";
-        // line 16
-        echo "                        ";
-        // line 17
-        echo "                        ";
         // line 18
-        echo "                        ";
-        // line 19
-        echo "                        ";
-        // line 20
-        echo "
-                        <table class=\"table table-condensed table-content card-body table-full-width \">
-                            <thead class=\"title-table\">
-                            <th class=\"\">Name baseline</th>
-                            <th scope=\"col\" class=\"th-empty\"></th>
-                            </thead>
-                            <tbody>
-                            ";
-        // line 28
-        echo "                            ";
+        echo "        <section class=\"\" id=\"unseen \">
+            <table class=\"table table-condensed table-content card-body table-full-width \">
+                <thead class=\"title-table\">
+                    <th class=\"\">Name baseline</th>
+                    <th class=\"th-empty\" scope=\"col\"></th>
+                </thead>
+                <tbody>
+                    ";
+        // line 25
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["baselines"]) || array_key_exists("baselines", $context) ? $context["baselines"] : (function () { throw new RuntimeError('Variable "baselines" does not exist.', 28, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["baselines"]) || array_key_exists("baselines", $context) ? $context["baselines"] : (function () { throw new RuntimeError('Variable "baselines" does not exist.', 25, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["baseline"]) {
-            // line 29
-            echo "                                <tr class=\"td-table\">
-                                    ";
-            // line 31
-            echo "                                    <td>";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["baseline"], "name", [], "any", false, false, false, 31), "html", null, true);
+            // line 26
+            echo "                        <tr class=\"td-table\">
+                            <td>";
+            // line 27
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["baseline"], "name", [], "any", false, false, false, 27), "html", null, true);
             echo "</td>
-
-                                    <td class=\"content-btn-edit-delete\">
-";
-            // line 35
-            echo "                                        <form method=\"post\" action=\"";
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.delete-baseline", ["id" => twig_get_attribute($this->env, $this->source, $context["baseline"], "id", [], "any", false, false, false, 35)]), "html", null, true);
-            echo "\" onsubmit=\"return confirm('Are you sure to delete this baseline?')\">
-                                            <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
-                                            <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 37
-            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["baseline"], "id", [], "any", false, false, false, 37))), "html", null, true);
-            echo "\">
-                                            <button class=\"btn btn-danger btn-delete-client\"><i class=\"fas fa-trash-alt\"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
                             ";
+            // line 40
+            echo "                        </tr>
+                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['baseline'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 43
-        echo "                            </tbody>
-                        </table>
-                    </section>
-                </main>
-            ";
+        // line 42
+        echo "                </tbody>
+            </table>
+        </section>
+    </main>
+";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -158,7 +136,7 @@ class __TwigTemplate_cd05440fc76a5ad0c9bca525bdfd4bc5ba2f539aee6da7a7d0989ea5770
 
     }
 
-    // line 48
+    // line 47
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -168,12 +146,9 @@ class __TwigTemplate_cd05440fc76a5ad0c9bca525bdfd4bc5ba2f539aee6da7a7d0989ea5770
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 49
+        // line 48
         echo "
-    <script>
-
-
-    </script>
+    <script></script>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -195,64 +170,60 @@ class __TwigTemplate_cd05440fc76a5ad0c9bca525bdfd4bc5ba2f539aee6da7a7d0989ea5770
 
     public function getDebugInfo()
     {
-        return array (  172 => 49,  162 => 48,  148 => 43,  136 => 37,  130 => 35,  123 => 31,  120 => 29,  115 => 28,  106 => 20,  104 => 19,  102 => 18,  100 => 17,  98 => 16,  95 => 14,  86 => 11,  83 => 10,  79 => 9,  74 => 7,  69 => 4,  59 => 3,  36 => 1,);
+        return array (  150 => 48,  140 => 47,  126 => 42,  119 => 40,  115 => 27,  112 => 26,  108 => 25,  99 => 18,  90 => 15,  87 => 14,  83 => 13,  76 => 9,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'alstom/index.html.twig' %}
 
-            {% block body %}
-                <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
-                        <h2><i class=\"fa fa-angle-right\"></i> Baseline</h2>
-                        <a href=\"{{ path('alstom.create-baseline') }}\"><button class=\"btn btn-primary\">New</button></a>
-                    </div>
-                    {% for message in app.flashes('success') %}
-                        <div class=\"alert alert-success\">
-                            {{ message }}
-                        </div>
+{% block body %}
+    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+        <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
+            <h2>
+                <i class=\"fas fa-memory\"></i>
+                Baseline</h2>
+            <a href=\"{{ path('alstom.create-baseline') }}\">
+                <button class=\"btn btn-primary\">New</button>
+            </a>
+        </div>
+        {% for message in app.flashes('success') %}
+            <div class=\"alert alert-success\">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <section class=\"\" id=\"unseen \">
+            <table class=\"table table-condensed table-content card-body table-full-width \">
+                <thead class=\"title-table\">
+                    <th class=\"\">Name baseline</th>
+                    <th class=\"th-empty\" scope=\"col\"></th>
+                </thead>
+                <tbody>
+                    {% for baseline in baselines %}
+                        <tr class=\"td-table\">
+                            <td>{{ baseline.name }}</td>
+                            {# <td class=\"content-btn-edit-delete\">
+                                                            <a href=\"{{ path('alstom.edit-evc', {id: evc.id}) }}\">
+                                                                <i class=\"fas fa-user-edit btn-edit\"></i>
+                                                            </a>
+                                                            <form method=\"post\" action=\"{{ path('alstom.delete-baseline' ,{id:baseline.id}) }}\" onsubmit=\"return confirm('Are you sure to delete this baseline?')\">
+                                                                <input name=\"_method\" type=\"hidden\" value=\"DELETE\">
+                                                                <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ baseline.id) }}\">
+                                                                <button class=\"btn btn-danger btn-delete-client\">
+                                                                    <i class=\"fas fa-trash-alt\"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td> #}
+                        </tr>
                     {% endfor %}
-                    <section id=\"unseen \" class=\"\">
-                        {#            <div class=\"pull-left search\">#}
-                        {#                {{ form_start(form) }}#}
-                        {#                {{ form_row(form.name_client) }}#}
-                        {#                {{ form_end(form) }}#}
-                        {#            </div>#}
-
-                        <table class=\"table table-condensed table-content card-body table-full-width \">
-                            <thead class=\"title-table\">
-                            <th class=\"\">Name baseline</th>
-                            <th scope=\"col\" class=\"th-empty\"></th>
-                            </thead>
-                            <tbody>
-                            {#                        <div class=\"noresult_found jumbotron\">{{ result_notfound }}</div>#}
-                            {% for baseline in baselines %}
-                                <tr class=\"td-table\">
-                                    {#                        <td><a href=\"{{ path('alstom.client-show', {id: client.id}) }}\">{{ client.name }}</a></td>#}
-                                    <td>{{ baseline.name }}</td>
-
-                                    <td class=\"content-btn-edit-delete\">
-{#                                                                    <a href=\"{{ path('alstom.edit-evc', {id: evc.id}) }}\"><i class=\"fas fa-user-edit btn-edit\"></i> </a>#}
-                                        <form method=\"post\" action=\"{{ path('alstom.delete-baseline' ,{id:baseline.id}) }}\" onsubmit=\"return confirm('Are you sure to delete this baseline?')\">
-                                            <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
-                                            <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ baseline.id) }}\">
-                                            <button class=\"btn btn-danger btn-delete-client\"><i class=\"fas fa-trash-alt\"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </section>
-                </main>
-            {% endblock %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+{% endblock %}
 {% block javascripts %}
 
-    <script>
-
-
-    </script>
+    <script></script>
 {% endblock %}
 ", "alstom/Baseline/baseline.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\Baseline\\baseline.html.twig");
     }

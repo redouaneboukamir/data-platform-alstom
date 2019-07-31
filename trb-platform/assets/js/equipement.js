@@ -384,6 +384,8 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
                     $('#equipement_sous_type').append(new Option(element.name, element.id));
                 })
             }).done(function () {
+                $('.main-ertms').css("opacity", '0.4');
+                $('#wait-spinner').show();
                 //Rempli input avec valeur recu de l'equipement
                 $this.find('[name]').each(function (index, value) {
                     var that = $(this);

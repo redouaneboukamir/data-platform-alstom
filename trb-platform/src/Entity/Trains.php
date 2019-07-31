@@ -43,9 +43,16 @@ class Trains
      */
     private $ERTMS;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Baseline", mappedBy="Trains")
+     */
+    private $baselines;
+
+
     public function __construct()
     {
         $this->ERTMS = new ArrayCollection();
+        $this->baselines = new ArrayCollection();
     }
 
 
@@ -137,4 +144,34 @@ class Trains
         return $this;
     }
 
+    /**
+     * @return Collection|Baseline[]
+     */
+    public function getBaselines(): Collection
+    {
+        return $this->baselines;
+    }
+
+    public function addBaseline(Baseline $baseline): self
+    {
+        if (!$this->baselines->contains($baseline)) {
+            $this->baselines[] = $baseline;
+            $baseline->setTrains($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBaseline(Baseline $baseline): self
+    {
+        if ($this->baselines->contains($baseline)) {
+            $this->baselines->removeElement($baseline);
+            // set the owning side to null (unless already changed)
+            if ($baseline->getTrains() === $this) {
+                $baseline->setTrains(null);
+            }
+        }
+
+        return $this;
+    }
 }

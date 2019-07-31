@@ -65,39 +65,36 @@ class __TwigTemplate_965a386cc59d1a0c21269d2dac8407b02ee5fb4132eca04b00ab0e0556c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "formulaire"));
 
         // line 4
-        echo "
-
-        ";
-        // line 6
-        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 6, $this->source); })())) {
-            // line 7
-            echo "            <div class=\"alert alert-danger\">
-                ";
-            // line 8
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 8, $this->source); })()), "messageKey", [], "any", false, false, false, 8), "html", null, true);
+        echo "    ";
+        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 4, $this->source); })())) {
+            // line 5
+            echo "        <div class=\"alert alert-danger\">
+            ";
+            // line 6
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 6, $this->source); })()), "messageKey", [], "any", false, false, false, 6), "html", null, true);
             echo "
-            </div>
-        ";
+        </div>
+    ";
         }
-        // line 11
-        echo "        <form action=\"";
+        // line 9
+        echo "    <form action=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
         echo "\" method=\"post\" class=\"formulaire-login\">
 
-            <div class=\"form-group\">
-                <label for=\"email\">Email</label>
-                <input type=\"email\" id=\"email\" name=\"_username\" class=\"form-control\" value=\"";
-        // line 15
-        echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 15, $this->source); })()), "html", null, true);
+        <div class=\"form-group\">
+            <label for=\"email\">Email</label>
+            <input type=\"email\" id=\"email\" name=\"_username\" class=\"form-control\" value=\"";
+        // line 13
+        echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 13, $this->source); })()), "html", null, true);
         echo "\">
-            </div>
-            <div class=\"form-group\">
-                <label for=\"password\">Password</label>
-                <input type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\">
-            </div>
+        </div>
+        <div class=\"form-group\">
+            <label for=\"password\">Password</label>
+            <input class=\"form-control\" id=\"password\" name=\"_password\" type=\"password\">
+        </div>
 
-            <button type=\"submit\" class=\"btn btn-primary\">Sign in</button>
-        </form>
+        <button class=\"btn btn-primary\" type=\"submit\">Sign in</button>
+    </form>
 
 ";
         
@@ -120,7 +117,7 @@ class __TwigTemplate_965a386cc59d1a0c21269d2dac8407b02ee5fb4132eca04b00ab0e0556c
 
     public function getDebugInfo()
     {
-        return array (  91 => 15,  83 => 11,  77 => 8,  74 => 7,  72 => 6,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  88 => 13,  80 => 9,  74 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -128,29 +125,26 @@ class __TwigTemplate_965a386cc59d1a0c21269d2dac8407b02ee5fb4132eca04b00ab0e0556c
         return new Source("{% extends 'home/home.html.twig' %}
 
 {% block formulaire %}
+    {% if error %}
+        <div class=\"alert alert-danger\">
+            {{ error.messageKey}}
+        </div>
+    {% endif %}
+    <form action=\"{{ path('login') }}\" method=\"post\" class=\"formulaire-login\">
 
+        <div class=\"form-group\">
+            <label for=\"email\">Email</label>
+            <input type=\"email\" id=\"email\" name=\"_username\" class=\"form-control\" value=\"{{ last_username }}\">
+        </div>
+        <div class=\"form-group\">
+            <label for=\"password\">Password</label>
+            <input class=\"form-control\" id=\"password\" name=\"_password\" type=\"password\">
+        </div>
 
-        {% if error %}
-            <div class=\"alert alert-danger\">
-                {{ error.messageKey}}
-            </div>
-        {% endif %}
-        <form action=\"{{ path('login') }}\" method=\"post\" class=\"formulaire-login\">
-
-            <div class=\"form-group\">
-                <label for=\"email\">Email</label>
-                <input type=\"email\" id=\"email\" name=\"_username\" class=\"form-control\" value=\"{{ last_username }}\">
-            </div>
-            <div class=\"form-group\">
-                <label for=\"password\">Password</label>
-                <input type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\">
-            </div>
-
-            <button type=\"submit\" class=\"btn btn-primary\">Sign in</button>
-        </form>
+        <button class=\"btn btn-primary\" type=\"submit\">Sign in</button>
+    </form>
 
 {% endblock %}
-
 ", "home/login.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\home\\login.html.twig");
     }
 }

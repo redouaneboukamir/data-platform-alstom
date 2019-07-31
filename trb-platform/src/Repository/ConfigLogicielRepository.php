@@ -19,6 +19,14 @@ class ConfigLogicielRepository extends ServiceEntityRepository
         parent::__construct($registry, ConfigLogiciel::class);
     }
 
+    public function findByPlug($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.identif_plug = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return ConfigLogiciel[] Returns an array of ConfigLogiciel objects
     //  */

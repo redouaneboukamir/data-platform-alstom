@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: ltochapn
@@ -175,7 +176,7 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $group = $this->httpClientKeycloak->getGroupOfUser($userId);
 
 
-       
+
 
 
         $profilesArray = [];
@@ -208,36 +209,49 @@ class KeycloakAuthenticator extends SocialAuthenticator
         //         break;
         //     }
         // }
-         //Attribution des rôles en fonction des rôles présent sur keycloak
+        //Attribution des rôles en fonction des rôles présent sur keycloak
 
-         $current_group=$this->httpClientKeycloak->getGroupOfUser($userId);
-         foreach ($this->httpClientKeycloak->getGroups() as $group){
-             
-             if($current_group['name'] == $group['name']){
-                 $roleUser = 'users/' . $userId . '/role-mappings';
-                 $response = $this->httpClientKeycloak->getKeycloakClient()->request('GET', $roleUser);
- 
-                 if (null !== $response->getBody()) {
-                     $body = json_decode($response->getBody(), true);
- 
-                      foreach($body['clientMappings']['trb-platform']['mappings'] as $role){
-         
-                               dump($role['name']);
-                               switch($role['name']){
-                                   case 'alstom_admin': $user->addRole('ROLE_ALSTOM_ADMIN');break;
-                                   case 'alstom_designer': $user->addRole('ROLE_ALSTOM_DESIGN');break;
-                                   case 'alstom_maintener': $user->addRole('ROLE_ALSTOM_MAINTENER');  break;
-                                   case 'alstom_commissioner': $user->addRole('ROLE_ALSTOM_COMMISSIONER');  break;
-                                   case 'alstom_service': $user->addRole('ROLE_ALSTOM_SERVICE');  break;
-                                   case 'alstom_client_user': $user->addRole('ROLE_CLIENT_USER');  break;
-                                   case 'alstom_client_admin': $user->addRole('ROLE_CLIENT_ADMIN');  break;
-                               }
-                        }                    
-                 }
-                 
-             }
-             // $attributes = $this->httpClientKeycloak->getGroup($group[KEY_ID]);
-         }
+        $current_group = $this->httpClientKeycloak->getGroupOfUser($userId);
+        foreach ($this->httpClientKeycloak->getGroups() as $group) {
+
+            if ($current_group['name'] == $group['name']) {
+                $roleUser = 'users/' . $userId . '/role-mappings';
+                $response = $this->httpClientKeycloak->getKeycloakClient()->request('GET', $roleUser);
+
+                if (null !== $response->getBody()) {
+                    $body = json_decode($response->getBody(), true);
+
+                    dump($body['clientMappings']);
+                    dump($body);
+                    foreach ($body['clientMappings']['trb-platform']['mappings'] as $role) {
+                        switch ($role['name']) {
+                            case 'alstom_admin':
+                                $user->addRole('ROLE_ALSTOM_ADMIN');
+                                break;
+                            case 'alstom_designer':
+                                $user->addRole('ROLE_ALSTOM_DESIGN');
+                                break;
+                            case 'alstom_maintener':
+                                $user->addRole('ROLE_ALSTOM_MAINTENER');
+                                break;
+                            case 'alstom_commissioner':
+                                $user->addRole('ROLE_ALSTOM_COMMISSIONER');
+                                break;
+                            case 'alstom_service':
+                                $user->addRole('ROLE_ALSTOM_SERVICE');
+                                break;
+                            case 'alstom_client_user':
+                                $user->addRole('ROLE_CLIENT_USER');
+                                break;
+                            case 'alstom_client_admin':
+                                $user->addRole('ROLE_CLIENT_ADMIN');
+                                break;
+                        }
+                    }
+                }
+            }
+            // $attributes = $this->httpClientKeycloak->getGroup($group[KEY_ID]);
+        }
 
 
         $this->container->get(self::SESSION)->set('userId', $userId);

@@ -18,7 +18,14 @@ class BaselineRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Baseline::class);
     }
-
+    public function findByName($value)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.name = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Baseline[] Returns an array of Baseline objects
     //  */

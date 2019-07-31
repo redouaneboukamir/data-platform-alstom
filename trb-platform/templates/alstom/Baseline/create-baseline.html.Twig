@@ -1,30 +1,38 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
 {% endblock %}
 
 
+{% extends 'alstom/index.html.twig' %}
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1>Add Baseline - Realase note - Config Logiciel</h1>
+        </div>
 
-    {% extends 'alstom/index.html.twig' %}
-    {% block body %}
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1>Add Baseline</h1>
-            </div>
-            <div class="jumbotron content-form-engineer">
-                {{ form_start(form) }}
-                <div class="row">
-                    <div class="col-md-10">{{ form_row(form.name) }}</div>
+        {# Formulaire d'ajout de baseline #}
+        <div class="jumbotron content-form-baseline">
+            <h3 id="title_baseline">Baseline</h3>
+            {{ form_start(form, {'action': path('alstom.addBaseline'), 
+               'attr': {'id': 'form_baseline'}}) }}
 
-                </div>
-                <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
-                {{ form_end(form) }}
-            </div>
-        </main>
-    {% endblock %}
+            {{ form_row(form.name) }}
+            <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
+            {{ form_end(form) }}
+        </div>
+
+        {# Formulaire d'ajout de version logiciel #}
+        <div class="jumbotron content-form-baseline">
+            <h3 id="title_version">Version Logiciel</h3>
+            {{ form_start(form_version, {'action': path('alstom.addVersion'), 
+               'attr': {'id': 'form_version'}}) }}
+            {{ form_row(form_version.release_note) }}
+            <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
+            {{ form_end(form_version) }}
+        </div>
+
+
+    </main>
+{% endblock %}
 {% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
-    <script>
-        // $('select').select2();
-    </script>
-{% endblock %}
-
+<script>// $('select').select2();</script>{% endblock %}

@@ -19,6 +19,14 @@ class VersionLogicielRepository extends ServiceEntityRepository
         parent::__construct($registry, VersionLogiciel::class);
     }
 
+    public function findByRelease($value)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.release_note = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return VersionLogiciel[] Returns an array of VersionLogiciel objects
     //  */

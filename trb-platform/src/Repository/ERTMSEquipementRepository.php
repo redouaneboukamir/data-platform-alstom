@@ -18,7 +18,14 @@ class ERTMSEquipementRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, ERTMSEquipement::class);
     }
-
+    public function findByNameConfig($value)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.name_configuration = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return ERTMSEquipement[] Returns an array of ERTMSEquipement objects
     //  */

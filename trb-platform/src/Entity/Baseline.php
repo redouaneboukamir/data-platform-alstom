@@ -21,7 +21,13 @@ class Baseline
      */
     private $name;
 
-    public function __toString() {
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trains", inversedBy="baselines")
+     */
+    private $Trains;
+
+    public function __toString()
+    {
         return $this->name;
     }
 
@@ -38,6 +44,18 @@ class Baseline
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getTrains(): ?Trains
+    {
+        return $this->Trains;
+    }
+
+    public function setTrains(?Trains $Trains): self
+    {
+        $this->Trains = $Trains;
 
         return $this;
     }
