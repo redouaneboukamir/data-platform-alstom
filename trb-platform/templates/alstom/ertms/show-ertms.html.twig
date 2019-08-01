@@ -9,7 +9,7 @@
         </button>
         <div class="form-equipment" id="formulaire-equipment">
             {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 
-               'attr': {'id': 'form_equipement'}}) }}
+               'attr': {'id': 'form_equipement_edit'}}) }}
             {{form_row(form_equipement.Type)}}
             {{form_row(form_equipement.sous_type)}}
             {{form_row(form_equipement.DTR_board)}}
@@ -36,68 +36,72 @@
 
 
             {% for equipement in equipements %}
-                {% if (equipement.Type.name == "EVC") or (equipement.Type.name == "CARTE") %}
-                    <div class="description description-SubtypeCard" id="description-equipement">
+                {% if equipement.status == true %}
+                    {% if (equipement.Type.name == "EVC") or (equipement.Type.name == "CARTE") %}
+                        <div class="description description-SubtypeCard" id="description-equipement">
 
-                        {% if equipement.Type.name == "EVC" %}
+                            {% if equipement.Type.name == "EVC" %}
 
+                                <h4 class="description-Type " id="description-type ">
+                                    {{equipement.Type.name}}
+                                </h4>
+
+                            {% elseif equipement.Type.name ==  "CARTE" %}
+                                <h5 class="description-Type " id="description-subType ">
+                                    {{equipement.Type.name}}
+                                </h5>
+
+                                <h6 class="description-Type " id="description-subType ">
+                                    {{equipement.SousType.name}}
+                                </h6>
+
+                            {% endif %}
+
+                            <div class="content-description-dtr ml-2" id="content-description">
+                                <p>{{equipement.DTRboard}}</p>
+                                <p>{{equipement.IndiceDTR}}</p>
+                                <p>{{equipement.Numserie}}</p>
+                                <p class="edit-delete-equipement">
+                                    <a class="edit-{{equipement.id}}" id="edit-equipement">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a id="delete-{{equipement.id}}">
+                                        <i class="fas fa-trash-alt poubelle"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <div class="description" id="description-equipement">
                             <h4 class="description-Type " id="description-type ">
                                 {{equipement.Type.name}}
                             </h4>
-
-                        {% elseif equipement.Type.name ==  "CARTE" %}
-                            <h5 class="description-Type " id="description-subType ">
-                                {{equipement.Type.name}}
+                            <h5 class="description-Type " id="description-subType">
+                                {% if equipement.SousType %}
+                                    {{equipement.SousType.name}}
+                                {% endif %}
                             </h5>
+                            <div class="content-description-dtr" id="content-description">
+                                <p>{{equipement.DTRboard}}</p>
+                                <p>{{equipement.IndiceDTR}}</p>
+                                <p>{{equipement.Numserie}}</p>
+                                <p class="edit-delete-equipement">
+                                    <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
 
-                            <h6 class="description-Type " id="description-subType ">
-                                {{equipement.SousType.name}}
-                            </h6>
-
-                        {% endif %}
-
-                        <div class="content-description-dtr ml-2" id="content-description">
-                            <p>{{equipement.DTRboard}}</p>
-                            <p>{{equipement.IndiceDTR}}</p>
-                            <p>{{equipement.Numserie}}</p>
-                            <p class="edit-delete-equipement">
-                                <a class="edit-{{equipement.id}}" id="edit-equipement">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a id="delete-{{equipement.id}}">
-                                    <i class="fas fa-trash-alt poubelle"></i>
-                                </a>
-                            </p>
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a id="delete-">
+                                        <i class="fas fa-trash-alt poubelle"></i>
+                                    </a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-
-                {% else %}
-                    <div class="description" id="description-equipement">
-                        <h4 class="description-Type " id="description-type ">
-                            {{equipement.Type.name}}
-                        </h4>
-                        <h5 class="description-Type " id="description-subType">
-                            {% if equipement.SousType %}
-                                {{equipement.SousType.name}}
-                            {% endif %}
-                        </h5>
-                        <div class="content-description-dtr" id="content-description">
-                            <p>{{equipement.DTRboard}}</p>
-                            <p>{{equipement.IndiceDTR}}</p>
-                            <p>{{equipement.Numserie}}</p>
-                            <p class="edit-delete-equipement">
-                                <a class="edit-{{equipement.id}}" id="edit-equipement*{{equipement.id}}">
-
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a id="delete-">
-                                    <i class="fas fa-trash-alt poubelle"></i>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
+                    {% endif %}
+                    {% else %}
                 {% endif %}
             {% endfor %}
+
 
         </div>
 

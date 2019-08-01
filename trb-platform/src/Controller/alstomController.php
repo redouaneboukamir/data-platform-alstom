@@ -686,6 +686,7 @@ class alstomController extends AbstractController
             $equipement->setDTRBoard($value['equipement[DTR_board']);
             $equipement->setIndiceDTR($value['equipement[Indice_DTR']);
             $equipement->setNumSerie($value['equipement[Num_serie']);
+            $equipement->setStatus(true);
             $this->em->persist($equipement);
             $assoc_ertms_equipement->addEquipement($equipement);
             switch ($value['equipement[Type']) {
@@ -699,11 +700,11 @@ class alstomController extends AbstractController
                     break;
             }
         }
-        if ($ertms->getTrains() != null) {
-            $assoc_ertms_equipement->setStatus(true);
-        } else {
-            $assoc_ertms_equipement->setStatus(false);
-        }
+        // if ($ertms->getTrains() != null) {
+        //     $assoc_ertms_equipement->setStatus(true);
+        // } else {
+        //     $assoc_ertms_equipement->setStatus(false);
+        // }
         $this->em->persist($assoc_ertms_equipement);
         dump($assoc_ertms_equipement);
         $this->em->persist($assoc_evc_carte);
@@ -746,8 +747,10 @@ class alstomController extends AbstractController
         AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
         Request $request
     ) {
+
         $idErtms = $request->attributes->get('id');
-        $equipements = $associationEquiptERTMSRepository->find($idErtms)->getEquipements();
+
+        $equipements = $associationEquiptERTMSRepository->findbySolution($idErtms)[0]->getEquipements();
         //$equipement = $request->request;
         $equipement = new Equipement;
         $form_equipement = $this->createForm(EquipementType::class, $equipement);
@@ -785,12 +788,13 @@ class alstomController extends AbstractController
         SoustypeEquipementRepository $soustypeEquipementRepository
     ) {
 
-        $new_assoc_equipt_ertms = new AssociationEquiptERTMS;
+        // $new_assoc_equipt_ertms = new AssociationEquiptERTMS;
         $assoc_evc_carte = new AssocEvcCarte;
         $equipement_new = new Equipement;
         $current_equipement = $equipement;
-
         $new_equipement = $request->request->get('equipement');
+
+        //Parcours les valeurs du nouvel equipement pour flush
         if ($new_equipement != null) {
 
             foreach ($new_equipement as $key => $value) {
@@ -798,16 +802,14 @@ class alstomController extends AbstractController
                 switch ($key) {
                     case 'equipement[Type':
                         $equipement_new->setType($typeEquipementRepository->find($value));
-                        switch ($value) {
-                            case "1":
-                                $assoc_evc_carte->setEVC($equipement);
-                                dump($equipement);
-                                break;
-                            case "2":
-                                $assoc_evc_carte->addCARD($equipement);
-                                dump($equipement);
-                                break;
-                        }
+                        // switch ($value) {
+                        //     case "1":
+                        //         $assoc_evc_carte->setEVC($equipement);
+                        //         break;
+                        //     case "2":
+                        //         $assoc_evc_carte->addCARD($equipement);
+                        //         break;
+                        // }
                         break;
                     case 'equipement[sous_type':
                         if ($value != "") {
@@ -826,47 +828,79 @@ class alstomController extends AbstractController
                 }
             }
         }
-        $this->em->persist($equipement_new);
-        dump($equipement_new);
-        $new_assoc_equipt_ertms->addEquipement($equipement_new);
+        // attribut le statut actif au nouvel equipement
+        $equipement_new->setStatus(true);
 
+        // Et false a l'ancienne equipement
+        $current_equipement->setStatus(false);
+
+        // Va rechercher l'association courante
+        $id_assoc = $equipement->getAssociationEquiptERTMS();
+        $assoc_equipt_ertms = $associationEquiptERTMSRepository->find($id_assoc);
+        // va rechercher l'id de l'ertms courant
         $id_Ertms = (int) $request->request->get('idErtms');
         $current_ertms = $eRTMSEquipementRepository->find($id_Ertms);
-        $new_assoc_equipt_ertms->setSolution($current_ertms);
-        $this->em->persist($new_assoc_equipt_ertms);
 
-        dump($new_assoc_equipt_ertms);
+        // Attribut le nouvel equipement a l'association courante
+        $assoc_equipt_ertms->addEquipement($equipement_new);
 
-        $all_equipt_assoc =  $associationEquiptERTMSRepository->find($id_Ertms);
+        // $assoc_equipt_ertms->setSolution($current_ertms);
+        dump($request);
 
-        if ($all_equipt_assoc != null) {
-            dump($all_equipt_assoc->getEquipements());
+        if ($request->get('soumission_edit_equipement')) {
+            dump($equipement_new);
+            dump($assoc_equipt_ertms);
+
+            $this->em->persist($equipement_new);
+            $this->em->persist($assoc_equipt_ertms);
+            $this->em->persist($assoc_evc_carte);
+            $this->em->flush();
+            return $this->json([
+                "flush" => 200
+            ]);
+        } else {
+
+            $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+
+            return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
         }
-
-        $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
-
-        return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
     }
 
     //    suppresion de ertms
     /**
-     * @Route("/alstom/ertms/{id}", name="alstom.delete-ertms", methods={"DELETE"})
+     * @Route("/alstom/delete-ertms/{id}", name="alstom.delete-ertms", methods={"DELETE"})
      * @param Request $request
      * @return Response
      */
-    public function delete_ertms(Request $request): Response
-    {
-        // if ($this->isCsrfTokenValid('delete' . $EVC->getId(), $request->get('_token'))) {
+    public function delete_ertms(
+        Request $request,
+        ERTMSEquipement $ertms,
+        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository
+    ) {
 
-        //     $this->em->remove();
+        // if ($this->isCsrfTokenValid('delete' . $ertms->getId(), $request->get('_token'))) {
+        //     dump($ertms);
+
+        //     $assoc = $associationEquiptERTMSRepository->findbySolution($ertms->getid());
+        //     dump($assoc[0]->getEquipements());
+        //     foreach ($assoc[0]->getEquipements() as $key => $value) {
+        //         # code...
+        //         dump($value);
+        //         if ($value->getAssocEvcCarte()) {
+        //             $this->em->remove($value->getAssocEvcCarte());
+        //         }
+        //         $this->em->remove($value);
+        //     }
+        //     $this->em->remove($ertms);
+        //     $this->em->remove($assoc[0]);
         //     $this->em->flush();
-        //     $this->addFlash('success', 'EVC delete with success');
+        //     $this->addFlash('success', 'Ertms delete with success');
+        //     return $this->redirectToRoute('alstom.ertms');
         // }
-        return $this->redirectToRoute('alstom.ertms');
     }
 
     // ----------------------LOGS
@@ -1062,5 +1096,18 @@ class alstomController extends AbstractController
             'code' => 200,
             'version' => $version
         ], 200);
+    }
+
+    // ----------------------------------FLEET
+
+    /**
+     * @Route("alstom/fleet_management", name="alstom.fleet_management")
+     * @return Response
+     */
+    public function fleet_management(): Response
+    {
+        return $this->render('alstom/fleet.html.twig', [
+            'current_menu' => 'fleet'
+        ]);
     }
 }

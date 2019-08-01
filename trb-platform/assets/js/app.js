@@ -15,6 +15,12 @@ $('.post-module').hover(function () {
         opacity: "toggle"
     }, 300);
 });
+$('.post-module-fleet').hover(function () {
+    $(this).find('.description-fleet').stop().animate({
+        height: "toggle",
+        opacity: "toggle"
+    }, 300);
+});
 $(document).ready(function () {
     $('pre').remove()
 })

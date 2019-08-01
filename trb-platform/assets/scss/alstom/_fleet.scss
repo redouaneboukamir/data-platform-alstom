@@ -1,0 +1,158 @@
+.main-fleet {
+    margin-top: 50px;
+    padding: 2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 50%),
+        url('/build/img/Alstom-home.jpg');
+    filter: contrast(1);
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    margin-top: 40px;
+
+
+}
+
+.content-post-module-fleet {
+    margin: 0;
+    padding: 0;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.title_fleet_management {
+    padding: 5rem 5rem;
+    background-color: rgba(255, 255, 255, .8);
+    font: 600 1.5em/1 'Raleway', sans-serif;
+    color: rgba(0, 0, 0, .5);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .5em;
+    width: 100vw;
+    font-size: 3rem;
+
+}
+
+
+.post-module-fleet {
+    padding: 0;
+    margin-bottom: 1rem;
+    margin-right: 5px;
+    position: relative;
+    z-index: 1;
+    display: block;
+    background: #FFFFFF;
+    min-width: 270px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+}
+
+.post-module-fleet:hover,
+.hover {
+    -webkit-box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+}
+
+.post-module-fleet:hover .thumbnail-fleet img,
+.hover .thumbnail-fleet img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+    opacity: 0.6;
+}
+
+.post-module-fleet .thumbnail-fleet {
+    background: #000000;
+    height: 300px;
+    overflow: hidden;
+
+    @media screen and (max-width: 1000px)and(min-width:690px) {
+        height: 300px;
+    }
+
+}
+
+
+.post-module-fleet .thumbnail-fleet img {
+    display: block;
+    width: 100%;
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+
+
+}
+
+.post-module-fleet .post-content-fleet {
+    position: absolute;
+    bottom: 0;
+    background: #FFFFFF;
+    width: 100%;
+    padding: 30px;
+    -webkti-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    -moz-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    -ms-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    -o-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+}
+
+
+.post-module-fleet .post-content-fleet .title-fleet {
+    margin: 0;
+    padding: 0 0 10px;
+    color: #333333;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.post-module-fleet .post-content-fleet .sub_title-fleet {
+    margin: 0;
+    padding: 0 0 20px;
+    color: rgb(1, 56, 122);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.post-module-fleet .post-content-fleet .description-fleet {
+    display: none;
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.8em;
+    border: none;
+}
+
+
+.post-module-fleet .post-content-fleet .timestamp {
+    margin: 0 16px 0 0;
+}
+
+
+.hover .post-content-fleet .description-fleet {
+    display: block !important;
+    height: auto !important;
+    opacity: 1 !important;
+}

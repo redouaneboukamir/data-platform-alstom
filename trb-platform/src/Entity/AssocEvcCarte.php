@@ -24,7 +24,7 @@ class AssocEvcCarte
     private $EVC;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Equipement", mappedBy="assocEvcCarte")
+     * @ORM\OneToMany(targetEntity="App\Entity\Equipement", mappedBy="assocEvcCarte",cascade={"persist"})
      */
     private $CARD;
 

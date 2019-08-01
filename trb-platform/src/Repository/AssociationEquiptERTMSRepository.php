@@ -18,7 +18,15 @@ class AssociationEquiptERTMSRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AssociationEquiptERTMS::class);
     }
+    public function findBySolution($value)
+    {
 
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.solution = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return AssociationEquiptERTMS[] Returns an array of AssociationEquiptERTMS objects
     //  */

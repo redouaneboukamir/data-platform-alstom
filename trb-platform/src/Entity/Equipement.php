@@ -54,6 +54,11 @@ class Equipement
      */
     private $assocEvcCarte;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Status;
+
 
     public function getId(): ?int
     {
@@ -139,6 +144,18 @@ class Equipement
     public function setAssocEvcCarte(?AssocEvcCarte $assocEvcCarte): self
     {
         $this->assocEvcCarte = $assocEvcCarte;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(?bool $Status): self
+    {
+        $this->Status = $Status;
 
         return $this;
     }

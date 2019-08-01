@@ -362,8 +362,9 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
     e.preventDefault();
     $('.main-ertms').css("opacity", '0.4');
     $('#wait-spinner').show();
+
     idEquipment = extraitNombre($(this)[0]["classList"][0])
-    var $this = $("#form_equipement");
+    var $this = $("#form_equipement_edit");
     let data = {};
 
     $.ajax({
@@ -375,7 +376,8 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
         success: function (response) {
 
             $('#equipement_Type').val(response["type"]["id"]);
-            data[$('#equipement_Type').attr('name')] = $('#equipement_Type').val()
+            data[$('#equipement_Type').attr('name')] = $('#equipement_Type').val();
+
             $.post("/alstom/checkSubtype", data).then(function (response) {
                 //Vidage champ soustype
                 $('#equipement_sous_type').empty();
@@ -383,16 +385,17 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
                     //Remplissage par les element reçu du controller
                     $('#equipement_sous_type').append(new Option(element.name, element.id));
                 })
+
             }).done(function () {
+
                 $('.main-ertms').css("opacity", '0.4');
                 $('#wait-spinner').show();
+
                 //Rempli input avec valeur recu de l'equipement
                 $this.find('[name]').each(function (index, value) {
                     var that = $(this);
                     switch (value.id) {
                         case 'equipement_Type':
-                            // $('#' + value.id).val(response["Type"]['id']);
-                            // $('#' + value.id).css("margin-top", "10px");
                             break;
                         case 'equipement_sous_type':
                             if (response["SousType"] != null) {
@@ -419,3 +422,43 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
         }
     });
 });
+
+$('#form_equipement_edit').on('submit', function (e) {
+    e.preventDefault();
+    $('.main-ertms').css("opacity", '0.4');
+    $('#form_equipement_edit').css("opacity", "0.4");
+    $("#wait-spinner").css("z-index", "99999");
+    $('#wait-spinner').show();
+    var $this = $(this);
+    let data = {},
+        action;
+    //Rempli data a partir des valeur des inputs
+    $this.find('[name]').each(function (index, value) {
+        var that = $(this),
+            name = that.attr('name')
+
+        if (name != ("equipement[_token]") && name != ("soumission_equipement")) {
+            value = that.val();
+            data[name] = value;
+        }
+    })
+    $.ajax({
+        url: '/alstom/edit-equipment/' + idEquipment,
+        type: 'POST',
+        data: {
+            'equipement': data,
+            "soumission_edit_equipement": true
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            location.reload();
+            $('#wait-spinner').hide();
+            $('#modal-content-form-equipement-edit').show();
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+
+})
