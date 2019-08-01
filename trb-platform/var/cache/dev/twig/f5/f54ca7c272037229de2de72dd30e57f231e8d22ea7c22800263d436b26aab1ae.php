@@ -66,113 +66,111 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
         // line 5
         echo "
-    <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-3 main-fleet\" role=\"main\">
 
-         <div class=\"card content-train\">
-             <a class=\"btn-edit\" href=\"";
-        // line 9
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 9, $this->source); })()), "id", [], "any", false, false, false, 9)]), "html", null, true);
-        echo "\"><button class=\"btn btn-secondary \"><i class=\"fas fa-edit\"></i></button></a>
 
-             <figure class=\"panel meta\">
-                 ";
-        // line 12
-        if ((twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 12, $this->source); })()), "trainType", [], "any", false, false, false, 12) == "train")) {
-            // line 13
+        <div class=\"card content-train\">
+            <a class=\"btn-edit\" href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 10, $this->source); })()), "id", [], "any", false, false, false, 10)]), "html", null, true);
+        echo "\">
+                <button class=\"btn btn-secondary \">
+                    <i class=\"fas fa-edit\"></i>
+                </button>
+            </a>
+
+            <figure class=\"panel meta\">
+                ";
+        // line 17
+        if ((twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 17, $this->source); })()), "trainType", [], "any", false, false, false, 17) == "train")) {
+            // line 18
             echo "                    <div class=\"img img-fluid\">
                         <img src=\"";
-            // line 14
+            // line 19
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/train-select.svg"), "html", null, true);
             echo "\" alt=\"\">
                     </div>
-                 ";
+                ";
         } else {
-            // line 17
-            echo "                     <div class=\"img img-fluid\">
-                         <img src=\"";
-            // line 18
+            // line 22
+            echo "                    <div class=\"img img-fluid\">
+                        <img src=\"";
+            // line 23
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/locomotive-select.svg"), "html", null, true);
             echo "\" alt=\"\">
-                     </div>
-                 ";
+                    </div>
+                ";
         }
-        // line 21
-        echo "                     <figcaption>
-                         <h2 class=\"name\" style=\"font-weight: bold\">";
-        // line 22
-        echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 22, $this->source); })()), "name", [], "any", false, false, false, 22)), "html", null, true);
+        // line 26
+        echo "                <figcaption>
+                    <h2 class=\"name\" style=\"font-weight: bold\">";
+        // line 27
+        echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 27, $this->source); })()), "name", [], "any", false, false, false, 27)), "html", null, true);
         echo "</h2>
-                     </figcaption>
-             </figure>
+                </figcaption>
+            </figure>
 
-        <div class=\"border-separate-picture-info\"></div>
-             <div class=\"panel info\">
-                 <div class=\"row content-panel mt mb\">
-                     <div class=\"col-md-9\">
-                         <div class=\"col-md-11\">
-                             <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
-                         </div>
-                         <div class=\"text-descrip-project col-md-11\">
-                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
-                             <p >For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
-                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
-                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                 what is your wish you my father I am your son this understand what is your wish.</p>
-                         </div>
+            <div class=\"border-separate-picture-info\"></div>
+            <div class=\"panel info\">
+                <div class=\"row content-panel mt mb\">
+                    <div class=\"col-md-9\">
+                        <div class=\"col-md-11\">
+                            <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
+                        </div>
+                        <div class=\"text-descrip-project col-md-11\">
+                            <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
+                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                            <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
+                            <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
+                            <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
+                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
+                        </div>
 
-                     </div>
-                     <div class=\"col-md-3\">
-                         <table class=\"table table-striped table-show-project table-content\">
-                             <thead class=\"thead-dark\">
-                             <tr>
-                                 <th scope=\"col\">Project :</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                                 <tr class=\"col-md-12 title-table\">
-                                     <td class=\"td-table\">
-                                         <a href=\"";
-        // line 53
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 53, $this->source); })()), "projects", [], "any", false, false, false, 53), "id", [], "any", false, false, false, 53)]), "html", null, true);
+                    </div>
+                    <div class=\"col-md-3\">
+                        <table class=\"table table-striped table-show-project table-content\">
+                            <thead class=\"thead-dark\">
+                                <tr>
+                                    <th scope=\"col\">Fleet :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class=\"col-md-12 title-table\">
+                                    <td class=\"td-table\">
+                                        <a href=\"";
+        // line 58
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 58, $this->source); })()), "projects", [], "any", false, false, false, 58), "id", [], "any", false, false, false, 58)]), "html", null, true);
         echo "\">
-                                             ";
-        // line 54
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 54, $this->source); })()), "projects", [], "any", false, false, false, 54), "name", [], "any", false, false, false, 54), "html", null, true);
+                                            ";
+        // line 59
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 59, $this->source); })()), "projects", [], "any", false, false, false, 59), "name", [], "any", false, false, false, 59), "html", null, true);
         echo "
-                                         </a>
-                                     </td>
-                                 </tr>
-                             </tbody>
-                         </table>
-                         <table class=\"table table-striped table-show-project table-content\">
-                             <thead class=\"thead-dark\">
-                             <tr>
-                                 <th scope=\"col\">EVC :</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                             <tr class=\"col-md-12 title-table\">
-                                 <td class=\"td-table\">
-                                     <a href=\"#\">
-";
-        // line 76
-        echo "                                     </a>
-                                 </td>
-                             </tr>
-                             </tbody>
-                         </table>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class=\"table table-striped table-show-project table-content\">
+                            <thead class=\"thead-dark\">
+                                <tr>
+                                    <th scope=\"col\">Baseline :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class=\"col-md-12 title-table\">
+                                    <td class=\"td-table\"></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                     </div>
-                 </div>
-             </div>
+                    </div>
+                </div>
+            </div>
 
-         </div>
-         </div>
+        </div>
+    </div>
 
-    </main>
-
-";
+</main>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -193,7 +191,7 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
     public function getDebugInfo()
     {
-        return array (  160 => 76,  141 => 54,  137 => 53,  103 => 22,  100 => 21,  94 => 18,  91 => 17,  85 => 14,  82 => 13,  80 => 12,  74 => 9,  68 => 5,  58 => 4,  35 => 1,);
+        return array (  146 => 59,  142 => 58,  108 => 27,  105 => 26,  99 => 23,  96 => 22,  90 => 19,  87 => 18,  85 => 17,  75 => 10,  68 => 5,  58 => 4,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -203,92 +201,86 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
 {% block body %}
 
-    <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-3 main-fleet\" role=\"main\">
 
-         <div class=\"card content-train\">
-             <a class=\"btn-edit\" href=\"{{ path('alstom.edit-train',{id: train.id}) }}\"><button class=\"btn btn-secondary \"><i class=\"fas fa-edit\"></i></button></a>
 
-             <figure class=\"panel meta\">
-                 {% if train.trainType == \"train\" %}
+        <div class=\"card content-train\">
+            <a class=\"btn-edit\" href=\"{{ path('alstom.edit-train',{id: train.id}) }}\">
+                <button class=\"btn btn-secondary \">
+                    <i class=\"fas fa-edit\"></i>
+                </button>
+            </a>
+
+            <figure class=\"panel meta\">
+                {% if train.trainType == \"train\" %}
                     <div class=\"img img-fluid\">
                         <img src=\"{{ asset('../build/img/trains/train-select.svg') }}\" alt=\"\">
                     </div>
-                 {% else %}
-                     <div class=\"img img-fluid\">
-                         <img src=\"{{ asset('../build/img/trains/locomotive-select.svg') }}\" alt=\"\">
-                     </div>
-                 {% endif %}
-                     <figcaption>
-                         <h2 class=\"name\" style=\"font-weight: bold\">{{ train.name|upper }}</h2>
-                     </figcaption>
-             </figure>
+                {% else %}
+                    <div class=\"img img-fluid\">
+                        <img src=\"{{ asset('../build/img/trains/locomotive-select.svg') }}\" alt=\"\">
+                    </div>
+                {% endif %}
+                <figcaption>
+                    <h2 class=\"name\" style=\"font-weight: bold\">{{ train.name|upper }}</h2>
+                </figcaption>
+            </figure>
 
-        <div class=\"border-separate-picture-info\"></div>
-             <div class=\"panel info\">
-                 <div class=\"row content-panel mt mb\">
-                     <div class=\"col-md-9\">
-                         <div class=\"col-md-11\">
-                             <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
-                         </div>
-                         <div class=\"text-descrip-project col-md-11\">
-                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
-                             <p >For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
-                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
-                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                 what is your wish you my father I am your son this understand what is your wish.</p>
-                         </div>
+            <div class=\"border-separate-picture-info\"></div>
+            <div class=\"panel info\">
+                <div class=\"row content-panel mt mb\">
+                    <div class=\"col-md-9\">
+                        <div class=\"col-md-11\">
+                            <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
+                        </div>
+                        <div class=\"text-descrip-project col-md-11\">
+                            <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
+                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                            <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
+                            <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
+                            <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
+                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
+                        </div>
 
-                     </div>
-                     <div class=\"col-md-3\">
-                         <table class=\"table table-striped table-show-project table-content\">
-                             <thead class=\"thead-dark\">
-                             <tr>
-                                 <th scope=\"col\">Project :</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                                 <tr class=\"col-md-12 title-table\">
-                                     <td class=\"td-table\">
-                                         <a href=\"{{ path('alstom.project-show', {id: train.projects.id}) }}\">
-                                             {{ train.projects.name }}
-                                         </a>
-                                     </td>
-                                 </tr>
-                             </tbody>
-                         </table>
-                         <table class=\"table table-striped table-show-project table-content\">
-                             <thead class=\"thead-dark\">
-                             <tr>
-                                 <th scope=\"col\">EVC :</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                             <tr class=\"col-md-12 title-table\">
-                                 <td class=\"td-table\">
-                                     <a href=\"#\">
-{#
-                                         {% if train.eVC %}
-                                            {{ train.eVC.eTCSID }}
-                                         {% else %}
-                                            NO EVC
-                                         {% endif %}#}
-                                     </a>
-                                 </td>
-                             </tr>
-                             </tbody>
-                         </table>
+                    </div>
+                    <div class=\"col-md-3\">
+                        <table class=\"table table-striped table-show-project table-content\">
+                            <thead class=\"thead-dark\">
+                                <tr>
+                                    <th scope=\"col\">Fleet :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class=\"col-md-12 title-table\">
+                                    <td class=\"td-table\">
+                                        <a href=\"{{ path('alstom.project-show', {id: train.projects.id}) }}\">
+                                            {{ train.projects.name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class=\"table table-striped table-show-project table-content\">
+                            <thead class=\"thead-dark\">
+                                <tr>
+                                    <th scope=\"col\">Baseline :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class=\"col-md-12 title-table\">
+                                    <td class=\"td-table\"></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                     </div>
-                 </div>
-             </div>
+                    </div>
+                </div>
+            </div>
 
-         </div>
-         </div>
+        </div>
+    </div>
 
-    </main>
-
-{% endblock %}
-", "alstom/trains/show-train.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\trains\\show-train.html.twig");
+</main>{% endblock %}
+", "alstom/trains/show-train.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\trains\\show-train.html.twig");
     }
 }

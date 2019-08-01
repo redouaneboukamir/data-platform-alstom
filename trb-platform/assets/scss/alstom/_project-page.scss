@@ -1,61 +1,89 @@
-//Vue du récapitulatif de tous les projets
-//
+.main-fleet {
+  padding: 2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 50%),
+    url('/build/img/Alstom-home.jpg');
+  filter: contrast(1);
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+
+
+}
 
 //Vue du projet indivicduellement
 //
 
-.table-show-project{
-   td{
-     display: flex;
-     align-items: center;
-   }
-   .title-show-project{
-     font-size: 1.5em;
-     font-weight: bold;
-     margin-right: 2px;
+.table-show-project {
+  td {
+    display: flex;
+    align-items: center;
+  }
 
-   }
-   .item-show-project{
-     font-size: 1.2em;
-   }
- }
-.content-project-project{
+  .title-show-project {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 2px;
+
+  }
+
+  .item-show-project {
+    font-size: 1.2em;
+  }
+}
+
+.content-project-project {
   display: flex;
-  p{
+
+  p {
     margin: 2vh;
     padding-right: 2vh;
     text-transform: uppercase;
   }
 }
-  .img-description-project{
-    width: 100vw;
-    height: 20em;
-    margin: 0;
-    overflow: hidden;
-    text-align: right;
-    .img-project{
-      width: 100%;
-    }
-  }
-    .clicked{
-      transition: all 0.3s;
-      height: auto;
-    }
 
+.img-description-project {
+  width: 100vw;
+  height: 20em;
+  margin: 0;
+  overflow: hidden;
+  text-align: right;
 
-.background-panel-project{
-
-  .panel{
-    padding:0 !important;
+  .img-project {
+    width: 100%;
   }
 }
 
-.content-img-form-project{
+.clicked {
+  transition: all 0.3s;
+  height: auto;
+}
+
+
+.background-panel-project {
+
+  .panel {
+    padding: 0 !important;
+  }
+}
+
+.content-img-form-project {
   padding: 0 !important;
   width: 100%;
   height: 10rem;
   overflow: hidden;
-  .img-project-form{
+
+  .img-project-form {
     transform: translateY(-50px);
     width: 100%;
     //height: 100%;
@@ -68,24 +96,27 @@
 //Responsive du récapitulatif des projets
 //
 @media (max-width: 420px) {
-  .content-btn-edit-delete{
-    a{
+  .content-btn-edit-delete {
+    a {
       margin-right: 0 !important;
     }
+
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-right: 0 !important;
-    .btn-edit-project{
+
+    .btn-edit-project {
       margin: 0;
       margin-bottom: 1vh;
       //padding-right: 1vh;
       //padding-left: 1vh;
       font-size: 0.8em;
     }
-    .btn-delete-project{
+
+    .btn-delete-project {
       margin: 0;
       padding-right: 0.5em;
       padding-left: 0.5em;
@@ -93,4 +124,3 @@
     }
   }
 }
-

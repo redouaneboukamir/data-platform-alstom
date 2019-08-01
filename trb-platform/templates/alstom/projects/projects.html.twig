@@ -1,52 +1,64 @@
 {% extends 'alstom/index.html.twig' %}
 
-            {% block body %}
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h2><i class="fa fa-angle-right"></i> Projects</h2>
-                        <a href="{{ path('alstom.create-project') }}"><button class="btn btn-primary">New</button></a>
-                    </div>
-                    {% for message in app.flashes('success') %}
-                        <div class="alert alert-success">
-                            {{ message }}
-                        </div>
+{% block body %}
+
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-3" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>
+                <i class="fa fa-angle-right"></i>
+                Fleet</h2>
+            <a href="{{ path('alstom.create-project') }}">
+                <button class="btn btn-primary">New</button>
+            </a>
+        </div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <section id="unseen">
+            <div class="pull-left search">
+                {{ form_start(form) }}
+                {{ form_row(form.name_project) }}
+                {{ form_end(form) }}
+            </div>
+            <table
+                class="table table-condensed table-content">
+                {#                        <table class="table  table-striped table-condensed table-content">#}
+                <thead>
+                    <tr class="title-table">
+                        <th class="">Name</th>
+                        <th class=" numeric" scope="col">Number of trains</th>
+                        <th class="th-empty" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                        <tr class="td-table">
+                            <td>
+                                <a href="{{ path('alstom.project-show', {id: project.id}) }}">{{  project.name }}</td>
+                            </td>
+                            <td>
+                                {#                                       {% for train in project.trains %}#}
+                                {{  project.trains|length }}
+                                {#                                        {% endfor %}#}
+                            </td>
+                            <td class="content-btn-edit-delete">
+                                <a href="{{ path('alstom.edit-project', {id: project.id}) }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                {# <form method="post" action="{{ path('alstom.delete-project' ,{id:project.id}) }}" onsubmit="return confirm('Are you sure to delete this project?')">
+                                                                                                                                                                                                                                    <input name="_method" type="hidden" value="DELETE">
+                                                                                                                                                                                                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
+                                                                                                                                                                                                                                    <button class="btn btn-danger btn-delete-client">
+                                                                                                                                                                                                                                        <i class="fas fa-trash-alt"></i>
+                                                                                                                                                                                                                                    </button>
+                                                                                                                                                                                                                                </form> #}
+                            </td>
+                        </tr>
                     {% endfor %}
-                    <section id="unseen">
-                        <div class="pull-left search">
-                            {{ form_start(form) }}
-                            {{ form_row(form.name_project) }}
-                            {{ form_end(form) }}
-                        </div>
-                        <table class="table table-condensed table-content">
-                            {#                        <table class="table  table-striped table-condensed table-content">#}
-                            <thead>
-                            <tr class="title-table">
-                                <th class="">Name</th>
-                                <th scope="col" class=" numeric">Number of trains</th>
-                                <th scope="col" class="th-empty"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for project in projects %}
-                                <tr class="td-table">
-                                    <td><a href="{{ path('alstom.project-show', {id: project.id}) }}">{{  project.name }}</td>
-                                    <td>
-{#                                       {% for train in project.trains %}#}
-                                           {{  project.trains|length }}
-{#                                        {% endfor %}#}
-                                    </td>
-                                    <td class="content-btn-edit-delete">
-                                        <a href="{{ path('alstom.edit-project', {id: project.id}) }}"><i class="fas fa-edit"></i></a>
-                                        <form method="post" action="{{ path('alstom.delete-project' ,{id:project.id}) }}" onsubmit="return confirm('Are you sure to delete this project?')">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
-                                            <button class="btn btn-danger btn-delete-client"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </section>
-                </main>
-            {% endblock %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+{% endblock %}

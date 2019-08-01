@@ -1,0 +1,98 @@
+<div class="main navbar-fullscreen">
+    <aside>
+        <div class="sidebar left ">
+            <div class="user-panel">
+                <p>
+                    {% if is_granted('ROLE_ALSTOM_ADMIN') %}
+                        Alstom Admin
+                    {% elseif is_granted('ROLE_ALSTOM_DESIGN') %}
+                        Alstom Designer
+                    {% elseif is_granted('ROLE_ALSTOM_MAINTENER') %}
+                        Alstom Maintener
+                    {% elseif is_granted('ROLE_ALSTOM_COMMISSIONER') %}
+                        Alstom Commissioner
+                    {% elseif is_granted('ROLE_ALSTOM_SERVICE') %}
+                        Alstom Service
+                    {% else %}
+                        Alstom User
+                    {% endif %}
+                </p>
+                <a class="signout-sidebar" href="{{ path('logout') }}">Sign out</a>
+            </div>
+
+            <ul class="list-sidebar bg-defoult">
+                <li>
+                    <i class="fa fa-files-o"></i>
+                    <a href="{{path('alstom.home')}}">
+                        <span class="nav-label">HOME</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed active" data-target="#dashboard" data-toggle="collapse" href="#">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="nav-label">
+                            Fleet management
+                        </span>
+                        <span class="fa fa-chevron-left pull-right"></span>
+                    </a>
+                    <ul class="sub-menu collapse" id="dashboard">
+                        <li class="active">
+                            <a href="{{path('alstom.projects')}}">Fleet</a>
+                        </li>
+                        <li>
+                            <a href="{{path('alstom.trains')}}">Trains</a>
+
+                        </li>
+                        <li>
+                            <a href="#">Baseline</a>
+                        </li>
+                        <li>
+                            <a href="#">Maintenance</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li>
+                    <a class="collapsed active" data-target="#tables" data-toggle="collapse" href="#">
+                        <i class="fas fa-file-upload"></i>
+                        <span class="nav-label">Logs</span>
+                        <span class="fa fa-chevron-left pull-right"></span>
+                    </a>
+                    <ul class="sub-menu collapse" id="tables">
+                        <li>
+                            <a href="">
+                                Add</a>
+                        </li>
+                        <li>
+                            <a href="">
+                                Search</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a class="collapsed active" data-target="#e-commerce" data-toggle="collapse" href="#">
+                        <i class="fas fa-tools"></i>
+
+                        <span class="nav-label">Tools</span>
+                        <span class="fa fa-chevron-left pull-right"></span>
+                    </a>
+                    <ul class="sub-menu collapse" id="e-commerce">
+                        <li>
+                            <a href="">
+                                Products grid</a>
+                        </li>
+                        <li>
+                            <a href="">
+                                Products list</a>
+                        </li>
+                        <li>
+                            <a href="">Product edit</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</div>

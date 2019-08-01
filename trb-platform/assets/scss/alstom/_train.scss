@@ -6,7 +6,7 @@
     z-index: 9;
 
     .ertms {
-      &:nth-child(2) {}
+      // &:nth-child(2) {}
 
       margin-top: 60px;
       width: 50px;
@@ -30,6 +30,13 @@
 }
 
 .content-type-train {
+  text-align: center;
+  position: relative;
+
+  img {
+    width: 800px;
+  }
+
   .img-type-train {
     background: white;
     opacity: 0.8;
@@ -37,7 +44,8 @@
   }
 
   .content-ertms {
-    position: absolute;
+    text-align: center;
+    width: 800px;
     display: flex;
     justify-content: space-around;
     margin-top: -15rem;

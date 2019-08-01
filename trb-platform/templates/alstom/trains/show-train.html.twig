@@ -3,89 +3,83 @@
 
 {% block body %}
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-3 main-fleet" role="main">
 
-         <div class="card content-train">
-             <a class="btn-edit" href="{{ path('alstom.edit-train',{id: train.id}) }}"><button class="btn btn-secondary "><i class="fas fa-edit"></i></button></a>
 
-             <figure class="panel meta">
-                 {% if train.trainType == "train" %}
+        <div class="card content-train">
+            <a class="btn-edit" href="{{ path('alstom.edit-train',{id: train.id}) }}">
+                <button class="btn btn-secondary ">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </a>
+
+            <figure class="panel meta">
+                {% if train.trainType == "train" %}
                     <div class="img img-fluid">
                         <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="">
                     </div>
-                 {% else %}
-                     <div class="img img-fluid">
-                         <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="">
-                     </div>
-                 {% endif %}
-                     <figcaption>
-                         <h2 class="name" style="font-weight: bold">{{ train.name|upper }}</h2>
-                     </figcaption>
-             </figure>
+                {% else %}
+                    <div class="img img-fluid">
+                        <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="">
+                    </div>
+                {% endif %}
+                <figcaption>
+                    <h2 class="name" style="font-weight: bold">{{ train.name|upper }}</h2>
+                </figcaption>
+            </figure>
 
-        <div class="border-separate-picture-info"></div>
-             <div class="panel info">
-                 <div class="row content-panel mt mb">
-                     <div class="col-md-9">
-                         <div class="col-md-11">
-                             <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
-                         </div>
-                         <div class="text-descrip-project col-md-11">
-                             <p class="mt">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
-                             <p >For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
-                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
-                             <p>"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                 what is your wish you my father I am your son this understand what is your wish.</p>
-                         </div>
+            <div class="border-separate-picture-info"></div>
+            <div class="panel info">
+                <div class="row content-panel mt mb">
+                    <div class="col-md-9">
+                        <div class="col-md-11">
+                            <h2>Dashio is a fully responsive admin dashboard template built with Bootstrap 3.1.1 Framework</h2>
+                        </div>
+                        <div class="text-descrip-project col-md-11">
+                            <p class="mt">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
+                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                            <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
+                            <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
+                            <p>"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
+                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
+                        </div>
 
-                     </div>
-                     <div class="col-md-3">
-                         <table class="table table-striped table-show-project table-content">
-                             <thead class="thead-dark">
-                             <tr>
-                                 <th scope="col">Project :</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                                 <tr class="col-md-12 title-table">
-                                     <td class="td-table">
-                                         <a href="{{ path('alstom.project-show', {id: train.projects.id}) }}">
-                                             {{ train.projects.name }}
-                                         </a>
-                                     </td>
-                                 </tr>
-                             </tbody>
-                         </table>
-                         <table class="table table-striped table-show-project table-content">
-                             <thead class="thead-dark">
-                             <tr>
-                                 <th scope="col">EVC :</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                             <tr class="col-md-12 title-table">
-                                 <td class="td-table">
-                                     <a href="#">
-{#
-                                         {% if train.eVC %}
-                                            {{ train.eVC.eTCSID }}
-                                         {% else %}
-                                            NO EVC
-                                         {% endif %}#}
-                                     </a>
-                                 </td>
-                             </tr>
-                             </tbody>
-                         </table>
+                    </div>
+                    <div class="col-md-3">
+                        <table class="table table-striped table-show-project table-content">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Fleet :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="col-md-12 title-table">
+                                    <td class="td-table">
+                                        <a href="{{ path('alstom.project-show', {id: train.projects.id}) }}">
+                                            {{ train.projects.name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-striped table-show-project table-content">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Baseline :</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="col-md-12 title-table">
+                                    <td class="td-table"></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                     </div>
-                 </div>
-             </div>
+                    </div>
+                </div>
+            </div>
 
-         </div>
-         </div>
+        </div>
+    </div>
 
-    </main>
-
-{% endblock %}
+</main>{% endblock %}

@@ -14,15 +14,13 @@ class ProjectSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name_project', TextType::class,[
+            ->add('name_project', TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Name project'
+                    'placeholder' => 'Name fleet'
                 ]
-            ])
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -66,20 +66,24 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 3
-        echo "                <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
-                        <h1>Add project</h1>
-                    </div>
-                    <div class=\"jumbotron content-form-engineer\">
-                        ";
-        // line 8
-        echo twig_include($this->env, $context, "alstom/projects/_form-project.html.twig", ["form" => (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 8, $this->source); })()), "button" => "Create"]);
         echo "
-                    </div>
+    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
 
-                    </div>
-                </main>
+        <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
+            <h1>Create fleet</h1>
+        </div>
+        <div class=\"jumbotron content-form-engineer\">
             ";
+        // line 10
+        echo twig_include($this->env, $context, "alstom/projects/_form-project.html.twig", ["form" => (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 10, $this->source); })()), "button" => "Create"]);
+        echo "
+        </div>
+
+    </div>
+</main>
+";
+        // line 15
+        $this->displayBlock('javascripts', $context, $blocks);
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -88,7 +92,6 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
 
     }
 
-    // line 15
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -124,30 +127,31 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
 
     public function getDebugInfo()
     {
-        return array (  102 => 16,  92 => 15,  76 => 8,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  105 => 16,  86 => 15,  78 => 10,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'alstom/index.html.twig' %}
-            {% block body %}
-                <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
-                        <h1>Add project</h1>
-                    </div>
-                    <div class=\"jumbotron content-form-engineer\">
-                        {{ include ('alstom/projects/_form-project.html.twig', {form: form, button:'Create'}) }}
-                    </div>
+{% block body %}
 
-                    </div>
-                </main>
-            {% endblock %}
+    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
 
+        <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
+            <h1>Create fleet</h1>
+        </div>
+        <div class=\"jumbotron content-form-engineer\">
+            {{ include ('alstom/projects/_form-project.html.twig', {form: form, button:'Create'}) }}
+        </div>
+
+    </div>
+</main>
 {% block javascripts %}
     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
     <script>
         \$('select').select2();
     </script>
-{% endblock %}", "alstom/projects/create-project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\projects\\create-project.html.twig");
+{% endblock %}{% endblock %}
+", "alstom/projects/create-project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\projects\\create-project.html.twig");
     }
 }

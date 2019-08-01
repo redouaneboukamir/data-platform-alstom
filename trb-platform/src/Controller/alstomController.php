@@ -121,7 +121,6 @@ class alstomController extends AbstractController
 
         return $this->render(('alstom/clients/clients.html.twig'), [
             'current_menu' => 'client',
-
             'clients' => $clients,
             'form' => $form->createView(),
             'result_notfound' => $result_found
@@ -473,11 +472,16 @@ class alstomController extends AbstractController
 
         //formulaire du train
         $train = new Trains();
-        $form_train = $this->createForm(TrainsType::class, $train, [
-            'action' => $this->generateUrl('alstom.addTrains'),
-            'method' => 'POST',
-        ]);
+        $form_train = $this->createForm(TrainsType::class, $train);
         $form_train->handleRequest($request);
+
+        if ($form_train->isSubmitted() && $form_train->isValid()) {
+
+            $this->em->persist($train);
+            $this->em->flush();
+            $this->addFlash('success', 'Train create with success');
+            return $this->redirectToRoute('alstom.trains');
+        }
 
 
         return $this

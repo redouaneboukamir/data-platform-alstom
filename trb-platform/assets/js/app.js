@@ -21,6 +21,11 @@ $('.post-module-fleet').hover(function () {
         opacity: "toggle"
     }, 300);
 });
+
 $(document).ready(function () {
-    $('pre').remove()
-})
+    $('pre').remove();
+    $('.button-left').click(function () {
+        $('.sidebar').toggleClass('fliph');
+    });
+
+});

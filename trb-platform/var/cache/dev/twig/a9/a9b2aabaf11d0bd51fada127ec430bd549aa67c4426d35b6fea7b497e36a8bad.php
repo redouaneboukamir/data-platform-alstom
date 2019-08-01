@@ -66,20 +66,19 @@ class __TwigTemplate_9afb7a2201007aa89df2a36495feccaceb1efa76f412fcb883e652eba48
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 3
-        echo "                <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
-                        <h1>Add train</h1>
-                    </div>
-                    <div class=\"jumbotron content-form-engineer\">
-                        ";
+        echo "    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+        <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
+            <h1>Add train</h1>
+        </div>
+        <div class=\"jumbotron content-form-engineer\">
+            ";
         // line 8
         echo twig_include($this->env, $context, "alstom/trains/_form-train.html.twig", ["form" => (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 8, $this->source); })()), "button" => "Create"]);
         echo "
-                    </div>
+        </div>
 
-                    </div>
-                </main>
-            ";
+    </div>
+</main>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -88,7 +87,7 @@ class __TwigTemplate_9afb7a2201007aa89df2a36495feccaceb1efa76f412fcb883e652eba48
 
     }
 
-    // line 14
+    // line 12
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -98,12 +97,7 @@ class __TwigTemplate_9afb7a2201007aa89df2a36495feccaceb1efa76f412fcb883e652eba48
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 15
-        echo "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
-    <script>
-        // \$('select').select2();
-    </script>
-";
+        echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script><script>// \$('select').select2();</script>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -124,31 +118,23 @@ class __TwigTemplate_9afb7a2201007aa89df2a36495feccaceb1efa76f412fcb883e652eba48
 
     public function getDebugInfo()
     {
-        return array (  102 => 15,  92 => 14,  76 => 8,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  91 => 12,  76 => 8,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'alstom/index.html.twig' %}
-            {% block body %}
-                <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">
-                    <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
-                        <h1>Add train</h1>
-                    </div>
-                    <div class=\"jumbotron content-form-engineer\">
-                        {{ include ('alstom/trains/_form-train.html.twig', {form: form_train, button:'Create'}) }}
-                    </div>
+{% block body %}
+    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+        <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
+            <h1>Add train</h1>
+        </div>
+        <div class=\"jumbotron content-form-engineer\">
+            {{ include ('alstom/trains/_form-train.html.twig', {form: form_train, button:'Create'}) }}
+        </div>
 
-                    </div>
-                </main>
-            {% endblock %}
-{% block javascripts %}
-    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
-    <script>
-        // \$('select').select2();
-    </script>
-{% endblock %}
-
-", "alstom/trains/create-trains.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\trains\\create-trains.html.twig");
+    </div>
+</main>{% endblock %}{% block javascripts %}<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script><script>// \$('select').select2();</script>{% endblock %}
+", "alstom/trains/create-trains.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\trains\\create-trains.html.twig");
     }
 }

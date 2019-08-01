@@ -26,8 +26,9 @@ class TrainsType extends AbstractType
                     return $projectsRepository->findAvailable();
                 },
                 'attr' => [
-                    'id' => 'choice_project'
+                    'id' => 'choice_project',
                 ],
+                'label' => 'Fleets',
                 'choice_label' => 'name',
                 //                'multiple' => true,
                 'required' => false

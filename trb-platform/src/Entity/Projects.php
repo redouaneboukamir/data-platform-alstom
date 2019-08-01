@@ -87,7 +87,7 @@ class Projects
         $this->trains = new ArrayCollection();
         $this->clientsUsers = new ArrayCollection();
     }
-    
+
 
     public function getId(): ?int
     {
@@ -298,6 +298,4 @@ class Projects
 
         return $this;
     }
-
-
 }

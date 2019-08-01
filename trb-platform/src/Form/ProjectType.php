@@ -18,29 +18,14 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('clients', EntityType::class, [
-                'label' => 'Add a client to project',
-                'class' => Clients::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'required' => false
-            ])
-            ->add('engineers', EntityType::class, [
-                'class' => Engineers::class,
-                'label' => 'Add a engineer to project',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'required' => false
-            ])
             ->add('available', HiddenType::class, [
                 'data' => true
-            ])
-            ->add('profilePicture', FileType::class, [
-                'label' => 'Image project (PNG, JPG, PDF)',
-                'required' => false,
-                'attr' => ['id' => 'file', 'class' => 'inputfile']
-            ])
-        ;
+            ]);
+        // ->add('profilePicture', FileType::class, [
+        //     'label' => 'Image project (PNG, JPG, PDF)',
+        //     'required' => false,
+        //     'attr' => ['id' => 'file', 'class' => 'inputfile']
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
