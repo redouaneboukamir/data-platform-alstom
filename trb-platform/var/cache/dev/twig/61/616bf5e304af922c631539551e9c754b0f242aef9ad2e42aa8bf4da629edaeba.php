@@ -292,6 +292,6 @@ class __TwigTemplate_f720599ae406dba0301278b655696103a4f82c245f2128611868e63e958
             {% endblock %}
 {% block javascripts %}
 {% endblock %}
-", "alstom/clients/clients.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\alstom\\clients\\clients.html.twig");
+", "alstom/clients/clients.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\clients\\clients.html.twig");
     }
 }

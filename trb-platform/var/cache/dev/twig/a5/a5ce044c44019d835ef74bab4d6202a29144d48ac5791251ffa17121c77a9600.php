@@ -186,6 +186,6 @@ class __TwigTemplate_a3ec26d2c13f9e718aa0f4299e5cf724ebee757154c31062c5ea33e97a5
             </table>
         </section>
     </main>
-{% endblock %}", "client/projects/project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\client\\projects\\project.html.twig");
+{% endblock %}", "client/projects/project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\client\\projects\\project.html.twig");
     }
 }

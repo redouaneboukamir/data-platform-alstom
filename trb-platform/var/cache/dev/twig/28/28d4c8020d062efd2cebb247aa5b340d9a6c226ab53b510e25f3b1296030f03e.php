@@ -67,7 +67,7 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
 
         // line 3
         echo "
-    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-4\" role=\"main\">
 
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h1>Create fleet</h1>
@@ -135,7 +135,7 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
         return new Source("{% extends 'alstom/index.html.twig' %}
 {% block body %}
 
-    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-4\" role=\"main\">
 
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h1>Create fleet</h1>

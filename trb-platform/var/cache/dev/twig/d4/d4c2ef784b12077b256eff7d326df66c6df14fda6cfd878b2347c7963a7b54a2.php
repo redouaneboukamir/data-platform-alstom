@@ -143,6 +143,6 @@ class __TwigTemplate_f6df681468c7f7acca2a5b5a81f20cddac5ba4cd52d48ef5213786f1861
 
 {% endblock %}
 
-", "forbidden.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\forbidden.html.twig");
+", "forbidden.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\forbidden.html.twig");
     }
 }

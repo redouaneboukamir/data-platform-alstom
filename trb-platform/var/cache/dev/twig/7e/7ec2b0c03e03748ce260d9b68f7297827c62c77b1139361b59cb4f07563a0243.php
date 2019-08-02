@@ -66,14 +66,15 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 3
-        echo "    <main class=\"col-md-9 ml-sm-auto col-lg-12 px-4\" role=\"main\">
+        echo "    <main class=\"col-md-9 ml-sm-auto col-lg-1pl-5 px-4\" role=\"main\">
+
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h1>Edit project</h1>
         </div>
         <div class=\"jumbotron content-form-project\">
             ";
-        // line 8
-        echo twig_include($this->env, $context, "alstom/projects/_form-project.html.twig", ["form" => (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 8, $this->source); })()), "button" => "Edit"]);
+        // line 9
+        echo twig_include($this->env, $context, "alstom/projects/_form-project.html.twig", ["form" => (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), "button" => "Edit"]);
         echo "
         </div>
 
@@ -87,7 +88,7 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
 
     }
 
-    // line 12
+    // line 13
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -97,7 +98,7 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 13
+        // line 14
         echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
 <script>
     \$('select').select2();
@@ -122,14 +123,15 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
 
     public function getDebugInfo()
     {
-        return array (  101 => 13,  91 => 12,  76 => 8,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  102 => 14,  92 => 13,  77 => 9,  69 => 3,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'alstom/index.html.twig' %}
 {% block body %}
-    <main class=\"col-md-9 ml-sm-auto col-lg-12 px-4\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-1pl-5 px-4\" role=\"main\">
+
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h1>Edit project</h1>
         </div>

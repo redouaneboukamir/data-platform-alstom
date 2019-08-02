@@ -251,6 +251,6 @@ class __TwigTemplate_4035f39eeb091a7acce983644c14591882445ab6b3fca7a512141f3ede5
     </main>
 
 {% endblock %}
-", "client/trains/show-train.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform\\trb-platform\\templates\\client\\trains\\show-train.html.twig");
+", "client/trains/show-train.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\client\\trains\\show-train.html.twig");
     }
 }
