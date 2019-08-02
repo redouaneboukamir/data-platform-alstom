@@ -1,26 +1,3 @@
-.main-fleet {
-  padding: 2rem;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 50%),
-    url('/build/img/Alstom-home.jpg');
-  filter: contrast(1);
-  /* Background image is centered vertically and horizontally at all times */
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
-  overflow: auto;
-
-
-}
-
 //Vue du projet indivicduellement
 //
 

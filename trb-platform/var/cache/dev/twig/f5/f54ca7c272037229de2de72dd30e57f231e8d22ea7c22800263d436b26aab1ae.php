@@ -66,13 +66,17 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
         // line 5
         echo "
-    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-3 main-fleet\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-12 px-3 main-fleet\" role=\"main\">
 
+        <h1 class=\"title_fleet_management\">";
+        // line 8
+        echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 8, $this->source); })()), "name", [], "any", false, false, false, 8)), "html", null, true);
+        echo "</h1>
 
         <div class=\"card content-train\">
             <a class=\"btn-edit\" href=\"";
-        // line 10
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 10, $this->source); })()), "id", [], "any", false, false, false, 10)]), "html", null, true);
+        // line 11
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 11, $this->source); })()), "id", [], "any", false, false, false, 11)]), "html", null, true);
         echo "\">
                 <button class=\"btn btn-secondary \">
                     <i class=\"fas fa-edit\"></i>
@@ -81,34 +85,28 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
             <figure class=\"panel meta\">
                 ";
-        // line 17
-        if ((twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 17, $this->source); })()), "trainType", [], "any", false, false, false, 17) == "train")) {
-            // line 18
+        // line 18
+        if ((twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 18, $this->source); })()), "trainType", [], "any", false, false, false, 18) == "train")) {
+            // line 19
             echo "                    <div class=\"img img-fluid\">
                         <img src=\"";
-            // line 19
+            // line 20
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/train-select.svg"), "html", null, true);
             echo "\" alt=\"\">
                     </div>
                 ";
         } else {
-            // line 22
+            // line 23
             echo "                    <div class=\"img img-fluid\">
                         <img src=\"";
-            // line 23
+            // line 24
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/locomotive-select.svg"), "html", null, true);
             echo "\" alt=\"\">
                     </div>
                 ";
         }
-        // line 26
-        echo "                <figcaption>
-                    <h2 class=\"name\" style=\"font-weight: bold\">";
         // line 27
-        echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 27, $this->source); })()), "name", [], "any", false, false, false, 27)), "html", null, true);
-        echo "</h2>
-                </figcaption>
-            </figure>
+        echo "            </figure>
 
             <div class=\"border-separate-picture-info\"></div>
             <div class=\"panel info\">
@@ -119,11 +117,11 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                         </div>
                         <div class=\"text-descrip-project col-md-11\">
                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
                             <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
                         </div>
 
                     </div>
@@ -138,12 +136,12 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                                 <tr class=\"col-md-12 title-table\">
                                     <td class=\"td-table\">
                                         <a href=\"";
-        // line 58
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 58, $this->source); })()), "projects", [], "any", false, false, false, 58), "id", [], "any", false, false, false, 58)]), "html", null, true);
+        // line 56
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 56, $this->source); })()), "projects", [], "any", false, false, false, 56), "id", [], "any", false, false, false, 56)]), "html", null, true);
         echo "\">
                                             ";
-        // line 59
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 59, $this->source); })()), "projects", [], "any", false, false, false, 59), "name", [], "any", false, false, false, 59), "html", null, true);
+        // line 57
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 57, $this->source); })()), "projects", [], "any", false, false, false, 57), "name", [], "any", false, false, false, 57), "html", null, true);
         echo "
                                         </a>
                                     </td>
@@ -191,7 +189,7 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
     public function getDebugInfo()
     {
-        return array (  146 => 59,  142 => 58,  108 => 27,  105 => 26,  99 => 23,  96 => 22,  90 => 19,  87 => 18,  85 => 17,  75 => 10,  68 => 5,  58 => 4,  35 => 1,);
+        return array (  144 => 57,  140 => 56,  109 => 27,  103 => 24,  100 => 23,  94 => 20,  91 => 19,  89 => 18,  79 => 11,  73 => 8,  68 => 5,  58 => 4,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -201,8 +199,9 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
 {% block body %}
 
-    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-3 main-fleet\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-12 px-3 main-fleet\" role=\"main\">
 
+        <h1 class=\"title_fleet_management\">{{ train.name|upper }}</h1>
 
         <div class=\"card content-train\">
             <a class=\"btn-edit\" href=\"{{ path('alstom.edit-train',{id: train.id}) }}\">
@@ -221,9 +220,6 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                         <img src=\"{{ asset('../build/img/trains/locomotive-select.svg') }}\" alt=\"\">
                     </div>
                 {% endif %}
-                <figcaption>
-                    <h2 class=\"name\" style=\"font-weight: bold\">{{ train.name|upper }}</h2>
-                </figcaption>
             </figure>
 
             <div class=\"border-separate-picture-info\"></div>
@@ -235,11 +231,11 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                         </div>
                         <div class=\"text-descrip-project col-md-11\">
                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
                             <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
                         </div>
 
                     </div>

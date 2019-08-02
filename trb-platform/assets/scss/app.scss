@@ -130,75 +130,66 @@ body {
 /*
  * Sidebar
  */
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  /* Behind the navbar */
-  padding: 48px 0 0;
-  /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 
-  .title-sidebar {
-    font-size: 1.8em;
-    color: black;
-    border-bottom: 1px solid darkgray;
-    padding-left: 0;
-    margin-left: 2vh;
-    margin-bottom: 3vh;
-    border-left: 0 !important;
-  }
 
-  .second-title-sidebar {
-    font-size: 1.3em;
-    color: $color-item-active !important;
-    border-bottom: 1px solid darkgray;
-    padding-left: 0;
-    margin-left: 2vh;
-    margin-top: 2vh;
-    border-left: 0 !important;
-    margin-bottom: 2vh;
+.title-sidebar {
+  font-size: 1.8em;
+  color: black;
+  border-bottom: 1px solid darkgray;
+  padding-left: 0;
+  margin-left: 2vh;
+  margin-bottom: 3vh;
+  border-left: 0 !important;
+}
 
-    &:hover {
-      i {
-        transform: scale(1) !important;
-        margin-right: 0 !important;
-      }
+.second-title-sidebar {
+  font-size: 1.3em;
+  color: $color-item-active !important;
+  border-bottom: 1px solid darkgray;
+  padding-left: 0;
+  margin-left: 2vh;
+  margin-top: 2vh;
+  border-left: 0 !important;
+  margin-bottom: 2vh;
 
+  &:hover {
+    i {
       transform: scale(1) !important;
-      opacity: 1 !important;
-
+      margin-right: 0 !important;
     }
+
+    transform: scale(1) !important;
+    opacity: 1 !important;
+
+  }
+}
+
+.item-sidebar {
+
+  i,
+  svg {
+    transition: transform 0.3s;
   }
 
-  .item-sidebar {
+  a:hover {
+    border-left: 4px solid $color-item-active;
+    //color: $color-item-active;
+    opacity: 0.6;
 
     i,
     svg {
-      transition: transform 0.3s;
-    }
-
-    a:hover {
-      border-left: 4px solid $color-item-active;
-      //color: $color-item-active;
-      opacity: 0.6;
-
-      i,
-      svg {
-        transform: scale(1.5);
-        margin-right: 0.5rem;
-      }
-    }
-
-    .active {
-      background: $color-bg-active;
-      border-left: 4px solid $color-item-active;
-      color: $color-item-active;
+      transform: scale(1.5);
+      margin-right: 0.5rem;
     }
   }
+
+  .active {
+    background: $color-bg-active;
+    border-left: 4px solid $color-item-active;
+    color: $color-item-active;
+  }
 }
+
 
 .sidebar-sticky {
   position: relative;
@@ -245,10 +236,6 @@ body {
  * Content
  */
 
-[role="main"] {
-  padding-top: 20px;
-  /* Space for fixed navbar */
-}
 
 @media (max-width: 767px) {
   .navbar-fullscreen {
@@ -259,11 +246,6 @@ body {
 }
 
 @media (min-width: 768px) {
-  [role="main"] {
-    padding-top: 48px;
-    /* Space for fixed navbar */
-  }
-
   .navbar-smallscreen {
     display: none;
   }

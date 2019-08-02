@@ -27,5 +27,16 @@ $(document).ready(function () {
     $('.button-left').click(function () {
         $('.sidebar').toggleClass('fliph');
     });
+    $('.sidebar').hover(function () {
+            $('main').removeClass('col-lg-12');
+            $('main').css('transition', 'all 0.5s');
+            $('main').addClass('col-lg-10');
+
+        },
+        function () {
+            $('main').removeClass('col-lg-10');
+            $('main').css('transition', 'all 0.5s');
+            $('main').addClass('col-lg-12');
+        })
 
 });
