@@ -16,6 +16,6 @@ if (!\class_exists(srcApp_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerUEWNTs4\srcApp_KernelDevDebugContainer([
     'container.build_hash' => 'UEWNTs4',
-    'container.build_id' => '72ec77cd',
-    'container.build_time' => 1564756352,
+    'container.build_id' => '9832e920',
+    'container.build_time' => 1564756431,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerUEWNTs4');

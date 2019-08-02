@@ -889,7 +889,7 @@ class alstomController extends AbstractController
         $baseline->setEquipmentErtms($assoc_ertms_equipement);
         dump($baseline);
         $this->em->persist($assoc_evc_carte);
-        // $this->em->flush();
+        $this->em->flush();
         $jsonObjectEquipt = $this->serializer->serialize($baseline, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
@@ -910,11 +910,12 @@ class alstomController extends AbstractController
         AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
         Request $request
     ) {
-        dump($baseline);
+
         $idErtms = $request->attributes->get('id');
 
-        $equipements = $associationEquiptERTMSRepository->findbySolution($idErtms)[0]->getEquipements();
-        //$equipement = $request->request;
+        $id_assoc = $associationEquiptERTMSRepository->find($baseline->getEquipmentErtms()->getId());
+        $equipements = $id_assoc->getEquipements();
+
         $equipement = new Equipement;
         $form_equipement = $this->createForm(EquipementType::class, $equipement);
         $form_equipement->handleRequest($request);
@@ -929,9 +930,8 @@ class alstomController extends AbstractController
             // $this->em->persist($equipement);
         }
         return $this->render('alstom/baseline/show-baseline.html.twig', [
-            'current_menu' => 'ERTMS',
+            'current_menu' => 'baseline',
             'baseline' => $baseline,
-            'ertms' => $eRTMSEquipement,
             'equipement' => $equipement,
             'equipements' => $equipements,
             'form_equipement' => $form_equipement->createView(),
