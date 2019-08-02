@@ -29,13 +29,15 @@ $(document).ready(function () {
     });
     $('.sidebar').hover(function () {
             $('main').removeClass('col-lg-12');
-            $('main').css('transition', 'all 0.5s');
+            $('main').removeClass('pl-5');
+            $('main').css('transition', 'all 0.6s ease-in-out');
             $('main').addClass('col-lg-10');
 
         },
         function () {
             $('main').removeClass('col-lg-10');
-            $('main').css('transition', 'all 0.5s');
+            $('main').css('transition', 'all 0.6s ease-in-out');
+            $('main').addClass('pl-5');
             $('main').addClass('col-lg-12');
         })
 

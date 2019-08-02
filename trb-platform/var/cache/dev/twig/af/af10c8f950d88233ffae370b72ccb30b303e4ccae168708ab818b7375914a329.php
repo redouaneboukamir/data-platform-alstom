@@ -66,27 +66,28 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
 
         // line 4
         echo "
-    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-3\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-3\" role=\"main\">
+
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h2>
                 <i class=\"fa fa-angle-right\"></i>
                 Fleet</h2>
             <a href=\"";
-        // line 10
+        // line 11
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.create-project");
         echo "\">
                 <button class=\"btn btn-primary\">New</button>
             </a>
         </div>
         ";
-        // line 14
+        // line 15
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 14, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 14));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 15));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 15
+            // line 16
             echo "            <div class=\"alert alert-success\">
                 ";
-            // line 16
+            // line 17
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
             </div>
@@ -95,26 +96,26 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 19
+        // line 20
         echo "        <section id=\"unseen\">
             <div class=\"pull-left search\">
                 ";
-        // line 21
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), 'form_start');
-        echo "
-                ";
         // line 22
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 22, $this->source); })()), "name_project", [], "any", false, false, false, 22), 'row');
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 22, $this->source); })()), 'form_start');
         echo "
                 ";
         // line 23
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 23, $this->source); })()), 'form_end');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 23, $this->source); })()), "name_project", [], "any", false, false, false, 23), 'row');
+        echo "
+                ";
+        // line 24
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 24, $this->source); })()), 'form_end');
         echo "
             </div>
             <table
                 class=\"table table-condensed table-content\">
                 ";
-        // line 28
+        // line 29
         echo "                <thead>
                     <tr class=\"title-table\">
                         <th class=\"\">Name</th>
@@ -124,38 +125,38 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
                 </thead>
                 <tbody>
                     ";
-        // line 36
+        // line 37
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["projects"]) || array_key_exists("projects", $context) ? $context["projects"] : (function () { throw new RuntimeError('Variable "projects" does not exist.', 36, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["projects"]) || array_key_exists("projects", $context) ? $context["projects"] : (function () { throw new RuntimeError('Variable "projects" does not exist.', 37, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["project"]) {
-            // line 37
+            // line 38
             echo "                        <tr class=\"td-table\">
                             <td>
                                 <a href=\"";
-            // line 39
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 39)]), "html", null, true);
+            // line 40
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 40)]), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "name", [], "any", false, false, false, 39), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "name", [], "any", false, false, false, 40), "html", null, true);
             echo "</td>
                             </td>
                             <td>
                                 ";
-            // line 43
+            // line 44
             echo "                                ";
-            echo twig_escape_filter($this->env, twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "trains", [], "any", false, false, false, 43)), "html", null, true);
+            echo twig_escape_filter($this->env, twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["project"], "trains", [], "any", false, false, false, 44)), "html", null, true);
             echo "
                                 ";
-            // line 45
+            // line 46
             echo "                            </td>
                             <td class=\"content-btn-edit-delete\">
                                 <a href=\"";
-            // line 47
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-project", ["id" => twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 47)]), "html", null, true);
+            // line 48
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-project", ["id" => twig_get_attribute($this->env, $this->source, $context["project"], "id", [], "any", false, false, false, 48)]), "html", null, true);
             echo "\">
                                     <i class=\"fas fa-edit\"></i>
                                 </a>
                                 ";
-            // line 57
+            // line 58
             echo "                            </td>
                         </tr>
                     ";
@@ -163,7 +164,7 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['project'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 60
+        // line 61
         echo "                </tbody>
             </table>
         </section>
@@ -189,7 +190,7 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
 
     public function getDebugInfo()
     {
-        return array (  167 => 60,  159 => 57,  153 => 47,  149 => 45,  144 => 43,  136 => 39,  132 => 37,  128 => 36,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  168 => 61,  160 => 58,  154 => 48,  150 => 46,  145 => 44,  137 => 40,  133 => 38,  129 => 37,  119 => 29,  112 => 24,  108 => 23,  104 => 22,  100 => 20,  91 => 17,  88 => 16,  84 => 15,  77 => 11,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -198,7 +199,8 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
 
 {% block body %}
 
-    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-3\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-3\" role=\"main\">
+
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h2>
                 <i class=\"fa fa-angle-right\"></i>
@@ -244,12 +246,12 @@ class __TwigTemplate_1663b4d07ba58d39158070354642175cbf68739a56ed55514d957cdfb9d
                                     <i class=\"fas fa-edit\"></i>
                                 </a>
                                 {# <form method=\"post\" action=\"{{ path('alstom.delete-project' ,{id:project.id}) }}\" onsubmit=\"return confirm('Are you sure to delete this project?')\">
-                                                                                                                                                                                                                                    <input name=\"_method\" type=\"hidden\" value=\"DELETE\">
-                                                                                                                                                                                                                                    <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ project.id) }}\">
-                                                                                                                                                                                                                                    <button class=\"btn btn-danger btn-delete-client\">
-                                                                                                                                                                                                                                        <i class=\"fas fa-trash-alt\"></i>
-                                                                                                                                                                                                                                    </button>
-                                                                                                                                                                                                                                </form> #}
+                                                                                                                                                                                                                                                                                                    <input name=\"_method\" type=\"hidden\" value=\"DELETE\">
+                                                                                                                                                                                                                                                                                                    <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ project.id) }}\">
+                                                                                                                                                                                                                                                                                                    <button class=\"btn btn-danger btn-delete-client\">
+                                                                                                                                                                                                                                                                                                        <i class=\"fas fa-trash-alt\"></i>
+                                                                                                                                                                                                                                                                                                    </button>
+                                                                                                                                                                                                                                                                                                </form> #}
                             </td>
                         </tr>
                     {% endfor %}

@@ -65,27 +65,28 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+        echo "    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-4\" role=\"main\">
+
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h2>
                 <i class=\"fa fa-angle-right\"></i>
                 Trains</h2>
             <a href=\"";
-        // line 9
+        // line 10
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.create-train");
         echo "\">
                 <button class=\"btn btn-primary\">New</button>
             </a>
         </div>
         ";
-        // line 13
+        // line 14
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 13));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 14, $this->source); })()), "flashes", [0 => "success"], "method", false, false, false, 14));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 14
+            // line 15
             echo "            <div class=\"alert alert-success\">
                 ";
-            // line 15
+            // line 16
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
             </div>
@@ -94,26 +95,26 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 18
+        // line 19
         echo "        <section id=\"unseen\">
             <div class=\"pull-left search\">
                 ";
-        // line 20
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 20, $this->source); })()), 'form_start');
-        echo "
-                ";
         // line 21
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), "name_train", [], "any", false, false, false, 21), 'row');
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 21, $this->source); })()), 'form_start');
         echo "
                 ";
         // line 22
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 22, $this->source); })()), 'form_end');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 22, $this->source); })()), "name_train", [], "any", false, false, false, 22), 'row');
+        echo "
+                ";
+        // line 23
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 23, $this->source); })()), 'form_end');
         echo "
             </div>
             <table
                 class=\"table table-condensed table-content\">
                 ";
-        // line 27
+        // line 28
         echo "                <thead>
                     <tr class=\"title-table\">
                         <th scope=\"col\">Name</th>
@@ -123,39 +124,39 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
                 </thead>
                 <tbody>
                     ";
-        // line 35
+        // line 36
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["trains"]) || array_key_exists("trains", $context) ? $context["trains"] : (function () { throw new RuntimeError('Variable "trains" does not exist.', 35, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["trains"]) || array_key_exists("trains", $context) ? $context["trains"] : (function () { throw new RuntimeError('Variable "trains" does not exist.', 36, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["train"]) {
-            // line 36
+            // line 37
             echo "                        <tr class=\"td-table\">
                             <td class=\"mt-4\">
                                 <a href=\"";
-            // line 38
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 38)]), "html", null, true);
+            // line 39
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 39)]), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["train"], "name", [], "any", false, false, false, 38), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["train"], "name", [], "any", false, false, false, 39), "html", null, true);
             echo "</td>
                             </td>
                             <td>";
-            // line 40
-            echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 40), "name", [], "any", false, false, false, 40)), "html", null, true);
+            // line 41
+            echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 41), "name", [], "any", false, false, false, 41)), "html", null, true);
             echo "</td>
                             <td class=\"content-btn-edit-delete\">
                                 <a href=\"";
-            // line 42
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 42)]), "html", null, true);
+            // line 43
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 43)]), "html", null, true);
             echo "\">
                                     <i class=\"fas fa-edit\"></i>
                                 </a>
                                 <form method=\"post\" action=\"";
-            // line 45
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.delete-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 45)]), "html", null, true);
+            // line 46
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.delete-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 46)]), "html", null, true);
             echo "\" onsubmit=\"return confirm('Are you sure to delete this train?')\">
                                     <input name=\"_method\" type=\"hidden\" value=\"DELETE\">
                                     <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 47
-            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 47))), "html", null, true);
+            // line 48
+            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 48))), "html", null, true);
             echo "\">
                                     <button class=\"btn btn-danger btn-delete-client\">
                                         <i class=\"fas fa-trash-alt\"></i>
@@ -168,7 +169,7 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['train'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 55
+        // line 56
         echo "                </tbody>
             </table>
         </section>
@@ -194,7 +195,7 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
 
     public function getDebugInfo()
     {
-        return array (  172 => 55,  158 => 47,  153 => 45,  147 => 42,  142 => 40,  135 => 38,  131 => 36,  127 => 35,  117 => 27,  110 => 22,  106 => 21,  102 => 20,  98 => 18,  89 => 15,  86 => 14,  82 => 13,  75 => 9,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  173 => 56,  159 => 48,  154 => 46,  148 => 43,  143 => 41,  136 => 39,  132 => 37,  128 => 36,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -202,7 +203,8 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
         return new Source("{% extends 'alstom/index.html.twig' %}
 
 {% block body %}
-    <main class=\"col-md-9 ml-sm-auto col-lg-10 px-4\" role=\"main\">
+    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-4\" role=\"main\">
+
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h2>
                 <i class=\"fa fa-angle-right\"></i>
