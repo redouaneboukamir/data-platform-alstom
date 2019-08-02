@@ -921,7 +921,7 @@ class alstomController extends AbstractController
         $form_equipement->handleRequest($request);
 
         if ($form_equipement->isSubmitted() && $form_equipement->isValid()) {
-            dump($request->request->get('tabEquipts'));
+
             foreach ($equipements as $key => $value) {
                 if ($equipement->getId() == $value->getId()) {
                     dump($value);
