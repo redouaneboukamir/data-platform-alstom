@@ -58,6 +58,8 @@ use App\Entity\VersionLogiciel;
 use App\Form\VersionType;
 use App\Repository\VersionLogicielRepository;
 use App\Repository\ConfigLogicielRepository;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\Date;
 
 class alstomController extends AbstractController
 {
@@ -661,218 +663,6 @@ class alstomController extends AbstractController
         ], 200);
     }
 
-    /**
-     * @Route("/alstom/flush-all-equipt", name="alstom.flush-all-equipt")
-     * @return Response
-     */
-    public function flush_all_equipt(Request $request, TypeEquipementRepository $typeEquipementRepository, SoustypeEquipementRepository $soustypeEquipementRepository)
-    {
-        $assoc_ertms_equipement = new AssociationEquiptERTMS;
-        $ertms = new ERTMSEquipement;
-        $assoc_evc_carte = new AssocEvcCarte;
-        $ertms_request = $request->request->get('ertmsName');
-        $tabEquipt = $request->request->get('tabEquipts');
-
-        //Nom de l'ertms ajouter a l'association et l'ertms lui-même
-        $ertms->setNameConfiguration($ertms_request);
-        $this->em->persist($ertms);
-        $assoc_ertms_equipement->setSolution($ertms);
-        $assoc_evc_carte->setERTMS($ertms);
-
-        //Parcours du tableau d'equipement pour tous les flusher
-        foreach ($tabEquipt as $key => $value) {
-
-            $equipement = new Equipement;
-            $equipement->setType($typeEquipementRepository->find($value['equipement[Type']));
-            if ($value['equipement[sous_type'] != "") {
-                $equipement->setSousType($soustypeEquipementRepository->find($value['equipement[sous_type']));
-            }
-            $equipement->setDTRBoard($value['equipement[DTR_board']);
-            $equipement->setIndiceDTR($value['equipement[Indice_DTR']);
-            $equipement->setNumSerie($value['equipement[Num_serie']);
-            $equipement->setStatus(true);
-            $this->em->persist($equipement);
-            $assoc_ertms_equipement->addEquipement($equipement);
-            switch ($value['equipement[Type']) {
-                case "1":
-                    $assoc_evc_carte->setEVC($equipement);
-                    dump($equipement);
-                    break;
-                case "2":
-                    $assoc_evc_carte->addCARD($equipement);
-                    dump($equipement);
-                    break;
-            }
-        }
-        // if ($ertms->getTrains() != null) {
-        //     $assoc_ertms_equipement->setStatus(true);
-        // } else {
-        //     $assoc_ertms_equipement->setStatus(false);
-        // }
-        $this->em->persist($assoc_ertms_equipement);
-        dump($assoc_ertms_equipement);
-        $this->em->persist($assoc_evc_carte);
-        $this->em->flush();
-
-        //return $this->redirectToRoute('alstom.ertms');
-        return $this->json([
-            "test" => $request->request
-        ]);
-    }
-    /**
-     * @Route("/alstom/create-ertms", name="alstom.create-ertms")
-     * @return Response
-     */
-    public function create_ertms(Request $request): Response
-    {
-
-        $new_ertms = new ERTMSEquipement;
-        $form_ertms = $this->createForm(ErtmsType::class, $new_ertms);
-        $form_ertms->handleRequest($request);
-
-        $equipement = new Equipement;
-        $form_equipement = $this->createForm(EquipementType::class, $equipement);
-        $form_equipement->handleRequest($request);
-
-        return $this->render('alstom/ertms/create-ertms.html.twig', [
-            'current_menu' => 'ertms',
-            'button' => 'Create',
-            'form' => $form_ertms->createView(),
-            'form_equipement' => $form_equipement->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/alstom/ertms/{id}", name="alstom.show-ertms")
-     * @return Response
-     */
-    public function show_ertms(
-        ERTMSEquipement $eRTMSEquipement,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
-        Request $request
-    ) {
-
-        $idErtms = $request->attributes->get('id');
-
-        $equipements = $associationEquiptERTMSRepository->findbySolution($idErtms)[0]->getEquipements();
-        //$equipement = $request->request;
-        $equipement = new Equipement;
-        $form_equipement = $this->createForm(EquipementType::class, $equipement);
-        $form_equipement->handleRequest($request);
-
-        if ($form_equipement->isSubmitted() && $form_equipement->isValid()) {
-            dump($request->request->get('tabEquipts'));
-            foreach ($equipements as $key => $value) {
-                if ($equipement->getId() == $value->getId()) {
-                    dump($value);
-                }
-            }
-            // $this->em->persist($equipement);
-        }
-        return $this->render('alstom/ertms/show-ertms.html.twig', [
-            'current_menu' => 'ERTMS',
-            'ertms' => $eRTMSEquipement,
-            'equipement' => $equipement,
-            'equipements' => $equipements,
-            'form_equipement' => $form_equipement->createView(),
-
-        ]);
-    }
-
-    /**
-     * @Route("/alstom/edit-equipment/{id}", name="alstom.edit-equipment", methods={"POST","GET"})
-     * @return Response
-     */
-    public function edit_equipement(
-        Equipement $equipement,
-        Request $request,
-        ERTMSEquipementRepository $eRTMSEquipementRepository,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
-        TypeEquipementRepository $typeEquipementRepository,
-        SoustypeEquipementRepository $soustypeEquipementRepository
-    ) {
-
-        // $new_assoc_equipt_ertms = new AssociationEquiptERTMS;
-        $assoc_evc_carte = new AssocEvcCarte;
-        $equipement_new = new Equipement;
-        $current_equipement = $equipement;
-        $new_equipement = $request->request->get('equipement');
-
-        //Parcours les valeurs du nouvel equipement pour flush
-        if ($new_equipement != null) {
-
-            foreach ($new_equipement as $key => $value) {
-
-                switch ($key) {
-                    case 'equipement[Type':
-                        $equipement_new->setType($typeEquipementRepository->find($value));
-                        // switch ($value) {
-                        //     case "1":
-                        //         $assoc_evc_carte->setEVC($equipement);
-                        //         break;
-                        //     case "2":
-                        //         $assoc_evc_carte->addCARD($equipement);
-                        //         break;
-                        // }
-                        break;
-                    case 'equipement[sous_type':
-                        if ($value != "") {
-                            $equipement_new->setSousType($soustypeEquipementRepository->find($value));
-                        }
-                        break;
-                    case 'equipement[DTR_board':
-                        $equipement_new->setDTRBoard($value);
-                        break;
-                    case 'equipement[Indice_DTR':
-                        $equipement_new->setIndiceDTR($value);
-                        break;
-                    case 'equipement[Num_serie':
-                        $equipement_new->setNumSerie($value);
-                        break;
-                }
-            }
-        }
-        // attribut le statut actif au nouvel equipement
-        $equipement_new->setStatus(true);
-
-        // Et false a l'ancienne equipement
-        $current_equipement->setStatus(false);
-
-        // Va rechercher l'association courante
-        $id_assoc = $equipement->getAssociationEquiptERTMS();
-        $assoc_equipt_ertms = $associationEquiptERTMSRepository->find($id_assoc);
-        // va rechercher l'id de l'ertms courant
-        $id_Ertms = (int) $request->request->get('idErtms');
-        $current_ertms = $eRTMSEquipementRepository->find($id_Ertms);
-
-        // Attribut le nouvel equipement a l'association courante
-        $assoc_equipt_ertms->addEquipement($equipement_new);
-
-        // $assoc_equipt_ertms->setSolution($current_ertms);
-        dump($request);
-
-        if ($request->get('soumission_edit_equipement')) {
-            dump($equipement_new);
-            dump($assoc_equipt_ertms);
-
-            $this->em->persist($equipement_new);
-            $this->em->persist($assoc_equipt_ertms);
-            $this->em->persist($assoc_evc_carte);
-            $this->em->flush();
-            return $this->json([
-                "flush" => 200
-            ]);
-        } else {
-
-            $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
-                'circular_reference_handler' => function ($object) {
-                    return $object->getId();
-                }
-            ]);
-
-            return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
-        }
-    }
 
     //    suppresion de ertms
     /**
@@ -1004,8 +794,6 @@ class alstomController extends AbstractController
     }
 
 
-
-
     // ----------------------BASELINE
     /**
      * @Route("/alstom/baseline", name="alstom.baseline")
@@ -1015,6 +803,7 @@ class alstomController extends AbstractController
     public function baseline(BaselineRepository $baselineRepository): Response
     {
         $baselines = $baselineRepository->findAll();
+
         return $this->render('alstom/baseline/baseline.html.twig', [
             'current_menu' => "baseline",
             'baselines' => $baselines
@@ -1027,31 +816,224 @@ class alstomController extends AbstractController
      */
     public function create_baseline(Request $request, BaselineRepository $baselineRepository): Response
     {
-        $baselines = $baselineRepository->findAll();
         $baseline = new Baseline;
-        $form = $this->createform(BaselineType::class, $baseline);
-        $form->handleRequest($request);
-        //        Validation du formulaire baseline
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($baseline);
-            $this->em->flush();
-        }
-        $version = new VersionLogiciel;
-        $form_version = $this->createform(VersionType::class, $version);
-        $form_version->handleRequest($request);
-        //        Validation du form version logiciel
-        if ($form_version->isSubmitted() && $form_version->isValid()) {
-            $this->em->persist($version);
-            $this->em->flush();
-        }
+        $form_baseline = $this->createForm(BaselineType::class, $baseline);
+        $form_baseline->handleRequest($request);
+
+        $equipement = new Equipement;
+        $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_equipement->handleRequest($request);
 
         return $this->render('alstom/baseline/create-baseline.html.twig', [
             'current_menu' => "baseline",
-            'baselines' => $baselines,
-            'form' => $form->createView(),
-            'form_version' => $form_version->createView()
+            'form_baseline' => $form_baseline->createView(),
+            'form_equipement' => $form_equipement->createView()
         ]);
     }
+    /**
+     * @Route("/alstom/flush-all-equipt", name="alstom.flush-all-equipt")
+     * @return Response
+     */
+    public function flush_all_equipt(Request $request, TypeEquipementRepository $typeEquipementRepository, SoustypeEquipementRepository $soustypeEquipementRepository)
+    {
+        $assoc_ertms_equipement = new AssociationEquiptERTMS;
+        $ertms = new ERTMSEquipement;
+        $baseline  = new Baseline;
+        $assoc_evc_carte = new AssocEvcCarte;
+
+        $tabEquipt = $request->request->get('tabEquipts');
+        $baseline->setName($request->request->get('baselineName'));
+
+
+        $this->em->persist($ertms);
+
+        $baseline->setStatus(true);
+        $baseline->setOriginal(true);
+        $baseline->setDate(new \DateTime());
+        $this->em->persist($baseline);
+
+        $assoc_ertms_equipement->setSolution($ertms);
+        $assoc_ertms_equipement->addBaseline($baseline);
+
+        $assoc_evc_carte->setERTMS($ertms);
+
+        //Parcours du tableau d'equipement pour tous les flusher
+        foreach ($tabEquipt as $key => $value) {
+
+            $equipement = new Equipement;
+            $equipement->setType($typeEquipementRepository->find($value['equipement[Type']));
+            if ($value['equipement[sous_type'] != "") {
+                $equipement->setSousType($soustypeEquipementRepository->find($value['equipement[sous_type']));
+            }
+            $equipement->setDTRBoard($value['equipement[DTR_board']);
+            $equipement->setIndiceDTR($value['equipement[Indice_DTR']);
+            $equipement->setNumSerie($value['equipement[Num_serie']);
+            $equipement->setStatus(true);
+
+            $this->em->persist($equipement);
+            $assoc_ertms_equipement->addEquipement($equipement);
+
+            switch ($value['equipement[Type']) {
+                case "1":
+                    $assoc_evc_carte->setEVC($equipement);
+                    dump($equipement);
+                    break;
+                case "2":
+                    $assoc_evc_carte->addCARD($equipement);
+                    dump($equipement);
+                    break;
+            }
+        }
+
+        $this->em->persist($assoc_ertms_equipement);
+        $baseline->setEquipmentErtms($assoc_ertms_equipement);
+        dump($baseline);
+        $this->em->persist($assoc_evc_carte);
+        // $this->em->flush();
+        $jsonObjectEquipt = $this->serializer->serialize($baseline, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+        //return $this->redirectToRoute('alstom.ertms');
+        return $this->json([
+            "baseline" => $baseline->getId()
+        ]);
+    }
+
+    /**
+     * @Route("/alstom/baseline/{id}", name="alstom.show-baseline")
+     * @return Response
+     */
+    public function show_baseline(
+        Baseline $baseline,
+        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
+        Request $request
+    ) {
+        dump($baseline);
+        $idErtms = $request->attributes->get('id');
+
+        $equipements = $associationEquiptERTMSRepository->findbySolution($idErtms)[0]->getEquipements();
+        //$equipement = $request->request;
+        $equipement = new Equipement;
+        $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_equipement->handleRequest($request);
+
+        if ($form_equipement->isSubmitted() && $form_equipement->isValid()) {
+            dump($request->request->get('tabEquipts'));
+            foreach ($equipements as $key => $value) {
+                if ($equipement->getId() == $value->getId()) {
+                    dump($value);
+                }
+            }
+            // $this->em->persist($equipement);
+        }
+        return $this->render('alstom/baseline/show-baseline.html.twig', [
+            'current_menu' => 'ERTMS',
+            'baseline' => $baseline,
+            'ertms' => $eRTMSEquipement,
+            'equipement' => $equipement,
+            'equipements' => $equipements,
+            'form_equipement' => $form_equipement->createView(),
+
+        ]);
+    }
+
+    /**
+     * @Route("/alstom/edit-equipment/{id}", name="alstom.edit-equipment", methods={"POST","GET"})
+     * @return Response
+     */
+    public function edit_equipement(
+        Equipement $equipement,
+        Request $request,
+        ERTMSEquipementRepository $eRTMSEquipementRepository,
+        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
+        TypeEquipementRepository $typeEquipementRepository,
+        SoustypeEquipementRepository $soustypeEquipementRepository
+    ) {
+
+        // $new_assoc_equipt_ertms = new AssociationEquiptERTMS;
+        $assoc_evc_carte = new AssocEvcCarte;
+        $equipement_new = new Equipement;
+        $current_equipement = $equipement;
+        $new_equipement = $request->request->get('equipement');
+
+        //Parcours les valeurs du nouvel equipement pour flush
+        if ($new_equipement != null) {
+
+            foreach ($new_equipement as $key => $value) {
+
+                switch ($key) {
+                    case 'equipement[Type':
+                        $equipement_new->setType($typeEquipementRepository->find($value));
+                        // switch ($value) {
+                        //     case "1":
+                        //         $assoc_evc_carte->setEVC($equipement);
+                        //         break;
+                        //     case "2":
+                        //         $assoc_evc_carte->addCARD($equipement);
+                        //         break;
+                        // }
+                        break;
+                    case 'equipement[sous_type':
+                        if ($value != "") {
+                            $equipement_new->setSousType($soustypeEquipementRepository->find($value));
+                        }
+                        break;
+                    case 'equipement[DTR_board':
+                        $equipement_new->setDTRBoard($value);
+                        break;
+                    case 'equipement[Indice_DTR':
+                        $equipement_new->setIndiceDTR($value);
+                        break;
+                    case 'equipement[Num_serie':
+                        $equipement_new->setNumSerie($value);
+                        break;
+                }
+            }
+        }
+        // attribut le statut actif au nouvel equipement
+        $equipement_new->setStatus(true);
+
+        // Et false a l'ancienne equipement
+        $current_equipement->setStatus(false);
+
+        // Va rechercher l'association courante
+        $id_assoc = $equipement->getAssociationEquiptERTMS();
+        $assoc_equipt_ertms = $associationEquiptERTMSRepository->find($id_assoc);
+        // va rechercher l'id de l'ertms courant
+        $id_Ertms = (int) $request->request->get('idErtms');
+        $current_ertms = $eRTMSEquipementRepository->find($id_Ertms);
+
+        // Attribut le nouvel equipement a l'association courante
+        $assoc_equipt_ertms->addEquipement($equipement_new);
+
+        // $assoc_equipt_ertms->setSolution($current_ertms);
+        dump($request);
+
+        if ($request->get('soumission_edit_equipement')) {
+            dump($equipement_new);
+            dump($assoc_equipt_ertms);
+
+            $this->em->persist($equipement_new);
+            $this->em->persist($assoc_equipt_ertms);
+            $this->em->persist($assoc_evc_carte);
+            $this->em->flush();
+            return $this->json([
+                "flush" => 200
+            ]);
+        } else {
+
+            $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+
+            return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
+        }
+    }
+
     /**
      * @Route("alstom/addAssocBaseline", name="alstom.addAssocBaseline", methods={"POST"})
      * @return Response
@@ -1069,13 +1051,7 @@ class alstomController extends AbstractController
      */
     public function addBaseline(Request $request): Response
     {
-        $baseline = new Baseline;
-
-        $name_baseline = $request->request->get('baseline')['baseline[name'];
-        $baseline->setName($name_baseline);
-        dump($baseline);
-        // $this->em->persist($baseline);
-        // $this->em->flush();
+        $baseline = $request->request->get('baseline')['baseline[name'];
 
         return $this->json([
             'code' => 200,

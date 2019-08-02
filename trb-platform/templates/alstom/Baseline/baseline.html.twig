@@ -1,10 +1,11 @@
 {% extends 'alstom/index.html.twig' %}
 
 {% block body %}
-    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+    <main class="col-md-9 ml-sm-auto col-lg-12 pl-5 px-4" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2>
-                <i class="fas fa-memory"></i>
+                <i class="fa fa-angle-right"></i>
+
                 Baseline</h2>
             <a href="{{ path('alstom.create-baseline') }}">
                 <button class="btn btn-primary">New</button>
@@ -26,17 +27,17 @@
                         <tr class="td-table">
                             <td>{{ baseline.name }}</td>
                             {# <td class="content-btn-edit-delete">
-                                                            <a href="{{ path('alstom.edit-evc', {id: evc.id}) }}">
-                                                                <i class="fas fa-user-edit btn-edit"></i>
-                                                            </a>
-                                                            <form method="post" action="{{ path('alstom.delete-baseline' ,{id:baseline.id}) }}" onsubmit="return confirm('Are you sure to delete this baseline?')">
-                                                                <input name="_method" type="hidden" value="DELETE">
-                                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ baseline.id) }}">
-                                                                <button class="btn btn-danger btn-delete-client">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td> #}
+                                                                                        <a href="{{ path('alstom.edit-baseline', {id: baseline.id}) }}">
+                                                                                            <i class="fas fa-user-edit btn-edit"></i>
+                                                                                        </a>
+                                                                                        <form method="post" action="{{ path('alstom.delete-baseline' ,{id:baseline.id}) }}" onsubmit="return confirm('Are you sure to delete this baseline?')">
+                                                                                            <input name="_method" type="hidden" value="DELETE">
+                                                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ baseline.id) }}">
+                                                                                            <button class="btn btn-danger btn-delete-client">
+                                                                                                <i class="fas fa-trash-alt"></i>
+                                                                                            </button>
+                                                                                        </form>
+                                                                                    </td> #}
                         </tr>
                     {% endfor %}
                 </tbody>

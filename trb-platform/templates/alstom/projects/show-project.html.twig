@@ -4,6 +4,8 @@
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-12 pl-5 px-4 main-fleet" role="main">
 
+        <h1 class="title_fleet_management">{{ project.name|upper }}</h1>
+
         <section class="card mt-3 container-fluid">
             <a class="btn-edit" href="{{ path('alstom.edit-project',{id: project.id}) }}">
                 <button class="btn btn-secondary ">
@@ -16,9 +18,6 @@
                     <div class="img-description-project">
                         <img id="img-project" class="img-project img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
                     </div>
-                    <figcaption>
-                        <h2 class="name" style="font-weight: bold">{{ project.name|upper }}</h2>
-                    </figcaption>
                 </figure>
             </div>
 
@@ -32,11 +31,11 @@
                         </div>
                         <div class="text-descrip-project col-md-11">
                             <p class="mt">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
                             <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
                             <p>"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                what is your wish you my father I am your son this understand what is your wish.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                what is your wish you my father I am your son this understand what is your wish.</p>
                         </div>
 
                     </div>

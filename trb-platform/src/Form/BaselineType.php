@@ -12,8 +12,9 @@ class BaselineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-        ;
+            ->add('name', null, [
+                'label' => "Add name baseline"
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

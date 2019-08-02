@@ -29,13 +29,14 @@ class AssociationEquiptERTMS
     private $equipements;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\OneToMany(targetEntity="App\Entity\Baseline", mappedBy="Equipment_ertms")
      */
-    private $status;
+    private $baselines;
 
     public function __construct()
     {
         $this->equipements = new ArrayCollection();
+        $this->baselines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,14 +96,33 @@ class AssociationEquiptERTMS
         return $this;
     }
 
-    public function getStatus(): ?bool
+    /**
+     * @return Collection|Baseline[]
+     */
+    public function getBaselines(): Collection
     {
-        return $this->status;
+        return $this->baselines;
     }
 
-    public function setStatus(bool $status): self
+    public function addBaseline(Baseline $baseline): self
     {
-        $this->status = $status;
+        if (!$this->baselines->contains($baseline)) {
+            $this->baselines[] = $baseline;
+            $baseline->setEquipmentErtms($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBaseline(Baseline $baseline): self
+    {
+        if ($this->baselines->contains($baseline)) {
+            $this->baselines->removeElement($baseline);
+            // set the owning side to null (unless already changed)
+            if ($baseline->getEquipmentErtms() === $this) {
+                $baseline->setEquipmentErtms(null);
+            }
+        }
 
         return $this;
     }

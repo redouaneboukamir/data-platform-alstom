@@ -53,10 +53,9 @@ class EquipementType extends AbstractType
 
             ->add('DTR_board')
             ->add('Indice_DTR')
-            ->add('Num_serie');
-        // ->add('Add', SubmitType::class, [
-        //     'attr' => ['class' => 'btn btn-primary']
-        // ]);
+            ->add('Num_serie', null, [
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

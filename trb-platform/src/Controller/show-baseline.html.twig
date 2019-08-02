@@ -1,0 +1,111 @@
+{% extends 'alstom/index.html.twig' %}
+
+
+{% block body %}
+
+    <div id="modal-content-form-equipement-edit">
+        <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="form-equipment" id="formulaire-equipment">
+            {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 
+               'attr': {'id': 'form_equipement_edit'}}) }}
+            {{form_row(form_equipement.Type)}}
+            {{form_row(form_equipement.sous_type)}}
+            {{form_row(form_equipement.DTR_board)}}
+            {{form_row(form_equipement.Indice_DTR)}}
+            {{form_row(form_equipement.Num_serie)}}
+            {{form_row(form_equipement._token)}}
+
+            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
+
+            {{form_end(form_equipement)}}</div>
+
+    </div>
+    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+        <span class="sr-only">
+            Loading...
+        </span>
+    </div>
+    {# --------------------------- #}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4 main-baseline" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1>{{baseline.name}}</h1>
+        </div>
+        <div class="show-equipment" id="show-equipment" style="">
+
+
+            {% for equipement in equipements %}
+                {% if equipement.status == true %}
+                    {% if (equipement.Type.name == "EVC") or (equipement.Type.name == "CARTE") %}
+                        <div class="description description-SubtypeCard" id="description-equipement">
+
+                            {% if equipement.Type.name == "EVC" %}
+
+                                <h4 class="description-Type " id="description-type ">
+                                    {{equipement.Type.name}}
+                                </h4>
+
+                            {% elseif equipement.Type.name ==  "CARTE" %}
+                                <h5 class="description-Type " id="description-subType ">
+                                    {{equipement.Type.name}}
+                                </h5>
+
+                                <h6 class="description-Type " id="description-subType ">
+                                    {{equipement.SousType.name}}
+                                </h6>
+
+                            {% endif %}
+
+                            <div class="content-description-dtr ml-2" id="content-description">
+                                <p>{{equipement.DTRboard}}</p>
+                                <p>{{equipement.IndiceDTR}}</p>
+                                <p>{{equipement.Numserie}}</p>
+                                <p class="edit-delete-equipement">
+                                    <a class="edit-{{equipement.id}}" id="edit-equipement">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a id="delete-{{equipement.id}}">
+                                        <i class="fas fa-trash-alt poubelle"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <div class="description" id="description-equipement">
+                            <h4 class="description-Type " id="description-type ">
+                                {{equipement.Type.name}}
+                            </h4>
+                            <h5 class="description-Type " id="description-subType">
+                                {% if equipement.SousType %}
+                                    {{equipement.SousType.name}}
+                                {% endif %}
+                            </h5>
+                            <div class="content-description-dtr" id="content-description">
+                                <p>{{equipement.DTRboard}}</p>
+                                <p>{{equipement.IndiceDTR}}</p>
+                                <p>{{equipement.Numserie}}</p>
+                                <p class="edit-delete-equipement">
+                                    <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
+
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a id="delete-">
+                                        <i class="fas fa-trash-alt poubelle"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% else %}
+                {% endif %}
+            {% endfor %}
+
+
+        </div>
+
+    </main>
+
+
+{% endblock %}
