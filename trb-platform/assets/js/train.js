@@ -10,7 +10,6 @@ $('#create-ertms-2').hide();
 $("#create-ertms-train-1").hide();
 $('#create_soustype').hide();
 $('#create_type').hide();
-
 $('#modal-body').hide();
 
 

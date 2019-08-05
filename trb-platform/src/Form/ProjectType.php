@@ -21,17 +21,17 @@ class ProjectType extends AbstractType
             ->add('name')
             ->add('available', HiddenType::class, [
                 'data' => true
-            ])
-            ->add('trains', EntityType::class, [
-                'class' => Trains::class,
-                'attr' => [
-                    'id' => 'choice_trains',
-                ],
-                'label' => 'Trains',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'required' => false
             ]);
+        // ->add('trains', EntityType::class, [
+        //     'class' => Trains::class,
+        //     'attr' => [
+        //         'id' => 'choice_trains',
+        //     ],
+        //     'label' => 'Trains',
+        //     'choice_label' => 'name',
+        //     'multiple' => true,
+        //     'required' => false
+        // ]);
         // ->add('profilePicture', FileType::class, [
         //     'label' => 'Image project (PNG, JPG, PDF)',
         //     'required' => false,

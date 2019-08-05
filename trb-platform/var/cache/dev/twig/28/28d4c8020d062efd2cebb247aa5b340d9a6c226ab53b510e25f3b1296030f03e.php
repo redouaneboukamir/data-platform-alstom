@@ -26,7 +26,6 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
 
         $this->blocks = [
             'body' => [$this, 'block_body'],
-            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -80,33 +79,7 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
         </div>
 
     </div>
-</main>
-";
-        // line 15
-        $this->displayBlock('javascripts', $context, $blocks);
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
-    public function block_javascripts($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        // line 16
-        echo "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
-    <script>
-        \$('select').select2();
-    </script>
-";
+</main>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -127,7 +100,7 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
 
     public function getDebugInfo()
     {
-        return array (  105 => 16,  86 => 15,  78 => 10,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  77 => 10,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -145,13 +118,7 @@ class __TwigTemplate_e78e5fa1441a2b9a92025a887fc368e7320260f09b1820b9d9d4f96fd3f
         </div>
 
     </div>
-</main>
-{% block javascripts %}
-    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
-    <script>
-        \$('select').select2();
-    </script>
-{% endblock %}{% endblock %}
+</main>{% endblock %}
 ", "alstom/projects/create-project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\projects\\create-project.html.twig");
     }
 }

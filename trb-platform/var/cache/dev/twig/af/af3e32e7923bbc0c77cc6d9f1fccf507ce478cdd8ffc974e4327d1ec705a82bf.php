@@ -28,7 +28,6 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 
         $this->blocks = [
             'stylesheets' => [$this, 'block_stylesheets'],
-            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -121,10 +120,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         // line 44
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 44, $this->source); })()), 'form_end');
         echo "
-
 ";
-        // line 46
-        $this->displayBlock('javascripts', $context, $blocks);
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
 
@@ -154,24 +150,6 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 
     }
 
-    // line 46
-    public function block_javascripts($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
     public function getTemplateName()
     {
         return "alstom/trains/_form-train.html.twig";
@@ -184,7 +162,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 
     public function getDebugInfo()
     {
-        return array (  158 => 46,  147 => 2,  137 => 1,  127 => 46,  122 => 44,  112 => 37,  108 => 36,  104 => 35,  98 => 32,  88 => 25,  84 => 24,  79 => 22,  72 => 17,  70 => 13,  66 => 12,  62 => 11,  58 => 10,  51 => 6,  47 => 4,  45 => 1,);
+        return array (  143 => 2,  133 => 1,  121 => 44,  111 => 37,  107 => 36,  103 => 35,  97 => 32,  87 => 25,  83 => 24,  78 => 22,  71 => 17,  69 => 13,  65 => 12,  61 => 11,  57 => 10,  50 => 6,  46 => 4,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -233,8 +211,6 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 </div>
 <p><input class=\"btn btn-primary mt-4\" id=\"soumission-train\" name=\"soumission_train\" type=\"submit\" value=\"Create\"/></p>
 {{ form_end(form_train) }}
-
-{% block javascripts %}{% endblock %}
 ", "alstom/trains/_form-train.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\trains\\_form-train.html.twig");
     }
 }

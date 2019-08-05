@@ -566,9 +566,7 @@ class alstomController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $trains->getId(), $request->get('_token'))) {
 
-            if ($trains->getERTMS()) {
-                $trains->removeErtm($trains->getERTMS()->getValues()[0]);
-            };
+            dump($trains->getERTMS());
 
             $this->em->remove($trains);
             $this->em->flush();
@@ -576,9 +574,9 @@ class alstomController extends AbstractController
         }
         return $this->redirectToRoute('alstom.trains');
     }
+
     //    ERTMS-----------------------------------------------------------
     //
-
 
     /**
      * @Route("/alstom/ertms", name="alstom.ertms")

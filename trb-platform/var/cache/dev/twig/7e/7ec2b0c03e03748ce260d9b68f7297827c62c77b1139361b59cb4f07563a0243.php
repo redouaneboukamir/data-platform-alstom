@@ -26,7 +26,6 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
 
         $this->blocks = [
             'body' => [$this, 'block_body'],
-            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -66,7 +65,7 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 3
-        echo "    <main class=\"col-md-12 ml-sm-auto col-lg-1pl-5 px-4\" role=\"main\">
+        echo "    <main class=\"col-md-12 ml-sm-auto col-lg-12 pl-5 px-4\" role=\"main\">
 
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h1>Edit project</h1>
@@ -88,29 +87,6 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
 
     }
 
-    // line 13
-    public function block_javascripts($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
-
-        // line 14
-        echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
-<script>
-    \$('select').select2();
-</script>";
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
     public function getTemplateName()
     {
         return "alstom/projects/edit-project.html.twig";
@@ -123,14 +99,14 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
 
     public function getDebugInfo()
     {
-        return array (  102 => 14,  92 => 13,  77 => 9,  69 => 3,  59 => 2,  36 => 1,);
+        return array (  76 => 9,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'alstom/index.html.twig' %}
 {% block body %}
-    <main class=\"col-md-12 ml-sm-auto col-lg-1pl-5 px-4\" role=\"main\">
+    <main class=\"col-md-12 ml-sm-auto col-lg-12 pl-5 px-4\" role=\"main\">
 
         <div class=\"d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">
             <h1>Edit project</h1>
@@ -140,11 +116,7 @@ class __TwigTemplate_9eafc1ccc5bc1b357362474e13aacb4d0bdf46f98bbcdb96f7a3ad2c833
         </div>
 
     </div>
-</main>{% endblock %}{% block javascripts %}
-<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
-<script>
-    \$('select').select2();
-</script>{% endblock %}
+</main>{% endblock %}
 ", "alstom/projects/edit-project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\projects\\edit-project.html.twig");
     }
 }

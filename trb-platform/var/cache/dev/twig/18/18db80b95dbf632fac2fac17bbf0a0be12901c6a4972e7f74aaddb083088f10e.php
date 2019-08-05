@@ -138,25 +138,36 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["train"], "name", [], "any", false, false, false, 39), "html", null, true);
             echo "</td>
                             </td>
-                            <td>";
+                            ";
             // line 41
-            echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 41), "name", [], "any", false, false, false, 41)), "html", null, true);
-            echo "</td>
+            if (twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 41)) {
+                // line 42
+                echo "                                <td>";
+                echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 42), "name", [], "any", false, false, false, 42)), "html", null, true);
+                echo "</td>
+                            ";
+            } else {
+                // line 44
+                echo "                                <td></td>
+                            ";
+            }
+            // line 46
+            echo "
                             <td class=\"content-btn-edit-delete\">
                                 <a href=\"";
-            // line 43
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 43)]), "html", null, true);
+            // line 48
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 48)]), "html", null, true);
             echo "\">
                                     <i class=\"fas fa-edit\"></i>
                                 </a>
                                 <form method=\"post\" action=\"";
-            // line 46
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.delete-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 46)]), "html", null, true);
+            // line 51
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.delete-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 51)]), "html", null, true);
             echo "\" onsubmit=\"return confirm('Are you sure to delete this train?')\">
                                     <input name=\"_method\" type=\"hidden\" value=\"DELETE\">
                                     <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 48
-            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 48))), "html", null, true);
+            // line 53
+            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 53))), "html", null, true);
             echo "\">
                                     <button class=\"btn btn-danger btn-delete-client\">
                                         <i class=\"fas fa-trash-alt\"></i>
@@ -169,7 +180,7 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['train'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 56
+        // line 61
         echo "                </tbody>
             </table>
         </section>
@@ -195,7 +206,7 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
 
     public function getDebugInfo()
     {
-        return array (  173 => 56,  159 => 48,  154 => 46,  148 => 43,  143 => 41,  136 => 39,  132 => 37,  128 => 36,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  184 => 61,  170 => 53,  165 => 51,  159 => 48,  155 => 46,  151 => 44,  145 => 42,  143 => 41,  136 => 39,  132 => 37,  128 => 36,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -240,7 +251,12 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
                             <td class=\"mt-4\">
                                 <a href=\"{{ path('alstom.show-train', {id: train.id}) }}\">{{  train.name }}</td>
                             </td>
-                            <td>{{ train.Projects.name|upper }}</td>
+                            {% if train.Projects %}
+                                <td>{{ train.Projects.name|upper }}</td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+
                             <td class=\"content-btn-edit-delete\">
                                 <a href=\"{{ path('alstom.edit-train', {id: train.id}) }}\">
                                     <i class=\"fas fa-edit\"></i>

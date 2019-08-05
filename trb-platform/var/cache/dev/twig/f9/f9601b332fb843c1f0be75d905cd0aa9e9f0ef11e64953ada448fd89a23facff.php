@@ -51,11 +51,9 @@ class __TwigTemplate_50519e90f63bfceb02dd0a258b9b993e7774f53b31253282e76e691913c
         // line 7
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 7, $this->source); })()), "name", [], "any", false, false, false, 7), 'row');
         echo "</div>
-        <div class=\"col-md-12\">";
-        // line 8
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 8, $this->source); })()), "trains", [], "any", false, false, false, 8), 'row');
-        echo "</div>
-
+        ";
+        // line 9
+        echo "
     </div>
     ";
         // line 26
@@ -111,7 +109,7 @@ class __TwigTemplate_50519e90f63bfceb02dd0a258b9b993e7774f53b31253282e76e691913c
 
     public function getDebugInfo()
     {
-        return array (  92 => 2,  82 => 1,  70 => 29,  65 => 27,  62 => 26,  56 => 8,  52 => 7,  46 => 4,  44 => 1,);
+        return array (  90 => 2,  80 => 1,  68 => 29,  63 => 27,  60 => 26,  56 => 9,  52 => 7,  46 => 4,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -123,24 +121,24 @@ class __TwigTemplate_50519e90f63bfceb02dd0a258b9b993e7774f53b31253282e76e691913c
 <div class=\"text-left\">
     <div class=\"row\">
         <div class=\"col-md-12\">{{ form_row(form.name) }}</div>
-        <div class=\"col-md-12\">{{ form_row(form.trains) }}</div>
+        {# <div class=\"col-md-12\">{{ form_row(form.trains) }}</div> #}
 
     </div>
     {# 
-            <div class=\" content-img-form-project col-12\">
-                {% if button == 'Edit' %}
-                    {% if project.filename %}
-                        <img class=\"img-project-form img-fluid\" src=\"/build/img/projects/{{ project.filename }}\">
+                <div class=\" content-img-form-project col-12\">
+                    {% if button == 'Edit' %}
+                        {% if project.filename %}
+                            <img class=\"img-project-form img-fluid\" src=\"/build/img/projects/{{ project.filename }}\">
+                        {% else %}
+                            <img class=\"img-project-form img-fluid\" src=\"{{ asset('../build/img/projects/project-background.jpg') }}\" alt=\"{{ project.name }}\">
+                        {% endif %}
+            
                     {% else %}
-                        <img class=\"img-project-form img-fluid\" src=\"{{ asset('../build/img/projects/project-background.jpg') }}\" alt=\"{{ project.name }}\">
+                        <img id=\"img-project-form\" class=\"img-project-form img-fluid\" src=\"{{ asset('../build/img/projects/project-background.jpg') }}\">
                     {% endif %}
-        
-                {% else %}
-                    <img id=\"img-project-form\" class=\"img-project-form img-fluid\" src=\"{{ asset('../build/img/projects/project-background.jpg') }}\">
-                {% endif %}
-            </div>
-        
-            {{ form_row(form.profilePicture) }} #}
+                </div>
+            
+                {{ form_row(form.profilePicture) }} #}
 
     <button class=\"btn btn-primary mt-4\">{{ button|default('Send') }}</button>
 </div>

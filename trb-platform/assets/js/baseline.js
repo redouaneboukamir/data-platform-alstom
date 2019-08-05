@@ -26,15 +26,20 @@ $(document).ready(function () {
     let data = {}
     data[$type.attr('name')] = $type.val()
 
-    $.post("/alstom/checkSubtype", data).then(function (response) {
-        //Vidage champ soustype
-        $('#equipement_sous_type').empty();
-        response.forEach(element => {
-            //Remplissage par les element reçu du controller
-            $('#equipement_sous_type').append(new Option(element.name, element.id));
-        })
+    if (window.location.pathname == '/alstom/create_baseline') {
+        $.post("/alstom/checkSubtype", data).then(function (response) {
+            //Vidage champ soustype
+            $('#equipement_sous_type').empty();
+            response.forEach(element => {
+                //Remplissage par les element reçu du controller
+                $('#equipement_sous_type').append(new Option(element.name, element.id));
+            })
 
-    })
+        })
+        console.log(window.location.pathname);
+    } else {
+        console.log(window.location.pathname);
+    }
     // $('#equipement_sous_type').empty();
     // $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');
 });

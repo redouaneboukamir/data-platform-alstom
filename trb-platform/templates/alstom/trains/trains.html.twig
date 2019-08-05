@@ -38,7 +38,12 @@
                             <td class="mt-4">
                                 <a href="{{ path('alstom.show-train', {id: train.id}) }}">{{  train.name }}</td>
                             </td>
-                            <td>{{ train.Projects.name|upper }}</td>
+                            {% if train.Projects %}
+                                <td>{{ train.Projects.name|upper }}</td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+
                             <td class="content-btn-edit-delete">
                                 <a href="{{ path('alstom.edit-train', {id: train.id}) }}">
                                     <i class="fas fa-edit"></i>
