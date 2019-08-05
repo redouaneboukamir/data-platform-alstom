@@ -368,7 +368,7 @@ $('#form_version').on('submit', function (e) {
             $('#title-version').html("Version logiciel : " + response.version)
             $('.main-baseline').css("opacity", '1');
             $('#wait-spinner').hide();
-            $('#modal-form-version').modal('hide');
+            $('#close-modal-form-version').trigger('click');
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');

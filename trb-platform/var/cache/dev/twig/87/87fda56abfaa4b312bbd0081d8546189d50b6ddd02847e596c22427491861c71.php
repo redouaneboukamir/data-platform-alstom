@@ -183,16 +183,20 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
             <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
             <script crossorigin=\"anonymous\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>
             <script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>
+            <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
+            <script>
+                \$('select').select2();
+            </script>
             <script src=\"";
-        // line 147
+        // line 151
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/runtime.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 148
+        // line 152
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/vendors~app.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 149
+        // line 153
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/app.js"), "html", null, true);
         echo "\"></script>
         </body>
@@ -366,7 +370,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     public function getDebugInfo()
     {
-        return array (  340 => 141,  289 => 100,  270 => 84,  256 => 72,  246 => 71,  228 => 12,  210 => 6,  196 => 149,  192 => 148,  188 => 147,  181 => 142,  178 => 141,  175 => 71,  172 => 70,  170 => 69,  167 => 68,  165 => 67,  164 => 66,  148 => 53,  136 => 48,  123 => 42,  110 => 36,  97 => 30,  84 => 24,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
+        return array (  344 => 141,  293 => 100,  274 => 84,  260 => 72,  250 => 71,  232 => 12,  214 => 6,  200 => 153,  196 => 152,  192 => 151,  181 => 142,  178 => 141,  175 => 71,  172 => 70,  170 => 69,  167 => 68,  165 => 67,  164 => 66,  148 => 53,  136 => 48,  123 => 42,  110 => 36,  97 => 30,  84 => 24,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -517,6 +521,10 @@ or current_menu == \"baseline\"  or current_menu == \"maintenance\" %}
             <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
             <script crossorigin=\"anonymous\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>
             <script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>
+            <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
+            <script>
+                \$('select').select2();
+            </script>
             <script src=\"{{ asset('build/runtime.js') }}\"></script>
             <script src=\"{{ asset('build/vendors~app.js') }}\"></script>
             <script src=\"{{ asset('build/app.js') }}\"></script>

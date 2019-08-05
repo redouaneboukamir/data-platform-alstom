@@ -66,7 +66,7 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 5
-        echo "    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-4 main-fleet\" role=\"main\">
+        echo "    <main class=\"col-md-12 ml-sm-auto col-lg-12 pl-5 px-4 main-fleet\" role=\"main\">
 
         <h1 class=\"title_fleet_management\">";
         // line 7
@@ -106,15 +106,18 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
                         </div>
                         <div class=\"text-descrip-project col-md-11\">
                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
                             <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                what is your wish you my father I am your son this understand what is your wish.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                what is your wish you my father I am your son this understand what is your wish.</p>
                         </div>
 
                     </div>
                     <div class=\"col-md-3\">
+                        <p class=\"btn-primary btn col-12\">Add trains</p>
+                        <p class=\"btn-success btn col-12\">Create train</p>
+
                         <table class=\"table table-striped table-show-project table-content\">
                             <thead class=\"thead-dark\">
                                 <tr>
@@ -123,20 +126,20 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
                             </thead>
                             <tbody>
                                 ";
-        // line 50
+        // line 53
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 50, $this->source); })()), "trains", [], "any", false, false, false, 50));
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 53, $this->source); })()), "trains", [], "any", false, false, false, 53));
         foreach ($context['_seq'] as $context["_key"] => $context["train"]) {
-            // line 51
+            // line 54
             echo "                                    <tr class=\"col-md-12 title-table\">
                                         <td class=\"td-table\">
                                             <a href=\"";
-            // line 53
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 53)]), "html", null, true);
+            // line 56
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 56)]), "html", null, true);
             echo "\">
                                                 ";
-            // line 54
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["train"], "name", [], "any", false, false, false, 54), "html", null, true);
+            // line 57
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["train"], "name", [], "any", false, false, false, 57), "html", null, true);
             echo "
                                             </a>
                                         </td>
@@ -146,7 +149,7 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['train'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 59
+        // line 62
         echo "                            </tbody>
                         </table>
 
@@ -166,7 +169,7 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
 
     }
 
-    // line 70
+    // line 73
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -176,7 +179,7 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 71
+        // line 74
         echo "    <script>
         let click = false;
         \$('#img-project').click(function () {
@@ -212,7 +215,7 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
 
     public function getDebugInfo()
     {
-        return array (  180 => 71,  170 => 70,  150 => 59,  139 => 54,  135 => 53,  131 => 51,  127 => 50,  91 => 19,  79 => 10,  73 => 7,  69 => 5,  59 => 4,  36 => 1,);
+        return array (  183 => 74,  173 => 73,  153 => 62,  142 => 57,  138 => 56,  134 => 54,  130 => 53,  91 => 19,  79 => 10,  73 => 7,  69 => 5,  59 => 4,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -221,7 +224,7 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
 
 
 {% block body %}
-    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-4 main-fleet\" role=\"main\">
+    <main class=\"col-md-12 ml-sm-auto col-lg-12 pl-5 px-4 main-fleet\" role=\"main\">
 
         <h1 class=\"title_fleet_management\">{{ project.name|upper }}</h1>
 
@@ -250,15 +253,18 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
                         </div>
                         <div class=\"text-descrip-project col-md-11\">
                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
                             <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                what is your wish you my father I am your son this understand what is your wish.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                what is your wish you my father I am your son this understand what is your wish.</p>
                         </div>
 
                     </div>
                     <div class=\"col-md-3\">
+                        <p class=\"btn-primary btn col-12\">Add trains</p>
+                        <p class=\"btn-success btn col-12\">Create train</p>
+
                         <table class=\"table table-striped table-show-project table-content\">
                             <thead class=\"thead-dark\">
                                 <tr>

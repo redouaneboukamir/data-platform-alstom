@@ -5,23 +5,24 @@
 <div class="text-left">
     <div class="row">
         <div class="col-md-12">{{ form_row(form.name) }}</div>
+        <div class="col-md-12">{{ form_row(form.trains) }}</div>
 
     </div>
     {# 
-        <div class=" content-img-form-project col-12">
-            {% if button == 'Edit' %}
-                {% if project.filename %}
-                    <img class="img-project-form img-fluid" src="/build/img/projects/{{ project.filename }}">
+            <div class=" content-img-form-project col-12">
+                {% if button == 'Edit' %}
+                    {% if project.filename %}
+                        <img class="img-project-form img-fluid" src="/build/img/projects/{{ project.filename }}">
+                    {% else %}
+                        <img class="img-project-form img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
+                    {% endif %}
+        
                 {% else %}
-                    <img class="img-project-form img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}" alt="{{ project.name }}">
+                    <img id="img-project-form" class="img-project-form img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}">
                 {% endif %}
-    
-            {% else %}
-                <img id="img-project-form" class="img-project-form img-fluid" src="{{ asset('../build/img/projects/project-background.jpg') }}">
-            {% endif %}
-        </div>
-    
-        {{ form_row(form.profilePicture) }} #}
+            </div>
+        
+            {{ form_row(form.profilePicture) }} #}
 
     <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
 </div>

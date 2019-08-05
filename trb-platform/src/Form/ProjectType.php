@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Clients;
 use App\Entity\Engineers;
+use App\Entity\Trains;
 use App\Entity\Projects;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -20,6 +21,16 @@ class ProjectType extends AbstractType
             ->add('name')
             ->add('available', HiddenType::class, [
                 'data' => true
+            ])
+            ->add('trains', EntityType::class, [
+                'class' => Trains::class,
+                'attr' => [
+                    'id' => 'choice_trains',
+                ],
+                'label' => 'Trains',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false
             ]);
         // ->add('profilePicture', FileType::class, [
         //     'label' => 'Image project (PNG, JPG, PDF)',

@@ -26,7 +26,6 @@
       <parameter key="VichUploaderBundle">Vich\UploaderBundle\VichUploaderBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="KnpUOAuth2ClientBundle">KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle</parameter>
-      <parameter key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -96,10 +95,6 @@
       <parameter key="KnpUOAuth2ClientBundle" type="collection">
         <parameter key="path">C:\Users\L_200606688\OneDrive - Alstom\data-platform-alstom\trb-platform\vendor\knpuniversity\oauth2-client-bundle\src</parameter>
         <parameter key="namespace">KnpU\OAuth2ClientBundle</parameter>
-      </parameter>
-      <parameter key="FOSJsRoutingBundle" type="collection">
-        <parameter key="path">C:\Users\L_200606688\OneDrive - Alstom\data-platform-alstom\trb-platform\vendor\friendsofsymfony\jsrouting-bundle</parameter>
-        <parameter key="namespace">FOS\JsRoutingBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -364,15 +359,6 @@
       </parameter>
     </parameter>
     <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
-    <parameter key="fos_js_routing.extractor.class">FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor</parameter>
-    <parameter key="fos_js_routing.controller.class">FOS\JsRoutingBundle\Controller\Controller</parameter>
-    <parameter key="fos_js_routing.normalizer.route_collection.class">FOS\JsRoutingBundle\Serializer\Normalizer\RouteCollectionNormalizer</parameter>
-    <parameter key="fos_js_routing.normalizer.routes_response.class">FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer</parameter>
-    <parameter key="fos_js_routing.denormalizer.route_collection.class">FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer</parameter>
-    <parameter key="fos_js_routing.request_context_base_url">null</parameter>
-    <parameter key="fos_js_routing.cache_control" type="collection">
-      <parameter key="enabled">false</parameter>
-    </parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -4568,50 +4554,6 @@
       <argument type="service" id="knpu.oauth2.provider.keycloak"/>
       <argument type="service" id="request_stack"/>
     </service>
-    <service id="fos_js_routing.extractor" class="FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor" public="true">
-      <argument type="service" id="router.default"/>
-      <argument type="collection"/>
-      <argument>C:\Users\L_200606688\OneDrive - Alstom\data-platform-alstom\trb-platform\var\cache\dev</argument>
-      <argument>%kernel.bundles%</argument>
-    </service>
-    <service id="fos_js_routing.dump_command" class="FOS\JsRoutingBundle\Command\DumpCommand">
-      <tag name="console.command"/>
-      <argument type="service" id="fos_js_routing.extractor"/>
-      <argument type="service" id="fos_js_routing.serializer"/>
-      <argument>C:\Users\L_200606688\OneDrive - Alstom\data-platform-alstom\trb-platform\src</argument>
-      <argument>null</argument>
-      <call method="setName">
-        <argument>fos:js-routing:dump</argument>
-      </call>
-    </service>
-    <service id="fos_js_routing.router_debug_exposed_command" class="FOS\JsRoutingBundle\Command\RouterDebugExposedCommand">
-      <tag name="console.command"/>
-      <argument type="service" id="fos_js_routing.extractor"/>
-      <argument type="service" id="router.default"/>
-      <call method="setName">
-        <argument>fos:js-routing:debug</argument>
-      </call>
-    </service>
-    <service id="fos_js_routing.controller" class="FOS\JsRoutingBundle\Controller\Controller" public="true">
-      <argument type="service" id="fos_js_routing.serializer"/>
-      <argument type="service" id="fos_js_routing.extractor"/>
-      <argument>%fos_js_routing.cache_control%</argument>
-      <argument>true</argument>
-    </service>
-    <service id="fos_js_routing.serializer" class="Symfony\Component\Serializer\Serializer" public="true">
-      <argument type="collection">
-        <argument type="service" id="fos_js_routing.normalizer.route_collection"/>
-        <argument type="service" id="fos_js_routing.normalizer.routes_response"/>
-        <argument type="service" id="fos_js_routing.denormalizer.route_collection"/>
-      </argument>
-      <argument type="collection">
-        <argument key="json" type="service" id="fos_js_routing.encoder"/>
-      </argument>
-    </service>
-    <service id="fos_js_routing.normalizer.route_collection" class="FOS\JsRoutingBundle\Serializer\Normalizer\RouteCollectionNormalizer" public="false"/>
-    <service id="fos_js_routing.normalizer.routes_response" class="FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer" public="false"/>
-    <service id="fos_js_routing.denormalizer.route_collection" class="FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer" public="false"/>
-    <service id="fos_js_routing.encoder" class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\KeyCloakAuthController" class="App\Controller\KeyCloakAuthController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\KeyCloakAuthController" class="App\Controller\KeyCloakAuthController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\KeyCloakAuthController" class="App\Controller\KeyCloakAuthController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5486,7 +5428,7 @@
     <service id=".errored..service_locator.GUV4eEY.App\Entity\Baseline" class="App\Entity\Baseline"/>
     <service id=".errored..service_locator.exK4rja.App\Entity\Equipement" class="App\Entity\Equipement"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
-      <argument type="service" id=".service_locator.t6nlTLd"/>
+      <argument type="service" id=".service_locator.MvR2oa0"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -5540,8 +5482,6 @@
         <argument key="vich:mapping:debug">vich_uploader.command.mapping_debug</argument>
         <argument key="vich:mapping:list-classes">vich_uploader.command.mapping_list_classes</argument>
         <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
-        <argument key="fos:js-routing:dump">fos_js_routing.dump_command</argument>
-        <argument key="fos:js-routing:debug">fos_js_routing.router_debug_exposed_command</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:controller">maker.auto_command.make_controller</argument>
@@ -5562,7 +5502,7 @@
         <argument key="make:migration">maker.auto_command.make_migration</argument>
       </argument>
     </service>
-    <service id=".service_locator.t6nlTLd" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.MvR2oa0" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service" id="console.command.about"/>
@@ -5602,8 +5542,6 @@
         <argument key="doctrine.schema_drop_command" type="service" id="doctrine.schema_drop_command"/>
         <argument key="doctrine.schema_update_command" type="service" id="doctrine.schema_update_command"/>
         <argument key="doctrine.schema_validate_command" type="service" id="doctrine.schema_validate_command"/>
-        <argument key="fos_js_routing.dump_command" type="service" id="fos_js_routing.dump_command"/>
-        <argument key="fos_js_routing.router_debug_exposed_command" type="service" id="fos_js_routing.router_debug_exposed_command"/>
         <argument key="maker.auto_command.make_auth" type="service" id="maker.auto_command.make_auth"/>
         <argument key="maker.auto_command.make_command" type="service" id="maker.auto_command.make_command"/>
         <argument key="maker.auto_command.make_controller" type="service" id="maker.auto_command.make_controller"/>
@@ -5848,7 +5786,6 @@
     <service id="KnpU\OAuth2ClientBundle\Client\ClientRegistry" alias="knpu.oauth2.registry" public="false"/>
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
-    <service id="fos_js_routing.router" alias="router.default" public="false"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.6UpOB.p"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
