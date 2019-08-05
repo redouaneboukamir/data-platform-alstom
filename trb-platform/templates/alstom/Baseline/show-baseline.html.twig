@@ -36,7 +36,6 @@
                     <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-version" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
                         <span aria-hidden="true">&times;</span>
                     </button>
-
                 </div>
                 <div class="modal-body">
                     <div class="card-content clearfix">
@@ -59,13 +58,13 @@
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1>{{baseline.name}}</h1>
-            <p>
-                <div class="content-btn-add-config">
-                    <button class="btn btn-primary" id="add-configLogiciel">Add Configuration Logiciel</button>
-                    <button class="btn btn-primary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Add Version Logiciel</button>
-                    <button class="btn btn-success" id="add-versionLogiciel">Instantiate to train</button>
-                </div>
-            </p>
+
+            <div class="content-btn-add-config">
+                <button class="btn btn-primary" id="add-configLogiciel">Add Configuration Logiciel</button>
+                <button class="btn btn-primary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Add Version Logiciel</button>
+                <button class="btn btn-success" id="add-versionLogiciel">Instantiate to train</button>
+            </div>
+
         </div>
         <div class="content-version-config">
             <h6 id="title-version"></h6>
