@@ -814,7 +814,7 @@ class alstomController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function create_baseline(Request $request, BaselineRepository $baselineRepository): Response
+    public function create_baseline(Request $request): Response
     {
         $baseline = new Baseline;
         $form_baseline = $this->createForm(BaselineType::class, $baseline);
@@ -824,7 +824,7 @@ class alstomController extends AbstractController
         $form_equipement = $this->createForm(EquipementType::class, $equipement);
         $form_equipement->handleRequest($request);
 
-        return $this->render('alstom/baseline/create-baseline.html.twig', [
+        return $this->render('alstom/baseline/create_baseline.html.twig', [
             'current_menu' => "baseline",
             'form_baseline' => $form_baseline->createView(),
             'form_equipement' => $form_equipement->createView()
@@ -911,14 +911,17 @@ class alstomController extends AbstractController
         Request $request
     ) {
 
-        $idErtms = $request->attributes->get('id');
-
         $id_assoc = $associationEquiptERTMSRepository->find($baseline->getEquipmentErtms()->getId());
         $equipements = $id_assoc->getEquipements();
 
         $equipement = new Equipement;
+        $version = new VersionLogiciel;
+
         $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_version = $this->createForm(VersionType::class, $version);
+
         $form_equipement->handleRequest($request);
+        $form_version->handleRequest($request);
 
         if ($form_equipement->isSubmitted() && $form_equipement->isValid()) {
 
@@ -935,6 +938,7 @@ class alstomController extends AbstractController
             'equipement' => $equipement,
             'equipements' => $equipements,
             'form_equipement' => $form_equipement->createView(),
+            'form_version' => $form_version->createView()
 
         ]);
     }
@@ -1062,19 +1066,26 @@ class alstomController extends AbstractController
      * @Route("alstom/addVersion", name="alstom.addVersion", methods={"POST"})
      * @return Response
      */
-    public function addVersion(Request $request): Response
+    public function addVersion(Request $request, BaselineRepository $baselineRepository): Response
     {
         $version = new VersionLogiciel;
 
+        $baseline = $baselineRepository->find($request->request->get('idBaseline'));
+
         $name_version = $request->request->get('version')['version[release_note'];
         $version->setReleaseNote($name_version);
-        dump($version);
+        $version->setDate(new \DateTime());
         // $this->em->persist($version);
+
+        // $baseline->setVersionLogiciel($version);
+        // $this->em->persist($baseline);
+
+        dump($version);
+        dump($baseline);
         // $this->em->flush();
 
         return $this->json([
-            'code' => 200,
-            'version' => $version
+            'version' => $version->getReleaseNote()
         ], 200);
     }
 

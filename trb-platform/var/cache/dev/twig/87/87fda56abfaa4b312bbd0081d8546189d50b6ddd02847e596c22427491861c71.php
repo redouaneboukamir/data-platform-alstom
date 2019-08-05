@@ -197,7 +197,6 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
         echo "\"></script>
         </body>
     </html>
-</body></body></html></body></html>
 ";
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
@@ -367,7 +366,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     public function getDebugInfo()
     {
-        return array (  341 => 141,  290 => 100,  271 => 84,  257 => 72,  247 => 71,  229 => 12,  211 => 6,  196 => 149,  192 => 148,  188 => 147,  181 => 142,  178 => 141,  175 => 71,  172 => 70,  170 => 69,  167 => 68,  165 => 67,  164 => 66,  148 => 53,  136 => 48,  123 => 42,  110 => 36,  97 => 30,  84 => 24,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
+        return array (  340 => 141,  289 => 100,  270 => 84,  256 => 72,  246 => 71,  228 => 12,  210 => 6,  196 => 149,  192 => 148,  188 => 147,  181 => 142,  178 => 141,  175 => 71,  172 => 70,  170 => 69,  167 => 68,  165 => 67,  164 => 66,  148 => 53,  136 => 48,  123 => 42,  110 => 36,  97 => 30,  84 => 24,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -523,7 +522,6 @@ or current_menu == \"baseline\"  or current_menu == \"maintenance\" %}
             <script src=\"{{ asset('build/app.js') }}\"></script>
         </body>
     </html>
-</body></body></html></body></html>
 ", "alstom/index.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\index.html.twig");
     }
 }

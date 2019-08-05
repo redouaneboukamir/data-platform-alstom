@@ -188,7 +188,7 @@ $('#form_baseline').on('submit', function (e) {
 //Validation de tous les équipements et de la baseline
 $('#valid-all-equipments').on('click', function (e) {
     e.preventDefault();
-    console.log(baselineName)
+
     if (Equipments != "") {
         $('.main-baseline').css('opacity', "0.4");
         $('#wait-spinner').show();
@@ -297,7 +297,7 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
         }
     });
 });
-
+//Formulaire d'edit de l'équipement
 $('#form_equipement_edit').on('submit', function (e) {
     e.preventDefault();
     $('.main-ertms').css("opacity", '0.4');
@@ -337,6 +337,45 @@ $('#form_equipement_edit').on('submit', function (e) {
     });
 
 })
+
+//Requete AJAX de création de version logiciel
+$('#form_version').on('submit', function (e) {
+    e.preventDefault();
+    $('.main-baseline').css("opacity", '0.4');
+    $('#wait-spinner').show();
+
+    var $this = $(this);
+    let data = {};
+
+    $this.find('[name]').each(function (index, value) {
+        var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+
+        data[name] = value;
+    })
+    $.ajax({
+        url: $this.attr('action'),
+        type: $this.attr('method'),
+        data: {
+            idBaseline: extraitNombre(window.location.pathname),
+            version: data
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+
+            $('#title-version').html("Version logiciel : " + response.version)
+            $('.main-baseline').css("opacity", '1');
+            $('#wait-spinner').hide();
+            $('#modal-form-version').modal('hide');
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+})
+
 
 
 

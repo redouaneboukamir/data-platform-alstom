@@ -29,12 +29,14 @@
                     </a>
                 </li>
                 <li>
-                    <a class="collapsed" data-target="#dashboard" data-toggle="collapse" href="#">
+                    <a class="collapsed" class="element-sidebar" data-target="#dashboard" data-toggle="collapse" href="#">
                         <i class="fas fa-project-diagram"></i>
                         <span class="nav-label">
                             Fleet management
                         </span>
+                        {# <i class="fas fa-chevron-down"></i> #}
                         <span class="fa fa-chevron-left pull-right"></span>
+
                     </a>
                     <ul class="sub-menu collapse" id="dashboard">
                         <li class="{% if (current_menu == " fleet") %} active {% endif %}"></li>
@@ -58,7 +60,7 @@
 
 
 </ul></li><li>
-<a class="collapsed active" data-target="#tables" data-toggle="collapse" href="#">
+<a class="collapsed" data-target="#tables" data-toggle="collapse" href="#">
     <i class="fas fa-file-upload"></i>
     <span class="nav-label">Logs</span>
     <span class="fa fa-chevron-left pull-right"></span>
@@ -74,7 +76,7 @@
     </li>
 
 </ul></li><li>
-<a class="collapsed active" data-target="#e-commerce" data-toggle="collapse" href="#">
+<a class="collapsed" data-target="#e-commerce" data-toggle="collapse" href="#">
     <i class="fas fa-tools"></i>
 
     <span class="nav-label">Tools</span>

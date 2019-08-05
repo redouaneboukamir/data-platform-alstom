@@ -170,7 +170,7 @@ a.navbar-brand {
     transform: translateX(-14vw);
 
     @media (max-width: 1000px) {
-        transform: translateX(-22vw);
+        transform: translateX(-20vw);
 
     }
 
@@ -184,6 +184,7 @@ a.navbar-brand {
 
     i {
         transform: translateX(14vw);
+
 
         @media (max-width: 1000px) {
             transform: translateX(20vw);

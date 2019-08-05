@@ -22,6 +22,8 @@ $('.post-module-fleet').hover(function () {
     }, 300);
 });
 
+$('.fa-chevron-down').hide();
+let labelCliked = false;
 $(document).ready(function () {
     $('pre').remove();
     $('.button-left').click(function () {
@@ -44,5 +46,10 @@ $(document).ready(function () {
             $('main').addClass('col-lg-12');
             $('main').addClass('col-md-12');
         })
+    $('.nav-label').click(function () {
+
+        $('.fa-chevron-left').css('transform', 'rotatex(45deg)')
+    })
+
 
 });
