@@ -96,7 +96,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         // line 32
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/train-select.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"col-md-12 img-type-train img-fluid\">
-        <figure class=\"content-ertms col-md-10  offset-md-1 img-fluid\">
+        <figure class=\"content-ertms col-md-10  offset-md-2 img-fluid\">
 
             <img src=\"";
         // line 35
@@ -199,7 +199,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         <h4>Select Baseline :
         </h4>
         <img src=\"{{ asset('../build/img/trains/train-select.svg') }}\" alt=\"\" class=\"col-md-12 img-type-train img-fluid\">
-        <figure class=\"content-ertms col-md-10  offset-md-1 img-fluid\">
+        <figure class=\"content-ertms col-md-10  offset-md-2 img-fluid\">
 
             <img src=\"{{ asset('../build/img/trains/ertms.svg') }}\" alt=\"\" class=\"ertms img-fluid\" id=\"ertms-train-1\">
             <img src=\"{{ asset('../build/img/trains/ertms.svg') }}\" alt=\"\" class=\"ertms img-fluid\" id=\"ertms-train-2\">
