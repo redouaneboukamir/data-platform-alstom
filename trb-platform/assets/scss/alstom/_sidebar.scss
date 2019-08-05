@@ -167,7 +167,12 @@ a.navbar-brand {
     padding: 0;
     background-color: $maincolor;
     transition: all 0.6s ease-in-out;
-    transform: translateX(-225px);
+    transform: translateX(-14vw);
+
+    @media (max-width: 1000px) {
+        transform: translateX(-22vw);
+
+    }
 
     &:hover {
         transform: translateX(0);
@@ -178,7 +183,12 @@ a.navbar-brand {
     }
 
     i {
-        transform: translateX(225px);
+        transform: translateX(14vw);
+
+        @media (max-width: 1000px) {
+            transform: translateX(20vw);
+
+        }
     }
 }
 
@@ -328,3 +338,5 @@ a.navbar-brand {
 .fliph .user-panel {
     display: none;
 }
+
+// -------------------------------------------------------------------------------------------

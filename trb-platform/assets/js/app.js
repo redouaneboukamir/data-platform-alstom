@@ -30,15 +30,19 @@ $(document).ready(function () {
     $('.sidebar').hover(function () {
             $('main').removeClass('col-lg-12');
             $('main').removeClass('pl-5');
+            $('main').removeClass('col-md-12');
             $('main').css('transition', 'all 0.6s ease-in-out');
             $('main').addClass('col-lg-10');
+            $('main').addClass('col-md-9');
 
         },
         function () {
             $('main').removeClass('col-lg-10');
+            $('main').removeClass('col-md-9');
             $('main').css('transition', 'all 0.6s ease-in-out');
             $('main').addClass('pl-5');
             $('main').addClass('col-lg-12');
+            $('main').addClass('col-md-12');
         })
 
 });
