@@ -15,14 +15,10 @@ use App\Entity\Engineers;
 use App\Entity\EnginSearch;
 use App\Entity\Equipement;
 use App\Entity\ERTMSEquipement;
-
 use App\Entity\Projects;
 use App\Entity\ProjectSearch;
-use App\Entity\SoustypeEquipement;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
-use App\Entity\TypeEquipement;
-
 use App\Form\AssociationType;
 use App\Form\BaselineType;
 use App\Form\ClientsSearchType;
@@ -30,7 +26,6 @@ use App\Form\ClientsType;
 use App\Form\EngineerType;
 use App\Form\EnginSearchType;
 use App\Form\EquipementType;
-use App\Form\ErtmsType;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
 use App\Form\TrainsSearchType;
@@ -48,9 +43,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Services\HttpClientKeycloak;
 use App\Repository\TypeEquipementRepository;
-use App\Repository\EquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
-use App\Services\ApiService;
 use App\Repository\ERTMSEquipementRepository;
 use App\Entity\AssocEvcCarte;
 use App\Repository\AssociationEquiptERTMSRepository;
@@ -58,8 +51,6 @@ use App\Entity\VersionLogiciel;
 use App\Form\VersionType;
 use App\Repository\VersionLogicielRepository;
 use App\Repository\ConfigLogicielRepository;
-use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Component\Validator\Constraints\Date;
 
 class alstomController extends AbstractController
 {
@@ -477,17 +468,6 @@ class alstomController extends AbstractController
         $form_train = $this->createForm(TrainsType::class, $train);
         $form_train->handleRequest($request);
 
-
-
-        if ($form_train->isSubmitted() && $form_train->isValid()) {
-
-            $this->em->persist($train);
-            $this->em->flush();
-            $this->addFlash('success', 'Train create with success');
-            return $this->redirectToRoute('alstom.trains');
-        }
-
-
         return $this
             ->render('alstom/trains/create-trains.html.twig', [
                 'current_menu' => 'trains',
@@ -499,23 +479,55 @@ class alstomController extends AbstractController
      * @Route("alstom/addTrains", name="alstom.addTrains", methods={"POST"})
      * @return Response
      */
-    public function addTrains(Request $request): Response
+    public function addTrains(Request $request, ProjectsRepository $projectsRepository, BaselineRepository $baselineRepository): Response
     {
 
-        $trains = $request->request->get('trains');
-        // $trains = $this->serializer->deserialize($train, Trains::class, 'json');
-        // $train->setName($trains['name']);
-        // $train->setTrainType($trains['trainType']);
+        $data_train = $request->request->get('train');
+        $train = new Trains;
 
-        // $this->em->persist($trains);
-        // $this->em->flush();
+        $train->setName($data_train['trains[name']);
+        $train->setTrainType($data_train['trains[trainType']);
+        if ($data_train['trains[projects'] != null) {
+            $project = $projectsRepository->find($data_train['trains[projects']);
+            $train->setProjects($project);
+        }
+
+        if ($data_train["select_baseline_1"] != null) {
+            $baseline1 = $baselineRepository->find($data_train['select_baseline_1']);
+            $new_baseline = new Baseline;
+            $new_baseline->setName($baseline1->getName());
+            $new_baseline->setTrains($baseline1->getTrains());
+            $new_baseline->setEquipmentErtms($baseline1->getEquipmentErtms());
+            $new_baseline->setConfigLogiciel($baseline1->getConfigLogiciel());
+            $new_baseline->setVersionLogiciel($baseline1->getVersionLogiciel());
+            $new_baseline->setDate(new \Datetime);
+            $new_baseline->setStatus(true);
+            $new_baseline->setOriginal(false);
+            $baseline1->setStatus(false);
+            $train->addBaseline($new_baseline);
+        }
+        if ($data_train["select_baseline_2"] != null) {
+            $baseline2 = $baselineRepository->find($data_train['select_baseline_2']);
+            $new_baseline = new Baseline;
+            $new_baseline->setName($baseline2->getName());
+            $new_baseline->setTrains($baseline2->getTrains());
+            $new_baseline->setEquipmentErtms($baseline2->getEquipmentErtms());
+            $new_baseline->setConfigLogiciel($baseline2->getConfigLogiciel());
+            $new_baseline->setVersionLogiciel($baseline2->getVersionLogiciel());
+            $new_baseline->setDate(new \Datetime);
+            $new_baseline->setStatus(true);
+            $new_baseline->setOriginal(false);
+            $baseline2->setStatus(false);
+            $train->addBaseline($new_baseline);
+        }
+        $this->em->persist($train);
+        $this->em->flush();
+        $idTrain = $train->getId();
 
         return $this->json([
             'code' => 200,
-            'messsage' => "train ",
-            'trains' => $trains['name'],
-            'trains_projects' => $trains['projects'],
-            'trains_type' => $trains['trainType'],
+            'idTrain' => $idTrain
+
 
         ], 200);
     }
@@ -531,9 +543,10 @@ class alstomController extends AbstractController
         $form_train = $this->createForm(TrainsType::class, $trains);
         $form_train->handleRequest($request);
 
+        $baselines = $trains->getBaselines();
+
         //        Validation du formulaire
         if ($form_train->isSubmitted() && $form_train->isValid()) {
-
             $this->em->flush();
             $this->addFlash('success', 'Trains modified with success');
             return $this->redirectToRoute('alstom.trains');
@@ -543,6 +556,7 @@ class alstomController extends AbstractController
             'current_menu' => 'trains',
             'button' => 'Edit',
             'train' => $trains,
+            'baselines' => $baselines,
             'form_train' => $form_train->createView(),
         ]);
     }
@@ -551,11 +565,11 @@ class alstomController extends AbstractController
      * @Route("/alstom/trains/{id}", name="alstom.show-train")
      * @return Response
      */
-    public function show_train(Trains $trains)
+    public function show_train(Trains $trains, Request $request)
     {
         return $this->render('alstom/trains/show-train.html.twig', [
             'current_menu' => 'trains',
-            'train' => $trains
+            'train' => $trains,
         ]);
     }
     //    suppresion de train
@@ -576,26 +590,6 @@ class alstomController extends AbstractController
         }
         return $this->redirectToRoute('alstom.trains');
     }
-
-    //    ERTMS-----------------------------------------------------------
-    //
-
-    /**
-     * @Route("/alstom/ertms", name="alstom.ertms")
-     * @return Response
-     */
-
-    public function ertms(ERTMSEquipementRepository $eRTMSEquipementRepository, Request $request): Response
-    {
-        $ertms = $eRTMSEquipementRepository->findAll();
-
-        return $this->render('alstom/ertms/ertms.html.twig', [
-            'current_menu' => 'ERTMS',
-            'ertms' => $ertms,
-
-        ]);
-    }
-
 
     /**
      * @Route("alstom/checkSubtype", name="alstom.checkSubtype")
@@ -661,40 +655,6 @@ class alstomController extends AbstractController
             'ertms' => $ertms
 
         ], 200);
-    }
-
-
-    //    suppresion de ertms
-    /**
-     * @Route("/alstom/delete-ertms/{id}", name="alstom.delete-ertms", methods={"DELETE"})
-     * @param Request $request
-     * @return Response
-     */
-    public function delete_ertms(
-        Request $request,
-        ERTMSEquipement $ertms,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository
-    ) {
-
-        // if ($this->isCsrfTokenValid('delete' . $ertms->getId(), $request->get('_token'))) {
-        //     dump($ertms);
-
-        //     $assoc = $associationEquiptERTMSRepository->findbySolution($ertms->getid());
-        //     dump($assoc[0]->getEquipements());
-        //     foreach ($assoc[0]->getEquipements() as $key => $value) {
-        //         # code...
-        //         dump($value);
-        //         if ($value->getAssocEvcCarte()) {
-        //             $this->em->remove($value->getAssocEvcCarte());
-        //         }
-        //         $this->em->remove($value);
-        //     }
-        //     $this->em->remove($ertms);
-        //     $this->em->remove($assoc[0]);
-        //     $this->em->flush();
-        //     $this->addFlash('success', 'Ertms delete with success');
-        //     return $this->redirectToRoute('alstom.ertms');
-        // }
     }
 
     // ----------------------LOGS
@@ -795,6 +755,23 @@ class alstomController extends AbstractController
 
 
     // ----------------------BASELINE
+
+    /**
+     * @Route("alstom/checkBaseline", name="alstom.checkBaseline")
+     * @return Response
+     */
+    public function checkBaseline(Request $request, BaselineRepository $baselineRepository)
+    {
+        $baselines = $baselineRepository->findAvailableBaseline();
+
+        $jsonObjectSubtype = $this->serializer->serialize($baselines, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
     /**
      * @Route("/alstom/baseline", name="alstom.baseline")
      * @param Request $request
@@ -887,7 +864,7 @@ class alstomController extends AbstractController
 
         $this->em->persist($assoc_ertms_equipement);
         $baseline->setEquipmentErtms($assoc_ertms_equipement);
-        dump($baseline);
+
         $this->em->persist($assoc_evc_carte);
         $this->em->flush();
         $jsonObjectEquipt = $this->serializer->serialize($baseline, 'json', [
@@ -923,15 +900,7 @@ class alstomController extends AbstractController
         $form_equipement->handleRequest($request);
         $form_version->handleRequest($request);
 
-        if ($form_equipement->isSubmitted() && $form_equipement->isValid()) {
 
-            foreach ($equipements as $key => $value) {
-                if ($equipement->getId() == $value->getId()) {
-                    dump($value);
-                }
-            }
-            // $this->em->persist($equipement);
-        }
         return $this->render('alstom/baseline/show-baseline.html.twig', [
             'current_menu' => 'baseline',
             'baseline' => $baseline,
@@ -1013,19 +982,13 @@ class alstomController extends AbstractController
         $assoc_equipt_ertms->addEquipement($equipement_new);
 
         // $assoc_equipt_ertms->setSolution($current_ertms);
-        dump($request);
 
         if ($request->get('soumission_edit_equipement')) {
-            dump($equipement_new);
-            dump($assoc_equipt_ertms);
 
             $this->em->persist($equipement_new);
             $this->em->persist($assoc_equipt_ertms);
             $this->em->persist($assoc_evc_carte);
             $this->em->flush();
-            return $this->json([
-                "flush" => 200
-            ]);
         } else {
 
             $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
@@ -1063,6 +1026,19 @@ class alstomController extends AbstractController
         ], 200);
     }
     /**
+     * @Route("alstom/addBaselineToTrain", name="alstom.addBaselineToTrain", methods={"POST"})
+     * @return Response
+     */
+    public function addBaselineToTrain(Request $request): Response
+    {
+        $baseline = $request->request->get('baseline')['baseline[name'];
+
+        return $this->json([
+            'code' => 200,
+            'baseline' => $baseline
+        ], 200);
+    }
+    /**
      * @Route("alstom/addVersion", name="alstom.addVersion", methods={"POST"})
      * @return Response
      */
@@ -1075,14 +1051,14 @@ class alstomController extends AbstractController
         $name_version = $request->request->get('version')['version[release_note'];
         $version->setReleaseNote($name_version);
         $version->setDate(new \DateTime());
-        // $this->em->persist($version);
+        $this->em->persist($version);
 
-        // $baseline->setVersionLogiciel($version);
-        // $this->em->persist($baseline);
+        $baseline->setVersionLogiciel($version);
+        $this->em->persist($baseline);
 
         dump($version);
         dump($baseline);
-        // $this->em->flush();
+        $this->em->flush();
 
         return $this->json([
             'version' => $version->getReleaseNote()

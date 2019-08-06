@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Baseline;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\DBAL\Query\QueryBuilder;
 
 /**
  * @method Baseline|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,13 @@ class BaselineRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Baseline::class);
+    }
+    public function findAvailableBaseline(): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.Original = true')
+            ->getQuery()
+            ->getResult();
     }
     public function findByName($value)
     {

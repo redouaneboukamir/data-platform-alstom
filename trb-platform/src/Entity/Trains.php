@@ -46,7 +46,7 @@ class Trains
     private $ERTMS;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Baseline", mappedBy="Trains")
+     * @ORM\OneToMany(targetEntity="App\Entity\Baseline", mappedBy="Trains",cascade={"persist"})
      */
     private $baselines;
 

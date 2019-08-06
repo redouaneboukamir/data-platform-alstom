@@ -65,19 +65,21 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 5
+        echo "    ";
+        // line 24
         echo "
-    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-3 main-fleet\" role=\"main\">
+    <main class=\"col-md-12 ml-sm-auto col-lg-12 pl-5 px-3 main-fleet\" role=\"main\">
 
 
         <h1 class=\"title_fleet_management\">";
-        // line 9
-        echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 9, $this->source); })()), "name", [], "any", false, false, false, 9)), "html", null, true);
+        // line 28
+        echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 28, $this->source); })()), "name", [], "any", false, false, false, 28)), "html", null, true);
         echo "</h1>
 
         <div class=\"card content-train\">
             <a class=\"btn-edit\" href=\"";
-        // line 12
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 12, $this->source); })()), "id", [], "any", false, false, false, 12)]), "html", null, true);
+        // line 31
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 31, $this->source); })()), "id", [], "any", false, false, false, 31)]), "html", null, true);
         echo "\">
                 <button class=\"btn btn-secondary \">
                     <i class=\"fas fa-edit\"></i>
@@ -86,27 +88,27 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
             <figure class=\"panel meta\">
                 ";
-        // line 19
-        if ((twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 19, $this->source); })()), "trainType", [], "any", false, false, false, 19) == "train")) {
-            // line 20
+        // line 38
+        if ((twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 38, $this->source); })()), "trainType", [], "any", false, false, false, 38) == "train")) {
+            // line 39
             echo "                    <div class=\"img img-fluid\">
                         <img src=\"";
-            // line 21
+            // line 40
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/train-select.svg"), "html", null, true);
             echo "\" alt=\"\">
                     </div>
                 ";
         } else {
-            // line 24
+            // line 43
             echo "                    <div class=\"img img-fluid\">
                         <img src=\"";
-            // line 25
+            // line 44
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/locomotive-select.svg"), "html", null, true);
             echo "\" alt=\"\">
                     </div>
                 ";
         }
-        // line 28
+        // line 47
         echo "            </figure>
 
             <div class=\"border-separate-picture-info\"></div>
@@ -118,11 +120,11 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                         </div>
                         <div class=\"text-descrip-project col-md-11\">
                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
                             <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
                         </div>
 
                     </div>
@@ -136,19 +138,30 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                             <tbody>
                                 <tr class=\"col-md-12 title-table\">
                                     <td class=\"td-table\">
-                                        <a href=\"";
-        // line 57
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 57, $this->source); })()), "projects", [], "any", false, false, false, 57), "id", [], "any", false, false, false, 57)]), "html", null, true);
-        echo "\">
-                                            ";
-        // line 58
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 58, $this->source); })()), "projects", [], "any", false, false, false, 58), "name", [], "any", false, false, false, 58), "html", null, true);
+                                        ";
+        // line 76
+        if (twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 76, $this->source); })()), "projects", [], "any", false, false, false, 76)) {
+            // line 77
+            echo "                                            <a href=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.project-show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 77, $this->source); })()), "projects", [], "any", false, false, false, 77), "id", [], "any", false, false, false, 77)]), "html", null, true);
+            echo "\">
+                                                ";
+            // line 78
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 78, $this->source); })()), "projects", [], "any", false, false, false, 78), "name", [], "any", false, false, false, 78), "html", null, true);
+            echo "
+                                            </a>
+                                        ";
+        }
+        // line 81
         echo "
-                                        </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <p class=\"btn-primary btn col-12\" data-target=\"#modal-form-train\" data-toggle=\"modal\">Add baseline</p>
+                        <p class=\"btn-success btn col-12\">Update baseline</p>
+
                         <table class=\"table table-striped table-show-project table-content\">
                             <thead class=\"thead-dark\">
                                 <tr>
@@ -157,8 +170,37 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                             </thead>
                             <tbody>
                                 <tr class=\"col-md-12 title-table\">
-                                    <td class=\"td-table\"></td>
-                                </tr>
+                                    ";
+        // line 98
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["train"]) || array_key_exists("train", $context) ? $context["train"] : (function () { throw new RuntimeError('Variable "train" does not exist.', 98, $this->source); })()), "baselines", [], "any", false, false, false, 98));
+        foreach ($context['_seq'] as $context["_key"] => $context["baseline"]) {
+            // line 99
+            echo "                                        ";
+            if (twig_get_attribute($this->env, $this->source, $context["baseline"], "status", [], "any", false, false, false, 99)) {
+                // line 100
+                echo "                                            <td class=\"td-table\">
+                                                <a href=\"";
+                // line 101
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-baseline", ["id" => twig_get_attribute($this->env, $this->source, $context["baseline"], "id", [], "any", false, false, false, 101)]), "html", null, true);
+                echo "\">
+                                                    ";
+                // line 102
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["baseline"], "name", [], "any", false, false, false, 102), "html", null, true);
+                echo "
+                                                </a>
+                                            </td>
+                                        ";
+            }
+            // line 106
+            echo "
+                                    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['baseline'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 108
+        echo "                                </tr>
                             </tbody>
                         </table>
 
@@ -190,7 +232,7 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
     public function getDebugInfo()
     {
-        return array (  145 => 58,  141 => 57,  110 => 28,  104 => 25,  101 => 24,  95 => 21,  92 => 20,  90 => 19,  80 => 12,  74 => 9,  68 => 5,  58 => 4,  35 => 1,);
+        return array (  203 => 108,  196 => 106,  189 => 102,  185 => 101,  182 => 100,  179 => 99,  175 => 98,  156 => 81,  150 => 78,  145 => 77,  143 => 76,  112 => 47,  106 => 44,  103 => 43,  97 => 40,  94 => 39,  92 => 38,  82 => 31,  76 => 28,  70 => 24,  68 => 5,  58 => 4,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -199,8 +241,27 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
 
 
 {% block body %}
+    {# <div id=\"modal-content-form-equipement-edit\">
+                            <button aria-label=\"Close\" class=\"close\" data-dismiss=\"modal\" id=\"close-modal-form-equipment-edit\" style=\"color:red; position:absolute; right:20px; margin-top:-10px;\" type=\"button\">
+                                <span aria-hidden=\"true\">&times;</span>
+                            </button>
+                            <div class=\"form-equipment\" id=\"formulaire-equipment\">
+                                {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 
+                                   'attr': {'id': 'form_equipement_edit'}}) }}
+                                {{form_row(form_equipement.Type)}}
+                                {{form_row(form_equipement.sous_type)}}
+                                {{form_row(form_equipement.DTR_board)}}
+                                {{form_row(form_equipement.Indice_DTR)}}
+                                {{form_row(form_equipement.Num_serie)}}
+                                {{form_row(form_equipement._token)}}
+                    
+                                <p><input class=\"btn-valid-Equipment\" id=\"soumission-equipement-edit\" name=\"soumission_edit_equipement\" type=\"submit\" value=\"Update\"/></p>
+                    
+                                {{form_end(form_equipement)}}</div>
+                    
+                        </div> #}
 
-    <main class=\"col-md-9 ml-sm-auto col-lg-12 pl-5 px-3 main-fleet\" role=\"main\">
+    <main class=\"col-md-12 ml-sm-auto col-lg-12 pl-5 px-3 main-fleet\" role=\"main\">
 
 
         <h1 class=\"title_fleet_management\">{{ train.name|upper }}</h1>
@@ -233,11 +294,11 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                         </div>
                         <div class=\"text-descrip-project col-md-11\">
                             <p class=\"mt\">Later, when we reached the city, and glanced down the chief avenue, smouldering in its crushed-strawberry tint, those splendid effects were repeated; for every balcony, and every fanciful bird-cage of a snuggery countersunk in the house-fronts,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 and all the long lines of roofs were crowded with people, and each crowd was an explosion of brilliant color.</p>
                             <p>For color, and picturesqueness, and novelty, and outlandishness, and sustained interest and fascination, it was the most satisfying show I had ever seen, and I suppose I shall not have the privilege of looking upon its like again.</p>
                             <p>In the first place God made idiots. This was for practice. Then He made School Boards. --Pudd'nhead Wilson's New Calendar.</p>
                             <p>\"I pray please to give me some action (work) for I am very poor boy I have no one to help me even so father for it so it seemed in thy good sight, you give the Telegraph Office, and another work what is your wish I am very poor boy, this understand
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 what is your wish you my father I am your son this understand what is your wish.</p>
                         </div>
 
                     </div>
@@ -251,13 +312,20 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                             <tbody>
                                 <tr class=\"col-md-12 title-table\">
                                     <td class=\"td-table\">
-                                        <a href=\"{{ path('alstom.project-show', {id: train.projects.id}) }}\">
-                                            {{ train.projects.name }}
-                                        </a>
+                                        {% if train.projects %}
+                                            <a href=\"{{ path('alstom.project-show', {id: train.projects.id}) }}\">
+                                                {{ train.projects.name }}
+                                            </a>
+                                        {% endif %}
+
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <p class=\"btn-primary btn col-12\" data-target=\"#modal-form-train\" data-toggle=\"modal\">Add baseline</p>
+                        <p class=\"btn-success btn col-12\">Update baseline</p>
+
                         <table class=\"table table-striped table-show-project table-content\">
                             <thead class=\"thead-dark\">
                                 <tr>
@@ -266,7 +334,16 @@ class __TwigTemplate_a5790e20fab79ad4c3a3e86eddaa051c54ecb1a24dc6a90d59ac9268225
                             </thead>
                             <tbody>
                                 <tr class=\"col-md-12 title-table\">
-                                    <td class=\"td-table\"></td>
+                                    {% for baseline in train.baselines %}
+                                        {% if baseline.status %}
+                                            <td class=\"td-table\">
+                                                <a href=\"{{ path('alstom.show-baseline', {id: baseline.id}) }}\">
+                                                    {{ baseline.name }}
+                                                </a>
+                                            </td>
+                                        {% endif %}
+
+                                    {% endfor %}
                                 </tr>
                             </tbody>
                         </table>

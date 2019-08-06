@@ -370,7 +370,7 @@ $('#form_version').on('submit', function (e) {
         dataType: 'json', // JSON
         success: function (response) {
 
-            $('#title-version').html("Version logiciel : " + response.version)
+            $('#title-version').html("Version logiciel : " + " " + response.version)
             $('.main-baseline').css("opacity", '1');
             $('#wait-spinner').hide();
             $('#close-modal-form-version').trigger('click');
@@ -472,7 +472,7 @@ function deleteEquipment(position) {
     $('.description').remove();
     Equipments.forEach(returnIndexElement);
 }
-//Extrait le nombre de l'id des equipements
+//Extrait le nombre d'une streing
 function extraitNombre(str) {
     return Number(str.replace(/[^\d]/g, ""))
 }

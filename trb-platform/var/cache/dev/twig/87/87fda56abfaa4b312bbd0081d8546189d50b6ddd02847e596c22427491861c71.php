@@ -133,13 +133,13 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                             <li class=\"nav-item\">
                                 <a class=\"nav-link ";
         // line 48
-        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 48, $this->source); })()) == " ertms")) {
+        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 48, $this->source); })()) == " baseline")) {
             echo "active";
         }
         echo "\" href=\"";
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.ertms");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.baseline");
         echo "\">
-                                    <span data-feather=\"layers\">ERTMS</span>
+                                    <span data-feather=\"layers\">Baseline</span>
                                 </a>
                             </li>
                             <li class=\"nav-item text-nowrap\">
@@ -429,8 +429,8 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                                 </a>
                             </li>
                             <li class=\"nav-item\">
-                                <a class=\"nav-link {% if (current_menu == \" ertms\") %}active{% endif %}\" href=\"{{ path('alstom.ertms') }}\">
-                                    <span data-feather=\"layers\">ERTMS</span>
+                                <a class=\"nav-link {% if (current_menu == \" baseline\") %}active{% endif %}\" href=\"{{ path('alstom.baseline') }}\">
+                                    <span data-feather=\"layers\">Baseline</span>
                                 </a>
                             </li>
                             <li class=\"nav-item text-nowrap\">

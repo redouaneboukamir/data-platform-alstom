@@ -67,7 +67,17 @@
 
         </div>
         <div class="content-version-config">
-            <h6 id="title-version"></h6>
+            {% if (baseline.VersionLogiciel) %}
+
+
+                <h6 id="title-version" style="color:rgb(168, 3, 3)">Version Logiciel :{{ baseline.VersionLogiciel.ReleaseNote}}</h6>
+
+
+            {% else %}
+                <h6 id="title-version" style="color:rgb(168, 3, 3)"></h6>
+
+            {% endif %}
+
         </div>
         <div class="show-equipment" id="show-equipment" style="">
 

@@ -39,13 +39,13 @@ class TrainsType extends AbstractType
                 'attr' => [
                     'class' => 'test'
                 ]
-            ])
-            ->add('position_ERTMS')
-            ->add('baselines', EntityType::class, [
-                'class' => Baseline::class,
-                'choice_label' => "name"
-
             ]);
+        // ->add('position_ERTMS');
+        // ->add('baselines', EntityType::class, [
+        //     'class' => Baseline::class,
+        //     'choice_label' => "name"
+
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
