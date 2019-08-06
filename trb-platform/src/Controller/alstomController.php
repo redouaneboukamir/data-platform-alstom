@@ -60,6 +60,7 @@ use App\Repository\VersionLogicielRepository;
 use App\Repository\ConfigLogicielRepository;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\Date;
+use Aws\S3\S3Client;
 
 class alstomController extends AbstractController
 {
@@ -93,7 +94,39 @@ class alstomController extends AbstractController
 
         $userRoles = $this->getUser()->getRoles();
         $userId = $this->container->get(KEY_SESSION)->get('userId');
-
+        $s3 = new S3Client([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+            'endpoint' => 'http://localhost:5555',
+            'use_path_style_endpoint' => true,
+            'credentials' => [
+                    'key'    => 'amdptestdeployv7private',
+                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                ],
+        ]);
+        
+        // Use the high-level iterators (returns ALL of your objects).
+        $objects_ts3 = $s3->listObjects([
+            'Bucket' => 'application'
+        ]);
+        dump($objects_ts3['Contents']);
+        foreach($objects_ts3['Contents'] as $s3_filename){
+            $name_s3 = $s3_filename['Key'];
+            
+            $command = $s3->getCommand('GetObject', [
+                'Bucket' => 'application',
+                'Key'    => $name_s3
+            ]);
+    
+            // Create a pre-signed URL for a request with duration of 10 miniutes
+            $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
+    
+            // Get the actual presigned-url
+             $presignedUrl =  (string)  $presignedRequest->getUri();
+             echo '<a href="'.$presignedUrl.'">'.$name_s3.'</a><br/>';
+        }
+        
         // dump($clientKeycloak->getUser($userId));   
 
         // dump($userRoles);
