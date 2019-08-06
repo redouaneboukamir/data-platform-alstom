@@ -3,6 +3,7 @@ import './train';
 import './ertms';
 import './equipement';
 import './baseline';
+import './test-upload';
 
 // loads the jquery package from node_modules
 const $ = require('jquery');

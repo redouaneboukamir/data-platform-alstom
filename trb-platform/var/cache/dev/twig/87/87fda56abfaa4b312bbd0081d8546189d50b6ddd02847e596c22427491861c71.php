@@ -70,8 +70,12 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
         echo "        </head>
 
         <body>
+            <div id=\"test-upload\">
+                <input type=\"file\" id=\"selector\" multiple>
+                <button name\"upload-file\">Upload</button>
+            </div>
             ";
-        // line 17
+        // line 21
         echo "            <div class=\"pos-f-t navbar-smallscreen\">
                 <div class=\"collapse\" id=\"navbarToggleExternalContent\">
                     <div class=\"bg-dark p-4\">
@@ -80,8 +84,8 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                         <ul class=\"navbar-nav px-3\">
                             <li class=\"nav-item\">
                                 <a class=\"nav-link ";
-        // line 24
-        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 24, $this->source); })()) == " client")) {
+        // line 28
+        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 28, $this->source); })()) == " client")) {
             echo "active";
         }
         echo "\" href=\"";
@@ -93,8 +97,8 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                             </li>
                             <li class=\"nav-item\">
                                 <a class=\"nav-link ";
-        // line 30
-        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 30, $this->source); })()) == " engineers")) {
+        // line 34
+        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 34, $this->source); })()) == " engineers")) {
             echo "active";
         }
         echo "\" href=\"";
@@ -106,8 +110,8 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                             </li>
                             <li class=\"nav-item\">
                                 <a class=\"nav-link ";
-        // line 36
-        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 36, $this->source); })()) == " projects")) {
+        // line 40
+        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 40, $this->source); })()) == " projects")) {
             echo "active";
         }
         echo "\" href=\"";
@@ -119,8 +123,8 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                             </li>
                             <li class=\"nav-item\">
                                 <a class=\"nav-link ";
-        // line 42
-        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 42, $this->source); })()) == " trains")) {
+        // line 46
+        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 46, $this->source); })()) == " trains")) {
             echo "active";
         }
         echo "\" href=\"";
@@ -132,8 +136,8 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                             </li>
                             <li class=\"nav-item\">
                                 <a class=\"nav-link ";
-        // line 48
-        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 48, $this->source); })()) == " ertms")) {
+        // line 52
+        if (((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 52, $this->source); })()) == " ertms")) {
             echo "active";
         }
         echo "\" href=\"";
@@ -144,7 +148,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                             </li>
                             <li class=\"nav-item text-nowrap\">
                                 <a class=\"nav-link signout-burger\" href=\"";
-        // line 53
+        // line 57
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("logout");
         echo "\">Sign out</a>
                             </li>
@@ -160,24 +164,24 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
 
             ";
-        // line 66
-        if (((((((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 66, $this->source); })()) == "trains") || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 66, $this->source); })()) == "projects")) || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 66, $this->source); })()) == "logs")) || (        // line 67
-(isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 67, $this->source); })()) == "baseline")) || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 67, $this->source); })()) == "maintenance"))) {
-            // line 68
+        // line 70
+        if (((((((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 70, $this->source); })()) == "trains") || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 70, $this->source); })()) == "projects")) || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 70, $this->source); })()) == "logs")) || (        // line 71
+(isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 71, $this->source); })()) == "baseline")) || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 71, $this->source); })()) == "maintenance"))) {
+            // line 72
             echo "
                 ";
-            // line 69
-            $this->loadTemplate("alstom/_sidebar.html.twig", "alstom\\index.html.twig", 69)->display($context);
-            // line 70
+            // line 73
+            $this->loadTemplate("alstom/_sidebar.html.twig", "alstom\\index.html.twig", 73)->display($context);
+            // line 74
             echo "            ";
         }
-        // line 71
+        // line 75
         echo "            ";
         $this->displayBlock('body', $context, $blocks);
-        // line 141
+        // line 145
         echo "            ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 142
+        // line 146
         echo "            <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
             <script crossorigin=\"anonymous\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>
             <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
@@ -188,15 +192,15 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                 \$('select').select2();
             </script>
             <script src=\"";
-        // line 151
+        // line 155
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/runtime.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 152
+        // line 156
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/vendors~app.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 153
+        // line 157
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/app.js"), "html", null, true);
         echo "\"></script>
         </body>
@@ -246,7 +250,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     }
 
-    // line 71
+    // line 75
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -256,7 +260,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 72
+        // line 76
         echo "                <main class=\"main-home container-fluid\" role=\"main\">
                     <div class=\"content-logo\">
                         <img alt=\"Alstom logo\" class=\"alstom-logo-home img-fluid\" src=\"build/img/logo-alstom.svg\">
@@ -270,7 +274,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                                 <img src=\"/build/img/home-fleet.png\"/></div>
                             <a
                                 href=\"";
-        // line 84
+        // line 88
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.fleet_management");
         echo "\">
                                 <!-- Post Content-->
@@ -289,7 +293,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
                             <!-- Post Content-->
                             <a href=\"";
-        // line 100
+        // line 104
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.logs");
         echo "\">
                                 <div class=\"post-content\">
@@ -340,7 +344,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     }
 
-    // line 141
+    // line 145
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -370,7 +374,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     public function getDebugInfo()
     {
-        return array (  344 => 141,  293 => 100,  274 => 84,  260 => 72,  250 => 71,  232 => 12,  214 => 6,  200 => 153,  196 => 152,  192 => 151,  181 => 142,  178 => 141,  175 => 71,  172 => 70,  170 => 69,  167 => 68,  165 => 67,  164 => 66,  148 => 53,  136 => 48,  123 => 42,  110 => 36,  97 => 30,  84 => 24,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
+        return array (  348 => 145,  297 => 104,  278 => 88,  264 => 76,  254 => 75,  236 => 12,  218 => 6,  204 => 157,  200 => 156,  196 => 155,  185 => 146,  182 => 145,  179 => 75,  176 => 74,  174 => 73,  171 => 72,  169 => 71,  168 => 70,  152 => 57,  140 => 52,  127 => 46,  114 => 40,  101 => 34,  88 => 28,  79 => 21,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -390,6 +394,10 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
         </head>
 
         <body>
+            <div id=\"test-upload\">
+                <input type=\"file\" id=\"selector\" multiple>
+                <button name\"upload-file\">Upload</button>
+            </div>
             {# Navbar burger en petit écran + la sidebar#}
             <div class=\"pos-f-t navbar-smallscreen\">
                 <div class=\"collapse\" id=\"navbarToggleExternalContent\">

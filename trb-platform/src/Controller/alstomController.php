@@ -60,7 +60,11 @@ use App\Repository\VersionLogicielRepository;
 use App\Repository\ConfigLogicielRepository;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\Date;
+//Allow the use of AWS object Storage
 use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
+use Aws\S3\MultipartUploader;
+use Aws\Exception\MultipartUploadException;
 
 class alstomController extends AbstractController
 {
@@ -648,6 +652,8 @@ class alstomController extends AbstractController
         return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
     }
 
+    
+
     /**
      * @Route("alstom/addEquipment", name="alstom.addEquipment")
      * @return Response
@@ -1134,4 +1140,66 @@ class alstomController extends AbstractController
             'current_menu' => 'fleet'
         ]);
     }
+    
+    /*
+        ------- MINIO Service -----
+    */
+    
+    /**
+     * @Route("alstom/uploadFile", name="alstom.uploadFile")
+     * @return Response
+     */
+    public function uploadFile(Request $request)
+    {
+        //input structure 
+            //request['bucket'] => the name of the bucket
+            //request['upload_request'] => the type of request (upload_request or status)
+        //connexion to the S3 client 
+        $s3 = new S3Client([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+            'endpoint' => 'http://localhost:5555',
+            'use_path_style_endpoint' => true,
+            'credentials' => [
+                    'key'    => 'amdptestdeployv7private',
+                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                ],
+        ]);
+        $upload_request = $request->request->get('upload_request');
+        //if the request sends an upload request then the function use the uploaderPart function
+        if($upload_request == "upload") {
+            $source = $request->request->get('tempDestination');
+            $bucket = $request->request->get('bucket');
+            $nameFile = $request->request->get('filename');
+
+            $uploader = new MultipartUploader(
+                $s3, 
+                $source, 
+                [
+                    'bucket' => $bucket,
+                    'key' => $nameFile,
+                ]
+            );
+        }
+        elseif($upload_request == "status"){
+            print("status");
+        }
+        else{
+            //an error is raised
+        } 
+
+        //if the request sends a status of the upload then the function sends back the status
+
+        
+        $testUpload = array(
+            "ok" => "ok"
+        );
+        $jsonObjectestUpload = $this->serializer->serialize($testUpload, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+        return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
+    }    
 }
