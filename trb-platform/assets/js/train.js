@@ -3,7 +3,6 @@
 //     $('input[name="trains[name]"]').val('');
 // });
 
-
 /*Masquage de certains élement */
 $('#create-ertms-1').hide();
 $('#create-ertms-2').hide();
@@ -11,27 +10,19 @@ $("#create-ertms-train-1").hide();
 $('#create_soustype').hide();
 $('#create_type').hide();
 $('#modal-body').hide();
-let current_choice = "";
-$("#trains_trainType option:selected").each(function () {
 
-    current_choice += $(this).text() + " ";
-    console.log(current_choice);
-
-});
-
-if (current_choice.trim() == 'Train') {
-    $('#select_train').show();
-    $('#select_locomotive').hide();
-} else if (current_choice.trim() == 'Locomotive') {
-
-    $('#select_locomotive').show();
-    $('#select_train').hide();
-}
-
+$(document).ready(function () {
+    loadTrainParameter();
+})
 // Traitement du choix du type de train
 $('#trains_trainType').change(function () {
 
-    let
+    loadTrainParameter();
+
+});
+
+function loadTrainParameter() {
+    let current_choice = "",
         ertms_left = "",
         ertms_middle = "",
         ertms_right = "";
@@ -113,4 +104,4 @@ $('#trains_trainType').change(function () {
             $('#select-ertms-train').show();
         });
     }
-});
+}

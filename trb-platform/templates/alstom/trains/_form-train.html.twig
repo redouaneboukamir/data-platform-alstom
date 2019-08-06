@@ -10,6 +10,8 @@
     <div class="col-md-12">{{ form_row(form_train.name) }}</div>
     <div class="col-md-12">{{ form_row(form_train.projects) }}</div>
     <div class="col-md-12">{{ form_row(form_train.trainType) }}</div>
+    {{form_row(form_train.baselines)}}
+
     {{form_widget(form_train.position_ERTMS, {
         'attr' : {
             'style' : 'display:none !important'

@@ -66,24 +66,32 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         echo "</div>
     ";
         // line 13
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 13, $this->source); })()), "position_ERTMS", [], "any", false, false, false, 13), 'widget', ["attr" => ["style" => "display:none !important"]]);
-        // line 17
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 13, $this->source); })()), "baselines", [], "any", false, false, false, 13), 'row');
+        echo "
+    ";
+        // line 14
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 14, $this->source); })()), "baselines", [], "any", false, false, false, 14), 'row');
+        echo "
+    ";
+        // line 15
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 15, $this->source); })()), "position_ERTMS", [], "any", false, false, false, 15), 'widget', ["attr" => ["style" => "display:none !important"]]);
+        // line 19
         echo "
 
     <div class=\"content-type-train col-md-12 mt-4\" id=\"select_locomotive\">
         <h4>Select Baseline :
         </h4>
         <img src=\"";
-        // line 22
+        // line 24
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/locomotive-select.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"col-md-12 img-type-train img-fluid\">
         <figure class=\"content-ertms col-md-10 offset-md-2\">
             <img src=\"";
-        // line 24
+        // line 26
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms \" id=\"ertms-loco-1\">
             <img src=\"";
-        // line 25
+        // line 27
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms \" id=\"ertms-loco-2\">
         </figure>
@@ -93,21 +101,21 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
         <h4>Select Baseline :
         </h4>
         <img src=\"";
-        // line 32
+        // line 34
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/train-select.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"col-md-12 img-type-train img-fluid\">
         <figure class=\"content-ertms col-md-10  offset-md-2 img-fluid\">
 
             <img src=\"";
-        // line 35
+        // line 37
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms img-fluid\" id=\"ertms-train-1\">
             <img src=\"";
-        // line 36
+        // line 38
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms img-fluid\" id=\"ertms-train-2\">
             <img src=\"";
-        // line 37
+        // line 39
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("../build/img/trains/ertms.svg"), "html", null, true);
         echo "\" alt=\"\" class=\"ertms img-fluid \" id=\"ertms-train-3\">
         </figure>
@@ -117,8 +125,8 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 </div>
 <p><input class=\"btn btn-primary mt-4\" id=\"soumission-train\" name=\"soumission_train\" type=\"submit\" value=\"Create\"/></p>
 ";
-        // line 44
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 44, $this->source); })()), 'form_end');
+        // line 46
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form_train"]) || array_key_exists("form_train", $context) ? $context["form_train"] : (function () { throw new RuntimeError('Variable "form_train" does not exist.', 46, $this->source); })()), 'form_end');
         echo "
 ";
         
@@ -162,7 +170,7 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
 
     public function getDebugInfo()
     {
-        return array (  143 => 2,  133 => 1,  121 => 44,  111 => 37,  107 => 36,  103 => 35,  97 => 32,  87 => 25,  83 => 24,  78 => 22,  71 => 17,  69 => 13,  65 => 12,  61 => 11,  57 => 10,  50 => 6,  46 => 4,  44 => 1,);
+        return array (  151 => 2,  141 => 1,  129 => 46,  119 => 39,  115 => 38,  111 => 37,  105 => 34,  95 => 27,  91 => 26,  86 => 24,  79 => 19,  77 => 15,  73 => 14,  69 => 13,  65 => 12,  61 => 11,  57 => 10,  50 => 6,  46 => 4,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -179,6 +187,8 @@ class __TwigTemplate_590b5553f523b8c218e694817b64b6ebb3f1695d4c3a81c3fc0991471ae
     <div class=\"col-md-12\">{{ form_row(form_train.name) }}</div>
     <div class=\"col-md-12\">{{ form_row(form_train.projects) }}</div>
     <div class=\"col-md-12\">{{ form_row(form_train.trainType) }}</div>
+    {{form_row(form_train.baselines)}}
+    {{form_row(form_train.baselines)}}
     {{form_widget(form_train.position_ERTMS, {
         'attr' : {
             'style' : 'display:none !important'

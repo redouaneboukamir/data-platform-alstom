@@ -477,6 +477,8 @@ class alstomController extends AbstractController
         $form_train = $this->createForm(TrainsType::class, $train);
         $form_train->handleRequest($request);
 
+
+
         if ($form_train->isSubmitted() && $form_train->isValid()) {
 
             $this->em->persist($train);
