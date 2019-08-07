@@ -54,8 +54,6 @@
     </div>
     {# --------------------------- #}
     <main class="col-md-12 ml-sm-auto col-lg-12 pl-5 px-4 main-baseline" role="main">
-
-
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1>{{baseline.name}}</h1>
 
@@ -68,20 +66,12 @@
         </div>
         <div class="content-version-config">
             {% if (baseline.VersionLogiciel) %}
-
-
                 <h6 id="title-version" style="color:rgb(168, 3, 3)">Version Logiciel :{{ baseline.VersionLogiciel.ReleaseNote}}</h6>
-
-
             {% else %}
                 <h6 id="title-version" style="color:rgb(168, 3, 3)"></h6>
-
             {% endif %}
-
         </div>
         <div class="show-equipment" id="show-equipment" style="">
-
-
             {% for equipement in equipements %}
                 {% if equipement.status == true %}
                     {% if (equipement.Type.name == "EVC") or (equipement.Type.name == "CARTE") %}

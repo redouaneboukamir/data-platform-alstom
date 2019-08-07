@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -31,11 +33,6 @@ class Baseline
     private $Trains;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\AssociationEquiptERTMS", inversedBy="baselines")
-     */
-    private $Equipment_ertms;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ConfigLogiciel", inversedBy="baselines")
      */
     private $ConfigLogiciel;
@@ -60,11 +57,17 @@ class Baseline
      */
     private $Original;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AssociationEquiptERTMS", mappedBy="baseline")
+     */
+    private $ERTMS;
+
     public function __construct()
     {
         $this->Original = true;
         $this->Status = false;
         $this->Date = new DateTime();
+        $this->ERTMS = new ArrayCollection();
     }
     public function __toString()
     {
@@ -96,18 +99,6 @@ class Baseline
     public function setTrains(?Trains $Trains): self
     {
         $this->Trains = $Trains;
-
-        return $this;
-    }
-
-    public function getEquipmentErtms(): ?AssociationEquiptERTMS
-    {
-        return $this->Equipment_ertms;
-    }
-
-    public function setEquipmentErtms(?AssociationEquiptERTMS $Equipment_ertms): self
-    {
-        $this->Equipment_ertms = $Equipment_ertms;
 
         return $this;
     }
@@ -168,6 +159,37 @@ class Baseline
     public function setOriginal(bool $Original): self
     {
         $this->Original = $Original;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AssociationEquiptERTMS[]
+     */
+    public function getERTMS(): Collection
+    {
+        return $this->ERTMS;
+    }
+
+    public function addERTM(AssociationEquiptERTMS $eRTM): self
+    {
+        if (!$this->ERTMS->contains($eRTM)) {
+            $this->ERTMS[] = $eRTM;
+            $eRTM->setBaseline($this);
+        }
+
+        return $this;
+    }
+
+    public function removeERTM(AssociationEquiptERTMS $eRTM): self
+    {
+        if ($this->ERTMS->contains($eRTM)) {
+            $this->ERTMS->removeElement($eRTM);
+            // set the owning side to null (unless already changed)
+            if ($eRTM->getBaseline() === $this) {
+                $eRTM->setBaseline(null);
+            }
+        }
 
         return $this;
     }

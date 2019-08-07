@@ -488,72 +488,110 @@ class alstomController extends AbstractController
      */
     public function addBaselineToTrain(Request $request, Trains $train): Response
     {
-        dump($train);
+
+        $equipement = new Equipement;
+        $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_equipement->handleRequest($request);
+
         return $this->render('alstom/baseline/addBaselineToTrain.html.twig', [
             'current_menu' => 'baseline',
-            'train' => $train
-            // 'baseline' => $baseline,
-            // 'equipement' => $equipement,
-            // 'equipements' => $equipements,
-            // 'form_equipement' => $form_equipement->createView(),
-            // 'form_version' => $form_version->createView()
+            'train' => $train,
+            'form_equipement' => $form_equipement->createView(),
 
         ]);
     }
     /**
-     * @Route("alstom/addTrains", name="alstom.addTrains", methods={"POST"})
+     * @Route("alstom/CheckEquipements/{id}", name="alstom.CheckEquipements", methods={"POST","GET"})
      * @return Response
      */
-    public function addTrains(Request $request, ProjectsRepository $projectsRepository, BaselineRepository $baselineRepository): Response
+    public function checkEquipements(Request $request, Baseline $baseline): Response
     {
+        dump($baseline);
+        foreach ($baseline->getERTMS() as $key => $value) {
+            $equipements = $value->getEquipements();
+        }
+        // $equipements = $baseline->getERTMS()->getEquipements();
 
-        $data_train = $request->request->get('train');
-        $train = new Trains;
+        $jsonObjectEquipt = $this->serializer->serialize($equipements, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
 
-        $train->setName($data_train['trains[name']);
-        $train->setTrainType($data_train['trains[trainType']);
-        if ($data_train['trains[projects'] != null) {
-            $project = $projectsRepository->find($data_train['trains[projects']);
-            $train->setProjects($project);
+        return $this->json(['equipments' => $jsonObjectEquipt], 200);
+    }
+    /**
+     * @Route("alstom/addBaselineInstancier", name="alstom.addBaselineInstancier", methods={"POST"})
+     * @return Response
+     */
+    public function addBaselineInstancier(
+        Request $request,
+        TrainsRepository $trainsRepository,
+        BaselineRepository $baselineRepository,
+        TypeEquipementRepository $typeEquipementRepository,
+        SoustypeEquipementRepository $soustypeEquipementRepository
+    ): Response {
+
+        $tabEquipt = $request->request->get("new_equipt");
+        $train = $trainsRepository->find($request->request->get('id_train'));
+        $baseline = $baselineRepository->find($request->request->get('baseline'));
+
+        foreach ($baseline->getERTMS() as $key => $value) {
+            $value->setStatus(false);
         }
 
-        if ($data_train["select_baseline_1"] != null) {
-            $baseline1 = $baselineRepository->find($data_train['select_baseline_1']);
-            $new_baseline = new Baseline;
-            $new_baseline->setName($baseline1->getName());
-            $new_baseline->setTrains($baseline1->getTrains());
-            $new_baseline->setEquipmentErtms($baseline1->getEquipmentErtms());
-            $new_baseline->setConfigLogiciel($baseline1->getConfigLogiciel());
-            $new_baseline->setVersionLogiciel($baseline1->getVersionLogiciel());
-            $new_baseline->setDate(new \Datetime);
-            $new_baseline->setStatus(true);
-            $new_baseline->setOriginal(false);
-            $baseline1->setStatus(false);
-            $train->addBaseline($new_baseline);
+        $new_assoc = new AssociationEquiptERTMS;
+
+        foreach ($tabEquipt as $key => $value) {
+            dump($value);
+            $equipement = new Equipement;
+
+            $equipement->setType($typeEquipementRepository->find($value['type']['id']));
+
+            if ($value['SousType'] != "") {
+                $equipement->setSousType($soustypeEquipementRepository->find($value['SousType']['id']));
+            }
+            $equipement->setDTRBoard($value['dTRBoard']);
+            $equipement->setIndiceDTR($value['indiceDTR']);
+            $equipement->setNumSerie($value['numSerie']);
+            $equipement->setStatus(true);
+
+            $this->em->persist($equipement);
+            $new_assoc->addEquipement($equipement);
+            $new_assoc->setStatus(true);
+
+            // switch ($value['equipement[Type']) {
+            //     case "1":
+            //         $assoc_evc_carte->setEVC($equipement);
+            //         dump($equipement);
+            //         break;
+            //     case "2":
+            //         $assoc_evc_carte->addCARD($equipement);
+            //         dump($equipement);
+            //         break;
+            // }
+            dump($equipement);
         }
-        if ($data_train["select_baseline_2"] != null) {
-            $baseline2 = $baselineRepository->find($data_train['select_baseline_2']);
-            $new_baseline = new Baseline;
-            $new_baseline->setName($baseline2->getName());
-            $new_baseline->setTrains($baseline2->getTrains());
-            $new_baseline->setEquipmentErtms($baseline2->getEquipmentErtms());
-            $new_baseline->setConfigLogiciel($baseline2->getConfigLogiciel());
-            $new_baseline->setVersionLogiciel($baseline2->getVersionLogiciel());
-            $new_baseline->setDate(new \Datetime);
-            $new_baseline->setStatus(true);
-            $new_baseline->setOriginal(false);
-            $baseline2->setStatus(false);
-            $train->addBaseline($new_baseline);
-        }
-        $this->em->persist($train);
+
+        $new_baseline = new Baseline;
+        $new_baseline->setName($baseline->getName());
+        $new_baseline->setTrains($train);
+        $new_baseline->addERTM($new_assoc);
+        $new_baseline->setConfigLogiciel($baseline->getConfigLogiciel());
+        $new_baseline->setVersionLogiciel($baseline->getVersionLogiciel());
+        $new_baseline->setDate(new \Datetime);
+        $new_baseline->setStatus(true);
+        $new_baseline->setOriginal(false);
+        $baseline->setStatus(false);
+
+        dump($new_assoc);
+        dump($new_baseline);
+        dump($train);
+        $this->em->persist($new_baseline);
+        $train->addBaseline($new_baseline);
         $this->em->flush();
-        $idTrain = $train->getId();
-
         return $this->json([
-            'code' => 200,
-            'idTrain' => $idTrain
-
-
+            // 'idTrain' => $idTrain
         ], 200);
     }
 
@@ -855,7 +893,7 @@ class alstomController extends AbstractController
         $this->em->persist($baseline);
 
         $assoc_ertms_equipement->setSolution($ertms);
-        $assoc_ertms_equipement->addBaseline($baseline);
+        $assoc_ertms_equipement->setBaseline($baseline);
 
         $assoc_evc_carte->setERTMS($ertms);
 
@@ -887,16 +925,13 @@ class alstomController extends AbstractController
             }
         }
 
+        $assoc_ertms_equipement->setStatus(true);
         $this->em->persist($assoc_ertms_equipement);
-        $baseline->setEquipmentErtms($assoc_ertms_equipement);
+        $baseline->addERTM($assoc_ertms_equipement);
 
         $this->em->persist($assoc_evc_carte);
         $this->em->flush();
-        $jsonObjectEquipt = $this->serializer->serialize($baseline, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+
         //return $this->redirectToRoute('alstom.ertms');
         return $this->json([
             "baseline" => $baseline->getId()
@@ -912,9 +947,13 @@ class alstomController extends AbstractController
         AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
         Request $request
     ) {
+        foreach ($baseline->getERTMS() as $key => $value) {
 
-        $id_assoc = $associationEquiptERTMSRepository->find($baseline->getEquipmentErtms()->getId());
-        $equipements = $id_assoc->getEquipements();
+            if ($value->getStatus() == true) {
+                $assoc = $value;
+            }
+        }
+        $equipements = $assoc->getEquipements();
 
         $equipement = new Equipement;
         $version = new VersionLogiciel;
@@ -953,6 +992,9 @@ class alstomController extends AbstractController
         // $new_assoc_equipt_ertms = new AssociationEquiptERTMS;
         $assoc_evc_carte = new AssocEvcCarte;
         $equipement_new = new Equipement;
+        $new_assoc = new AssociationEquiptERTMS;
+        $new_baseline = new Baseline;
+
         $current_equipement = $equipement;
         $new_equipement = $request->request->get('equipement');
 
@@ -1008,12 +1050,27 @@ class alstomController extends AbstractController
 
         // $assoc_equipt_ertms->setSolution($current_ertms);
 
+        // $new_baseline->setEquipmentErtms();
         if ($request->get('soumission_edit_equipement')) {
+            dump($equipement_new);
+            $this->em->persist($equipement_new);
+            $this->em->persist($assoc_equipt_ertms);
+            $this->em->persist($assoc_evc_carte);
 
+            $this->em->flush();
+        } else if ($new_equipement['soumission_edit_equipement'] == "Update") {
+            dump($equipement_new);
             $this->em->persist($equipement_new);
             $this->em->persist($assoc_equipt_ertms);
             $this->em->persist($assoc_evc_carte);
             $this->em->flush();
+
+            $jsonObjectEquipt = $this->serializer->serialize($equipement_new, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+            return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
         } else {
 
             $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
@@ -1025,7 +1082,73 @@ class alstomController extends AbstractController
             return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
         }
     }
+    /**
+     * @Route("/alstom/edit-equipment-baseline/{id}", name="alstom.edit-equipment-baseline", methods={"POST","GET"})
+     * @return Response
+     */
+    public function edit_equipement_baseline(
+        Equipement $equipement,
+        Request $request,
+        ERTMSEquipementRepository $eRTMSEquipementRepository,
+        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
+        TypeEquipementRepository $typeEquipementRepository,
+        SoustypeEquipementRepository $soustypeEquipementRepository
+    ) {
 
+        $assoc_evc_carte = new AssocEvcCarte;
+        $equipement_new = new Equipement;
+        $new_assoc = new AssociationEquiptERTMS;
+
+        $new_equipement = $request->request->get('equipement');
+        if ($new_equipement != null) {
+
+            foreach ($new_equipement as $key => $value) {
+
+                switch ($key) {
+                    case 'equipement[Type':
+                        $equipement_new->setType($typeEquipementRepository->find($value));
+                        // switch ($value) {
+                        //     case "1":
+                        //         $assoc_evc_carte->setEVC($equipement);
+                        //         break;
+                        //     case "2":
+                        //         $assoc_evc_carte->addCARD($equipement);
+                        //         break;
+                        // }
+                        break;
+                    case 'equipement[sous_type':
+                        if ($value != "") {
+                            $equipement_new->setSousType($soustypeEquipementRepository->find($value));
+                        }
+                        break;
+                    case 'equipement[DTR_board':
+                        $equipement_new->setDTRBoard($value);
+                        break;
+                    case 'equipement[Indice_DTR':
+                        $equipement_new->setIndiceDTR($value);
+                        break;
+                    case 'equipement[Num_serie':
+                        $equipement_new->setNumSerie($value);
+                        break;
+                }
+            }
+
+            $jsonObjectEquipt = $this->serializer->serialize($equipement_new, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+        } else {
+
+            $jsonObjectEquipt = $this->serializer->serialize($equipement, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+        }
+
+        return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
+    }
     /**
      * @Route("alstom/addAssocBaseline", name="alstom.addAssocBaseline", methods={"POST"})
      * @return Response

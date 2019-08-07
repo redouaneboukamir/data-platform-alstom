@@ -4878,11 +4878,19 @@
         <argument key="train" type="service" id=".errored..service_locator.8ldkpsq.App\Entity\Trains"/>
       </argument>
     </service>
-    <service id=".service_locator.9I0K_lD" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.2hlHMKT" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="baseline" type="service" id=".errored..service_locator.2hlHMKT.App\Entity\Baseline"/>
+      </argument>
+    </service>
+    <service id=".service_locator.pqK2DNC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="baselineRepository" type="service" id="App\Repository\BaselineRepository"/>
-        <argument key="projectsRepository" type="service" id="App\Repository\ProjectsRepository"/>
+        <argument key="soustypeEquipementRepository" type="service" id="App\Repository\SoustypeEquipementRepository"/>
+        <argument key="trainsRepository" type="service" id="App\Repository\TrainsRepository"/>
+        <argument key="typeEquipementRepository" type="service" id="App\Repository\TypeEquipementRepository"/>
       </argument>
     </service>
     <service id=".service_locator.59.A7DW" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4948,16 +4956,17 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.bhL1Jnh" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.zwqOFKp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\KeyCloakAuthController::connectAction" type="service" id=".service_locator.no19fnv"/>
+        <argument key="App\Controller\alstomController::addBaselineInstancier" type="service" id=".service_locator.pqK2DNC"/>
         <argument key="App\Controller\alstomController::addBaselineToTrain" type="service" id=".service_locator.8ldkpsq"/>
         <argument key="App\Controller\alstomController::addEquipement" type="service" id=".service_locator..edoj62"/>
-        <argument key="App\Controller\alstomController::addTrains" type="service" id=".service_locator.9I0K_lD"/>
         <argument key="App\Controller\alstomController::addVersion" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController::baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController::checkBaseline" type="service" id=".service_locator.hzCL1kd"/>
+        <argument key="App\Controller\alstomController::checkEquipements" type="service" id=".service_locator.2hlHMKT"/>
         <argument key="App\Controller\alstomController::checkSubtype" type="service" id=".service_locator.KZaf3.i"/>
         <argument key="App\Controller\alstomController::clients" type="service" id=".service_locator.jNTV7Lm"/>
         <argument key="App\Controller\alstomController::createLogs" type="service" id=".service_locator.FFKOrz8"/>
@@ -4968,6 +4977,7 @@
         <argument key="App\Controller\alstomController::edit_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController::edit_engineer" type="service" id=".service_locator.tx3hRNe"/>
         <argument key="App\Controller\alstomController::edit_equipement" type="service" id=".service_locator.exK4rja"/>
+        <argument key="App\Controller\alstomController::edit_equipement_baseline" type="service" id=".service_locator.exK4rja"/>
         <argument key="App\Controller\alstomController::edit_project" type="service" id=".service_locator.Ac1X4cR"/>
         <argument key="App\Controller\alstomController::edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController::engineers" type="service" id=".service_locator.MWuXu_8"/>
@@ -4989,12 +4999,13 @@
         <argument key="App\Controller\clientController::users" type="service" id=".service_locator.JkextnA"/>
         <argument key="App\Controller\securityController::login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\KeyCloakAuthController:connectAction" type="service" id=".service_locator.no19fnv"/>
+        <argument key="App\Controller\alstomController:addBaselineInstancier" type="service" id=".service_locator.pqK2DNC"/>
         <argument key="App\Controller\alstomController:addBaselineToTrain" type="service" id=".service_locator.8ldkpsq"/>
         <argument key="App\Controller\alstomController:addEquipement" type="service" id=".service_locator..edoj62"/>
-        <argument key="App\Controller\alstomController:addTrains" type="service" id=".service_locator.9I0K_lD"/>
         <argument key="App\Controller\alstomController:addVersion" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController:baseline" type="service" id=".service_locator.hzCL1kd"/>
         <argument key="App\Controller\alstomController:checkBaseline" type="service" id=".service_locator.hzCL1kd"/>
+        <argument key="App\Controller\alstomController:checkEquipements" type="service" id=".service_locator.2hlHMKT"/>
         <argument key="App\Controller\alstomController:checkSubtype" type="service" id=".service_locator.KZaf3.i"/>
         <argument key="App\Controller\alstomController:clients" type="service" id=".service_locator.jNTV7Lm"/>
         <argument key="App\Controller\alstomController:createLogs" type="service" id=".service_locator.FFKOrz8"/>
@@ -5005,6 +5016,7 @@
         <argument key="App\Controller\alstomController:edit_client" type="service" id=".service_locator._IXm1YU"/>
         <argument key="App\Controller\alstomController:edit_engineer" type="service" id=".service_locator.tx3hRNe"/>
         <argument key="App\Controller\alstomController:edit_equipement" type="service" id=".service_locator.exK4rja"/>
+        <argument key="App\Controller\alstomController:edit_equipement_baseline" type="service" id=".service_locator.exK4rja"/>
         <argument key="App\Controller\alstomController:edit_project" type="service" id=".service_locator.Ac1X4cR"/>
         <argument key="App\Controller\alstomController:edit_train" type="service" id=".service_locator.59.A7DW"/>
         <argument key="App\Controller\alstomController:engineers" type="service" id=".service_locator.MWuXu_8"/>
@@ -5418,7 +5430,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.bhL1Jnh"/>
+      <argument type="service" id=".service_locator.zwqOFKp"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5426,6 +5438,7 @@
     <service id=".errored..service_locator.tx3hRNe.App\Entity\Engineers" class="App\Entity\Engineers"/>
     <service id=".errored..service_locator.Ac1X4cR.App\Entity\Projects" class="App\Entity\Projects"/>
     <service id=".errored..service_locator.8ldkpsq.App\Entity\Trains" class="App\Entity\Trains"/>
+    <service id=".errored..service_locator.2hlHMKT.App\Entity\Baseline" class="App\Entity\Baseline"/>
     <service id=".errored..service_locator.59.A7DW.App\Entity\Trains" class="App\Entity\Trains"/>
     <service id=".errored..service_locator.GUV4eEY.App\Entity\Baseline" class="App\Entity\Baseline"/>
     <service id=".errored..service_locator.exK4rja.App\Entity\Equipement" class="App\Entity\Equipement"/>
@@ -5788,7 +5801,7 @@
     <service id="KnpU\OAuth2ClientBundle\Client\ClientRegistry" alias="knpu.oauth2.registry" public="false"/>
     <service id="oauth2.registry" alias="knpu.oauth2.registry" public="true"/>
     <service id="KnpU\OAuth2ClientBundle\Client\Provider\KeycloakClient" alias="knpu.oauth2.client.keycloak" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.bhL1Jnh"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.zwqOFKp"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.tSKDlY7" alias=".1_ServiceLocator~oTF2Lpc" public="false"/>

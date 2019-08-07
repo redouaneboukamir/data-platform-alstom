@@ -36,7 +36,7 @@ $(document).ready(function () {
             })
 
         })
-        console.log(window.location.pathname);
+
     } else {
         console.log(window.location.pathname);
     }
@@ -237,6 +237,7 @@ $('#close-modal-form-equipment-edit').click(function () {
     $('#modal-content-form-equipement-edit').hide();
     $('.main-ertms').css("opacity", '1');
 })
+// -----------------------------------------------------------------------------
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
 $('.content-description-dtr').on('click', '.edit-delete-equipement > a', function (e) {
     e.preventDefault();

@@ -10,17 +10,23 @@ $("#create-ertms-train-1").hide();
 $('#create_soustype').hide();
 $('#create_type').hide();
 $('#modal-body').hide();
+$('#modal_baseline_equipement').hide();
+$('#close-modal-form-baseline-train').click(function () {
+    $('#modal_baseline_equipement').hide();
+})
 for (let i = 1; i < 4; i++) {
     $('#btn-baseline-' + i).css('opacity', '0');
 }
-
+let idEquipment = "",
+    indexEVC;
 
 $(document).ready(function () {
-
     let nombre_url = extraitNombre(window.location.pathname);
 
     if (window.location.pathname == '/alstom/InstanceBaseline/' + nombre_url) {
 
+        $('main').css("opacity", '0.4');
+        $('#wait-spinner').show();
         $.post("/alstom/checkBaseline", ).then(function (response) {
             response.forEach(element => {
                 //Remplissage par les element reçu du controller
@@ -30,8 +36,12 @@ $(document).ready(function () {
 
             $('#select_baseline_1').val('');
             $('#select_baseline_2').val('');
+        }).done(function () {
+            $('main').css("opacity", '1');
+            $('#wait-spinner').hide();
         })
     }
+
 })
 
 $('#select_train').show();
@@ -42,7 +52,12 @@ let current_choice = "",
     ertms_middle = "",
     ertms_right = "";
 
-
+$('#close-modal-baseline-1').click(function () {
+    $('#content-form-baseline-1').hide();
+})
+$('#close-modal-baseline-2').click(function () {
+    $('#content-form-baseline-2').hide();
+})
 $('#ertms-train-1').click(function () {
     ertms_left = true;
     ertms_middle = false;
@@ -73,7 +88,6 @@ $('#ertms-train-2').click(function () {
     $('#label-baseline-1').text('Baseline midle');
     $('#content-form-baseline-2').hide();
     $('#content-form-baseline-1').show();
-
     $('#content-form-baseline-1').addClass('offset-md-3');
 
 });
@@ -113,59 +127,304 @@ $('#ertms-loco-2').click(function () {
 });
 
 //Recupere le select de la baseline et le met en visuel
-// $('#add-baseline-1').click(function (e) {
-//     e.preventDefault();
+$('#add-baseline-1').click(function (e) {
 
-//     $('#content-form-baseline-1').hide();
-//     let name_baseline_1 = $('#select_baseline_1 option:selected').text();
-//     console.log(name_baseline_1)
-//     $('#content-name-baseline-1').append("<h5>" + name_baseline_1 + "</h5>")
+    e.preventDefault();
+    $('main').css("opacity", '0.4');
+    $('#wait-spinner').show();
+    if (ertms_middle) {
+        $('#ertms-train-3').css('opacity', '0');
+        $('#ertms-train-1').css('opacity', '0');
+    } else if (ertms_left) {
+        $('#ertms-train-2').css('opacity', '0');
+    }
+    // $('#content-form-baseline-1').hide();
+    let idBaseline = $('#select_baseline_1 option:selected').val();
+    $('#title_baseline_modal').html($('#select_baseline_1 option:selected').text());
+    // $('#modal-content-form-equipement-edit').show();
+    $.ajax({
+        url: '/alstom/CheckEquipements/' + idBaseline,
+        type: 'POST',
+        data: {},
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            $('#wait-spinner').hide();
+            $('#modal_baseline_equipement').show();
+            $('main').css('opacity', '0.4');
+            let Equipments = JSON.parse(response.equipments);
 
-// })
+            Equipments.forEach(FindIndexEvc);
+            Equipments.forEach(returnIndexElement);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+
+})
+
+$('#add-baseline-2').click(function (e) {
+    e.preventDefault();
+    $('#ertms-train-2').css('opacity', '0');
+
+    // $('#content-form-baseline-1').hide();
+    let name_baseline_1 = $('#select_baseline_2 option:selected').val();
+    console.log(name_baseline_1)
+    // $('#content-name-baseline-1').append("<h5>" + name_baseline_1 + "</h5>")
+
+})
+
+// Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
+$('#show-equipment ').on('click', '.description > .content-description-dtr > button', function (e) {
+    e.preventDefault();
+    $('#modal_baseline_equipement').hide();
+    $('.main-ertms').css("opacity", '0.4');
+    $('#wait-spinner').show();
+
+    idEquipment = extraitNombre($(this)[0]["id"])
+    var $this = $("#form_equipement_edit_baseline");
+    let data = {};
+
+    $.ajax({
+        url: '/alstom/edit-equipment-baseline/' + idEquipment,
+        type: 'POST',
+        data: {
+
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+
+            $('#equipement_Type').val(response["type"]["id"]);
+            data[$('#equipement_Type').attr('name')] = $('#equipement_Type').val();
+
+            $.post("/alstom/checkSubtype", data).then(function (response) {
+                //Vidage champ soustype
+                $('#equipement_sous_type').empty();
+                response.forEach(element => {
+                    //Remplissage par les element reçu du controller
+                    $('#equipement_sous_type').append(new Option(element.name, element.id));
+                })
+
+            }).done(function () {
+
+                $('.main-ertms').css("opacity", '0.4');
+                $('#wait-spinner').show();
+
+                //Rempli input avec valeur recu de l'equipement
+                $this.find('[name]').each(function (index, value) {
+                    var that = $(this);
+                    switch (value.id) {
+                        case 'equipement_Type':
+                            break;
+                        case 'equipement_sous_type':
+                            if (response["SousType"] != null) {
+                                $('#' + value.id).val(response["SousType"]["id"]);
+                            }
+                            break;
+                        case 'equipement_DTR_board':
+                            $('#' + value.id).val(response["dTRBoard"])
+                            break;
+                        case 'equipement_Indice_DTR':
+                            $('#' + value.id).val(response["indiceDTR"])
+                            break;
+                        case 'equipement_Num_serie':
+                            $('#' + value.id).val(response["numSerie"])
+                            break;
+                    }
+                })
+                $('#wait-spinner').hide();
+                $('#modal-content-form-equipement-edit').show();
+            })
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+});
+//Remplir les inputs avec les nouvelles valeurs
+$('#soumission-equipement-edit-baseline').click(function () {
+    e.preventDefault();
+    $('main').css("opacity", '0.4');
+    $('#wait-spinner').show();
+    var $this = $(this);
+    let data = {};
+
+    $this.find('[name]').each(function (index, value) {
+        var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+        data[name] = value;
+    })
+    console.log(data);
+
+})
+let new_equipment_num_serie = [];
 // Soumission formulaire de train
+$('#form_equipement_edit_baseline').on('submit', function (e) {
 
-// $('#form_train').on('submit', function (e) {
+    e.preventDefault();
+    $('main').css("opacity", '0.4');
+    $('#wait-spinner').show();
+    var $this = $(this);
+    let data = {};
 
-//     e.preventDefault();
-//     $('main').css("opacity", '0.4');
-//     $('#wait-spinner').show();
-//     var $this = $(this);
-//     let data = {};
+    $this.find('[name]').each(function (index, value) {
+        var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
 
-//     $this.find('[name]').each(function (index, value) {
-//         var that = $(this),
-//             name = that.attr('name'),
-//             value = that.val();
+        data[name] = value;
+    })
 
-//         data[name] = value;
+    $.ajax({
+        url: '/alstom/edit-equipment-baseline/' + idEquipment,
+        type: $this.attr('method'),
+        data: {
+            equipement: data
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            $('main').css("opacity", '1');
+            $('#wait-spinner').hide();
+            $('#modal-content-form-equipement-edit').hide();
+            $('#modal_baseline_equipement').show();
+            $('#btn-add-number-serie' + idEquipment).replaceWith("<p>" + response.numSerie + "</p>")
+            new_equipment_num_serie.push(response);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+
+})
+$('#valid-baseline-train').click(function () {
+    let id_train = extraitNombre(window.location.pathname);
+    let id_baseline = $('#select_baseline_1 option:selected').val();
+    console.log(id_train)
+    console.log(id_baseline)
+    $.ajax({
+        url: '/alstom/addBaselineInstancier',
+        type: 'POST',
+        data: {
+            id_train: id_train,
+            baseline: id_baseline,
+            new_equipt: new_equipment_num_serie
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+
+            console.log(response);
+
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+
+})
+
+function FindIndexEvc(element, index, array) {
+    index = element['id'];
+    if (element['type']['id'] == "1" && (element['Status'] == true)) {
+
+        $("#show-equipment").append('<div class="description" id="description-equipement-' + index + '"></div>');
+        $("#description-equipement-" + index + "").append(writeType(4, element['type']['name']));
+        $("#description-equipement-" + index + "").addClass("description-SubtypeCard")
+        if (element['SousType'] != null) {
+            $("#description-equipement-" + index + "").append(writeSubtype(5, element['SousType']['name']));
+        }
+        $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
+            index + '"></div>');
+        $("#content-description-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
+        $("#content-description-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
+        if (element['numSerie'] == "") {
+            $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
+        } else {
+            $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p>')
+        }
+        indexEVC = $("#description-equipement-" + index + "");
+    }
+}
+
+function returnIndexElement(element, index, array) {
 
 
-//     })
-//     $.ajax({
-//         url: $this.attr('action'),
-//         type: $this.attr('method'),
-//         data: {
-//             train: data
-//         },
-//         async: true,
-//         dataType: 'json', // JSON
-//         success: function (response) {
-//             window.location.href = "/alstom/addBaselineToTrain/" + response.idTrain;
-//             $('#wait-spinner').hide();
-//             $('main').css("opacity", '1');
+    index = element['id'];
+    console.log(element);
+    console.log(indexEVC)
+    if ((element['Status'] == true) && element['type']['id'] != "1") {
 
+        //Test l'existence de la div dans le cas où elle existe la remplace si pas la met en place
+        if ($('#description-equipement-' + index).length) {
+            $('#description-equipement-' + index).replaceWith('<div class="description" id="description-equipement-' + index + '"></div>')
+        } else {
+            $("#show-equipment").append('<div class="description" id="description-equipement-' + index + '"></div>');
+        }
 
-//         },
-//         error: function (xhr, textStatus, errorThrown) {
-//             ('Ajax request failed.');
-//         }
-//     });
+        //test si l'équipement est la carte ou non
+        if (element['type']['id'] != "2") {
 
-// })
+            //Swith replacement de l'id du type avec son nom
+            $("#description-equipement-" + index + "").append(writeType(4, element['type']['name']));
 
+            if (element['SousType'] != null) {
+                $("#description-equipement-" + index + "").append(writeSubtype(5, element['SousType']['name']));
+            }
 
+            $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
+                index + '"></div>');
+            $("#content-description-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
+            $("#content-description-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
+            if (element['numSerie'] == "") {
+                $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
+            } else {
+                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p>')
+            }
+            // $("#content-description-" + index + "").append(writeEditDelete(index));
 
+        } else {
+
+            //Ecris le nom du type "carte" sous le type  EVC
+            $(indexEVC).append(writeType(5, element['type']['name']));
+            //Parcous le type de soustype 
+            $(indexEVC).append(writeSubtype(6, element['SousType']['name']));
+
+            $(indexEVC).append('<div class="content-description-dtr content-description-dtrCard" id="content-description-' +
+                index + '"></div>');
+            $("#content-description-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
+            $("#content-description-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
+            if (element['numSerie'] == "") {
+                $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
+            } else {
+                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p>')
+            }
+
+            // $("#content-description-" + index + "").append(writeEditDelete(index));
+            $('#description-equipement-' + index).remove();
+        }
+    }
+}
 //Extrait le nombre d'une streing
 function extraitNombre(str) {
     return Number(str.replace(/[^\d]/g, ""))
 }
+//Ecris le titre du type d'équipement
+function writeType(size, name) {
+    return '<h' + size + ' class="description-Type " id="description-type ">' + name + '</h' + size + '>';
+};
+//Ecris le titre du soustype d'équipement
+function writeSubtype(size, name) {
+    return '<h' + size + ' class="description-Type " id="description-subType ">' + name + '</h' + size + '>';
+};
+//Ecris le titre du soustype d'équipement
+function writeSubtypeCard(size, name) {
+    return '<h' + size + ' class="description-subtype" id="description-subType ">' + name + '</h' + size + '>';
+};
+// //Ecrit les 2 icons d'edit et delete
+// function writeEditDelete(index) {
+//     return ' <p class="edit-delete-equipement"> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a></p>';
+// };
