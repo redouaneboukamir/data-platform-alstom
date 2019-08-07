@@ -1175,7 +1175,7 @@ class alstomController extends AbstractController
             'Bucket' => 'application'
         ]);
         dump($objects_ts3['Contents']);
-/*         foreach($objects_ts3['Contents'] as $s3_filename){
+         foreach($objects_ts3['Contents'] as $s3_filename){
             $name_s3 = $s3_filename['Key'];
             
             $command = $s3->getCommand('GetObject', [
@@ -1189,7 +1189,7 @@ class alstomController extends AbstractController
             // Get the actual presigned-url
             $presignedUrl =  (string)  $presignedRequest->getUri();
             echo '<a href="'.$presignedUrl.'">'.$name_s3.'</a><br/>';
-        } */
+        } 
         $jsonObjectestUpload = $this->serializer->serialize($objects_ts3, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
@@ -1243,6 +1243,7 @@ class alstomController extends AbstractController
             );
         }
         elseif($upload_request == "status"){
+            $bucket = $request->request->get('bucket');
             $uploader = new MultipartUploader(
                 $s3, 
                 $source, 

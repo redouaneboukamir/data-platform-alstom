@@ -2,7 +2,7 @@ $('#test-upload').on("click","button",function(){
     var filest = document.querySelector("#selector").files;
     var tempDestination ="test"
     var nameFile = "init"
-
+    var uploadStatus = "PENDING"
     //On drag et drop
     $.ajax({
         url: '/alstom/requestFile',
@@ -26,21 +26,10 @@ $('#test-upload').on("click","button",function(){
                 async: true,
                 dataType: 'json', // JSON
                 success: function (response) {
-                    $.ajax({
-                        url: '/alstom/seeFile',
-                        type: 'POST',
-                        data: {
-                            
-                        },
-                        async: true,
-                        dataType: 'json', // JSON
-                        success: function (response) {
-                            console.log(response)
-                        }
-                    });
+                    //ask for the status
+                    console.log(response)
                 }
             });
-            
         }
     });
  
