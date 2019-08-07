@@ -468,12 +468,37 @@ class alstomController extends AbstractController
         $form_train = $this->createForm(TrainsType::class, $train);
         $form_train->handleRequest($request);
 
+        //        Validation du formulaire
+        if ($form_train->isSubmitted() && $form_train->isValid()) {
+            $this->em->persist($train);
+            $this->em->flush();
+            return $this->redirectToRoute('alstom.addBaselineToTrain', ['id' => $train->getId()]);
+        }
+
         return $this
             ->render('alstom/trains/create-trains.html.twig', [
                 'current_menu' => 'trains',
                 'button' => 'Create',
                 'form_train' => $form_train->createView()
             ]);
+    }
+    /**
+     * @Route("alstom/InstanceBaseline/{id}", name="alstom.addBaselineToTrain", methods={"POST","GET"})
+     * @return Response
+     */
+    public function addBaselineToTrain(Request $request, Trains $train): Response
+    {
+        dump($train);
+        return $this->render('alstom/baseline/addBaselineToTrain.html.twig', [
+            'current_menu' => 'baseline',
+            'train' => $train
+            // 'baseline' => $baseline,
+            // 'equipement' => $equipement,
+            // 'equipements' => $equipements,
+            // 'form_equipement' => $form_equipement->createView(),
+            // 'form_version' => $form_version->createView()
+
+        ]);
     }
     /**
      * @Route("alstom/addTrains", name="alstom.addTrains", methods={"POST"})
@@ -1025,19 +1050,7 @@ class alstomController extends AbstractController
             'baseline' => $baseline
         ], 200);
     }
-    /**
-     * @Route("alstom/addBaselineToTrain", name="alstom.addBaselineToTrain", methods={"POST"})
-     * @return Response
-     */
-    public function addBaselineToTrain(Request $request): Response
-    {
-        $baseline = $request->request->get('baseline')['baseline[name'];
 
-        return $this->json([
-            'code' => 200,
-            'baseline' => $baseline
-        ], 200);
-    }
     /**
      * @Route("alstom/addVersion", name="alstom.addVersion", methods={"POST"})
      * @return Response

@@ -1,0 +1,87 @@
+{% extends 'alstom/index.html.twig' %}
+{% block body %}
+
+
+    {# <div id="modal-content-form-equipement-edit">
+                                                                                            <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                            <div class="form-equipment" id="formulaire-equipment">
+                                                                                                {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 
+                                                                                                   'attr': {'id': 'form_equipement_edit'}}) }}
+                                                                                                {{form_row(form_equipement.Type)}}
+                                                                                                {{form_row(form_equipement.sous_type)}}
+                                                                                                {{form_row(form_equipement.DTR_board)}}
+                                                                                                {{form_row(form_equipement.Indice_DTR)}}
+                                                                                                {{form_row(form_equipement.Num_serie)}}
+                                                                                                {{form_row(form_equipement._token)}}
+                                                                                    
+                                                                                                <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
+                                                                                    
+                                                                                                {{form_end(form_equipement)}}</div>
+                                                                                    
+                                                                                        </div> #}
+
+    <main class="col-md-12 ml-sm-auto col-lg-12 pl-5 px-3" role="main">
+        <section class="jumbotron text-left">
+            <div class="container">
+                <h1 class="jumbotron-heading">{{train.name}}</h1>
+                <p class="lead text-muted">
+                    <strong>Fleet :
+                    </strong>
+                    {{train.projects.name}}</p>
+                <p class="lead text-muted">
+                    <strong>Type :
+                    </strong>
+                    {{train.TrainType}}</p>
+                <p>
+                    <a class="btn btn-primary my-2" href="#">Main call to action</a>
+                    <a class="btn btn-secondary my-2" href="#">Secondary action</a>
+                </p>
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="content-form-train-baseline col-md-5 col-sm-5 " id="content-form-baseline-1">
+                <label for="baseline_select_1" id="label-baseline-1"></label>
+                <select class="form-control" id="select_baseline_1" name="select_baseline_1"></select>
+            </div>
+            <div class="content-form-train-baseline col-md-5 col-sm-5" id="content-form-baseline-2">
+                <label for="baseline_select_2" id="label-baseline-2"></label>
+                <select class="form-control" id="select_baseline_2" name="select_baseline_2"></select>
+            </div>
+        </div>
+
+        {% if train.TrainType == "locomotive" %}
+            <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
+                <h4>Select Baseline :
+                </h4>
+                <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
+                <figure class="content-ertms col-md-10 offset-md-2">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-1">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-2">
+                </figure>
+            </div>
+        {% elseif train.TrainType == "train"%}
+
+            <div class="content-type-train col-md-12 mt-4" id="select_train">
+                <h4>Select Baseline :
+                </h4>
+                <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
+                <figure class="content-ertms col-md-10  offset-md-2 img-fluid">
+
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-1">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-2">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid " id="ertms-train-3">
+                </figure>
+            </div>
+        {% endif %}
+
+
+        <div class="row content-btn-baseline col-md-10 mt-4 offset-md-1">
+            <div class="btn btn-secondary" id="btn-baseline-1">Add baseline</div>
+            <div class="btn btn-secondary" id="btn-baseline-2">Add baseline</div>
+            <div class="btn btn-secondary" id="btn-baseline-3">Add baseline</div>
+        </div>
+    </main>
+{% endblock %}

@@ -8,53 +8,13 @@
     </span>
 </div>
 
-{{ form_start(form_train, {'action': path('alstom.addTrains'), 
-               'attr': {'id': 'form_train'}}) }}
+{{ form_start(form_train)}}
 
 
 <div class="row">
     <div class="col-md-12">{{ form_row(form_train.name) }}</div>
     <div class="col-md-12">{{ form_row(form_train.projects) }}</div>
     <div class="col-md-12">{{ form_row(form_train.trainType) }}</div>
-
-
-    <div class="content-form-train-baseline col-md-5 col-sm-5 " id="content-form-baseline-1">
-        <label for="baseline_select_1" id="label-baseline-1"></label>
-        <select class="form-control" id="select_baseline_1" name="select_baseline_1"></select>
-    </div>
-    <div class="content-form-train-baseline col-md-5 col-sm-5" id="content-form-baseline-2">
-        <label for="baseline_select_2" id="label-baseline-2"></label>
-        <select class="form-control" id="select_baseline_2" name="select_baseline_2"></select>
-    </div>
-
-
-    <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
-        <h4>Select Baseline :
-        </h4>
-        <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
-        <figure class="content-ertms col-md-10 offset-md-2">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-1">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-2">
-        </figure>
-    </div>
-
-    <div class="content-type-train col-md-12 mt-4" id="select_train">
-        <h4>Select Baseline :
-        </h4>
-        <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
-        <figure class="content-ertms col-md-10  offset-md-2 img-fluid">
-
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-1">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-2">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid " id="ertms-train-3">
-        </figure>
-    </div>
-
-    <div class="row content-btn-baseline col-md-10 mt-4 offset-md-1">
-        <div class="btn btn-secondary" id="btn-baseline-1">Add baseline</div>
-        <div class="btn btn-secondary" id="btn-baseline-2">Add baseline</div>
-        <div class="btn btn-secondary" id="btn-baseline-3">Add baseline</div>
-    </div>
 
 
 </div>

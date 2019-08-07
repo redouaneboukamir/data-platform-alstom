@@ -17,11 +17,9 @@ for (let i = 1; i < 4; i++) {
 
 $(document).ready(function () {
 
-
-    loadTrainParameter();
     let nombre_url = extraitNombre(window.location.pathname);
 
-    if ((window.location.pathname == '/alstom/create-train') || (window.location.pathname == '/alstom/edit-train/' + nombre_url)) {
+    if (window.location.pathname == '/alstom/InstanceBaseline/' + nombre_url) {
 
         $.post("/alstom/checkBaseline", ).then(function (response) {
             response.forEach(element => {
@@ -35,155 +33,85 @@ $(document).ready(function () {
         })
     }
 })
-// Traitement du choix du type de train
-$('#trains_trainType').change(function () {
 
-    loadTrainParameter();
-    $('#content-form-baseline-1').hide();
-    $('#content-form-baseline-2').hide();
-    $('#content-form-baseline-3').hide();
-    $('#select_baseline_1').val('');
-    $('#select_baseline_2').val('');
-    baseline1 = false;
-    baseline2 = false;
+$('#select_train').show();
+$('#select_locomotive').show();
+
+let current_choice = "",
+    ertms_left = "",
+    ertms_middle = "",
+    ertms_right = "";
 
 
-});
-let baseline1 = false,
-    baseline2 = false;
-$('#btn-baseline-1').click(function () {
-    baseline1 = true;
+$('#ertms-train-1').click(function () {
+    ertms_left = true;
+    ertms_middle = false;
+    //l'ertms de gauche selectionner
+    $('#ertms-train-1').addClass("selected");
+    $('#ertms-train-2').removeClass("selected");
     $('#label-baseline-1').text('Baseline left');
     $('#content-form-baseline-1').removeClass('offset-md-3');
     $('#content-form-baseline-1').show();
-    $('#content-form-baseline-2').hide();
-    if (baseline2) {
-        $('#content-form-baseline-2').removeClass('offset-md-6');
-        $('#content-form-baseline-2').addClass('offset-md-1');
-        $('#content-form-baseline-2').show();
-    } else {
-        $('#select_baseline_2').val('');
+    if (ertms_right == false) {
+        $('#content-form-baseline-2').hide();
 
+    } else {
+
+        $('#content-form-baseline-2').removeClass('offset-md-6');
     }
 
 
-})
-$('#btn-baseline-2').click(function () {
-    $('#label-baseline-1').text('Baseline middle');
+});
+$('#ertms-train-2').click(function () {
+    // l'ertms du milieu selectionner
+    ertms_left = false;
+    ertms_right = false;
+    ertms_middle = true;
+    $('#ertms-train-2').addClass("selected");
+    $('#ertms-train-1').removeClass("selected");
+    $('#ertms-train-3').removeClass("selected");
+    $('#label-baseline-1').text('Baseline midle');
+    $('#content-form-baseline-2').hide();
+    $('#content-form-baseline-1').show();
 
     $('#content-form-baseline-1').addClass('offset-md-3');
-    $('#content-form-baseline-1').show();
-    $('#content-form-baseline-2').hide();
-    $('#select_baseline_2').val('');
 
-    baseline1 = false;
-    baseline2 = false;
-    // $('#content-form-baseline-1').removeClass('col-md-6');
-    // $('#content-form-baseline-1').addClass('col-md-12');
-
-})
-$('#btn-baseline-3').click(function () {
-    baseline2 = true;
+});
+$('#ertms-train-3').click(function () {
+    // l'ertms de droite selectionner
+    $('#ertms-train-3').addClass("selected");
+    ertms_right = true;
+    ertms_middle = false;
     $('#label-baseline-2').text('Baseline right');
-    $('#content-form-baseline-2').addClass('offset-md-6');
-    $('#content-form-baseline-2').show();
-    $('#content-form-baseline-1').hide();
-    if (baseline1) {
-        $('#content-form-baseline-2').addClass('offset-md-1');
+    if (ertms_left == true && ertms_middle == false) {
+        $('#content-form-baseline-1').removeClass('offset-md-3');
         $('#content-form-baseline-2').removeClass('offset-md-6');
-        $('#content-form-baseline-1').show();
-
-    } else {
-        $('#select_baseline_1').val('');
-
+        $('#content-form-baseline-2').show();
+    } else if (ertms_right == true && ertms_left == false) {
+        $('#content-form-baseline-1').removeClass('offset-md-3');
+        $('#content-form-baseline-1').hide();
+        $('#content-form-baseline-2').addClass('offset-md-6');
+        $('#content-form-baseline-2').show();
     }
 
-
-})
-
-function loadTrainParameter() {
-    let current_choice = "",
-        ertms_left = "",
-        ertms_middle = "",
-        ertms_right = "";
-
-    $("#trains_trainType option:selected").each(function () {
-
-        current_choice += $(this).text() + " ";
-
-    });
+    $('#ertms-train-2').removeClass("selected");
+});
 
 
-    /* traitement dans le choix train */
-    if (current_choice.trim() == 'Train') {
-        $('#select_train').show();
-        $('#select_locomotive').hide();
+$('#ertms-loco-1').click(function () {
+    $('#ertms-loco-1').addClass("selected");
+    $('#ertms-loco-2').removeClass("selected");
+    $('#btn-baseline-1').css('opacity', '1')
+    $('#btn-baseline-3').css('opacity', '0')
+});
+$('#ertms-loco-2').click(function () {
+    $('#btn-baseline-3').css('opacity', '1')
+    $('#btn-baseline-1').css('opacity', '0')
+    $('#ertms-loco-2').addClass("selected");
+    $('#ertms-loco-1').removeClass("selected");
 
-        $('#ertms-train-1').click(function () {
-            //l'ertms de gauche selectionner
-            $('#ertms-train-1').addClass("selected");
-            ertms_left = true;
-            ertms_middle = false;
-            $('#ertms-train-2').removeClass("selected");
-            $('#btn-baseline-1').css('opacity', '1');
-            $('#btn-baseline-2').css('opacity', '0');
-            $('#add-ertms').text('add ERTMS left')
-        });
-        $('#ertms-train-2').click(function () {
-            // l'ertms du milieu selectionner
-            $('#ertms-train-2').addClass("selected");
-            ertms_left = false;
-            ertms_right = false;
-            ertms_middle = true;
-            $('#ertms-train-1').removeClass("selected");
-            $('#ertms-train-3').removeClass("selected");
-            $('#btn-baseline-1').css('opacity', '0')
-            $('#btn-baseline-3').css('opacity', '0')
-            $('#btn-baseline-2').css('opacity', '1')
+});
 
-            $('#add-ertms').text('add ERTMS middle')
-        });
-        $('#ertms-train-3').click(function () {
-            // l'ertms de droite selectionner
-            $('#ertms-train-3').addClass("selected");
-            ertms_right = true;
-            ertms_middle = false;
-            $('#btn-baseline-2').css('opacity', '0')
-            if (ertms_left == true && ertms_middle == false) {
-                $('#btn-baseline-1').css('opacity', '1')
-                $('#btn-baseline-3').css('opacity', '1')
-            } else if (ertms_right == true && ertms_left == false) {
-                $('#btn-baseline-1').css('opacity', '0')
-                $('#btn-baseline-3').css('opacity', '1')
-            }
-            $('#ertms-train-2').removeClass("selected");
-
-            $('#add-ertms').text('add ERTMS right');
-        });
-
-
-
-
-    } else if (current_choice.trim() == 'Locomotive') {
-
-        $('#select_locomotive').show();
-        $('#select_train').hide();
-        $('#ertms-loco-1').click(function () {
-
-            $('#ertms-loco-1').addClass("selected");
-            $('#ertms-loco-2').removeClass("selected");
-            $('#btn-baseline-1').css('opacity', '1')
-            $('#btn-baseline-3').css('opacity', '0')
-        });
-        $('#ertms-loco-2').click(function () {
-            $('#btn-baseline-3').css('opacity', '1')
-            $('#btn-baseline-1').css('opacity', '0')
-            $('#ertms-loco-2').addClass("selected");
-            $('#ertms-loco-1').removeClass("selected");
-
-        });
-    }
-}
 //Recupere le select de la baseline et le met en visuel
 // $('#add-baseline-1').click(function (e) {
 //     e.preventDefault();
@@ -196,44 +124,44 @@ function loadTrainParameter() {
 // })
 // Soumission formulaire de train
 
-$('#form_train').on('submit', function (e) {
+// $('#form_train').on('submit', function (e) {
 
-    e.preventDefault();
-    $('main').css("opacity", '0.4');
-    $('#wait-spinner').show();
-    var $this = $(this);
-    let data = {};
+//     e.preventDefault();
+//     $('main').css("opacity", '0.4');
+//     $('#wait-spinner').show();
+//     var $this = $(this);
+//     let data = {};
 
-    $this.find('[name]').each(function (index, value) {
-        var that = $(this),
-            name = that.attr('name'),
-            value = that.val();
+//     $this.find('[name]').each(function (index, value) {
+//         var that = $(this),
+//             name = that.attr('name'),
+//             value = that.val();
 
-        data[name] = value;
-
-
-    })
-    $.ajax({
-        url: $this.attr('action'),
-        type: $this.attr('method'),
-        data: {
-            train: data
-        },
-        async: true,
-        dataType: 'json', // JSON
-        success: function (response) {
-            window.location.href = "/alstom/trains/" + response.idTrain;
-            $('#wait-spinner').hide();
-            $('main').css("opacity", '1');
+//         data[name] = value;
 
 
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            ('Ajax request failed.');
-        }
-    });
+//     })
+//     $.ajax({
+//         url: $this.attr('action'),
+//         type: $this.attr('method'),
+//         data: {
+//             train: data
+//         },
+//         async: true,
+//         dataType: 'json', // JSON
+//         success: function (response) {
+//             window.location.href = "/alstom/addBaselineToTrain/" + response.idTrain;
+//             $('#wait-spinner').hide();
+//             $('main').css("opacity", '1');
 
-})
+
+//         },
+//         error: function (xhr, textStatus, errorThrown) {
+//             ('Ajax request failed.');
+//         }
+//     });
+
+// })
 
 
 

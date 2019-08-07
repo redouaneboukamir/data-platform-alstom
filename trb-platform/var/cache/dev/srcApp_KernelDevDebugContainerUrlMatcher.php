@@ -52,7 +52,6 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/alstom/flush-all-equipt' => [[['_route' => 'alstom.flush-all-equipt', '_controller' => 'App\\Controller\\alstomController::flush_all_equipt'], null, null, null, false, false, null]],
             '/alstom/addAssocBaseline' => [[['_route' => 'alstom.addAssocBaseline', '_controller' => 'App\\Controller\\alstomController::addAssocBaseline'], null, ['POST' => 0], null, false, false, null]],
             '/alstom/addBaseline' => [[['_route' => 'alstom.addBaseline', '_controller' => 'App\\Controller\\alstomController::addBaseline'], null, ['POST' => 0], null, false, false, null]],
-            '/alstom/addBaselineToTrain' => [[['_route' => 'alstom.addBaselineToTrain', '_controller' => 'App\\Controller\\alstomController::addBaselineToTrain'], null, ['POST' => 0], null, false, false, null]],
             '/alstom/addVersion' => [[['_route' => 'alstom.addVersion', '_controller' => 'App\\Controller\\alstomController::addVersion'], null, ['POST' => 0], null, false, false, null]],
             '/alstom/fleet_management' => [[['_route' => 'alstom.fleet_management', '_controller' => 'App\\Controller\\alstomController::fleet_management'], null, null, null, false, false, null]],
             '/client' => [[['_route' => 'client.home', '_controller' => 'App\\Controller\\clientController::index'], null, null, null, false, false, null]],
@@ -104,18 +103,19 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                             .'|(*:424)'
                             .'|/delete(*:439)'
                         .')'
+                        .'|InstanceBaseline/([^/]++)(*:473)'
                         .'|train(?'
-                            .'|s/([^/]++)(*:466)'
-                            .'|/([^/]++)(*:483)'
+                            .'|s/([^/]++)(*:499)'
+                            .'|/([^/]++)(*:516)'
                         .')'
-                        .'|baseline/([^/]++)(*:509)'
+                        .'|baseline/([^/]++)(*:542)'
                     .')'
                     .'|/client/(?'
-                        .'|project/([^/]++)(*:545)'
-                        .'|edit\\-train/([^/]++)(*:573)'
+                        .'|project/([^/]++)(*:578)'
+                        .'|edit\\-train/([^/]++)(*:606)'
                         .'|train(?'
-                            .'|s/([^/]++)(*:599)'
-                            .'|/([^/]++)(*:616)'
+                            .'|s/([^/]++)(*:632)'
+                            .'|/([^/]++)(*:649)'
                         .')'
                     .')'
                 .')/?$}sDu',
@@ -139,13 +139,14 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             395 => [[['_route' => 'alstom.delete-engineer', '_controller' => 'App\\Controller\\alstomController::delete_engineer'], ['id'], ['DELETE' => 0], null, false, false, null]],
             424 => [[['_route' => 'alstom.project-show', '_controller' => 'App\\Controller\\alstomController::show_project'], ['id'], null, null, false, true, null]],
             439 => [[['_route' => 'alstom.delete-project', '_controller' => 'App\\Controller\\alstomController::delete_project'], ['id'], ['DELETE' => 0], null, false, false, null]],
-            466 => [[['_route' => 'alstom.show-train', '_controller' => 'App\\Controller\\alstomController::show_train'], ['id'], null, null, false, true, null]],
-            483 => [[['_route' => 'alstom.delete-train', '_controller' => 'App\\Controller\\alstomController::delete_train'], ['id'], ['DELETE' => 0], null, false, true, null]],
-            509 => [[['_route' => 'alstom.show-baseline', '_controller' => 'App\\Controller\\alstomController::show_baseline'], ['id'], null, null, false, true, null]],
-            545 => [[['_route' => 'client.project-show', '_controller' => 'App\\Controller\\clientController::show_project'], ['id'], null, null, false, true, null]],
-            573 => [[['_route' => 'client.edit-train', '_controller' => 'App\\Controller\\clientController::edit_train'], ['id'], ['POST' => 0, 'GET' => 1], null, false, true, null]],
-            599 => [[['_route' => 'client.show-train', '_controller' => 'App\\Controller\\clientController::show_train'], ['id'], null, null, false, true, null]],
-            616 => [[['_route' => 'client.delete-train', '_controller' => 'App\\Controller\\clientController::delete_train'], ['id'], ['DELETE' => 0], null, false, true, null]],
+            473 => [[['_route' => 'alstom.addBaselineToTrain', '_controller' => 'App\\Controller\\alstomController::addBaselineToTrain'], ['id'], ['POST' => 0, 'GET' => 1], null, false, true, null]],
+            499 => [[['_route' => 'alstom.show-train', '_controller' => 'App\\Controller\\alstomController::show_train'], ['id'], null, null, false, true, null]],
+            516 => [[['_route' => 'alstom.delete-train', '_controller' => 'App\\Controller\\alstomController::delete_train'], ['id'], ['DELETE' => 0], null, false, true, null]],
+            542 => [[['_route' => 'alstom.show-baseline', '_controller' => 'App\\Controller\\alstomController::show_baseline'], ['id'], null, null, false, true, null]],
+            578 => [[['_route' => 'client.project-show', '_controller' => 'App\\Controller\\clientController::show_project'], ['id'], null, null, false, true, null]],
+            606 => [[['_route' => 'client.edit-train', '_controller' => 'App\\Controller\\clientController::edit_train'], ['id'], ['POST' => 0, 'GET' => 1], null, false, true, null]],
+            632 => [[['_route' => 'client.show-train', '_controller' => 'App\\Controller\\clientController::show_train'], ['id'], null, null, false, true, null]],
+            649 => [[['_route' => 'client.delete-train', '_controller' => 'App\\Controller\\clientController::delete_train'], ['id'], ['DELETE' => 0], null, false, true, null]],
         ];
     }
 }
