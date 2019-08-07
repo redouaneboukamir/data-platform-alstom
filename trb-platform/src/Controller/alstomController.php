@@ -949,7 +949,7 @@ class alstomController extends AbstractController
     ) {
         foreach ($baseline->getERTMS() as $key => $value) {
 
-            if ($value->getStatus() == true) {
+            if ($value->getbaseline()->getOriginal() == true) {
                 $assoc = $value;
             }
         }
