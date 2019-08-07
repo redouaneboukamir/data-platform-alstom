@@ -58,7 +58,7 @@ class Baseline
     private $Original;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AssociationEquiptERTMS", mappedBy="baseline")
+     * @ORM\OneToMany(targetEntity="App\Entity\AssociationEquiptERTMS", mappedBy="baseline" ,cascade={"persist"})
      */
     private $ERTMS;
 

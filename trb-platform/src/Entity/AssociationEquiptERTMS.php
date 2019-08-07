@@ -29,7 +29,7 @@ class AssociationEquiptERTMS
     private $equipements;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Baseline", inversedBy="ERTMS")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Baseline", inversedBy="ERTMS",cascade={"persist"})
      */
     private $baseline;
 
