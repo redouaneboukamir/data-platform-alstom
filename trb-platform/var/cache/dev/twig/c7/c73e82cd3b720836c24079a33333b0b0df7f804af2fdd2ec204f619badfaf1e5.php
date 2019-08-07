@@ -63,6 +63,6 @@ class __TwigTemplate_8e390f7ba82c84bad419b4d8c26b242d4451049ae431d3f6f5c9978e6e5
     public function getSourceContext()
     {
         return new Source("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"#AAA\" d=\"M8.932 22.492c.016-6.448-.971-11.295-5.995-11.619 4.69-.352 7.113 2.633 9.298 6.907C12.205 6.354 9.882 1.553 4.8 1.297c7.433.07 10.028 5.9 11.508 14.293 1.171-2.282 3.56-5.553 5.347-1.361-1.594-2.04-3.607-1.617-3.978 8.262H8.933z\"/></svg>
-", "@WebProfiler/Icon/twig.svg", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\twig.svg");
+", "@WebProfiler/Icon/twig.svg", "C:\\Users\\jdacquin\\Documents\\Data Platform\\Webapp\\data-platform-alstom\\trb-platform\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\twig.svg");
     }
 }

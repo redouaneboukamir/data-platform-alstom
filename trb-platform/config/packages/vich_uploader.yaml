@@ -11,6 +11,9 @@ vich_uploader:
         project_image:
             uri_prefix: /assets/img/projects
             upload_destination: '%kernel.project_dir%/assets/img/projects'
+        temp_upload:
+            uri_prefix: /assets/file/temp
+            upload_destination: '%kernel.project_dir%/assets/file/temp'    
 
     #mappings:
     #    products:

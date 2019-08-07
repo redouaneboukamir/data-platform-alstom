@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bdee7624a8ccb361bda198bc343682f",
+    "content-hash": "15d69b8e19414670be3234519dd039d9",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -4190,16 +4190,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.2.10",
+            "version": "v4.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "765109d3c9e20ae0f229bb7603ca5ed89f2cae84"
+                "reference": "cecff7164790b0cd72be2ed20e9591d7140715e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/765109d3c9e20ae0f229bb7603ca5ed89f2cae84",
-                "reference": "765109d3c9e20ae0f229bb7603ca5ed89f2cae84",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/cecff7164790b0cd72be2ed20e9591d7140715e0",
+                "reference": "cecff7164790b0cd72be2ed20e9591d7140715e0",
                 "shasum": ""
             },
             "require": {
@@ -4235,7 +4235,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-06-13T10:57:15+00:00"
+            "time": "2019-06-28T12:55:49+00:00"
         },
         {
             "name": "symfony/flex",
@@ -6926,16 +6926,16 @@
         },
         {
             "name": "vich/uploader-bundle",
-            "version": "1.10.0",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dustin10/VichUploaderBundle.git",
-                "reference": "36632793821b9c13188166290c9ece8da9b63ac6"
+                "reference": "0df4b3c88f5470aad2faa187fea29ba74809a53d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/36632793821b9c13188166290c9ece8da9b63ac6",
-                "reference": "36632793821b9c13188166290c9ece8da9b63ac6",
+                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/0df4b3c88f5470aad2faa187fea29ba74809a53d",
+                "reference": "0df4b3c88f5470aad2faa187fea29ba74809a53d",
                 "shasum": ""
             },
             "require": {
@@ -7016,7 +7016,7 @@
                 "file uploads",
                 "upload"
             ],
-            "time": "2019-07-05T13:37:47+00:00"
+            "time": "2019-07-11T13:00:05+00:00"
         },
         {
             "name": "webmozart/assert",

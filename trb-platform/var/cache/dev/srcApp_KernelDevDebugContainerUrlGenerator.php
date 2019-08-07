@@ -75,6 +75,8 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'alstom.addBaseline' => [[], ['_controller' => 'App\\Controller\\alstomController::addBaseline'], [], [['text', '/alstom/addBaseline']], [], []],
         'alstom.addVersion' => [[], ['_controller' => 'App\\Controller\\alstomController::addVersion'], [], [['text', '/alstom/addVersion']], [], []],
         'alstom.fleet_management' => [[], ['_controller' => 'App\\Controller\\alstomController::fleet_management'], [], [['text', '/alstom/fleet_management']], [], []],
+        'alstom.requestFile' => [[], ['_controller' => 'App\\Controller\\alstomController::requestFile'], [], [['text', '/alstom/requestFile']], [], []],
+        'alstom.seeFile' => [[], ['_controller' => 'App\\Controller\\alstomController::seeFile'], [], [['text', '/alstom/seeFile']], [], []],
         'alstom.uploadFile' => [[], ['_controller' => 'App\\Controller\\alstomController::uploadFile'], [], [['text', '/alstom/uploadFile']], [], []],
         'client.home' => [[], ['_controller' => 'App\\Controller\\clientController::index'], [], [['text', '/client']], [], []],
         'client.projects' => [[], ['_controller' => 'App\\Controller\\clientController::projects'], [], [['text', '/client/projects']], [], []],

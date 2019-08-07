@@ -65,6 +65,7 @@ use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 use Aws\S3\MultipartUploader;
 use Aws\Exception\MultipartUploadException;
+use Symfony\Component\Finder\Finder;
 
 class alstomController extends AbstractController
 {
@@ -98,39 +99,7 @@ class alstomController extends AbstractController
 
         $userRoles = $this->getUser()->getRoles();
         $userId = $this->container->get(KEY_SESSION)->get('userId');
-        $s3 = new S3Client([
-            'version' => 'latest',
-            'region'  => 'us-east-1',
-            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-            'endpoint' => 'http://localhost:5555',
-            'use_path_style_endpoint' => true,
-            'credentials' => [
-                    'key'    => 'amdptestdeployv7private',
-                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
-                ],
-        ]);
-        
-        // Use the high-level iterators (returns ALL of your objects).
-        $objects_ts3 = $s3->listObjects([
-            'Bucket' => 'application'
-        ]);
-        dump($objects_ts3['Contents']);
-        foreach($objects_ts3['Contents'] as $s3_filename){
-            $name_s3 = $s3_filename['Key'];
-            
-            $command = $s3->getCommand('GetObject', [
-                'Bucket' => 'application',
-                'Key'    => $name_s3
-            ]);
-    
-            // Create a pre-signed URL for a request with duration of 10 miniutes
-            $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
-    
-            // Get the actual presigned-url
-             $presignedUrl =  (string)  $presignedRequest->getUri();
-             echo '<a href="'.$presignedUrl.'">'.$name_s3.'</a><br/>';
-        }
-        
+       
         // dump($clientKeycloak->getUser($userId));   
 
         // dump($userRoles);
@@ -1144,7 +1113,91 @@ class alstomController extends AbstractController
     /*
         ------- MINIO Service -----
     */
-    
+
+     /**
+     * @Route("alstom/requestFile", name="alstom.requestFile")
+     * @return Response
+     */
+    public function requestFile(Request $request)
+    { 
+        $finder = new Finder();
+        $finder->in('init')->name('*.pdf');
+
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $absoluteFilePath = array(
+                    'path' => $file->getRealPath()
+                );
+            }
+            $jsonObjectestUpload = $this->serializer->serialize($absoluteFilePath, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+        }else{
+            $absoluteFilePath = array(
+                'path' => 'no path'
+            );           
+            $jsonObjectestUpload = $this->serializer->serialize($absoluteFilePath, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+        }         
+        $jsonObjectestUpload = $this->serializer->serialize($absoluteFilePath, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+        return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
+    }
+
+    /**
+     * @Route("alstom/seeFile", name="alstom.seeFile")
+     * @return Response
+     */
+    public function seeFile(Request $request)
+    {
+        $s3 = new S3Client([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+            'endpoint' => 'http://localhost:5555',
+            'use_path_style_endpoint' => true,
+            'credentials' => [
+                    'key'    => 'amdptestdeployv7private',
+                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                ],
+        ]);
+        
+        // Use the high-level iterators (returns ALL of your objects).
+        $objects_ts3 = $s3->listObjects([
+            'Bucket' => 'application'
+        ]);
+        dump($objects_ts3['Contents']);
+/*         foreach($objects_ts3['Contents'] as $s3_filename){
+            $name_s3 = $s3_filename['Key'];
+            
+            $command = $s3->getCommand('GetObject', [
+                'Bucket' => 'application',
+                'Key'    => $name_s3
+            ]);
+
+            // Create a pre-signed URL for a request with duration of 10 miniutes
+            $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
+
+            // Get the actual presigned-url
+            $presignedUrl =  (string)  $presignedRequest->getUri();
+            echo '<a href="'.$presignedUrl.'">'.$name_s3.'</a><br/>';
+        } */
+        $jsonObjectestUpload = $this->serializer->serialize($objects_ts3, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+        return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
+    }
+
     /**
      * @Route("alstom/uploadFile", name="alstom.uploadFile")
      * @return Response
@@ -1167,23 +1220,41 @@ class alstomController extends AbstractController
                 ],
         ]);
         $upload_request = $request->request->get('upload_request');
+
         //if the request sends an upload request then the function use the uploaderPart function
         if($upload_request == "upload") {
             $source = $request->request->get('tempDestination');
             $bucket = $request->request->get('bucket');
             $nameFile = $request->request->get('filename');
-
+            dump($source);
             $uploader = new MultipartUploader(
                 $s3, 
                 $source, 
                 [
                     'bucket' => $bucket,
-                    'key' => $nameFile,
+                    'key' => $nameFile
                 ]
+            );
+            $result = $uploader->upload();
+            $status = $uploader->getstate();
+            $testUpload = array(
+                'key' => $nameFile,
+                "upload-status" => $status
             );
         }
         elseif($upload_request == "status"){
-            print("status");
+            $uploader = new MultipartUploader(
+                $s3, 
+                $source, 
+                [
+                    'bucket' => $bucket,
+                    'key' => $keyfile,
+                ]
+            );
+            $status = $uploader->getstate(); //PENDING, FULFILLED, or REJECTED
+            $testUpload = array(
+                "upload-status" => $status
+            );
         }
         else{
             //an error is raised
@@ -1192,14 +1263,13 @@ class alstomController extends AbstractController
         //if the request sends a status of the upload then the function sends back the status
 
         
-        $testUpload = array(
-            "ok" => "ok"
-        );
         $jsonObjectestUpload = $this->serializer->serialize($testUpload, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
         ]);
         return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
+    
     }    
+    
 }

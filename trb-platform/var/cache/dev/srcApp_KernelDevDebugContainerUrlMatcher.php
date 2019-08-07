@@ -54,6 +54,8 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/alstom/addBaseline' => [[['_route' => 'alstom.addBaseline', '_controller' => 'App\\Controller\\alstomController::addBaseline'], null, ['POST' => 0], null, false, false, null]],
             '/alstom/addVersion' => [[['_route' => 'alstom.addVersion', '_controller' => 'App\\Controller\\alstomController::addVersion'], null, ['POST' => 0], null, false, false, null]],
             '/alstom/fleet_management' => [[['_route' => 'alstom.fleet_management', '_controller' => 'App\\Controller\\alstomController::fleet_management'], null, null, null, false, false, null]],
+            '/alstom/requestFile' => [[['_route' => 'alstom.requestFile', '_controller' => 'App\\Controller\\alstomController::requestFile'], null, null, null, false, false, null]],
+            '/alstom/seeFile' => [[['_route' => 'alstom.seeFile', '_controller' => 'App\\Controller\\alstomController::seeFile'], null, null, null, false, false, null]],
             '/alstom/uploadFile' => [[['_route' => 'alstom.uploadFile', '_controller' => 'App\\Controller\\alstomController::uploadFile'], null, null, null, false, false, null]],
             '/client' => [[['_route' => 'client.home', '_controller' => 'App\\Controller\\clientController::index'], null, null, null, false, false, null]],
             '/client/projects' => [[['_route' => 'client.projects', '_controller' => 'App\\Controller\\clientController::projects'], null, null, null, false, false, null]],
