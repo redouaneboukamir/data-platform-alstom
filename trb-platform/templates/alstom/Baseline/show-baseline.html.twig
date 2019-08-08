@@ -64,10 +64,6 @@
                 {% else %}
                     <button class="btn btn-primary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Add Version Logiciel</button>
                 {% endif %}
-
-                {% if baseline_train == false %}
-                    <button class="btn btn-success" id="add-versionLogiciel">Instantiate to train</button>
-                {% endif %}
             </div>
 
         </div>
@@ -94,12 +90,9 @@
 
                             {% elseif equipement.Type.name ==  "CARTE" %}
                                 <h5 class="description-Type " id="description-subType ">
-                                    {{equipement.Type.name}}
-                                </h5>
-
-                                <h6 class="description-Type " id="description-subType ">
                                     {{equipement.SousType.name}}
-                                </h6>
+
+                                </h5>
 
                             {% endif %}
 

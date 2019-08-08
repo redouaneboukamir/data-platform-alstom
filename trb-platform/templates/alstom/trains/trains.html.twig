@@ -28,7 +28,9 @@
                 <thead>
                     <tr class="title-table">
                         <th scope="col">Name</th>
-                        <th class="" scope="col">Projects</th>
+                        <th class="" scope="col">Fleet</th>
+                        <th class="" scope="col">Baseline</th>
+                        <th class="" scope="col">Equipement</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -43,6 +45,18 @@
                             {% else %}
                                 <td></td>
                             {% endif %}
+                            {% if train.Baselines %}
+                                {% for baseline in train.Baselines %}
+
+                                    <td class="mt-4">
+                                        <a href="{{ path('alstom.show-baseline', {id: baseline.id}) }}">{{  baseline.name }}</td>
+                                    </td>
+                                    <td></td>
+                                {% endfor %}
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                            <td></td>
 
                             <td class="content-btn-edit-delete">
                                 <a href="{{ path('alstom.edit-train', {id: train.id}) }}">
@@ -59,7 +73,7 @@
                         </tr>
                     {% endfor %}
                 </tbody>
-            </table>
-        </section>
-    </main>
-{% endblock %}
+            </tbody>
+        </table>
+    </section>
+</main>{% endblock %}

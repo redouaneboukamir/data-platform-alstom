@@ -118,56 +118,90 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
         echo "                <thead>
                     <tr class=\"title-table\">
                         <th scope=\"col\">Name</th>
-                        <th class=\"\" scope=\"col\">Projects</th>
+                        <th class=\"\" scope=\"col\">Fleet</th>
+                        <th class=\"\" scope=\"col\">Baseline</th>
+                        <th class=\"\" scope=\"col\">Equipement</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     ";
-        // line 36
+        // line 38
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["trains"]) || array_key_exists("trains", $context) ? $context["trains"] : (function () { throw new RuntimeError('Variable "trains" does not exist.', 36, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["trains"]) || array_key_exists("trains", $context) ? $context["trains"] : (function () { throw new RuntimeError('Variable "trains" does not exist.', 38, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["train"]) {
-            // line 37
+            // line 39
             echo "                        <tr class=\"td-table\">
                             <td class=\"mt-4\">
                                 <a href=\"";
-            // line 39
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 39)]), "html", null, true);
+            // line 41
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 41)]), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["train"], "name", [], "any", false, false, false, 39), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["train"], "name", [], "any", false, false, false, 41), "html", null, true);
             echo "</td>
                             </td>
                             ";
-            // line 41
-            if (twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 41)) {
-                // line 42
+            // line 43
+            if (twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 43)) {
+                // line 44
                 echo "                                <td>";
-                echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 42), "name", [], "any", false, false, false, 42)), "html", null, true);
+                echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["train"], "Projects", [], "any", false, false, false, 44), "name", [], "any", false, false, false, 44)), "html", null, true);
                 echo "</td>
                             ";
             } else {
-                // line 44
+                // line 46
                 echo "                                <td></td>
                             ";
             }
-            // line 46
-            echo "
+            // line 48
+            echo "                            ";
+            if (twig_get_attribute($this->env, $this->source, $context["train"], "Baselines", [], "any", false, false, false, 48)) {
+                // line 49
+                echo "                                ";
+                $context['_parent'] = $context;
+                $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["train"], "Baselines", [], "any", false, false, false, 49));
+                foreach ($context['_seq'] as $context["_key"] => $context["baseline"]) {
+                    // line 50
+                    echo "
+                                    <td class=\"mt-4\">
+                                        <a href=\"";
+                    // line 52
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-baseline", ["id" => twig_get_attribute($this->env, $this->source, $context["baseline"], "id", [], "any", false, false, false, 52)]), "html", null, true);
+                    echo "\">";
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["baseline"], "name", [], "any", false, false, false, 52), "html", null, true);
+                    echo "</td>
+                                    </td>
+                                    <td></td>
+                                ";
+                }
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['_key'], $context['baseline'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 56
+                echo "                            ";
+            } else {
+                // line 57
+                echo "                                <td></td>
+                            ";
+            }
+            // line 59
+            echo "                            <td></td>
+
                             <td class=\"content-btn-edit-delete\">
                                 <a href=\"";
-            // line 48
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 48)]), "html", null, true);
+            // line 62
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.edit-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 62)]), "html", null, true);
             echo "\">
                                     <i class=\"fas fa-edit\"></i>
                                 </a>
                                 <form method=\"post\" action=\"";
-            // line 51
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.delete-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 51)]), "html", null, true);
+            // line 65
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.delete-train", ["id" => twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 65)]), "html", null, true);
             echo "\" onsubmit=\"return confirm('Are you sure to delete this train?')\">
                                     <input name=\"_method\" type=\"hidden\" value=\"DELETE\">
                                     <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 53
-            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 53))), "html", null, true);
+            // line 67
+            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["train"], "id", [], "any", false, false, false, 67))), "html", null, true);
             echo "\">
                                     <button class=\"btn btn-danger btn-delete-client\">
                                         <i class=\"fas fa-trash-alt\"></i>
@@ -180,12 +214,12 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['train'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 61
+        // line 75
         echo "                </tbody>
-            </table>
-        </section>
-    </main>
-";
+            </tbody>
+        </table>
+    </section>
+</main>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -206,7 +240,7 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
 
     public function getDebugInfo()
     {
-        return array (  184 => 61,  170 => 53,  165 => 51,  159 => 48,  155 => 46,  151 => 44,  145 => 42,  143 => 41,  136 => 39,  132 => 37,  128 => 36,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  218 => 75,  204 => 67,  199 => 65,  193 => 62,  188 => 59,  184 => 57,  181 => 56,  169 => 52,  165 => 50,  160 => 49,  157 => 48,  153 => 46,  147 => 44,  145 => 43,  138 => 41,  134 => 39,  130 => 38,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -241,7 +275,9 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
                 <thead>
                     <tr class=\"title-table\">
                         <th scope=\"col\">Name</th>
-                        <th class=\"\" scope=\"col\">Projects</th>
+                        <th class=\"\" scope=\"col\">Fleet</th>
+                        <th class=\"\" scope=\"col\">Baseline</th>
+                        <th class=\"\" scope=\"col\">Equipement</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -256,6 +292,18 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
                             {% else %}
                                 <td></td>
                             {% endif %}
+                            {% if train.Baselines %}
+                                {% for baseline in train.Baselines %}
+
+                                    <td class=\"mt-4\">
+                                        <a href=\"{{ path('alstom.show-baseline', {id: baseline.id}) }}\">{{  baseline.name }}</td>
+                                    </td>
+                                    <td></td>
+                                {% endfor %}
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                            <td></td>
 
                             <td class=\"content-btn-edit-delete\">
                                 <a href=\"{{ path('alstom.edit-train', {id: train.id}) }}\">
@@ -272,10 +320,10 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
                         </tr>
                     {% endfor %}
                 </tbody>
-            </table>
-        </section>
-    </main>
-{% endblock %}
+            </tbody>
+        </table>
+    </section>
+</main>{% endblock %}
 ", "alstom/trains/trains.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\trains\\trains.html.twig");
     }
 }

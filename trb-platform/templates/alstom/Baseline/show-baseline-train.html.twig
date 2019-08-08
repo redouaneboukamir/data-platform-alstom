@@ -1,0 +1,162 @@
+{% extends 'alstom/index.html.twig' %}
+
+{% block body %}
+
+    <div id="modal-content-form-equipement-edit">
+        <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="form-equipment" id="formulaire-equipment">
+            {{ form_start(form_equipement, { 
+               'attr': {'id': 'form_equipement_edit_instance'}}) }}
+            {{form_row(form_equipement.Type)}}
+            {{form_row(form_equipement.sous_type)}}
+            {{form_row(form_equipement.DTR_board)}}
+            {{form_row(form_equipement.Indice_DTR)}}
+            {{form_row(form_equipement.Num_serie)}}
+            {{form_row(form_equipement._token)}}
+
+            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
+
+            {{form_end(form_equipement)}}</div>
+
+    </div>
+
+    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+        <span class="sr-only">
+            Loading...
+        </span>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal-form-version" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header card-header-title">
+                    <h4 class="modal-title card-element-title">Add version logiciel</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-version" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-content clearfix">
+                        <div class="form-version" id="formulaire-version">
+                            {{ form_start(form_version, {'action': path('alstom.addVersion'), 
+               'attr': {'id': 'form_version'}}) }}
+                            {{form_row(form_version.release_note)}}
+                            <input class="btn-valid-version btn btn-secondary " id="soumission-version" name="soumission_version" type="submit" value="Add"/>
+                            {{form_end(form_version)}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# --------------------------- #}
+    <main class="col-md-12 ml-sm-auto col-lg-12 pl-5 px-4 main-baseline" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1>{{baseline.name}}</h1>
+
+            <div class="content-btn-add-config">
+                <button class="btn btn-primary" id="add-configLogiciel">Add Configuration Logiciel</button>
+                {% if (baseline.VersionLogiciel) %}
+                    <button class="btn btn-secondary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Edit Version Logiciel</button>
+                {% else %}
+                    <button class="btn btn-primary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Add Version Logiciel</button>
+                {% endif %}
+            </div>
+
+        </div>
+        <div class="content-version-config">
+            {% if (baseline.VersionLogiciel) %}
+                <h6 id="title-version">
+                    <strong>Version Logiciel</strong>
+                    :{{ baseline.VersionLogiciel.ReleaseNote}}</h6>
+            {% else %}
+                <h6 id="title-version" style="color:rgb(168, 3, 3)"></h6>
+            {% endif %}
+        </div>
+        <div class="content-version-config">
+            {% for ertms in baseline.ERTMS %}
+                {% if ertms.status %}
+                    <h6 id="title-version">
+                        <strong>Version
+                        </strong>
+                        {{ ertms.solution.name }}</h6>
+
+
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="show-equipment" id="show-equipment" style="">
+            {% for equipement in equipements %}
+                {% if equipement.status == true %}
+                    {% if (equipement.Type.name == "EVC") or (equipement.Type.name == "CARTE") %}
+                        <div class="description description-SubtypeCard" id="description-equipement">
+
+                            {% if equipement.Type.name == "EVC" %}
+
+                                <h4 class="description-Type " id="description-type ">
+                                    {{equipement.Type.name}}
+                                </h4>
+
+                            {% elseif equipement.Type.name ==  "CARTE" %}
+                                <h5 class="description-Type " id="description-subType ">
+                                    {{equipement.SousType.name}}
+
+                                </h5>
+
+                            {% endif %}
+
+                            <div class="content-description-dtr-instance ml-2" id="content-description">
+                                <p>{{equipement.DTRboard}}</p>
+                                <p>{{equipement.IndiceDTR}}</p>
+                                <p>{{equipement.Numserie}}</p>
+                                <p class="edit-delete-equipement">
+                                    <a class="edit-{{equipement.id}}" id="edit-equipement">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a id="delete-{{equipement.id}}">
+                                        <i class="fas fa-trash-alt poubelle"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <div class="description" id="description-equipement">
+                            <h4 class="description-Type " id="description-type ">
+                                {{equipement.Type.name}}
+                            </h4>
+                            <h5 class="description-Type " id="description-subType">
+                                {% if equipement.SousType %}
+                                    {{equipement.SousType.name}}
+                                {% endif %}
+                            </h5>
+                            <div class="content-description-dtr-instance" id="content-description">
+                                <p>{{equipement.DTRboard}}</p>
+                                <p>{{equipement.IndiceDTR}}</p>
+                                <p>{{equipement.Numserie}}</p>
+                                <p class="edit-delete-equipement">
+                                    <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a id="delete-">
+                                        <i class="fas fa-trash-alt poubelle"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% else %}
+                {% endif %}
+            {% endfor %}
+
+
+        </div>
+
+    </main>
+
+
+{% endblock %}
