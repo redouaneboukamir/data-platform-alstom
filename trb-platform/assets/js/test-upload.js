@@ -32,5 +32,4 @@ $('#test-upload').on("click","button",function(){
             });
         }
     });
- 
 }); 
