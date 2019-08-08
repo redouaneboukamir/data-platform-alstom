@@ -51,6 +51,8 @@ use App\Entity\VersionLogiciel;
 use App\Form\VersionType;
 use App\Repository\VersionLogicielRepository;
 use App\Repository\ConfigLogicielRepository;
+use App\Entity\FileTemp;
+use App\Form\FileTempType;
 
 class alstomController extends AbstractController
 {
@@ -730,6 +732,7 @@ class alstomController extends AbstractController
             'current_menu' => "logs"
         ]);
     }
+
     /**
      * @Route("/alstom/add-logs", name="alstom.add-logs")
      * @param Request $request
@@ -737,12 +740,22 @@ class alstomController extends AbstractController
      */
     public function addLogs(Request $request): Response
     {
-        $assoc_baseline = new AssociationBaseline;
-        dump($request->request);
 
+        $file = new FileTemp;
+
+        $form = $this->createform(FileTempType::class, $file);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $file->setupdatedAt(new \DateTime('now'));
+            $this->em->persist($file);
+            $this->em->flush();
+            return $this->redirectToRoute('alstom.home');
+        }
 
         return $this->render('alstom/logs/add_logs.html.twig', [
-            'current_menu' => "logs"
+            'current_menu' => "logs",
+            'form' => $form->createView()
         ]);
     }
     /**

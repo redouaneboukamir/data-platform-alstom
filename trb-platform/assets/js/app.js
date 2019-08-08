@@ -53,3 +53,35 @@ $(document).ready(function () {
 
 
 });
+
+$('#file_upload').on('submit', function (e) {
+
+    e.preventDefault();
+    var $this = $(this);
+    $this.find('[name]').each(function (index, value) {
+        var that = $(this),
+            name = that.attr('name'),
+            value = that.val();
+
+        data[name] = value;
+
+    })
+    $.ajax({
+        url: $this.attr('action'),
+        type: $this.attr('method'),
+        data: {
+            file: data
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            console.log(response);
+
+
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            ('Ajax request failed.');
+        }
+    });
+
+})

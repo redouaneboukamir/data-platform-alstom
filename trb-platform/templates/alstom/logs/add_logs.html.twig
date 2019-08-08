@@ -14,94 +14,60 @@
         </div>
 
         {# Formulaire d'ajout de baseline #}
-        <div class="jumbotron content-form-baseline">
-            <form action="{{path('alstom.create-logs')}}" id="form_add_baseline_logs" method="POST">
-                <div class="form-group">
-                    <label for="input_name_baseline">Name Baseline</label>
-                    <input class="form-control" id="input_name_baseline" name="baseline" placeholder="" type="text">
-                </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="input_version_logiciel">Version Logiciel</label>
-                        <input class="form-control" id="input_version_logiciel" name="version" placeholder="" type="text">
+        {# <div class="jumbotron content-form-baseline">
+                                                            <form action="{{path('alstom.create-logs')}}" id="form_add_baseline_logs" method="POST">
+                                                                <div class="form-group">
+                                                                    <label for="input_name_baseline">Name Baseline</label>
+                                                                    <input class="form-control" id="input_name_baseline" name="baseline" placeholder="" type="text">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="form-group">
+                                                                        <label for="input_version_logiciel">Version Logiciel</label>
+                                                                        <input class="form-control" id="input_version_logiciel" name="version" placeholder="" type="text">
+                                                
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="form-group">
+                                                                        <label for="input_config_logiciel">Config Logiciel</label>
+                                                                        <input class="form-control" id="input_config_logiciel" name="config" placeholder="" type="text">
+                                                
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="form-group">
+                                                                        <label for="input_ertms_equipment">ERTMS Equipment</label>
+                                                                        <input class="form-control" id="input_ertms_equipment" name="ertms" placeholder="" type="text">
+                                                
+                                                                    </div>
+                                                                </div> #}
 
+        {# <div
+                    class="file-upload mb-4">
+                    <form action="/alstom/test-logs" id="file_upload">
+        
+                    <div
+                        class="image-upload-wrap"> #}
+        {# <input accept=".zip,.rar,.7zip" class="file-upload-input" id="file_zip" onchange="readURL(this);" type='file'/>
+                                                                                                                                                                                             #}
+        {{form_start(form)}}<button class="btn btn-primary mb-2" type="submit"> Add</button>
+        {{form_end(form)}}
+    {# <div class="drag-text">
+                        <h3>Drag and drop a file or select add File</h3>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="input_config_logiciel">Config Logiciel</label>
-                        <input class="form-control" id="input_config_logiciel" name="config" placeholder="" type="text">
-
+                <div class="file-upload-content">
+                    <p id="name_file_upload"></p>
+                    <div class="image-title-wrap">
+                        <button class="remove-image" onclick="removeUpload()" type="button">Remove
+                            <span class="image-title">Uploaded File</span>
+                        </button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="input_ertms_equipment">ERTMS Equipment</label>
-                        <input class="form-control" id="input_ertms_equipment" name="ertms" placeholder="" type="text">
+            </div> #}
+        {# </form> #}
 
-                    </div>
-                </div>
+        {# </form> #}
 
-                {% block javascripts %}
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                    <script>
-
-                        function readURL(input) {
-                            if (input.files && input.files[0]) {
-
-                                var reader = new FileReader();
-
-                                reader.onload = function (e) {
-                                    $('.image-upload-wrap').hide();
-
-                                    $('.file-upload-image').attr('src', e.target.result);
-                                    $('#name_file_upload').text($('#file_zip').val())
-                                    $('.file-upload-content').show();
-                                    $('.image-title').html(input.files[0].name);
-                                };
-
-                                reader.readAsDataURL(input.files[0]);
-
-                            } else {
-                                removeUpload();
-                            }
-                        }
-
-                        function removeUpload() {
-                            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-                            $('.file-upload-content').hide();
-                            $('.image-upload-wrap').show();
-                        }
-                        $('.image-upload-wrap').bind('dragover', function () {
-                            $('.image-upload-wrap').addClass('image-dropping');
-                        });
-                        $('.image-upload-wrap').bind('dragleave', function () {
-                            $('.image-upload-wrap').removeClass('image-dropping');
-                        });
-                    </script>
-
-                {% endblock %}
-
-                <div class="file-upload mb-4">
-
-                    <div class="image-upload-wrap">
-                        <input accept=".zip,.rar,.7zip" class="file-upload-input" id="file_zip" onchange="readURL(this);" type='file'/>
-                        <div class="drag-text">
-                            <h3>Drag and drop a file or select add File</h3>
-                        </div>
-                    </div>
-                    <div class="file-upload-content">
-                        <p id="name_file_upload"></p>
-                        <div class="image-title-wrap">
-                            <button class="remove-image" onclick="removeUpload()" type="button">Remove
-                                <span class="image-title">Uploaded File</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-primary mb-2" type="submit">Add</button>
-            </form>
-
-        </div>
-
-    {% endblock %}
+    </div>
+{% endblock %}
