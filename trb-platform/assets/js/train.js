@@ -48,15 +48,22 @@ $('#select_train').show();
 $('#select_locomotive').show();
 
 let current_choice = "",
-    ertms_left = "",
-    ertms_middle = "",
-    ertms_right = "";
+    ertms_left = false,
+    ertms_middle = false,
+    ertms_right = false;
 
 $('#close-modal-baseline-1').click(function () {
-    $('#content-form-baseline-1').hide();
+    if (ertms_right == true) {
+        $('#content-form-baseline-2').addClass('offset-md-6');
+        $('#content-form-baseline-1').hide();
+    } else {
+        $('#content-form-baseline-1').hide();
+    }
+    ertms_left = false;
 })
 $('#close-modal-baseline-2').click(function () {
     $('#content-form-baseline-2').hide();
+    ertms_right = false;
 })
 $('#ertms-train-1').click(function () {
     ertms_left = true;
@@ -113,16 +120,35 @@ $('#ertms-train-3').click(function () {
 
 
 $('#ertms-loco-1').click(function () {
+    ertms_left = true;
+    if (ertms_right == true) {
+        $('#content-form-baseline-2').removeClass('offset-md-6');
+        $('#content-form-baseline-1').show();
+    } else {
+        $('#content-form-baseline-1').show();
+    }
+    $('#label-baseline-1').text('Baseline left');
     $('#ertms-loco-1').addClass("selected");
     $('#ertms-loco-2').removeClass("selected");
-    $('#btn-baseline-1').css('opacity', '1')
-    $('#btn-baseline-3').css('opacity', '0')
+    $('#btn-baseline-1').css('opacity', '1');
+    $('#btn-baseline-3').css('opacity', '0');
 });
 $('#ertms-loco-2').click(function () {
+    ertms_right = true;
+    $('#label-baseline-2').text('Baseline right');
     $('#btn-baseline-3').css('opacity', '1')
     $('#btn-baseline-1').css('opacity', '0')
     $('#ertms-loco-2').addClass("selected");
     $('#ertms-loco-1').removeClass("selected");
+    if (ertms_left == true) {
+        $('#content-form-baseline-2').removeClass('offset-md-6');
+
+        $('#content-form-baseline-2').show();
+    } else {
+        $('#content-form-baseline-2').addClass('offset-md-6');
+        $('#content-form-baseline-2').show();
+
+    }
 
 });
 
@@ -301,29 +327,33 @@ $('#form_equipement_edit_baseline').on('submit', function (e) {
 
 })
 $('#valid-baseline-train').click(function () {
-    let id_train = extraitNombre(window.location.pathname);
-    let id_baseline = $('#select_baseline_1 option:selected').val();
-    console.log(id_train)
-    console.log(id_baseline)
-    $.ajax({
-        url: '/alstom/addBaselineInstancier',
-        type: 'POST',
-        data: {
-            id_train: id_train,
-            baseline: id_baseline,
-            new_equipt: new_equipment_num_serie
-        },
-        async: true,
-        dataType: 'json', // JSON
-        success: function (response) {
+    if (new_equipment_num_serie == "") {
+        alert('please enter num serie before instance baseline')
+    } else {
 
-            console.log(response);
+        let id_train = extraitNombre(window.location.pathname);
+        let id_baseline = $('#select_baseline_1 option:selected').val();
 
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            ('Ajax request failed.');
-        }
-    });
+        $.ajax({
+            url: '/alstom/addBaselineInstancier',
+            type: 'POST',
+            data: {
+                id_train: id_train,
+                baseline: id_baseline,
+                new_equipt: new_equipment_num_serie
+            },
+            async: true,
+            dataType: 'json', // JSON
+            success: function (response) {
+                console.log(response);
+                window.location.href = "/alstom/trains/" + id_train;
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                ('Ajax request failed.');
+            }
+        });
+    }
 
 })
 
@@ -382,7 +412,7 @@ function returnIndexElement(element, index, array) {
             if (element['numSerie'] == "") {
                 $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
             } else {
-                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p>')
+                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a>')
             }
             // $("#content-description-" + index + "").append(writeEditDelete(index));
 
@@ -400,7 +430,8 @@ function returnIndexElement(element, index, array) {
             if (element['numSerie'] == "") {
                 $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
             } else {
-                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p>')
+                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a>')
+
             }
 
             // $("#content-description-" + index + "").append(writeEditDelete(index));

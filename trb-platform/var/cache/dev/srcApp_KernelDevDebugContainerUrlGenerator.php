@@ -71,6 +71,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'alstom.create-baseline' => [[], ['_controller' => 'App\\Controller\\alstomController::create_baseline'], [], [['text', '/alstom/create_baseline']], [], []],
         'alstom.flush-all-equipt' => [[], ['_controller' => 'App\\Controller\\alstomController::flush_all_equipt'], [], [['text', '/alstom/flush-all-equipt']], [], []],
         'alstom.show-baseline' => [['id'], ['_controller' => 'App\\Controller\\alstomController::show_baseline'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/baseline']], [], []],
+        'alstom.show-baseline-train' => [['id'], ['_controller' => 'App\\Controller\\alstomController::show_baseline_train'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/baseline-train']], [], []],
         'alstom.edit-equipment' => [['id'], ['_controller' => 'App\\Controller\\alstomController::edit_equipement'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/edit-equipment']], [], []],
         'alstom.edit-equipment-baseline' => [['id'], ['_controller' => 'App\\Controller\\alstomController::edit_equipement_baseline'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/edit-equipment-baseline']], [], []],
         'alstom.addAssocBaseline' => [[], ['_controller' => 'App\\Controller\\alstomController::addAssocBaseline'], [], [['text', '/alstom/addAssocBaseline']], [], []],

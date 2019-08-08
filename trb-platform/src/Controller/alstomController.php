@@ -497,7 +497,6 @@ class alstomController extends AbstractController
             'current_menu' => 'baseline',
             'train' => $train,
             'form_equipement' => $form_equipement->createView(),
-
         ]);
     }
     /**
@@ -541,6 +540,7 @@ class alstomController extends AbstractController
         }
 
         $new_assoc = new AssociationEquiptERTMS;
+        $new_ertms = new ERTMSEquipement;
 
         foreach ($tabEquipt as $key => $value) {
             dump($value);
@@ -572,7 +572,8 @@ class alstomController extends AbstractController
             // }
             dump($equipement);
         }
-
+        $new_ertms->setName($baseline->getName() . "-1.0");
+        $new_assoc->setSolution($new_ertms);
         $new_baseline = new Baseline;
         $new_baseline->setName($baseline->getName());
         $new_baseline->setTrains($train);
@@ -586,6 +587,7 @@ class alstomController extends AbstractController
 
         dump($new_assoc);
         dump($new_baseline);
+        dump($new_ertms);
         dump($train);
         $this->em->persist($new_baseline);
         $train->addBaseline($new_baseline);
@@ -975,6 +977,43 @@ class alstomController extends AbstractController
 
         ]);
     }
+    /**
+     * @Route("/alstom/baseline-train/{id}", name="alstom.show-baseline-train")
+     * @return Response
+     */
+    public function show_baseline_train(
+        Baseline $baseline,
+        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
+        Request $request
+    ) {
+        foreach ($baseline->getERTMS() as $key => $value) {
+
+            $equipements = $value->getequipements();
+            dump($equipements);
+        }
+        // $equipements = $assoc->getEquipements();
+
+        $equipement = new Equipement;
+        $version = new VersionLogiciel;
+
+        $form_equipement = $this->createForm(EquipementType::class, $equipement);
+        $form_version = $this->createForm(VersionType::class, $version);
+
+        $form_equipement->handleRequest($request);
+        $form_version->handleRequest($request);
+
+
+        return $this->render('alstom/baseline/show-baseline.html.twig', [
+            'current_menu' => 'baseline',
+            'baseline_train' => true,
+            'baseline' => $baseline,
+            'equipement' => $equipement,
+            'equipements' => $equipements,
+            'form_equipement' => $form_equipement->createView(),
+            'form_version' => $form_version->createView()
+
+        ]);
+    }
 
     /**
      * @Route("/alstom/edit-equipment/{id}", name="alstom.edit-equipment", methods={"POST","GET"})
@@ -1031,12 +1070,12 @@ class alstomController extends AbstractController
                         break;
                 }
             }
+            // attribut le statut actif au nouvel equipement
+            $equipement_new->setStatus(true);
+            // Et false a l'ancienne equipement
+            $current_equipement->setStatus(false);
         }
-        // attribut le statut actif au nouvel equipement
-        $equipement_new->setStatus(true);
 
-        // Et false a l'ancienne equipement
-        $current_equipement->setStatus(false);
 
         // Va rechercher l'association courante
         $id_assoc = $equipement->getAssociationEquiptERTMS();
@@ -1056,8 +1095,12 @@ class alstomController extends AbstractController
             $this->em->persist($equipement_new);
             $this->em->persist($assoc_equipt_ertms);
             $this->em->persist($assoc_evc_carte);
-
             $this->em->flush();
+            $jsonObjectEquipt = $this->serializer->serialize($equipement_new, 'json', [
+                'circular_reference_handler' => function ($object) {
+                    return $object->getId();
+                }
+            ]);
         } else if ($new_equipement['soumission_edit_equipement'] == "Update") {
             dump($equipement_new);
             $this->em->persist($equipement_new);
@@ -1070,7 +1113,6 @@ class alstomController extends AbstractController
                     return $object->getId();
                 }
             ]);
-            return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
         } else {
 
             $jsonObjectEquipt = $this->serializer->serialize($current_equipement, 'json', [
@@ -1078,9 +1120,8 @@ class alstomController extends AbstractController
                     return $object->getId();
                 }
             ]);
-
-            return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
         }
+        return new Response($jsonObjectEquipt, 200, ['Content-Type' => 'application/json']);
     }
     /**
      * @Route("/alstom/edit-equipment-baseline/{id}", name="alstom.edit-equipment-baseline", methods={"POST","GET"})

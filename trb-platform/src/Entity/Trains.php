@@ -41,11 +41,6 @@ class Trains
     private $position_ERTMS;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ERTMSEquipement", mappedBy="trains")
-     */
-    private $ERTMS;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Baseline", mappedBy="Trains",cascade={"persist"})
      */
     private $baselines;
@@ -53,7 +48,6 @@ class Trains
 
     public function __construct()
     {
-        $this->ERTMS = new ArrayCollection();
         $this->baselines = new ArrayCollection();
     }
 
@@ -111,37 +105,6 @@ class Trains
     public function setPositionERTMS($position_ERTMS): self
     {
         $this->position_ERTMS = $position_ERTMS;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ERTMSEquipement[]
-     */
-    public function getERTMS(): Collection
-    {
-        return $this->ERTMS;
-    }
-
-    public function addERTM(ERTMSEquipement $eRTM): self
-    {
-        if (!$this->ERTMS->contains($eRTM)) {
-            $this->ERTMS[] = $eRTM;
-            $eRTM->setTrains($this);
-        }
-
-        return $this;
-    }
-
-    public function removeERTM(ERTMSEquipement $eRTM): self
-    {
-        if ($this->ERTMS->contains($eRTM)) {
-            $this->ERTMS->removeElement($eRTM);
-            // set the owning side to null (unless already changed)
-            if ($eRTM->getTrains() === $this) {
-                $eRTM->setTrains(null);
-            }
-        }
 
         return $this;
     }

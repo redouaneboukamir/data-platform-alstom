@@ -59,14 +59,23 @@
 
             <div class="content-btn-add-config">
                 <button class="btn btn-primary" id="add-configLogiciel">Add Configuration Logiciel</button>
-                <button class="btn btn-primary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Add Version Logiciel</button>
-                <button class="btn btn-success" id="add-versionLogiciel">Instantiate to train</button>
+                {% if (baseline.VersionLogiciel) %}
+                    <button class="btn btn-secondary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Edit Version Logiciel</button>
+                {% else %}
+                    <button class="btn btn-primary" data-target="#modal-form-version" data-toggle="modal" id="add-versionLogiciel">Add Version Logiciel</button>
+                {% endif %}
+
+                {% if baseline_train == false %}
+                    <button class="btn btn-success" id="add-versionLogiciel">Instantiate to train</button>
+                {% endif %}
             </div>
 
         </div>
         <div class="content-version-config">
             {% if (baseline.VersionLogiciel) %}
-                <h6 id="title-version" style="color:rgb(168, 3, 3)">Version Logiciel :{{ baseline.VersionLogiciel.ReleaseNote}}</h6>
+                <h6 id="title-version" style="color:rgb(168, 3, 3)">
+                    <strong>Version Logiciel</strong>
+                    :{{ baseline.VersionLogiciel.ReleaseNote}}</h6>
             {% else %}
                 <h6 id="title-version" style="color:rgb(168, 3, 3)"></h6>
             {% endif %}
