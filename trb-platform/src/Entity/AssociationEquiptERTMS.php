@@ -29,9 +29,16 @@ class AssociationEquiptERTMS
     private $equipements;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Baseline", mappedBy="Equipment_ertms")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Baseline", inversedBy="ERTMS",cascade={"persist"})
      */
-    private $baselines;
+    private $baseline;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status;
+
+
 
     public function __construct()
     {
@@ -96,33 +103,26 @@ class AssociationEquiptERTMS
         return $this;
     }
 
-    /**
-     * @return Collection|Baseline[]
-     */
-    public function getBaselines(): Collection
+    public function getBaseline(): ?Baseline
     {
-        return $this->baselines;
+        return $this->baseline;
     }
 
-    public function addBaseline(Baseline $baseline): self
+    public function setBaseline(?Baseline $baseline): self
     {
-        if (!$this->baselines->contains($baseline)) {
-            $this->baselines[] = $baseline;
-            $baseline->setEquipmentErtms($this);
-        }
+        $this->baseline = $baseline;
 
         return $this;
     }
 
-    public function removeBaseline(Baseline $baseline): self
+    public function getStatus(): ?bool
     {
-        if ($this->baselines->contains($baseline)) {
-            $this->baselines->removeElement($baseline);
-            // set the owning side to null (unless already changed)
-            if ($baseline->getEquipmentErtms() === $this) {
-                $baseline->setEquipmentErtms(null);
-            }
-        }
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

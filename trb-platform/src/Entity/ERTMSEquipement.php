@@ -17,23 +17,22 @@ class ERTMSEquipement
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Trains", inversedBy="ERTMS")
+     * @ORM\Column(type="string", length=255)
      */
-    private $trains;
+    private $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getTrains(): ?Trains
+    public function getName(): ?string
     {
-        return $this->trains;
+        return $this->name;
     }
 
-    public function setTrains(?Trains $trains): self
+    public function setName(string $name): self
     {
-        $this->trains = $trains;
+        $this->name = $name;
 
         return $this;
     }

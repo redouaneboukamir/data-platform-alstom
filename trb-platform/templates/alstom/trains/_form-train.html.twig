@@ -2,45 +2,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
 {% endblock %}
 
+<div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+    <span class="sr-only">
+        Loading...
+    </span>
+</div>
 
-{{ form_start(form_train) }}
+{{ form_start(form_train)}}
 
 
 <div class="row">
     <div class="col-md-12">{{ form_row(form_train.name) }}</div>
     <div class="col-md-12">{{ form_row(form_train.projects) }}</div>
     <div class="col-md-12">{{ form_row(form_train.trainType) }}</div>
-    {{form_widget(form_train.position_ERTMS, {
-        'attr' : {
-            'style' : 'display:none !important'
-        }
-    })}}
-
-    <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
-        <h4>Select Baseline :
-        </h4>
-        <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
-        <figure class="content-ertms col-md-10 offset-md-2">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-1">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-2">
-        </figure>
-    </div>
-
-    <div class="content-type-train col-md-12 mt-4" id="select_train">
-        <h4>Select Baseline :
-        </h4>
-        <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
-        <figure class="content-ertms col-md-10  offset-md-1 img-fluid">
-
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-1">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-2">
-            <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid " id="ertms-train-3">
-        </figure>
-    </div>
 
 
 </div>
 <p><input class="btn btn-primary mt-4" id="soumission-train" name="soumission_train" type="submit" value="Create"/></p>
 {{ form_end(form_train) }}
-
-{% block javascripts %}{% endblock %}

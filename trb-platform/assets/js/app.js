@@ -1,9 +1,9 @@
 import '../scss/app.scss';
-import './train';
 import './ertms';
 import './equipement';
 import './baseline';
 import './test-upload';
+import './train';
 
 // loads the jquery package from node_modules
 const $ = require('jquery');

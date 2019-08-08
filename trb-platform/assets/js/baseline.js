@@ -26,15 +26,20 @@ $(document).ready(function () {
     let data = {}
     data[$type.attr('name')] = $type.val()
 
-    $.post("/alstom/checkSubtype", data).then(function (response) {
-        //Vidage champ soustype
-        $('#equipement_sous_type').empty();
-        response.forEach(element => {
-            //Remplissage par les element reçu du controller
-            $('#equipement_sous_type').append(new Option(element.name, element.id));
+    if (window.location.pathname == '/alstom/create_baseline') {
+        $.post("/alstom/checkSubtype", data).then(function (response) {
+            //Vidage champ soustype
+            $('#equipement_sous_type').empty();
+            response.forEach(element => {
+                //Remplissage par les element reçu du controller
+                $('#equipement_sous_type').append(new Option(element.name, element.id));
+            })
+
         })
 
-    })
+    } else {
+        console.log(window.location.pathname);
+    }
     // $('#equipement_sous_type').empty();
     // $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');
 });
@@ -232,6 +237,7 @@ $('#close-modal-form-equipment-edit').click(function () {
     $('#modal-content-form-equipement-edit').hide();
     $('.main-ertms').css("opacity", '1');
 })
+// -----------------------------------------------------------------------------
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
 $('.content-description-dtr').on('click', '.edit-delete-equipement > a', function (e) {
     e.preventDefault();
@@ -365,7 +371,7 @@ $('#form_version').on('submit', function (e) {
         dataType: 'json', // JSON
         success: function (response) {
 
-            $('#title-version').html("Version logiciel : " + response.version)
+            $('#title-version').html("Version logiciel : " + " " + response.version)
             $('.main-baseline').css("opacity", '1');
             $('#wait-spinner').hide();
             $('#close-modal-form-version').trigger('click');
@@ -467,7 +473,7 @@ function deleteEquipment(position) {
     $('.description').remove();
     Equipments.forEach(returnIndexElement);
 }
-//Extrait le nombre de l'id des equipements
+//Extrait le nombre d'une streing
 function extraitNombre(str) {
     return Number(str.replace(/[^\d]/g, ""))
 }

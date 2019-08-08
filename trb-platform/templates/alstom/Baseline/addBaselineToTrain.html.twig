@@ -1,0 +1,112 @@
+{% extends 'alstom/index.html.twig' %}
+{% block body %}
+
+    <!-- Modal -->
+    <div class="col-lg-5 col-md-7 offset-3 modal-baseline-equipement" id="modal_baseline_equipement">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title-baseline" id="title_baseline_modal"></h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body content-allEquipement">
+                <div class="show-equipment" id="show-equipment"></div>
+            </div>
+            <a class="previous-equipment" href="" id="previous-equipment">Previous</a>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="valid-baseline-train" type="button">Valid Equipments</button>
+                <button class="btn btn-danger" id="close-equipement-baseline" type="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div id="modal-content-form-equipement-edit">
+        <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="form-equipment" id="formulaire-equipment">
+            {{ form_start(form_equipement, { 
+               'attr': {'id': 'form_equipement_edit_baseline'}}) }}
+            {{form_row(form_equipement.Type)}}
+            {{form_row(form_equipement.sous_type)}}
+            {{form_row(form_equipement.DTR_board)}}
+            {{form_row(form_equipement.Indice_DTR)}}
+            {{form_row(form_equipement.Num_serie)}}
+            {{form_row(form_equipement._token)}}
+            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
+            {{form_end(form_equipement)}}</div>
+
+    </div>
+
+    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+        <span class="sr-only">
+            Loading...
+        </span>
+    </div>
+
+    <main class="col-md-12 ml-sm-auto col-lg-12 pl-5 px-3" role="main">
+        <section class="jumbotron text-left">
+            <div class="container">
+                <h1 class="jumbotron-heading">{{train.name}}</h1>
+                <p class="lead text-muted">
+                    <strong>Fleet :
+                    </strong>
+                    {{train.projects.name}}</p>
+                <p class="lead text-muted">
+                    <strong>Type :
+                    </strong>
+                    {{train.TrainType}}</p>
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="content-form-train-baseline col-md-5 col-sm-5 " id="content-form-baseline-1">
+                <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-baseline-1" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <label for="baseline_select_1" id="label-baseline-1"></label>
+                <select class="form-control" id="select_baseline_1" name="select_baseline_1"></select>
+                <div class="btn btn-success mt-4" id="add-baseline-1">Add</div>
+            </div>
+            <div class="content-form-train-baseline col-md-5 col-sm-5" id="content-form-baseline-2">
+                <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-baseline-2" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <label for="baseline_select_2" id="label-baseline-2"></label>
+                <select class="form-control" id="select_baseline_2" name="select_baseline_2"></select>
+                <div class="btn btn-success mt-4" id="add-baseline-2">Add</div>
+
+            </div>
+        </div>
+
+        {% if train.TrainType == "locomotive" %}
+            <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
+                <h4>Select Baseline :
+                </h4>
+                <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
+                <figure class="content-ertms col-md-10 offset-md-2">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-1">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-2">
+                </figure>
+            </div>
+        {% elseif train.TrainType == "train"%}
+
+            <div class="content-type-train col-md-12 mt-4" id="select_train">
+                <h4>Select Baseline :
+                </h4>
+                <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
+                <figure class="content-ertms col-md-10  offset-md-2 img-fluid">
+
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-1">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-2">
+                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid " id="ertms-train-3">
+                </figure>
+            </div>
+        {% endif %}
+
+
+    </main>
+{% endblock %}
