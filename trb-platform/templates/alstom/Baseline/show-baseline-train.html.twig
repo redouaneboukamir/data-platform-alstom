@@ -7,8 +7,8 @@
             <span aria-hidden="true">&times;</span>
         </button>
         <div class="form-equipment" id="formulaire-equipment">
-            {{ form_start(form_equipement, {'action': path('alstom.addEquipment'), 
-               'attr': {'id': 'form_equipement_edit'}}) }}
+            {{ form_start(form_equipement, { 
+               'attr': {'id': 'form_equipement_edit_instance'}}) }}
             {{form_row(form_equipement.Type)}}
             {{form_row(form_equipement.sous_type)}}
             {{form_row(form_equipement.DTR_board)}}
@@ -69,13 +69,26 @@
         </div>
         <div class="content-version-config">
             {% if (baseline.VersionLogiciel) %}
-                <h6 id="title-version" style="color:rgb(168, 3, 3)">
+                <h6 id="title-version">
                     <strong>Version Logiciel</strong>
                     :{{ baseline.VersionLogiciel.ReleaseNote}}</h6>
             {% else %}
                 <h6 id="title-version" style="color:rgb(168, 3, 3)"></h6>
             {% endif %}
         </div>
+        <div class="content-version-config">
+            {% for ertms in baseline.ERTMS %}
+                {% if ertms.status %}
+                    <h6 id="title-version">
+                        <strong>Version
+                        </strong>
+                        {{ ertms.solution.name }}</h6>
+
+
+                {% endif %}
+            {% endfor %}
+        </div>
+
         <div class="show-equipment" id="show-equipment" style="">
             {% for equipement in equipements %}
                 {% if equipement.status == true %}
@@ -96,7 +109,7 @@
 
                             {% endif %}
 
-                            <div class="content-description-dtr ml-2" id="content-description">
+                            <div class="content-description-dtr-instance ml-2" id="content-description">
                                 <p>{{equipement.DTRboard}}</p>
                                 <p>{{equipement.IndiceDTR}}</p>
                                 <p>{{equipement.Numserie}}</p>
@@ -121,13 +134,12 @@
                                     {{equipement.SousType.name}}
                                 {% endif %}
                             </h5>
-                            <div class="content-description-dtr" id="content-description">
+                            <div class="content-description-dtr-instance" id="content-description">
                                 <p>{{equipement.DTRboard}}</p>
                                 <p>{{equipement.IndiceDTR}}</p>
                                 <p>{{equipement.Numserie}}</p>
                                 <p class="edit-delete-equipement">
                                     <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
-
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a id="delete-">

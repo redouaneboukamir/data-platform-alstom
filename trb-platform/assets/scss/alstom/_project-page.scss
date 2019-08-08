@@ -1,5 +1,26 @@
 //Vue du projet indivicduellement
 //
+.main-show-fleet {
+  padding: 2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 50%),
+    url('/build/img/Alstom-home.jpg');
+  filter: contrast(1);
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: auto;
+  max-height: auto;
+  width: 100vw;
+  overflow: auto;
+}
 
 .table-show-project {
   td {
@@ -19,6 +40,8 @@
   }
 }
 
+
+
 .content-project-project {
   display: flex;
 
@@ -29,17 +52,6 @@
   }
 }
 
-.img-description-project {
-  width: 100vw;
-  height: 20em;
-  margin: 0;
-  overflow: hidden;
-  text-align: right;
-
-  .img-project {
-    width: 100%;
-  }
-}
 
 .clicked {
   transition: all 0.3s;

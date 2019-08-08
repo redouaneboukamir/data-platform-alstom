@@ -7,6 +7,7 @@
 @import "baseline";
 @import "fleet";
 @import "sidebar";
+@import "header-profile";
 
 
 
@@ -52,12 +53,6 @@ a {
 
 .card {
 
-  .border-separate-picture-info {
-    background: $main-color;
-    opacity: 0.8;
-    height: 3px;
-    width: 100%;
-  }
 
   .btn-edit {
     position: absolute;

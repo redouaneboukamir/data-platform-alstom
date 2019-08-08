@@ -27,7 +27,11 @@ $(document).ready(function () {
     data[$type.attr('name')] = $type.val()
 
     if (window.location.pathname == '/alstom/create_baseline') {
+        $('main').css("opacity", '0.4');
+        $('#wait-spinner').show();
         $.post("/alstom/checkSubtype", data).then(function (response) {
+            $('main').css("opacity", '1');
+            $('#wait-spinner').hide();
             //Vidage champ soustype
             $('#equipement_sous_type').empty();
             response.forEach(element => {
@@ -50,8 +54,10 @@ $type.change(function () {
     let data = {}
     data[$type.attr('name')] = $type.val()
 
+    $('#wait-spinner').show();
     $.post("/alstom/checkSubtype", data).then(function (response) {
         //Vidage champ soustype
+        $('#wait-spinner').hide();
         $('#equipement_sous_type').empty();
         response.forEach(element => {
             //Remplissage par les element reçu du controller
@@ -67,6 +73,7 @@ $('#form_equipement').on('submit', function (e) {
     //Empêche le chargement de la page sois fait automatiquement
     e.preventDefault();
 
+    $('#wait-spinner').show();
     var $this = $(this);
     let data = {},
         action;
@@ -101,6 +108,8 @@ $('#form_equipement').on('submit', function (e) {
             dataType: 'json', // JSON
             success: function (response) {
                 console.log(response);
+                $('main').css("opacity", '1');
+                $('#wait-spinner').hide();
 
             },
             error: function (xhr, textStatus, errorThrown) {
@@ -122,6 +131,8 @@ $('#form_equipement').on('submit', function (e) {
             dataType: 'json', // JSON
             success: function (response) {
                 console.log(response);
+                $('main').css("opacity", '1');
+                $('#wait-spinner').hide();
             },
             error: function (xhr, textStatus, errorThrown) {
                 ('Ajax request failed.');
@@ -152,6 +163,8 @@ $('#create-baseline').click(function () {
 
 let baselineName;
 $('#form_baseline').on('submit', function (e) {
+    $('#wait-spinner').show();
+
     e.preventDefault();
     var $this = $(this);
     let data = {};
@@ -179,6 +192,7 @@ $('#form_baseline').on('submit', function (e) {
         dataType: 'json', // JSON
         success: function (response) {
 
+            $('#wait-spinner').hide();
             $('.title-baseline').text(response.baseline)
             $('#content-form-equipment').show();
             $('#previous-equipment').hide();
@@ -237,7 +251,7 @@ $('#close-modal-form-equipment-edit').click(function () {
     $('#modal-content-form-equipement-edit').hide();
     $('.main-ertms').css("opacity", '1');
 })
-// -----------------------------------------------------------------------------
+// 
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
 $('.content-description-dtr').on('click', '.edit-delete-equipement > a', function (e) {
     e.preventDefault();
@@ -434,17 +448,17 @@ function returnIndexElement(element, index, array) {
         };
         if (PresenceEVC) {
             //Ecris le nom du type "carte" sous le type  EVC
-            $(indexEVC).append(writeType(5, 1));
+            // $(indexEVC).append(writeType(5, 1));
             //Parcous le type de soustype 
             switch (element["equipement[sous_type]"]) {
                 case "1":
-                    $(indexEVC).append(writeSubtype(6, 0));
+                    $(indexEVC).append(writeSubtype(5, 0));
                     break;
                 case "2":
-                    $(indexEVC).append(writeSubtype(6, 1));
+                    $(indexEVC).append(writeSubtype(5, 1));
                     break;
                 case "3":
-                    $(indexEVC).append(writeSubtype(6, 2));
+                    $(indexEVC).append(writeSubtype(5, 2));
                     break;
             }
 
