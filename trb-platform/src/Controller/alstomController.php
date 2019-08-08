@@ -939,7 +939,6 @@ class alstomController extends AbstractController
      */
     public function show_baseline(
         Baseline $baseline,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
         Request $request
     ) {
         foreach ($baseline->getERTMS() as $key => $value) {
@@ -976,7 +975,6 @@ class alstomController extends AbstractController
      */
     public function show_baseline_train(
         Baseline $baseline,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
         Request $request
     ) {
 
@@ -996,7 +994,6 @@ class alstomController extends AbstractController
         $form_equipement->handleRequest($request);
         $form_version->handleRequest($request);
 
-
         return $this->render('alstom/baseline/show-baseline-train.html.twig', [
             'current_menu' => 'baseline',
             'baseline_train' => true,
@@ -1005,7 +1002,6 @@ class alstomController extends AbstractController
             'equipements' => $equipements,
             'form_equipement' => $form_equipement->createView(),
             'form_version' => $form_version->createView()
-
         ]);
     }
 
@@ -1039,14 +1035,14 @@ class alstomController extends AbstractController
                 switch ($key) {
                     case 'equipement[Type':
                         $equipement_new->setType($typeEquipementRepository->find($value));
-                        // switch ($value) {
-                        //     case "1":
-                        //         $assoc_evc_carte->setEVC($equipement);
-                        //         break;
-                        //     case "2":
-                        //         $assoc_evc_carte->addCARD($equipement);
-                        //         break;
-                        // }
+                        switch ($value) {
+                            case "1":
+                                $assoc_evc_carte->setEVC($equipement);
+                                break;
+                            case "2":
+                                $assoc_evc_carte->addCARD($equipement);
+                                break;
+                        }
                         break;
                     case 'equipement[sous_type':
                         if ($value != "") {
@@ -1143,7 +1139,7 @@ class alstomController extends AbstractController
         //Parcours les valeurs du nouvel equipement pour flush
 
         if ($request->get('soumission_edit_equipement')) {
-            $current_assoc->removeEquipement($current_equipement);
+            // $current_assoc->removeEquipement($current_equipement);
             dump($current_assoc);
 
             foreach ($new_equipement as $key => $value) {
@@ -1188,7 +1184,7 @@ class alstomController extends AbstractController
             };
 
 
-            $new_ertms->setName($current_assoc->getSolution()->getName() . "-UPDATEVERSION");
+            $new_ertms->setName($current_assoc->getSolution()->getName() . "-UPDATEVERSION-2.0");
             $new_assoc->setSolution($new_ertms);
             $new_assoc->addEquipement($equipement_new);
             $baseline->addERTM($new_assoc);
