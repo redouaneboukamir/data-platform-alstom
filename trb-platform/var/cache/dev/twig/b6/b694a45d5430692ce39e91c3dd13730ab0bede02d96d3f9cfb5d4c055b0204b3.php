@@ -90,8 +90,8 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
         echo twig_escape_filter($this->env, twig_upper_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["project"]) || array_key_exists("project", $context) ? $context["project"] : (function () { throw new RuntimeError('Variable "project" does not exist.', 18, $this->source); })()), "name", [], "any", false, false, false, 18)), "html", null, true);
         echo "</h1>
                     <div class=\"mt-5\">
-                        <p class=\"btn-primary btn col-2\" data-target=\"#modal-form-train\" data-toggle=\"modal\">Add trains</p>
-                        <p class=\"btn-success btn col-2\">Create train</p>
+                        <p class=\"btn-primary btn col-2 btn-show-project\" data-target=\"#modal-form-train\" data-toggle=\"modal\">Add trains</p>
+                        <p class=\"btn-success btn col-2 btn-show-project\">Create train</p>
                     </div>
 
                 </div>
@@ -190,8 +190,8 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
 
                     <h1>{{ project.name|upper }}</h1>
                     <div class=\"mt-5\">
-                        <p class=\"btn-primary btn col-2\" data-target=\"#modal-form-train\" data-toggle=\"modal\">Add trains</p>
-                        <p class=\"btn-success btn col-2\">Create train</p>
+                        <p class=\"btn-primary btn col-2 btn-show-project\" data-target=\"#modal-form-train\" data-toggle=\"modal\">Add trains</p>
+                        <p class=\"btn-success btn col-2 btn-show-project\">Create train</p>
                     </div>
 
                 </div>
@@ -227,6 +227,6 @@ class __TwigTemplate_5098821c23b95ef640050798f9b13adb59526309157b1ef968bfef59b88
         </div>
     </main>
 {% endblock %}
-", "alstom/projects/show-project.html.twig", "C:\\Users\\L_200606688\\OneDrive - Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\projects\\show-project.html.twig");
+", "alstom/projects/show-project.html.twig", "C:\\Users\\L_200606688\\Documents\\Travaux-Alstom\\data-platform-alstom\\trb-platform\\templates\\alstom\\projects\\show-project.html.twig");
     }
 }

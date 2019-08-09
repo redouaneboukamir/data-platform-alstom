@@ -1,4 +1,8 @@
 {% extends 'alstom/index.html.twig' %}
+{% block javascripts %}
+    <script crossorigin="anonymous" integrity="sha256-cs4thShDfjkqFGk5s2Lxj35sgSRr4MRcyccmi0WKqCM=" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+
+{% endblock %}
 
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4 main-logs" role="main">
@@ -14,60 +18,33 @@
         </div>
 
         {# Formulaire d'ajout de baseline #}
-        {# <div class="jumbotron content-form-baseline">
-                                                            <form action="{{path('alstom.create-logs')}}" id="form_add_baseline_logs" method="POST">
-                                                                <div class="form-group">
-                                                                    <label for="input_name_baseline">Name Baseline</label>
-                                                                    <input class="form-control" id="input_name_baseline" name="baseline" placeholder="" type="text">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="form-group">
-                                                                        <label for="input_version_logiciel">Version Logiciel</label>
-                                                                        <input class="form-control" id="input_version_logiciel" name="version" placeholder="" type="text">
-                                                
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="form-group">
-                                                                        <label for="input_config_logiciel">Config Logiciel</label>
-                                                                        <input class="form-control" id="input_config_logiciel" name="config" placeholder="" type="text">
-                                                
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="form-group">
-                                                                        <label for="input_ertms_equipment">ERTMS Equipment</label>
-                                                                        <input class="form-control" id="input_ertms_equipment" name="ertms" placeholder="" type="text">
-                                                
-                                                                    </div>
-                                                                </div> #}
+        <div class="jumbotron content-form-baseline">
 
-        {# <div
-                    class="file-upload mb-4">
-                    <form action="/alstom/test-logs" id="file_upload">
-        
+
+            <div class="file-upload mb-4">
+                <form action="/alstom/create-logs" id="file_upload">
                     <div
-                        class="image-upload-wrap"> #}
-        {# <input accept=".zip,.rar,.7zip" class="file-upload-input" id="file_zip" onchange="readURL(this);" type='file'/>
-                                                                                                                                                                                             #}
-        {{form_start(form)}}<button class="btn btn-primary mb-2" type="submit"> Add</button>
-        {{form_end(form)}}
-    {# <div class="drag-text">
-                        <h3>Drag and drop a file or select add File</h3>
+                        class="image-upload-wrap">
+                        {# <input accept=".zip,.rar,.7zip" class="file-upload-input" id="file_zip" name="file" type='file'/> #}
+                        {{form_start(form)}}
+                        {{ form_widget(form.File,{'attr':{'class':" ","style":'opacity:0.1'}}) }}
+                        <button class="btn btn-primary mb-2" type="submit">
+                            Add</button>
+                        {{form_end(form)}}
+                        <div class="drag-text">
+                            <h3>Drag and drop a file or select add File</h3>
+                        </div>
+                    </div>
+                    <div class="file-upload-content">
+                        <p id="name_file_upload"></p>
+                        <div class="image-title-wrap">
+                            <button class="remove-image" id="remove-file" type="button">Remove
+                                <span class="image-title">Uploaded File</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="file-upload-content">
-                    <p id="name_file_upload"></p>
-                    <div class="image-title-wrap">
-                        <button class="remove-image" onclick="removeUpload()" type="button">Remove
-                            <span class="image-title">Uploaded File</span>
-                        </button>
-                    </div>
-                </div>
-            </div> #}
-        {# </form> #}
-
-        {# </form> #}
-
-    </div>
-{% endblock %}
+                <input type="submit">
+            </form>
+        </div>
+    {% endblock %}

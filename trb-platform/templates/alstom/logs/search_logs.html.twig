@@ -27,12 +27,10 @@
 
                             reader.onload = function (e) {
                                 $('.image-upload-wrap').hide();
-
                                 $('#name_file_upload').text($('#file_zip').val())
-
                                 $('.file-upload-content').show();
-
                                 $('.image-title').html(input.files[0].name);
+                                console.log(input.file[0])
                             };
 
                             reader.readAsDataURL(input.files[0]);

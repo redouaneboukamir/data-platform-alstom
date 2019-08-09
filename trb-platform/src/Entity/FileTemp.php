@@ -26,7 +26,7 @@ class FileTemp
      */
     private $Filename;
     /**
-     * @Vich\UploadableField(mapping="plug_upload", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="plug_upload", fileNameProperty="Filename")
      * @var File
      */
     private $File;
@@ -68,7 +68,7 @@ class FileTemp
     public function setFile(?File $File): FileTemp
     {
         $this->File = $File;
-        if ($this->File instanceof UploadedFile) {
+        if ($File) {
             $this->updatedAt = new \DateTime('now');
         }
         return $this;

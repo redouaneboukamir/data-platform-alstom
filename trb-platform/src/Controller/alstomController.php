@@ -53,6 +53,8 @@ use App\Repository\VersionLogicielRepository;
 use App\Repository\ConfigLogicielRepository;
 use App\Entity\FileTemp;
 use App\Form\FileTempType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class alstomController extends AbstractController
 {
@@ -742,15 +744,18 @@ class alstomController extends AbstractController
     {
 
         $file = new FileTemp;
-
+        $test = [];
         $form = $this->createform(FileTempType::class, $file);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file->setupdatedAt(new \DateTime('now'));
+            dump($file);
+
+            // $file->setFile();
+            // $file->setFilename();
             $this->em->persist($file);
             $this->em->flush();
-            return $this->redirectToRoute('alstom.home');
+            return $this->redirectToRoute('alstom.logs');
         }
 
         return $this->render('alstom/logs/add_logs.html.twig', [
@@ -760,44 +765,17 @@ class alstomController extends AbstractController
     }
     /**
      * @Route("/alstom/create-logs", name="alstom.create-logs")
-     * @param Request $request
-     * @return Response
      */
     public function createLogs(
         Request $request,
-        BaselineRepository $baselineRepository,
-        VersionLogicielRepository $versionLogicielRepository,
-        ConfigLogicielRepository $configLogicielRepository,
-        ERTMSEquipementRepository $eRTMSEquipementRepository
+        UploaderHelper $uploaderHelper
     ): Response {
-        $assoc_baseline = new AssociationBaseline;
-
-        $request_assoc = $request->request->get("assoc");
-        dump($assoc_baseline);
-        dump($request_assoc['baseline']);
-        foreach ($request_assoc as $key => $value) {
-            switch ($key) {
-                case 'baseline':
-                    $name_baseline = $baselineRepository->findByName($value);
-                    if ($name_baseline == "") { }
-                    break;
-                case 'version':
-                    $release_note = $versionLogicielRepository->findByRelease($value);
-                    dump($release_note);
-                    break;
-                case 'config':
-                    $identif_plug = $configLogicielRepository->findByPlug($value);
-                    dump($identif_plug);
-                    break;
-                case 'ertms':
-                    $ertms = $eRTMSEquipementRepository->findByNameConfig($value);
-                    dump($ertms);
-                    break;
-                default:
-                    break;
-            }
+        $tab = [];
+        $test = $request->request;
+        foreach ($test as $key => $value) {
+            # code...
+            array_push($tab, $value);
         }
-
         return $this->json([
             'code' => 200
         ], 200);

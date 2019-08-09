@@ -13,14 +13,13 @@ class FileTempType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('FileName', FileType::class, [
-                'label' => 'File)',
+            ->add('File', FileType::class, [
+                'label' => 'File',
                 'required' => false,
                 'attr' => [
                     'id' => 'file_temp',
                     'class' => 'text-center center-block file-upload'
                 ]
-
             ]);;
     }
 
