@@ -358,8 +358,8 @@
         <parameter key="db_driver">orm</parameter>
       </parameter>
       <parameter key="plug_upload" type="collection">
-        <parameter key="uri_prefix">../trb-platform/</parameter>
-        <parameter key="upload_destination">C:\Users\L_200606688\OneDrive - Alstom\data-platform-alstom\trb-platform/assets/</parameter>
+        <parameter key="uri_prefix">/temp/</parameter>
+        <parameter key="upload_destination">C:\Users\L_200606688\OneDrive - Alstom\data-platform-alstom\trb-platform/temp</parameter>
         <parameter key="namer" type="collection">
           <parameter key="service">null</parameter>
           <parameter key="options">null</parameter>

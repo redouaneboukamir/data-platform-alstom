@@ -174,10 +174,10 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
         // line 71
         echo "            ";
         $this->displayBlock('body', $context, $blocks);
-        // line 141
+        // line 139
         echo "            ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 142
+        // line 140
         echo "            <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
             <script crossorigin=\"anonymous\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>
             <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
@@ -185,24 +185,24 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
             <script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>
             <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js\"></script>
             ";
-        // line 148
-        if (((((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 148, $this->source); })()) == "projects") || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 148, $this->source); })()) == "logs")) || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 148, $this->source); })()) == "maintenance"))) {
-            // line 149
+        // line 146
+        if (((((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 146, $this->source); })()) == "projects") || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 146, $this->source); })()) == "logs")) || ((isset($context["current_menu"]) || array_key_exists("current_menu", $context) ? $context["current_menu"] : (function () { throw new RuntimeError('Variable "current_menu" does not exist.', 146, $this->source); })()) == "maintenance"))) {
+            // line 147
             echo "                <script>
                     \$('select').select2();
                 </script>
             ";
         }
-        // line 153
+        // line 151
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/runtime.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 154
+        // line 152
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/vendors~app.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 155
+        // line 153
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/app.js"), "html", null, true);
         echo "\"></script>
         </body>
@@ -283,7 +283,6 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                                 <!-- Post Content-->
                                 <div class=\"post-content\">
                                     <h1 class=\"title\">Fleet management</h1>
-                                    <h2 class=\"sub_title\">Lorem ipsum</h2>
                                     <p class=\"description\"></p>
                                 </div>
                             </a>
@@ -296,7 +295,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
                             <!-- Post Content-->
                             <a href=\"";
-        // line 100
+        // line 99
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.logs");
         echo "\">
                                 <div class=\"post-content\">
@@ -328,7 +327,6 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
                             <!-- Post Content-->
                             <div class=\"post-content\">
                                 <h1 class=\"title\">TOOLS</h1>
-                                <h2 class=\"sub_title\">Lorem ipsum</h2>
                                 <p class=\"description\"></p>
 
                             </div>
@@ -347,7 +345,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     }
 
-    // line 141
+    // line 139
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -377,7 +375,7 @@ class __TwigTemplate_1dc6a5cc65e1dcb8a0285c88e9af7c7c1645f06a68cfed0239e09c2841c
 
     public function getDebugInfo()
     {
-        return array (  351 => 141,  300 => 100,  281 => 84,  267 => 72,  257 => 71,  239 => 12,  221 => 6,  206 => 155,  202 => 154,  197 => 153,  191 => 149,  189 => 148,  181 => 142,  178 => 141,  175 => 71,  172 => 70,  170 => 69,  167 => 68,  165 => 67,  164 => 66,  148 => 53,  136 => 48,  123 => 42,  110 => 36,  97 => 30,  84 => 24,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
+        return array (  349 => 139,  299 => 99,  281 => 84,  267 => 72,  257 => 71,  239 => 12,  221 => 6,  206 => 153,  202 => 152,  197 => 151,  191 => 147,  189 => 146,  181 => 140,  178 => 139,  175 => 71,  172 => 70,  170 => 69,  167 => 68,  165 => 67,  164 => 66,  148 => 53,  136 => 48,  123 => 42,  110 => 36,  97 => 30,  84 => 24,  75 => 17,  70 => 13,  66 => 12,  62 => 11,  56 => 7,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -469,7 +467,6 @@ or current_menu == \"baseline\"  or current_menu == \"maintenance\" %}
                                 <!-- Post Content-->
                                 <div class=\"post-content\">
                                     <h1 class=\"title\">Fleet management</h1>
-                                    <h2 class=\"sub_title\">Lorem ipsum</h2>
                                     <p class=\"description\"></p>
                                 </div>
                             </a>
@@ -511,7 +508,6 @@ or current_menu == \"baseline\"  or current_menu == \"maintenance\" %}
                             <!-- Post Content-->
                             <div class=\"post-content\">
                                 <h1 class=\"title\">TOOLS</h1>
-                                <h2 class=\"sub_title\">Lorem ipsum</h2>
                                 <p class=\"description\"></p>
 
                             </div>

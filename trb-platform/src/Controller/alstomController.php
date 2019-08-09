@@ -576,7 +576,7 @@ class alstomController extends AbstractController
         $new_baseline->addERTM($new_assoc);
         $new_baseline->setConfigLogiciel($baseline->getConfigLogiciel());
         $new_baseline->setVersionLogiciel($baseline->getVersionLogiciel());
-        $new_baseline->setDate(new \Datetime);
+        $new_baseline->setDate(new \Datetime('now'));
         $new_baseline->setStatus(true);
         $new_baseline->setOriginal(false);
 
@@ -747,7 +747,7 @@ class alstomController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $file->setupdatedAt(new \DateTime('now'));
+            $file->setupdatedAt(new \DateTime('now'));
             $this->em->persist($file);
             $this->em->flush();
             return $this->redirectToRoute('alstom.home');
@@ -899,7 +899,7 @@ class alstomController extends AbstractController
 
         $baseline->setStatus(true);
         $baseline->setOriginal(true);
-        $baseline->setDate(new \DateTime());
+        $baseline->setDate(new \DateTime('now'));
         $this->em->persist($baseline);
 
         $assoc_ertms_equipement->setSolution($ertms);
@@ -1331,7 +1331,7 @@ class alstomController extends AbstractController
 
         $name_version = $request->request->get('version')['version[release_note'];
         $version->setReleaseNote($name_version);
-        $version->setDate(new \DateTime());
+        $version->setDate(new \DateTime('now'));
         $this->em->persist($version);
 
         $baseline->setVersionLogiciel($version);
