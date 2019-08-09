@@ -31,6 +31,7 @@
   "build/img/logo-alstom.png": "/build/img/logo-alstom.png",
   "build/img/logo-alstom.svg": "/build/img/logo-alstom.svg",
   "build/img/projects/Alstom_Avelia_Liberty_tilting_very_high_speed_train_edit.jpg": "/build/img/projects/Alstom_Avelia_Liberty_tilting_very_high_speed_train_edit.jpg",
+  "build/img/projects/img-test.png": "/build/img/projects/img-test.png",
   "build/img/projects/project-backgorund.jpg": "/build/img/projects/project-backgorund.jpg",
   "build/img/projects/project-background.jpg": "/build/img/projects/project-background.jpg",
   "build/img/trains/._ertms.svg": "/build/img/trains/._ertms.svg",
@@ -54,7 +55,5 @@
   "build/img/trains/locomotive-select.svg": "/build/img/trains/locomotive-select.svg",
   "build/img/trains/train-select.png": "/build/img/trains/train-select.png",
   "build/img/trains/train-select.svg": "/build/img/trains/train-select.svg",
-  "build/img/trains/train.afdesign": "/build/img/trains/train.afdesign",
-  "build/img/projects/blank-profile-picture-973460_640.png": "/build/img/projects/blank-profile-picture-973460_640.png",
-  "build/img/projects/img-test.png": "/build/img/projects/img-test.png"
+  "build/img/trains/train.afdesign": "/build/img/trains/train.afdesign"
 }
