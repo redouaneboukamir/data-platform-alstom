@@ -59,6 +59,10 @@ use Aws\Exception\AwsException;
 use Aws\S3\MultipartUploader;
 use Aws\Exception\MultipartUploadException;
 use Symfony\Component\Finder\Finder;
+use App\Entity\FileTemp;
+use App\Form\FileTempType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class alstomController extends AbstractController
 {
@@ -582,7 +586,7 @@ class alstomController extends AbstractController
         $new_baseline->addERTM($new_assoc);
         $new_baseline->setConfigLogiciel($baseline->getConfigLogiciel());
         $new_baseline->setVersionLogiciel($baseline->getVersionLogiciel());
-        $new_baseline->setDate(new \Datetime);
+        $new_baseline->setDate(new \Datetime('now'));
         $new_baseline->setStatus(true);
         $new_baseline->setOriginal(false);
 
@@ -740,6 +744,7 @@ class alstomController extends AbstractController
             'current_menu' => "logs"
         ]);
     }
+
     /**
      * @Route("/alstom/add-logs", name="alstom.add-logs")
      * @param Request $request
@@ -747,54 +752,40 @@ class alstomController extends AbstractController
      */
     public function addLogs(Request $request): Response
     {
-        $assoc_baseline = new AssociationBaseline;
-        dump($request->request);
 
+        $file = new FileTemp;
+        $test = [];
+        $form = $this->createform(FileTempType::class, $file);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($file);
+
+            // $file->setFile();
+            // $file->setFilename();
+            $this->em->persist($file);
+            $this->em->flush();
+            return $this->redirectToRoute('alstom.logs');
+        }
 
         return $this->render('alstom/logs/add_logs.html.twig', [
-            'current_menu' => "logs"
+            'current_menu' => "logs",
+            'form' => $form->createView()
         ]);
     }
     /**
      * @Route("/alstom/create-logs", name="alstom.create-logs")
-     * @param Request $request
-     * @return Response
      */
     public function createLogs(
         Request $request,
-        BaselineRepository $baselineRepository,
-        VersionLogicielRepository $versionLogicielRepository,
-        ConfigLogicielRepository $configLogicielRepository,
-        ERTMSEquipementRepository $eRTMSEquipementRepository
+        UploaderHelper $uploaderHelper
     ): Response {
-        $assoc_baseline = new AssociationBaseline;
-
-        $request_assoc = $request->request->get("assoc");
-        dump($assoc_baseline);
-        dump($request_assoc['baseline']);
-        foreach ($request_assoc as $key => $value) {
-            switch ($key) {
-                case 'baseline':
-                    $name_baseline = $baselineRepository->findByName($value);
-                    if ($name_baseline == "") { }
-                    break;
-                case 'version':
-                    $release_note = $versionLogicielRepository->findByRelease($value);
-                    dump($release_note);
-                    break;
-                case 'config':
-                    $identif_plug = $configLogicielRepository->findByPlug($value);
-                    dump($identif_plug);
-                    break;
-                case 'ertms':
-                    $ertms = $eRTMSEquipementRepository->findByNameConfig($value);
-                    dump($ertms);
-                    break;
-                default:
-                    break;
-            }
+        $tab = [];
+        $test = $request->request;
+        foreach ($test as $key => $value) {
+            # code...
+            array_push($tab, $value);
         }
-
         return $this->json([
             'code' => 200
         ], 200);
@@ -896,7 +887,7 @@ class alstomController extends AbstractController
 
         $baseline->setStatus(true);
         $baseline->setOriginal(true);
-        $baseline->setDate(new \DateTime());
+        $baseline->setDate(new \DateTime('now'));
         $this->em->persist($baseline);
 
         $assoc_ertms_equipement->setSolution($ertms);
@@ -949,7 +940,6 @@ class alstomController extends AbstractController
      */
     public function show_baseline(
         Baseline $baseline,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
         Request $request
     ) {
         foreach ($baseline->getERTMS() as $key => $value) {
@@ -986,7 +976,6 @@ class alstomController extends AbstractController
      */
     public function show_baseline_train(
         Baseline $baseline,
-        AssociationEquiptERTMSRepository $associationEquiptERTMSRepository,
         Request $request
     ) {
 
@@ -1006,7 +995,6 @@ class alstomController extends AbstractController
         $form_equipement->handleRequest($request);
         $form_version->handleRequest($request);
 
-
         return $this->render('alstom/baseline/show-baseline-train.html.twig', [
             'current_menu' => 'baseline',
             'baseline_train' => true,
@@ -1015,7 +1003,6 @@ class alstomController extends AbstractController
             'equipements' => $equipements,
             'form_equipement' => $form_equipement->createView(),
             'form_version' => $form_version->createView()
-
         ]);
     }
 
@@ -1049,14 +1036,14 @@ class alstomController extends AbstractController
                 switch ($key) {
                     case 'equipement[Type':
                         $equipement_new->setType($typeEquipementRepository->find($value));
-                        // switch ($value) {
-                        //     case "1":
-                        //         $assoc_evc_carte->setEVC($equipement);
-                        //         break;
-                        //     case "2":
-                        //         $assoc_evc_carte->addCARD($equipement);
-                        //         break;
-                        // }
+                        switch ($value) {
+                            case "1":
+                                $assoc_evc_carte->setEVC($equipement);
+                                break;
+                            case "2":
+                                $assoc_evc_carte->addCARD($equipement);
+                                break;
+                        }
                         break;
                     case 'equipement[sous_type':
                         if ($value != "") {
@@ -1153,7 +1140,7 @@ class alstomController extends AbstractController
         //Parcours les valeurs du nouvel equipement pour flush
 
         if ($request->get('soumission_edit_equipement')) {
-            $current_assoc->removeEquipement($current_equipement);
+            // $current_assoc->removeEquipement($current_equipement);
             dump($current_assoc);
 
             foreach ($new_equipement as $key => $value) {
@@ -1198,7 +1185,7 @@ class alstomController extends AbstractController
             };
 
 
-            $new_ertms->setName($current_assoc->getSolution()->getName() . "-UPDATEVERSION");
+            $new_ertms->setName($current_assoc->getSolution()->getName() . "-UPDATEVERSION-2.0");
             $new_assoc->setSolution($new_ertms);
             $new_assoc->addEquipement($equipement_new);
             $baseline->addERTM($new_assoc);
@@ -1332,7 +1319,7 @@ class alstomController extends AbstractController
 
         $name_version = $request->request->get('version')['version[release_note'];
         $version->setReleaseNote($name_version);
-        $version->setDate(new \DateTime());
+        $version->setDate(new \DateTime('now'));
         $this->em->persist($version);
 
         $baseline->setVersionLogiciel($version);

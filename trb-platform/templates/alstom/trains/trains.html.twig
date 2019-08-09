@@ -45,19 +45,17 @@
                             {% else %}
                                 <td></td>
                             {% endif %}
-                            {% if train.Baselines %}
-                                {% for baseline in train.Baselines %}
-
-                                    <td class="mt-4">
-                                        <a href="{{ path('alstom.show-baseline', {id: baseline.id}) }}">{{  baseline.name }}</td>
-                                    </td>
-                                    <td></td>
-                                {% endfor %}
-                            {% else %}
+                            {% set presence_baseline = false %}
+                            {% for baseline in train.Baselines %}
+                                {% set presence_baseline = true %}
+                                <td class="mt-4">
+                                    <a href="{{ path('alstom.show-baseline', {id: baseline.id}) }}">{{  baseline.name }}</td>
+                                </td>
+                            {% endfor %}
+                            {% if presence_baseline == false %}
                                 <td></td>
                             {% endif %}
                             <td></td>
-
                             <td class="content-btn-edit-delete">
                                 <a href="{{ path('alstom.edit-train', {id: train.id}) }}">
                                     <i class="fas fa-edit"></i>

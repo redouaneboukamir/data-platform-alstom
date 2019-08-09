@@ -22,6 +22,12 @@
   overflow: auto;
 }
 
+.btn-show-project {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .table-show-project {
   td {
     display: flex;
