@@ -6,6 +6,8 @@ use App\Entity\ConfigLogiciel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ConfigLogicielType extends AbstractType
 {
@@ -13,9 +15,9 @@ class ConfigLogicielType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('plug')
+            // ->add('plug')
             ->add('File', FileType::class, [
-                'label' => 'File',
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'id' => 'file_temp',

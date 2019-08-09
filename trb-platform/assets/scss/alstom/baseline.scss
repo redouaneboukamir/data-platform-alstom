@@ -1,3 +1,37 @@
+.content-equipments-plug {
+
+    .content-form-plug-version {
+        height: 80vh;
+
+        .content-version-config {
+            border: 1px solid lightgray;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .content-form-plug {
+
+            h3 {
+                margin-top: 20px;
+                align-self: flex-start;
+            }
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+
+            .file-plug {
+                margin-top: 20px;
+            }
+
+        }
+
+    }
+}
+
 .content-form-baseline {
     padding: 2rem;
 }
@@ -171,4 +205,9 @@ a:hover {
 .remove-image:active {
     border: 0;
     transition: all .2s ease;
+}
+
+.content-form-plug {
+    border: 1px solid lightgray;
+
 }

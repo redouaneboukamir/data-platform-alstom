@@ -46,12 +46,12 @@
                                 <td></td>
                             {% endif %}
                             {% set presence_baseline = false %}
-                            {% for baseline in train.Baselines %}
-                                {% set presence_baseline = true %}
-                                <td class="mt-4">
+                            <td class="mt-4">
+                                {% for baseline in train.Baselines %}
+                                    {% set presence_baseline = true %}
                                     <a href="{{ path('alstom.show-baseline', {id: baseline.id}) }}">{{  baseline.name }}</td>
-                                </td>
-                            {% endfor %}
+                                {% endfor %}
+                            </td>
                             {% if presence_baseline == false %}
                                 <td></td>
                             {% endif %}

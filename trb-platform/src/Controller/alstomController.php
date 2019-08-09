@@ -55,6 +55,8 @@ use App\Entity\FileTemp;
 use App\Form\FileTempType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use App\Entity\ConfigLogiciel;
+use App\Form\ConfigLogicielType;
 
 class alstomController extends AbstractController
 {
@@ -588,10 +590,11 @@ class alstomController extends AbstractController
         dump($train);
         $this->em->persist($assoc_evc_carte);
         $this->em->persist($new_baseline);
+        $this->em->persist($new_assoc);
         $train->addBaseline($new_baseline);
         $this->em->flush();
         return $this->json([
-            // 'idTrain' => $idTrain
+            'idbaseline' => $new_baseline->getId()
         ], 200);
     }
 
@@ -976,9 +979,11 @@ class alstomController extends AbstractController
             }
         }
 
+        $plug = new ConfigLogiciel;
         $equipement = new Equipement;
         $version = new VersionLogiciel;
 
+        $form_config = $this->createForm(ConfigLogicielType::class, $plug);
         $form_equipement = $this->createForm(EquipementType::class, $equipement);
         $form_version = $this->createForm(VersionType::class, $version);
 
@@ -992,7 +997,8 @@ class alstomController extends AbstractController
             'equipement' => $equipement,
             'equipements' => $equipements,
             'form_equipement' => $form_equipement->createView(),
-            'form_version' => $form_version->createView()
+            'form_version' => $form_version->createView(),
+            'form_config' => $form_config->createView()
         ]);
     }
 
@@ -1031,7 +1037,7 @@ class alstomController extends AbstractController
                                 $assoc_evc_carte->setEVC($equipement);
                                 break;
                             case "2":
-                                $assoc_evc_carte->addCARD($equipement);
+                                $assoc_evc_carte->CARD($equipement);
                                 break;
                         }
                         break;
@@ -1130,7 +1136,7 @@ class alstomController extends AbstractController
         //Parcours les valeurs du nouvel equipement pour flush
 
         if ($request->get('soumission_edit_equipement')) {
-            // $current_assoc->removeEquipement($current_equipement);
+
             dump($current_assoc);
 
             foreach ($new_equipement as $key => $value) {
@@ -1138,14 +1144,6 @@ class alstomController extends AbstractController
                 switch ($key) {
                     case 'equipement[Type':
                         $equipement_new->setType($typeEquipementRepository->find($value));
-                        switch ($value) {
-                            case "1":
-                                $assoc_evc_carte->setEVC($equipement);
-                                break;
-                            case "2":
-                                $assoc_evc_carte->addCARD($equipement);
-                                break;
-                        }
                         break;
                     case 'equipement[sous_type':
                         if ($value != "") {
@@ -1170,8 +1168,12 @@ class alstomController extends AbstractController
             }
 
             foreach ($current_assoc->getequipements() as $value) {
-                dump($value);
-                $new_assoc->addEquipement($value);
+                if ($value->getId() != $request->get('idequipment')) {
+                    $new_assoc->addEquipement($value);
+                } else {
+                    //Traitement enregistrement de l'équipement (historique)
+                    dump($value);
+                }
             };
 
 

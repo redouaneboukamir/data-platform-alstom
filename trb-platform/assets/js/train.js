@@ -353,8 +353,8 @@ $('#valid-baseline-train').click(function () {
             async: true,
             dataType: 'json', // JSON
             success: function (response) {
-
-                window.location.href = "/alstom/baseline-train/" + id_baseline;
+                console.log(response)
+                window.location.href = "/alstom/baseline-train/" + response.idbaseline;
                 $('main').css("opacity", '1');
                 $('#wait-spinner').hide();
 
@@ -454,6 +454,7 @@ $('#form_equipement_edit_instance').on('submit', function (e) {
         data: {
             'equipement': data,
             "soumission_edit_equipement": true,
+            'idequipment': idEquipment
         },
         async: true,
         dataType: 'json', // JSON
@@ -530,9 +531,9 @@ function returnIndexElement(element, index, array) {
         } else {
 
             //Ecris le nom du type "carte" sous le type  EVC
-            $(indexEVC).append(writeType(5, element['type']['name']));
+            $(indexEVC).append(writeType(5, element['SousType']['name']));
             //Parcous le type de soustype 
-            $(indexEVC).append(writeSubtype(6, element['SousType']['name']));
+            // $(indexEVC).append(writeSubtype(6, element['SousType']['name']));
 
             $(indexEVC).append('<div class="content-description-dtr content-description-dtrCard" id="content-description-' +
                 index + '"></div>');

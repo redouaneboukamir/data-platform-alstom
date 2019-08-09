@@ -1,0 +1,28 @@
+
+###> symfony/framework-bundle ###
+/trb-platform/.env.local
+/trb-platform/.env.local.php
+/trb-platform/.env.*.local
+/trb-platform/public/bundles/
+/trb-platform/var
+/trb-platform/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+.DS_Store
+.idea/workspace.xml
