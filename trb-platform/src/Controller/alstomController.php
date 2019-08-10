@@ -96,7 +96,7 @@ class alstomController extends AbstractController
 
         $userRoles = $this->getUser()->getRoles();
         $userId = $this->container->get(KEY_SESSION)->get('userId');
-       
+       phpinfo();
         // dump($clientKeycloak->getUser($userId));   
 
         // dump($userRoles);
@@ -776,19 +776,39 @@ class alstomController extends AbstractController
     /**
      * @Route("/alstom/create-logs", name="alstom.create-logs")
      */
-    public function createLogs(
-        Request $request,
-        UploaderHelper $uploaderHelper
-    ): Response {
-        $tab = [];
-        $test = $request->request;
+    public function createLogs(Request $request, UploaderHelper $uploaderHelper): Response {
+        $upload_success = null;
+        $upload_error = '';
+      
+        if (!empty($_FILES['files'])) {
+          /*
+            the code for file upload;
+            $upload_success – becomes "true" or "false" if upload was unsuccessful;
+            $upload_error – an error message of if upload was unsuccessful;
+          */
+            dump($_FILES['files']);
+            $is_success = true;
+            $error_msg = "c'est le pied BB";
+        
+        }
+        else{
+            $is_success = false;
+            $error_msg = "too bad";
+        }
+        $testUpload = array(
+            "status" => 'success'
+        );
+        $jsonObjectestUpload = (json_encode([ 'success'=> $is_success, 'error'=> $error_msg]));
+        return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
+        /* $tab = [];
+        
         foreach ($test as $key => $value) {
             # code...
             array_push($tab, $value);
         }
         return $this->json([
             'code' => 200
-        ], 200);
+        ], 200); */
     }
     /**
      * @Route("/alstom/search-logs", name="alstom.search-logs")
@@ -1441,73 +1461,61 @@ class alstomController extends AbstractController
      */
     public function uploadFile(Request $request)
     {
-        //input structure 
-            //request['bucket'] => the name of the bucket
-            //request['upload_request'] => the type of request (upload_request or status)
-        //connexion to the S3 client 
-        $s3 = new S3Client([
-            'version' => 'latest',
-            'region'  => 'us-east-1',
-            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-            'endpoint' => 'http://localhost:5555',
-            'use_path_style_endpoint' => true,
-            'credentials' => [
-                    'key'    => 'amdptestdeployv7private',
-                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
-                ],
-        ]);
-        $upload_request = $request->request->get('upload_request');
-
-        //if the request sends an upload request then the function use the uploaderPart function
-        if($upload_request == "upload") {
-            $source = $request->request->get('tempDestination');
-            $bucket = $request->request->get('bucket');
-            $nameFile = $request->request->get('filename');
+        $upload_success = null;
+        $upload_error = '';
+      
+        if (!empty($_FILES['files'])) { // si un fichier est envoyé via POST (requète AJAX)
+            $s3 = new S3Client([
+                'version' => 'latest',
+                'region'  => 'us-east-1',
+                //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+                'endpoint' => 'http://localhost:5555',
+                'use_path_style_endpoint' => true,
+                'credentials' => [
+                        'key'    => 'amdptestdeployv7private',
+                        'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                    ],
+            ]);
+            //definition du bucket 
+            //  => 'logs' pour les fichiers log
+            //  => 'configuration' pour les plugs
+            $bucket = 'application';
+            //$_FILES est le fichier envoyé via POST
+            $nameFile = $_FILES['files']['name'][1]; //key minio
+            $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
+            //instanciation de l'uploader PHP / MINIO
+            $uploader = new MultipartUploader(
+                $s3, 
+                $source, 
+                [
+                    'bucket' => $bucket,
+                    'key' => $nameFile,
+                    'before_upload' => function(\Aws\Command $command) { //Nettoyage de la mémoire avant upload
+                        gc_collect_cycles();
+                     }
+                ]
+            );
             dump($source);
-            $uploader = new MultipartUploader(
-                $s3, 
-                $source, 
-                [
-                    'bucket' => $bucket,
-                    'key' => $nameFile
-                ]
-            );
-            $result = $uploader->upload();
-            $status = $uploader->getstate();
-            $testUpload = array(
-                'key' => $nameFile,
-                "upload-status" => $status
-            );
-        }
-        elseif($upload_request == "status"){
-            $bucket = $request->request->get('bucket');
-            $uploader = new MultipartUploader(
-                $s3, 
-                $source, 
-                [
-                    'bucket' => $bucket,
-                    'key' => $keyfile,
-                ]
-            );
-            $status = $uploader->getstate(); //PENDING, FULFILLED, or REJECTED
-            $testUpload = array(
-                "upload-status" => $status
-            );
+            dump($nameFile);
+            //Recover from errors
+            $n=0;
+            $promise = $uploader->promise();//Upload du fichier
+            $res  = $uploader->getState();
+            do {
+                $result = $uploader->getState();
+                $n++;
+            } while (!isset($result));
+            dump($res);
+            dump($n);
+            $is_success = true;
+            $error_msg = "c'est le pied BB";
         }
         else{
-            //an error is raised
-        } 
-
-        //if the request sends a status of the upload then the function sends back the status
-
-        
-        $jsonObjectestUpload = $this->serializer->serialize($testUpload, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
+            $is_success = false;
+            $error_msg = "too bad";
+        }
+        $jsonObjectestUpload = (json_encode([ 'success'=> $is_success, 'error'=> $error_msg]));
         return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
-    
     }    
     
 }
