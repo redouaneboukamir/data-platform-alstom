@@ -6,7 +6,7 @@ trb-platform/.env.*.local
 trb-platform/public/bundles/
 trb-platform/var/
 trb-platform/var/log/*
-trb-platform/var/cache/dev/
+trb-platform/var/cache/dev/*
 trb-platform/vendor/
 ###< symfony/framework-bundle ###
 
@@ -31,6 +31,4 @@ yarn-error.log
 trb-platform/var/log/dev.log
 trb-platform/var/log/prod.deprecations.log
 trb-platform/var/log/prod.log
-trb-platform/var/cache/dev/srcApp_KernelDevDebugContainer.php
-trb-platform/var/cache/dev/srcApp_KernelDevDebugContainer.xml
-trb-platform/var/cache/dev/srcApp_KernelDevDebugContainerCompiler.log
+
