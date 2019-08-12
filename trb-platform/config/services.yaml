@@ -44,6 +44,7 @@ services:
 
     #  twig.extension:
     #    class: App\Twig\AppExtension
+
     # gedmo.listener.sortable:
     #     class: Gedmo\Sortable\SortableListener
     #     tags:

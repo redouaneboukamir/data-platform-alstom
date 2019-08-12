@@ -13,11 +13,13 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
+        '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '6d352f836db1d959698c0c9aa2759c92' => __DIR__ . '/../..' . '/src/constantes.php',
     );
 
@@ -131,7 +133,12 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         ),
         'K' => 
         array (
+            'Knp\\Bundle\\GaufretteBundle\\' => 27,
             'KnpU\\OAuth2ClientBundle\\' => 24,
+        ),
+        'J' => 
+        array (
+            'JmesPath\\' => 9,
         ),
         'G' => 
         array (
@@ -170,6 +177,8 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         ),
         'A' => 
         array (
+            'Aws\\Symfony\\' => 12,
+            'Aws\\' => 4,
             'App\\Tests\\' => 10,
             'App\\' => 4,
         ),
@@ -486,9 +495,17 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         array (
             0 => __DIR__ . '/..' . '/league/fractal/src',
         ),
+        'Knp\\Bundle\\GaufretteBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-gaufrette-bundle',
+        ),
         'KnpU\\OAuth2ClientBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knpuniversity/oauth2-client-bundle/src',
+        ),
+        'JmesPath\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -585,6 +602,14 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-bundle',
         ),
+        'Aws\\Symfony\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aws/aws-sdk-php-symfony/src',
+        ),
+        'Aws\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
+        ),
         'App\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
@@ -615,6 +640,13 @@ class ComposerStaticInit76c672008f0f0ea7ca555e0a5883e4dc
             'JsonpCallbackValidator' => 
             array (
                 0 => __DIR__ . '/..' . '/willdurand/jsonp-callback-validator/src',
+            ),
+        ),
+        'G' => 
+        array (
+            'Gaufrette' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/gaufrette/src',
             ),
         ),
         'B' => 
