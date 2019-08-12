@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "aws-sdk": "^2.506.0",
+        "core-util-is": "^1.0.2",
         "jquery": "^3.4.1",
         "minio": "^7.0.11"
     }
