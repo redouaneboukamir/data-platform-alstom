@@ -60,7 +60,7 @@ use Aws\S3\MultipartUploader;
 use Aws\Exception\MultipartUploadException;
 use App\Entity\FileTemp;
 use App\Form\FileTempType;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use App\Entity\ConfigLogiciel;
 use App\Form\ConfigLogicielType;
@@ -1500,7 +1500,7 @@ class alstomController extends AbstractController
             //definition du bucket 
             //  => 'logs' pour les fichiers log
             //  => 'configuration' pour les plugs
-            $bucket = 'application';
+            $bucket = 'temp';
             //$_FILES est le fichier envoyé via POST
             $nameFile = $_FILES['files']['name'][1]; //key minio
             $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
@@ -1519,11 +1519,10 @@ class alstomController extends AbstractController
             //Upload du fichier et suppression des parties si l'upload ne marche pas.
             try {
                 $result = $uploader->upload();
+                dump($result);
             } catch (MultipartUploadException $e) {
                 // State contains the "Bucket", "Key", and "UploadId"
                 $params = $e->getState()->getId(); //récupération de l'id de l'upload
-                dump($params);
-                dump($s3);
                 $result = $s3->abortMultipartUpload($params); //suppression de l'upload
                 $is_success = false; //on gérére l'erreur remontée au javscript
                 $error_msg = "Error during the upload of the file, please retry !"; // on génère le message d'erreur
@@ -1535,7 +1534,7 @@ class alstomController extends AbstractController
             $error_msg = "No file to upload"; //génération du msg d'erreur
         }
         //encodage en JSON pour le return  vers le javascript
-        $jsonObjectestUpload = (json_encode(['success' => $is_success, 'error' => $error_msg]));
+        $jsonObjectestUpload = (json_encode(['success' => $is_success, 'error' => $error_msg, 'result' => $result]));
         return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
     }
 }

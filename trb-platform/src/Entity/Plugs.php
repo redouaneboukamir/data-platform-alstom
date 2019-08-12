@@ -22,9 +22,9 @@ class Plugs
     private $name;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string")
      */
-    private $plug = [];
+    private $plug;
 
     /**
      * @ORM\Column(type="datetime")
@@ -55,7 +55,7 @@ class Plugs
 
     public function setPlug(array $plug): self
     {
-        if($plug){
+        if ($plug) {
             $this->plug = $plug;
             $this->setUpdatedAt(Datetime("now"));
         }

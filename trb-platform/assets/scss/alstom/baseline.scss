@@ -1,25 +1,61 @@
 .main-baseline-train {
     background: rgb(243, 243, 243);
+    height: auto;
+    padding: 20px;
 
 }
 
-.card-equipment-evc {
-    padding: 0;
-    text-align: center;
-    font-weight: bold;
+.card-card {
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
     color: rgb(32, 32, 73);
     border: 1px solid lightgray !important;
 
-    .card-body {
+    .card_title {
+        text-align: center;
+        border-radius: 0px 0px 40px 40px;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 1.8em;
+        height: 40px;
+        color: black;
         background: lightgray;
-        text-align: center !important;
     }
 
-    h4 {
+    .description-card {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        font-weight: bold;
+    }
 
-        align-self: middle;
+    &:hover {
+        height: auto;
+    }
+
+    .edit-card {
+        margin-top: -5px;
+        position: relative;
     }
 }
+
+.title-white {
+    color: white;
+}
+
+.title-black {
+    color: black;
+}
+
+@media all and (max-width: 500px) {
+    .card-list {
+        /* On small screens, we are no longer using row direction but column */
+        flex-direction: column;
+    }
+}
+
 
 .content-equipments-plug {
 
@@ -38,18 +74,18 @@
 
         .content-form-plug {
             background: white;
+            display: flex;
+            flex-direction: column;
+            // justify-content: space-around;
+            margin: 10px;
+            padding: 10px;
 
             h3 {
-                margin-top: 20px;
+                margin-top: 10px 0;
                 align-self: center;
                 font-size: 3em;
             }
 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            margin: 10px;
-            padding: 10px;
 
             .file-plug {
                 margin-top: 20px;
@@ -58,6 +94,14 @@
         }
 
     }
+}
+
+.btn-shadow {
+    color: #fff;
+    background-color: #3ac47d;
+    border-color: #3ac47d;
+    box-shadow: 0 0.125rem 0.625rem rgba(58, 196, 125, 0.4),
+        0 0.0625rem 0.125rem rgba(58, 196, 125, 0.5);
 }
 
 .content-form-baseline {
