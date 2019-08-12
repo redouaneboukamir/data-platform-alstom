@@ -1,20 +1,22 @@
 
 ###> symfony/framework-bundle ###
-/trb-platform/.env.local
-/trb-platform/.env.local.php
-/trb-platform/.env.*.local
-/trb-platform/public/bundles/
-/trb-platform/var
-/trb-platform/vendor/
+trb-platform/.env.local
+trb-platform/.env.local.php
+trb-platform/.env.*.local
+trb-platform/public/bundles/
+trb-platform/var/
+trb-platform/var/log/*
+trb-platform/var/cache/dev/
+trb-platform/vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
-/trb-platform/.phpunit
-/trb-platform//phpunit.xml
+trb-platform/.phpunit
+trb-platform//phpunit.xml
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###
-/trb-platform//.web-server-pid
+trb-platform//.web-server-pid
 ###< symfony/web-server-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -26,3 +28,6 @@ yarn-error.log
 
 .DS_Store
 .idea/workspace.xml
+trb-platform/var/log/dev.log
+trb-platform/var/log/prod.deprecations.log
+trb-platform/var/log/prod.log
