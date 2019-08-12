@@ -16,6 +16,6 @@ if (!\class_exists(srcApp_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerMAjVvyJ\srcApp_KernelDevDebugContainer([
     'container.build_hash' => 'MAjVvyJ',
-    'container.build_id' => '7147497d',
-    'container.build_time' => 1565601233,
+    'container.build_id' => '9b1022f9',
+    'container.build_time' => 1565602552,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerMAjVvyJ');
