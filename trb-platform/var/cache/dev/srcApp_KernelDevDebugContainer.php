@@ -4,8 +4,8 @@
 
 if (\class_exists(\ContainerRtVbrsa\srcApp_KernelDevDebugContainer::class, false)) {
     // no-op
-} elseif (!include __DIR__.'/ContainerRtVbrsa/srcApp_KernelDevDebugContainer.php') {
-    touch(__DIR__.'/ContainerRtVbrsa.legacy');
+} elseif (!include __DIR__ . '/ContainerRtVbrsa/srcApp_KernelDevDebugContainer.php') {
+    touch(__DIR__ . '/ContainerRtVbrsa.legacy');
 
     return;
 }
@@ -16,6 +16,6 @@ if (!\class_exists(srcApp_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerRtVbrsa\srcApp_KernelDevDebugContainer([
     'container.build_hash' => 'RtVbrsa',
-    'container.build_id' => 'ecfaf713',
-    'container.build_time' => 1565608079,
-], __DIR__.\DIRECTORY_SEPARATOR.'ContainerRtVbrsa');
+    'container.build_id' => 'cce3fba9',
+    'container.build_time' => 1565605318,
+], __DIR__ . \DIRECTORY_SEPARATOR . 'ContainerRtVbrsa');
