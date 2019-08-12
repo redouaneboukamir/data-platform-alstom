@@ -64,10 +64,10 @@ class AssociationEquiptERTMS extends \App\Entity\AssociationEquiptERTMS implemen
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'id', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'solution', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'equipements', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'status'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'id', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'solution', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'equipements', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'baseline', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'status'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'id', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'solution', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'equipements', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'status'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'id', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'solution', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'equipements', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'baseline', '' . "\0" . 'App\\Entity\\AssociationEquiptERTMS' . "\0" . 'status'];
     }
 
     /**
@@ -252,6 +252,28 @@ class AssociationEquiptERTMS extends \App\Entity\AssociationEquiptERTMS implemen
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEquipement', [$equipement]);
 
         return parent::setEquipement($equipement);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBaseline(): ?\App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBaseline', []);
+
+        return parent::getBaseline();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBaseline(?\App\Entity\Baseline $baseline): \App\Entity\AssociationEquiptERTMS
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBaseline', [$baseline]);
+
+        return parent::setBaseline($baseline);
     }
 
     /**

@@ -64,10 +64,10 @@ class VersionLogiciel extends \App\Entity\VersionLogiciel implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'release_note'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'release_note', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'Date', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'baselines'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'release_note'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'release_note', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'Date', '' . "\0" . 'App\\Entity\\VersionLogiciel' . "\0" . 'baselines'];
     }
 
     /**
@@ -208,6 +208,61 @@ class VersionLogiciel extends \App\Entity\VersionLogiciel implements \Doctrine\O
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReleaseNote', [$release_note]);
 
         return parent::setReleaseNote($release_note);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDate(): ?\DateTimeInterface
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDate', []);
+
+        return parent::getDate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDate(\DateTimeInterface $Date): \App\Entity\VersionLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDate', [$Date]);
+
+        return parent::setDate($Date);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBaselines(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBaselines', []);
+
+        return parent::getBaselines();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addBaseline(\App\Entity\Baseline $baseline): \App\Entity\VersionLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBaseline', [$baseline]);
+
+        return parent::addBaseline($baseline);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeBaseline(\App\Entity\Baseline $baseline): \App\Entity\VersionLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBaseline', [$baseline]);
+
+        return parent::removeBaseline($baseline);
     }
 
 }

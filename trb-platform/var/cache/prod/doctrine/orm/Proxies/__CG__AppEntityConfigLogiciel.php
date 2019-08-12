@@ -64,10 +64,10 @@ class ConfigLogiciel extends \App\Entity\ConfigLogiciel implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'identif_plug'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'name', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'plug', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'File', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'baselines'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'identif_plug'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'name', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'plug', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'File', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'updatedAt', '' . "\0" . 'App\\Entity\\ConfigLogiciel' . "\0" . 'baselines'];
     }
 
     /**
@@ -191,23 +191,122 @@ class ConfigLogiciel extends \App\Entity\ConfigLogiciel implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function getIdentifPlug(): ?string
+    public function getName(): ?string
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdentifPlug', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
-        return parent::getIdentifPlug();
+        return parent::getName();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setIdentifPlug(string $identif_plug): \App\Entity\ConfigLogiciel
+    public function setName(string $name): \App\Entity\ConfigLogiciel
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIdentifPlug', [$identif_plug]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
-        return parent::setIdentifPlug($identif_plug);
+        return parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPlug(): ?string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPlug', []);
+
+        return parent::getPlug();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPlug(string $plug): \App\Entity\ConfigLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPlug', [$plug]);
+
+        return parent::setPlug($plug);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFile(): ?\Symfony\Component\HttpFoundation\File\File
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFile', []);
+
+        return parent::getFile();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFile(?\Symfony\Component\HttpFoundation\File\File $File): \App\Entity\ConfigLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFile', [$File]);
+
+        return parent::setFile($File);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUpdatedAt', []);
+
+        return parent::getUpdatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): \App\Entity\ConfigLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', [$updatedAt]);
+
+        return parent::setUpdatedAt($updatedAt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBaselines(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBaselines', []);
+
+        return parent::getBaselines();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addBaseline(\App\Entity\Baseline $baseline): \App\Entity\ConfigLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBaseline', [$baseline]);
+
+        return parent::addBaseline($baseline);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeBaseline(\App\Entity\Baseline $baseline): \App\Entity\ConfigLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBaseline', [$baseline]);
+
+        return parent::removeBaseline($baseline);
     }
 
 }

@@ -64,10 +64,10 @@ class Equipement extends \App\Entity\Equipement implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'SousType', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'assocEvcCarte'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'SousType', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'assocEvcCarte', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Status'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'SousType', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'assocEvcCarte'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'AssociationEquiptERTMS', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'DTR_board', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Indice_DTR', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Num_serie', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'SousType', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'assocEvcCarte', '' . "\0" . 'App\\Entity\\Equipement' . "\0" . 'Status'];
     }
 
     /**
@@ -340,6 +340,28 @@ class Equipement extends \App\Entity\Equipement implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAssocEvcCarte', [$assocEvcCarte]);
 
         return parent::setAssocEvcCarte($assocEvcCarte);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus(): ?bool
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', []);
+
+        return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus(?bool $Status): \App\Entity\Equipement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', [$Status]);
+
+        return parent::setStatus($Status);
     }
 
 }

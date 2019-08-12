@@ -64,10 +64,10 @@ class Trains extends \App\Entity\Trains implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'train_type', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'Projects', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'position_ERTMS', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'ERTMS'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'train_type', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'Projects', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'position_ERTMS', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'baselines'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'train_type', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'Projects', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'position_ERTMS', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'ERTMS'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'train_type', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'Projects', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'position_ERTMS', '' . "\0" . 'App\\Entity\\Trains' . "\0" . 'baselines'];
     }
 
     /**
@@ -279,34 +279,34 @@ class Trains extends \App\Entity\Trains implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getERTMS(): \Doctrine\Common\Collections\Collection
+    public function getBaselines(): \Doctrine\Common\Collections\Collection
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getERTMS', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBaselines', []);
 
-        return parent::getERTMS();
+        return parent::getBaselines();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function addERTM(\App\Entity\ERTMSEquipement $eRTM): \App\Entity\Trains
+    public function addBaseline(\App\Entity\Baseline $baseline): \App\Entity\Trains
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addERTM', [$eRTM]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBaseline', [$baseline]);
 
-        return parent::addERTM($eRTM);
+        return parent::addBaseline($baseline);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeERTM(\App\Entity\ERTMSEquipement $eRTM): \App\Entity\Trains
+    public function removeBaseline(\App\Entity\Baseline $baseline): \App\Entity\Trains
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeERTM', [$eRTM]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBaseline', [$baseline]);
 
-        return parent::removeERTM($eRTM);
+        return parent::removeBaseline($baseline);
     }
 
 }

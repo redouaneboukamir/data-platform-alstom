@@ -64,10 +64,10 @@ class Baseline extends \App\Entity\Baseline implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'name'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Trains', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'ConfigLogiciel', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'VersionLogiciel', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Date', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Status', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Original', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'ERTMS'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'name'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Trains', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'ConfigLogiciel', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'VersionLogiciel', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Date', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Status', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'Original', '' . "\0" . 'App\\Entity\\Baseline' . "\0" . 'ERTMS'];
     }
 
     /**
@@ -219,6 +219,171 @@ class Baseline extends \App\Entity\Baseline implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         return parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTrains(): ?\App\Entity\Trains
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrains', []);
+
+        return parent::getTrains();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTrains(?\App\Entity\Trains $Trains): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTrains', [$Trains]);
+
+        return parent::setTrains($Trains);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getConfigLogiciel(): ?\App\Entity\ConfigLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getConfigLogiciel', []);
+
+        return parent::getConfigLogiciel();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setConfigLogiciel(?\App\Entity\ConfigLogiciel $ConfigLogiciel): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setConfigLogiciel', [$ConfigLogiciel]);
+
+        return parent::setConfigLogiciel($ConfigLogiciel);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVersionLogiciel(): ?\App\Entity\VersionLogiciel
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVersionLogiciel', []);
+
+        return parent::getVersionLogiciel();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setVersionLogiciel(?\App\Entity\VersionLogiciel $VersionLogiciel): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVersionLogiciel', [$VersionLogiciel]);
+
+        return parent::setVersionLogiciel($VersionLogiciel);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDate()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDate', []);
+
+        return parent::getDate();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDate(\DateTimeInterface $Date): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDate', [$Date]);
+
+        return parent::setDate($Date);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus(): ?bool
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', []);
+
+        return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus(bool $Status): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', [$Status]);
+
+        return parent::setStatus($Status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOriginal(): ?bool
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOriginal', []);
+
+        return parent::getOriginal();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setOriginal(bool $Original): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOriginal', [$Original]);
+
+        return parent::setOriginal($Original);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getERTMS(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getERTMS', []);
+
+        return parent::getERTMS();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addERTM(\App\Entity\AssociationEquiptERTMS $eRTM): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addERTM', [$eRTM]);
+
+        return parent::addERTM($eRTM);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeERTM(\App\Entity\AssociationEquiptERTMS $eRTM): \App\Entity\Baseline
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeERTM', [$eRTM]);
+
+        return parent::removeERTM($eRTM);
     }
 
 }

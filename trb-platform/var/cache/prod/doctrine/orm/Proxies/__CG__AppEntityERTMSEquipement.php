@@ -64,10 +64,10 @@ class ERTMSEquipement extends \App\Entity\ERTMSEquipement implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'name_configuration', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'trains'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'name'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'name_configuration', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'trains'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\ERTMSEquipement' . "\0" . 'name'];
     }
 
     /**
@@ -191,45 +191,23 @@ class ERTMSEquipement extends \App\Entity\ERTMSEquipement implements \Doctrine\O
     /**
      * {@inheritDoc}
      */
-    public function getNameConfiguration(): ?string
+    public function getName(): ?string
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNameConfiguration', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
-        return parent::getNameConfiguration();
+        return parent::getName();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setNameConfiguration(string $name_configuration): \App\Entity\ERTMSEquipement
+    public function setName(string $name): \App\Entity\ERTMSEquipement
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNameConfiguration', [$name_configuration]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
-        return parent::setNameConfiguration($name_configuration);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTrains(): ?\App\Entity\Trains
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrains', []);
-
-        return parent::getTrains();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setTrains(?\App\Entity\Trains $trains): \App\Entity\ERTMSEquipement
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTrains', [$trains]);
-
-        return parent::setTrains($trains);
+        return parent::setName($name);
     }
 
 }
