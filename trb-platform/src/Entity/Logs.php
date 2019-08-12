@@ -3,13 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LogsRepository")
- * @Vich\Uploadable
  */
 class Logs
 {
@@ -26,8 +23,7 @@ class Logs
     private $idlog;
 
     /**
-     * @ORM\Column(type="File")
-     * @Vich\UploadableField(mapping="temp_upload", fileNameProperty="tempAdress")
+     * @ORM\Column(type="string")
      */
     private $tempAdress;
 

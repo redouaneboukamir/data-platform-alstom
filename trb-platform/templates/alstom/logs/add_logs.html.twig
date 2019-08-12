@@ -16,7 +16,8 @@
                 Loading...
             </span>
         </div>
-
+            
+                    
         {# Formulaire d'ajout de baseline #}
         <div class="jumbotron content-form-baseline">
             <form class="box has-advanced-upload" enctype="multipart/form-data" method="post" novalidate="">
@@ -29,9 +30,9 @@
                         <strong>Choose a file</strong>
                         <span class="box__dragndrop">
                             or drag it here</span>.</label>
-                    <button class="box__button" type="submit">Upload</button>
+                   <button class="box__button" type="submit">Upload</button>
                 </div>
-                <div class="box__uploading">Uploading…</div>
+                <div class="box__uploading"><div id="test-progress"  data-preset="bubble" class="ldBar label-center"></div></div>
                 <div class="box__success">Done!</div>
                 <div class="box__error">Error!<span></span>.<a class="box__restart" role="button">Try again!</a></div>
                 <input name="ajax" type="hidden" value="1"></form>

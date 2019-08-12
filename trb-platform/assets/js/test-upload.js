@@ -1,3 +1,7 @@
+//définition des variables
+//plugs
+let ListPlugs = []
+//detection si le browser gère le drag&drop
 var isAdvancedUpload = function () {
     var div = document.createElement('div');
     return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
@@ -8,10 +12,16 @@ var $input    = $form.find('input[type="file"]'),
     showFiles = function(files) {
       $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace( '{count}', files.length ) : files[ 0 ].name);
     };
+//identification de la progress bar
+prgbar = new ldBar("#test-progress");
 
+//on ouvre le form pour ajouter
 
+$('#addPlugs').on('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+});
 if (isAdvancedUpload) {
-
     var droppedFiles = false;
     $form.addClass('has-advanced-upload'); // letting the CSS part to know drag&drop is supported by the browser
     $form.on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
@@ -53,6 +63,20 @@ $form.on('submit', function (e) {
                 'bucket': 'application',
                 'upload_request': "upload"
             },*/
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = (evt.loaded / evt.total) * 100;
+                        //Do something with upload progress here
+                        prgbar.set(percentComplete);
+                        if(percentComplete == 100){
+                            $("#test-progress").addClass('is-blink');
+                        }
+                    }
+               }, false);
+               return xhr;
+            },
             data:ajaxData,
             dataType: 'json',
             cache: false,
@@ -60,6 +84,7 @@ $form.on('submit', function (e) {
             processData: false,
             complete: function () {
                 $form.removeClass('is-uploading');
+                $("#test-progress").removeClass('is-blink');
             },
             success: function (data) {
                 $form.addClass(data.success == true ? 'is-success' : 'is-error');

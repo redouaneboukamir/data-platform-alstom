@@ -58,7 +58,6 @@ use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 use Aws\S3\MultipartUploader;
 use Aws\Exception\MultipartUploadException;
-use Symfony\Component\Finder\Finder;
 use App\Entity\FileTemp;
 use App\Form\FileTempType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -96,7 +95,7 @@ class alstomController extends AbstractController
 
         $userRoles = $this->getUser()->getRoles();
         $userId = $this->container->get(KEY_SESSION)->get('userId');
-       phpinfo();
+
         // dump($clientKeycloak->getUser($userId));   
 
         // dump($userRoles);
@@ -1371,43 +1370,6 @@ class alstomController extends AbstractController
         ------- MINIO Service -----
     */
 
-     /**
-     * @Route("alstom/requestFile", name="alstom.requestFile")
-     * @return Response
-     */
-    public function requestFile(Request $request)
-    { 
-        $finder = new Finder();
-        $finder->in('init')->name('*.pdf');
-
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = array(
-                    'path' => $file->getRealPath()
-                );
-            }
-            $jsonObjectestUpload = $this->serializer->serialize($absoluteFilePath, 'json', [
-                'circular_reference_handler' => function ($object) {
-                    return $object->getId();
-                }
-            ]);
-        }else{
-            $absoluteFilePath = array(
-                'path' => 'no path'
-            );           
-            $jsonObjectestUpload = $this->serializer->serialize($absoluteFilePath, 'json', [
-                'circular_reference_handler' => function ($object) {
-                    return $object->getId();
-                }
-            ]);
-        }         
-        $jsonObjectestUpload = $this->serializer->serialize($absoluteFilePath, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
-        return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
-    }
 
     /**
      * @Route("alstom/seeFile", name="alstom.seeFile")
@@ -1484,7 +1446,7 @@ class alstomController extends AbstractController
             $nameFile = $_FILES['files']['name'][1]; //key minio
             $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
             //instanciation de l'uploader PHP / MINIO
-            $uploader = new MultipartUploader(
+             $uploader = new MultipartUploader(
                 $s3, 
                 $source, 
                 [
@@ -1494,26 +1456,25 @@ class alstomController extends AbstractController
                         gc_collect_cycles();
                      }
                 ]
-            );
-            dump($source);
-            dump($nameFile);
-            //Recover from errors
-            $n=0;
-            $promise = $uploader->promise();//Upload du fichier
-            $res  = $uploader->getState();
-            do {
-                $result = $uploader->getState();
-                $n++;
-            } while (!isset($result));
-            dump($res);
-            dump($n);
-            $is_success = true;
-            $error_msg = "c'est le pied BB";
+            ); 
+            //Upload du fichier et suppression des parties si l'upload ne marche pas.
+            try {
+                $result = $uploader->upload();
+            } catch (MultipartUploadException $e) {
+                // State contains the "Bucket", "Key", and "UploadId"
+                $params = $e->getState()->getId(); //récupération de l'id de l'upload
+                $result = $s3Client->abortMultipartUpload($params); //suppression de l'upload
+                $is_success = false;//on gérére l'erreur remontée au javscript
+                $error_msg = "Error during the upload of the file, please retry !";// on génère le message d'erreur
+            }
+            $is_success = true;//on génére le succès de l'opération 
+            $error_msg = "Upload is done"; //msg du succès
         }
-        else{
-            $is_success = false;
-            $error_msg = "too bad";
+        else{ // il n'y a pas de fichier à uploader
+            $is_success = false; //génération de l'erreur
+            $error_msg = "No file to upload"; //génération du msg d'erreur
         }
+        //encodage en JSON pour le return  vers le javascript
         $jsonObjectestUpload = (json_encode([ 'success'=> $is_success, 'error'=> $error_msg]));
         return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
     }    
