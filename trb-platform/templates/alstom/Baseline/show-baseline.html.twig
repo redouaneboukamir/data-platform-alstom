@@ -53,10 +53,10 @@
         </div>
     </div>
     {# --------------------------- #}
-    <main class="col-md-12 ml-sm-auto col-lg-12 pl-5 px-4 main-baseline" role="main">
+    <main class="col-md-12 col-lg-12 pl-5 px-4 main-baseline" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1>{{baseline.name}}</h1>
 
+            <h1>{{baseline.name}}</h1>
             <div class="content-btn-add-config">
                 <button class="btn btn-primary" id="add-configLogiciel">Add Configuration Logiciel</button>
                 {% if (baseline.VersionLogiciel) %}
@@ -67,82 +67,147 @@
             </div>
 
         </div>
-        <div class="content-version-config">
-            {% if (baseline.VersionLogiciel) %}
-                <h6 id="title-version" style="color:rgb(168, 3, 3)">
-                    <strong>Version Logiciel</strong>
-                    :{{ baseline.VersionLogiciel.ReleaseNote}}</h6>
-            {% else %}
-                <h6 id="title-version" style="color:rgb(168, 3, 3)"></h6>
-            {% endif %}
-        </div>
-        <div class="show-equipment" id="show-equipment" style="">
-            {% for equipement in equipements %}
-                {% if equipement.status == true %}
-                    {% if (equipement.Type.name == "EVC") or (equipement.Type.name == "CARTE") %}
-                        <div class="description description-SubtypeCard" id="description-equipement">
 
-                            {% if equipement.Type.name == "EVC" %}
 
-                                <h4 class="description-Type " id="description-type ">
-                                    {{equipement.Type.name}}
-                                </h4>
+        <div class="content-equipments-plug row">
 
-                            {% elseif equipement.Type.name ==  "CARTE" %}
-                                <h5 class="description-Type " id="description-subType ">
-                                    {{equipement.SousType.name}}
+            <div class="show-equipment col-lg-7 row" id="show-equipment" style="">
 
-                                </h5>
+                {% for equipement in equipements %}
+                    {% if equipement.status == true %}
+                        {% if  equipement.Type.name == "EVC" or equipement.Type.name == "CARTE"%}
+                            <div class="col-xl-6 col-md-6 mt-4">
+                                <div class="card card-stats card-equipment">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-5" style="font-size:2em;display:flex; justify-content:space-around;font-weight:bold">
+                                                <div class="icon-big text-center">
+                                                    <div class="icon-warning">
+                                                        <i class="fas fa-server"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="numbers">
+                                                    <div>
+                                                        {% if equipement.Type.name == "CARTE" %}
+                                                            <h4 class="card-title">{{equipement.SousType.name}}</h4>
+                                                        {% else %}
+                                                            <h4 class="card-title">{{equipement.Type.name}}</h4>
+                                                            <p class="card-category">
+                                                                {% if equipement.SousType %}
+                                                                    {{equipement.SousType.name}}
+                                                                {% endif %}
+                                                            </p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer"><hr>
+                                        <div class="stats">
+                                            <div>
+                                                <i class="fa fa-refresh"></i>
+                                                <span style="display:flex; justify-content:space-around;font-weight:bold">
+                                                    <p>{{equipement.DTRboard}}</p>
+                                                    <p>{{equipement.IndiceDTR}}</p>
+                                                    <p>{{equipement.Numserie}}</p>
+                                                </span>
+                                            </div>
+                                            <p class="edit-delete-equipement">
+                                                <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a id="delete-">
+                                                    <i class="fas fa-trash-alt poubelle"></i>
+                                                </a>
+                                            </p>
 
-                            {% endif %}
-
-                            <div class="content-description-dtr ml-2" id="content-description">
-                                <p>{{equipement.DTRboard}}</p>
-                                <p>{{equipement.IndiceDTR}}</p>
-                                <p>{{equipement.Numserie}}</p>
-                                <p class="edit-delete-equipement">
-                                    <a class="edit-{{equipement.id}}" id="edit-equipement">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a id="delete-{{equipement.id}}">
-                                        <i class="fas fa-trash-alt poubelle"></i>
-                                    </a>
-                                </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                    {% else %}
-                        <div class="description" id="description-equipement">
-                            <h4 class="description-Type " id="description-type ">
-                                {{equipement.Type.name}}
-                            </h4>
-                            <h5 class="description-Type " id="description-subType">
-                                {% if equipement.SousType %}
-                                    {{equipement.SousType.name}}
-                                {% endif %}
-                            </h5>
-                            <div class="content-description-dtr" id="content-description">
-                                <p>{{equipement.DTRboard}}</p>
-                                <p>{{equipement.IndiceDTR}}</p>
-                                <p>{{equipement.Numserie}}</p>
-                                <p class="edit-delete-equipement">
-                                    <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
+                        {% else %}
 
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a id="delete-">
-                                        <i class="fas fa-trash-alt poubelle"></i>
-                                    </a>
-                                </p>
+                            <div class="col-xl-6 col-md-6 mt-4">
+                                <div class="card card-stats card-equipment">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-5" style="font-size:2em;display:flex; justify-content:space-around;font-weight:bold">
+                                                <div class="icon-big text-center">
+                                                    <div class="icon-warning">
+                                                        <i class="fas fa-server"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="numbers">
+                                                    <div>
+
+                                                        <h4 class="card-title">{{equipement.Type.name}}</h4>
+                                                        <p class="card-category">
+                                                            {% if equipement.SousType %}
+                                                                {{equipement.SousType.name}}
+                                                            {% endif %}
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer"><hr>
+                                        <div class="stats">
+                                            <div>
+                                                <i class="fa fa-refresh"></i>
+                                                <span style="display:flex; justify-content:space-around;font-weight:bold">
+                                                    <p>{{equipement.DTRboard}}</p>
+                                                    <p>{{equipement.IndiceDTR}}</p>
+                                                    <p>{{equipement.Numserie}}</p>
+                                                </span>
+                                            </div>
+                                            <p class="edit-delete-equipement">
+                                                <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a id="delete-">
+                                                    <i class="fas fa-trash-alt poubelle"></i>
+                                                </a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
                     {% endif %}
-                    {% else %}
-                {% endif %}
-            {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="col-lg-5 content-form-plug-version row mt-3">
 
+                <div class="content-version-ERTMS col-lg-12">
+                    {% for ertms in baseline.ERTMS %}
+                        {% if ertms.status %}
+                            <h3 id="title-version">Version ERTMS</h3>
+                            {{ ertms.solution.name }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="content-version-config">
+                        {% if (baseline.VersionLogiciel) %}
+                            <h3 id="title-version">Software Version</h3>
+                            {{ baseline.VersionLogiciel.ReleaseNote}}
+                        {% else %}
+                            <h3 id="title-version"></h3>
+                        {% endif %}
+                    </div>
 
+                </div>
+
+            </div>
         </div>
+
 
     </main>
 

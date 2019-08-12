@@ -23,14 +23,14 @@
 
             <div class="file-upload mb-4">
                 <form action="/alstom/create-logs" id="file_upload">
-                    <div
-                        class="image-upload-wrap">
-                        {# <input accept=".zip,.rar,.7zip" class="file-upload-input" id="file_zip" name="file" type='file'/> #}
-                        {{form_start(form)}}
-                        {{ form_widget(form.File,{'attr':{'class':" ","style":'opacity:0.1'}}) }}
-                        <button class="btn btn-primary mb-2" type="submit">
-                            Add</button>
-                        {{form_end(form)}}
+                    <div class="image-upload-wrap">
+                        <input
+                        accept=".zip,.rar,.7zip" class="file-upload-input" id="file_zip" name="file" type='file'/>
+                        {# {{form_start(form)}}
+                                                {{ form_widget(form.File,{'attr':{'class':" ","style":'opacity:0.1'}}) }}
+                                                <button class="btn btn-primary mb-2" type="submit">
+                                                    Add</button>
+                                                {{form_end(form)}} #}
                         <div class="drag-text">
                             <h3>Drag and drop a file or select add File</h3>
                         </div>

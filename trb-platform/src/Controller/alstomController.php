@@ -724,7 +724,9 @@ class alstomController extends AbstractController
         ], 200);
     }
 
-    // ----------------------LOGS
+    // ----------------------PLUG
+
+
     /**
      * @Route("/alstom/logs", name="alstom.logs")
      * @param Request $request
@@ -736,6 +738,30 @@ class alstomController extends AbstractController
         return $this->render('alstom/logs/logs.html.twig', [
             'current_menu' => "logs"
         ]);
+    }
+
+    /**
+     * @Route("/alstom/add-plug/{id}", name="alstom.add-plug")
+     * @param Request $request
+     * @return Response
+     */
+    public function addPlug(Request $request, $id): Response
+    {
+        $idBaseline = $request->request->get('id');
+        $config = new ConfigLogiciel;
+
+        $form = $this->createform(ConfigLogicielType::class, $config);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $config->setUpdatedAt(new \Datetime('now'));
+            $this->em->persist($config);
+            $this->em->flush();
+            return $this->redirectToRoute('alstom.show-baseline-train', ['id' => $id]);
+        }
+
+        return $this->redirectToRoute('alstom.show-baseline-train', ['id' => $id]);
     }
 
     /**
@@ -773,6 +799,7 @@ class alstomController extends AbstractController
         Request $request,
         UploaderHelper $uploaderHelper
     ): Response {
+
         $tab = [];
         $test = $request->request;
         foreach ($test as $key => $value) {
@@ -783,6 +810,7 @@ class alstomController extends AbstractController
             'code' => 200
         ], 200);
     }
+
     /**
      * @Route("/alstom/search-logs", name="alstom.search-logs")
      * @param Request $request
@@ -936,13 +964,15 @@ class alstomController extends AbstractController
         Request $request
     ) {
         foreach ($baseline->getERTMS() as $key => $value) {
-
+            dump($value);
             if ($value->getbaseline()->getOriginal() == true) {
                 $assoc = $value;
+                $equipements = $assoc->getEquipements();
+            } else {
+                $equipements = "test";
             }
         }
-        $equipements = $assoc->getEquipements();
-
+        dump($baseline);
         $equipement = new Equipement;
         $version = new VersionLogiciel;
 

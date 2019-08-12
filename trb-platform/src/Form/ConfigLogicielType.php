@@ -18,7 +18,7 @@ class ConfigLogicielType extends AbstractType
             // ->add('plug')
             ->add('File', FileType::class, [
                 'label' => false,
-                'required' => false,
+                'required' => true,
                 'attr' => [
                     'id' => 'file_temp',
                     'class' => 'text-center center-block file-upload'

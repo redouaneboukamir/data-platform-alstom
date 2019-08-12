@@ -63,6 +63,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'alstom.addEquipment' => [[], ['_controller' => 'App\\Controller\\alstomController::addEquipement'], [], [['text', '/alstom/addEquipment']], [], []],
         'alstom.addErtms' => [[], ['_controller' => 'App\\Controller\\alstomController::addErtms'], [], [['text', '/alstom/addErtms']], [], []],
         'alstom.logs' => [[], ['_controller' => 'App\\Controller\\alstomController::logs'], [], [['text', '/alstom/logs']], [], []],
+        'alstom.add-plug' => [['id'], ['_controller' => 'App\\Controller\\alstomController::addPlug'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/alstom/add-plug']], [], []],
         'alstom.add-logs' => [[], ['_controller' => 'App\\Controller\\alstomController::addLogs'], [], [['text', '/alstom/add-logs']], [], []],
         'alstom.create-logs' => [[], ['_controller' => 'App\\Controller\\alstomController::createLogs'], [], [['text', '/alstom/create-logs']], [], []],
         'alstom.search-logs' => [[], ['_controller' => 'App\\Controller\\alstomController::searchLogs'], [], [['text', '/alstom/search-logs']], [], []],

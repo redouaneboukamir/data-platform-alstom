@@ -9,7 +9,9 @@
 @import "sidebar";
 @import "header-profile";
 
-
+main {
+  margin-left: 20px;
+}
 
 @media (max-width: 460px) {
 

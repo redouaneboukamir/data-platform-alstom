@@ -115,17 +115,18 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                             .'|s/([^/]++)(*:592)'
                             .'|/([^/]++)(*:609)'
                         .')'
+                        .'|add\\-plug/([^/]++)(*:636)'
                         .'|baseline(?'
-                            .'|/([^/]++)(*:638)'
-                            .'|\\-train/([^/]++)(*:662)'
+                            .'|/([^/]++)(*:664)'
+                            .'|\\-train/([^/]++)(*:688)'
                         .')'
                     .')'
                     .'|/client/(?'
-                        .'|project/([^/]++)(*:699)'
-                        .'|edit\\-train/([^/]++)(*:727)'
+                        .'|project/([^/]++)(*:725)'
+                        .'|edit\\-train/([^/]++)(*:753)'
                         .'|train(?'
-                            .'|s/([^/]++)(*:753)'
-                            .'|/([^/]++)(*:770)'
+                            .'|s/([^/]++)(*:779)'
+                            .'|/([^/]++)(*:796)'
                         .')'
                     .')'
                 .')/?$}sDu',
@@ -155,12 +156,13 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             566 => [[['_route' => 'alstom.CheckEquipements', '_controller' => 'App\\Controller\\alstomController::checkEquipements'], ['id'], ['POST' => 0, 'GET' => 1], null, false, true, null]],
             592 => [[['_route' => 'alstom.show-train', '_controller' => 'App\\Controller\\alstomController::show_train'], ['id'], null, null, false, true, null]],
             609 => [[['_route' => 'alstom.delete-train', '_controller' => 'App\\Controller\\alstomController::delete_train'], ['id'], ['DELETE' => 0], null, false, true, null]],
-            638 => [[['_route' => 'alstom.show-baseline', '_controller' => 'App\\Controller\\alstomController::show_baseline'], ['id'], null, null, false, true, null]],
-            662 => [[['_route' => 'alstom.show-baseline-train', '_controller' => 'App\\Controller\\alstomController::show_baseline_train'], ['id'], null, null, false, true, null]],
-            699 => [[['_route' => 'client.project-show', '_controller' => 'App\\Controller\\clientController::show_project'], ['id'], null, null, false, true, null]],
-            727 => [[['_route' => 'client.edit-train', '_controller' => 'App\\Controller\\clientController::edit_train'], ['id'], ['POST' => 0, 'GET' => 1], null, false, true, null]],
-            753 => [[['_route' => 'client.show-train', '_controller' => 'App\\Controller\\clientController::show_train'], ['id'], null, null, false, true, null]],
-            770 => [[['_route' => 'client.delete-train', '_controller' => 'App\\Controller\\clientController::delete_train'], ['id'], ['DELETE' => 0], null, false, true, null]],
+            636 => [[['_route' => 'alstom.add-plug', '_controller' => 'App\\Controller\\alstomController::addPlug'], ['id'], null, null, false, true, null]],
+            664 => [[['_route' => 'alstom.show-baseline', '_controller' => 'App\\Controller\\alstomController::show_baseline'], ['id'], null, null, false, true, null]],
+            688 => [[['_route' => 'alstom.show-baseline-train', '_controller' => 'App\\Controller\\alstomController::show_baseline_train'], ['id'], null, null, false, true, null]],
+            725 => [[['_route' => 'client.project-show', '_controller' => 'App\\Controller\\clientController::show_project'], ['id'], null, null, false, true, null]],
+            753 => [[['_route' => 'client.edit-train', '_controller' => 'App\\Controller\\clientController::edit_train'], ['id'], ['POST' => 0, 'GET' => 1], null, false, true, null]],
+            779 => [[['_route' => 'client.show-train', '_controller' => 'App\\Controller\\clientController::show_train'], ['id'], null, null, false, true, null]],
+            796 => [[['_route' => 'client.delete-train', '_controller' => 'App\\Controller\\clientController::delete_train'], ['id'], ['DELETE' => 0], null, false, true, null]],
         ];
     }
 }

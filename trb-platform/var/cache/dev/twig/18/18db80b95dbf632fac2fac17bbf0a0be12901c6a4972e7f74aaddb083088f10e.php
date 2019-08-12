@@ -157,30 +157,29 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
             echo "                            ";
             $context["presence_baseline"] = false;
             // line 49
-            echo "                            <td class=\"mt-4\">
-                                ";
-            // line 50
+            echo "                            ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["train"], "Baselines", [], "any", false, false, false, 50));
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["train"], "Baselines", [], "any", false, false, false, 49));
             foreach ($context['_seq'] as $context["_key"] => $context["baseline"]) {
+                // line 50
+                echo "                                <td class=\"mt-4\">
+                                    ";
                 // line 51
-                echo "                                    ";
                 $context["presence_baseline"] = true;
                 // line 52
                 echo "                                    <a href=\"";
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-baseline", ["id" => twig_get_attribute($this->env, $this->source, $context["baseline"], "id", [], "any", false, false, false, 52)]), "html", null, true);
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("alstom.show-baseline-train", ["id" => twig_get_attribute($this->env, $this->source, $context["baseline"], "id", [], "any", false, false, false, 52)]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["baseline"], "name", [], "any", false, false, false, 52), "html", null, true);
                 echo "</td>
-                                ";
+                                </td>
+                            ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['baseline'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 54
-            echo "                            </td>
-                            ";
             // line 55
+            echo "                            ";
             if (((isset($context["presence_baseline"]) || array_key_exists("presence_baseline", $context) ? $context["presence_baseline"] : (function () { throw new RuntimeError('Variable "presence_baseline" does not exist.', 55, $this->source); })()) == false)) {
                 // line 56
                 echo "                                <td></td>
@@ -241,7 +240,7 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
 
     public function getDebugInfo()
     {
-        return array (  219 => 73,  205 => 65,  200 => 63,  194 => 60,  190 => 58,  186 => 56,  184 => 55,  181 => 54,  170 => 52,  167 => 51,  163 => 50,  160 => 49,  157 => 48,  153 => 46,  147 => 44,  145 => 43,  138 => 41,  134 => 39,  130 => 38,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  218 => 73,  204 => 65,  199 => 63,  193 => 60,  189 => 58,  185 => 56,  182 => 55,  170 => 52,  168 => 51,  165 => 50,  160 => 49,  157 => 48,  153 => 46,  147 => 44,  145 => 43,  138 => 41,  134 => 39,  130 => 38,  118 => 28,  111 => 23,  107 => 22,  103 => 21,  99 => 19,  90 => 16,  87 => 15,  83 => 14,  76 => 10,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -294,12 +293,12 @@ class __TwigTemplate_059b45532fffc66c2316825b94bb04a94156a047be46c3e3e4318d8c925
                                 <td></td>
                             {% endif %}
                             {% set presence_baseline = false %}
-                            <td class=\"mt-4\">
-                                {% for baseline in train.Baselines %}
+                            {% for baseline in train.Baselines %}
+                                <td class=\"mt-4\">
                                     {% set presence_baseline = true %}
-                                    <a href=\"{{ path('alstom.show-baseline', {id: baseline.id}) }}\">{{  baseline.name }}</td>
-                                {% endfor %}
-                            </td>
+                                    <a href=\"{{ path('alstom.show-baseline-train', {id: baseline.id}) }}\">{{  baseline.name }}</td>
+                                </td>
+                            {% endfor %}
                             {% if presence_baseline == false %}
                                 <td></td>
                             {% endif %}

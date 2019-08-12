@@ -1,25 +1,35 @@
+.main-baseline-train {
+    background: rgb(243, 243, 243);
+
+}
+
 .content-equipments-plug {
 
     .content-form-plug-version {
         height: 80vh;
 
-        .content-version-config {
-            border: 1px solid lightgray;
+        .content-version-ERTMS {
+            background: white;
             padding: 10px;
             margin: 10px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
         }
 
         .content-form-plug {
+            background: white;
 
             h3 {
                 margin-top: 20px;
-                align-self: flex-start;
+                align-self: center;
+                font-size: 3em;
             }
 
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-around;
             margin: 10px;
             padding: 10px;
 
@@ -205,9 +215,4 @@ a:hover {
 .remove-image:active {
     border: 0;
     transition: all .2s ease;
-}
-
-.content-form-plug {
-    border: 1px solid lightgray;
-
 }

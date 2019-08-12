@@ -385,7 +385,7 @@ $('#form_version').on('submit', function (e) {
         dataType: 'json', // JSON
         success: function (response) {
 
-            $('#title-version').html("Version logiciel : " + " " + response.version)
+            $('#title-version').append("<p>" + response.version + "</p>")
             $('.main-baseline').css("opacity", '1');
             $('#wait-spinner').hide();
             $('#close-modal-form-version').trigger('click');

@@ -3,6 +3,7 @@ import './ertms';
 import './equipement';
 import './baseline';
 import './train';
+import './plug';
 
 // loads the jquery package from node_modules
 const $ = require('jquery');
@@ -34,6 +35,7 @@ $(document).ready(function () {
             $('main').removeClass('pl-5');
             $('main').removeClass('col-md-12');
             $('main').css('transition', 'all 0.6s ease-in-out');
+            $('main').addClass('ml-sm-auto');
             $('main').addClass('col-lg-10');
             $('main').addClass('col-md-9');
 
@@ -46,24 +48,28 @@ $(document).ready(function () {
             $('main').addClass('col-lg-12');
             $('main').addClass('col-md-12');
         })
+    // $('main').removeClass('ml-sm-auto');
     $('.nav-label').click(function () {
-
         $('.fa-chevron-left').css('transform', 'rotatex(45deg)')
     })
 
 
 });
+
+
 $('#file_zip').change(readURL);
 $('#remove-file').click(removeUpload);
 
 function readURL() {
 
     let file = $('#file_zip')[0].files[0];
+
     console.log(file);
     $('.image-upload-wrap').hide();
     $('#name_file_upload').text(file.name)
     $('.file-upload-content').show();
     $('.image-title').html(file.name);
+
 }
 
 function removeUpload() {
@@ -79,11 +85,14 @@ $('.image-upload-wrap').bind('dragleave', function () {
 });
 
 $('#file_upload').on('submit', function (e) {
+
     e.preventDefault();
     let file = $('#file_zip')[0].files[0];
     var $this = $(this);
+
     let fd = new FormData(file);
     console.log(file);
+
     $.each(file, function (i, file) {
         fd.append('file-' + i, file);
         console.log(file);
@@ -91,6 +100,7 @@ $('#file_upload').on('submit', function (e) {
 
     // fd.append('File', file);
     console.log(fd);
+
     $.ajax({
         url: $this.attr('action'),
         type: 'POST',
