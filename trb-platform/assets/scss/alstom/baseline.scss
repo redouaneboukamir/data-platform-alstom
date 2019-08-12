@@ -3,6 +3,24 @@
 
 }
 
+.card-equipment-evc {
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(32, 32, 73);
+    border: 1px solid lightgray !important;
+
+    .card-body {
+        background: lightgray;
+        text-align: center !important;
+    }
+
+    h4 {
+
+        align-self: middle;
+    }
+}
+
 .content-equipments-plug {
 
     .content-form-plug-version {

@@ -990,13 +990,24 @@ class alstomController extends AbstractController
         Baseline $baseline,
         Request $request
     ) {
-        foreach ($baseline->getERTMS() as $key => $value) {
+        $evc = "";
+        $card = [];
+        $equipements = [];
+
+        foreach ($baseline->getERTMS() as $value) {
             dump($value);
             if ($value->getbaseline()->getOriginal() == true) {
-                $assoc = $value;
-                $equipements = $assoc->getEquipements();
-            } else {
-                $equipements = "test";
+                foreach ($value->getequipements() as $value) {
+                    $id = $value->gettype()->getId();
+                    dump($value);
+                    if ($id == 1) {
+                        $evc = $value;
+                    } else if ($id == 2) {
+                        array_push($card, $value);
+                    } else {
+                        array_push($equipements, $value);
+                    }
+                }
             }
         }
         dump($baseline);
@@ -1014,6 +1025,8 @@ class alstomController extends AbstractController
             'current_menu' => 'baseline',
             'baseline' => $baseline,
             'equipement' => $equipement,
+            'evc' => $evc,
+            'cards' => $card,
             'equipements' => $equipements,
             'form_equipement' => $form_equipement->createView(),
             'form_version' => $form_version->createView()
@@ -1028,11 +1041,23 @@ class alstomController extends AbstractController
         Baseline $baseline,
         Request $request
     ) {
-
+        $evc = "";
+        $card = [];
+        $equipements = [];
         foreach ($baseline->getERTMS() as $value) {
             dump($value);
             if ($value->getStatus()) {
-                $equipements = $value->getequipements();
+                foreach ($value->getequipements() as $value) {
+                    $id = $value->gettype()->getId();
+                    dump($value);
+                    if ($id == 1) {
+                        $evc = $value;
+                    } else if ($id == 2) {
+                        array_push($card, $value);
+                    } else {
+                        array_push($equipements, $value);
+                    }
+                }
             }
         }
 
@@ -1047,12 +1072,16 @@ class alstomController extends AbstractController
         $form_equipement->handleRequest($request);
         $form_version->handleRequest($request);
 
+
+
         return $this->render('alstom/baseline/show-baseline-train.html.twig', [
             'current_menu' => 'baseline',
             'baseline_train' => true,
             'baseline' => $baseline,
             'equipement' => $equipement,
             'equipements' => $equipements,
+            'cards' => $card,
+            'evc' => $evc,
             'form_equipement' => $form_equipement->createView(),
             'form_version' => $form_version->createView(),
             'form_config' => $form_config->createView()
@@ -1493,6 +1522,8 @@ class alstomController extends AbstractController
             } catch (MultipartUploadException $e) {
                 // State contains the "Bucket", "Key", and "UploadId"
                 $params = $e->getState()->getId(); //récupération de l'id de l'upload
+                dump($params);
+                dump($s3);
                 $result = $s3->abortMultipartUpload($params); //suppression de l'upload
                 $is_success = false; //on gérére l'erreur remontée au javscript
                 $error_msg = "Error during the upload of the file, please retry !"; // on génère le message d'erreur
