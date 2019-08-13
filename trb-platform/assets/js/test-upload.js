@@ -1,6 +1,9 @@
 //définition des variables
 //plugs
 let ListPlugs = []
+
+// Declaration d'évenement avant chargement de l apage
+$('#valid-all-plug').hide();
 //detection si le browser gère le drag&drop
 var isAdvancedUpload = function () {
     var div = document.createElement('div');
@@ -119,6 +122,9 @@ $form.on('submit', function (e) {
         });
     }
 });
+$('#valid-plug').click(function () {
+    $('#valid-all-plug').show();
+})
 
 $('#test-upload').on("click", "button", function () {
     var filest = document.querySelector("#selector").files;
