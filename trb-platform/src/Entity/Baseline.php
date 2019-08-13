@@ -62,12 +62,19 @@ class Baseline
      */
     private $ERTMS;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AssocPlugBaseline", mappedBy="baseline")
+     */
+    private $assocPlugBaselines;
+
+
     public function __construct()
     {
         $this->Original = true;
         $this->Status = false;
         $this->Date = new DateTime();
         $this->ERTMS = new ArrayCollection();
+        $this->assocPlugBaselines = new ArrayCollection();
     }
     public function __toString()
     {
@@ -188,6 +195,37 @@ class Baseline
             // set the owning side to null (unless already changed)
             if ($eRTM->getBaseline() === $this) {
                 $eRTM->setBaseline(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AssocPlugBaseline[]
+     */
+    public function getAssocPlugBaselines(): Collection
+    {
+        return $this->assocPlugBaselines;
+    }
+
+    public function addAssocPlugBaseline(AssocPlugBaseline $assocPlugBaseline): self
+    {
+        if (!$this->assocPlugBaselines->contains($assocPlugBaseline)) {
+            $this->assocPlugBaselines[] = $assocPlugBaseline;
+            $assocPlugBaseline->setBaseline($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssocPlugBaseline(AssocPlugBaseline $assocPlugBaseline): self
+    {
+        if ($this->assocPlugBaselines->contains($assocPlugBaseline)) {
+            $this->assocPlugBaselines->removeElement($assocPlugBaseline);
+            // set the owning side to null (unless already changed)
+            if ($assocPlugBaseline->getBaseline() === $this) {
+                $assocPlugBaseline->setBaseline(null);
             }
         }
 

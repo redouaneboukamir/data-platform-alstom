@@ -41,8 +41,6 @@ $(document).ready(function () {
 
         })
 
-    } else {
-        console.log(window.location.pathname);
     }
     // $('#equipement_sous_type').empty();
     // $(':input', '#form_equipement').not(':button, :submit, :reset, :hidden').val('');

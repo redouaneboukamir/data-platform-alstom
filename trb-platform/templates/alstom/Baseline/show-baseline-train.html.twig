@@ -231,7 +231,25 @@
                         </fa>
                         Add New
                     </button>
-                    <div class="content-plug-file" id="content-plug-file"></div>
+                    <div class="content-plug-file" id="content-plug-file">
+                        <table class="table table-condensed table-content card-body table-full-width ">
+                            <thead class="title-table">
+
+                                <th class="th-empty" scope="col">Plugs</th>
+                            </thead>
+                            <tbody style="font-weight:bold; text-transform:uppercase">
+                                {% for plug in plugs %}
+                                    <tr class="td-table">
+                                        <td>{{ plug.name }}</td>
+                                        <td>{{ plug.plug }}</td>
+                                        <td>{{ plug.UpdatedAt|date('d/m/Y') }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -257,8 +275,9 @@
                                         <label for="input-name-plug">Type of plug</label>
                                         <input class="form-control" id="input-name-plug" placeholder="" type="text">
                                     </div>
-                                    <input class="btn btn-success" id="valid-plug" type="submit" value="Add">
-                                    <div class="btn btn-danger" id="close-add-plug">Cancel</div>
+                                    <input
+                                    class="btn btn-success" id="valid-plug" type="submit" value="Add">
+                                {# <div class="btn btn-danger" id="close-add-plug">Cancel</div> #}
                                 </form>
                             </div>
                             <form class="box has-advanced-upload col-md-6" enctype="multipart/form-data" id="form-file" method="post" novalidate="">
@@ -289,7 +308,7 @@
                         </fa>
                     </button>
                     <button class="btn btn-success btn-shadow mt-4" id="valid-all-plug">Valid</button>
-                    <button class="btn btn-danger btn-shadow-danger mt-4" id="valid-all-plug">Cancel</button>
+                    <button class="btn btn-danger btn-shadow-danger mt-4" id="cancel-all-plug">Cancel</button>
                 </div>
             </div>
         </div>

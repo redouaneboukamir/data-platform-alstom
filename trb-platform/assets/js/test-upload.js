@@ -1,9 +1,11 @@
 //définition des variables
 let ListePlug = [],
+    i = 0,
     valid = false;
 
 // Declaration d'évenement avant chargement de l apage
 $('#valid-all-plug').hide();
+$('#cancel-all-plug').hide();
 //detection si le browser gère le drag&drop
 var isAdvancedUpload = function () {
     var div = document.createElement('div');
@@ -22,9 +24,9 @@ prgbar = new ldBar("#test-progress");
 $('#add-form-plug').click(function () {
     // $('#card-content-plug').append("test");
     // console.log($('.content-name-drag-plug'))
+
     if (valid) {
         $('#input-name-plug').val('');
-
         droppedFiles = false;
         $form.removeClass('is-success');
         $('.label-drop').css('font-weight', '');
@@ -76,6 +78,8 @@ $('#valid-plug').click(function (e) {
     if ($('#input-name-plug').val() != "" && droppedFiles) {
 
         $('#valid-all-plug').show();
+        $('#cancel-all-plug').show();
+
         Plug['name_plug'] = $('#input-name-plug').val();
 
         // Parti du traitement du drag an drop file
@@ -89,7 +93,6 @@ $('#valid-plug').click(function (e) {
             if (droppedFiles) {
                 $.each(droppedFiles, function (i, file) {
                     ajaxData.append($input.attr('name'), file);
-                    console.log(Plug);
                     Plug['key_plug'] = file.name;
 
                 });
@@ -126,16 +129,16 @@ $('#valid-plug').click(function (e) {
                 complete: function () {
                     $form.removeClass('is-uploading');
                     $("#test-progress").removeClass('is-blink');
-
                     ListePlug.push(Plug);
-                    console.log(Plug);
+                    ListePlug.forEach(writePlug);
+
                 },
                 success: function (data) {
                     $form.addClass(data.success == true ? 'is-success' : 'is-error');
                     $('#content-name-drag-plug').hide();
-                    $('#show-done-plug').append("<span class='content-key-name-plug'><p>" + Plug.name_plug + "</p><p>" + Plug.key_plug + "</p><a id='delete-" + Plug.key_plug + "'><i class='fas fa-trash-alt poubelle'></i></a></span>")
-                    console.log(ListePlug);
                     valid = true;
+                    console.log(ListePlug)
+
                 },
                 error: function () {
                     // Log the error, show an alert, whatever works for you
@@ -202,3 +205,53 @@ $('#test-upload').on("click", "button", function () {
         }
     });
 });
+$('#valid-all-plug').on('click', function (e) {
+    e.preventDefault();
+    let idBaseline = extraitNombre(window.location.pathname);
+    $.ajax({
+        url: '/alstom/flush-plug',
+        type: 'POST',
+        data: {
+            'idBaseline': idBaseline,
+            'Plugs': ListePlug
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            //ask for the status
+            console.log(response)
+            location.reload();
+        }
+    })
+})
+
+
+
+//Gére le clique de la suppression
+$('#show-done-plug').on('click', '.content-key-name-plug > a', function () {
+    if ($(this)[0]["id"][0] == "d") {
+        deletePlug(extraitNombre($(this)[0]["id"]));
+        console.log($(this)[0]["id"]);
+    }
+});
+//Extrait le nombre d'une streing
+function extraitNombre(str) {
+    return Number(str.replace(/[^\d]/g, ""))
+}
+//Supression du plug dans le tableau et le front
+function deletePlug(position) {
+    ListePlug.splice(position, 1);
+    $('.content-key-name-plug').remove();
+    console.log(ListePlug)
+    ListePlug.forEach(writePlug);
+}
+
+function writePlug(element, index, array) {
+    //Test l'existence de la div dans le cas où elle existe la remplace si pas la met en place
+    if ($('#key-name-' + index).length) {
+        $('#key-name-' + index).replaceWith("<span class='content-key-name-plug' id='key-name-" + index + "'><p>" + element.name_plug + "</p><p>" + element.key_plug + "</p><a id='delete-plug-" + index + "'><i class='fas fa-trash-alt poubelle'></i></a></span>")
+    } else {
+        $('#show-done-plug').append("<span class='content-key-name-plug' id='key-name-" + index + "'><p>" + element.name_plug + "</p><p>" + element.key_plug + "</p><a id='delete-plug-" + index + "'><i class='fas fa-trash-alt poubelle'></i></a></span>");
+    }
+
+}

@@ -60,6 +60,8 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use App\Entity\ConfigLogiciel;
 use App\Form\ConfigLogicielType;
 use App\Entity\Plugs;
+use App\Entity\AssocPlugBaseline;
+use App\Repository\AssocPlugBaselineRepository;
 
 class alstomController extends AbstractController
 {
@@ -746,57 +748,12 @@ class alstomController extends AbstractController
     }
 
     /**
-     * @Route("/alstom/add-plug/{id}", name="alstom.add-plug")
-     * @param Request $request
-     * @return Response
-     */
-    public function addPlug(Request $request, $id): Response
-    {
-        $idBaseline = $request->request->get('id');
-        $config = new ConfigLogiciel;
-
-        $form = $this->createform(ConfigLogicielType::class, $config);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $config->setUpdatedAt(new \Datetime('now'));
-            $this->em->persist($config);
-            $this->em->flush();
-            return $this->redirectToRoute('alstom.show-baseline-train', ['id' => $id]);
-        }
-
-        return $this->redirectToRoute('alstom.show-baseline-train', ['id' => $id]);
-    }
-
-    /**
      * @Route("/alstom/add-logs", name="alstom.add-logs")
      * @param Request $request
      * @return Response
      */
-    public function addLogs(Request $request): Response
-    {
-
-        $file = new FileTemp;
-        $test = [];
-        $form = $this->createform(FileTempType::class, $file);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            dump($file);
-
-            // $file->setFile();
-            // $file->setFilename();
-            $this->em->persist($file);
-            $this->em->flush();
-            return $this->redirectToRoute('alstom.logs');
-        }
-
-        return $this->render('alstom/logs/add_logs.html.twig', [
-            'current_menu' => "logs",
-            'form' => $form->createView()
-        ]);
-    }
+    public function addLogs(Request $request)
+    { }
     /**
      * @Route("/alstom/create-logs", name="alstom.create-logs")
      */
@@ -1035,7 +992,8 @@ class alstomController extends AbstractController
      */
     public function show_baseline_train(
         Baseline $baseline,
-        Request $request
+        Request $request,
+        AssocPlugBaselineRepository $assocPlugBaselineRepository
     ) {
         $evc = "";
         $card = [];
@@ -1053,6 +1011,16 @@ class alstomController extends AbstractController
                     } else {
                         array_push($equipements, $value);
                     }
+                }
+            }
+        }
+
+        $assoc_plug = $baseline->getAssocPlugBaselines();
+        if ($assoc_plug != null) {
+            foreach ($assoc_plug as $value) {
+                if ($value->getStatus()) {
+                    $plugs = $value->getPlug();
+                    dump($plugs);
                 }
             }
         }
@@ -1078,6 +1046,7 @@ class alstomController extends AbstractController
             'equipements' => $equipements,
             'cards' => $card,
             'evc' => $evc,
+            'plugs' => $plugs,
             'form_equipement' => $form_equipement->createView(),
             'form_version' => $form_version->createView(),
             'form_config' => $form_config->createView()
@@ -1533,5 +1502,39 @@ class alstomController extends AbstractController
         //encodage en JSON pour le return  vers le javascript
         $jsonObjectestUpload = (json_encode(['success' => $is_success, 'error' => $error_msg, 'key_plug' => $key_plug]));
         return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
+    }
+
+    /**
+     * @Route("alstom/flush-plug", name="alstom.flush_plug")
+     * @return Response
+     */
+    public function flush_plug(Request $request, BaselineRepository $baselinerepository)
+    {
+        $assoc_plug_baseline = new AssocPlugBaseline;
+        $baseline = $baselinerepository->find($request->request->get('idBaseline'));
+        $tabPlugs = $request->request->get('Plugs');
+        foreach ($baseline->getAssocPlugBaselines() as $value) {
+            $value->setStatus(false);
+            dump($value);
+        }
+        foreach ($tabPlugs as $value) {
+            $plug = new Plugs;
+            $plug->setName($value['name_plug']);
+            $plug->setPlug($value['key_plug']);
+            $plug->setUpdatedAt(new \Datetime('now'));
+            $this->em->persist($plug);
+            $assoc_plug_baseline->addPlug($plug);
+            dump($plug);
+        }
+
+        $assoc_plug_baseline->setDate(new \Datetime('now'));
+        $assoc_plug_baseline->setStatus(true);
+        $this->em->persist($assoc_plug_baseline);
+        $baseline->addAssocPlugBaseline($assoc_plug_baseline);
+        dump($assoc_plug_baseline);
+        $this->em->flush();
+        return $this->json([
+            'sucess' => 'ok'
+        ]);
     }
 }
