@@ -367,7 +367,7 @@ $('#valid-baseline-train').click(function () {
 
 })
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner instancier
-$('.content-description-dtr-instance').on('click', '.edit-delete-equipement > a', function (e) {
+$('.card').on('click', '.edit-delete-equipement > a', function (e) {
     e.preventDefault();
     $('.main-ertms').css("opacity", '0.4');
     $('#wait-spinner').show();
