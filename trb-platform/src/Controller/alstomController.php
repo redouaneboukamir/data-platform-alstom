@@ -49,10 +49,6 @@ use App\Entity\AssocEvcCarte;
 use App\Repository\AssociationEquiptERTMSRepository;
 use App\Entity\VersionLogiciel;
 use App\Form\VersionType;
-use App\Repository\VersionLogicielRepository;
-use App\Repository\ConfigLogicielRepository;
-use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Component\Validator\Constraints\Date;
 //Allow the use of AWS object Storage
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
@@ -60,10 +56,10 @@ use Aws\S3\MultipartUploader;
 use Aws\Exception\MultipartUploadException;
 use App\Entity\FileTemp;
 use App\Form\FileTempType;
-
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use App\Entity\ConfigLogiciel;
 use App\Form\ConfigLogicielType;
+use App\Entity\Plugs;
 
 class alstomController extends AbstractController
 {
@@ -1519,7 +1515,8 @@ class alstomController extends AbstractController
             //Upload du fichier et suppression des parties si l'upload ne marche pas.
             try {
                 $result = $uploader->upload();
-                dump($result);
+
+                $key_plug = $result['Key'];
             } catch (MultipartUploadException $e) {
                 // State contains the "Bucket", "Key", and "UploadId"
                 $params = $e->getState()->getId(); //récupération de l'id de l'upload
@@ -1534,7 +1531,7 @@ class alstomController extends AbstractController
             $error_msg = "No file to upload"; //génération du msg d'erreur
         }
         //encodage en JSON pour le return  vers le javascript
-        $jsonObjectestUpload = (json_encode(['success' => $is_success, 'error' => $error_msg, 'result' => $result]));
+        $jsonObjectestUpload = (json_encode(['success' => $is_success, 'error' => $error_msg, 'key_plug' => $key_plug]));
         return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
     }
 }

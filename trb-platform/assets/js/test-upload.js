@@ -1,6 +1,6 @@
 //définition des variables
-//plugs
-let ListPlugs = []
+let ListePlug = [],
+    valid = false;
 
 // Declaration d'évenement avant chargement de l apage
 $('#valid-all-plug').hide();
@@ -17,7 +17,24 @@ var $input = $form.find('input[type="file"]'),
     };
 //identification de la progress bar
 prgbar = new ldBar("#test-progress");
+//ajouter un plug
 
+$('#add-form-plug').click(function () {
+    // $('#card-content-plug').append("test");
+    // console.log($('.content-name-drag-plug'))
+    if (valid) {
+        $('#input-name-plug').val('');
+
+        droppedFiles = false;
+        $form.removeClass('is-success');
+        $('.label-drop').css('font-weight', '');
+        $('.label-drop').html('<strong> Choose a file </strong> <span class="box__dragndrop">or drag it here </span>.</label>');
+        $('#content-name-drag-plug').show();
+        valid = false;
+    } else {
+        return false
+    }
+})
 //on ouvre le form pour ajouter
 
 $('#addPlugs').on('click', function (e) {
@@ -36,10 +53,13 @@ if (isAdvancedUpload) {
     });
     $form.on('dragleave dragend drop', function () {
         $form.removeClass('is-dragover');
+
     });
     $form.on('drop', function (e) {
         droppedFiles = e.originalEvent.dataTransfer.files;
         $form.trigger('submit');
+        $('.label-drop').text(droppedFiles[0].name);
+        $('.label-drop').css('font-weight', 'bold');
     });
     $form.change('drop', function (e) {
         droppedFiles = e.originalEvent.dataTransfer.files;
@@ -48,82 +68,103 @@ if (isAdvancedUpload) {
 }
 $form.on('submit', function (e) {
     e.preventDefault();
+});
 
-    if ($form.hasClass('is-uploading')) return false;
-    showFiles(droppedFiles);
-    $form.addClass('is-uploading').removeClass('is-error');
+$('#valid-plug').click(function (e) {
+    e.preventDefault();
+    let Plug = {};
+    if ($('#input-name-plug').val() != "" && droppedFiles) {
 
-    if (isAdvancedUpload) {
-        var ajaxData = new FormData($form.get(0));
+        $('#valid-all-plug').show();
+        Plug['name_plug'] = $('#input-name-plug').val();
 
-        if (droppedFiles) {
-            $.each(droppedFiles, function (i, file) {
-                ajaxData.append($input.attr('name'), file);
+        // Parti du traitement du drag an drop file
+        if ($form.hasClass('is-uploading')) return false;
+        showFiles(droppedFiles);
+        $form.addClass('is-uploading').removeClass('is-error');
+
+        if (isAdvancedUpload) {
+            var ajaxData = new FormData($form.get(0));
+
+            if (droppedFiles) {
+                $.each(droppedFiles, function (i, file) {
+                    ajaxData.append($input.attr('name'), file);
+                    console.log(Plug);
+                    Plug['key_plug'] = file.name;
+
+                });
+            }
+            console.log(ajaxData);
+            $.ajax({
+                url: '/alstom/uploadFile',
+                type: 'POST',
+                /*data: {
+                    'file' : ajaxData,
+                    'bucket': 'application',
+                    'upload_request': "upload"
+                },*/
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = (evt.loaded / evt.total) * 100;
+                            //Do something with upload progress here
+                            prgbar.set(percentComplete);
+                            if (percentComplete == 100) {
+                                $("#test-progress").addClass('is-blink');
+                            }
+                        }
+                    }, false);
+                    return xhr;
+                },
+
+                data: ajaxData,
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                complete: function () {
+                    $form.removeClass('is-uploading');
+                    $("#test-progress").removeClass('is-blink');
+
+                    ListePlug.push(Plug);
+                    console.log(Plug);
+                },
+                success: function (data) {
+                    $form.addClass(data.success == true ? 'is-success' : 'is-error');
+                    $('#content-name-drag-plug').hide();
+                    $('#show-done-plug').append("<span class='content-key-name-plug'><p>" + Plug.name_plug + "</p><p>" + Plug.key_plug + "</p><a id='delete-" + Plug.key_plug + "'><i class='fas fa-trash-alt poubelle'></i></a></span>")
+                    console.log(ListePlug);
+                    valid = true;
+                },
+                error: function () {
+                    // Log the error, show an alert, whatever works for you
+                    console.log("sorry boby");
+                }
+            });
+        } else {
+            var iframeName = 'uploadiframe' + new Date().getTime();
+            $iframe = $('<iframe name="' + iframeName + '" style="display: none;"></iframe>');
+
+            $('body').append($iframe);
+            $form.attr('target', iframeName);
+
+            $iframe.one('load', function () {
+                var data = JSON.parse($iframe.contents().find('body').text());
+                $form
+                    .removeClass('is-uploading')
+                    .addClass(data.success == true ? 'is-success' : 'is-error')
+                    .removeAttr('target');
+                if (!data.success) $errorMsg.text(data.error);
+                $form.removeAttr('target');
+                $iframe.remove();
             });
         }
-        console.log(ajaxData);
-        $.ajax({
-            url: '/alstom/uploadFile',
-            type: 'POST',
-            /*data: {
-                'file' : ajaxData,
-                'bucket': 'application',
-                'upload_request': "upload"
-            },*/
-            xhr: function () {
-                var xhr = new window.XMLHttpRequest();
-                xhr.upload.addEventListener("progress", function (evt) {
-                    if (evt.lengthComputable) {
-                        var percentComplete = (evt.loaded / evt.total) * 100;
-                        //Do something with upload progress here
-                        prgbar.set(percentComplete);
-                        if (percentComplete == 100) {
-                            $("#test-progress").addClass('is-blink');
-                        }
-                    }
-                }, false);
-                return xhr;
-            },
-            data: ajaxData,
-            dataType: 'json',
-            cache: false,
-            contentType: false,
-            processData: false,
-            complete: function () {
-                $form.removeClass('is-uploading');
-                $("#test-progress").removeClass('is-blink');
-            },
-            success: function (data) {
-                $form.addClass(data.success == true ? 'is-success' : 'is-error');
-                console.log(data);
-                // console.log(JSON.parse(data.result));
-            },
-            error: function () {
-                // Log the error, show an alert, whatever works for you
-                console.log("sorry boby");
-            }
-        });
     } else {
-        var iframeName = 'uploadiframe' + new Date().getTime();
-        $iframe = $('<iframe name="' + iframeName + '" style="display: none;"></iframe>');
-
-        $('body').append($iframe);
-        $form.attr('target', iframeName);
-
-        $iframe.one('load', function () {
-            var data = JSON.parse($iframe.contents().find('body').text());
-            $form
-                .removeClass('is-uploading')
-                .addClass(data.success == true ? 'is-success' : 'is-error')
-                .removeAttr('target');
-            if (!data.success) $errorMsg.text(data.error);
-            $form.removeAttr('target');
-            $iframe.remove();
-        });
+        alert('Please enter name & file plug')
     }
-});
-$('#valid-plug').click(function () {
-    $('#valid-all-plug').show();
+
+
 })
 
 $('#test-upload').on("click", "button", function () {
