@@ -74,6 +74,7 @@ $form.on('submit', function (e) {
 
 $('#valid-plug').click(function (e) {
     e.preventDefault();
+
     let Plug = {};
     if ($('#input-name-plug').val() != "" && droppedFiles) {
 
@@ -109,12 +110,15 @@ $('#valid-plug').click(function (e) {
                 xhr: function () {
                     var xhr = new window.XMLHttpRequest();
                     xhr.upload.addEventListener("progress", function (evt) {
+                        console.log(evt.loaded);
                         if (evt.lengthComputable) {
                             var percentComplete = (evt.loaded / evt.total) * 100;
                             //Do something with upload progress here
                             prgbar.set(percentComplete);
                             if (percentComplete == 100) {
                                 $("#test-progress").addClass('is-blink');
+                                console.log(evt.loaded);
+                                evt.total = 0;
                             }
                         }
                     }, false);
@@ -138,6 +142,7 @@ $('#valid-plug').click(function (e) {
                     $('#content-name-drag-plug').hide();
                     valid = true;
                     console.log(ListePlug)
+
 
                 },
                 error: function () {
@@ -199,7 +204,9 @@ $('#test-upload').on("click", "button", function () {
                 dataType: 'json', // JSON
                 success: function (response) {
                     //ask for the status
-                    console.log(response)
+                    console.log(response);
+                    $('main').css('opacity', "1");
+                    $('#wait-spinner').hide();
                 }
             });
         }
@@ -207,6 +214,8 @@ $('#test-upload').on("click", "button", function () {
 });
 $('#valid-all-plug').on('click', function (e) {
     e.preventDefault();
+    $('.main-baseline').css('opacity', "0.4");
+    $('#wait-spinner').show();
     let idBaseline = extraitNombre(window.location.pathname);
     $.ajax({
         url: '/alstom/flush-plug',

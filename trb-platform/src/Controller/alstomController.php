@@ -753,7 +753,11 @@ class alstomController extends AbstractController
      * @return Response
      */
     public function addLogs(Request $request)
-    { }
+    {
+        return $this->render('alstom/logs/add_logs.html.twig', [
+            'current_menu' => "logs"
+        ]);
+    }
     /**
      * @Route("/alstom/create-logs", name="alstom.create-logs")
      */

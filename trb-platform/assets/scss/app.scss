@@ -1314,15 +1314,27 @@ body {
 .box {
   font-size: 1.1rem;
   /* 20 */
-  background-color: #c8dadf;
+  background-color: #222d32;
   position: relative;
   padding: 20px;
+  color: white;
+
+  .content-input-iframe {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  i {
+    color: white;
+  }
 }
 
 .box.has-advanced-upload {
-  outline: 2px dashed #92b0b3;
+  outline: 2px dashed white;
   outline-offset: -10px;
-
   -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
   transition: outline-offset .15s ease-in-out, background-color .15s linear;
 }
@@ -1330,7 +1342,7 @@ body {
 .box.is-dragover {
   outline-offset: -20px;
   outline-color: #c8dadf;
-  background-color: #fff;
+  background-color: #2a9baf;
 }
 
 .box__dragndrop,
@@ -1370,13 +1382,16 @@ body {
   top: 50%;
   margin-left: auto;
   margin-right: auto;
-
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
 .box__uploading {
   font-style: italic;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
 }
 
 .box__success {
@@ -1418,7 +1433,7 @@ body {
 
 .box__restart:focus,
 .box__restart:hover {
-  color: #39bfd3;
+  color: #2a9baf;
 }
 
 .box__file {
@@ -1442,7 +1457,7 @@ body {
 .box__file+label:hover strong,
 .box__file:focus+label strong,
 .box__file.has-focus+label strong {
-  color: #39bfd3;
+  color: #2a9baf;
 }
 
 .box__file:focus+label,
@@ -1466,6 +1481,7 @@ body {
 }
 
 .ldBar {
+  width: 300px !important;
   position: relative;
 }
 
@@ -1487,7 +1503,7 @@ body {
   content: ""
 }
 
-@-webkit-keyframes blinker {
+@keyframes blinker {
   from {
     opacity: 1.0;
   }
@@ -1499,9 +1515,9 @@ body {
 
 .is-blink {
   text-decoration: blink;
-  -webkit-animation-name: blinker;
-  -webkit-animation-duration: 0.6s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-direction: alternate;
+  animation-name: blinker;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
 }
