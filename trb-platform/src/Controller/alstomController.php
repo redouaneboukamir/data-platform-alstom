@@ -1419,14 +1419,13 @@ class alstomController extends AbstractController
 
         // Use the high-level iterators (returns ALL of your objects).
         $objects_ts3 = $s3->listObjects([
-            'Bucket' => 'application'
+            'Bucket' => 'temp'
         ]);
         dump($objects_ts3['Contents']);
         foreach ($objects_ts3['Contents'] as $s3_filename) {
             $name_s3 = $s3_filename['Key'];
-
             $command = $s3->getCommand('GetObject', [
-                'Bucket' => 'application',
+                'Bucket' => 'temp',
                 'Key'    => $name_s3
             ]);
 
@@ -1474,6 +1473,8 @@ class alstomController extends AbstractController
             $nameFile = $_FILES['files']['name'][1]; //key minio
             $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
             //instanciation de l'uploader PHP / MINIO
+            dump($source);
+            dump($nameFile);
             $uploader = new MultipartUploader(
                 $s3,
                 $source,
@@ -1514,6 +1515,38 @@ class alstomController extends AbstractController
      */
     public function flush_plug(Request $request, BaselineRepository $baselinerepository)
     {
+        $s3 = new S3Client([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+            'endpoint' => 'http://localhost:5555',
+            'use_path_style_endpoint' => true,
+            'credentials' => [
+                'key'    => 'amdptestdeployv7private',
+                'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+            ],
+        ]);
+        // Use the high-level iterators (returns ALL of your objects).
+        $objects_ts3 = $s3->listObjects([
+            'Bucket' => 'temp'
+        ]);
+        foreach ($objects_ts3['Contents'] as $s3_file) {
+            dump($s3_file);
+            $source = $s3_file;
+            $name_s3 = $s3_file['Key'];
+
+            $uploader = new MultipartUploader(
+                $s3,
+                $source,
+                [
+                    'bucket' => 'plugs',
+                    'key' => $name_s3,
+                    'before_upload' => function (\Aws\Command $command) { //Nettoyage de la mémoire avant upload
+                        gc_collect_cycles();
+                    }
+                ]
+            );
+        }
         $assoc_plug_baseline = new AssocPlugBaseline;
         $baseline = $baselinerepository->find($request->request->get('idBaseline'));
         $tabPlugs = $request->request->get('Plugs');

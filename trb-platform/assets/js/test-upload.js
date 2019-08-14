@@ -233,6 +233,24 @@ $('#valid-all-plug').on('click', function (e) {
         }
     })
 })
+$('#see').on('click', function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: '/alstom/seeFile',
+        type: 'POST',
+        data: {
+
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            //ask for the status
+            console.log(response)
+
+        }
+    })
+})
 
 
 
