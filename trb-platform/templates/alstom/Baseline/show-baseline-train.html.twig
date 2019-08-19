@@ -114,7 +114,7 @@
 
                             <div class="numbers">
                                 {% for card in cards %}
-                                    <div class="card-card col-12 mt-4 mb-4">
+                                    <div class="card-card col-12 mt-3 mb-3">
                                         <div class="card_title title-white">
                                             <p>{{card.sousType.name}}</p>
                                         </div>
@@ -219,15 +219,18 @@
                 <div class="content-version-ERTMS col-lg-12">
                     {% for ertms in baseline.ERTMS %}
                         {% if ertms.status %}
-                            <h3 id="title-version">Version ERTMS</h3>
-                            {{ ertms.solution.date|date('d/m/Y')  }}
+                            <div class="content-date-update">
+                                <h3 id="title-version">Last Update</h3>
+                                <h5>{{ ertms.solution.date|date('d/m/Y')  }}</h5>
+
+                            </div>
 
                         {% endif %}
                     {% endfor %}
-                    <div class="content-version-config">
+                    <div class="content-date-update">
                         {% if (baseline.VersionLogiciel) %}
                             <h3 id="title-version">Software Version</h3>
-                            {{ baseline.VersionLogiciel.ReleaseNote}}
+                            <h5>{{ baseline.VersionLogiciel.ReleaseNote}}</h5>
                         {% else %}
                             <h3 id="title-version-ertms"></h3>
                         {% endif %}
@@ -253,7 +256,6 @@
                                 {% for plug in plugs %}
                                     <tr class="td-table">
                                         <td>{{ plug.name }}</td>
-                                        <td>{{ plug.plug }}</td>
                                         <td>{{ plug.UpdatedAt|date('d/m/Y') }}</td>
                                         <td class="td-plug" id="{{plug.plug}}">
                                             <i class="fas fa-download"></i>
