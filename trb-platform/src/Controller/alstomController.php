@@ -1417,24 +1417,24 @@ class alstomController extends AbstractController
         ]);
         $key_name = $request->request->get('key');
 
-        $objects_ts3 = $s3->listObjects([
-            'Bucket' => 'plugs'
+        $command = $s3->getCommand('GetObject', [
+            'Bucket' => 'plugs',
+            'Key'    => $key_name
         ]);
-        foreach ($objects_ts3['Contents'] as $s3_filename) {
+        dump($command);
+        // Create a pre-signed URL for a request with duration of 10 miniutes
+        $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
 
-            $name_s3 = $s3_filename['Key'];
-            $command = $s3->getCommand('GetObject', [
-                'Bucket' => 'temp',
-                'Key'    => $name_s3
-            ]);
-            dump($command);
-            // Create a pre-signed URL for a request with duration of 10 miniutes
-            $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
+        // Get the actual presigned-url
+        $presignedUrl =  (string)  $presignedRequest->getUri();
 
-            // Get the actual presigned-url
-            $presignedUrl =  (string)  $presignedRequest->getUri();
-            echo '<a href="' . $presignedUrl . '">' . $name_s3 . '</a><br/>';
-        }
+        $jsonObjectestUpload = $this->serializer->serialize($presignedUrl, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+        header('Location: ' . $presignedUrl);
+        return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
     }
 
 

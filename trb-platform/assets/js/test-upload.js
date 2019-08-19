@@ -235,7 +235,11 @@ $('#valid-all-plug').on('click', function (e) {
 })
 $('#content-tr-plug').on('click', '.td-table > .td-plug', function (e) {
     e.preventDefault();
-    let link = $(this);
+    µ
+
+    $('.main-baseline').css('opacity', "0.4");
+    $('#wait-spinner').show();
+
     let key = $(this)[0]["id"];
     $.ajax({
         url: '/alstom/donwloadFile',
@@ -246,11 +250,10 @@ $('#content-tr-plug').on('click', '.td-table > .td-plug', function (e) {
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
-            //ask for the status
-            // window.location.href = 'uploads/' + response;
-            $(link).attr("href", response);
-            console.log(response)
-            // url_plug = response;
+            window.location.href = response;
+            $('.main-baseline').css('opacity', "1");
+            $('#wait-spinner').hide();
+            console.log(response);
         }
     })
 })
