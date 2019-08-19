@@ -577,7 +577,7 @@ class alstomController extends AbstractController
                     break;
             }
         }
-        $new_ertms->setName($baseline->getName() . "-VERSION");
+        $new_ertms->setDate(new \Datetime('now'));
         $new_assoc->setSolution($new_ertms);
         $new_assoc->setStatus(true);
 
@@ -888,7 +888,7 @@ class alstomController extends AbstractController
         $tabEquipt = $request->request->get('tabEquipts');
         $baseline->setName($request->request->get('baselineName'));
 
-        $ertms->setName($baseline->getName() . '0');
+        $ertms->setDate(new \Datetime('now'));
         $this->em->persist($ertms);
 
         $baseline->setStatus(true);
@@ -1002,6 +1002,7 @@ class alstomController extends AbstractController
     ) {
         $evc = "";
         $card = [];
+        $plugs = "";
         $equipements = [];
         foreach ($baseline->getERTMS() as $value) {
             dump($value);
@@ -1233,7 +1234,7 @@ class alstomController extends AbstractController
             };
 
 
-            $new_ertms->setName($current_assoc->getSolution()->getName() . "-UPDATEVERSION-2.0");
+            $new_ertms->setDate(new \Datetime('now'));
             $new_assoc->setSolution($new_ertms);
             $new_assoc->addEquipement($equipement_new);
             $baseline->addERTM($new_assoc);
@@ -1433,7 +1434,6 @@ class alstomController extends AbstractController
                 return $object->getId();
             }
         ]);
-        header('Location: ' . $presignedUrl);
         return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
     }
 

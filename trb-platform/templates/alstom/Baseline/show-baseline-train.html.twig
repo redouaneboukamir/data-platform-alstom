@@ -110,23 +110,33 @@
                                 </a>
                             </p>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12" style="background-color:rgba(0,0,0,.03">
+
                             <div class="numbers">
                                 {% for card in cards %}
-                                    <div class="card-card 1 col-12 mt-4 mb-4">
+                                    <div class="card-card col-12 mt-4 mb-4">
                                         <div class="card_title title-white">
                                             <p>{{card.sousType.name}}</p>
                                         </div>
-                                        <span class="mt-4" style="display:flex; justify-content:space-around;">
-                                            <p class="col-md-4">DTR</p>
-                                            <p class="col-md-4">Indice</p>
-                                            <p class="col-md-4">N°</p>
-                                        </span>
-                                        <span class="description-card">
-                                            <p>{{card.DTRboard}}</p>
-                                            <p>{{card.IndiceDTR}}</p>
-                                            <p>{{card.Numserie}}</p>
-                                        </span>
+                                        <ul>
+                                            <li>
+                                                <p class="title-li">DTR</p>
+                                                <span style="line-height: 1.42857143;">{{card.DTRboard}}</span>
+                                            </li>
+                                            <li>
+                                                <p class="title-li">Indice</p>
+                                                <span style="line-height: 1.42857143;">
+                                                    {{card.IndiceDTR}}
+                                                </span>
+
+                                            </li>
+                                            <li>
+                                                <p class="title-li">N°</p>
+                                                <span style="line-height: 1.42857143;">{{card.Numserie}}</span>
+
+                                            </li>
+                                        </ul>
+
                                         <p class="edit-delete-equipement edit-card">
                                             <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
                                                 <i class="fas fa-edit"></i>
@@ -210,7 +220,8 @@
                     {% for ertms in baseline.ERTMS %}
                         {% if ertms.status %}
                             <h3 id="title-version">Version ERTMS</h3>
-                            {{ ertms.solution.name }}
+                            {{ ertms.solution.date|date('d/m/Y')  }}
+
                         {% endif %}
                     {% endfor %}
                     <div class="content-version-config">
@@ -218,13 +229,13 @@
                             <h3 id="title-version">Software Version</h3>
                             {{ baseline.VersionLogiciel.ReleaseNote}}
                         {% else %}
-                            <h3 id="title-version"></h3>
+                            <h3 id="title-version-ertms"></h3>
                         {% endif %}
                     </div>
 
                 </div>
                 <div class="content-form-plug col-lg-12">
-                    <h3>Add plug</h3>
+                    <h3>Plug</h3>
                     <button class="btn-shadow d-inline-flex align-items-center btn btn-success" data-target="#modal-form-plug" data-toggle="modal" type="button">
                         <fa _nghost-c2="" class="mr-2" name="plus">
                             <i _ngcontent-c2="" aria-hidden="true" class="fa fa-plus"></i>

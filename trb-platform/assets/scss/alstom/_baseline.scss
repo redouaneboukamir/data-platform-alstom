@@ -13,26 +13,42 @@
 }
 
 .card-card {
-    margin-top: 20px;
+    margin-top: 10px;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.4s;
     color: rgb(32, 32, 73);
-    border: 1px solid lightgray !important;
+    border: 1px solid rgb(219, 219, 219);
+    background: white;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+
+        .title-li {
+            font-weight: bold;
+            padding-right: 10px;
+        }
+
+        li {
+            display: flex;
+        }
+    }
 
     .card_title {
-        text-align: center;
+        text-align: left;
         border-radius: 0px 0px 40px 40px;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 1.8em;
         height: 40px;
         color: black;
-        background: lightgray;
     }
 
     .description-card {
-        margin-top: 10px;
+        margin-top: 5px;
         display: flex;
         justify-content: space-around;
         font-weight: bold;

@@ -207,7 +207,7 @@ $('#valid-all-equipments').on('click', function (e) {
     e.preventDefault();
 
     if (Equipments != "") {
-        $('.main-baseline').css('opacity', "0.4");
+        $('main').css('opacity', "0.4");
         $('#wait-spinner').show();
         $.ajax({
             url: '/alstom/flush-all-equipt',
@@ -247,13 +247,13 @@ $('#modal-content-form-equipement-edit').hide();
 // Gere la fermeture du modal d'edit d'equipement
 $('#close-modal-form-equipment-edit').click(function () {
     $('#modal-content-form-equipement-edit').hide();
-    $('.main-ertms').css("opacity", '1');
+    $('main').css("opacity", '1');
 })
 // 
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
 $('.content-description-dtr').on('click', '.edit-delete-equipement > a', function (e) {
     e.preventDefault();
-    $('.main-ertms').css("opacity", '0.4');
+    $('main').css("opacity", '0.4');
     $('#wait-spinner').show();
 
     idEquipment = extraitNombre($(this)[0]["classList"][0])
@@ -281,7 +281,7 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
 
             }).done(function () {
 
-                $('.main-ertms').css("opacity", '0.4');
+                $('main').css("opacity", '0.4');
                 $('#wait-spinner').show();
 
                 //Rempli input avec valeur recu de l'equipement
@@ -318,7 +318,7 @@ $('.content-description-dtr').on('click', '.edit-delete-equipement > a', functio
 //Formulaire d'edit de l'équipement
 $('#form_equipement_edit').on('submit', function (e) {
     e.preventDefault();
-    $('.main-ertms').css("opacity", '0.4');
+    $('main').css("opacity", '0.4');
     $('#form_equipement_edit').css("opacity", "0.4");
     $("#wait-spinner").css("z-index", "99999");
     $('#wait-spinner').show();
@@ -359,7 +359,7 @@ $('#form_equipement_edit').on('submit', function (e) {
 //Requete AJAX de création de version logiciel
 $('#form_version').on('submit', function (e) {
     e.preventDefault();
-    $('.main-baseline').css("opacity", '0.4');
+    $('main').css("opacity", '0.4');
     $('#wait-spinner').show();
 
     var $this = $(this);
@@ -383,8 +383,8 @@ $('#form_version').on('submit', function (e) {
         dataType: 'json', // JSON
         success: function (response) {
 
-            $('#title-version').append("<p>" + response.version + "</p>")
-            $('.main-baseline').css("opacity", '1');
+            $('#title-version-ertms').append("<p>" + response.version + "</p>")
+            $('main').css("opacity", '1');
             $('#wait-spinner').hide();
             $('#close-modal-form-version').trigger('click');
         },
