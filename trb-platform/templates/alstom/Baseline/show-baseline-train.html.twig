@@ -238,12 +238,15 @@
                                 <th class="th-empty" scope="col">Plugs</th>
                                 <th class="th-empty" scope="col"></th>
                             </thead>
-                            <tbody style="font-weight:bold; text-transform:uppercase">
+                            <tbody id="content-tr-plug" style="font-weight:bold; text-transform:uppercase">
                                 {% for plug in plugs %}
                                     <tr class="td-table">
                                         <td>{{ plug.name }}</td>
                                         <td>{{ plug.plug }}</td>
                                         <td>{{ plug.UpdatedAt|date('d/m/Y') }}</td>
+                                        <td class="td-plug" id="{{plug.plug}}">
+                                            <i class="fas fa-download"></i>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -254,8 +257,6 @@
                 </div>
             </div>
         </div>
-        <button id="see">test</button>
-
 
     </main>
     <!-- Modal -->

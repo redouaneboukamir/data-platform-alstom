@@ -233,21 +233,24 @@ $('#valid-all-plug').on('click', function (e) {
         }
     })
 })
-$('#see').on('click', function (e) {
+$('#content-tr-plug').on('click', '.td-table > .td-plug', function (e) {
     e.preventDefault();
-
+    let link = $(this);
+    let key = $(this)[0]["id"];
     $.ajax({
-        url: '/alstom/seeFile',
+        url: '/alstom/donwloadFile',
         type: 'POST',
         data: {
-
+            'key': key
         },
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
             //ask for the status
+            // window.location.href = 'uploads/' + response;
+            $(link).attr("href", response);
             console.log(response)
-
+            // url_plug = response;
         }
     })
 })

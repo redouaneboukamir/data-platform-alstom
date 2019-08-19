@@ -54,6 +54,7 @@ use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 use Aws\S3\MultipartUploader;
 use Aws\Exception\MultipartUploadException;
+use Aws\S3\MultipartCopy;
 use App\Entity\FileTemp;
 use App\Form\FileTempType;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
@@ -1397,6 +1398,44 @@ class alstomController extends AbstractController
     /*
         ------- MINIO Service -----
     */
+    /**
+     * @Route("alstom/donwloadFile", name="alstom.donwloadFile")
+     * @return Response
+     */
+    public function donwloadFile(Request $request)
+    {
+        $s3 = new S3Client([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+            'endpoint' => 'http://localhost:5555',
+            'use_path_style_endpoint' => true,
+            'credentials' => [
+                'key'    => 'amdptestdeployv7private',
+                'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+            ],
+        ]);
+        $key_name = $request->request->get('key');
+
+        $objects_ts3 = $s3->listObjects([
+            'Bucket' => 'plugs'
+        ]);
+        foreach ($objects_ts3['Contents'] as $s3_filename) {
+
+            $name_s3 = $s3_filename['Key'];
+            $command = $s3->getCommand('GetObject', [
+                'Bucket' => 'temp',
+                'Key'    => $name_s3
+            ]);
+            dump($command);
+            // Create a pre-signed URL for a request with duration of 10 miniutes
+            $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
+
+            // Get the actual presigned-url
+            $presignedUrl =  (string)  $presignedRequest->getUri();
+            echo '<a href="' . $presignedUrl . '">' . $name_s3 . '</a><br/>';
+        }
+    }
 
 
     /**
@@ -1419,10 +1458,11 @@ class alstomController extends AbstractController
 
         // Use the high-level iterators (returns ALL of your objects).
         $objects_ts3 = $s3->listObjects([
-            'Bucket' => 'temp'
+            'Bucket' => 'plugs'
         ]);
-        dump($objects_ts3['Contents']);
+
         foreach ($objects_ts3['Contents'] as $s3_filename) {
+
             $name_s3 = $s3_filename['Key'];
             $command = $s3->getCommand('GetObject', [
                 'Bucket' => 'temp',
@@ -1436,7 +1476,7 @@ class alstomController extends AbstractController
             $presignedUrl =  (string)  $presignedRequest->getUri();
             echo '<a href="' . $presignedUrl . '">' . $name_s3 . '</a><br/>';
         }
-        $jsonObjectestUpload = $this->serializer->serialize($objects_ts3, 'json', [
+        $jsonObjectestUpload = $this->serializer->serialize($presignedUrl, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
@@ -1473,8 +1513,6 @@ class alstomController extends AbstractController
             $nameFile = $_FILES['files']['name'][1]; //key minio
             $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
             //instanciation de l'uploader PHP / MINIO
-            dump($source);
-            dump($nameFile);
             $uploader = new MultipartUploader(
                 $s3,
                 $source,
@@ -1526,35 +1564,29 @@ class alstomController extends AbstractController
                 'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
             ],
         ]);
-        // Use the high-level iterators (returns ALL of your objects).
-        $objects_ts3 = $s3->listObjects([
-            'Bucket' => 'temp'
-        ]);
-        foreach ($objects_ts3['Contents'] as $s3_file) {
-            dump($s3_file);
-            $source = $s3_file;
-            $name_s3 = $s3_file['Key'];
 
-            $uploader = new MultipartUploader(
-                $s3,
-                $source,
-                [
-                    'bucket' => 'plugs',
-                    'key' => $name_s3,
-                    'before_upload' => function (\Aws\Command $command) { //Nettoyage de la mémoire avant upload
-                        gc_collect_cycles();
-                    }
-                ]
-            );
-        }
         $assoc_plug_baseline = new AssocPlugBaseline;
         $baseline = $baselinerepository->find($request->request->get('idBaseline'));
         $tabPlugs = $request->request->get('Plugs');
         foreach ($baseline->getAssocPlugBaselines() as $value) {
             $value->setStatus(false);
-            dump($value);
         }
         foreach ($tabPlugs as $value) {
+            $result = $s3->copy('temp', $value['key_plug'], 'plugs', $value['key_plug']);
+            // $copier = new MultipartCopy($s3, 'temp/' . $value['key_plug'], [
+            //     'bucket' => 'plugs',
+            //     'key' => $value['key_plug'],
+            // ]);
+            // dump($copier);
+            //dump($copier->copy());
+            try {
+                dump($result);
+                // $result = $copier->copy();
+                dump("Copy complete: {$result['ObjectURL']}\n");
+            } catch (MultipartUploadException $e) {
+                dump($e->getMessage() . "\n");
+            }
+
             $plug = new Plugs;
             $plug->setName($value['name_plug']);
             $plug->setPlug($value['key_plug']);
