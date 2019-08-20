@@ -684,6 +684,7 @@ class alstomController extends AbstractController
 
 
 
+
     /**
      * @Route("alstom/addEquipment", name="alstom.addEquipment")
      * @return Response
@@ -803,24 +804,67 @@ class alstomController extends AbstractController
      */
     public function searchLogs(Request $request): Response
     {
-        $assoc_baseline = new AssociationBaseline;
 
-        $form = $this->createform(AssociationType::class, $assoc_baseline);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $assoc_baseline->setStatus(true);
-            $this->em->persist($assoc_baseline);
-            $this->em->flush();
-        }
 
         return $this->render('alstom/logs/search_logs.html.twig', [
             'current_menu' => "logs",
-            'form' => $form->createView()
+
         ]);
     }
+    /**
+     * @Route("alstom/checkFleet", name="alstom.checkFleet")
+     * @return Response
+     */
+    public function checkFleet(Request $request, ProjectsRepository $projectsRepository)
+    {
 
+        $projects = $projectsRepository->findAll();
 
+        $jsonObjectSubtype = $this->serializer->serialize($projects, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
+    /**
+     * @Route("alstom/checkTrainByFleet", name="alstom.checkTrainByFleet")
+     * @return Response
+     */
+    public function checkTrainByFleet(Request $request, TrainsRepository $trainsRepository)
+    {
+
+        dump($request->request);
+        $trains = $trainsRepository->findTrainByFleet($request->request->get('id'));
+        dump($trains);
+        $jsonObjectSubtype = $this->serializer->serialize($trains, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
+    /**
+     * @Route("alstom/checkErtmsByTrain", name="alstom.checkErtmsByTrain")
+     * @return Response
+     */
+    public function checkErtmsByTrain(Request $request,  TrainsRepository $trainsRepository)
+    {
+
+        $baselines = $trainsRepository->find($request->request->get('id'))->getBaselines();
+
+        $jsonObjectSubtype = $this->serializer->serialize($baselines, 'json', [
+
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
     // ----------------------BASELINE
 
     /**

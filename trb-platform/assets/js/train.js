@@ -22,7 +22,6 @@ let idEquipment = "",
 
 $(document).ready(function () {
     let nombre_url = extraitNombre(window.location.pathname);
-
     if (window.location.pathname == '/alstom/InstanceBaseline/' + nombre_url) {
 
         $('main').css("opacity", '0.4');

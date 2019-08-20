@@ -6,6 +6,7 @@ import './progressBar';
 import './test-upload';
 import './train';
 import './plug';
+import './logs';
 
 // loads the jquery package from node_modules
 const $ = require('jquery');
