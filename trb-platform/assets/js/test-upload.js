@@ -2,7 +2,13 @@
 let ListePlug = [],
     i = 0,
     valid = false;
-
+$(document).ready(function () {
+    let nombre_url = extraitNombre(window.location.pathname);
+    if (window.location.pathname == '/alstom/baseline-train/' + nombre_url) {
+        //identification de la progress bar
+        prgbar = new ldBar("#test-progress");
+    };
+});
 // Declaration d'évenement avant chargement de l apage
 $('#valid-all-plug').hide();
 $('#cancel-all-plug').hide();
@@ -17,8 +23,7 @@ var $input = $form.find('input[type="file"]'),
     showFiles = function (files) {
         $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
     };
-//identification de la progress bar
-prgbar = new ldBar("#test-progress");
+
 //ajouter un plug
 
 $('#add-form-plug').click(function () {
@@ -214,7 +219,7 @@ $('#test-upload').on("click", "button", function () {
 });
 $('#valid-all-plug').on('click', function (e) {
     e.preventDefault();
-    $('.main-baseline').css('opacity', "0.4");
+    $('main').css('opacity', "0.4");
     $('#wait-spinner').show();
     let idBaseline = extraitNombre(window.location.pathname);
     $.ajax({
@@ -233,21 +238,25 @@ $('#valid-all-plug').on('click', function (e) {
         }
     })
 })
-$('#see').on('click', function (e) {
+$('#content-tr-plug').on('click', '.td-table > .td-plug', function (e) {
     e.preventDefault();
+    $('main').css('opacity', "0.4");
+    $('#wait-spinner').show();
 
+    let key = $(this)[0]["id"];
     $.ajax({
-        url: '/alstom/seeFile',
+        url: '/alstom/donwloadFile',
         type: 'POST',
         data: {
-
+            'key': key
         },
         async: true,
         dataType: 'json', // JSON
         success: function (response) {
-            //ask for the status
-            console.log(response)
-
+            window.location.href = response;
+            $('main').css('opacity', "1");
+            $('#wait-spinner').hide();
+            console.log(response);
         }
     })
 })

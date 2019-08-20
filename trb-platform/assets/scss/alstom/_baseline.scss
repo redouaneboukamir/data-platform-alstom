@@ -13,26 +13,46 @@
 }
 
 .card-card {
-    margin-top: 20px;
+    margin: 0;
+    padding: 0;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.4s;
     color: rgb(32, 32, 73);
-    border: 1px solid lightgray !important;
+    border: 1px solid rgb(219, 219, 219);
+    background: white;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+
+        .title-li {
+            font-weight: bold;
+            padding-right: 10px;
+        }
+
+        li {
+            display: flex;
+        }
+    }
 
     .card_title {
-        text-align: center;
-        border-radius: 0px 0px 40px 40px;
+        border-top-right-radius: 10px 10px;
+        border-top-left-radius: 10px 10px;
+        padding-left: 5px;
+        // background: rgb(218, 218, 218);
+        text-align: left;
         font-family: sans-serif;
         font-weight: bold;
         font-size: 1.8em;
         height: 40px;
         color: black;
-        background: lightgray;
     }
 
     .description-card {
-        margin-top: 10px;
+        margin-top: 5px;
         display: flex;
         justify-content: space-around;
         font-weight: bold;
@@ -70,6 +90,7 @@
         height: 80vh;
 
         .content-version-ERTMS {
+            height: 20%;
             background: white;
             padding: 10px;
             margin: 10px;
@@ -77,9 +98,24 @@
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+            align-items: center;
+
+            .content-date-update {
+                width: 80%;
+                display: flex;
+                justify-content: space-between;
+
+                h3 {
+                    padding-right: 10px;
+                    font-weight: 300;
+                }
+
+                h5 {}
+            }
         }
 
         .content-form-plug {
+            height: 80%;
             background: white;
             display: flex;
             flex-direction: column;
@@ -126,6 +162,18 @@
             transform: scale(1.3);
             transition: all 0.3s;
         }
+    }
+}
+
+.td-plug {
+    color: gray;
+
+    &:hover {
+        cursor: pointer;
+        color: red;
+        transform: scale(1.3);
+
+        transition: all 0.3s;
     }
 }
 
