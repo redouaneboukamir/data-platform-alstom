@@ -16,7 +16,7 @@ var $input = $form.find('input[type="file"]'),
         $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
     };
 typeLog.hide();
-typeLogText.show();
+typeLogText.hide();
 $form.hide();
 
 $(document).ready(function () {
