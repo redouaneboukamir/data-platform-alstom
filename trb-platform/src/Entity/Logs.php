@@ -23,11 +23,6 @@ class Logs
     private $idlog;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $tempAdress;
-
-    /**
      * @ORM\Column(type="string", length=1000)
      */
     private $keyLogs;
@@ -41,6 +36,11 @@ class Logs
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AssocLogBaseline", inversedBy="logs")
+     */
+    private $assocLogBaseline;
 
     public function getId(): ?int
     {
@@ -56,21 +56,6 @@ class Logs
     {
         $this->idlog = $idlog;
 
-        return $this;
-    }
-
-    public function getTempAdress(): ?string
-    {
-        return $this->tempAdress;
-    }
-
-    public function setTempAdress(?string $tempAdress): self
-    {
-        
-        $this->tempAdress = $tempAdress;
-        if ($tempAdress)
-            $this->updatedAt = new \DateTime();
-        
         return $this;
     }
 
@@ -106,6 +91,18 @@ class Logs
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getAssocLogBaseline(): ?AssocLogBaseline
+    {
+        return $this->assocLogBaseline;
+    }
+
+    public function setAssocLogBaseline(?AssocLogBaseline $assocLogBaseline): self
+    {
+        $this->assocLogBaseline = $assocLogBaseline;
 
         return $this;
     }

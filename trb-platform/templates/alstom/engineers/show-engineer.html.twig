@@ -2,9 +2,13 @@
 
 
 {% block body %}
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main class="col-md-10 offset-1 col-lg-10" role="main">
         <section class="card mt-3">
-            <a class="btn-edit" href="{{ path('alstom.edit-engineer',{id: engineer.id}) }}"><button class="btn btn-secondary "><i class="fas fa-user-edit"></i></button></a>
+            <a class="btn-edit" href="{{ path('alstom.edit-engineer',{id: engineer.id}) }}">
+                <button class="btn btn-secondary ">
+                    <i class="fas fa-user-edit"></i>
+                </button>
+            </a>
             <div class="background-panel-engin">
 
                 <figure class="panel meta">
@@ -12,7 +16,7 @@
                         {% if engineer.filename  is empty %}
                             <img class="avatar" src="{{ asset('../build/img/engineers/avatar-engineer.svg') }}" alt="">
                         {% else %}
-                            <img class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}" alt="card-img-top">
+                            <img alt="card-img-top" class="img-fluid" src="/build/img/engineers/{{ engineer.filename }}">
                         {% endif %}
                     </picture>
 
@@ -27,14 +31,18 @@
             <div class="border-separate-picture-info"></div>
             <dv class="panel info">
                 <dl class="skillz">
-                    <dt>Numero badge   </dt>
+                    <dt>Numero badge
+                    </dt>
                     <dd>{{ engineer.numBadge }}</dd>
-                    <dt><i class="fas fa-project-diagram"></i>
+                    <dt>
+                        <i class="fas fa-project-diagram"></i>
 
                     </dt>
                     <dd>
                         {% for project in engineer.projects %}
-                            <p> {{ project.name }} </p>
+                            <p>
+                                {{ project.name }}
+                            </p>
                         {% endfor %}
                     </dd>
 

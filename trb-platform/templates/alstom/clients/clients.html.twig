@@ -1,60 +1,70 @@
 {% extends 'alstom/index.html.twig' %}
 
-            {% block body %}
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h2><i class="fa fa-angle-right"></i> Clients</h2>
-                        <a href="{{ path('alstom.create-client') }}"><button class="btn btn-primary">New</button></a>
-                    </div>
-                    {% for message in app.flashes('success') %}
-                        <div class="alert alert-success">
-                            {{ message }}
-                        </div>
+{% block body %}
+    <main class="col-md-10 offset-1 col-lg-10" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>
+                <i class="fa fa-angle-right"></i>
+                Clients</h2>
+            <a href="{{ path('alstom.create-client') }}">
+                <button class="btn btn-primary">New</button>
+            </a>
+        </div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <section class="" id="unseen ">
+            <div class="pull-left search">
+                {{ form_start(form) }}
+                {{ form_row(form.name_client) }}
+                {{ form_end(form) }}
+            </div>
+
+            <table class="table table-condensed table-content card-body table-full-width ">
+                <thead class="title-table">
+                    <th class="">Name</th>
+                    <th class=" numeric" scope="col">Number of trains</th>
+                    <th class="" scope="col">Email</th>
+                    <th class="" scope="col">
+                        Countries</th>
+                    <th class="th-empty" scope="col"></th>
+                </thead>
+                <tbody>
+                    {#                        <div class="noresult_found jumbotron">{{ result_notfound }}</div>#}
+                    {% for client in clients %}
+                        <tr class="td-table">
+                            <td>
+                                <a href="{{ path('alstom.client-show', {id: client.id}) }}">{{ client.name }}</a>
+                            </td>
+                            <td>{{ client.trains }}</td>
+                            <td>{{ client.email }}</td>
+                            {#                                Recuperer country des clients et afficher drapeau en fonction #}
+                            <td>
+                                {% for country in client.Countries %}
+                                    <p class="flag flag-{{ country.iso|lower }}"></p>
+                                {% endfor %}
+                            </td>
+                            <td class="content-btn-edit-delete">
+                                <a href="{{ path('alstom.edit-client', {id: client.id}) }}">
+                                    <i class="fas fa-user-edit btn-edit"></i>
+                                </a>
+                                <form method="post" action="{{ path('alstom.delete-client' ,{id:client.id}) }}" onsubmit="return confirm('Are you sure to delete this client?')">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">
+                                    <button class="btn btn-danger btn-delete-client">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
 
-                    <section id="unseen " class="">
-                        <div class="pull-left search">
-                            {{ form_start(form) }}
-                                {{ form_row(form.name_client) }}
-                            {{ form_end(form) }}
-                        </div>
-
-                        <table class="table table-condensed table-content card-body table-full-width ">
-                            <thead class="title-table">
-                                    <th class="">Name</th>
-                                    <th scope="col" class=" numeric">Number of trains</th>
-                                    <th scope="col" class="">Email</th>
-                                    <th scope="col" class=""> Countries</th>
-                                    <th scope="col" class="th-empty"></th>
-                            </thead>
-                            <tbody>
-                            {#                        <div class="noresult_found jumbotron">{{ result_notfound }}</div>#}
-                            {% for client in clients %}
-                                <tr class="td-table">
-                                    <td><a href="{{ path('alstom.client-show', {id: client.id}) }}">{{ client.name }}</a></td>
-                                    <td>{{ client.trains }}</td>
-                                    <td>{{ client.email }}</td>
-                                    {#                                Recuperer country des clients et afficher drapeau en fonction #}
-                                    <td>
-                                        {% for country in client.Countries %}
-                                            <p class="flag flag-{{ country.iso|lower }}"></p>
-                                        {% endfor %}
-                                    </td>
-                                    <td class="content-btn-edit-delete">
-                                        <a href="{{ path('alstom.edit-client', {id: client.id}) }}"><i class="fas fa-user-edit btn-edit"></i> </a>
-                                        <form method="post" action="{{ path('alstom.delete-client' ,{id:client.id}) }}" onsubmit="return confirm('Are you sure to delete this client?')">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">
-                                            <button class="btn btn-danger btn-delete-client"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </section>
-                </main>
-
-            {% endblock %}
-{% block javascripts %}
 {% endblock %}
+{% block javascripts %}{% endblock %}
