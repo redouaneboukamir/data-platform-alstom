@@ -7,6 +7,7 @@ use App\Entity\ProjectSearch;
 use App\Repository\ProjectsRepository;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
+use App\Repository\TrainsRepository;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -15,7 +16,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class fleetController extends AbstractController
@@ -177,5 +177,40 @@ class fleetController extends AbstractController
             $this->addFlash('success', 'Project delete with success');
         }
         return $this->redirectToRoute('alstom.projects');
+    }
+    /**
+     * @Route("alstom/checkTrains", name="alstom.checkTrains")
+     * @return Response
+     */
+    public function checkTrains(Request $request, TrainsRepository $trainsRepository)
+    {
+
+        $trains = $trainsRepository->findAll();
+        $jsonObjectSubtype = $this->serializer->serialize($trains, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
+    /**
+     * @Route("alstom/addTrainToFleet/{id}", name="alstom.addTrainToFleet")
+     * @return Response
+     */
+    public function addTrainToFleet(Projects $project, Request $request, TrainsRepository $trainsRepository)
+    {
+        dump($project);
+        $id_train = $request->request->get('train-flet');
+        $trains = $trainsRepository->find($id_train);
+        $project->addTrain($trains);
+        $this->em->flush();
+        $jsonObjectSubtype = $this->serializer->serialize($trains, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
     }
 }

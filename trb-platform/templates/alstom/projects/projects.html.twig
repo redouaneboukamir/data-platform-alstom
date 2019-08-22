@@ -20,12 +20,12 @@
             <div
                 class="pull-left search">
                 {# <input id="search-fleet" name="search-fleet" type="text"> #}
-                {{ form_start(form, {'attr':{'id':'search-fleet'}}) }}
-                {{ form_row(form.name_project) }}
+                {{ form_start(form, {'attr':{'id':'search-fleet', 'class':'form-search'}}) }}
+                {{ form_widget(form.name_project) }}
                 {{ form_end(form) }}
             </div>
             <div class="result-fleet" id="result-fleet"></div>
-            <table class="table table-condensed table-content">
+            <table class="table table-condensed table-content mt-4">
                 <thead>
                     <tr class="title-table">
                         <th class="">Name</th>

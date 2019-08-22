@@ -1,5 +1,4 @@
 import '../scss/app.scss';
-import './ertms';
 import './equipement';
 import './baseline';
 import './progressBar';

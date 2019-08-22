@@ -6,7 +6,12 @@ $main-color :rgb(4, 70, 148);
     border-radius: 5px;
 
     .content-details-img {
-        padding: 4%;
+        padding: 2%;
+        height: auto;
+
+        .img-project {
+            height: 100px;
+        }
     }
 
     .img {
@@ -16,8 +21,13 @@ $main-color :rgb(4, 70, 148);
     .details {
         // border-left: 3px solid $main-color;
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+        align-items: center;
+        justify-content: space-between;
+
+        .content-btn {
+            vertical-align: middle;
+
+        }
     }
 
     .details p {
