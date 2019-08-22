@@ -200,7 +200,7 @@ class fleetController extends AbstractController
      */
     public function addTrainToFleet(Projects $project, Request $request, TrainsRepository $trainsRepository)
     {
-        dump($project);
+
         $id_train = $request->request->get('train-flet');
         $trains = $trainsRepository->find($id_train);
         $project->addTrain($trains);

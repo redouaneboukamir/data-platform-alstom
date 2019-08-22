@@ -95,143 +95,140 @@
                                     <p>{{evc.Numserie}}</p>
                                 </span>
                             </div>
-                            <p class="edit-delete-equipement">
-                                <a class="edit-{{evc.id}}" id="edit-equipement-{{evc.id}}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a id="delete-">
-                                    <i class="fas fa-trash-alt poubelle"></i>
-                                </a>
-                            </p>
-                        </div>
-                        <div class="col-12" style="background-color:rgba(0,0,0,.03">
-
-                            <div class="numbers">
-                                {% for card in cards %}
-                                    <div class="card-card col-12 mt-3 mb-3">
-                                        <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
-                                            <ul>
-                                                <div class="card_title title-white">
-                                                    <p>{{card.sousType.name}}</p>
-                                                </div>
-                                                <li>
-                                                    <span style="line-height: 1.42857143;">{{card.DTRboard}}</span>
-                                                </li>
-                                                <li>
-
-                                                    <span style="line-height: 1.42857143;">
-                                                        {{card.IndiceDTR}}
-                                                    </span>
-
-                                                </li>
-                                                <li>
-
-                                                    <span style="line-height: 1.42857143;">{{card.Numserie}}</span>
-
-                                                </li>
-                                            </ul>
-
-
-                                        </a>
-                                        {# <p class="edit-delete-equipement edit-card d-flex">
-                                                                                                                                                                                            <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
-                                                                                                                                                                                                <i class="fas fa-edit"></i>
-                                                                                                                                                                                            </a>
-                                                                                                                                                                                            <a id="delete-">
-                                                                                                                                                                                                <i class="fas fa-trash-alt poubelle"></i>
-                                                                                                                                                                                            </a>
-                                                                                                                                                                                        </p> #}
-                                    </div>
-
-                                {% endfor %}
-
-                            </div>
-                        </div>
-
+                            {# <p class="edit-delete-equipement">
+                                                            <a class="edit-{{evc.id}}" id="edit-equipement-{{evc.id}}">
+                                                                <i class="fas fa-edit"></i>
+                                                            </a>
+                                                            <a id="delete-">
+                                                                <i class="fas fa-trash-alt poubelle"></i>
+                                                            </a> #}
+                        </p>
                     </div>
-                </div>
+                    <div class="col-12" style="background-color:rgba(0,0,0,.03">
 
-
-                {% for equipement in equipements %}
-                    {% if equipement.status == true %}
-                        <div class="col-xl-6 col-md-6 mt-4">
-                            <div class="card card-stats card-equipment">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-5" style="font-size:2em;display:flex; justify-content:space-around;font-weight:bold">
-                                            <div class="icon-big text-center">
-                                                <div class="icon-warning">
-                                                    <i class="fas fa-server"></i>
-                                                </div>
+                        <div class="numbers">
+                            {% for card in cards %}
+                                <div class="card-card col-12 mt-3 mb-3">
+                                    <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
+                                        <ul>
+                                            <div class="card_title title-white">
+                                                <p>{{card.sousType.name}}</p>
                                             </div>
-                                        </div>
-                                        <div class="col-7">
-                                            <div class="numbers">
-                                                <div>
-                                                    <h4 class="card-title">{{equipement.Type.name}}</h4>
-                                                    <p class="card-category">
-                                                        {% if equipement.SousType %}
-                                                            {{equipement.SousType.name}}
-                                                        {% endif %}
-                                                    </p>
+                                            <li>
+                                                <span style="line-height: 1.42857143;">{{card.DTRboard}}</span>
+                                            </li>
+                                            <li>
 
-                                                </div>
+                                                <span style="line-height: 1.42857143;">
+                                                    {{card.IndiceDTR}}
+                                                </span>
+
+                                            </li>
+                                            <li>
+
+                                                <span style="line-height: 1.42857143;">{{card.Numserie}}</span>
+
+                                            </li>
+                                        </ul>
+
+
+                                    </a>
+                                    {# <p class="edit-delete-equipement edit-card d-flex">
+                                                                                                                                                                                                                                <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
+                                                                                                                                                                                                                                    <i class="fas fa-edit"></i>
+                                                                                                                                                                                                                                </a>
+                                                                                                                                                                                                                                <a id="delete-">
+                                                                                                                                                                                                                                    <i class="fas fa-trash-alt poubelle"></i>
+                                                                                                                                                                                                                                </a>
+                                                                                                                                                                                                                            </p> #}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            {% for equipement in equipements %}
+                {% if equipement.status == true %}
+                    <div class="col-xl-6 col-md-6 mt-4">
+                        <div class="card card-stats card-equipment">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5" style="font-size:2em;display:flex; justify-content:space-around;font-weight:bold">
+                                        <div class="icon-big text-center">
+                                            <div class="icon-warning">
+                                                <i class="fas fa-server"></i>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <div>
-                                            <i class="fa fa-refresh"></i>
-                                            <span style="display:flex; justify-content:space-around;font-weight:bold">
-                                                <p>{{equipement.DTRboard}}</p>
-                                                <p>{{equipement.IndiceDTR}}</p>
-                                                <p>{{equipement.Numserie}}</p>
-                                            </span>
-                                        </div>
-                                        <p class="edit-delete-equipement">
-                                            <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a id="delete-">
-                                                <i class="fas fa-trash-alt poubelle"></i>
-                                            </a>
-                                        </p>
+                                    <div class="col-7">
+                                        <div class="numbers">
+                                            <div>
+                                                <h4 class="card-title">{{equipement.Type.name}}</h4>
+                                                <p class="card-category">
+                                                    {% if equipement.SousType %}
+                                                        {{equipement.SousType.name}}
+                                                    {% endif %}
+                                                </p>
 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <div>
+                                        <i class="fa fa-refresh"></i>
+                                        <span style="display:flex; justify-content:space-around;font-weight:bold">
+                                            <p>{{equipement.DTRboard}}</p>
+                                            <p>{{equipement.IndiceDTR}}</p>
+                                            <p>{{equipement.Numserie}}</p>
+                                        </span>
+                                    </div>
+                                    {# <p class="edit-delete-equipement">
+                                                                                <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
+                                                                                    <i class="fas fa-edit"></i>
+                                                                                </a>
+                                                                                <a id="delete-">
+                                                                                    <i class="fas fa-trash-alt poubelle"></i>
+                                                                                </a>
+                                                                            </p> #}
+
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col-lg-5 content-form-plug-version row mt-3">
+
+            <div class="content-version-ERTMS col-lg-12">
+                {% for ertms in baseline.ERTMS %}
+                    {% if ertms.status %}
+                        <h3 id="title-version">Version ERTMS</h3>
+                        {{ ertms.solution.date|date('d/m/Y')  }}
+
                     {% endif %}
                 {% endfor %}
-            </div>
-            <div class="col-lg-5 content-form-plug-version row mt-3">
-
-                <div class="content-version-ERTMS col-lg-12">
-                    {% for ertms in baseline.ERTMS %}
-                        {% if ertms.status %}
-                            <h3 id="title-version">Version ERTMS</h3>
-                            {{ ertms.solution.date|date('d/m/Y')  }}
-
-                        {% endif %}
-                    {% endfor %}
-                    <div class="content-version-config">
-                        {% if (baseline.VersionLogiciel) %}
-                            <h3 id="title-version">Software Version</h3>
-                            {{ baseline.VersionLogiciel.ReleaseNote}}
-                        {% else %}
-                            <h3 id="title-version"></h3>
-                        {% endif %}
-                    </div>
-
+                <div class="content-version-config">
+                    {% if (baseline.VersionLogiciel) %}
+                        <h3 id="title-version">Software Version</h3>
+                        {{ baseline.VersionLogiciel.ReleaseNote}}
+                    {% else %}
+                        <h3 id="title-version"></h3>
+                    {% endif %}
                 </div>
 
             </div>
+
         </div>
+    </div>
 
 
-    </main>
-
-
-{% endblock %}
+</main>{% endblock %}

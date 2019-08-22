@@ -47,8 +47,6 @@ class ProjectsRepository extends ServiceEntityRepository
         )
             ->setParameter('motclef', $search);
 
-        dump($query);
-
         // returns an array of Product objects
         return $query
             ->execute($q);

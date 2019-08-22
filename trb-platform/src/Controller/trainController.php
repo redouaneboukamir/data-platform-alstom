@@ -117,7 +117,7 @@ class trainController extends AbstractController
      */
     public function checkEquipements(Request $request, Baseline $baseline): Response
     {
-        dump($baseline);
+
         foreach ($baseline->getERTMS() as $key => $value) {
             $equipements = $value->getEquipements();
         }
@@ -190,10 +190,6 @@ class trainController extends AbstractController
         $new_baseline->setStatus(true);
         $new_baseline->setOriginal(false);
 
-        dump($new_assoc);
-        dump($new_baseline);
-        dump($new_ertms);
-        dump($train);
         $this->em->persist($assoc_evc_carte);
         $this->em->persist($new_baseline);
         $this->em->persist($new_assoc);
@@ -254,9 +250,6 @@ class trainController extends AbstractController
     public function delete_train(Trains $trains, Request $request): Response
     {
         if ($this->isCsrfTokenValid('delete' . $trains->getId(), $request->get('_token'))) {
-
-            dump($trains->getERTMS());
-
             $this->em->remove($trains);
             $this->em->flush();
             $this->addFlash('success', 'Train delete with success');

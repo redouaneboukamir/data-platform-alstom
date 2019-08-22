@@ -32,7 +32,6 @@ class clientController extends AbstractController
     {
 
         $this->em = $em;
-
     }
     /**
      * @Route("/client", name="client.home")
@@ -45,7 +44,7 @@ class clientController extends AbstractController
             'current_menu' => 'home'
         ]);
     }
-// Page PROJECTS ---------------------------------------------
+    // Page PROJECTS ---------------------------------------------
     /**
      * @Route("/client/projects", name="client.projects")
      * @return Response
@@ -67,7 +66,8 @@ class clientController extends AbstractController
      * @Route("/client/project/{id}", name="client.project-show")
      * @return Response
      */
-    public function show_project(Projects $projects){
+    public function show_project(Projects $projects)
+    {
 
         return $this->render('client/projects/show-project.html.twig', [
             'current_menu' => 'projects',
@@ -77,7 +77,7 @@ class clientController extends AbstractController
 
 
 
-// Page TRAINS ---------------------------------------------
+    // Page TRAINS ---------------------------------------------
     /**
      * @Route("/client/trains", name="client.trains")
      * @return Response
@@ -109,7 +109,7 @@ class clientController extends AbstractController
 
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->persist($train);
             $this->em->flush();
@@ -121,7 +121,6 @@ class clientController extends AbstractController
             'button' => 'Create',
             'form' => $form->createView()
         ]);
-
     }
 
 
@@ -135,7 +134,7 @@ class clientController extends AbstractController
         $form->handleRequest($request);
 
         //        Validation du formulaire
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->flush();
             $this->addFlash('success', 'Trains modified with success');
@@ -144,7 +143,7 @@ class clientController extends AbstractController
 
         return $this->render('client/trains/edit-train.html.twig', [
             'current_menu' => 'trains',
-            'button' =>'Edit',
+            'button' => 'Edit',
             'train' => $trains,
             'form' => $form->createView()
         ]);
@@ -168,18 +167,15 @@ class clientController extends AbstractController
      */
     public function delete_train(Trains $trains, Request $request): Response
     {
-        if($this->isCsrfTokenValid('delete'.$trains->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $trains->getId(), $request->get('_token'))) {
 
             $this->em->remove($trains);
             $this->em->flush();
             $this->addFlash('success', 'Train delete with success');
-
         }
         return $this->redirectToRoute('client.trains');
-
-
     }
-//    Page user -----------------------------------------------------
+    //    Page user -----------------------------------------------------
     /**
      * @Route("/client/users", name="client.users")
      * @return Response
@@ -187,26 +183,21 @@ class clientController extends AbstractController
     public function users(UserRepository $userRepository, Request $request): Response
     {
         $users = [];
-//        $search = new TrainsSearch();
-//        $form = $this->createForm(TrainsSearchType::class, $search);
-//        $form->handleRequest($request);
+        //        $search = new TrainsSearch();
+        //        $form = $this->createForm(TrainsSearchType::class, $search);
+        //        $form->handleRequest($request);
         $all_users = $userRepository->findAll();
-        foreach ($all_users as $val){
-            dump($val->getRoles()[0]);
-            if(($val->getRoles()[0]) == "ROLE_CLIENT_USER"){
+        foreach ($all_users as $val) {
+            if (($val->getRoles()[0]) == "ROLE_CLIENT_USER") {
 
                 array_push($users, $val);
-
             }
-
         }
 
         return $this->render('client/client_user/user.html.twig', [
             'current_menu' => 'users',
             'users' => $users,
-//            'form' => $form->createView()
+            //            'form' => $form->createView()
         ]);
     }
-
-
 }

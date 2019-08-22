@@ -86,7 +86,7 @@ class PlugsController extends AbstractController
             $upload_success – becomes "true" or "false" if upload was unsuccessful;
             $upload_error – an error message of if upload was unsuccessful;
           */
-            dump($_FILES['files']);
+
             $is_success = true;
             $error_msg = "c'est le pied BB";
         } else {
@@ -132,7 +132,7 @@ class PlugsController extends AbstractController
     {
         $upload_success = null;
         $upload_error = '';
-        dump($request->request);
+
         if (!empty($_FILES['files'])) { // si un fichier est envoyé via POST (requète AJAX)
             $s3 = new S3Client([
                 'version' => 'latest',
@@ -216,7 +216,6 @@ class PlugsController extends AbstractController
         ]);
 
         try {
-            dump($result);
             // $result = $copier->copy();
             dump("Copy complete: {$result['ObjectURL']}\n");
         } catch (MultipartUploadException $e) {
@@ -266,9 +265,9 @@ class PlugsController extends AbstractController
     public function checkTrainByFleet(Request $request, TrainsRepository $trainsRepository)
     {
 
-        dump($request->request);
+
         $trains = $trainsRepository->findTrainByFleet($request->request->get('id'));
-        dump($trains);
+
         $jsonObjectSubtype = $this->serializer->serialize($trains, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
@@ -321,7 +320,7 @@ class PlugsController extends AbstractController
             'Bucket' => 'plugs',
             'Key'    => $key_name
         ]);
-        dump($command);
+
         // Create a pre-signed URL for a request with duration of 10 miniutes
         $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
 
@@ -483,7 +482,7 @@ class PlugsController extends AbstractController
             // dump($copier);
             //dump($copier->copy());
             try {
-                dump($result);
+
                 // $result = $copier->copy();
                 dump("Copy complete: {$result['ObjectURL']}\n");
             } catch (MultipartUploadException $e) {
@@ -496,14 +495,13 @@ class PlugsController extends AbstractController
             $plug->setUpdatedAt(new \Datetime('now'));
             $this->em->persist($plug);
             $assoc_plug_baseline->addPlug($plug);
-            dump($plug);
         }
 
         $assoc_plug_baseline->setDate(new \Datetime('now'));
         $assoc_plug_baseline->setStatus(true);
         $this->em->persist($assoc_plug_baseline);
         $baseline->addAssocPlugBaseline($assoc_plug_baseline);
-        dump($assoc_plug_baseline);
+
         $this->em->flush();
         return $this->json([
             'sucess' => 'ok'

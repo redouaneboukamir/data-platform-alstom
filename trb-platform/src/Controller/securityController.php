@@ -60,7 +60,6 @@ class securityController extends AbstractController
         ) {
 
             $user = $this->getUser();
-            dump($user);
             return $this->redirect($this->generateUrl('client.home', [
                 'user' => $user
             ]));

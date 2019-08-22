@@ -150,11 +150,9 @@ class baselineController extends AbstractController
             switch ($value['equipement[Type']) {
                 case "1":
                     $assoc_evc_carte->setEVC($equipement);
-                    dump($equipement);
                     break;
                 case "2":
                     $assoc_evc_carte->addCARD($equipement);
-                    dump($equipement);
                     break;
             }
         }
@@ -182,11 +180,11 @@ class baselineController extends AbstractController
         $equipements = [];
 
         foreach ($baseline->getERTMS() as $value) {
-            dump($value);
+
             if ($value->getbaseline()->getOriginal() == true) {
                 foreach ($value->getequipements() as $value) {
                     $id = $value->gettype()->getId();
-                    dump($value);
+
                     if ($id == 1) {
                         $evc = $value;
                     } else if ($id == 2) {
@@ -197,7 +195,6 @@ class baselineController extends AbstractController
                 }
             }
         }
-        dump($baseline);
         $equipement = new Equipement;
         $version = new VersionLogiciel;
 
@@ -234,11 +231,11 @@ class baselineController extends AbstractController
         $plugs = "";
         $equipements = [];
         foreach ($baseline->getERTMS() as $value) {
-            dump($value);
+
             if ($value->getStatus()) {
                 foreach ($value->getequipements() as $value) {
                     $id = $value->gettype()->getId();
-                    dump($value);
+
                     if ($id == 1) {
                         $evc = $value;
                     } else if ($id == 2) {
@@ -255,7 +252,6 @@ class baselineController extends AbstractController
             foreach ($assoc_plug as $value) {
                 if ($value->getStatus()) {
                     $plugs = $value->getPlug();
-                    dump($plugs);
                 }
             }
         }
@@ -364,7 +360,7 @@ class baselineController extends AbstractController
 
         // $new_baseline->setEquipmentErtms();
         if ($request->get('soumission_edit_equipement')) {
-            dump($equipement_new);
+
             $this->em->persist($equipement_new);
             $this->em->persist($assoc_equipt_ertms);
             $this->em->persist($assoc_evc_carte);
@@ -375,7 +371,6 @@ class baselineController extends AbstractController
                 }
             ]);
         } else if ($new_equipement['soumission_edit_equipement'] == "Update") {
-            dump($equipement_new);
             $this->em->persist($equipement_new);
             $this->em->persist($assoc_equipt_ertms);
             $this->em->persist($assoc_evc_carte);
@@ -422,9 +417,6 @@ class baselineController extends AbstractController
         //Parcours les valeurs du nouvel equipement pour flush
 
         if ($request->get('soumission_edit_equipement')) {
-
-            dump($current_assoc);
-
             foreach ($new_equipement as $key => $value) {
 
                 switch ($key) {
@@ -458,7 +450,7 @@ class baselineController extends AbstractController
                     $new_assoc->addEquipement($value);
                 } else {
                     //Traitement enregistrement de l'équipement (historique)
-                    dump($value);
+
                 }
             };
 
@@ -470,9 +462,6 @@ class baselineController extends AbstractController
             $new_assoc->setStatus(true);
             $current_assoc->setStatus(false);
 
-            dump($new_assoc);
-            dump($new_ertms);
-            dump($equipement_new);
             $this->em->persist($equipement_new);
             $this->em->persist($new_ertms);
             $this->em->persist($new_assoc);
@@ -566,7 +555,7 @@ class baselineController extends AbstractController
      */
     public function addAssocBaseline(Request $request): Response
     {
-        dump($request->request);
+
         return $this->json([
             'code' => 200
         ], 200);
@@ -603,8 +592,6 @@ class baselineController extends AbstractController
         $baseline->setVersionLogiciel($version);
         $this->em->persist($baseline);
 
-        dump($version);
-        dump($baseline);
         $this->em->flush();
 
         return $this->json([
