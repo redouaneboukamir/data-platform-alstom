@@ -2,9 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Clients;
-use App\Entity\Engineers;
-use App\Entity\Trains;
 use App\Entity\Projects;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +15,9 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'trim' => true
+            ])
             ->add('available', HiddenType::class, [
                 'data' => true
             ]);

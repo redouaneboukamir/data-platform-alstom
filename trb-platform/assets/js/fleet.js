@@ -15,12 +15,12 @@ $(document).ready(function () {
                 async: true,
                 dataType: 'json', // JSON
                 success: function (response) {
-                    console.log(response);
-                    response.forEach(element => {
+
+                    JSON.parse(response.projectsFound).forEach(element => {
                         console.log(element.name);
+                        $('#result-fleet').append('<p>' + element.name + '</p>');
 
                     });
-                    // $('#result-fleet').html(response).show();
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     ('Ajax request failed.');
