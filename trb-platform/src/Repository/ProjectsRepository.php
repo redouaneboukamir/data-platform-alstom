@@ -36,39 +36,20 @@ class ProjectsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p');
     }
 
-    public function findAllProjects(ProjectSearch $search): array
+    public function findAllProjects($search, $q): array
     {
-        $query =  $this->findAvailable();
-        $AllProjects = $this->findAll();
-        $findProjects = [];
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT p.name 
+            FROM App\Entity\Projects p 
+            WHERE p.name LIKE :motclef 
+            ORDER BY p.name ASC'
+        )
+            ->setParameter('motclef', $search);
 
-        if ($search->getNameProject()) {
-            foreach ($AllProjects as $currentProject) {
-                $find = false;
-                $compar = '';
-
-                for ($i = 0; $i < (strlen($currentProject->getName())); $i++) {
-
-                    $compar .= $currentProject->getName()[$i];
-                    if ($find === false) {
-
-                        if ((strtolower($currentProject->getName()[$i]) === strtolower($search->getNameProject()) ||
-                            strtolower($compar) === strtolower($search->getNameProject())) && $currentProject->getAvailable() === true) {
-
-                            array_push($findProjects, $currentProject);
-                            $find = true;
-                        }
-                    }
-                }
-            }
-            $query =  $query
-                ->where('p.name = :name')
-                ->setParameter('name', $findProjects)
-                ->getQuery()->getParameters()->getValues()[0]->getValue();
-            return $query;
-        } else {
-            return $query->getQuery()->getResult();
-        }
+        // returns an array of Product objects
+        return $query
+            ->execute($q);
     }
     // /**
     //  * @return Projects[] Returns an array of Projects objects

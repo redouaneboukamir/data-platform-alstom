@@ -222,7 +222,7 @@ class KeycloakAuthenticator extends SocialAuthenticator
                     $body = json_decode($response->getBody(), true);
 
                     dump($body['clientMappings']);
-                    dump($body);
+
                     foreach ($body['clientMappings']['trb-platform']['mappings'] as $role) {
                         switch ($role['name']) {
                             case 'alstom_admin':

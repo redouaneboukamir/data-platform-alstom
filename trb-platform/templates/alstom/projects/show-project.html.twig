@@ -1,36 +1,60 @@
 {% extends 'alstom/index.html.twig' %}
 
-
-{# <h1 class="title_fleet_management">{{ project.name|upper }}</h1> #}
 {% block body %}
+    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+        <span class="sr-only">
+            Loading...
+        </span>
+    </div>
+
+    <div class="modal fade" id="modal-form-train-fleet" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header card-header-title">
+                    <h4 class="modal-title card-element-title">Select Train</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-train-fleet" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-content clearfix">
+                        <form class="form-train-fleet" id="formulaire-train-fleet">
+                            <select class="form-control col-12" id="select-train-fleet" name="train-fleet"></select>
+                        </form>
+                    </div>
+                    <button class="btn btn-success mt-4" id="valid-train-fleet">Valid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="background">
 
         <main class="col-md-10 offset-1 col-lg-10 main-show-fleet" role="main">
 
             <div class="container-header container-fluid">
-                <div class="row content-details-img">
-                    <a class="btn-edit" href="{{ path('alstom.edit-project',{id: project.id}) }}">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <div class="col-md-3 img">
-                        <img id="img-project" class="img-project img-fluid img-rounded" src="{{ asset('../build/img/projects/img-test.png') }}" alt="{{ project.name }}">
-                    </div>
-                    <div class="col-md-9 details">
-
+                <div
+                    class="row content-details-img">
+                    {# <a class="btn-edit" href="{{ path('alstom.edit-project',{id: project.id}) }}"><i class="fas fa-edit"></i></a><div class="col-md-3 img">    <img id="img-project" class="img-project img-fluid img-rounded" src="{{ asset('../build/img/projects/img-test.png') }}" alt="{{ project.name }}"></div> #}
+                    <div class="col-md-12 details">
                         <h1>{{ project.name|upper }}</h1>
-                        <div class="mt-5">
-                            <p class="btn-primary btn col-2 btn-show-project" data-target="#modal-form-train" data-toggle="modal">Add trains</p>
-                            <p class="btn-success btn col-2 btn-show-project">Create train</p>
+                        <div class="content-btn">
+                            <p class="btn-primary btn btn-show-project" data-target="#modal-form-train-fleet" data-toggle="modal" id="addTrainsToFleet">Add trains</p>
+                            <a href="{{path('alstom.create-train')}}">
+                                <p class="btn-success btn btn-show-project">Create train</p>
+                            </a>
+
                         </div>
 
                     </div>
                 </div>
                 <div class="border-separate-picture-info"></div>
                 <div class="row content-dashboard-table">
-                    <div class="col-md-8 content-dasboard">
+                    <div class="col-lg-8 col-md-10 content-dasboard">
                         <img class="img img-responsive img-fluid" src="{{ asset('../build/img/dashboard.png') }}">
                     </div>
-                    <div class="col-md-3" style="padding:0">
+                    <div class="col-lg-3 col-md-10 mt-4" style="padding:0">
+
                         <table class="table table-striped table-show-project table-content">
                             <thead class="thead-dark">
                                 <tr>

@@ -47,9 +47,9 @@ class KeyCloakAuthController extends AbstractController
 		// leave this method blank and create a Guard authenticator
 		// (read below)
 		$userRole = $this->getUser()->getRoles();
-		dump($userRole);
+
 		foreach ($userRole as $key => $value) {
-			dump($value);
+
 			switch ($value) {
 				case 'ROLE_ALSTOM_ADMIN':
 					$ROLE_ALSTOM_ADMIN = true;

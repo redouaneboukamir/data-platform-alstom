@@ -7,10 +7,11 @@
         <main class="col-md-10 offset-1 col-lg-10 main-show-fleet" role="main">
 
             <div class="container-header container-fluid">
-                <div class="row content-details-img">
-                    <a class="btn-edit" href="{{ path('alstom.edit-train',{id: train.id}) }}">
-                        <i class="fas fa-edit"></i>
-                    </a>
+                <div
+                    class="row content-details-img">
+                    {# <a class="btn-edit" href="{{ path('alstom.edit-train',{id: train.id}) }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a> #}
                     <div class="col-md-3 img">
                         {% if train.trainType == "train" %}
                             <div class="img img-fluid">
