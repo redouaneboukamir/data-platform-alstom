@@ -6,7 +6,6 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use App\Entity\AssociationBaseline;
 use App\Entity\AssociationEquiptERTMS;
 use App\Entity\Baseline;
 use App\Entity\Clients;
@@ -19,7 +18,6 @@ use App\Entity\Projects;
 use App\Entity\ProjectSearch;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
-use App\Form\AssociationType;
 use App\Form\BaselineType;
 use App\Form\ClientsSearchType;
 use App\Form\ClientsType;
@@ -56,8 +54,6 @@ use Aws\Exception\AwsException;
 use Aws\S3\MultipartUploader;
 use Aws\Exception\MultipartUploadException;
 use Aws\S3\MultipartCopy;
-use App\Entity\FileTemp;
-use App\Form\FileTempType;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use App\Entity\ConfigLogiciel;
 use App\Form\ConfigLogicielType;
@@ -350,21 +346,44 @@ class alstomController extends AbstractController
         $form = $this->createForm(ProjectSearchType::class, $search);
         $form->handleRequest($request);
 
-        $project = $projectsRepository->findAllProjects($search);
-
-        foreach ($project as $item) {
-            $item->setNumberTrains(count($item->getTrains()));
-            $this->em->persist($item);
-            $this->em->flush();
-        }
+        $projects = $projectsRepository->findAll();
 
         return $this->render(('alstom/projects/projects.html.twig'), [
             'current_menu' => 'projects',
-            'projects' => $project,
+            'projects' => $projects,
             'form' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/alstom/search-fleet", name="alstom.search-fleet")
+     * @return Response
+     */
+    public function search_fleet(ProjectsRepository $projectsRepository, Request $request)
+    {
+        // if ($request->request->get('data')) {
+        //     $motclef = ($request->request->get('data'));
+        //     $q = array('motclef' => $motclef);
+        // }
+        $search = new ProjectSearch();
+        $searchName = $request->request->get('motclef');
+        $search->setNameProject($searchName);
 
+        $projectSearch = $projectsRepository->findAllProjects($search);
+        dump($projectSearch);
+        foreach ($projectSearch as $item) {
+            $item->setNumberTrains(count($item->getTrains()));
+            dump($item);
+            $this->em->persist($item);
+            $this->em->flush();
+        }
+        $jsonObjectEquipt = $this->serializer->serialize($projectSearch, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return $this->json(['projectsFound' => $jsonObjectEquipt], 200);
+    }
     /**
      * @Route("/alstom/project/{id}", name="alstom.project-show")
      * @return Response
@@ -455,17 +474,18 @@ class alstomController extends AbstractController
      * @return Response
      */
 
-    public function trains(TrainsRepository $trainsRepository, Request $request): Response
+    public function trains(TrainsRepository $trainsRepository, ProjectsRepository $projectsRepository, Request $request): Response
     {
 
         $search = new TrainsSearch();
         $form = $this->createForm(TrainsSearchType::class, $search);
         $form->handleRequest($request);
         $trains = $trainsRepository->findAllTrains($search);
-
+        $fleets = $projectsRepository->findAll();
         return $this->render('alstom/trains/trains.html.twig', [
             'current_menu' => 'trains',
             'trains' => $trains,
+            'fleets' => $fleets,
             'form' => $form->createView()
         ]);
     }

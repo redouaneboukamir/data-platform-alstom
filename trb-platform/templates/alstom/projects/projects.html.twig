@@ -17,14 +17,15 @@
             </div>
         {% endfor %}
         <section id="unseen">
-            <div class="pull-left search">
-                {{ form_start(form) }}
+            <div
+                class="pull-left search">
+                {# <input id="search-fleet" name="search-fleet" type="text"> #}
+                {{ form_start(form, {'attr':{'id':'search-fleet'}}) }}
                 {{ form_row(form.name_project) }}
                 {{ form_end(form) }}
             </div>
-            <table
-                class="table table-condensed table-content">
-                {#                        <table class="table  table-striped table-condensed table-content">#}
+            <div class="result-fleet" id="result-fleet"></div>
+            <table class="table table-condensed table-content">
                 <thead>
                     <tr class="title-table">
                         <th class="">Name</th>
@@ -34,31 +35,24 @@
                 </thead>
                 <tbody>
                     {% for project in projects %}
-                        <tr class="td-table">
-                            <td>
-                                <a href="{{ path('alstom.project-show', {id: project.id}) }}">{{  project.name }}</td>
-                            </td>
-                            <td>
-                                {#                                       {% for train in project.trains %}#}
-                                {{  project.trains|length }}
-                                {#                                        {% endfor %}#}
-                            </td>
-                            <td class="content-btn-edit-delete">
-                                <a href="{{ path('alstom.edit-project', {id: project.id}) }}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                {# <form method="post" action="{{ path('alstom.delete-project' ,{id:project.id}) }}" onsubmit="return confirm('Are you sure to delete this project?')">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <input name="_method" type="hidden" value="DELETE">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button class="btn btn-danger btn-delete-client">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="fas fa-trash-alt"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </form> #}
-                            </td>
-                        </tr>
-                    {% endfor %}
+                        {% if project.available %}
+                            <tr class="td-table">
+                                <td>
+                                    <a href="{{ path('alstom.project-show', {id: project.id}) }}">{{  project.name }}</td>
+                                </td>
+                                <td>
+                                    {{  project.trains|length }}
+                                </td>
+                                <td class="content-btn-edit-delete">
+                                    <a href="{{ path('alstom.edit-project', {id: project.id}) }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </form>
+                    </td>
                 </tbody>
-            </table>
-        </section>
-    </main>
-{% endblock %}
+            </tr>
+        {% endif %}
+    {% endfor %}
+</tbody></table></section></main>{% endblock %}

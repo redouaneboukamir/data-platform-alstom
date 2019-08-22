@@ -22,6 +22,7 @@ $form.hide();
 $(document).ready(function () {
     if (window.location.pathname == '/alstom/add-logs') {
         $form.show();
+        prgbar = new ldBar("#test-progress");
     }
     if (window.location.pathname == '/alstom/search-logs') {
         //identification de la progress bar

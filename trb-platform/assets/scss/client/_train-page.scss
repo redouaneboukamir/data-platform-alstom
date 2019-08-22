@@ -1,33 +1,49 @@
-.table-all-trains{
+.title-fleet-train {
+  padding-left: 10px;
+  font-size: 1.2em;
+  text-transform: uppercase;
 
-  .title-table-trains{
+  &:hover {
+    background: rgb(240, 240, 240);
+    box-shadow: inset 0 0 5px;
+  }
+}
 
-    .title-project-trains{
+.table-all-trains {
+
+  .title-table-trains {
+
+    .title-project-trains {
       text-align: center;
       color: red;
     }
 
   }
-  .name-train-table{
+
+  .name-train-table {
     display: flex;
     align-items: center;
     border-top: 0;
     font-weight: bold;
     font-size: 1.1em;
-    a{
+
+    a {
       text-decoration: none;
       color: black;
     }
   }
-  .nameProject-train-table{
+
+  .nameProject-train-table {
     border-left: 1px solid lightgray;
     text-align: center;
     vertical-align: middle;
   }
-  .content-btn-edit-delete{
-    a{
+
+  .content-btn-edit-delete {
+    a {
       margin-right: 2vh;
     }
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -35,27 +51,30 @@
   }
 }
 
-.table-show-train{
-  td{
+.table-show-train {
+  td {
     display: flex;
     align-items: center;
   }
-  .title-show-train{
+
+  .title-show-train {
     font-size: 1.5em;
     font-weight: bold;
     margin-right: 2px;
 
   }
-  .item-show-train{
+
+  .item-show-train {
     font-size: 1.2em;
   }
-  .item-show-engineer{
 
-  }
+  .item-show-engineer {}
 }
-.content-train-project{
+
+.content-train-project {
   display: flex;
-  p{
+
+  p {
     margin: 2vh;
     padding-right: 2vh;
     text-transform: uppercase;

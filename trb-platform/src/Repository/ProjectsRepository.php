@@ -35,7 +35,16 @@ class ProjectsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p');
     }
-
+    public function findSearchProject($data)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.name = :val')
+            ->setParameter('val', $data)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
     public function findAllProjects(ProjectSearch $search): array
     {
         $query =  $this->findAvailable();
