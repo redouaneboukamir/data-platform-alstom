@@ -6,6 +6,7 @@ import './progressBar';
 import './test-upload';
 import './train';
 import './plug';
+import './logs';
 
 // loads the jquery package from node_modules
 const $ = require('jquery');
@@ -32,22 +33,16 @@ $(document).ready(function () {
         $('.sidebar').toggleClass('fliph');
     });
     $('.sidebar').hover(function () {
-            $('main').removeClass('col-lg-12');
-            $('main').removeClass('pl-5');
-            $('main').removeClass('col-md-12');
-            $('main').css('transition', 'all 0.6s ease-in-out');
+            $('main').css('transition', 'all 0.5s ease-in-out');
+            $('main').removeClass('offset-1');
             $('main').addClass('ml-sm-auto');
-            $('main').addClass('col-lg-10');
-            $('main').addClass('col-md-9');
-
+            $('.main-show').removeClass('col-lg-11');
         },
         function () {
-            $('main').removeClass('col-lg-10');
-            $('main').removeClass('col-md-9');
-            $('main').css('transition', 'all 0.6s ease-in-out');
-            $('main').addClass('pl-5');
-            $('main').addClass('col-lg-12');
-            $('main').addClass('col-md-12');
+            $('main').css('transition', 'all 0.10s ease-in-out');
+            $('main').addClass('offset-1');
+            $('main').removeClass('ml-sm-auto');
+            $('.main-show').addClass('col-lg-11');
         })
     // $('main').removeClass('ml-sm-auto');
     $('.nav-label').click(function () {

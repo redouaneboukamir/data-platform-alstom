@@ -1,81 +1,77 @@
 {% extends 'alstom/index.html.twig' %}
 
 {% block body %}
-    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+        <span class="sr-only">
+            Loading...
+        </span>
+    </div>
+
+    <main class="col-md-10 offset-1 col-lg-10" role="main">
+
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2>
                 <i class="fas fa-file-upload"></i>
-                Add LOGS</h2>
+                Search LOGS</h2>
         </div>
-        {# Formulaire d'ajout de baseline #}
-        <div class="jumbotron content-form-baseline">
 
-            {{ form_start(form, {'action': path('alstom.addAssocBaseline'), 
-               'attr': {'id': 'form_assoc_baseline'}}) }}
-            {{form_row(form.baseline)}}
-            {{form_row(form.VersionLogiciel)}}
-            {{form_row(form.ConfigLogiciel)}}
-            {{form_row(form.ERTMS)}}
-            {% block javascripts %}
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <script>
-
-                    function readURL(input) {
-                        if (input.files && input.files[0]) {
-
-                            var reader = new FileReader();
-
-                            reader.onload = function (e) {
-                                $('.image-upload-wrap').hide();
-                                $('#name_file_upload').text($('#file_zip').val())
-                                $('.file-upload-content').show();
-                                $('.image-title').html(input.files[0].name);
-                                console.log(input.file[0])
-                            };
-
-                            reader.readAsDataURL(input.files[0]);
-
-                        } else {
-                            removeUpload();
-                        }
-                    }
-
-                    function removeUpload() {
-                        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-                        $('.file-upload-content').hide();
-                        $('.image-upload-wrap').show();
-                    }
-                    $('.image-upload-wrap').bind('dragover', function () {
-                        $('.image-upload-wrap').addClass('image-dropping');
-                    });
-                    $('.image-upload-wrap').bind('dragleave', function () {
-                        $('.image-upload-wrap').removeClass('image-dropping');
-                    });
-                </script>
-
-            {% endblock %}
-
-            <div class="file-upload ">
-                <div class="image-upload-wrap">
-                    <input accept=".zip,.rar,.7zip" class="file-upload-input" id="file_zip" onchange="readURL(this);" type='file'/>
-
-
-                    <div class="drag-text">
-                        <h3>Drag and drop a file or select add File</h3>
-                    </div>
+        <div class="jumbotron content-form-baseline ">
+            <form id="form-fleet-select">
+                <div class="form-group">
+                    <label for="fleet_select">Fleets</label>
+                    <select class="form-control" id="fleet_select"></select>
                 </div>
-                <div class="file-upload-content">
-                    <p id="name_file_upload"></p>
-                    <div class="image-title-wrap">
-                        <button class="remove-image" onclick="removeUpload()" type="button">Remove
-                            <span class="image-title">Uploaded File</span>
-                        </button>
-                    </div>
+            </form>
+            <form id="form-train-select">
+                <div class="form-group">
+                    <label for="train_select">Trains</label>
+                    <select class="form-control" id="train_select"></select>
                 </div>
+            </form>
+            <form id="form-ertms-select">
+                <div class="form-group">
+                    <label for="ertms_select">ERTMS</label>
+                    <select class="form-control" id="ertms_select"></select>
+                </div>
+            </form>
+            <form id="select_type_log">
+                <div class="form-group">
+                    <label for="type_log_select">Type</label>
+                    <select class="form-control" id="type_log_select">
+                        <option value="TRU">TRU</option>
+                        <option value="GEOS">GEOS</option>
+                    </select>
+                </div>
+
+
+            </form>
+            <div class="card-content clearfix" id="card-content-plug">
+                <div class="content-name-drag-plug row" id="content-name-drag-plug">
+                    <form class="box has-advanced-upload col-md-12 drag-log" enctype="multipart/form-data" id="form-file" method="post" novalidate="">
+
+                        <div class="box__input  content-input-iframe">
+
+                            <i class="fas fa-cloud-upload-alt" style="font-size:2em"></i>
+                            <input class="box__file" data-multiple-caption="{count} files selected" id="file" multiple="" name="files[]" type="file">
+                            <label class="label-drop" for="file">
+                                <strong>Choose a file</strong>
+                                <span class="box__dragndrop">
+                                    or drag it here</span>.</label>
+                            <button class="box__button" type="submit">Upload</button>
+                        </div>
+                        <div class="box__uploading">
+                            <div class="ldBar label-center" data-preset="circle" id="test-progress"></div>
+
+                        </div>
+                        <div class="box__success">Done!</div>
+                        <div class="box__error">Error!<span></span>.<a class="box__restart" role="button">Try again!</a>
+                        </div>
+                        <input name="ajax" type="hidden" value="1">
+                    </form>
+                </div>
+
+                <button class="btn btn-primary mt-4" id="valid-all-logs">Valid</button>
             </div>
 
-            <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
-            {{ form_end(form) }}</div>
 
-
-    {% endblock %}
+        {% endblock %}

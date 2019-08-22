@@ -26,9 +26,15 @@ class TrainsRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('t')
             ->orderBy('t.name', 'ASC');
-
     }
-
+    public function findTrainByFleet($fleet)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.Projects = :fleet')
+            ->setParameter('fleet', $fleet)
+            ->getQuery()
+            ->getResult();
+    }
     /**
      * @param TrainsSearch $search
      * @return array
@@ -43,7 +49,7 @@ class TrainsRepository extends ServiceEntityRepository
 
         if ($search->getNameTrain()) {
 
-            foreach ($AllTrains as $currentTrain){
+            foreach ($AllTrains as $currentTrain) {
                 $find = false;
                 $compar = "";
 
@@ -51,29 +57,26 @@ class TrainsRepository extends ServiceEntityRepository
                 for ($i = 0; $i < (strlen($currentTrain->getName())); $i++) {
 
                     $compar .= $currentTrain->getName()[$i];
-                    if($find === false) {
+                    if ($find === false) {
 
-                        if (strtolower($currentTrain->getName()[$i]) === strtolower($search->getNameTrain()) ||
-                            strtolower($compar) === strtolower($search->getNameTrain())) {
+                        if (
+                            strtolower($currentTrain->getName()[$i]) === strtolower($search->getNameTrain()) ||
+                            strtolower($compar) === strtolower($search->getNameTrain())
+                        ) {
                             array_push($findTrains, $currentTrain);
                             $find = true;
-
                         }
-
                     }
                 }
-
             }
             $query = $query
                 ->where('t.name = :name')
-                ->setParameter('name',$findTrains)
+                ->setParameter('name', $findTrains)
                 ->getQuery()->getParameters()->getValues()[0]->getValue();
             return $query;
-        }else{
+        } else {
             return $query->getQuery()->getResult();
-
         }
-
     }
     // /**
     //  * @return Trains[] Returns an array of Trains objects

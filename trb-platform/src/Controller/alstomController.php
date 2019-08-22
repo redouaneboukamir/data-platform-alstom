@@ -46,6 +46,7 @@ use App\Repository\TypeEquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
 use App\Repository\ERTMSEquipementRepository;
 use App\Entity\AssocEvcCarte;
+use App\Entity\AssocLogBaseline;
 use App\Repository\AssociationEquiptERTMSRepository;
 use App\Entity\VersionLogiciel;
 use App\Form\VersionType;
@@ -62,6 +63,7 @@ use App\Entity\ConfigLogiciel;
 use App\Form\ConfigLogicielType;
 use App\Entity\Plugs;
 use App\Entity\AssocPlugBaseline;
+use App\Entity\Logs;
 use App\Repository\AssocPlugBaselineRepository;
 
 class alstomController extends AbstractController
@@ -684,6 +686,7 @@ class alstomController extends AbstractController
 
 
 
+
     /**
      * @Route("alstom/addEquipment", name="alstom.addEquipment")
      * @return Response
@@ -803,24 +806,185 @@ class alstomController extends AbstractController
      */
     public function searchLogs(Request $request): Response
     {
-        $assoc_baseline = new AssociationBaseline;
 
-        $form = $this->createform(AssociationType::class, $assoc_baseline);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $assoc_baseline->setStatus(true);
-            $this->em->persist($assoc_baseline);
-            $this->em->flush();
-        }
 
         return $this->render('alstom/logs/search_logs.html.twig', [
             'current_menu' => "logs",
-            'form' => $form->createView()
+
         ]);
     }
+    /**
+     * @Route("alstom/uploadLog", name="alstom.uploadLog")
+     * @return Response
+     */
+    public function uploadLog(Request $request)
+    {
+        $upload_success = null;
+        $upload_error = '';
+        dump($request->request);
+        if (!empty($_FILES['files'])) { // si un fichier est envoyé via POST (requète AJAX)
+            $s3 = new S3Client([
+                'version' => 'latest',
+                'region'  => 'us-east-1',
+                //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+                'endpoint' => 'http://localhost:5555',
+                'use_path_style_endpoint' => true,
+                'credentials' => [
+                    'key'    => 'amdptestdeployv7private',
+                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                ],
+            ]);
+            //definition du bucket 
+            //  => 'logs' pour les fichiers log
+            //  => 'configuration' pour les plugs
+            $bucket = 'temp';
+            //$_FILES est le fichier envoyé via POST
+            $nameFile = $_FILES['files']['name'][1]; //key minio
+            $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
+            //instanciation de l'uploader PHP / MINIO
+            $uploader = new MultipartUploader(
+                $s3,
+                $source,
+                [
+                    'bucket' => $bucket,
+                    'key' => $nameFile,
+                    'before_upload' => function (\Aws\Command $command) { //Nettoyage de la mémoire avant upload
+                        gc_collect_cycles();
+                    }
+                ]
+            );
+            //Upload du fichier et suppression des parties si l'upload ne marche pas.
+            try {
+                $result = $uploader->upload();
+
+                $key_plug = $result['Key'];
+            } catch (MultipartUploadException $e) {
+                // State contains the "Bucket", "Key", and "UploadId"
+                $params = $e->getState()->getId(); //récupération de l'id de l'upload
+                $result = $s3->abortMultipartUpload($params); //suppression de l'upload
+                $is_success = false; //on gérére l'erreur remontée au javscript
+                $error_msg = "Error during the upload of the file, please retry !"; // on génère le message d'erreur
+            }
+            $is_success = true; //on génére le succès de l'opération 
+            $error_msg = "Upload is done"; //msg du succès
+        } else { // il n'y a pas de fichier à uploader
+            $is_success = false; //génération de l'erreur
+            $error_msg = "No file to upload"; //génération du msg d'erreur
+        }
+        //encodage en JSON pour le return  vers le javascript
+        $jsonObjectestUpload = (json_encode(['success' => $is_success, 'error' => $error_msg, 'key_plug' => $key_plug]));
+        return new Response($jsonObjectestUpload, 200, ['Content-Type' => 'application/json']);
+    }
+    /**
+     * @Route("alstom/flush-log", name="alstom.flush_log")
+     * @return Response
+     */
+    public function flush_log(Request $request, BaselineRepository $baselinerepository)
+    {
+        $s3 = new S3Client([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
+            'endpoint' => 'http://localhost:5555',
+            'use_path_style_endpoint' => true,
+            'credentials' => [
+                'key'    => 'amdptestdeployv7private',
+                'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+            ],
+        ]);
+        $assoc_log_baseline = new AssocLogBaseline;
+        $log_entity = new Logs;
+        $baseline = $baselinerepository->find($request->request->get('baseline'));
+        $log = $request->request->get('log');
+
+        $result = $s3->copy('temp', $log['key_log'], 'logs', $log['key_log']);
+
+        $s3->deleteObject([
+            'Bucket' => 'temp',
+            'Key'    => $log['key_log']
+        ]);
+
+        try {
+            dump($result);
+            // $result = $copier->copy();
+            dump("Copy complete: {$result['ObjectURL']}\n");
+        } catch (MultipartUploadException $e) {
+            dump($e->getMessage() . "\n");
+        }
+
+        $log_entity->setKeyLogs($log['key_log']);
+        $log_entity->setDateAdd(new \Datetime('now'));
+        $log_entity->setUpdatedAt(new \Datetime('now'));
+        $this->em->persist($log_entity);
+        $assoc_log_baseline->addLog($log_entity);
+        dump($log_entity);
 
 
+        $assoc_log_baseline->setBaseline($baseline);
+        $assoc_log_baseline->setDate(new \Datetime('now'));
+        $assoc_log_baseline->setTypeFile($log['name_log']);
+        $this->em->persist($assoc_log_baseline);
+        $baseline->addAssoclogBaseline($assoc_log_baseline);
+        dump($assoc_log_baseline);
+        $this->em->flush();
+        return $this->json([
+            'sucess' => 'ok'
+        ]);
+    }
+    /**
+     * @Route("alstom/checkFleet", name="alstom.checkFleet")
+     * @return Response
+     */
+    public function checkFleet(Request $request, ProjectsRepository $projectsRepository)
+    {
+
+        $projects = $projectsRepository->findAll();
+
+        $jsonObjectSubtype = $this->serializer->serialize($projects, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
+    /**
+     * @Route("alstom/checkTrainByFleet", name="alstom.checkTrainByFleet")
+     * @return Response
+     */
+    public function checkTrainByFleet(Request $request, TrainsRepository $trainsRepository)
+    {
+
+        dump($request->request);
+        $trains = $trainsRepository->findTrainByFleet($request->request->get('id'));
+        dump($trains);
+        $jsonObjectSubtype = $this->serializer->serialize($trains, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
+    /**
+     * @Route("alstom/checkErtmsByTrain", name="alstom.checkErtmsByTrain")
+     * @return Response
+     */
+    public function checkErtmsByTrain(Request $request,  TrainsRepository $trainsRepository)
+    {
+        $version_ertms = [];
+        $baselines = $trainsRepository->find($request->request->get('id'))->getBaselines();
+
+        $jsonObjectSubtype = $this->serializer->serialize($baselines, 'json', [
+
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
+    }
     // ----------------------BASELINE
 
     /**
@@ -1573,6 +1737,10 @@ class alstomController extends AbstractController
         }
         foreach ($tabPlugs as $value) {
             $result = $s3->copy('temp', $value['key_plug'], 'plugs', $value['key_plug']);
+            $s3->deleteObject([
+                'Bucket' => 'temp',
+                'Key'    => $value['key_plug']
+            ]);
             // $copier = new MultipartCopy($s3, 'temp/' . $value['key_plug'], [
             //     'bucket' => 'plugs',
             //     'key' => $value['key_plug'],

@@ -34,6 +34,14 @@ class BaselineRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function findErtmsByTrain($value)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.Trains = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Baseline[] Returns an array of Baseline objects
     //  */
