@@ -1606,4 +1606,13 @@ class alstomController extends AbstractController
             'sucess' => 'ok'
         ]);
     }
+
+    //-----------GRAFANA------------
+
+    /**
+     * @Route("alstom/recup_dashboard", name="alstom.recup_dashboard")
+     * @return Response
+     */
+
+     
 }
