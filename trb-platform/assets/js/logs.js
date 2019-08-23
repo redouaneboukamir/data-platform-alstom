@@ -21,10 +21,6 @@ $form.hide();
 
 $(document).ready(function () {
     if (window.location.pathname == '/alstom/add-logs') {
-        $form.show();
-        prgbar = new ldBar("#test-progress");
-    }
-    if (window.location.pathname == '/alstom/search-logs') {
         //identification de la progress bar
         prgbar = new ldBar("#test-progress");
 
@@ -234,6 +230,28 @@ $('#valid-all-logs').on('click', function (e) {
             //ask for the status
             console.log(response)
             // location.reload();
+        }
+    })
+})
+$('.td-table').on('click', '.td-plug', function (e) {
+    e.preventDefault();
+    $('main').css('opacity', "0.4");
+    $('#wait-spinner').show();
+
+    let key = $(this)[0]["id"];
+    $.ajax({
+        url: '/alstom/donwloadFile',
+        type: 'POST',
+        data: {
+            'key': key
+        },
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            window.location.href = response;
+            $('main').css('opacity', "1");
+            $('#wait-spinner').hide();
+            console.log(response);
         }
     })
 })

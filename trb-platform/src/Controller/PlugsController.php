@@ -25,6 +25,7 @@ use App\Entity\Plugs;
 use App\Entity\AssocPlugBaseline;
 use App\Entity\Logs;
 use App\Repository\AssocPlugBaselineRepository;
+use App\Repository\LogsRepository;
 
 class PlugsController extends AbstractController
 {
@@ -56,11 +57,13 @@ class PlugsController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function logs(): Response
+    public function logs(LogsRepository $logsRepository): Response
     {
+        $logs = $logsRepository->findAll();
 
         return $this->render('alstom/logs/logs.html.twig', [
-            'current_menu' => "logs"
+            'current_menu' => "logs",
+            'logs' => $logs
         ]);
     }
 
