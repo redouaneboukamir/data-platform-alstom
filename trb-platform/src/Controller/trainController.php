@@ -6,8 +6,10 @@ use App\Entity\Equipement;
 use App\Entity\ERTMSEquipement;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
+use App\Entity\AssocEvcCarte;
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
+use App\Form\EquipementType;
 use App\Repository\TrainsRepository;
 use App\Repository\ProjectsRepository;
 use App\Repository\BaselineRepository;
@@ -144,6 +146,7 @@ class trainController extends AbstractController
     ): Response {
 
         $tabEquipt = $request->request->get("new_equipt");
+        $etcsId = $request->request->get("etcsId");
         $train = $trainsRepository->find($request->request->get('id_train'));
         $baseline = $baselineRepository->find($request->request->get('baseline'));
 
@@ -181,6 +184,7 @@ class trainController extends AbstractController
         $new_assoc->setSolution($new_ertms);
         $new_assoc->setStatus(true);
 
+        $new_baseline->setETCSID($etcsId);
         $new_baseline->setName($baseline->getName());
         $new_baseline->setTrains($train);
         $new_baseline->addERTM($new_assoc);

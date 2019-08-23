@@ -37,8 +37,10 @@ class PlugsController extends AbstractController
     {
 
         $this->em = $em;
-        $tabEquipt = array();
-        $this->tabEquipt = $tabEquipt;
+
+        // $endpoint = 'http://minio-azure.default.svc.cluster.local:9000';
+        $endpoint = 'http://localhost:5555';
+        $this->endpoint = $endpoint;
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
@@ -137,8 +139,7 @@ class PlugsController extends AbstractController
             $s3 = new S3Client([
                 'version' => 'latest',
                 'region'  => 'us-east-1',
-                //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-                'endpoint' => 'http://localhost:5555',
+                'endpoint' => $this->endpoint,
                 'use_path_style_endpoint' => true,
                 'credentials' => [
                     'key'    => 'amdptestdeployv7private',
@@ -195,8 +196,7 @@ class PlugsController extends AbstractController
         $s3 = new S3Client([
             'version' => 'latest',
             'region'  => 'us-east-1',
-            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-            'endpoint' => 'http://localhost:5555',
+            'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
                 'key'    => 'amdptestdeployv7private',
@@ -306,8 +306,7 @@ class PlugsController extends AbstractController
         $s3 = new S3Client([
             'version' => 'latest',
             'region'  => 'us-east-1',
-            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-            'endpoint' => 'http://localhost:5555',
+            'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
                 'key'    => 'amdptestdeployv7private',
@@ -345,8 +344,7 @@ class PlugsController extends AbstractController
         $s3 = new S3Client([
             'version' => 'latest',
             'region'  => 'us-east-1',
-            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-            'endpoint' => 'http://localhost:5555',
+            'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
                 'key'    => 'amdptestdeployv7private',
@@ -395,8 +393,7 @@ class PlugsController extends AbstractController
             $s3 = new S3Client([
                 'version' => 'latest',
                 'region'  => 'us-east-1',
-                //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-                'endpoint' => 'http://localhost:5555',
+                'endpoint' => $this->endpoint,
                 'use_path_style_endpoint' => true,
                 'credentials' => [
                     'key'    => 'amdptestdeployv7private',
@@ -454,8 +451,7 @@ class PlugsController extends AbstractController
         $s3 = new S3Client([
             'version' => 'latest',
             'region'  => 'us-east-1',
-            //'endpoint' => 'http://minio-azure.default.svc.cluster.local:9000',
-            'endpoint' => 'http://localhost:5555',
+            'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
                 'key'    => 'amdptestdeployv7private',

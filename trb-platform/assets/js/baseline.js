@@ -383,10 +383,11 @@ $('#form_version').on('submit', function (e) {
         dataType: 'json', // JSON
         success: function (response) {
 
-            $('#title-version-ertms').append("<p>" + response.version + "</p>")
+            // $('#title-version-ertms').append("<p>" + response.version + "</p>")
             $('main').css("opacity", '1');
             $('#wait-spinner').hide();
             $('#close-modal-form-version').trigger('click');
+            location.reload();
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');

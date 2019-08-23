@@ -72,6 +72,10 @@ class Baseline
      */
     private $assocLogBaselines;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $ETCS_ID;
 
     public function __construct()
     {
@@ -91,7 +95,17 @@ class Baseline
     {
         return $this->id;
     }
+    public function getETCSID(): ?string
+    {
+        return $this->ETCS_ID;
+    }
 
+    public function setETCSID(string $ETCS_ID): self
+    {
+        $this->ETCS_ID = $ETCS_ID;
+
+        return $this;
+    }
     public function getName(): ?string
     {
         return $this->name;

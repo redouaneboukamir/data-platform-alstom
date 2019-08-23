@@ -5,6 +5,22 @@
 
 }
 
+.content-btn-add-config {
+    align-self: flex-end;
+}
+
+#add-baseline-1 {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+#add-baseline-2 {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 #modal-form-plug {
     .modal-dialog {
         max-width: 700px;

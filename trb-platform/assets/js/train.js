@@ -19,6 +19,9 @@ for (let i = 1; i < 4; i++) {
 }
 let idEquipment = "",
     indexEVC;
+let new_equipment_num = "",
+    totalEquipt = "",
+    new_equipment_num_serie = [];
 
 $(document).ready(function () {
     let nombre_url = extraitNombre(window.location.pathname);
@@ -39,8 +42,20 @@ $(document).ready(function () {
             $('main').css("opacity", '1');
             $('#wait-spinner').hide();
         })
-    }
-
+    };
+    $('#close-modal-baselineToTrain').click(function () {
+        $('main').css('opacity', '1');
+        $('.description').remove();
+        $('#modal_baseline_equipement').hide();
+        new_equipment_num = "";
+    })
+    $('#close-equipement-baseline').click(function () {
+        $('main').css('opacity', '1');
+        $('.description').remove();
+        $('#modal_baseline_equipement').hide();
+        new_equipment_num = "";
+        totalEquipt = "";
+    })
 })
 
 $('#select_train').show();
@@ -286,9 +301,7 @@ $('#soumission-equipement-edit-baseline').click(function () {
     console.log(data);
 
 })
-let new_equipment_num = "",
-    totalEquipt = "",
-    new_equipment_num_serie = [];
+
 
 // Soumission formulaire de train
 $('#form_equipement_edit_baseline').on('submit', function (e) {
@@ -324,6 +337,7 @@ $('#form_equipement_edit_baseline').on('submit', function (e) {
             new_equipment_num_serie.push(response);
             new_equipment_num++;
             console.log(response);
+            console.log(new_equipment_num);
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');
@@ -333,10 +347,14 @@ $('#form_equipement_edit_baseline').on('submit', function (e) {
 })
 //Valider l'instance des equipements
 $('#valid-baseline-train').click(function () {
+    console.log(new_equipment_num);
+    console.log(totalEquipt);
+
     if (new_equipment_num != totalEquipt) {
         alert('please enter num serie before instance baseline')
     } else {
-
+        let etcsId = $('#etcsid-name').val();
+        console.log(etcsId);
         let id_train = extraitNombre(window.location.pathname);
         let id_baseline = $('#select_baseline_1 option:selected').val();
         $('main').css("opacity", '0.4');
@@ -347,7 +365,8 @@ $('#valid-baseline-train').click(function () {
             data: {
                 id_train: id_train,
                 baseline: id_baseline,
-                new_equipt: new_equipment_num_serie
+                new_equipt: new_equipment_num_serie,
+                etcsId: etcsId
             },
             async: true,
             dataType: 'json', // JSON
