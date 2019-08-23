@@ -38,7 +38,7 @@
                         {% if project.available %}
                             <tr class="td-table">
                                 <td>
-                                    <a href="{{ path('alstom.project-show', {id: project.id}) }}">{{  project.name }}</td>
+                                    <a href="{{ path('alstom.show-project', {name: project.name}) }}">{{  project.name }}</td>
                                 </td>
                                 <td>
                                     {{  project.trains|length }}

@@ -39,7 +39,7 @@
                     {% for train in trains %}
                         <tr class="td-table">
                             <td class="mt-4">
-                                <a href="{{ path('alstom.show-train', {id: train.id}) }}">{{  train.name }}</td>
+                                <a href="{{ path('alstom.train-show', {name: train.name}) }}">{{  train.name }}</td>
                             </td>
                             {% if train.Projects %}
                                 <td>{{ train.Projects.name|upper }}</td>
@@ -62,17 +62,17 @@
 
                             <td></td>
                             {# <td class="content-btn-edit-delete">
-                                                                                                                                                                            <a href="{{ path('alstom.edit-train', {id: train.id}) }}">
-                                                                                                                                                                                <i class="fas fa-edit"></i>
-                                                                                                                                                                            </a>
-                                                                                                                                                                            <form method="post" action="{{ path('alstom.delete-train' ,{id:train.id}) }}" onsubmit="return confirm('Are you sure to delete this train?')">
-                                                                                                                                                                                <input name="_method" type="hidden" value="DELETE">
-                                                                                                                                                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ train.id) }}">
-                                                                                                                                                                                <button class="btn btn-danger btn-delete-client">
-                                                                                                                                                                                    <i class="fas fa-trash-alt"></i>
-                                                                                                                                                                                </button>
-                                                                                                                                                                            </form>
-                                                                                                                                                                        </td> #}
+                                                                                                                                                                                                                                    <a href="{{ path('alstom.edit-train', {id: train.id}) }}">
+                                                                                                                                                                                                                                        <i class="fas fa-edit"></i>
+                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                    <form method="post" action="{{ path('alstom.delete-train' ,{id:train.id}) }}" onsubmit="return confirm('Are you sure to delete this train?')">
+                                                                                                                                                                                                                                        <input name="_method" type="hidden" value="DELETE">
+                                                                                                                                                                                                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ train.id) }}">
+                                                                                                                                                                                                                                        <button class="btn btn-danger btn-delete-client">
+                                                                                                                                                                                                                                            <i class="fas fa-trash-alt"></i>
+                                                                                                                                                                                                                                        </button>
+                                                                                                                                                                                                                                    </form>
+                                                                                                                                                                                                                                </td> #}
                         </tr>
                     {% endfor %}
                 </tbody>

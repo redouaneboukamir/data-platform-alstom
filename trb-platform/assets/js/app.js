@@ -28,8 +28,8 @@ $('.post-module-fleet').hover(function () {
 $('.fa-chevron-down').hide();
 
 $(document).ready(function () {
-
     $('pre').remove();
+
     $('.button-left').click(function () {
         $('.sidebar').toggleClass('fliph');
     });

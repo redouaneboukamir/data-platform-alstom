@@ -10,8 +10,8 @@
                 <div
                     class="row content-details-img">
                     {# <a class="btn-edit" href="{{ path('alstom.edit-train',{id: train.id}) }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a> #}
+                                                                                                        <i class="fas fa-edit"></i>
+                                                                                                    </a> #}
                     <div class="col-md-3 img">
                         {% if train.trainType == "train" %}
                             <div class="img img-fluid">
@@ -56,7 +56,7 @@
                                     {% if baseline.status %}
                                         <td class="td-table">
                                             <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">
-                                                {{ baseline.name }}
+                                                {{ baseline.etcsid }}
                                                 {% set id_baseline =  baseline.id %}
                                             </a>
                                         </td>

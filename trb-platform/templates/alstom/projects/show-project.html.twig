@@ -65,7 +65,7 @@
                                 {% for train in project.trains %}
                                     <tr class="col-md-12 title-table">
                                         <td class="td-table">
-                                            <a href="{{ path('alstom.show-train', {id: train.id}) }}">
+                                            <a href="{{ path('alstom.train-show', {name: train.name}) }}">
                                                 {{ train.name }}
                                             </a>
                                         </td>
