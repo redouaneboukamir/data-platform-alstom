@@ -22,8 +22,54 @@ let idEquipment = "",
 let new_equipment_num = "",
     totalEquipt = "",
     new_equipment_num_serie = [];
-
+var searchRequest = null;
 $(document).ready(function () {
+    $('#search-train').on('submit', function (e) {
+        e.preventDefault();
+    })
+    $('#trains_search_name_train').keyup(function (e) {
+        let that = this;
+        let search = $(this).val();
+        let data = 'motclef=' + search;
+
+        console.log(search);
+
+        if (search.length > 0) {
+            if (searchRequest != null)
+                searchRequest.abort();
+            searchRequest = $.ajax({
+                url: '/alstom/search-train',
+                type: 'POST',
+                data: data,
+                // async: false,
+                dataType: 'json', // JSON
+                success: function (response) {
+                    if (search == $(that).val()) {
+                        $('.element-result').remove();
+                        let tabName = JSON.parse(response.projectsFound);
+                        console.log(tabName);
+                        if (tabName.length == 0 || !search) {
+                            $('.element-result').remove();
+                            $('#result-train').append('<p class="element-result">Results Not Found</p>');
+
+                        } else {
+                            tabName.forEach(element => {
+                                $('#result-train').append('<a href="/alstom/trains/' + element.name + '"><p class="element-result">' + element.name + '</p></a>');
+
+                            });
+                        }
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    ('Ajax request failed.');
+                }
+            });
+        } else {
+            $('.element-result').remove();
+        }
+
+
+    })
     let nombre_url = extraitNombre(window.location.pathname);
     if (window.location.pathname == '/alstom/InstanceBaseline/' + nombre_url) {
 

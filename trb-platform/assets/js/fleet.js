@@ -1,32 +1,35 @@
+var searchRequest = null;
 $(document).ready(function () {
     $('#search-fleet').on('submit', function (e) {
         e.preventDefault();
     })
     $('#name_project').keyup(function (e) {
-        e.preventDefault();
+        let that = this;
         let search = $(this).val();
         let data = 'motclef=' + search;
-        let current_
-        console.log(search);
+
         if (search.length > 0) {
 
-            $.ajax({
+            if (searchRequest != null)
+                searchRequest.abort();
+            searchRequest = $.ajax({
                 url: '/alstom/search-fleet',
                 type: 'POST',
                 data: data,
                 // async: false,
                 dataType: 'json', // JSON
                 success: function (response) {
+                    $('.element-result').remove();
                     let tabName = JSON.parse(response.projectsFound);
 
-                    if (tabName.length == 0) {
+                    if (tabName.length == 0 || !search) {
                         $('.element-result').remove();
                         $('#result-fleet').append('<p class="element-result">Results Not Found</p>');
 
                     } else {
                         tabName.forEach(element => {
-                            $('.element-result').remove();
-                            $('#result-fleet').append('<p class="element-result">' + element.name + '</p>');
+                            console.log(element);
+                            $('#result-fleet').append('<a href="/alstom/project/' + element.name + '"><p class="element-result">' + element.name + '</p>');
 
                         });
                     }
@@ -37,7 +40,6 @@ $(document).ready(function () {
             });
         } else {
             $('.element-result').remove();
-
         }
     })
     $('#addTrainsToFleet').click(function () {

@@ -60,7 +60,7 @@ class trainController extends AbstractController
         $search = new TrainsSearch();
         $form = $this->createForm(TrainsSearchType::class, $search);
         $form->handleRequest($request);
-        $trains = $trainsRepository->findAllTrains($search);
+        $trains = $trainsRepository->findAll();
         $fleets = $projectsRepository->findAll();
         return $this->render('alstom/trains/trains.html.twig', [
             'current_menu' => 'trains',
@@ -69,6 +69,29 @@ class trainController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/alstom/search-train", name="alstom.search-train")
+     * @return Response
+     */
+    public function search_train(TrainsRepository $trainsRepository, Request $request)
+    {
+
+        if ($request->request->get('motclef')) {
+            $motclef = strtoupper($request->request->get('motclef'));
+            $q = array('motclef' => $motclef . '%');
+            $trainsSearch = $trainsRepository->findAllTrains($motclef, $q);
+            dump($trainsSearch);
+        }
+
+        $jsonObjectEquipt = $this->serializer->serialize($trainsSearch, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return $this->json(['projectsFound' => $jsonObjectEquipt], 200);
+    }
+
     /**
      * @Route("/alstom/create-train", name="alstom.create-train")
      * @return Response
@@ -233,7 +256,18 @@ class trainController extends AbstractController
             'form_train' => $form_train->createView(),
         ]);
     }
+    /**
+     * @Route("/alstom/trains/{name}", name="alstom.train-show")
+     * @return Response
+     */
+    public function show_train_name(Trains $trains)
+    {
 
+        return $this->render('alstom/trains/show-train.html.twig', [
+            'current_menu' => 'trains',
+            'train' => $trains,
+        ]);
+    }
     /**
      * @Route("/alstom/trains/{id}", name="alstom.show-train")
      * @return Response

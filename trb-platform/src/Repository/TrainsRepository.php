@@ -39,44 +39,21 @@ class TrainsRepository extends ServiceEntityRepository
      * @param TrainsSearch $search
      * @return array
      */
-    public function findAllTrains(TrainsSearch $search): array
+    public function findAllTrains($search, $q): array
     {
 
-        $query = $this->findASCTrains();
-        $AllTrains = $this->findAll();
-        $findTrains = [];
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT t.name 
+            FROM App\Entity\Trains t
+            WHERE t.name LIKE :motclef 
+            ORDER BY t.name ASC'
+        )
+            ->setParameter('motclef', $search);
 
-
-        if ($search->getNameTrain()) {
-
-            foreach ($AllTrains as $currentTrain) {
-                $find = false;
-                $compar = "";
-
-
-                for ($i = 0; $i < (strlen($currentTrain->getName())); $i++) {
-
-                    $compar .= $currentTrain->getName()[$i];
-                    if ($find === false) {
-
-                        if (
-                            strtolower($currentTrain->getName()[$i]) === strtolower($search->getNameTrain()) ||
-                            strtolower($compar) === strtolower($search->getNameTrain())
-                        ) {
-                            array_push($findTrains, $currentTrain);
-                            $find = true;
-                        }
-                    }
-                }
-            }
-            $query = $query
-                ->where('t.name = :name')
-                ->setParameter('name', $findTrains)
-                ->getQuery()->getParameters()->getValues()[0]->getValue();
-            return $query;
-        } else {
-            return $query->getQuery()->getResult();
-        }
+        // returns an array of Product objects
+        return $query
+            ->execute($q);
     }
     // /**
     //  * @return Trains[] Returns an array of Trains objects

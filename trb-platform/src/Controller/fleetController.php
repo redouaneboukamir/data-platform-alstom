@@ -83,9 +83,9 @@ class fleetController extends AbstractController
         if ($request->request->get('motclef')) {
             $motclef = strtoupper($request->request->get('motclef'));
             $q = array('motclef' => $motclef . '%');
+            $projectSearch = $projectsRepository->findAllProjects($motclef, $q);
+            dump($projectSearch);
         }
-
-        $projectSearch = $projectsRepository->findAllProjects($motclef, $q);
 
         $jsonObjectEquipt = $this->serializer->serialize($projectSearch, 'json', [
             'circular_reference_handler' => function ($object) {
@@ -94,6 +94,19 @@ class fleetController extends AbstractController
         ]);
 
         return $this->json(['projectsFound' => $jsonObjectEquipt], 200);
+    }
+    /**
+     * @Route("/alstom/project/{name}", name="alstom.show-project")
+     * @return Response
+     */
+    public function show_project_name(Projects $projects)
+    {
+        dump($projects);
+
+        return $this->render('alstom/projects/show-project.html.twig', [
+            'current_menu' => 'projects',
+            'project' => $projects,
+        ]);
     }
     /**
      * @Route("/alstom/project/{id}", name="alstom.project-show")
