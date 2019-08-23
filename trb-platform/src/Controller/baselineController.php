@@ -256,7 +256,6 @@ class baselineController extends AbstractController
                 }
             }
         }
-        dump($plugs);
 
         $plug = new ConfigLogiciel;
         $equipement = new Equipement;

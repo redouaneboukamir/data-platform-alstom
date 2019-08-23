@@ -80,7 +80,6 @@ class trainController extends AbstractController
             $motclef = strtoupper($request->request->get('motclef'));
             $q = array('motclef' => $motclef . '%');
             $trainsSearch = $trainsRepository->findAllTrains($motclef, $q);
-            dump($trainsSearch);
         }
 
         $jsonObjectEquipt = $this->serializer->serialize($trainsSearch, 'json', [
@@ -262,7 +261,6 @@ class trainController extends AbstractController
      */
     public function show_train_name(Trains $trains)
     {
-        dump($trains->getBaselines());
 
         return $this->render('alstom/trains/show-train.html.twig', [
             'current_menu' => 'trains',
@@ -275,7 +273,6 @@ class trainController extends AbstractController
      */
     public function show_train(Trains $trains, Request $request)
     {
-        dump($trains);
         return $this->render('alstom/trains/show-train.html.twig', [
             'current_menu' => 'trains',
             'train' => $trains,

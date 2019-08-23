@@ -364,7 +364,6 @@ class alstomController extends AbstractController
 
         $ertms_request = $request->request->get('ertmsName');
         $ertms->setNameConfiguration($ertms_request['ertms[name_configuration']);
-        dump($request);
         return $this->json([
             'code' => 200,
             'ertms' => $ertms

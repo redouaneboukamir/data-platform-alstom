@@ -84,7 +84,6 @@ class fleetController extends AbstractController
             $motclef = strtoupper($request->request->get('motclef'));
             $q = array('motclef' => $motclef . '%');
             $projectSearch = $projectsRepository->findAllProjects($motclef, $q);
-            dump($projectSearch);
         }
 
         $jsonObjectEquipt = $this->serializer->serialize($projectSearch, 'json', [
@@ -101,8 +100,6 @@ class fleetController extends AbstractController
      */
     public function show_project_name(Projects $projects)
     {
-        dump($projects);
-
         return $this->render('alstom/projects/show-project.html.twig', [
             'current_menu' => 'projects',
             'project' => $projects,
