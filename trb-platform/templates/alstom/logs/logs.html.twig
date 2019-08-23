@@ -31,10 +31,11 @@
             <table class="table table-condensed table-content mt-4">
                 <thead>
                     <tr class="title-table">
-                        <th class="">Name</th>
+                        <th class="">Fleet</th>
+                        <th class="">Trains</th>
+                        <th class="th-empty" scope="col">Equipement</th>
                         <th class=" numeric" scope="col">Type</th>
                         <th class="th-empty" scope="col">Date</th>
-                        <th class="th-empty" scope="col">Equipement</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -42,8 +43,16 @@
                     {% for log in logs %}
                         <tr class="td-table">
                             <td>
-                                {{  log.keyLogs }}
+                                {{  log.assocLogBaseline.baseline.trains.name }}
                             </td>
+                            <td>
+                                {{   log.assocLogBaseline.baseline.trains.Projects.name }}
+
+                            </td>
+                            <td>
+                                {{  log.assocLogBaseline.baseline.etcsid }}
+                            </td>
+
                             <td>
                                 {{  log.assocLogBaseline.TypeFile }}
 
@@ -51,9 +60,7 @@
                             <td>
                                 {{  log.assocLogBaseline.date|date('d/m/Y') }}
                             </td>
-                            <td>
-                                {{  log.assocLogBaseline.baseline.etcsid }}
-                            </td>
+
                             <td class="td-plug" id="{{log.keylogs}}">
                                 <i class="fas fa-download"></i>
                             </td>
