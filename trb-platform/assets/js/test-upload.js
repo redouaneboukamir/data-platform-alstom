@@ -148,7 +148,6 @@ $('#valid-plug').click(function (e) {
                     valid = true;
                     console.log(ListePlug)
 
-
                 },
                 error: function () {
                     // Log the error, show an alert, whatever works for you
@@ -260,14 +259,33 @@ $('#content-tr-plug').on('click', '.td-table > .td-plug', function (e) {
         }
     })
 })
+$('#previous-plug').on('click', '.content-key-name-plug > a', function () {
 
+    let idPlug = extraitNombre($(this)[0].attr('class'));
 
+    $('main').css('opacity', "0.4");
+    $('#wait-spinner').show();
+    $.ajax({
+        url: '/alstom/delete-plug/' + idPlug,
+        type: 'POST',
+        async: true,
+        dataType: 'json', // JSON
+        success: function (response) {
+            location.reload();
+            $('#' + idPlug).remove();
+            console.log(response);
+        }
+    })
+})
+$('#cancel-all-plug').click(function () {
+    $('.new-plug').remove();
+    ListePlug = "";
+})
 
 //Gére le clique de la suppression
 $('#show-done-plug').on('click', '.content-key-name-plug > a', function () {
     if ($(this)[0]["id"][0] == "d") {
         deletePlug(extraitNombre($(this)[0]["id"]));
-        console.log($(this)[0]["id"]);
     }
 });
 //Extrait le nombre d'une streing
@@ -278,16 +296,15 @@ function extraitNombre(str) {
 function deletePlug(position) {
     ListePlug.splice(position, 1);
     $('.content-key-name-plug').remove();
-    console.log(ListePlug)
     ListePlug.forEach(writePlug);
 }
 
 function writePlug(element, index, array) {
     //Test l'existence de la div dans le cas où elle existe la remplace si pas la met en place
     if ($('#key-name-' + index).length) {
-        $('#key-name-' + index).replaceWith("<span class='content-key-name-plug' id='key-name-" + index + "'><p>" + element.name_plug + "</p><p>" + element.key_plug + "</p><a id='delete-plug-" + index + "'><i class='fas fa-trash-alt poubelle'></i></a></span>")
+        $('#key-name-' + index).replaceWith("<span class='content-key-name-plug new-plug' id='key-name-" + index + "'><p>" + element.name_plug + "</p><p>" + element.key_plug + "</p><a id='delete-plug-" + index + "'><i class='fas fa-trash-alt poubelle'></i></a></span>")
     } else {
-        $('#show-done-plug').append("<span class='content-key-name-plug' id='key-name-" + index + "'><p>" + element.name_plug + "</p><p>" + element.key_plug + "</p><a id='delete-plug-" + index + "'><i class='fas fa-trash-alt poubelle'></i></a></span>");
+        $('#show-done-plug').append("<span class='content-key-name-plug new-plug' id='key-name-" + index + "'><p>" + element.name_plug + "</p><p>" + element.key_plug + "</p><a id='delete-plug-" + index + "'><i class='fas fa-trash-alt poubelle'></i></a></span>");
     }
 
 }

@@ -228,7 +228,7 @@ class baselineController extends AbstractController
     ) {
         $evc = "";
         $card = [];
-        $plugs = "";
+        $plugs = [];
         $equipements = [];
         foreach ($baseline->getERTMS() as $value) {
 
@@ -251,10 +251,12 @@ class baselineController extends AbstractController
         if ($assoc_plug != null) {
             foreach ($assoc_plug as $value) {
                 if ($value->getStatus()) {
-                    $plugs = $value->getPlug();
+                    // $plugs = $value->getPlug();
+                    array_push($plugs, $value->getPlug());
                 }
             }
         }
+        dump($plugs);
 
         $plug = new ConfigLogiciel;
         $equipement = new Equipement;

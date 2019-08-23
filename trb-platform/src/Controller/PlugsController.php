@@ -24,6 +24,7 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use App\Entity\Plugs;
 use App\Entity\AssocPlugBaseline;
 use App\Entity\Logs;
+use App\Repository\AssocPlugBaselineRepository;
 
 class PlugsController extends AbstractController
 {
@@ -462,9 +463,12 @@ class PlugsController extends AbstractController
         $assoc_plug_baseline = new AssocPlugBaseline;
         $baseline = $baselinerepository->find($request->request->get('idBaseline'));
         $tabPlugs = $request->request->get('Plugs');
-        foreach ($baseline->getAssocPlugBaselines() as $value) {
-            $value->setStatus(false);
-        }
+        // foreach ($baseline->getAssocPlugBaselines() as $value) {
+        //     if($value != $previous_plug){
+
+        //     }
+        //     $value->setStatus(false);
+        // }
         foreach ($tabPlugs as $value) {
             $result = $s3->copy('temp', $value['key_plug'], 'plugs', $value['key_plug']);
             $s3->deleteObject([
@@ -499,6 +503,21 @@ class PlugsController extends AbstractController
         $baseline->addAssocPlugBaseline($assoc_plug_baseline);
 
         $this->em->flush();
+        return $this->json([
+            'sucess' => 'ok'
+        ]);
+    }
+    /**
+     * @Route("alstom/delete-plug/{id}", name="alstom.delete_plug")
+     * @return Response
+     */
+    public function delete_plug(
+        Plugs $plugs
+    ) {
+
+        $plugs->getAssocPlugBaseline()->setStatus(false);
+        $this->em->flush();
+
         return $this->json([
             'sucess' => 'ok'
         ]);

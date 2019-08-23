@@ -125,13 +125,13 @@
 
                                         </a>
                                         {# <p class="edit-delete-equipement edit-card d-flex">
-                                                                                                                                                                                                                                                                                                                                                                            <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
-                                                                                                                                                                                                                                                                                                                                                                                <i class="fas fa-edit"></i>
-                                                                                                                                                                                                                                                                                                                                                                            </a>
-                                                                                                                                                                                                                                                                                                                                                                            <a id="delete-">
-                                                                                                                                                                                                                                                                                                                                                                                <i class="fas fa-trash-alt poubelle"></i>
-                                                                                                                                                                                                                                                                                                                                                                            </a>
-                                                                                                                                                                                                                                                                                                                                                                        </p> #}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="fas fa-edit"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <a id="delete-">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="fas fa-trash-alt poubelle"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </p> #}
                                     </div>
 
                                 {% endfor %}
@@ -241,14 +241,16 @@
                                 <th class="th-empty" scope="col"></th>
                             </thead>
                             <tbody id="content-tr-plug" style="font-weight:bold; text-transform:uppercase">
-                                {% for plug in plugs %}
-                                    <tr class="td-table">
-                                        <td>{{ plug.name }}</td>
-                                        <td>{{ plug.UpdatedAt|date('d/m/Y') }}</td>
-                                        <td class="td-plug" id="{{plug.plug}}">
-                                            <i class="fas fa-download"></i>
-                                        </td>
-                                    </tr>
+                                {% for assocplug in plugs %}
+                                    {% for plug in assocplug %}
+                                        <tr class="td-table">
+                                            <td>{{ plug.name }}</td>
+                                            <td>{{ plug.UpdatedAt|date('d/m/Y') }}</td>
+                                            <td class="td-plug" id="{{plug.plug}}">
+                                                <i class="fas fa-download"></i>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -272,6 +274,20 @@
                     </button>
                 </div>
                 <div class="modal-body" id="modal-add-plug">
+                    <div class="previous-plug" id="previous-plug">
+
+                        {% for assocplug in plugs %}
+                            {% for plug in assocplug %}
+                                <span class='content-key-name-plug' id='{{plug.id}}'>
+                                    <p>{{ plug.name }}</p>
+                                    <p>{{ plug.plug }}</p>
+                                    <a class="delte-plug-{{plug.id}}" id='delete-plug'>
+                                        <i class='fas fa-trash-alt poubelle'></i>
+                                    </a>
+                                </span>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
                     <div class="show-done-plug" id="show-done-plug"></div>
                     <div class="card-content clearfix" id="card-content-plug">
                         <div class="content-name-drag-plug row" id="content-name-drag-plug">
@@ -313,7 +329,8 @@
                         </fa>
                     </button>
                     <button class="btn btn-success btn-shadow mt-4" id="valid-all-plug">Valid</button>
-                    <button class="btn btn-danger btn-shadow-danger mt-4" id="cancel-all-plug">Cancel</button>
+                    <button aria-label="Close" class="btn btn-danger btn-shadow-danger mt-4" data-dismiss="modal" id="cancel-all-plug">Cancel</button>
+
                 </div>
             </div>
         </div>
