@@ -66,9 +66,9 @@
 
             {% if current_menu == "trains"  or current_menu == "projects" or current_menu == "logs" 
 or current_menu == "baseline"  or current_menu == "maintenance" %}
-
                 {% include "alstom/_sidebar.html.twig" %}
             {% endif %}
+
             {% block body %}
                 <main class="main-home container-fluid" role="main">
                     <div class="content-logo">
@@ -134,8 +134,6 @@ or current_menu == "baseline"  or current_menu == "maintenance" %}
                         </div>
 
                     </div>
-
-
                 </main>
             {% endblock %}
             {% block javascripts %}{% endblock %}
@@ -144,12 +142,9 @@ or current_menu == "baseline"  or current_menu == "maintenance" %}
             <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-            <script>
-                // $('select').selectpicker();</script> <script src="{{ asset('build/runtime.js') }}"></script>
-                <script src="{{ asset('build/vendors~app.js') }}"></script>
-                <script src="{{ asset('build/app.js') }}"></script>
-            </body>
-            </body>
+            {# <script>$('select').selectpicker();</script>  #}
+            <script src="{{ asset('build/runtime.js') }}"></script>
+            <script src="{{ asset('build/vendors~app.js') }}"></script>
+            <script src="{{ asset('build/app.js') }}"></script>
         </body>
     </html>
-</body></html>
