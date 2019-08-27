@@ -18,7 +18,18 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addEntry('app', './assets/js/app.js')
+    .addEntry('app', [
+        './assets/js/app.js',
+        './assets/js/perfect-scrollbar.jquery.min.js',
+        // './assets/js/popper/popper.min.js',
+        // './assets/js/bootstrap/dist/js/bootstrap.min.js',
+        // './assets/js/raphael/raphael-min.js',
+        // './assets/js/morrisjs/morris.min.js',
+        // './assets/js/morrisjs/morris.css',
+        // './assets/js/jquery-sparkline/jquery.sparkline.min.js',
+        // './assets/js/d3/d3.min.js',
+        // './assets/js/c3-master/c3.min.js',
+    ])
     //.addStyleEntry('css/app', './assets/scss/app.scss')
     .enableSassLoader()
     //.addEntry('page1', './assets/js/page1.js')

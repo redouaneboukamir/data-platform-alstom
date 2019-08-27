@@ -7,6 +7,13 @@ import './train';
 import './plug';
 import './fleet';
 import './logs';
+import './dashboard/custom';
+import './dashboard/dashboard1';
+import './dashboard/bootstrap.min';
+import './dashboard/morris.min';
+import './perfect-scrollbar.jquery.min';
+import './dashboard/popper.min';
+import './dashboard/raphael-min';
 
 // loads the jquery package from node_modules
 const $ = require('jquery');
