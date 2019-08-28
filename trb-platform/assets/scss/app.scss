@@ -30,54 +30,51 @@ body {
   background: white;
 }
 
-.table-content {
 
 
-  .title-table {
+.title-table {
+  text-align: center;
+  opacity: 0.5;
+}
+
+tbody {
+  tr {
+    transition: all 0.3s;
+
+    &:hover {
+      background: #f1f1f1;
+    }
+  }
+}
+
+.td-table {
+
+  .fa-user-edit,
+  .fa-edit {
+    color: gray;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+
+  a {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+  }
+
+  td {
     text-align: center;
-    opacity: 0.5;
-  }
+    vertical-align: middle;
 
-  tbody {
-    tr {
-      transition: all 0.3s;
-
-      &:hover {
-        background: #f1f1f1;
-      }
+    p {
+      margin-bottom: 0;
     }
   }
 
-  .td-table {
-    font-size: 0.95em;
-
-    .fa-user-edit,
-    .fa-edit {
-      color: gray;
-      transition: all 0.3s;
-
-      &:hover {
-        transform: scale(1.5);
-      }
-    }
-
-    a {
-      text-transform: uppercase;
-      font-weight: bold;
-      text-decoration: none;
-      color: black;
-    }
-
-    td {
-      padding: 0 !important;
-      text-align: center;
-      vertical-align: middle;
-
-      p {
-        margin-bottom: 0;
-      }
-    }
-  }
 
   .content-btn-edit-delete {
 

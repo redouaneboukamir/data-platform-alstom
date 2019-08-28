@@ -154,6 +154,7 @@ class PlugsController extends AbstractController
             //  => 'logs' pour les fichiers log
             //  => 'configuration' pour les plugs
             $bucket = 'temp';
+            dump($_FILES['files']);
             //$_FILES est le fichier envoyé via POST
             $nameFile = $_FILES['files']['name'][1]; //key minio
             $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
@@ -409,6 +410,7 @@ class PlugsController extends AbstractController
             //  => 'configuration' pour les plugs
             $bucket = 'temp';
             //$_FILES est le fichier envoyé via POST
+            dump($_FILES['files']);
             $nameFile = $_FILES['files']['name'][1]; //key minio
             $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
             //instanciation de l'uploader PHP / MINIO

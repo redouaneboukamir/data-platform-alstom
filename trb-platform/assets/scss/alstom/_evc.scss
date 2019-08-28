@@ -67,7 +67,7 @@ $color_grey_dark: #a2a2a2;
     position: relative;
 }
 
-.edit-delete-equipement {
+.edit-baseline-instance {
     display: flex;
     justify-content: flex-end;
 
@@ -86,6 +86,59 @@ $color_grey_dark: #a2a2a2;
         &:hover {
             cursor: pointer;
         }
+    }
+}
+
+.edit-delete-equipement-baseline {
+    display: flex;
+    justify-content: flex-end;
+
+    i:nth-child(1) {
+        display: inline-block;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    i:nth-child(0) {
+        display: inline-block;
+        color: red;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.edit-delete-equipement {
+    text-align: right;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+
+    i:nth-child(1) {
+        color: $color_grey_dark;
+        display: inline-block;
+        transition: all 0.3s;
+
+        &:hover {
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+    }
+
+    .poubelle {
+        color: #c82233 !important;
+        transition: all 0.3s;
+        display: inline-block;
+
+
+        &:hover {
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+
     }
 }
 

@@ -231,7 +231,7 @@ $('#valid-all-equipments').on('click', function (e) {
 })
 
 //Gére le clique de la suppression
-$('#show-equipment').on('click', '.edit-delete-equipement > a', function () {
+$('#show-equipment').on('click', '.edit-delete-equipement-baseline > a', function () {
     if ($(this)[0]["id"][0] == "d") {
         deleteEquipment(extraitNombre($(this)[0]["id"]));
     }
@@ -248,7 +248,7 @@ $('#close-modal-form-equipment-edit').click(function () {
 })
 // 
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
-$('.card').on('click', '.edit-delete-equipement > a', function (e) {
+$('.card').on('click', '.edit-delete-equipement-baseline > a', function (e) {
     e.preventDefault();
     $('main').css("opacity", '0.4');
     $('#wait-spinner').show();
