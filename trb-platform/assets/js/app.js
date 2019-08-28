@@ -8,9 +8,9 @@ import './plug';
 import './fleet';
 import './logs';
 import './dashboard/custom';
-import './dashboard/dashboard1';
+// import './dashboard/dashboard1';
 import './dashboard/bootstrap.min';
-import './dashboard/morris.min';
+// import './dashboard/morris.min';
 import './perfect-scrollbar.jquery.min';
 import './dashboard/popper.min';
 import './dashboard/raphael-min';
@@ -33,30 +33,11 @@ $('.post-module-fleet').hover(function () {
 });
 
 $('.fa-chevron-down').hide();
-
 $(document).ready(function () {
     $('pre').remove();
 
     $('.button-left').click(function () {
         $('.sidebar').toggleClass('fliph');
     });
-    $('.sidebar').hover(function () {
-            $('main').css('transition', 'all 0.5s ease-in-out');
-            $('main').addClass('ml-sm-auto');
-            $('main').removeClass('offset-1');
-            $('main').addClass('offset-2');
-            $('.main-show').removeClass('col-lg-11');
-        },
-        function () {
-            $('main').css('transition', 'all 0.10s ease-in-out');
-            $('main').addClass('offset-1');
-            $('main').removeClass('offset-2');
-            $('main').removeClass('ml-sm-auto');
-            $('.main-show').addClass('col-lg-11');
-        })
-    // $('main').removeClass('ml-sm-auto');
-    $('.nav-label').click(function () {
-        $('.fa-chevron-left').css('transform', 'rotatex(45deg)')
-    })
 
 });

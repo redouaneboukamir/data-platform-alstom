@@ -16,14 +16,12 @@
             {{form_row(form_equipement.Indice_DTR)}}
             {{form_row(form_equipement.Num_serie)}}
             {{form_row(form_equipement._token)}}
-
             <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
-
             {{form_end(form_equipement)}}</div>
-
     </div>
 
-    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status">
+    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status" style="display:none">
+
         <span class="sr-only">
             Loading...
         </span>
@@ -59,8 +57,6 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1>{{baseline.etcsid}}</h1>
         </div>
-
-
         <div class="content-equipments-plug row">
             <div class="show-equipment col-lg-7 row" id="show-equipment" style="">
                 <div class="mb-3 card col-xl-5 col-md-5 mt-4 ">
@@ -94,9 +90,10 @@
                                                                 <p style='margin:0'>{{card.Numserie}}</p>
                                                             </span>
                                                         </div>
-                                                        <span class="edit-delete-equipement col-12">
+                                                        <span class="edit-baseline-instance col-12">
+
                                                             <a class="edit-{{card.id}}" id="edit-equipement-{{card.id}}">
-                                                                <button class="border-0 btn-transition btn btn-outline-secondary ">
+                                                                <button class="border-0 btn-transition btn btn-outline-secondary" data-target="#modal-content-form-equipement-edit" data-toggle="modal">
                                                                     <fa name="check" _nghost-c2="">
                                                                         <i _ngcontent-c2="" aria-hidden="true" class="fa fa-edit"></i>
                                                                     </fa>
@@ -162,9 +159,10 @@
                                 </perfect-scrollbar>
                             </div>
                             <div class="d-block text-right card-footer">
-                                <span class="edit-delete-equipement col-12">
+                                <span class="edit-baseline-instance col-12">
                                     <a class="edit-{{equipement.id}}" id="edit-equipement-{{equipement.id}}">
-                                        <button class="border-0 btn-transition btn btn-outline-secondary">
+                                        <button class="border-0 btn-transition btn btn-outline-secondary" data-target="#modal-content-form-equipement-edit" data-toggle="modal">
+
                                             <fa name="check" _nghost-c2="">
                                                 <i _ngcontent-c2="" aria-hidden="true" class="fa fa-edit"></i>
                                             </fa>

@@ -73,8 +73,6 @@ $(document).ready(function () {
     let nombre_url = extraitNombre(window.location.pathname);
     if (window.location.pathname == '/alstom/InstanceBaseline/' + nombre_url) {
 
-        $('main').css("opacity", '0.4');
-        $('#wait-spinner').show();
         $.post("/alstom/checkBaseline", ).then(function (response) {
             response.forEach(element => {
                 //Remplissage par les element reçu du controller
@@ -85,8 +83,7 @@ $(document).ready(function () {
             $('#select_baseline_1').val('');
             $('#select_baseline_2').val('');
         }).done(function () {
-            $('main').css("opacity", '1');
-            $('#wait-spinner').hide();
+
         })
     };
     $('#close-modal-baselineToTrain').click(function () {
@@ -431,7 +428,7 @@ $('#valid-baseline-train').click(function () {
 
 })
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner instancier
-$('.card').on('click', '.edit-delete-equipement > a', function (e) {
+$('.card').on('click', '.edit-baseline-instance > a', function (e) {
     e.preventDefault();
     $('.main-ertms').css("opacity", '0.4');
     $('#wait-spinner').show();

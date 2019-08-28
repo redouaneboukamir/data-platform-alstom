@@ -27,11 +27,7 @@ $(document).ready(function () {
     data[$type.attr('name')] = $type.val()
 
     if (window.location.pathname == '/alstom/create_baseline') {
-        $('main').css("opacity", '0.4');
-        $('#wait-spinner').show();
         $.post("/alstom/checkSubtype", data).then(function (response) {
-            $('main').css("opacity", '1');
-            $('#wait-spinner').hide();
             //Vidage champ soustype
             $('#equipement_sous_type').empty();
             response.forEach(element => {
@@ -246,12 +242,13 @@ $('#show-equipment').on('click', '.edit-delete-equipement > a', function () {
 $('#modal-content-form-equipement-edit').hide();
 // Gere la fermeture du modal d'edit d'equipement
 $('#close-modal-form-equipment-edit').click(function () {
+    $('#form_equipement_edit_instance').find('input').not(':button, :submit, :reset, :hidden').val('');
     $('#modal-content-form-equipement-edit').hide();
     $('main').css("opacity", '1');
 })
 // 
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
-$('.content-description-dtr').on('click', '.edit-delete-equipement > a', function (e) {
+$('.card').on('click', '.edit-delete-equipement > a', function (e) {
     e.preventDefault();
     $('main').css("opacity", '0.4');
     $('#wait-spinner').show();
