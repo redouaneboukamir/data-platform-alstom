@@ -1,8 +1,8 @@
-{% extends 'alstom/index.html.twig' %}
+{% extends 'alstom/dashboard.html.twig' %}
 
 {% block body %}
 
-    <main class="col-md-10 offset-1 col-lg-11 main-show" role="main">
+    <main class="" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2>
                 <i class="fa fa-angle-right"></i>
@@ -17,42 +17,49 @@
             </div>
         {% endfor %}
         <section id="unseen">
-            <div
-                class="pull-left search">
-                {# <input id="search-fleet" name="search-fleet" type="text"> #}
-                {{ form_start(form, {'attr':{'id':'search-fleet', 'class':'form-search'}}) }}
-                {{ form_widget(form.name_project) }}
-                {{ form_end(form) }}
-            </div>
-            <div class="result" id="result-fleet"></div>
-            <table class="table table-condensed table-content mt-4">
-                <thead>
-                    <tr class="title-table">
-                        <th class="">Name</th>
-                        <th class=" numeric" scope="col">Number of trains</th>
-                        <th class="th-empty" scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for project in projects %}
-                        {% if project.available %}
-                            <tr class="td-table">
-                                <td>
-                                    <a href="{{ path('alstom.show-project', {name: project.name}) }}">{{  project.name }}</td>
-                                </td>
-                                <td>
-                                    {{  project.trains|length }}
-                                </td>
-                                <td class="content-btn-edit-delete">
-                                    <a href="{{ path('alstom.edit-project', {id: project.id}) }}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
+            <div class="main-card mb-3 card">
+                <div class="card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">Search</div>
+                    <div class="btn-actions-pane-right">
+                        <div
+                            class="pull-left search">
+                            {# <input id="search-fleet" name="search-fleet" type="text"> #}
+                            {{ form_start(form, {'attr':{'id':'search-fleet', 'class':'form-search'}}) }}
+                            {{ form_widget(form.name_project) }}
+                            {{ form_end(form) }}
+                        </div>
+                        <div class="result" id="result-fleet"></div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">numbers of trains</th>
                             </tr>
-                        </form>
-                    </td>
-                </tbody>
-            </tr>
-        {% endif %}
-    {% endfor %}
-</table></section></main>{% endblock %}
+                        </thead>
+                        <tbody>
+                            {% for project in projects %}
+                                {% if project.available %}
+
+                                    <tr class="td-table">
+                                        <td class="text-center text-muted">
+                                            <a href="{{ path('alstom.show-project', {name: project.name}) }}">{{  project.name }}</a>
+                                        </td>
+                                        <td class="text-center">
+                                            {{  project.trains|length }}
+                                        </td>
+
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

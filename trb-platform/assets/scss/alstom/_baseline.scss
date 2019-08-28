@@ -255,6 +255,20 @@
     }
 }
 
+.btn-shadow-primary {
+    color: #fff;
+    background-color: #268fff;
+    border-color: #268fff;
+    box-shadow: 0 0.125rem 0.625rem rgba(38, 143, 255, 0.4),
+        0 0.0625rem 0.125rem rgba(38, 143, 255, 0.5);
+
+
+    &:hover {
+        background-color: #1e79db;
+        border-color: #1e79db;
+    }
+}
+
 .btn-shadow-danger {
     color: #fff;
     background-color: rgb(241, 62, 62);

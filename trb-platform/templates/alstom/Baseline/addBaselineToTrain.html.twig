@@ -3,51 +3,68 @@
 {% block body %}
 
     <!-- Modal -->
-    <div class="col-lg-5 col-md-7 offset-3 modal-baseline-equipement" id="modal_baseline_equipement">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title title-baseline" id="title_baseline_modal"></h5>
-                <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-baselineToTrain" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="form-group col-11">
-                <label for="etcsid-name">ETCS ID</label>
-                <input class="form-control" id="etcsid-name" type="text">
-            </div>
+    <div class="modal modal-baseline-equipement" id="modal_baseline_equipement">
+        <div class="modal-dialog modal-lg">
 
-            <div class="modal-body content-allEquipement">
-                <div class="show-equipment" id="show-equipment"></div>
-            </div>
-            <a class="previous-equipment" href="" id="previous-equipment">Previous</a>
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="valid-baseline-train" type="button">Valid Equipments</button>
-                <button class="btn btn-danger" id="close-equipement-baseline" type="button">Cancel</button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title title-baseline" id="title_baseline_modal"></h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-baselineToTrain" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="form-group col-11">
+                    <label for="etcsid-name">ETCS ID</label>
+                    <input class="form-control" id="etcsid-name" type="text">
+                </div>
+
+                <div class="modal-body content-allEquipement">
+                    <div class="show-equipment" id="show-equipment"></div>
+                </div>
+                <a class="previous-equipment" href="" id="previous-equipment">Previous</a>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="valid-baseline-train" type="button">Valid Equipments</button>
+                    <button class="btn btn-danger" id="close-equipement-baseline" type="button">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-    <div id="modal-content-form-equipement-edit">
-        <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="form-equipment" id="formulaire-equipment">
-            {{ form_start(form_equipement, { 
-               'attr': {'id': 'form_equipement_edit_baseline'}}) }}
-            {{form_row(form_equipement.Type)}}
-            {{form_row(form_equipement.sous_type)}}
-            {{form_row(form_equipement.DTR_board)}}
-            {{form_row(form_equipement.Indice_DTR)}}
-            {{form_row(form_equipement.Num_serie)}}
-            {{form_row(form_equipement._token)}}
-            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
-            {{form_end(form_equipement)}}</div>
 
+    <div class="modal" id="modal-content-form-equipement-edit" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header card-header-title">
+                    <h4 class="modal-title card-element-title">Edit Equipment</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="card-content clearfix">
+                        <div class="form-equipment" id="formulaire-equipment">
+                            {{ form_start(form_equipement, { 
+'attr': {'id': 'form_equipement_edit_baseline'}}) }}
+
+                            {{form_row(form_equipement.Type)}}
+                            {{form_row(form_equipement.sous_type)}}
+                            {{form_row(form_equipement.DTR_board)}}
+                            {{form_row(form_equipement.Indice_DTR)}}
+                            {{form_row(form_equipement.Num_serie)}}
+                            {{form_row(form_equipement._token)}}
+                            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
+                            {{form_end(form_equipement)}}</div>
+
+                    </div>
+                    <a class="previous-equipment" href="" id="previous-equipment-instance">Previous</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status" style="display:none">
-        <span class="sr-only">
-            Loading...
-        </span>
+    <div class="wait-spinner-content">
+        <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status" style="display:none">
+            <span class="sr-only">
+                Loading...
+            </span>
+        </div>
     </div>
+
 
     <main class="" role="main">
 

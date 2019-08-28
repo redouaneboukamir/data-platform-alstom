@@ -1,81 +1,79 @@
-{% extends 'alstom/index.html.twig' %}
+{% extends 'alstom/dashboard.html.twig' %}
 
 
 {% block body %}
-    <div class="background">
+    <main class="" role="main">
 
-        <main class="col-md-10 offset-1 col-lg-10 main-show-fleet" role="main">
+        <div class="container-header container-fluid">
+            <div class="row content-details-img">
 
-            <div class="container-header container-fluid">
-                <div
-                    class="row content-details-img">
-                    {# <a class="btn-edit" href="{{ path('alstom.edit-train',{id: train.id}) }}">
-                                                                                                        <i class="fas fa-edit"></i>
-                                                                                                    </a> #}
-                    <div class="col-md-3 img">
-                        {% if train.trainType == "train" %}
-                            <div class="img img-fluid">
-                                <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="">
-                            </div>
-                        {% else %}
-                            <div class="img img-fluid">
-                                <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="">
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-9 details">
-                        <h1>{{ train.name|upper }}</h1>
-                        <span class="content-title-details">
-                            <h3>Type :</h3>
-                            <p>{{train.TrainType}}</p>
-                        </span>
-                        <span class="content-title-details">
-                            <h3>Fleet :</h3>
-                            <h5>{{train.Projects.name}}</h5>
-
-                        </span>
-
-                    </div>
+                <div class="col-md-3 img">
+                    {% if train.trainType == "train" %}
+                        <div class="img img-fluid">
+                            <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="">
+                        </div>
+                    {% else %}
+                        <div class="img img-fluid">
+                            <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="">
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="border-separate-picture-info"></div>
-                <div class="row content-dashboard-table">
-                    <div class="col-md-8 content-dasboard">
-                        <img class="img img-responsive img-fluid" src="{{ asset('../build/img/dashboard.png') }}">
-                    </div>
-                    <div class="col-md-3" style="padding:0">
-                        <table class="table table-striped table-show-project table-content">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Equipments :</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% set presence_baseline = false%}{% set id_baseline = 0 %}
-                                {% for baseline in train.baselines %}
-                                    {% set presence_baseline = true %}
-                                    {% if baseline.status %}
-                                        <td class="td-table">
-                                            <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">
-                                                {{ baseline.etcsid }}
-                                                {% set id_baseline =  baseline.id %}
-                                            </a>
-                                        </td>
-                                    {% endif %}
-                                {% endfor %}
+                <div class="col-md-9 details">
+                    <h1>{{ train.name|upper }}</h1>
+                    <span class="content-title-details">
+                        <h3>Type :</h3>
+                        <h4 style="font-weight:bold; color:#000000; text-transform:uppercase; padding-left:8px">
+                            {{train.TrainType}}</h4>
+                    </span>
+                    <span class="content-title-details">
+                        <h3>Fleet :</h3>
+                        <h4 style="font-weight:bold; color:#000000; text-transform:uppercase; padding-left:8px">
+                            {{train.Projects.name}}</h4>
 
-                            </tbody>
-                        </table>
-                        {% if presence_baseline == false %}
-                            <a href="{{path('alstom.addBaselineToTrain',{id:train.id})}}" class="btn-primary btn col-12">Add Equipment</a>
-                        {% endif %}
-
-                    </div>
+                    </span>
 
                 </div>
             </div>
+            <div class="border-separate-picture-info"></div>
+            <div class="row content-dashboard-table">
+                <div class="col-md-8 content-dasboard">
+                    <img class="img img-responsive img-fluid" src="{{ asset('../build/img/dashboard.png') }}">
+                </div>
+                <div class="col-md-3" style="padding:0">
+                    <table class="table table-striped table-show-project table-content">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Equipments :</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set presence_baseline = false%}{% set id_baseline = 0 %}
+                            {% for baseline in train.baselines %}
+                                {% set presence_baseline = true %}
+                                {% if baseline.status %}
+                                    <td class="td-table">
+                                        <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">
+                                            {{ baseline.etcsid }}
+                                            {% set id_baseline =  baseline.id %}
+                                        </a>
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
 
-
-        </main>
-    </div>
-
+                        </tbody>
+                    </table>
+                    {% if presence_baseline == false %}
+                        <a href="{{path('alstom.addBaselineToTrain',{id:train.id})}}">
+                            <button class="btn-shadow-primary d-inline-flex align-items-center btn btn-primary col-12" data-target="#modal-form-train-fleet" data-toggle="modal" id="addTrainsToFleet">
+                                <fa class="mr-2" name="plus" _nghost-c2="">
+                                    <i _ngcontent-c2="" aria-hidden="true" class="fa fa-plus"></i>
+                                </fa>
+                                Add Equipments
+                            </button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

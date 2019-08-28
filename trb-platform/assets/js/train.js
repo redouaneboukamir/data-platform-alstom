@@ -72,7 +72,8 @@ $(document).ready(function () {
     })
     let nombre_url = extraitNombre(window.location.pathname);
     if (window.location.pathname == '/alstom/InstanceBaseline/' + nombre_url) {
-
+        $('#wait-spinner').show();
+        $('main').css('opacity', '0.4');
         $.post("/alstom/checkBaseline", ).then(function (response) {
             response.forEach(element => {
                 //Remplissage par les element reçu du controller
@@ -84,6 +85,8 @@ $(document).ready(function () {
             $('#select_baseline_2').val('');
         }).done(function () {
 
+            $('#wait-spinner').hide();
+            $('main').css('opacity', '1');
         })
     };
     $('#close-modal-baselineToTrain').click(function () {
@@ -327,6 +330,11 @@ $('#show-equipment ').on('click', '.description > .content-description-dtr > but
         }
     });
 });
+$('#previous-equipment-instance').click(function (e) {
+    e.preventDefault();
+    $('#modal-content-form-equipement-edit').hide();
+    $('#modal_baseline_equipement').show();
+})
 //Remplir les inputs avec les nouvelles valeurs
 $('#soumission-equipement-edit-baseline').click(function () {
     e.preventDefault();

@@ -3,29 +3,41 @@
 
 {% block body %}
 
-    <div id="modal-content-form-equipement-edit">
-        <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="form-equipment" id="formulaire-equipment">
-            {{ form_start(form_equipement, { 
+    <div class="modal fade" id="modal-content-form-equipement-edit" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header card-header-title">
+                    <h4 class="modal-title card-element-title">Edit Equipment</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-content clearfix">
+                        <div class="form-equipment" id="formulaire-equipment">
+                            {{ form_start(form_equipement, { 
                'attr': {'id': 'form_equipement_edit_instance'}}) }}
-            {{form_row(form_equipement.Type)}}
-            {{form_row(form_equipement.sous_type)}}
-            {{form_row(form_equipement.DTR_board)}}
-            {{form_row(form_equipement.Indice_DTR)}}
-            {{form_row(form_equipement.Num_serie)}}
-            {{form_row(form_equipement._token)}}
-            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
-            {{form_end(form_equipement)}}</div>
+                            {{form_row(form_equipement.Type)}}
+                            {{form_row(form_equipement.sous_type)}}
+                            {{form_row(form_equipement.DTR_board)}}
+                            {{form_row(form_equipement.Indice_DTR)}}
+                            {{form_row(form_equipement.Num_serie)}}
+                            {{form_row(form_equipement._token)}}
+                            <p><input class="btn-valid-Equipment" id="soumission-equipement-edit" name="soumission_edit_equipement" type="submit" value="Update"/></p>
+                            {{form_end(form_equipement)}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wait-spinner-content">
+        <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status" style="display:none">
+            <span class="sr-only">
+                Loading...
+            </span>
+        </div>
     </div>
 
-    <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status" style="display:none">
-
-        <span class="sr-only">
-            Loading...
-        </span>
-    </div>
     <!-- Modal -->
     <div class="modal fade" id="modal-form-version" role="dialog">
         <div class="modal-dialog">
