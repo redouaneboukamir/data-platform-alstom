@@ -1,4 +1,4 @@
-{% extends 'alstom/index.html.twig' %}
+{% extends 'alstom/dashboard.html.twig' %}
 
 {% block body %}
     <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status" style="display:none">
@@ -7,7 +7,7 @@
         </span>
     </div>
 
-    <main class="col-md-10 offset-1 col-lg-11 main-show" role="main">
+    <main class="" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2>
                 <i class="fa fa-angle-right"></i>
@@ -22,52 +22,58 @@
             </div>
         {% endfor %}
         <section id="unseen">
-            <div class="pull-left search">
-                <form action="" class="form-search" id="search-logs">
-                    <input class="form-control" id="logs_name" placeholder="search logs" type="text">
-                </form>
+            <div class="main-card mb-3 card">
+                <div class="card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">Search</div>
+                    <div class="btn-actions-pane-right">
+                        <div class="pull-left search">
+                            <form action="" class="form-search" id="search-logs">
+                                <input class="form-control" id="logs_name" placeholder="search logs" type="text">
+                            </form>
+                        </div>
+                        <div class="result" id="result-fleet"></div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
+                        <thead>
+                            <tr class="title-table">
+                                <th class="">Fleet</th>
+                                <th class="">Trains</th>
+                                <th class="th-empty" scope="col">Equipement</th>
+                                <th class=" numeric" scope="col">Type</th>
+                                <th class="th-empty" scope="col">Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in logs %}
+                                <tr class="td-table">
+                                    <td class="text-center text-muted">
+                                        {{  log.assocLogBaseline.baseline.trains.name }}
+                                    </td>
+                                    <td class="text-center text-muted">
+                                        {{   log.assocLogBaseline.baseline.trains.Projects.name }}
+                                    </td>
+                                    <td class="text-center text-muted">
+                                        {{  log.assocLogBaseline.baseline.etcsid }}
+                                    </td>
+                                    <td class="text-center text-muted">
+                                        {{  log.assocLogBaseline.TypeFile }}
+
+                                    </td>
+                                    <td class="text-center text-muted">
+                                        {{  log.assocLogBaseline.date|date('d/m/Y') }}
+                                    </td>
+                                    <td class="td-plug" id="{{log.keylogs}}">
+                                        <i class="fas fa-download"></i>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="result" id="result-fleet"></div>
-            <table class="table table-condensed table-content mt-4">
-                <thead>
-                    <tr class="title-table">
-                        <th class="">Fleet</th>
-                        <th class="">Trains</th>
-                        <th class="th-empty" scope="col">Equipement</th>
-                        <th class=" numeric" scope="col">Type</th>
-                        <th class="th-empty" scope="col">Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for log in logs %}
-                        <tr class="td-table">
-                            <td>
-                                {{  log.assocLogBaseline.baseline.trains.name }}
-                            </td>
-                            <td>
-                                {{   log.assocLogBaseline.baseline.trains.Projects.name }}
-
-                            </td>
-                            <td>
-                                {{  log.assocLogBaseline.baseline.etcsid }}
-                            </td>
-
-                            <td>
-                                {{  log.assocLogBaseline.TypeFile }}
-
-                            </td>
-                            <td>
-                                {{  log.assocLogBaseline.date|date('d/m/Y') }}
-                            </td>
-
-                            <td class="td-plug" id="{{log.keylogs}}">
-                                <i class="fas fa-download"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                {% endfor %}
-            </table>
         </section>
     </main>
 {% endblock %}

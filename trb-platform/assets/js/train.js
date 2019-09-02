@@ -18,6 +18,7 @@ let new_equipment_num = "",
     new_equipment_num_serie = [];
 var searchRequest = null;
 $(document).ready(function () {
+    $('#select_baselines_train').val('');
     $('#search-train').on('submit', function (e) {
         e.preventDefault();
     })
@@ -318,7 +319,6 @@ $('#valid-all-baselines').click(function () {
 })
 $('#select_baselines_train').change(function () {
     window.location.href = "/alstom/baseline-train/" + $(this).val();
-
 })
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner instancier
 $('.card').on('click', '.edit-baseline-instance > a', function (e) {

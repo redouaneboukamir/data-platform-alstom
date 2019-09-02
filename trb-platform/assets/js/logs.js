@@ -76,7 +76,7 @@ $fleet.change(function () {
     })
 })
 $train.change(function () {
-    $('#select_type_log').hide();
+    typeLog.hide();
 
     console.log($fleet.val());
     $ertms.empty();
@@ -90,6 +90,7 @@ $train.change(function () {
             $ertms.append(new Option(element.name, element.id));
         })
     }).done(function () {
+        $ertms.val('');
         typeLog.show();
         $form.show();
         $('main').css("opacity", '1');
@@ -98,7 +99,10 @@ $train.change(function () {
 })
 
 
-
+$ertms.change(function () {
+    typeLog.show();
+    $form.show();
+})
 
 
 if (isAdvancedUpload) {
