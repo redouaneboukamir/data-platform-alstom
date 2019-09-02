@@ -15,8 +15,7 @@
                 <div class="modal-body">
                     <div class="card-content clearfix">
                         <div class="form-equipment" id="formulaire-equipment">
-                            {{ form_start(form_equipement, { 
-               'attr': {'id': 'form_equipement_edit_instance'}}) }}
+                            {{ form_start(form_equipement, {'attr': {'id': 'form_equipement_edit_instance'}}) }}
                             {{form_row(form_equipement.Type)}}
                             {{form_row(form_equipement.sous_type)}}
                             {{form_row(form_equipement.DTR_board)}}
@@ -30,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="wait-spinner-content">
+    <div class="wait-spinner-content" style="display:none">
         <div class="spinner-border text-info wait-spinner" id="wait-spinner" role="status" style="display:none">
             <span class="sr-only">
                 Loading...
@@ -68,6 +67,17 @@
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1>{{baseline.etcsid}}</h1>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Select equipment</label>
+                <select class="form-control" id="select_baselines_train">
+                    {% for baseline in baseline_trains %}
+                        <option value="{{baseline.id}}">{{baseline.etcsid}}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
         </div>
         <div class="content-equipments-plug row">
             <div class="show-equipment col-lg-7 row" id="show-equipment" style="">
@@ -75,7 +85,7 @@
                     <div class="card-header-tab card-header">
                         <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                             <h3>{{evc.type.name}}</h3>
-                            <span class="content-descr-evc">
+                            <span class="content-descr">
                                 <p>{{evc.DTRboard}}</p>
                                 <p>{{evc.IndiceDTR}}</p>
                                 <p>{{evc.Numserie}}</p>
@@ -128,6 +138,7 @@
                         </perfect-scrollbar>
                     </div>
                     <div class="d-block text-right card-footer">
+
                         <button class="btn btn-secondary">Edit</button>
                         <button class="btn btn-danger">Delete</button>
                     </div>

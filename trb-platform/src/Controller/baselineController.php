@@ -223,13 +223,13 @@ class baselineController extends AbstractController
      */
     public function show_baseline_train(
         Baseline $baseline,
-        Request $request,
-        AssocPlugBaselineRepository $assocPlugBaselineRepository
+        Request $request
     ) {
         $evc = "";
         $card = [];
         $plugs = [];
         $equipements = [];
+        $baselines_train = $baseline->getTrains()->getBaselines();
         foreach ($baseline->getERTMS() as $value) {
 
             if ($value->getStatus()) {
@@ -268,8 +268,6 @@ class baselineController extends AbstractController
         $form_equipement->handleRequest($request);
         $form_version->handleRequest($request);
 
-
-
         return $this->render('alstom/baseline/show-baseline-train.html.twig', [
             'current_menu' => 'baseline',
             'baseline_train' => true,
@@ -279,6 +277,7 @@ class baselineController extends AbstractController
             'cards' => $card,
             'evc' => $evc,
             'plugs' => $plugs,
+            'baseline_trains' => $baselines_train,
             'form_equipement' => $form_equipement->createView(),
             'form_version' => $form_version->createView(),
             'form_config' => $form_config->createView()

@@ -4,9 +4,6 @@
 // });
 
 /*Masquage de certains élement */
-$('#create-ertms-1').hide();
-$('#create-ertms-2').hide();
-$("#create-ertms-train-1").hide();
 $('#create_soustype').hide();
 $('#create_type').hide();
 $('#modal-body').hide();
@@ -14,9 +11,6 @@ $('#modal_baseline_equipement').hide();
 $('#close-modal-form-baseline-train').click(function () {
     $('#modal_baseline_equipement').hide();
 })
-for (let i = 1; i < 4; i++) {
-    $('#btn-baseline-' + i).css('opacity', '0');
-}
 let idEquipment = "",
     indexEVC;
 let new_equipment_num = "",
@@ -72,7 +66,6 @@ $(document).ready(function () {
     })
     let nombre_url = extraitNombre(window.location.pathname);
     if (window.location.pathname == '/alstom/InstanceBaseline/' + nombre_url) {
-        $('#wait-spinner').show();
         $('main').css('opacity', '0.4');
         $.post("/alstom/checkBaseline", ).then(function (response) {
             response.forEach(element => {
@@ -85,17 +78,18 @@ $(document).ready(function () {
             $('#select_baseline_2').val('');
         }).done(function () {
 
-            $('#wait-spinner').hide();
             $('main').css('opacity', '1');
         })
     };
     $('#close-modal-baselineToTrain').click(function () {
         $('main').css('opacity', '1');
+        $('#etcsid-name').empty()
         $('.description').remove();
         $('#modal_baseline_equipement').hide();
         new_equipment_num = "";
     })
     $('#close-equipement-baseline').click(function () {
+        $('#etcsid-name').empty()
         $('main').css('opacity', '1');
         $('.description').remove();
         $('#modal_baseline_equipement').hide();
@@ -104,126 +98,17 @@ $(document).ready(function () {
     })
 })
 
-$('#select_train').show();
-$('#select_locomotive').show();
-
-let current_choice = "",
-    ertms_left = false,
-    ertms_middle = false,
-    ertms_right = false;
-
-$('#close-modal-baseline-1').click(function () {
-    if (ertms_right == true) {
-        $('#content-form-baseline-2').addClass('offset-md-6');
-        $('#content-form-baseline-1').hide();
-    } else {
-        $('#content-form-baseline-1').hide();
-    }
-    ertms_left = false;
-})
-$('#close-modal-baseline-2').click(function () {
-    $('#content-form-baseline-2').hide();
-    ertms_right = false;
-})
-$('#ertms-train-1').click(function () {
-    ertms_left = true;
-    ertms_middle = false;
-    //l'ertms de gauche selectionner
-    $('#ertms-train-1').addClass("selected");
-    $('#ertms-train-2').removeClass("selected");
-    $('#label-baseline-1').text('Baseline left');
-    $('#content-form-baseline-1').removeClass('offset-md-3');
-    $('#content-form-baseline-1').show();
-    if (ertms_right == false) {
-        $('#content-form-baseline-2').hide();
-
-    } else {
-
-        $('#content-form-baseline-2').removeClass('offset-md-6');
-    }
-
-
-});
-$('#ertms-train-2').click(function () {
-    // l'ertms du milieu selectionner
-    ertms_left = false;
-    ertms_right = false;
-    ertms_middle = true;
-    $('#ertms-train-2').addClass("selected");
-    $('#ertms-train-1').removeClass("selected");
-    $('#ertms-train-3').removeClass("selected");
-    $('#label-baseline-1').text('Baseline midle');
-    $('#content-form-baseline-2').hide();
-    $('#content-form-baseline-1').show();
-    $('#content-form-baseline-1').addClass('offset-md-3');
-
-});
-$('#ertms-train-3').click(function () {
-    // l'ertms de droite selectionner
-    $('#ertms-train-3').addClass("selected");
-    ertms_right = true;
-    ertms_middle = false;
-    $('#label-baseline-2').text('Baseline right');
-    if (ertms_left == true && ertms_middle == false) {
-        $('#content-form-baseline-1').removeClass('offset-md-3');
-        $('#content-form-baseline-2').removeClass('offset-md-6');
-        $('#content-form-baseline-2').show();
-    } else if (ertms_right == true && ertms_left == false) {
-        $('#content-form-baseline-1').removeClass('offset-md-3');
-        $('#content-form-baseline-1').hide();
-        $('#content-form-baseline-2').addClass('offset-md-6');
-        $('#content-form-baseline-2').show();
-    }
-
-    $('#ertms-train-2').removeClass("selected");
-});
-
-
-$('#ertms-loco-1').click(function () {
-    ertms_left = true;
-    if (ertms_right == true) {
-        $('#content-form-baseline-2').removeClass('offset-md-6');
-        $('#content-form-baseline-1').show();
-    } else {
-        $('#content-form-baseline-1').show();
-    }
-    $('#label-baseline-1').text('Baseline left');
-    $('#ertms-loco-1').addClass("selected");
-    $('#ertms-loco-2').removeClass("selected");
-    $('#btn-baseline-1').css('opacity', '1');
-    $('#btn-baseline-3').css('opacity', '0');
-});
-$('#ertms-loco-2').click(function () {
-    ertms_right = true;
-    $('#label-baseline-2').text('Baseline right');
-    $('#btn-baseline-3').css('opacity', '1')
-    $('#btn-baseline-1').css('opacity', '0')
-    $('#ertms-loco-2').addClass("selected");
-    $('#ertms-loco-1').removeClass("selected");
-    if (ertms_left == true) {
-        $('#content-form-baseline-2').removeClass('offset-md-6');
-
-        $('#content-form-baseline-2').show();
-    } else {
-        $('#content-form-baseline-2').addClass('offset-md-6');
-        $('#content-form-baseline-2').show();
-
-    }
-
-});
 
 //Recupere le select de la baseline et le met en visuel
-$('#add-baseline-1').click(function (e) {
-
+$('#add-baseline').click(function (e) {
+    $('.card-evc').remove();
+    $('.li-equipment').remove();
+    $('.li-card').remove();
+    totalEquipt = 0;
     e.preventDefault();
     $('main').css("opacity", '0.4');
     $('#wait-spinner').show();
-    if (ertms_middle) {
-        $('#ertms-train-3').css('opacity', '0');
-        $('#ertms-train-1').css('opacity', '0');
-    } else if (ertms_left) {
-        $('#ertms-train-2').css('opacity', '0');
-    }
+
     // $('#content-form-baseline-1').hide();
     let idBaseline = $('#select_baseline_1 option:selected').val();
     $('#title_baseline_modal').html($('#select_baseline_1 option:selected').text());
@@ -236,10 +121,10 @@ $('#add-baseline-1').click(function (e) {
         dataType: 'json', // JSON
         success: function (response) {
             $('#wait-spinner').hide();
+            $('main').css('opacity', '1');
             $('#modal_baseline_equipement').show();
-            $('main').css('opacity', '0.4');
             let Equipments = JSON.parse(response.equipments);
-
+            console.log(Equipments);
             Equipments.forEach(CountNumberEquipt);
             Equipments.forEach(FindIndexEvc);
             Equipments.forEach(returnIndexElement);
@@ -251,22 +136,10 @@ $('#add-baseline-1').click(function (e) {
 
 })
 
-$('#add-baseline-2').click(function (e) {
-    e.preventDefault();
-    $('#ertms-train-2').css('opacity', '0');
-
-    // $('#content-form-baseline-1').hide();
-    let name_baseline_1 = $('#select_baseline_2 option:selected').val();
-    console.log(name_baseline_1)
-    // $('#content-name-baseline-1').append("<h5>" + name_baseline_1 + "</h5>")
-
-})
-
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
-$('#show-equipment ').on('click', '.description > .content-description-dtr > button', function (e) {
+$('#show-equipment').add('#show-evc').on('click', '.li-equipment > .content-descr > button, .card-evc > .card-header-title > .description-SubtypeCard > .content-descr > button , .li-card > .todo-list-wrapper > .list-group-item > .widget-content-wrapper', function (e) {
     e.preventDefault();
-    $('#modal_baseline_equipement').hide();
-    $('.main-ertms').css("opacity", '0.4');
+    $('main').css("opacity", '0.4');
     $('#wait-spinner').show();
 
     idEquipment = extraitNombre($(this)[0]["id"])
@@ -383,12 +256,9 @@ $('#form_equipement_edit_baseline').on('submit', function (e) {
             $('main').css("opacity", '1');
             $('#wait-spinner').hide();
             $('#modal-content-form-equipement-edit').hide();
-            $('#modal_baseline_equipement').show();
-            $('#btn-add-number-serie' + idEquipment).replaceWith("<p>" + response.numSerie + "</p>")
+            $('#btn-add-number-serie' + idEquipment).replaceWith("<p style='color:#000000;font-weight:bold;text-transform:uppercase'>" + response.numSerie + "</p>")
             new_equipment_num_serie.push(response);
             new_equipment_num++;
-            console.log(response);
-            console.log(new_equipment_num);
         },
         error: function (xhr, textStatus, errorThrown) {
             ('Ajax request failed.');
@@ -396,18 +266,18 @@ $('#form_equipement_edit_baseline').on('submit', function (e) {
     });
 
 })
+
 //Valider l'instance des equipements
 $('#valid-baseline-train').click(function () {
     console.log(new_equipment_num);
-    console.log(totalEquipt);
-
+    console.log(totalEquipt)
     if (new_equipment_num != totalEquipt) {
         alert('please enter num serie before instance baseline')
     } else {
         let etcsId = $('#etcsid-name').val();
-        console.log(etcsId);
         let id_train = extraitNombre(window.location.pathname);
         let id_baseline = $('#select_baseline_1 option:selected').val();
+        let name_baseline = $('#select_baseline_1 option:selected').text();
         $('main').css("opacity", '0.4');
         $('#wait-spinner').show();
         $.ajax({
@@ -423,7 +293,14 @@ $('#valid-baseline-train').click(function () {
             dataType: 'json', // JSON
             success: function (response) {
                 console.log(response)
-                window.location.href = "/alstom/baseline-train/" + response.idbaseline;
+                id_baseline_instance = response.idbaseline;
+                // window.location.href = "/alstom/baseline-train/" + response.idbaseline;
+                $('#title-etcsid').append('<tr><td class="text-left text-muted">' + name_baseline + '</td><td class="text-left text-muted">' + etcsId + '</td></tr>');
+                $('#modal_baseline_equipement').hide();
+                console.log(totalEquipt);
+                totalEquipt = 0;
+                new_equipment_num = 0;
+                console.log(totalEquipt);
                 $('main').css("opacity", '1');
                 $('#wait-spinner').hide();
 
@@ -435,10 +312,19 @@ $('#valid-baseline-train').click(function () {
     }
 
 })
+
+$('#valid-all-baselines').click(function () {
+    window.location.href = "/alstom/baseline-train/" + id_baseline_instance;
+})
+$('#select_baselines_train').change(function () {
+    window.location.href = "/alstom/baseline-train/" + $(this).val();
+
+})
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner instancier
 $('.card').on('click', '.edit-baseline-instance > a', function (e) {
     e.preventDefault();
     $('.main-ertms').css("opacity", '0.4');
+    $('.wait-spinner-content').show();
     $('#wait-spinner').show();
 
     idEquipment = extraitNombre($(this)[0]["classList"][0])
@@ -489,6 +375,7 @@ $('.card').on('click', '.edit-baseline-instance > a', function (e) {
                     }
                 })
                 $('#wait-spinner').hide();
+                $('.wait-spinner-content').hide();
                 $('#modal-content-form-equipement-edit').show();
             })
         },
@@ -543,22 +430,22 @@ function FindIndexEvc(element, index, array) {
     index = element['id'];
     if (element['type']['id'] == "1" && (element['Status'] == true)) {
 
-        $("#show-equipment").append('<div class="description" id="description-equipement-' + index + '"></div>');
-        $("#description-equipement-" + index + "").append(writeType(4, element['type']['name']));
+        $("#show-evc").append('<div class="card-header-tab card-header card-evc"> <div class = "card-header-title font-size-lg text-capitalize font-weight-normal"> <div class="" id="description-equipement-' + index + '"></div> </div> </div>');
+        $("#description-equipement-" + index + "").append(writeType(3, element['type']['name']));
         $("#description-equipement-" + index + "").addClass("description-SubtypeCard")
         if (element['SousType'] != null) {
             $("#description-equipement-" + index + "").append(writeSubtype(5, element['SousType']['name']));
         }
-        $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
+        $("#description-equipement-" + index + "").append('<div class="content-descr" id="content-description-' +
             index + '"></div>');
         $("#content-description-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
         $("#content-description-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
         if (element['numSerie'] == "") {
-            $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
+            $("#content-description-" + index + "").append('<button class="mb-2 mr-2 btn-transition btn-shadow btn btn-outline-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
         } else {
             $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p>')
         }
-        indexEVC = $("#description-equipement-" + index + "");
+        indexEVC = $("#show-evc");
     }
 }
 
@@ -569,49 +456,48 @@ function returnIndexElement(element, index, array) {
 
     if ((element['Status'] == true) && element['type']['id'] != "1") {
 
-        //Test l'existence de la div dans le cas où elle existe la remplace si pas la met en place
-        if ($('#description-equipement-' + index).length) {
-            $('#description-equipement-' + index).replaceWith('<div class="description" id="description-equipement-' + index + '"></div>')
-        } else {
-            $("#show-equipment").append('<div class="description" id="description-equipement-' + index + '"></div>');
-        }
 
         //test si l'équipement est la carte ou non
         if (element['type']['id'] != "2") {
-
+            //Test l'existence de la div dans le cas où elle existe la remplace si pas la met en place
+            if ($('#description-equipement-' + index).length) {
+                $('#description-equipement-' + index).replaceWith('<li class="list-group-item li-equipment" id="description-equipement-' + index + '"></li>')
+            } else {
+                $("#show-equipment").append('<li class="list-group-item li-equipment" id="description-equipement-' + index + '"></li>');
+            }
             //Swith replacement de l'id du type avec son nom
-            $("#description-equipement-" + index + "").append(writeType(4, element['type']['name']));
+            $("#description-equipement-" + index + "").append('<div class="widget-content-left mr-2"><h3>' + element['type']['name'] + '</h3></div>');
 
             if (element['SousType'] != null) {
-                $("#description-equipement-" + index + "").append(writeSubtype(5, element['SousType']['name']));
+                $("#description-equipement-" + index + "").append('<div class="widget-content-left mr-2" style="color:black; font-weight:bold">' + element['SousType']['name'] + '</div>');
             }
 
-            $("#description-equipement-" + index + "").append('<div class="content-description-dtr" id="content-description-' +
+            $("#description-equipement-" + index + "").append('<div class="widget-content-right widget-content-actions content-descr" id="content-descr-' +
                 index + '"></div>');
-            $("#content-description-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
-            $("#content-description-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
+            $("#content-descr-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
+            $("#content-descr-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
             if (element['numSerie'] == "") {
-                $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
+                $("#content-descr-" + index + "").append('<button class="mb-2 mr-2 btn-transition btn-shadow btn btn-outline-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
             } else {
-                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a>')
+                $("#content-descr-" + index + "").append('<p>' + element['numSerie'] + '</p> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a>')
             }
             // $("#content-description-" + index + "").append(writeEditDelete(index));
 
         } else {
 
             //Ecris le nom du type "carte" sous le type  EVC
-            $(indexEVC).append(writeType(5, element['SousType']['name']));
-            //Parcous le type de soustype 
-            // $(indexEVC).append(writeSubtype(6, element['SousType']['name']));
+            $(indexEVC).append('<div style="position: static;" class="ps ps--active-y li-card"><ul class="todo-list-wrapper list-group list-group-flush"><li class="list-group-item"><div class="widget-content-wrapper" id="content-description-' +
+                index + '"></li></ul></div>');
+            $("#content-description-" + index + "").append('<div class="widget-content-left mr-2" style="color:black; font-weight:bold">' + element['SousType']['name'] + '</div>');
 
-            $(indexEVC).append('<div class="content-description-dtr content-description-dtrCard" id="content-description-' +
+            $("#content-description-" + index + "").append('<div class="widget-content-right widget-content-actions content-descr" id="content-descr-' +
                 index + '"></div>');
-            $("#content-description-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
-            $("#content-description-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
+            $("#content-descr-" + index + "").append('<p>' + element["dTRBoard"] + '</p>')
+            $("#content-descr-" + index + "").append('<p>' + element["indiceDTR"] + '</p>')
             if (element['numSerie'] == "") {
-                $("#content-description-" + index + "").append('<button class="btn btn-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
+                $("#content-descr-" + index + "").append('<button class="mb-2 mr-2 btn-transition btn-shadow btn btn-outline-secondary" style="padding: 2px" id = "btn-add-number-serie' + element['id'] + '" > Add number of serie </button>')
             } else {
-                $("#content-description-" + index + "").append('<p>' + element['numSerie'] + '</p> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a>')
+                $("#content-descr-" + index + "").append('<p>' + element['numSerie'] + '</p> <a id="edit-' + index + '"><i class="fas fa-edit"></i> </a> <a id="delete-' + index + '"><i class = "fas fa-trash-alt poubelle"> </i></a>')
 
             }
 

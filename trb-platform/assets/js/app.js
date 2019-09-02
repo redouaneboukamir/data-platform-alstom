@@ -35,6 +35,11 @@ $('.post-module-fleet').hover(function () {
 $('.fa-chevron-down').hide();
 $(document).ready(function () {
     $('pre').remove();
+    // $('.grid').masonry({
+    //     itemSelector: '.grid-item',
+    //     columnWidth: '.grid-sizer',
+    //     percentPosition: true
+    // });
 
     function alignModal() {
         var modalDialog = $(this).find(".modal-dialog");

@@ -2,46 +2,21 @@
 
 {% block body %}
 
-    <!-- Modal -->
-    <div class="modal modal-baseline-equipement" id="modal_baseline_equipement">
-        <div class="modal-dialog modal-lg">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title title-baseline" id="title_baseline_modal"></h5>
-                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-baselineToTrain" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="form-group col-11">
-                    <label for="etcsid-name">ETCS ID</label>
-                    <input class="form-control" id="etcsid-name" type="text">
-                </div>
-
-                <div class="modal-body content-allEquipement">
-                    <div class="show-equipment" id="show-equipment"></div>
-                </div>
-                <a class="previous-equipment" href="" id="previous-equipment">Previous</a>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" id="valid-baseline-train" type="button">Valid Equipments</button>
-                    <button class="btn btn-danger" id="close-equipement-baseline" type="button">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="modal" id="modal-content-form-equipement-edit" role="dialog">
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header card-header-title">
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-equipment-edit" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h4 class="modal-title card-element-title">Edit Equipment</h4>
                 </div>
                 <div class="modal-body">
                     <div class="card-content clearfix">
                         <div class="form-equipment" id="formulaire-equipment">
-                            {{ form_start(form_equipement, { 
-'attr': {'id': 'form_equipement_edit_baseline'}}) }}
-
+                            {{ form_start(form_equipement, {'attr': {'id': 'form_equipement_edit_baseline'}}) }}
                             {{form_row(form_equipement.Type)}}
                             {{form_row(form_equipement.sous_type)}}
                             {{form_row(form_equipement.DTR_board)}}
@@ -64,72 +39,103 @@
             </span>
         </div>
     </div>
-
-
     <main class="" role="main">
 
-        <section class="jumbotron text-left">
-            <div class="container">
-                <h1 class="jumbotron-heading">{{train.name}}</h1>
-                <p class="lead text-muted">
-                    <strong>Fleet :
-                    </strong>
-                    {{train.projects.name}}</p>
-                <p class="lead text-muted">
-                    <strong>Type :
-                    </strong>
-                    {{train.TrainType}}</p>
+        <div class="main-card mb-3 card">
+            <div class="card-header-lg card-header" margintop="60" stickything="" style="width: auto; left: auto; top: auto;">
+                <h3 class="card-header-title font-size-lg text-capitalize font-weight-normal">{{train.name}}</h3>
+                <div class="btn-actions-pane-right">
+                    <p class="lead text-muted">
+                        <strong>Fleet :
+                        </strong>
+                        {{train.projects.name}}</p>
+                    <p class="lead text-muted">
+                        <strong>Type :
+                        </strong>
+                        {{train.TrainType}}</p>
+                </div>
             </div>
-        </section>
 
-        <div class="row">
-            <div class="content-form-train-baseline col-md-5 col-sm-5 " id="content-form-baseline-1">
-                <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-baseline-1" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+            <div class="pt-4 card-body">
+                <div class="card main-card mb-3">
+                    <div class="card-header">
+                        Select baseline
+                    </div>
+                    <div
+                        class="card-body row">
+                        {# Content selection baseline #}
 
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                        <div class="mx-auto col-md-4" style="border-right:1px solid  rgba(0,0,0,.125);">
+                            <div>
+                                <label for="baseline_select_1" id="label-baseline-1"></label>
+                                <select class="form-control" id="select_baseline_1" name="select_baseline_1"></select>
+                                <div class="btn btn-success mt-4" id="add-baseline">Add</div>
+                            </div>
+                            <div>
+                                <div class="card-body">
+                                    <table class="mb-0 table">
+                                        <thead>
+                                            <tr>
+                                                <th>Baselines</th>
+                                                <th>ETCSID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id='title-etcsid'></tbody>
+                                    </table>
+                                </div>
 
-                <label for="baseline_select_1" id="label-baseline-1"></label>
-                <select class="form-control" id="select_baseline_1" name="select_baseline_1"></select>
-                <div class="btn btn-success mt-4" id="add-baseline-1">Add</div>
+                            </div>
+                            <div class="col-12 mt-4" style='display:flex;justify-content:flex-end'>
+                                <div class="btn btn-primary btn-shadow-primary" id="valid-all-baselines">Valid Baselines</div>
+                            </div>
+                        </div>
+                        {# Content display form to add Equipment #}
+                        <div
+                            class="mx-auto col-md-8 ">
+
+                            {# Card content all form for add Baseline #}
+                            <div class="mb-3 card mt-4" id="modal_baseline_equipement">
+
+                                <div class="card-header-tab card-header">
+                                    <div
+                                        class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                        {# Name baseline #}
+                                        <h5 class="modal-title title-baseline" id="title_baseline_modal"></h5>
+                                        {# Input ETCSID #}
+                                        <label for="etcsid-name">ETCS ID</label>
+                                        <input
+                                        class="form-control" id="etcsid-name" type="text">
+                                    {# ETCSID END #}
+                                    </div>
+                                </div>
+                                {# EVC EQUIPMENT #}
+                                <div class="card mt-4" id="show-evc"></div>
+                                {# END EVC EQUIPMENT #}
+                                <div class="scroll-area-lg" style='1px solid rgba(0,0,0,.125);'>
+                                    <perfect-scrollbar class="ps-show-limits">
+                                        <div style="position: static;" class="ps ps--active-y">
+                                            <div class="ps-content">
+                                                <ul class="todo-list-wrapper list-group list-group-flush" id='show-equipment'>{# ELEMENT LI per equipment #}
+                                                    {# End Element Li #}
+
+                                                </ul>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                    </perfect-scrollbar>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" id="valid-baseline-train" type="button">Valid Equipments</button>
+                                    <button class="btn btn-danger" id="close-equipement-baseline" type="button">Cancel</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        {# END of Content form add equipment #}
+                    </div>
+                </div>
             </div>
-            <div class="content-form-train-baseline col-md-5 col-sm-5" id="content-form-baseline-2">
-                <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-baseline-2" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
 
-                <label for="baseline_select_2" id="label-baseline-2"></label>
-                <select class="form-control" id="select_baseline_2" name="select_baseline_2"></select>
-                <div class="btn btn-success mt-4" id="add-baseline-2">Add</div>
-
-            </div>
         </div>
-
-        {% if train.TrainType == "locomotive" %}
-            <div class="content-type-train col-md-12 mt-4" id="select_locomotive">
-                <h4>Select Baseline :
-                </h4>
-                <img src="{{ asset('../build/img/trains/locomotive-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
-                <figure class="content-ertms col-md-10 offset-md-2">
-                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-1">
-                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms " id="ertms-loco-2">
-                </figure>
-            </div>
-        {% elseif train.TrainType == "train"%}
-
-            <div class="content-type-train col-md-12 mt-4" id="select_train">
-                <h4>Select Baseline :
-                </h4>
-                <img src="{{ asset('../build/img/trains/train-select.svg') }}" alt="" class="col-md-12 img-type-train img-fluid">
-                <figure class="content-ertms col-md-10  offset-md-2 img-fluid">
-
-                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-1">
-                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid" id="ertms-train-2">
-                    <img src="{{ asset('../build/img/trains/ertms.svg') }}" alt="" class="ertms img-fluid " id="ertms-train-3">
-                </figure>
-            </div>
-        {% endif %}
-
-
-    </main>
-{% endblock %}
+    </div>
+</main>{% endblock %}
