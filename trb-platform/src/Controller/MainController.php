@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: ltochapn
@@ -51,6 +52,4 @@ class MainController extends AbstractController
 		$this->httpClientRancher = $httpClientRancher;
 		$this->utility = $utility;
 	}
-
-	
 }

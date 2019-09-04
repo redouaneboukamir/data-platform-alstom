@@ -1,0 +1,71 @@
+{% extends 'alstom/dashboard.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="table-container">
+            <div class="management-title">
+                <h2>Users</h2>
+
+            </div>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <a href="{{ path('user_add') }}">
+                        <span class="btn btn-primary">Add User</span>
+                    </a>
+                </div>
+            </div>
+            <br/>
+
+            <div class="main-card mb-3 card">
+                <div class="table-responsive">
+                    <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-2 text-center">Username</th>
+                                <th class="col-sm-2 text-center">User Group</th>
+                                <th class="col-sm-2 text-center"></th>
+                                <th class="col-sm-2 text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for Entity in EntityArray %}
+                                <tr class="td-table">
+                                    <td class="col-sm-2 text-center">{{ Entity.username }}</td>
+                                    <td class="col-sm-2 text-center">
+                                        <span class="{{ Entity.group }}">{{ Entity.group }}</span>
+                                    </td>
+                                    <td class="col-sm-2 text-center">
+                                        {% if Entity.isSuperAdmin is not defined %}
+                                            <a href="{{ path('user_edit', {id: Entity.id}) }}">
+                                                <span class="btn btn-default">Edit</span>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="col-sm-2 text-center">
+                                        {% if Entity.isSuperAdmin is not defined %}
+                                            <a href="{{ path('user_delete', {id: Entity.id}) }}">
+                                                <span class="btn btn-default">Delete</span>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block modal %}{% endblock %}
+{% endblock %}

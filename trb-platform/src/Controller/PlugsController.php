@@ -27,29 +27,8 @@ use App\Entity\Logs;
 use App\Repository\AssocPlugBaselineRepository;
 use App\Repository\LogsRepository;
 
-class PlugsController extends AbstractController
+class PlugsController extends alstomController
 {
-    /**
-     * @var ObjectManager
-     */
-    private $em;
-    const SESSION = 'session';
-
-    public function __construct(ObjectManager $em)
-    {
-
-        $this->em = $em;
-
-        // $endpoint = 'http://minio-azure.default.svc.cluster.local:9000';
-        $endpoint = 'http://localhost:5555';
-        $this->endpoint = $endpoint;
-
-        $encoders = [new XmlEncoder(), new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $this->encoders = $encoders;
-        $serializer = new Serializer($normalizers, $encoders);
-        $this->serializer = $serializer;
-    }
     // ----------------------PLUG
 
     /**

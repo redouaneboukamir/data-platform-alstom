@@ -29,7 +29,7 @@ use App\Repository\TypeEquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
 
 
-class alstomController extends AbstractController
+class alstomController extends MainController
 {
     /**
      * @var ObjectManager

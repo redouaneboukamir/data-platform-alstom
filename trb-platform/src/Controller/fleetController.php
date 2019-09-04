@@ -8,38 +8,12 @@ use App\Repository\ProjectsRepository;
 use App\Form\ProjectSearchType;
 use App\Form\ProjectType;
 use App\Repository\TrainsRepository;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class fleetController extends AbstractController
+class fleetController extends alstomController
 {
-    /**
-     * @var ObjectManager
-     */
-    private $em;
-    const SESSION = 'session';
-
-    public function __construct(ObjectManager $em)
-    {
-
-        $this->em = $em;
-        $tabEquipt = array();
-        $this->tabEquipt = $tabEquipt;
-
-        $encoders = [new XmlEncoder(), new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $this->encoders = $encoders;
-        $serializer = new Serializer($normalizers, $encoders);
-        $this->serializer = $serializer;
-    }
-
     // ----------------------------------FLEET
 
     /**
