@@ -54,7 +54,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	public function getKeycloakClient(): Client
 	{
 		$token = $this->container->get(KEY_SESSION)->get(KEY_ACCESS_TOKEN);
-/*        dump(getenv('OAUTH_KEYCLOAK_REQUEST_URL'));*/
+		/*        dump(getenv('OAUTH_KEYCLOAK_REQUEST_URL'));*/
 		return new Client([
 			GUZZLE_BASE_URI => getenv('OAUTH_KEYCLOAK_REQUEST_URL'),
 			GUZZLE_HEADERS => [
@@ -128,7 +128,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 					'image_upload',
 					'Service with this name already exists. name : ' . $name,
 					'modal-error',
-					Response::HTTP_CONFLICT);
+					Response::HTTP_CONFLICT
+				);
 			}
 
 			throw new HttpException(
@@ -545,8 +546,9 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 			throw new HttpException(
 				$response->getStatusCode(),
 				$response->getBody()->getContents()
-				. $response->getStatusCode()
-				. GUZZLE_DOT_FUNCTION . __METHOD__);
+					. $response->getStatusCode()
+					. GUZZLE_DOT_FUNCTION . __METHOD__
+			);
 		}
 
 		if (null !== $response->getBody()) {
@@ -612,8 +614,9 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 			throw new HttpException(
 				$response->getStatusCode(),
 				$response->getBody()->getContents()
-				. $response->getStatusCode()
-				. GUZZLE_DOT_FUNCTION . __METHOD__);
+					. $response->getStatusCode()
+					. GUZZLE_DOT_FUNCTION . __METHOD__
+			);
 		}
 
 		if (null !== $response->getBody()) {
@@ -664,8 +667,9 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 			throw new HttpException(
 				$response->getStatusCode(),
 				$response->getBody()->getContents()
-				. $response->getStatusCode()
-				. GUZZLE_DOT_FUNCTION . __METHOD__);
+					. $response->getStatusCode()
+					. GUZZLE_DOT_FUNCTION . __METHOD__
+			);
 		}
 
 		if (null !== $response->getBody()) {
@@ -722,8 +726,9 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 			throw new HttpException(
 				$response->getStatusCode(),
 				$response->getBody()->getContents()
-				. $response->getStatusCode()
-				. GUZZLE_DOT_FUNCTION . __METHOD__);
+					. $response->getStatusCode()
+					. GUZZLE_DOT_FUNCTION . __METHOD__
+			);
 		}
 
 		if (null !== $response->getBody()) {
@@ -934,7 +939,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 		return new JsonResponse(true, Response::HTTP_OK);
 	}
-/*    public function __toString()
+	/*    public function __toString()
     {
         return (string) $this->getUsers();
     }*/
@@ -971,7 +976,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 						$userArray = ['id' => $user['id'], GUZZLE_USERNAME => $user[GUZZLE_USERNAME], GUZZLE_GROUP => $group['name']];
 						if (isset($user['attributes']['admin'])) {
-							
+
 							$userArray['isSuperAdmin'] = true;
 						}
 						$usersArray[] = $userArray;
@@ -1201,7 +1206,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 					'body' => json_encode([
 						GUZZLE_USERNAME => $user[GUZZLE_USERNAME],
 					]),
-				]);
+				]
+			);
 
 			/* if first request execute correctly */
 			if (Response::HTTP_NO_CONTENT === $response->getStatusCode()) {
@@ -1209,7 +1215,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				if ('' !== $user['initialGroup']) {
 					$this->getKeycloakClient()->request(
 						GUZZLE_DELETE,
-						$uriUsers . GUZZLE_SLASH_GROUPS_SLASH . $user['initialGroup']);
+						$uriUsers . GUZZLE_SLASH_GROUPS_SLASH . $user['initialGroup']
+					);
 				}
 
 				//Associate new group to user
@@ -1336,7 +1343,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 					$serviceArray = [
 						'id' => $service['id'],
 						'name' => $service['name'],
-						GUZZLE_CLIENT_ID => $service[GUZZLE_CONTAINER_ID], ];
+						GUZZLE_CLIENT_ID => $service[GUZZLE_CONTAINER_ID],
+					];
 					$servicessArray[] = $serviceArray;
 				}
 			}
@@ -1576,7 +1584,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 		$this->logger->info('************************** Starting token refresh **************************');
 		if (Response::HTTP_UNAUTHORIZED === $exception->getCode()) {
 			$token = $this->container->get(KEY_SESSION)->get(KEY_ACCESS_TOKEN);
-
+			dump($token);
 			try {
 				$refreshTokenResponse = $this->refreshTokenClient()->request(
 					'POST',
@@ -1737,7 +1745,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 					'add_device',
 					'Device with this name already exists',
 					'modal-error',
-					Response::HTTP_CONFLICT);
+					Response::HTTP_CONFLICT
+				);
 			}
 
 			throw new HttpException(
@@ -1812,7 +1821,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 			$response = $this->getKeycloakDevicesClient()->request(
 				'PUT',
 				$uri,
-				['body' => json_encode($bodyContent)]);
+				['body' => json_encode($bodyContent)]
+			);
 		} catch (GuzzleException $ex) {
 			$this->logDevelopersErrors($ex);
 			$this->logger->error(GUZZLE_NO_HTTP_RESPONSE_ERROR . __METHOD__);

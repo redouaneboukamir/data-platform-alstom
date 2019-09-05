@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Services\HttpClientKeycloakMock;
 use App\Form\User\AddFormType;
+use App\Form\User\DeleteFormType;
+use Symfony\Component\HttpFoundation\Response;
 
 class KeyCloakAuthController extends MainController
 {
@@ -154,6 +156,7 @@ class KeyCloakAuthController extends MainController
 		}
 
 		$groups = $this->httpClientKeycloak->getGroups();
+
 		$groupsSelection = $this->utility->arrayFormatForSelection($groups);
 		$form = $this->createForm(AddFormType::class, [KEY_GROUPS => $groupsSelection]);
 
@@ -169,6 +172,7 @@ class KeyCloakAuthController extends MainController
 				$response = $this->httpClientKeycloak->addUser($data);
 				if (Response::HTTP_OK == $response->getStatusCode()) {
 					$this->addFlash(KEY_SUCCESS, 'User has been created successfully');
+					return $this->redirectToRoute('users');
 				}
 			} catch (HttpException $e) {
 				$this->get(KEY_SESSION)->getFlashBag()->clear();
@@ -236,6 +240,7 @@ class KeyCloakAuthController extends MainController
 
 		return $this->render('user/edit.html.twig', [
 			KEY_ENTITY_ARRAY => $users,
+			'current_menu' => 'fleet',
 			KEY_FORM => $form->createView(),
 		]);
 	}
@@ -273,7 +278,6 @@ class KeyCloakAuthController extends MainController
 			if ($form->isSubmitted() && $form->isValid()) {
 				$this->httpClientKeycloak->deleteUser($id);
 				$this->addFlash(KEY_SUCCESS, 'User deleted successfully');
-
 				return $this->redirectToRoute(KEY_USERS);
 			}
 		} catch (HttpException $e) {
@@ -285,6 +289,7 @@ class KeyCloakAuthController extends MainController
 		return $this->render('user/delete.html.twig', [
 			KEY_ENTITY_ARRAY => $users,
 			'userTodelete' => $user,
+			'current_menu' => 'fleet',
 			KEY_FORM => $form->createView(),
 		]);
 	}

@@ -17,6 +17,7 @@ class AddFormType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		/** @var */
+
 		$listAllGroups = $options['data']['groups'];
 		$currentUser = isset($options['data']['currentUser']) ? $options['data']['currentUser'] : null;
 		$disabled = isset($options['data']['disabled']);

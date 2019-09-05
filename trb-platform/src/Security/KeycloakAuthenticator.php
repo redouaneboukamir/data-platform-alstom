@@ -221,7 +221,7 @@ class KeycloakAuthenticator extends SocialAuthenticator
                 if (null !== $response->getBody()) {
                     $body = json_decode($response->getBody(), true);
 
-                    dump($body['clientMappings']);
+                    dump($body);
 
                     foreach ($body['clientMappings']['trb-platform']['mappings'] as $role) {
                         switch ($role['name']) {

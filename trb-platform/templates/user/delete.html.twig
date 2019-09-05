@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block modal %}
-    <div class="modal fade in">
+    <div class="modal in" id="modal_delete">
         <div class="modal-dialog">
             {{ form_start(form) }}
             <div class="modal-content">
@@ -16,7 +16,10 @@
                     <h3 class="modal-title">Delete User</h3>
                 </div>
                 <div class="modal-body">
-                    <p> Are you sure, you want to delete the following user? : <strong>{{ userTodelete.username }}</strong></p>
+                    <p>
+                        Are you sure, you want to delete the following user? :
+                        <strong>{{ userTodelete.username }}</strong>
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <a href="{{ path('users') }}">
@@ -29,4 +32,3 @@
         </div>
     </div>
 {% endblock %}
-

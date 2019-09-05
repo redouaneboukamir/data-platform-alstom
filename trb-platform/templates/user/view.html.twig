@@ -55,7 +55,8 @@
                                     <td class="col-sm-2 text-center">
                                         {% if Entity.isSuperAdmin is not defined %}
                                             <a href="{{ path('user_delete', {id: Entity.id}) }}">
-                                                <span class="btn btn-default">Delete</span>
+                                                <span class="btn btn-default" id="test_delete">Delete</span>
+
                                             </a>
                                         {% endif %}
                                     </td>

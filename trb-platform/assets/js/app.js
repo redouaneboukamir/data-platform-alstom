@@ -7,6 +7,7 @@ import './train';
 import './plug';
 import './fleet';
 import './logs';
+import './user';
 import './dashboard/custom';
 // import './dashboard/dashboard1';
 import './dashboard/bootstrap.min';
