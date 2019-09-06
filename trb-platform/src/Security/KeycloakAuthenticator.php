@@ -221,8 +221,6 @@ class KeycloakAuthenticator extends SocialAuthenticator
                     $body = json_decode($response->getBody(), true);
                     dump($body);
                     if ($current_group['name'] != null) {
-
-
                         switch ($current_group['name']) {
                             case 'trb_admin':
                                 $user->addRole('ROLE_ALSTOM_ADMIN');

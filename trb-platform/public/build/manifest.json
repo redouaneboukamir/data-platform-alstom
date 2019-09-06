@@ -79,5 +79,7 @@
   "build/img/trains/locomotive-select.svg": "/build/img/trains/locomotive-select.svg",
   "build/img/trains/train-select.png": "/build/img/trains/train-select.png",
   "build/img/trains/train-select.svg": "/build/img/trains/train-select.svg",
-  "build/img/trains/train.afdesign": "/build/img/trains/train.afdesign"
+  "build/img/trains/train.afdesign": "/build/img/trains/train.afdesign",
+  "build/img/icons8-logout-rounded-down-64.png": "/build/img/icons8-logout-rounded-down-64.png",
+  "build/img/logout.png": "/build/img/logout.png"
 }

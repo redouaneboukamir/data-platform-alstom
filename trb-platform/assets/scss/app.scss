@@ -21,6 +21,18 @@ body {
 
 }
 
+.i_logout {
+  margin-top: 10px;
+  font-size: 2em;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
+    color: red;
+    cursor: pointer;
+  }
+}
+
 .wait-spinner {
   width: 3rem;
   height: 3rem;
