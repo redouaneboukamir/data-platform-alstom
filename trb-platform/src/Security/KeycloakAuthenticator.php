@@ -175,10 +175,6 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $userId = $keycloakUser->toArray()['sub'];
         $group = $this->httpClientKeycloak->getGroupOfUser($userId);
 
-
-
-
-
         $profilesArray = [];
 
         if (isset($group['id'])) {
@@ -218,32 +214,35 @@ class KeycloakAuthenticator extends SocialAuthenticator
                 $roleUser = 'users/' . $userId . '/role-mappings';
                 $response = $this->httpClientKeycloak->getKeycloakClient()->request('GET', $roleUser);
 
+                dump($roleUser);
+                dump($current_group);
+
                 if (null !== $response->getBody()) {
                     $body = json_decode($response->getBody(), true);
-
                     dump($body);
+                    if ($current_group['name'] != null) {
 
-                    foreach ($body['clientMappings']['trb-platform']['mappings'] as $role) {
-                        switch ($role['name']) {
-                            case 'alstom_admin':
+
+                        switch ($current_group['name']) {
+                            case 'trb_admin':
                                 $user->addRole('ROLE_ALSTOM_ADMIN');
                                 break;
-                            case 'alstom_designer':
+                            case 'trb_designer':
                                 $user->addRole('ROLE_ALSTOM_DESIGN');
                                 break;
-                            case 'alstom_maintener':
+                            case 'trb_maintener':
                                 $user->addRole('ROLE_ALSTOM_MAINTENER');
                                 break;
-                            case 'alstom_commissioner':
+                            case 'trb_commissioner':
                                 $user->addRole('ROLE_ALSTOM_COMMISSIONER');
                                 break;
-                            case 'alstom_service':
+                            case 'trb_service':
                                 $user->addRole('ROLE_ALSTOM_SERVICE');
                                 break;
-                            case 'alstom_client_user':
+                            case 'trb_client_user':
                                 $user->addRole('ROLE_CLIENT_USER');
                                 break;
-                            case 'alstom_client_admin':
+                            case 'trb_client_admin':
                                 $user->addRole('ROLE_CLIENT_ADMIN');
                                 break;
                         }

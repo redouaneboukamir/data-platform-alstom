@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Services\HttpClientKeycloakMock;
 use App\Form\User\AddFormType;
 use App\Form\User\DeleteFormType;
+use App\Security\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 
 class KeyCloakAuthController extends MainController
@@ -125,6 +126,11 @@ class KeyCloakAuthController extends MainController
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
 			dump($users);
+			foreach ($users as $key => $user) {
+				# code...
+				dump($this->httpClientKeycloak);
+				dump($user);
+			}
 		} catch (HttpException $e) {
 			$this->get(KEY_SESSION)->getFlashBag()->clear();
 			$this->addFlash(KEY_ERROR, $e->getMessage());
@@ -144,6 +150,7 @@ class KeyCloakAuthController extends MainController
 	 */
 	public function add(Request $request)
 	{
+		$user = new User;
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
 		} catch (HttpException $e) {
@@ -163,13 +170,15 @@ class KeyCloakAuthController extends MainController
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
+			dump($data);
 
+			// dump($test_ > gettest());
 			if ($this->httpClientKeycloak instanceof HttpClientKeycloakMock) {
 				$data[KEY_ID] = $this->httpClientKeycloak->generateRandom($data['username']);
 			}
-
 			try {
 				$response = $this->httpClientKeycloak->addUser($data);
+
 				if (Response::HTTP_OK == $response->getStatusCode()) {
 					$this->addFlash(KEY_SUCCESS, 'User has been created successfully');
 					return $this->redirectToRoute('users');
@@ -177,10 +186,8 @@ class KeyCloakAuthController extends MainController
 			} catch (HttpException $e) {
 				$this->get(KEY_SESSION)->getFlashBag()->clear();
 				$this->addFlash(KEY_ERROR, $e->getMessage());
-
 				return $this->redirectToRoute('user_add');
 			}
-
 			return $this->redirectToRoute(KEY_USERS);
 		}
 

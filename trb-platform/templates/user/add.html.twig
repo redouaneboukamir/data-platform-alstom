@@ -5,11 +5,31 @@
 
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1>Create fleet</h1>
+            <h1>Create user</h1>
         </div>
-        <div class="jumbotron content-form-engineer">
+        <div class=" content-form-engineer">
             {{ form_start(form) }}
-            {{ form_row(form) }}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.username) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.surname) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.name) }}
+                    </div>
+                </div>
+                {{ form_row(form.group) }}
+
+                {{ form_row(form.password) }}
+            </div>
             <button type="submit" class="btn btn-primary">Save</button>
             {{ form_end(form) }}
 

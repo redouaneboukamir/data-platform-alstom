@@ -3,12 +3,15 @@
 namespace App\Form\User;
 
 use App\Constraints\PasswordCheck;
+use App\Entity\Projects;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use App\Repository\ProjectsRepository;
 
 //use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -19,6 +22,10 @@ class AddFormType extends AbstractType
 		/** @var */
 
 		$listAllGroups = $options['data']['groups'];
+		array_shift($listAllGroups);
+		array_shift($listAllGroups);
+		array_pop($listAllGroups);
+		dump($listAllGroups);
 		$currentUser = isset($options['data']['currentUser']) ? $options['data']['currentUser'] : null;
 		$disabled = isset($options['data']['disabled']);
 		$help = false === $disabled ? 'The user name must be unique and case insensitive' : '';
@@ -35,6 +42,18 @@ class AddFormType extends AbstractType
 				],
 				/*'required' => false,
 				'constraints' => [new NotBlank()],*/
+			])
+			->add('name', TextType::class, [
+				'label' => 'Name',
+				'required' => true,
+			])
+			->add('surname', TextType::class, [
+				'label' => 'Surname',
+				'required' => true,
+			])
+			->add('email', TextType::class, [
+				'label' => 'Email',
+				'required' => true,
 			])
 			->add('group', ChoiceType::class, [
 				'choices' => $listAllGroups,
