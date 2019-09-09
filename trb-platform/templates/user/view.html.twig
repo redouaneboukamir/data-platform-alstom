@@ -19,9 +19,11 @@
             {% endfor %}
             <div class="row">
                 <div class="col-sm-10"></div>
-                <div class="col-sm-2">
+                <div class="col-sm-2" style="display:flex;justify-content:flex-end">
                     <a href="{{ path('user_add') }}">
-                        <span class="btn btn-primary">Add User</span>
+                        <button class="btn btn-primary">
+                            Add User
+                        </button>
                     </a>
                 </div>
             </div>
@@ -48,15 +50,18 @@
                                     <td class="col-sm-2 text-center">
                                         {% if Entity.isSuperAdmin is not defined %}
                                             <a href="{{ path('user_edit', {id: Entity.id}) }}">
-                                                <span class="btn btn-default">Edit</span>
+                                                <button class="btn btn-secondary">
+                                                    <span>Edit</span>
+                                                </button>
                                             </a>
                                         {% endif %}
                                     </td>
                                     <td class="col-sm-2 text-center">
                                         {% if Entity.isSuperAdmin is not defined %}
                                             <a href="{{ path('user_delete', {id: Entity.id}) }}">
-                                                <span class="btn btn-default" id="test_delete">Delete</span>
-
+                                                <button class="btn btn-danger">
+                                                    <span>Delete</span>
+                                                </button>
                                             </a>
                                         {% endif %}
                                     </td>

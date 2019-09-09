@@ -45,6 +45,50 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 		$this->keycloakProfiles = preg_split('/[, ]+/', getenv('KEYCLOAK_ORIGIN_ROLES'), -1, PREG_SPLIT_NO_EMPTY);
 		$this->keycloakAdminProfile = getenv('KEYCLOAK_ADMIN_ROLE');
 	}
+	public function getAttribute($id): array
+	{
+		if (null === $id) {
+			throw new EntityNotFoundException(
+				GUZZLE_USERS,
+				'User not found.',
+				GUZZLE_ERROR,
+				Response::HTTP_NOT_FOUND
+			);
+		}
+		$uriUserById = GUZZLE_USER_SLASH . $id;
+		$userAttributes = [];
+		try {
+			$response = $this->getKeycloakClient()->request(
+				'GET',
+				$uriUserById
+			);
+
+			if (Response::HTTP_OK === $response->getStatusCode()) {
+				$body = json_decode($response->getBody(), true);
+				dump($body);
+
+				if (array_key_exists('attributes', $body)) {
+					foreach ($body['attributes'] as $attributes) {
+						$key = $attributes[0];
+						$userAttributes[] = $key;
+					}
+				}
+			}
+
+			/* else return empty $groupsArray */
+		} catch (GuzzleException $e) {
+			$this->logDevelopersErrors($e);
+			$this->logger->error(GUZZLE_NO_HTTP_RESPONSE_ERROR . __METHOD__);
+			$this->checkAuthorizationException($e);
+
+			throw new HttpException(
+				$e->getCode(),
+				'Get users list error, please try again or contact administrator'
+			);
+		}
+
+		return $userAttributes;
+	}
 
 	/***** CLIENT MANAGEMENT *****/
 
@@ -926,10 +970,10 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				GUZZLE_DELETE,
 				$uriProfilById
 			);
-		} catch (GuzzleException $e) {
-			$this->logDevelopersErrors($e);
+		} catch (GuzzleException $ex) {
+			$this->logDevelopersErrors($ex);
 			$this->logger->error(GUZZLE_NO_HTTP_RESPONSE_ERROR . __METHOD__);
-			$this->checkAuthorizationException($e);
+			$this->checkAuthorizationException($ex);
 
 			throw new HttpException(
 				$e->getCode(),
@@ -964,6 +1008,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 			);
 
 			if (Response::HTTP_OK === $response->getStatusCode()) {
+
 				$body = json_decode($response->getBody(), true);
 				if (is_array($body)) {
 					foreach ($body as $user) {
@@ -973,7 +1018,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 						if (!isset($group['name'])) {
 							$group['name'] = '';
 						}
-
+						// dump($user);
 						$userArray = ['id' => $user['id'], GUZZLE_USERNAME => $user[GUZZLE_USERNAME], GUZZLE_GROUP => $group['name']];
 						if (isset($user['attributes']['admin'])) {
 
@@ -1084,7 +1129,6 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 						$group['id'] = '';
 					}
 					$user = ['id' => $body['id'], GUZZLE_USERNAME => $body[GUZZLE_USERNAME], GUZZLE_GROUP => $group['id']];
-					dump($user);
 				}
 			}
 		} catch (GuzzleException $ex) {
@@ -1123,6 +1167,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	public function addUser($user, $groups = null): JsonResponse
 	{
 		$uriGroups = GUZZLE_USERS;
+		dump($user);
 
 		try {
 			/** Creation du user */
@@ -1133,6 +1178,12 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 					'body' => json_encode([
 						GUZZLE_USERNAME => $user[GUZZLE_USERNAME],
 						'enabled' => true,
+						'attributes' => [
+							'name' => [0 => $user['name']],
+							'surname' => [0 => $user['surname']],
+							'email' => [0 => $user['email']],
+							'fleet' => [0 => 'fleet1', 1 => 'fleet2'],
+						]
 					]),
 				]
 			);
@@ -1205,6 +1256,13 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				[
 					'body' => json_encode([
 						GUZZLE_USERNAME => $user[GUZZLE_USERNAME],
+						'attributes' => [
+							'name' => [0 => $user['name']],
+							'surname' => [0 => $user['surname']],
+							'email' => [0 => $user['email']],
+							'fleet' => [0 => "fleet-2", 1 => "fleet-3"],
+						]
+
 					]),
 				]
 			);

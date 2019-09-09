@@ -20,12 +20,17 @@ class AddFormType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		/** @var */
+		dump($options['data']);
 
 		$listAllGroups = $options['data']['groups'];
 		array_shift($listAllGroups);
 		array_shift($listAllGroups);
 		array_pop($listAllGroups);
 		dump($listAllGroups);
+		$currentName = isset($options['data']['attributes'][0]) ? $options['data']['attributes'][0] : null;
+		dump($currentName);
+		$currentSurname = isset($options['data']['attributes'][2]) ? $options['data']['attributes'][2] : null;
+		$currentEmail = isset($options['data']['attributes'][3]) ? $options['data']['attributes'][3] : null;
 		$currentUser = isset($options['data']['currentUser']) ? $options['data']['currentUser'] : null;
 		$disabled = isset($options['data']['disabled']);
 		$help = false === $disabled ? 'The user name must be unique and case insensitive' : '';
@@ -45,15 +50,31 @@ class AddFormType extends AbstractType
 			])
 			->add('name', TextType::class, [
 				'label' => 'Name',
+				'data' => null != $currentName ? $currentName : '',
 				'required' => true,
 			])
 			->add('surname', TextType::class, [
 				'label' => 'Surname',
+				'data' => null != $currentSurname ? $currentSurname : '',
 				'required' => true,
 			])
 			->add('email', TextType::class, [
 				'label' => 'Email',
+				'data' => null != $currentEmail ? $currentEmail : '',
 				'required' => true,
+			])
+			->add('fleets', EntityType::class, [
+				'class' => Projects::class,
+				'query_builder' => static function (ProjectsRepository $projectsRepository) {
+					return $projectsRepository->findAvailable();
+				},
+				'attr' => [
+					'id' => 'choice_project',
+				],
+				'label' => 'Fleets',
+				'choice_label' => 'name',
+				'multiple' => true,
+				'required' => false
 			])
 			->add('group', ChoiceType::class, [
 				'choices' => $listAllGroups,

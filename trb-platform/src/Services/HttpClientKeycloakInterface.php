@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 interface HttpClientKeycloakInterface
 {
+
+    public function getAttribute($id): array;
+
     /***** CLIENT MANAGEMENT *****/
 
     public function getKeycloakClient(): Client;

@@ -125,12 +125,11 @@ class KeyCloakAuthController extends MainController
 
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
-			dump($users);
-			foreach ($users as $key => $user) {
+			foreach ($users as $key => $value) {
 				# code...
-				dump($this->httpClientKeycloak);
-				dump($user);
+				dump($this->httpClientKeycloak->getAttribute($value['id']));
 			}
+			dump($users);
 		} catch (HttpException $e) {
 			$this->get(KEY_SESSION)->getFlashBag()->clear();
 			$this->addFlash(KEY_ERROR, $e->getMessage());
@@ -138,6 +137,7 @@ class KeyCloakAuthController extends MainController
 			return $this->redirectToRoute(ROUTE_HOME);
 		} catch (TokenAccessException $e) {
 			$users = $this->httpClientKeycloak->getUsers();
+			// $attributes = $this->httpClientKeycloak->getAttribute($user['id']);
 		}
 
 		return $this->render('user/view.html.twig', [
@@ -170,13 +170,12 @@ class KeyCloakAuthController extends MainController
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
-			dump($data);
 
-			// dump($test_ > gettest());
 			if ($this->httpClientKeycloak instanceof HttpClientKeycloakMock) {
 				$data[KEY_ID] = $this->httpClientKeycloak->generateRandom($data['username']);
 			}
 			try {
+				dump($data);
 				$response = $this->httpClientKeycloak->addUser($data);
 
 				if (Response::HTTP_OK == $response->getStatusCode()) {
@@ -222,9 +221,10 @@ class KeyCloakAuthController extends MainController
 		$form = $this->createForm(AddFormType::class, [
 			KEY_GROUPS => $groupsSelection,
 			'currentUser' => $user,
+			'attributes' => $this->httpClientKeycloak->getAttribute($user['id']),
 			'disabled' => true,
 		]);
-
+		dump($form);
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
