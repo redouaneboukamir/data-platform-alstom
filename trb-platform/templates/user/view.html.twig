@@ -34,30 +34,47 @@
                     <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
                         <thead>
                             <tr>
-                                <th class="col-sm-2 text-center">Username</th>
-                                <th class="col-sm-2 text-center">User Group</th>
-                                <th class="col-sm-2 text-center"></th>
-                                <th class="col-sm-2 text-center"></th>
+                                <th class=" text-center">Username</th>
+                                <th class=" text-center">Email</th>
+                                <th class=" text-center">Fleets</th>
+                                <th class=" text-center">User Group</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             {% for Entity in EntityArray %}
                                 <tr class="td-table">
-                                    <td class="col-sm-2 text-center">{{ Entity.username }}</td>
-                                    <td class="col-sm-2 text-center">
+                                    <td class=" text-center">{{ Entity.username }}</td>
+
+                                    {% if Entity.email is not defined %}
+                                        <td></td>
+                                    {% else %}
+                                        <td class=" text-center">{{ Entity.email }}</td>
+                                    {% endif %}
+                                    {% if Entity.fleets is not defined %}
+                                        <td></td>
+                                    {% else %}
+                                        <td
+                                            class=" text-center">
+                                            {# <select name="" id=""> #}
+                                            {% for fleet in Entity.fleets %}
+                                                {# <option value="">{{fleet}}</option> #}
+
+                                                <a href="{{path('alstom.project-show',{'id':fleet})}}">{{fleet}}</a>
+                                            {% endfor %}
+                                            {# </select> #}
+                                        </td>
+                                    {% endif %}
+                                    <td class=" text-center">
                                         <span class="{{ Entity.group }}">{{ Entity.group }}</span>
                                     </td>
-                                    <td class="col-sm-2 text-center">
+                                    <td class=" text-right">
                                         {% if Entity.isSuperAdmin is not defined %}
                                             <a href="{{ path('user_edit', {id: Entity.id}) }}">
                                                 <button class="btn btn-secondary">
                                                     <span>Edit</span>
                                                 </button>
                                             </a>
-                                        {% endif %}
-                                    </td>
-                                    <td class="col-sm-2 text-center">
-                                        {% if Entity.isSuperAdmin is not defined %}
                                             <a href="{{ path('user_delete', {id: Entity.id}) }}">
                                                 <button class="btn btn-danger">
                                                     <span>Delete</span>

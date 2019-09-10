@@ -198,14 +198,7 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $services = $this->httpClientKeycloak->servicesFilter($servicesAvailables, $services);
 
         $user = new User();
-        // foreach ($profilesArray as $profile) {
-        //     if (in_array('name', array_keys($profile, self::ADMINPROFILE))) {
-        //         $this->container->get(self::SESSION)->set('admin', 'true');
-        //         $user->setRoles(['ROLE_ADMIN']);
-        //         break;
-        //     }
-        // }
-        //Attribution des rôles en fonction des rôles présent sur keycloak
+        // $current_fleets = $this->httpClientKeycloak->getAttribute($userId);
 
         $current_group = $this->httpClientKeycloak->getGroupOfUser($userId);
         foreach ($this->httpClientKeycloak->getGroups() as $group) {
@@ -213,9 +206,6 @@ class KeycloakAuthenticator extends SocialAuthenticator
             if ($current_group['name'] == $group['name']) {
                 $roleUser = 'users/' . $userId . '/role-mappings';
                 $response = $this->httpClientKeycloak->getKeycloakClient()->request('GET', $roleUser);
-
-                dump($roleUser);
-                dump($current_group);
 
                 if (null !== $response->getBody()) {
                     $body = json_decode($response->getBody(), true);

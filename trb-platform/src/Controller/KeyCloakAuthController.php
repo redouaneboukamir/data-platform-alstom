@@ -90,17 +90,9 @@ class KeyCloakAuthController extends MainController
 			return $this->redirectToRoute('alstom.home');
 		} else if ($ROLE_CLIENT_USER || $ROLE_CLIENT_ADMIN) {
 			return $this->redirectToRoute('client.home');
+		} else {
+			$this->redirectToRoute('connect_keycloack_start');
 		}
-		// if (
-		// 	$userRole == ['ROLE_ALSTOM_ADMIN'] || $userRole == ['ROLE_ALSTOM_DESIGN'] || $userRole == ['ROLE_ALSTOM_MAINTENER']
-		// 	||  $userRole == ['ROLE_ALSTOM_COMMISSIONER'] ||  $userRole == ['ROLE_ALSTOM_SERVICE']
-		// ) {
-		// 	return $this->redirectToRoute('alstom.home');
-		// } else if ($userRole == ['ROLE_CLIENT_USER'] || $userRole == ['ROLE_CLIENT_ADMIN']) {
-		// 	return $this->redirectToRoute('client.home');
-		// } else {
-		// 	$this->redirectToRoute('connect_keycloack_start');
-		// }
 	}
 
 	/**
@@ -120,15 +112,10 @@ class KeyCloakAuthController extends MainController
 	 * @Route("/admin/users", name="users")
 	 */
 	public function users()
-
 	{
 
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
-			foreach ($users as $key => $value) {
-				# code...
-				dump($this->httpClientKeycloak->getAttribute($value['id']));
-			}
 			dump($users);
 		} catch (HttpException $e) {
 			$this->get(KEY_SESSION)->getFlashBag()->clear();
@@ -137,7 +124,6 @@ class KeyCloakAuthController extends MainController
 			return $this->redirectToRoute(ROUTE_HOME);
 		} catch (TokenAccessException $e) {
 			$users = $this->httpClientKeycloak->getUsers();
-			// $attributes = $this->httpClientKeycloak->getAttribute($user['id']);
 		}
 
 		return $this->render('user/view.html.twig', [
@@ -175,7 +161,6 @@ class KeyCloakAuthController extends MainController
 				$data[KEY_ID] = $this->httpClientKeycloak->generateRandom($data['username']);
 			}
 			try {
-				dump($data);
 				$response = $this->httpClientKeycloak->addUser($data);
 
 				if (Response::HTTP_OK == $response->getStatusCode()) {
@@ -221,10 +206,12 @@ class KeyCloakAuthController extends MainController
 		$form = $this->createForm(AddFormType::class, [
 			KEY_GROUPS => $groupsSelection,
 			'currentUser' => $user,
+			'email' => $this->httpClientKeycloak->getEmail($user['id']),
+			'lastName' => $this->httpClientKeycloak->getLastName($user['id']),
+			'firstName' => $this->httpClientKeycloak->getFirstName($user['id']),
 			'attributes' => $this->httpClientKeycloak->getAttribute($user['id']),
 			'disabled' => true,
 		]);
-		dump($form);
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();

@@ -26,11 +26,12 @@ class AddFormType extends AbstractType
 		array_shift($listAllGroups);
 		array_shift($listAllGroups);
 		array_pop($listAllGroups);
-		dump($listAllGroups);
-		$currentName = isset($options['data']['attributes'][0]) ? $options['data']['attributes'][0] : null;
-		dump($currentName);
-		$currentSurname = isset($options['data']['attributes'][2]) ? $options['data']['attributes'][2] : null;
-		$currentEmail = isset($options['data']['attributes'][3]) ? $options['data']['attributes'][3] : null;
+
+		$currentName = isset($options['data']['lastName']) ? $options['data']['lastName'] : null;
+		$currentSurname = isset($options['data']['firstName']) ? $options['data']['firstName'] : null;
+		$currentEmail = isset($options['data']['email']) ? $options['data']['email'] : null;
+
+		// $currentFleets = isset($options['data']['attributes'][0]) ? $options['data']['attributes'][0] : null;
 		$currentUser = isset($options['data']['currentUser']) ? $options['data']['currentUser'] : null;
 		$disabled = isset($options['data']['disabled']);
 		$help = false === $disabled ? 'The user name must be unique and case insensitive' : '';
@@ -49,12 +50,12 @@ class AddFormType extends AbstractType
 				'constraints' => [new NotBlank()],*/
 			])
 			->add('name', TextType::class, [
-				'label' => 'Name',
+				'label' => 'Last Name',
 				'data' => null != $currentName ? $currentName : '',
 				'required' => true,
 			])
 			->add('surname', TextType::class, [
-				'label' => 'Surname',
+				'label' => 'First Name',
 				'data' => null != $currentSurname ? $currentSurname : '',
 				'required' => true,
 			])
@@ -72,6 +73,7 @@ class AddFormType extends AbstractType
 					'id' => 'choice_project',
 				],
 				'label' => 'Fleets',
+				// 'data' => null != $currentFleets ? $currentFleets : '',
 				'choice_label' => 'name',
 				'multiple' => true,
 				'required' => false
@@ -83,18 +85,18 @@ class AddFormType extends AbstractType
 				'label' => 'User Group',
 				/*'required' => false,
 				'constraints' => [new NotBlank()],*/
-			])
-			->add('password', RepeatedType::class, [
-				'type' => PasswordType::class,
-				'invalid_message' => 'The password fields must match.',
-				'options' => ['attr' => ['class' => 'password-field']],
-				'required' => true,
-				'constraints' => [/*new NotBlank(),*/new PasswordCheck()],
-				'first_options' => [
-					'label' => 'Password',
-					'help' => "16 characters minimum, at least one uppercase, one lowercase, one numeric and one non-alphanumeric characters",
-				],
-				'second_options' => ['label' => 'Repeat Password'],
 			]);
+		// ->add('password', RepeatedType::class, [
+		// 	'type' => PasswordType::class,
+		// 	'invalid_message' => 'The password fields must match.',
+		// 	'options' => ['attr' => ['class' => 'password-field']],
+		// 	'required' => true,
+		// 	'constraints' => [/*new NotBlank(),*/new PasswordCheck()],
+		// 	'first_options' => [
+		// 		'label' => 'Password',
+		// 		'help' => "16 characters minimum, at least one uppercase, one lowercase, one numeric and one non-alphanumeric characters",
+		// 	],
+		// 	'second_options' => ['label' => 'Repeat Password'],
+		// ]);
 	}
 }

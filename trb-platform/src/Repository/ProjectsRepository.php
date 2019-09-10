@@ -37,6 +37,14 @@ class ProjectsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p');
     }
+    public function findByAccess($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     public function findByName($value)
     {
         return $this->createQueryBuilder('p')
@@ -47,7 +55,6 @@ class ProjectsRepository extends ServiceEntityRepository
     }
     public function findAllProjects($search, $q): array
     {
-        $projects = [];
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             'SELECT p.name 
@@ -56,12 +63,7 @@ class ProjectsRepository extends ServiceEntityRepository
             ORDER BY p.name ASC'
         )
             ->setParameter('motclef', $search);
-        // foreach ($query->execute($q) as $key => $value) {
-        //     dump($value[]);
-        //     array_push($projects, $this->that->findByName($value['name']));
-        // }
-        // dump($projects);
-        // returns an array of Product objects
+
         return $query->execute($q);
     }
 

@@ -11,9 +11,34 @@ use App\Repository\TrainsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class fleetController extends alstomController
 {
+    /**
+     * @var ObjectManager
+     */
+    private $em;
+    const SESSION = 'session';
+
+    public function __construct(ObjectManager $em)
+    {
+
+        $this->em = $em;
+        $tabEquipt = array();
+        $this->tabEquipt = $tabEquipt;
+
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $this->encoders = $encoders;
+        $serializer = new Serializer($normalizers, $encoders);
+        $this->serializer = $serializer;
+    }
+
     // ----------------------------------FLEET
 
     /**
@@ -38,8 +63,10 @@ class fleetController extends alstomController
         $search = new ProjectSearch();
         $form = $this->createForm(ProjectSearchType::class, $search);
         $form->handleRequest($request);
-
+        $users = $this->httpClientKeycloak->getUsers();
+        dump($users);
         $projects = $projectsRepository->findAll();
+        // $projects = $projectsRepository->findByAccess();
 
         return $this->render(('alstom/projects/projects.html.twig'), [
             'current_menu' => 'projects',
@@ -80,7 +107,7 @@ class fleetController extends alstomController
         ]);
     }
     /**
-     * @Route("/alstom/project/{id}", name="alstom.project-show")
+     * @Route("/alstom/projects/{id}", name="alstom.project-show")
      * @return Response
      */
     public function show_project(Projects $projects)
