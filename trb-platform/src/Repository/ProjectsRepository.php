@@ -39,11 +39,12 @@ class ProjectsRepository extends ServiceEntityRepository
     }
     public function findByAccess($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.id = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult();
+
+        // return $this->createQueryBuilder('p')
+        //     ->andWhere('p.id = :val')
+        //     ->setParameter('val', $value)
+        //     ->getQuery()
+        //     ->getResult();
     }
     public function findByName($value)
     {

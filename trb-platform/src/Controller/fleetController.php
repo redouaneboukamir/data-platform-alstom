@@ -12,31 +12,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
+use App\Services\HttpClientKeycloakInterface;
 
 class fleetController extends alstomController
 {
+
     /**
      * @var ObjectManager
      */
     private $em;
     const SESSION = 'session';
 
-    public function __construct(ObjectManager $em)
+    public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
     {
 
         $this->em = $em;
-        $tabEquipt = array();
-        $this->tabEquipt = $tabEquipt;
-
-        $encoders = [new XmlEncoder(), new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $this->encoders = $encoders;
-        $serializer = new Serializer($normalizers, $encoders);
-        $this->serializer = $serializer;
+        $this->httpClientKeycloak = $httpClientKeycloak;
     }
 
     // ----------------------------------FLEET
@@ -63,14 +54,22 @@ class fleetController extends alstomController
         $search = new ProjectSearch();
         $form = $this->createForm(ProjectSearchType::class, $search);
         $form->handleRequest($request);
-        $users = $this->httpClientKeycloak->getUsers();
-        dump($users);
+
         $projects = $projectsRepository->findAll();
-        // $projects = $projectsRepository->findByAccess();
+        $users = $this->httpClientKeycloak->getUsers();
+        foreach ($users as $key => $value) {
+            if ($value['username'] == $this->getUser()->getEmail()) {
+                $user = ($value);
+            }
+        }
+        $id = $user['fleets'];
+
+        // $projects = $projectsRepository->findByAccess($id);
 
         return $this->render(('alstom/projects/projects.html.twig'), [
             'current_menu' => 'projects',
             'projects' => $projects,
+            'id_projects' => $id,
             'form' => $form->createView()
         ]);
     }
@@ -101,6 +100,19 @@ class fleetController extends alstomController
      */
     public function show_project_name(Projects $projects)
     {
+        $users = $this->httpClientKeycloak->getUsers();
+        foreach ($users as $key => $value) {
+            if ($value['username'] == $this->getUser()->getEmail()) {
+
+                foreach ($value['fleets'] as $key => $value) {
+                    $id = (int) $value;
+                    if ($projects->getId() != $id) {
+
+                        return $this->redirectToRoute('alstom.forbidden');
+                    }
+                }
+            }
+        }
         return $this->render('alstom/projects/show-project.html.twig', [
             'current_menu' => 'projects',
             'project' => $projects,
@@ -112,7 +124,20 @@ class fleetController extends alstomController
      */
     public function show_project(Projects $projects)
     {
+        $users = $this->httpClientKeycloak->getUsers();
+        dump($this->getUser());
+        foreach ($users as $key => $value) {
+            if ($value['username'] == $this->getUser()->getEmail()) {
 
+                foreach ($value['fleets'] as $key => $value) {
+                    $id = (int) $value;
+                    if ($projects->getId() != $id) {
+
+                        return $this->redirectToRoute('alstom.forbidden');
+                    }
+                }
+            }
+        }
         return $this->render('alstom/projects/show-project.html.twig', [
             'current_menu' => 'projects',
             'project' => $projects,

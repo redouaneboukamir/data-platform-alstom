@@ -70,6 +70,23 @@ class alstomController extends MainController
             'current_menu' => 'home'
         ]);
     }
+    /**
+     * @Route("/forbidden", name="alstom.forbidden")
+     * @return Response
+     */
+    //    Vue de la homepage
+    public function forbidden(HttpClientKeycloak $clientKeycloak): Response
+    {
+
+        $userRoles = $this->getUser()->getRoles();
+        $userId = $this->container->get(KEY_SESSION)->get('userId');
+
+        // dump($clientKeycloak->getUser($userId));   
+
+        // dump($userRoles);
+
+        return $this->render(('forbidden.html.twig'), []);
+    }
 
 
     //    PAGE CLIENT -------------------------------------------------------------

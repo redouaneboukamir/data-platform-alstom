@@ -42,16 +42,21 @@
                         <tbody>
                             {% for project in projects %}
                                 {% if project.available %}
+                                    {% for id_project in id_projects %}
+                                        {% if id_project == project.id %}
+                                            <tr class="td-table">
+                                                <td class="text-center text-muted">
+                                                    <a href="{{ path('alstom.show-project', {name: project.name}) }}">{{  project.name }}</a>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{  project.trains|length }}
+                                                </td>
 
-                                    <tr class="td-table">
-                                        <td class="text-center text-muted">
-                                            <a href="{{ path('alstom.show-project', {name: project.name}) }}">{{  project.name }}</a>
-                                        </td>
-                                        <td class="text-center">
-                                            {{  project.trains|length }}
-                                        </td>
+                                            </tr>
+                                        {% endif %}
 
-                                    </tr>
+
+                                    {% endfor %}
                                 {% endif %}
                             {% endfor %}
 

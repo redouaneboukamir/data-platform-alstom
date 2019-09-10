@@ -8,7 +8,8 @@
             <h1>Create user</h1>
         </div>
         <div class=" content-form-engineer">
-            {{ form_start(form) }}
+            {{ form_start(form,{ 'action': path('user_add')} ) }}
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">

@@ -108,7 +108,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 			if (Response::HTTP_OK === $response->getStatusCode()) {
 				$body = json_decode($response->getBody(), true);
-				dump($body);
+
 				if (array_key_exists('email', $body)) {
 					$userEmail = $body['email'];
 				}
@@ -1130,7 +1130,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				$body = json_decode($response->getBody(), true);
 				if (is_array($body)) {
 					foreach ($body as $user) {
-						dump($user);
+
 						$id = $user['id'];
 						$group = $this->getGroupOfUser($id);
 
@@ -1138,14 +1138,13 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 							$group['name'] = '';
 						}
 						$userArray = ['id' => $user['id'], GUZZLE_USERNAME => $user[GUZZLE_USERNAME], GUZZLE_GROUP => $group['name']];
-						dump($userArray);
+
 						if (array_key_exists('email', $user)) {
 							$userArray['email'] = $user['email'];
 						}
 						if (array_key_exists('attributes', $user)) {
 							if (array_key_exists('fleet', $user['attributes'])) {
 								$userArray['fleets'] = $user['attributes']['fleet'];
-								dump($user['attributes']['fleet']);
 							}
 						}
 						// if (array_key_exists('lastName', $user)) {
@@ -1258,7 +1257,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 			if (Response::HTTP_OK === $response->getStatusCode()) {
 				$body = json_decode($response->getBody(), true);
-				dump($body);
+
 				if (is_array($body)) {
 					$group = $this->getGroupOfUser($id);
 					if (!isset($group['id'])) {
@@ -1316,7 +1315,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 		foreach ($user['fleets'] as $key => $value) {
 			$fleets[$key] = $value->getId();
 		}
-		dump($fleets);
+
 		// dum($test);
 		try {
 			/** Creation du user */
@@ -1436,17 +1435,17 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				);
 
 				/* change the password to the user */
-				$this->getKeycloakClient()->request(
-					'PUT',
-					$uriUsers . '/reset-password',
-					[
-						'body' => json_encode([
-							'temporary' => GUZZLE_FFALSE,
-							'type' => GUZZLE_STRING_CRED_CONF,
-							'value' => $user[GUZZLE_STRING_CRED_CONF],
-						]),
-					]
-				);
+				// $this->getKeycloakClient()->request(
+				// 	'PUT',
+				// 	$uriUsers . '/reset-password',
+				// 	[
+				// 		'body' => json_encode([
+				// 			'temporary' => GUZZLE_FFALSE,
+				// 			'type' => GUZZLE_STRING_CRED_CONF,
+				// 			'value' => $user[GUZZLE_STRING_CRED_CONF],
+				// 		]),
+				// 	]
+				// );
 			}
 		} catch (GuzzleException $ex) {
 			$this->logDevelopersErrors($ex);

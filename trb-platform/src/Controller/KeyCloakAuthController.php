@@ -136,6 +136,7 @@ class KeyCloakAuthController extends MainController
 	 */
 	public function add(Request $request)
 	{
+		dump($this->getUser());
 		$user = new User;
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
