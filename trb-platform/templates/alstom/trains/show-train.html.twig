@@ -47,7 +47,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% set presence_baseline = false%}{% set id_baseline = 0 %}
+                            {% set presence_baseline = false %}{% set id_baseline = 0 %}
                             {% for baseline in train.baselines %}
                                 {% set presence_baseline = true %}
                                 {% if baseline.status %}
@@ -62,16 +62,16 @@
 
                         </tbody>
                     </table>
-                    {% if presence_baseline == false %}
-                        <a href="{{path('alstom.addBaselineToTrain',{id:train.id})}}">
-                            <button class="btn-shadow-primary d-inline-flex align-items-center btn btn-primary col-12" data-target="#modal-form-train-fleet" data-toggle="modal" id="addTrainsToFleet">
-                                <fa class="mr-2" name="plus" _nghost-c2="">
-                                    <i _ngcontent-c2="" aria-hidden="true" class="fa fa-plus"></i>
-                                </fa>
-                                Add Equipments
-                            </button>
-                        </a>
-                    {% endif %}
+
+                    <a href="{{path('alstom.addBaselineToTrain',{id:train.id})}}">
+                        <button class="btn-shadow-primary d-inline-flex align-items-center btn btn-primary col-12" data-target="#modal-form-train-fleet" data-toggle="modal" id="addTrainsToFleet">
+                            <fa class="mr-2" name="plus" _nghost-c2="">
+                                <i _ngcontent-c2="" aria-hidden="true" class="fa fa-plus"></i>
+                            </fa>
+                            Add Equipments
+                        </button>
+                    </a>
+
                 </div>
             </div>
         </div>

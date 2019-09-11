@@ -1477,8 +1477,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	public function deleteUser($id): JsonResponse
 	{
 		$uriUserById = GUZZLE_USER_SLASH . $id;
-		dump($this->getUser());
-		dum($user);
+
 		try {
 			$this->getKeycloakClient()->request(
 				GUZZLE_DELETE,

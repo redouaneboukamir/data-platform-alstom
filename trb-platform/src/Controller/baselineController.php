@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\AssocPlugBaselineRepository;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use App\Repository\BaselineRepository;
 use App\Entity\Baseline;
 use App\Repository\TypeEquipementRepository;
@@ -22,9 +26,34 @@ use App\Form\ConfigLogicielType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Services\HttpClientKeycloakInterface;
+
+
 
 class baselineController extends alstomController
 {
+    /**
+     * @var ObjectManager
+     */
+    private $em;
+    const SESSION = 'session';
+
+    public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
+    {
+
+        $this->em = $em;
+        $tabEquipt = array();
+        $this->tabEquipt = $tabEquipt;
+        $this->httpClientKeycloak = $httpClientKeycloak;
+
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $this->encoders = $encoders;
+        $serializer = new Serializer($normalizers, $encoders);
+        $this->serializer = $serializer;
+    }
+
     // ----------------------BASELINE
 
     /**

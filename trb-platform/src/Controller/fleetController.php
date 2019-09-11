@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use App\Entity\Projects;
 use App\Entity\ProjectSearch;
 use App\Repository\ProjectsRepository;
@@ -27,8 +31,17 @@ class fleetController extends alstomController
     {
 
         $this->em = $em;
+        $tabEquipt = array();
+        $this->tabEquipt = $tabEquipt;
         $this->httpClientKeycloak = $httpClientKeycloak;
+
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $this->encoders = $encoders;
+        $serializer = new Serializer($normalizers, $encoders);
+        $this->serializer = $serializer;
     }
+
 
     // ----------------------------------FLEET
 

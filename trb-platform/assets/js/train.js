@@ -87,15 +87,15 @@ $(document).ready(function () {
         $('#etcsid-name').empty()
         $('.description').remove();
         $('#modal_baseline_equipement').hide();
-        new_equipment_num = "";
+        new_equipment_num = 0;
     })
     $('#close-equipement-baseline').click(function () {
         $('#etcsid-name').empty()
         $('main').css('opacity', '1');
         $('.description').remove();
         $('#modal_baseline_equipement').hide();
-        new_equipment_num = "";
-        totalEquipt = "";
+        new_equipment_num = 0
+        totalEquipt = 0
     })
 })
 
@@ -105,6 +105,7 @@ $('#add-baseline').click(function (e) {
     $('.card-evc').remove();
     $('.li-equipment').remove();
     $('.li-card').remove();
+    new_equipment_num = 0
     totalEquipt = 0;
     e.preventDefault();
     $('main').css("opacity", '0.4');
@@ -315,7 +316,9 @@ $('#valid-baseline-train').click(function () {
 })
 
 $('#valid-all-baselines').click(function () {
-    window.location.href = "/alstom/baseline-train/" + id_baseline_instance;
+    if (id_baseline_instance != null) {
+        window.location.href = "/alstom/baseline-train/" + id_baseline_instance;
+    }
 })
 $('#select_baselines_train').change(function () {
     window.location.href = "/alstom/baseline-train/" + $(this).val();

@@ -27,6 +27,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Services\HttpClientKeycloak;
 use App\Repository\TypeEquipementRepository;
 use App\Repository\SoustypeEquipementRepository;
+use App\Services\HttpClientKeycloakInterface;
 
 
 class alstomController extends MainController
@@ -37,12 +38,13 @@ class alstomController extends MainController
     private $em;
     const SESSION = 'session';
 
-    public function __construct(ObjectManager $em)
+    public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
     {
 
         $this->em = $em;
         $tabEquipt = array();
         $this->tabEquipt = $tabEquipt;
+        $this->httpClientKeycloak = $httpClientKeycloak;
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];

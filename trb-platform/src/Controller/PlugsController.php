@@ -10,7 +10,6 @@ use App\Repository\BaselineRepository;
 use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,11 +23,33 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use App\Entity\Plugs;
 use App\Entity\AssocPlugBaseline;
 use App\Entity\Logs;
-use App\Repository\AssocPlugBaselineRepository;
 use App\Repository\LogsRepository;
+use App\Services\HttpClientKeycloakInterface;
+
 
 class PlugsController extends alstomController
 {
+    /**
+     * @var ObjectManager
+     */
+    private $em;
+    const SESSION = 'session';
+
+    public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
+    {
+
+        $this->em = $em;
+        $tabEquipt = array();
+        $this->tabEquipt = $tabEquipt;
+        $this->httpClientKeycloak = $httpClientKeycloak;
+
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $this->encoders = $encoders;
+        $serializer = new Serializer($normalizers, $encoders);
+        $this->serializer = $serializer;
+    }
+
     // ----------------------PLUG
 
     /**
