@@ -173,9 +173,8 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $keycloakUser = $this->getKeycloakClient()->fetchUserFromToken($credentials);
         $username = $keycloakUser->toArray()['preferred_username'];
         $userId = $keycloakUser->toArray()['sub'];
+        $userEmail = $keycloakUser->toArray()['email'];
         $group = $this->httpClientKeycloak->getGroupOfUser($userId);
-
-        $profilesArray = [];
 
         if (isset($group['id'])) {
             $profilesArray = $this->httpClientKeycloak->getProfilesFromGroup($group['id']);
@@ -209,7 +208,7 @@ class KeycloakAuthenticator extends SocialAuthenticator
 
                 if (null !== $response->getBody()) {
                     $body = json_decode($response->getBody(), true);
-                    dump($body);
+
                     if ($current_group['name'] != null) {
                         switch ($current_group['name']) {
                             case 'trb_admin':
@@ -244,8 +243,10 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $this->container->get(self::SESSION)->set('userId', $userId);
         $this->container->get(self::SESSION)->set('services', $services);
 
-        $user->setEmail($username);
-
+        $user->setUsername($username);
+        $user->setEmail($userEmail);
+        $user->setKeycloakId($userId);
+        $user->setStatus(true);
 
         return $user;
     }

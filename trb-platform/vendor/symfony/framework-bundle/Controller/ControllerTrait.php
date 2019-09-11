@@ -399,7 +399,7 @@ trait ControllerTrait
     {
         if (!$this->container->has('message_bus')) {
             $message = class_exists(Envelope::class) ? 'You need to define the "messenger.default_bus" configuration option.' : 'Try running "composer require symfony/messenger".';
-            throw new \LogicException('The message bus is not enabled in your application. '.$message);
+            throw new \LogicException('The message bus is not enabled in your application. ' . $message);
         }
 
         return $this->container->get('message_bus')->dispatch($message);

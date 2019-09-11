@@ -8,6 +8,12 @@
             <h1>Create user</h1>
         </div>
         <div class=" content-form-engineer">
+            {% for message in app.flashes('modal-error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             {{ form_start(form,{ 'action': path('user_add')} ) }}
 
             <div class="container-fluid">

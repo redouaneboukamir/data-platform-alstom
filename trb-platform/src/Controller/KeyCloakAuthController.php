@@ -114,9 +114,9 @@ class KeyCloakAuthController extends MainController
 	public function users()
 	{
 
+
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
-			dump($users);
 		} catch (HttpException $e) {
 			$this->get(KEY_SESSION)->getFlashBag()->clear();
 			$this->addFlash(KEY_ERROR, $e->getMessage());
@@ -131,13 +131,12 @@ class KeyCloakAuthController extends MainController
 			'current_menu' => 'fleet'
 		]);
 	}
+
 	/**
-	 * @Route("/admin/user/add", name="user_add")
+	 * @Route("/admin/user/add", name="user_add", methods={"POST","GET"})
 	 */
 	public function add(Request $request)
 	{
-		dump($this->getUser());
-		$user = new User;
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
 		} catch (HttpException $e) {
@@ -155,14 +154,13 @@ class KeyCloakAuthController extends MainController
 		$form = $this->createForm(AddFormType::class, [KEY_GROUPS => $groupsSelection]);
 
 		$form->handleRequest($request);
+
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
 
-			if ($this->httpClientKeycloak instanceof HttpClientKeycloakMock) {
-				$data[KEY_ID] = $this->httpClientKeycloak->generateRandom($data['username']);
-			}
 			try {
 				$response = $this->httpClientKeycloak->addUser($data);
+				dump($response);
 
 				if (Response::HTTP_OK == $response->getStatusCode()) {
 					$this->addFlash(KEY_SUCCESS, 'User has been created successfully');

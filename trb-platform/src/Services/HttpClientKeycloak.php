@@ -45,6 +45,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 		$this->keycloakProfiles = preg_split('/[, ]+/', getenv('KEYCLOAK_ORIGIN_ROLES'), -1, PREG_SPLIT_NO_EMPTY);
 		$this->keycloakAdminProfile = getenv('KEYCLOAK_ADMIN_ROLE');
 	}
+
 	public function getAttribute($id): array
 	{
 		if (null === $id) {
@@ -1316,7 +1317,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 			$fleets[$key] = $value->getId();
 		}
 
-		// dum($test);
+
 		try {
 			/** Creation du user */
 			$response1 = $this->getKeycloakClient()->request(
@@ -1335,6 +1336,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 					]),
 				]
 			);
+			dump($response1);
 			if (Response::HTTP_CREATED === $response1->getStatusCode()) {
 				/** Add a group to the user */
 				$location = $response1->getHeaderLine(GUZZLE_LOCATION);
@@ -1356,10 +1358,10 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 					]
 				);
 			}
-		} catch (GuzzleException $ex) {
-			$this->logDevelopersErrors($ex);
+		} catch (GuzzleException $e) {
+			$this->logDevelopersErrors($e);
 			$this->logger->error(GUZZLE_NO_HTTP_RESPONSE_ERROR . __METHOD__);
-			$this->checkAuthorizationException($ex);
+			$this->checkAuthorizationException($e);
 			//Delete created user if group and password association failed
 			if (isset($response1) && (!isset($response2) || !isset($response3))) {
 				if (Response::HTTP_CREATED === $response1->getStatusCode()) {
@@ -1368,12 +1370,13 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				}
 			}
 
-			if (Response::HTTP_CONFLICT === $ex->getCode()) {
-				throw new DuplicateEntryException('user_add', 'User with this username already exists');
+			if (Response::HTTP_CONFLICT === $e->getCode()) {
+
+				throw new DuplicateEntryException('user_add', 'User with this USERNAME or EMAIL already exists');
 			}
 
 			throw new HttpException(
-				$ex->getCode(),
+				$e->getCode(),
 				'User creation error, please try again or contact administrator'
 			);
 		}
@@ -1474,7 +1477,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	public function deleteUser($id): JsonResponse
 	{
 		$uriUserById = GUZZLE_USER_SLASH . $id;
-
+		dump($this->getUser());
+		dum($user);
 		try {
 			$this->getKeycloakClient()->request(
 				GUZZLE_DELETE,

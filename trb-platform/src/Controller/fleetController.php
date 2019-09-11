@@ -58,11 +58,15 @@ class fleetController extends alstomController
         $projects = $projectsRepository->findAll();
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $value) {
-            if ($value['username'] == $this->getUser()->getEmail()) {
+            if ($value['id'] == $this->getUser()->getKeycloakId()) {
                 $user = ($value);
             }
         }
-        $id = $user['fleets'];
+        if (array_key_exists('fleets', $user)) {
+            $id = $user['fleets'];
+        } else {
+            $id = "";
+        }
 
         // $projects = $projectsRepository->findByAccess($id);
 
@@ -102,7 +106,7 @@ class fleetController extends alstomController
     {
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $value) {
-            if ($value['username'] == $this->getUser()->getEmail()) {
+            if ($value['id'] == $this->getUser()->getKeycloakId()) {
 
                 foreach ($value['fleets'] as $key => $value) {
                     $id = (int) $value;
@@ -127,7 +131,7 @@ class fleetController extends alstomController
         $users = $this->httpClientKeycloak->getUsers();
         dump($this->getUser());
         foreach ($users as $key => $value) {
-            if ($value['username'] == $this->getUser()->getEmail()) {
+            if ($value['id'] == $this->getUser()->getKeycloakId()) {
 
                 foreach ($value['fleets'] as $key => $value) {
                     $id = (int) $value;

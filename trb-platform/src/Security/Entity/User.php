@@ -7,10 +7,22 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class User.
+ * @UniqueEntity("email")
  */
 class User implements UserInterface
 {
+	/**
+	 * @ORM\Column(type="boolean")
+	 */
+	private $Status;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="email_address", type="string", length=255, unique=true)
+	 */
 	private $email;
+
+	private $username;
 
 	private $keycloakId;
 
@@ -56,9 +68,21 @@ class User implements UserInterface
 	 *
 	 * @see UserInterface
 	 */
+	public function setUsername(string $username): self
+	{
+		$this->username = $username;
+
+		return $this;
+	}
+
+	/**
+	 * A visual identifier that represents this user.
+	 *
+	 * @see UserInterface
+	 */
 	public function getUsername(): string
 	{
-		return (string) $this->email;
+		return (string) $this->username;
 	}
 
 	/**
@@ -146,5 +170,16 @@ class User implements UserInterface
 	public function setKeycloakId($keycloakId): void
 	{
 		$this->keycloakId = $keycloakId;
+	}
+	public function getStatus(): ?bool
+	{
+		return $this->Status;
+	}
+
+	public function setStatus(bool $Status): self
+	{
+		$this->Status = $Status;
+
+		return $this;
 	}
 }
