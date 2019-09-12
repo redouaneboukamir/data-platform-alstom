@@ -113,8 +113,6 @@ class KeyCloakAuthController extends MainController
 	 */
 	public function users()
 	{
-
-
 		try {
 			$users = $this->httpClientKeycloak->getUsers();
 		} catch (HttpException $e) {

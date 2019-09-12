@@ -233,7 +233,7 @@ $('#valid-all-logs').on('click', function (e) {
         success: function (response) {
             //ask for the status
             console.log(response)
-            // location.reload();
+            window.location.href = "/alstom/logs";
         }
     })
 })

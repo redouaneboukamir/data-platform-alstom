@@ -43,6 +43,10 @@ class PlugsController extends alstomController
         $this->tabEquipt = $tabEquipt;
         $this->httpClientKeycloak = $httpClientKeycloak;
 
+        //$endpoint = 'http://minio-azure.default.svc.cluster.local:9000';
+        $endpoint = 'http://localhost:5555';
+        $this->endpoint = $endpoint;
+
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $this->encoders = $encoders;

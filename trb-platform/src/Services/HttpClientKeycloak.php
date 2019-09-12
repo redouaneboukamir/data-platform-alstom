@@ -1817,7 +1817,8 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 				$this->logger->info('************************** Token refresh successfully *****************************');
 
-				throw new TokenAccessException();
+				header("Refresh:0");
+				// throw new TokenAccessException();
 			} catch (GuzzleException $e) {
 				$this->logDevelopersErrors($e);
 				$this->logger->info('************************** Refresh token failed ****************************');
@@ -1831,18 +1832,18 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 						CustomException::ROUTE_LOGOUT
 					);
 				}
-
 				throw new HttpException(
 					$e->getCode(),
 					'Failed to refresh token, Please contact administrator.'
 				);
 			}
 		} elseif (Response::HTTP_FORBIDDEN === $exception->getCode()) {
-			throw new GrantAccessException(
-				CustomException::ROUTE_LOGOUT,
-				"User don't have access right for get this resource, Please contact administrator.",
-				Response::HTTP_UNAUTHORIZED
-			);
+			header("Refresh:0");
+			// throw new GrantAccessException(
+			// 	CustomException::ROUTE_LOGOUT,
+			// 	"User don't have access right for get this resource, Please contact administrator.",
+			// 	Response::HTTP_UNAUTHORIZED
+			// );
 		}
 	}
 
