@@ -29,8 +29,9 @@ class fleetController extends alstomController
 
     public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
     {
-
+        $fleet_user = [];
         $this->em = $em;
+        $this->fleet_user = $fleet_user;
         $tabEquipt = array();
         $this->tabEquipt = $tabEquipt;
         $this->httpClientKeycloak = $httpClientKeycloak;
@@ -76,17 +77,18 @@ class fleetController extends alstomController
             }
         }
         if (array_key_exists('fleets', $user)) {
-            $id = $user['fleets'];
+            $id_fleet = $user['fleets'];
         } else {
-            $id = "";
+            $id_fleet = "";
         }
+        dump($id_fleet);
 
         // $projects = $projectsRepository->findByAccess($id);
 
         return $this->render(('alstom/projects/projects.html.twig'), [
             'current_menu' => 'projects',
             'projects' => $projects,
-            'id_projects' => $id,
+            'id_projects' => $id_fleet,
             'form' => $form->createView()
         ]);
     }
@@ -97,13 +99,31 @@ class fleetController extends alstomController
     public function search_fleet(ProjectsRepository $projectsRepository, Request $request)
     {
 
+        $fleet_user = [];
+
         if ($request->request->get('motclef')) {
             $motclef = strtoupper($request->request->get('motclef'));
             $q = array('motclef' => $motclef . '%');
             $projectSearch = $projectsRepository->findAllProjects($motclef, $q);
         }
+        $users = $this->httpClientKeycloak->getUsers();
+        foreach ($users as $key => $user) {
 
-        $jsonObjectEquipt = $this->serializer->serialize($projectSearch, 'json', [
+            if ($user['id'] == $this->getUser()->getKeycloakId()) {
+
+                foreach ($projectSearch as $key => $fleet) {
+
+                    foreach ($user['fleets'] as $key => $value) {
+
+                        if ($fleet['name'] == $projectsRepository->find((int) $value)->getName()) {
+                            array_push($fleet_user, $fleet['name']);
+                        }
+                    }
+                }
+            }
+        }
+
+        $jsonObjectEquipt = $this->serializer->serialize($fleet_user, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
@@ -115,50 +135,50 @@ class fleetController extends alstomController
      * @Route("/alstom/project/{name}", name="alstom.show-project")
      * @return Response
      */
-    public function show_project_name(Projects $projects)
+    public function show_project_name(Projects $projects, ProjectsRepository $projectsRepository)
     {
+        $fleet_user = [];
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $value) {
             if ($value['id'] == $this->getUser()->getKeycloakId()) {
-
                 foreach ($value['fleets'] as $key => $value) {
-                    $id = (int) $value;
-                    if ($projects->getId() != $id) {
-
-                        return $this->redirectToRoute('alstom.forbidden');
-                    }
+                    array_push($fleet_user, $projectsRepository->find((int) $value)->getName());
                 }
             }
         }
-        return $this->render('alstom/projects/show-project.html.twig', [
-            'current_menu' => 'projects',
-            'project' => $projects,
-        ]);
+        if (in_array($projects->getName(), $fleet_user)) {
+            return $this->render('alstom/projects/show-project.html.twig', [
+                'current_menu' => 'projects',
+                'project' => $projects,
+            ]);
+        } else {
+            return $this->redirectToRoute('alstom.forbidden');
+        };
     }
     /**
      * @Route("/alstom/projects/{id}", name="alstom.project-show")
      * @return Response
      */
-    public function show_project(Projects $projects)
+    public function show_project(Projects $projects, ProjectsRepository $projectsRepository)
     {
+        $fleet_user = [];
         $users = $this->httpClientKeycloak->getUsers();
-        dump($this->getUser());
+
         foreach ($users as $key => $value) {
             if ($value['id'] == $this->getUser()->getKeycloakId()) {
-
                 foreach ($value['fleets'] as $key => $value) {
-                    $id = (int) $value;
-                    if ($projects->getId() != $id) {
-
-                        return $this->redirectToRoute('alstom.forbidden');
-                    }
+                    array_push($fleet_user, (int) $value);
                 }
             }
         }
-        return $this->render('alstom/projects/show-project.html.twig', [
-            'current_menu' => 'projects',
-            'project' => $projects,
-        ]);
+        if (in_array($projects->getId(), $fleet_user)) {
+            return $this->render('alstom/projects/show-project.html.twig', [
+                'current_menu' => 'projects',
+                'project' => $projects,
+            ]);
+        } else {
+            return $this->redirectToRoute('alstom.forbidden');
+        };
     }
 
 

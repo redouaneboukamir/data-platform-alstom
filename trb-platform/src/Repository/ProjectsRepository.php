@@ -64,7 +64,6 @@ class ProjectsRepository extends ServiceEntityRepository
             ORDER BY p.name ASC'
         )
             ->setParameter('motclef', $search);
-
         return $query->execute($q);
     }
 

@@ -29,7 +29,7 @@ $(document).ready(function () {
                     } else {
                         tabName.forEach(element => {
                             console.log(element);
-                            $('#result-fleet').append('<a href="/alstom/project/' + element.name + '"><p class="element-result">' + element.name + '</p>');
+                            $('#result-fleet').append('<a href="/alstom/project/' + element + '"><p class="element-result">' + element + '</p>');
 
                         });
                     }
