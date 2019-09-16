@@ -60,7 +60,6 @@
                                         {% endfor %}
                                     </td>
                                     <td style="padding:0"></td>
-
                                     <td class="text-center" style="display:flex;flex-direction:column">
                                         {% for baseline in train.Baselines %}
                                             <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">{{  baseline.etcsid }}</a>
