@@ -150,8 +150,8 @@ class PlugsController extends alstomController
                 'endpoint' => $this->endpoint,
                 'use_path_style_endpoint' => true,
                 'credentials' => [
-                    'key'    => 'amdptestdeployv7private',
-                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                    'key'    => 'trainbornedevprivate',
+                    'secret' => '0Gi81bIKtoUO2kSphXyjgxV7yvrHkeCzQVMMxIfEMo+bwVFFUXiDMGZTXuN4Rnspx8QYXPsVnsvb/tBInOIMJg==',
                 ],
             ]);
             //definition du bucket 
@@ -208,8 +208,8 @@ class PlugsController extends alstomController
             'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
-                'key'    => 'amdptestdeployv7private',
-                'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                'key'    => 'trainbornedevprivate',
+                'secret' => '0Gi81bIKtoUO2kSphXyjgxV7yvrHkeCzQVMMxIfEMo+bwVFFUXiDMGZTXuN4Rnspx8QYXPsVnsvb/tBInOIMJg==',
             ],
         ]);
         $assoc_log_baseline = new AssocLogBaseline;
@@ -318,8 +318,8 @@ class PlugsController extends alstomController
             'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
-                'key'    => 'amdptestdeployv7private',
-                'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                'key'    => 'trainbornedevprivate',
+                'secret' => '0Gi81bIKtoUO2kSphXyjgxV7yvrHkeCzQVMMxIfEMo+bwVFFUXiDMGZTXuN4Rnspx8QYXPsVnsvb/tBInOIMJg==',
             ],
         ]);
         $key_name = $request->request->get('key');
@@ -356,8 +356,8 @@ class PlugsController extends alstomController
             'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
-                'key'    => 'amdptestdeployv7private',
-                'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                'key'    => 'trainbornedevprivate',
+                'secret' => '0Gi81bIKtoUO2kSphXyjgxV7yvrHkeCzQVMMxIfEMo+bwVFFUXiDMGZTXuN4Rnspx8QYXPsVnsvb/tBInOIMJg==',
             ],
         ]);
 
@@ -405,8 +405,8 @@ class PlugsController extends alstomController
                 'endpoint' => $this->endpoint,
                 'use_path_style_endpoint' => true,
                 'credentials' => [
-                    'key'    => 'amdptestdeployv7private',
-                    'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                    'key'    => 'trainbornedevprivate',
+                    'secret' => '0Gi81bIKtoUO2kSphXyjgxV7yvrHkeCzQVMMxIfEMo+bwVFFUXiDMGZTXuN4Rnspx8QYXPsVnsvb/tBInOIMJg==',
                 ],
             ]);
             //definition du bucket 
@@ -414,7 +414,6 @@ class PlugsController extends alstomController
             //  => 'configuration' pour les plugs
             $bucket = 'temp';
             //$_FILES est le fichier envoyé via POST
-            dump($_FILES['files']);
             $nameFile = $_FILES['files']['name'][1]; //key minio
             $source = $_FILES['files']['tmp_name'][1]; //chemin temporaire
             //instanciation de l'uploader PHP / MINIO
@@ -432,11 +431,14 @@ class PlugsController extends alstomController
             //Upload du fichier et suppression des parties si l'upload ne marche pas.
             try {
                 $result = $uploader->upload();
+                dump($result);
 
                 $key_plug = $result['Key'];
             } catch (MultipartUploadException $e) {
                 // State contains the "Bucket", "Key", and "UploadId"
                 $params = $e->getState()->getId(); //récupération de l'id de l'upload
+                dump($e->getState());
+
                 $result = $s3->abortMultipartUpload($params); //suppression de l'upload
                 $is_success = false; //on gérére l'erreur remontée au javscript
                 $error_msg = "Error during the upload of the file, please retry !"; // on génère le message d'erreur
@@ -464,8 +466,8 @@ class PlugsController extends alstomController
             'endpoint' => $this->endpoint,
             'use_path_style_endpoint' => true,
             'credentials' => [
-                'key'    => 'amdptestdeployv7private',
-                'secret' => 'pxq7omdDjm1vnqFI7cL2G6SHk72B/4G+tinSBr28ddnwN8FGmezQKftGVgLJQEmfzBkIwLubLwmRJ9X31Wez0w==',
+                'key'    => 'trainbornedevprivate',
+                'secret' => '0Gi81bIKtoUO2kSphXyjgxV7yvrHkeCzQVMMxIfEMo+bwVFFUXiDMGZTXuN4Rnspx8QYXPsVnsvb/tBInOIMJg==',
             ],
         ]);
 

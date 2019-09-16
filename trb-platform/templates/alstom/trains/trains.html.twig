@@ -37,6 +37,7 @@
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Fleet</th>
                                 <th class="text-center">Baseline</th>
+                                <th style="padding:0"></th>
                                 <th class="text-center">Equipement</th>
                             </tr>
                         </thead>
@@ -52,21 +53,14 @@
                                         <td class="text-center"></td>
                                     {% endif %}
                                     {% set presence_baseline = false %}
-                                    <td class="" style="">
-                                        <table>
-                                            <tr class="baseline-td">
-                                                <td>
-                                                    {% for baseline in train.Baselines %}
-                                                        {% set presence_baseline = true %}
-                                                        <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">{{  baseline.name }}</a>
-                                                    {% endfor %}
-
-                                                </td>
-                                            </tr>
-
-                                        </table>
-
+                                    <td class="text-center" colspan="2" style="display:flex;flex-direction:column">
+                                        {% for baseline in train.Baselines %}
+                                            {% set presence_baseline = true %}
+                                            <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">{{  baseline.name }}</a>
+                                        {% endfor %}
                                     </td>
+                                    <td style="padding:0"></td>
+
                                     <td class="text-center" style="display:flex;flex-direction:column">
                                         {% for baseline in train.Baselines %}
                                             <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">{{  baseline.etcsid }}</a>

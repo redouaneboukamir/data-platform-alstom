@@ -173,7 +173,11 @@ class KeycloakAuthenticator extends SocialAuthenticator
         $keycloakUser = $this->getKeycloakClient()->fetchUserFromToken($credentials);
         $username = $keycloakUser->toArray()['preferred_username'];
         $userId = $keycloakUser->toArray()['sub'];
-        $userEmail = $keycloakUser->toArray()['email'];
+        if (array_key_exists('email', $keycloakUser->toArray())) {
+            $userEmail = $keycloakUser->toArray()['email'];
+        } else {
+            $userEmail = "";
+        }
         $group = $this->httpClientKeycloak->getGroupOfUser($userId);
 
         if (isset($group['id'])) {

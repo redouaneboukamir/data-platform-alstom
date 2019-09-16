@@ -1817,8 +1817,9 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 
 				$this->logger->info('************************** Token refresh successfully *****************************');
 
-				header("Refresh:0");
-				// throw new TokenAccessException();
+				// header("Refresh:0");
+				dum($test);
+				throw new TokenAccessException();
 			} catch (GuzzleException $e) {
 				$this->logDevelopersErrors($e);
 				$this->logger->info('************************** Refresh token failed ****************************');
