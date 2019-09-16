@@ -1801,7 +1801,6 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				$refreshTokenResponse = $this->refreshTokenClient()->request(
 					'POST',
 					'protocol/openid-connect/token',
-
 					[
 						'form_params' => [
 							'grant_type' => 'refresh_token',
@@ -1816,9 +1815,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				$this->container->get(KEY_SESSION)->set(KEY_ACCESS_TOKEN, $accessToken);
 
 				$this->logger->info('************************** Token refresh successfully *****************************');
-
-				// header("Refresh:0");
-
+				// header('Location: http://www.votresite.com/pageprotegee.php');
 				throw new TokenAccessException();
 			} catch (GuzzleException $e) {
 				$this->logDevelopersErrors($e);
@@ -1839,12 +1836,13 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				);
 			}
 		} elseif (Response::HTTP_FORBIDDEN === $exception->getCode()) {
-			header("Refresh:0");
-			// throw new GrantAccessException(
-			// 	CustomException::ROUTE_LOGOUT,
-			// 	"User don't have access right for get this resource, Please contact administrator.",
-			// 	Response::HTTP_UNAUTHORIZED
-			// );
+
+			throw new GrantAccessException(
+				CustomException::ROUTE_LOGOUT,
+				"User don't have access right for get this resource, Please contact administrator.",
+				Response::HTTP_UNAUTHORIZED
+
+			);
 		}
 	}
 

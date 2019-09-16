@@ -81,9 +81,6 @@ class fleetController extends alstomController
         } else {
             $id_fleet = "";
         }
-        dump($id_fleet);
-
-        // $projects = $projectsRepository->findByAccess($id);
 
         return $this->render(('alstom/projects/projects.html.twig'), [
             'current_menu' => 'projects',

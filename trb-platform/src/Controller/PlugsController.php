@@ -43,8 +43,8 @@ class PlugsController extends alstomController
         $this->tabEquipt = $tabEquipt;
         $this->httpClientKeycloak = $httpClientKeycloak;
 
-        //$endpoint = 'http://minio-azure.default.svc.cluster.local:9000';
-        $endpoint = 'http://localhost:5555';
+        $endpoint = 'http://minio-azure.default.svc.cluster.local:9000';
+        // $endpoint = 'http://localhost:5555';
         $this->endpoint = $endpoint;
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
@@ -256,10 +256,19 @@ class PlugsController extends alstomController
      */
     public function checkFleet(Request $request, ProjectsRepository $projectsRepository)
     {
+        $fleet_user = [];
 
-        $projects = $projectsRepository->findAll();
+        $users = $this->httpClientKeycloak->getUsers();
+        foreach ($users as $key => $user) {
+            if ($user['id'] == $this->getUser()->getKeycloakId()) {
+                foreach ($user['fleets'] as $key => $fleet) {
+                    dump($fleet);
+                    array_push($fleet_user,  $projectsRepository->find($fleet));
+                }
+            }
+        }
 
-        $jsonObjectSubtype = $this->serializer->serialize($projects, 'json', [
+        $jsonObjectSubtype = $this->serializer->serialize($fleet_user, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
             }
