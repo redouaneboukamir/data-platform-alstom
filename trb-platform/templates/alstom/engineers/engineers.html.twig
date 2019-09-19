@@ -29,7 +29,7 @@
                         <th scope="col">Name</th>
                         <th class="" scope="col">Surname</th>
                         <th class="" scope="col">Number of badge</th>
-                        <th class="" scope="col">Projects</th>
+                        <th class="" scope="col">Fleets</th>
                         <th class="th-empty" scope="col"></th>
                     </tr>
                 </thead>
@@ -43,9 +43,9 @@
                             <td>{{ engineer.surname }}</td>
                             <td>{{ engineer.NumBadge }}</td>
                             <td>
-                                {% for project in engineer.projects %}
-                                    <a href="{{ path('alstom.project-show', {id: project.id}) }}">
-                                        <p>{{ project.name }}</p>
+                                {% for fleet in engineer.fleets %}
+                                    <a href="{{ path('alstom.fleet-show', {id: fleet.id}) }}">
+                                        <p>{{ fleet.name }}</p>
                                     </a>
                                 {% endfor %}
                             </td>

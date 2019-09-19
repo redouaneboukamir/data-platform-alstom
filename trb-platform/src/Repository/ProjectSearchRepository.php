@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\ProjectSearch;
+use App\Entity\FleetSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;

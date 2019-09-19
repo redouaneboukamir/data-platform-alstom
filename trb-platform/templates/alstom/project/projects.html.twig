@@ -6,7 +6,7 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h2>
                 <i class="fa fa-angle-right"></i>
-                Fleet</h2>
+                Projects</h2>
             <a href="{{ path('alstom.create-project') }}">
                 <button class="btn btn-primary">New</button>
             </a>
@@ -22,12 +22,9 @@
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">Search</div>
                     <div class="btn-actions-pane-right">
                         <div
-                            class="pull-left search">
-                            {# <input id="search-fleet" name="search-fleet" type="text"> #}
-                            {{ form_start(form, {'attr':{'id':'search-fleet', 'class':'form-search'}}) }}
-                            {{ form_widget(form.name_project) }}
-                            {{ form_end(form) }}
+                            class="pull-left search">{# {{ form_start(form, {'attr':{'id':'search-fleet', 'class':'form-search'}}) }}{{ form_widget(form.name_project) }}{{ form_end(form) }} #}
                         </div>
+
                         <div class="result" id="result-fleet"></div>
                     </div>
                 </div>
@@ -36,28 +33,19 @@
                         <thead>
                             <tr>
                                 <th class="text-center">Name</th>
-                                <th class="text-center">numbers of trains</th>
+                                <th class="text-center">Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for project in projects %}
-                                {% if project.available %}
-                                    {% for id_project in id_projects %}
-                                        {% if id_project == project.id %}
-                                            <tr class="td-table">
-                                                <td class="text-center text-muted">
-                                                    <a href="{{ path('alstom.show-project', {name: project.name}) }}">{{  project.name }}</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    {{  project.trains|length }}
-                                                </td>
-
-                                            </tr>
-                                        {% endif %}
-
-
-                                    {% endfor %}
-                                {% endif %}
+                                <tr class="td-table">
+                                    <td class="text-center text-muted">
+                                        <a href="{{ path('alstom.show-project', {id: project.id}) }}">{{  project.name }}</a>
+                                    </td>
+                                    <td class="text-center text-muted">
+                                        {{  project.description }}
+                                    </td>
+                                </tr>
                             {% endfor %}
 
                         </tbody>

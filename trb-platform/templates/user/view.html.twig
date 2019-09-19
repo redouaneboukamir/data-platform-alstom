@@ -60,7 +60,7 @@
                                             {% for fleet in Entity.fleets %}
                                                 {# <option value="">{{fleet}}</option> #}
 
-                                                <a href="{{path('alstom.project-show',{'id':fleet})}}">{{fleet}}</a>
+                                                <a href="{{path('alstom.fleet-show',{'id':fleet})}}">{{fleet}}</a>
                                             {% endfor %}
                                             {# </select> #}
                                         </td>

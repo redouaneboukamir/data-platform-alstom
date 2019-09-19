@@ -7,7 +7,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use App\Repository\BaselineRepository;
-use App\Repository\ProjectsRepository;
+use App\Repository\FleetsRepository;
 use App\Repository\TrainsRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,8 +43,8 @@ class PlugsController extends alstomController
         $this->tabEquipt = $tabEquipt;
         $this->httpClientKeycloak = $httpClientKeycloak;
 
-        $endpoint = 'http://minio-azure.default.svc.cluster.local:9000';
-        // $endpoint = 'http://localhost:5555';
+        //$endpoint = 'http://minio-azure.default.svc.cluster.local:9000';
+        $endpoint = 'http://localhost:5555';
         $this->endpoint = $endpoint;
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
@@ -254,7 +254,7 @@ class PlugsController extends alstomController
      * @Route("alstom/checkFleet", name="alstom.checkFleet")
      * @return Response
      */
-    public function checkFleet(Request $request, ProjectsRepository $projectsRepository)
+    public function checkFleet(Request $request, FleetsRepository $FleetsRepository)
     {
         $fleet_user = [];
 
@@ -263,7 +263,7 @@ class PlugsController extends alstomController
             if ($user['id'] == $this->getUser()->getKeycloakId()) {
                 foreach ($user['fleets'] as $key => $fleet) {
                     dump($fleet);
-                    array_push($fleet_user,  $projectsRepository->find($fleet));
+                    array_push($fleet_user,  $FleetsRepository->find($fleet));
                 }
             }
         }

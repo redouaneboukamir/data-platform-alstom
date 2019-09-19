@@ -1,0 +1,25 @@
+{% extends 'alstom/dashboard.html.twig' %}
+{% block body %}
+
+    <main class="" role="main">
+
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1>Create fleet</h1>
+        </div>
+        <div class="jumbotron content-form-engineer">
+            {{ form_start(form) }}
+            <div class="text-left">
+                <div class="row">
+                    <div class="col-md-12">{{ form_row(form.Name) }}</div>
+                    <div class="col-md-12">{{ form_row(form.Description) }}</div>
+                </div>
+                <button class="btn btn-primary mt-4">{{ button|default('Send') }}</button>
+            </div>
+            {{ form_end(form) }}
+
+
+        </div>
+
+    </div>
+</main>{% endblock %}

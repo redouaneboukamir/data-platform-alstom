@@ -47,8 +47,8 @@
                                     <td class="text-center text-muted">
                                         <a href="{{ path('alstom.train-show', {name: train.name}) }}">{{  train.name }}</a>
                                     </td>
-                                    {% if train.Projects %}
-                                        <td class="text-center">{{ train.Projects.name|upper }}</td>
+                                    {% if train.Fleets %}
+                                        <td class="text-center">{{ train.Fleets.name|upper }}</td>
                                     {% else %}
                                         <td class="text-center"></td>
                                     {% endif %}
@@ -60,21 +60,25 @@
                                         {% endfor %}
                                     </td>
                                     <td style="padding:0"></td>
-                                    <td class="text-center" style="display:flex;flex-direction:column">
+                                    <td class="text-center" colspan="2" style="display:flex;flex-direction:column">
+
                                         {% for baseline in train.Baselines %}
                                             <a href="{{ path('alstom.show-baseline-train', {id: baseline.id}) }}">{{  baseline.etcsid }}</a>
                                         {% endfor %}
                                     </td>
-                                    {% if presence_baseline == false %}
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                    {% endif %}
+                                    <td style="padding:0"></td>
+
+
                                 </tr>
-                            {% endfor %}
+                                {% if presence_baseline == false %}
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                {% endif %}
+                            </tbody>
                         </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    </main>
-{% endblock %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div></section></main>{% endblock %}

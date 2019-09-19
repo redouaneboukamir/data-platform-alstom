@@ -77,6 +77,11 @@ class Baseline
      */
     private $ETCS_ID;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Projects", inversedBy="Baselines")
+     */
+    private $projects;
+
     public function __construct()
     {
         $this->Original = true;
@@ -279,6 +284,18 @@ class Baseline
                 $assocLogBaseline->setBaseline(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProjects(): ?Projects
+    {
+        return $this->projects;
+    }
+
+    public function setProjects(?Projects $projects): self
+    {
+        $this->projects = $projects;
 
         return $this;
     }

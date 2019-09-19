@@ -139,7 +139,7 @@ $('#add-baseline').click(function (e) {
 })
 
 // Requete AJAX pour remplir le formulaire d'équipement avec l'equipement selectionner
-$('#show-equipment').add('#show-evc').on('click', '.li-equipment > .content-descr > button, .card-evc > .card-header-title > .description-SubtypeCard > .content-descr > button , .li-card > .todo-list-wrapper > .list-group-item > .widget-content-wrapper', function (e) {
+$('#show-equipment').add('#show-evc').on('click', '.li-equipment > .content-descr > button, .card-evc > .card-header-title > .description-SubtypeCard > .content-descr > button , .li-card > .todo-list-wrapper > .list-group-item > .widget-content-wrapper > .widget-content-right > button', function (e) {
     e.preventDefault();
     $('main').css("opacity", '0.4');
     $('#wait-spinner').show();
@@ -258,7 +258,7 @@ $('#form_equipement_edit_baseline').on('submit', function (e) {
             $('main').css("opacity", '1');
             $('#wait-spinner').hide();
             $('#modal-content-form-equipement-edit').hide();
-            $('#btn-add-number-serie' + idEquipment).replaceWith("<p style='color:#000000;font-weight:bold;text-transform:uppercase'>" + response.numSerie + "</p>")
+            $('#btn-add-number-serie' + idEquipment).replaceWith("<p style='color:#000000;font-weight:bold;text-transform:uppercase' id='new-num-serie'>" + response.numSerie + "</p>")
             new_equipment_num_serie.push(response);
             new_equipment_num++;
         },
@@ -298,6 +298,7 @@ $('#valid-baseline-train').click(function () {
                 id_baseline_instance = response.idbaseline;
                 // window.location.href = "/alstom/baseline-train/" + response.idbaseline;
                 $('#title-etcsid').append('<tr><td class="text-left text-muted">' + name_baseline + '</td><td class="text-left text-muted">' + etcsId + '</td></tr>');
+                $('#no-add-baseline').hide();
                 $('#modal_baseline_equipement').hide();
                 console.log(totalEquipt);
                 totalEquipt = 0;

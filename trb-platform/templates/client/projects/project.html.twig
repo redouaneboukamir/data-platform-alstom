@@ -3,7 +3,9 @@
 {% block body %}
     <main role="main" class="col-md-10 offset-1 col-lg-10">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2><i class="fa fa-angle-right"></i> Projects</h2>
+            <h2>
+                <i class="fa fa-angle-right"></i>
+                Fleets</h2>
         </div>
         <section id="unseen">
             <div class="pull-left search">
@@ -13,22 +15,24 @@
             </div>
             <table class="table table-condensed table-content">
                 <thead>
-                <tr class="title-table">
-                    <th class="">Name</th>
-                    <th scope="col" class=" numeric">Number of trains</th>
-                </tr>
+                    <tr class="title-table">
+                        <th class="">Name</th>
+                        <th scope="col" class=" numeric">Number of trains</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for project in projects %}
-                    <tr class="td-table">
-                        <td><a href="{{ path('client.project-show', {id: project.id}) }}">{{  project.name }}</td>
-                        <td>
-                            {#                                       {% for train in project.trains %}#}
-                            {{  project.trains|length }}
-                            {#                                        {% endfor %}#}
-                        </td>
-                    </tr>
-                {% endfor %}
+                    {% for fleet in fleets %}
+                        <tr class="td-table">
+                            <td>
+                                <a href="{{ path('client.fleet-show', {id: fleet.id}) }}">{{  fleet.name }}</td>
+                            </td>
+                            <td>
+                                {#                                       {% for train in fleet.trains %}#}
+                                {{  fleet.trains|length }}
+                                {#                                        {% endfor %}#}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </section>

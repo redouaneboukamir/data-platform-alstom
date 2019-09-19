@@ -19,8 +19,9 @@ $(document).ready(function () {
                 // async: false,
                 dataType: 'json', // JSON
                 success: function (response) {
+                    console.log(response);
                     $('.element-result').remove();
-                    let tabName = JSON.parse(response.projectsFound);
+                    let tabName = JSON.parse(response.fleetsFound);
 
                     if (tabName.length == 0 || !search) {
                         $('.element-result').remove();
@@ -29,7 +30,7 @@ $(document).ready(function () {
                     } else {
                         tabName.forEach(element => {
                             console.log(element);
-                            $('#result-fleet').append('<a href="/alstom/project/' + element + '"><p class="element-result">' + element + '</p>');
+                            $('#result-fleet').append('<a href="/alstom/fleets/' + element + '"><p class="element-result">' + element + '</p>');
 
                         });
                     }

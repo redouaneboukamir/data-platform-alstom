@@ -1815,7 +1815,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				$this->container->get(KEY_SESSION)->set(KEY_ACCESS_TOKEN, $accessToken);
 
 				$this->logger->info('************************** Token refresh successfully *****************************');
-				// header('Location: http://www.votresite.com/pageprotegee.php');
+				header('Location: ./check');
 				throw new TokenAccessException();
 			} catch (GuzzleException $e) {
 				$this->logDevelopersErrors($e);

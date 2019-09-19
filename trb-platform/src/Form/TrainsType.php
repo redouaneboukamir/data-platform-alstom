@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Baseline;
-use App\Entity\Projects;
+use App\Entity\Fleets;
 use App\Entity\Trains;
-use App\Repository\ProjectsRepository;
+use App\Repository\FleetsRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -18,10 +18,10 @@ class TrainsType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('projects', EntityType::class, [
-                'class' => Projects::class,
-                'query_builder' => static function (ProjectsRepository $projectsRepository) {
-                    return $projectsRepository->findAvailable();
+            ->add('fleets', EntityType::class, [
+                'class' => Fleets::class,
+                'query_builder' => static function (FleetsRepository $FleetsRepository) {
+                    return $FleetsRepository->findAvailable();
                 },
                 'attr' => [
                     'id' => 'choice_project',

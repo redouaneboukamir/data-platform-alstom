@@ -30,7 +30,7 @@ class TrainsRepository extends ServiceEntityRepository
     public function findTrainByFleet($fleet)
     {
         return $this->createQueryBuilder('t')
-            ->where('t.Projects = :fleet')
+            ->where('t.Fleets = :fleet')
             ->setParameter('fleet', $fleet)
             ->getQuery()
             ->getResult();

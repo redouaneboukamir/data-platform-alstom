@@ -91,7 +91,7 @@ class KeyCloakAuthController extends MainController
 		} else if ($ROLE_CLIENT_USER || $ROLE_CLIENT_ADMIN) {
 			return $this->redirectToRoute('client.home');
 		} else {
-			$this->redirectToRoute('connect_keycloack_start');
+			return $this->redirectToRoute('connect_keycloack_start');
 		}
 	}
 

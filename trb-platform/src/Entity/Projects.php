@@ -5,16 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Self_;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectsRepository")
- * @UniqueEntity("name")
- * @Vich\Uploadable()
  */
 class Projects
 {
@@ -26,68 +19,30 @@ class Projects
     private $id;
 
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
-     * @Vich\UploadableField(mapping="project_image", fileNameProperty="filename")
-     *
-     * @var File|null
+     * @ORM\Column(type="string", length=255)
      */
-    private $profile_picture;
+    private $Name;
 
-    /**
-     * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $filename;
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $Description;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Fleets", mappedBy="projects")
      */
-    private $number_trains;
+    private $Fleets;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Baseline", mappedBy="projects")
      */
-
-    private $available;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Clients", mappedBy="Projects")
-     */
-    private $clients;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Engineers", mappedBy="Projects")
-     */
-    private $engineers;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Trains", mappedBy="Projects")
-     */
-    private $trains;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $updated_at;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ClientsUser", mappedBy="projects")
-     */
-    private $clientsUsers;
+    private $Baselines;
 
     public function __construct()
     {
-        $this->clients = new ArrayCollection();
-        $this->engineers = new ArrayCollection();
-        $this->trains = new ArrayCollection();
-        $this->clientsUsers = new ArrayCollection();
+        $this->Fleets = new ArrayCollection();
+        $this->Baselines = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -96,121 +51,53 @@ class Projects
 
     public function getName(): ?string
     {
-        return $this->name;
+        return $this->Name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $Name): self
     {
-        $this->name = \strtoupper($name);
+        $this->Name = $Name;
 
         return $this;
     }
 
-    public function getNumberTrains(): ?int
+    public function getDescription(): ?string
     {
-        return $this->number_trains;
+        return $this->Description;
     }
 
-    public function setNumberTrains(?int $number_trains): self
+    public function setDescription(string $Description): self
     {
-        $this->number_trains = $number_trains;
-
-        return $this;
-    }
-
-    public function getAvailable(): ?bool
-    {
-        return $this->available;
-    }
-
-    public function setAvailable(?bool $available): self
-    {
-        $this->available = $available;
+        $this->Description = $Description;
 
         return $this;
     }
 
     /**
-     * @return Collection|Clients[]
+     * @return Collection|Fleets[]
      */
-    public function getClients(): Collection
+    public function getFleets(): Collection
     {
-        return $this->clients;
+        return $this->Fleets;
     }
 
-    public function addClient(Clients $client): self
+    public function addFleet(Fleets $fleet): self
     {
-        if (!$this->clients->contains($client)) {
-            $this->clients[] = $client;
-            $client->addProject($this);
+        if (!$this->Fleets->contains($fleet)) {
+            $this->Fleets[] = $fleet;
+            $fleet->setProjects($this);
         }
 
         return $this;
     }
 
-    public function removeClient(Clients $client): self
+    public function removeFleet(Fleets $fleet): self
     {
-        if ($this->clients->contains($client)) {
-            $this->clients->removeElement($client);
-            $client->removeProject($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Engineers[]
-     */
-    public function getEngineers(): Collection
-    {
-        return $this->engineers;
-    }
-
-    public function addEngineer(Engineers $engineer): self
-    {
-        if (!$this->engineers->contains($engineer)) {
-            $this->engineers[] = $engineer;
-            $engineer->addProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEngineer(Engineers $engineer): self
-    {
-        if ($this->engineers->contains($engineer)) {
-            $this->engineers->removeElement($engineer);
-            $engineer->removeProject($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Trains[]
-     */
-    public function getTrains(): Collection
-    {
-        return $this->trains;
-    }
-
-    public function addTrain(Trains $train): self
-    {
-        if (!$this->trains->contains($train)) {
-            $this->trains[] = $train;
-            $train->setProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTrain(Trains $train): self
-    {
-        if ($this->trains->contains($train)) {
-            $this->trains->removeElement($train);
+        if ($this->Fleets->contains($fleet)) {
+            $this->Fleets->removeElement($fleet);
             // set the owning side to null (unless already changed)
-            if ($train->getProject() === $this) {
-                $train->setProject(null);
+            if ($fleet->getProjects() === $this) {
+                $fleet->setProjects(null);
             }
         }
 
@@ -218,82 +105,31 @@ class Projects
     }
 
     /**
-     * @return File|null
+     * @return Collection|Baseline[]
      */
-    public function getProfilePicture(): ?File
+    public function getBaselines(): Collection
     {
-        return $this->profile_picture;
+        return $this->Baselines;
     }
 
-    /**
-     * @param File|null $profile_picture
-     * @return Projects
-     * @throws \Exception
-     */
-    public function setProfilePicture(?File $profile_picture): Projects
+    public function addBaseline(Baseline $baseline): self
     {
-        $this->profile_picture = $profile_picture;
-        if ($this->profile_picture instanceof UploadedFile) {
-            $this->updated_at = new \DateTime('now');
-        }
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getFilename(): ?string
-    {
-        return $this->filename;
-    }
-
-    /**
-     * @param string|null $filename
-     */
-    public function setFilename(?string $filename): void
-    {
-        $this->filename = $filename;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * @param mixed $updated_at
-     */
-    public function setUpdatedAt($updated_at): void
-    {
-        $this->updated_at = $updated_at;
-    }
-
-    /**
-     * @return Collection|ClientsUser[]
-     */
-    public function getClientsUsers(): Collection
-    {
-        return $this->clientsUsers;
-    }
-
-    public function addClientsUser(ClientsUser $clientsUser): self
-    {
-        if (!$this->clientsUsers->contains($clientsUser)) {
-            $this->clientsUsers[] = $clientsUser;
-            $clientsUser->addProject($this);
+        if (!$this->Baselines->contains($baseline)) {
+            $this->Baselines[] = $baseline;
+            $baseline->setProjects($this);
         }
 
         return $this;
     }
 
-    public function removeClientsUser(ClientsUser $clientsUser): self
+    public function removeBaseline(Baseline $baseline): self
     {
-        if ($this->clientsUsers->contains($clientsUser)) {
-            $this->clientsUsers->removeElement($clientsUser);
-            $clientsUser->removeProject($this);
+        if ($this->Baselines->contains($baseline)) {
+            $this->Baselines->removeElement($baseline);
+            // set the owning side to null (unless already changed)
+            if ($baseline->getProjects() === $this) {
+                $baseline->setProjects(null);
+            }
         }
 
         return $this;

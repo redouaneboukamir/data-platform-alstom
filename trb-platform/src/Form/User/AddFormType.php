@@ -3,7 +3,7 @@
 namespace App\Form\User;
 
 use App\Constraints\PasswordCheck;
-use App\Entity\Projects;
+use App\Entity\Fleets;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use App\Repository\ProjectsRepository;
+use App\Repository\FleetsRepository;
 
 //use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -65,9 +65,9 @@ class AddFormType extends AbstractType
 				'required' => true,
 			])
 			->add('fleets', EntityType::class, [
-				'class' => Projects::class,
-				'query_builder' => static function (ProjectsRepository $projectsRepository) {
-					return $projectsRepository->findAvailable();
+				'class' => Fleets::class,
+				'query_builder' => static function (FleetsRepository $FleetsRepository) {
+					return $FleetsRepository->findAvailable();
 				},
 				'attr' => [
 					'id' => 'choice_project',

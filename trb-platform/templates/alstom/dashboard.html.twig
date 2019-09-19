@@ -111,13 +111,19 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false">
+                                    <a class="waves-effect waves-dark" href="{{path('alstom.projects')}}" aria-expanded="false">
+
+                                        <i class="fas fa-project-diagram"></i>
+                                        <span class="hide-menu">Projects</span>
+                                    </a>
+                                    <a class="waves-effect waves-dark" href="{{path('alstom.fleet_management')}}" aria-expanded="false">
+
                                         <i class="fas fa-project-diagram"></i>
                                         <span class="hide-menu">Fleet Management</span>
                                     </a>
                                     <ul class="sub-menu-sidebar">
-                                        <li class="{% if (current_menu == " fleet") %} active {% endif %}">
-                                            <a href="{{path('alstom.projects')}}" class=" waves-effect waves-dark" aria-expanded=" false">
+                                        <li class="{% if (current_menu == " fleets") %} active {% endif %}">
+                                            <a href="{{path('alstom.fleets')}}" class=" waves-effect waves-dark" aria-expanded=" false">
                                                 Fleet</a>
                                         </li>
                                         <li class="{% if (current_menu == " trains") %} active {% endif %}">

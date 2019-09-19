@@ -1,62 +1,61 @@
-{% block stylesheets %}
-
-{% endblock %}
+{% block stylesheets %}{% endblock %}
 <div class="container bootstrap snippet">
-<div class="row">
-    <div class="col-sm-3">
+    <div class="row">
+        <div class="col-sm-3">
 
-    {{ form_start(form) }}
-        <div class="text-center content-img-form">
-            {% if button == 'Edit' %}
-                {% if engineer.filename %}
-                    <img class="img-fluid" src="../build/img/engineers/{{ engineer.filename }}" alt="profile picture engineer">
+            {{ form_start(form) }}
+            <div class="text-center content-img-form">
+                {% if button == 'Edit' %}
+                    {% if engineer.filename %}
+                        <img class="img-fluid" src="../build/img/engineers/{{ engineer.filename }}" alt="profile picture engineer">
+                    {% else %}
+                        <img src="{{ asset('../build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar engineer alstom">
+                    {% endif %}
                 {% else %}
                     <img src="{{ asset('../build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar engineer alstom">
                 {% endif %}
-            {% else %}
-                <img src="{{ asset('../build/img/engineers/avatar-engineer.svg') }}" class="avatar img-circle img-thumbnail" alt="avatar engineer alstom">
-            {% endif %}
-            <span class="btn btn-default btn-file">
-                {{ form_row(form.profilePicture) }}
-            </span>
+                <span class="btn btn-default btn-file">
+                    {{ form_row(form.profilePicture) }}
+                </span>
+            </div>
+
         </div>
+        {{ form_row(form._token) }}
+        <div class="col-sm-9 content-input">
 
-    </div>
-    {{ form_row(form._token) }}
-    <div class="col-sm-9 content-input">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <hr>
+                    <div class="form-group">
 
-        <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                <div class="form-group">
-
-                    <div class="col-xs-6">
-                        {{ form_row(form.Name) }}
+                        <div class="col-xs-6">
+                            {{ form_row(form.Name) }}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <div class="col-xs-6">
-                        {{ form_row(form.Surname) }}
+                        <div class="col-xs-6">
+                            {{ form_row(form.Surname) }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <div class="col-xs-6">
-                        {{ form_row(form.Num_Badge) }}
+                        <div class="col-xs-6">
+                            {{ form_row(form.Num_Badge) }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-xs-6">
-                        {{ form_row(form.projects) }}
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            {{ form_row(form.fleets) }}
+                        </div>
                     </div>
+                    <button class="btn btn-primary">{{ button|default('Send') }}</button>
+                    {{ form_end(form) }}
                 </div>
-                <button class="btn btn-primary">{{ button|default('Send') }}</button>
-                {{ form_end(form) }}
-            </div><!--/tab-content-->
+                <!--/tab-content-->
 
-        </div><!--/col-9-->
-</div>
-
+            </div>
+            <!--/col-9-->
+        </div>

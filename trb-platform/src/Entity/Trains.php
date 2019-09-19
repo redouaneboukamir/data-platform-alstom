@@ -31,9 +31,9 @@ class Trains
     private $train_type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Projects", inversedBy="trains")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fleets", inversedBy="trains")
      */
-    private $Projects;
+    private $Fleets;
 
     /**
      * @ORM\Column(type="json_array", nullable=true)
@@ -69,14 +69,14 @@ class Trains
         return $this;
     }
 
-    public function getProjects(): ?Projects
+    public function getFleets(): ?Fleets
     {
-        return $this->Projects;
+        return $this->Fleets;
     }
 
-    public function setProjects(?Projects $Projects): self
+    public function setFleets(?Fleets $Fleets): self
     {
-        $this->Projects = $Projects;
+        $this->Fleets = $Fleets;
 
         return $this;
     }

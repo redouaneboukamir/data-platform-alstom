@@ -6,11 +6,11 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use App\Entity\Projects;
-use App\Entity\ProjectSearch;
-use App\Repository\ProjectsRepository;
+use App\Entity\Fleets;
+use App\Entity\FleetSearch;
+use App\Repository\FleetsRepository;
 use App\Form\ProjectSearchType;
-use App\Form\ProjectType;
+use App\Form\FleetType;
 use App\Repository\TrainsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,19 +57,19 @@ class fleetController extends alstomController
         ]);
     }
 
-    //    PAGE Projects -------------------------------------------------------------
+    //    PAGE FLEET -------------------------------------------------------------
     /**
-     * @Route("/alstom/projects", name="alstom.projects")
+     * @Route("/alstom/fleets", name="alstom.fleets")
      * @return Response
      */
     //    Vue de la page projects
-    public function projects(ProjectsRepository $projectsRepository, Request $request): Response
+    public function fleets(FleetsRepository $FleetsRepository, Request $request): Response
     {
-        $search = new ProjectSearch();
+        $search = new FleetSearch();
         $form = $this->createForm(ProjectSearchType::class, $search);
         $form->handleRequest($request);
 
-        $projects = $projectsRepository->findAll();
+        $fleets = $FleetsRepository->findAll();
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $value) {
             if ($value['id'] == $this->getUser()->getKeycloakId()) {
@@ -81,11 +81,11 @@ class fleetController extends alstomController
         } else {
             $id_fleet = "";
         }
-
-        return $this->render(('alstom/projects/projects.html.twig'), [
-            'current_menu' => 'projects',
-            'projects' => $projects,
-            'id_projects' => $id_fleet,
+        dump($fleets);
+        return $this->render(('alstom/fleets/fleets.html.twig'), [
+            'current_menu' => 'fleets',
+            'fleets' => $fleets,
+            'id_fleets' => $id_fleet,
             'form' => $form->createView()
         ]);
     }
@@ -93,7 +93,7 @@ class fleetController extends alstomController
      * @Route("/alstom/search-fleet", name="alstom.search-fleet")
      * @return Response
      */
-    public function search_fleet(ProjectsRepository $projectsRepository, Request $request)
+    public function search_fleet(FleetsRepository $FleetsRepository, Request $request)
     {
 
         $fleet_user = [];
@@ -101,18 +101,17 @@ class fleetController extends alstomController
         if ($request->request->get('motclef')) {
             $motclef = strtoupper($request->request->get('motclef'));
             $q = array('motclef' => $motclef . '%');
-            $projectSearch = $projectsRepository->findAllProjects($motclef, $q);
+            $fleetsSearch = $FleetsRepository->findAllFleets($motclef, $q);
         }
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $user) {
 
             if ($user['id'] == $this->getUser()->getKeycloakId()) {
 
-                foreach ($projectSearch as $key => $fleet) {
+                foreach ($fleetsSearch as $key => $fleet) {
 
                     foreach ($user['fleets'] as $key => $value) {
-
-                        if ($fleet['name'] == $projectsRepository->find((int) $value)->getName()) {
+                        if ($fleet['name'] == $FleetsRepository->find((int) $value)->getName()) {
                             array_push($fleet_user, $fleet['name']);
                         }
                     }
@@ -126,37 +125,37 @@ class fleetController extends alstomController
             }
         ]);
 
-        return $this->json(['projectsFound' => $jsonObjectEquipt], 200);
+        return $this->json(['fleetsFound' => $jsonObjectEquipt], 200);
     }
     /**
-     * @Route("/alstom/project/{name}", name="alstom.show-project")
+     * @Route("/alstom/fleets/{name}", name="alstom.show-fleet")
      * @return Response
      */
-    public function show_project_name(Projects $projects, ProjectsRepository $projectsRepository)
+    public function show_fleet_name(Fleets $fleets, FleetsRepository $FleetsRepository)
     {
         $fleet_user = [];
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $value) {
             if ($value['id'] == $this->getUser()->getKeycloakId()) {
                 foreach ($value['fleets'] as $key => $value) {
-                    array_push($fleet_user, $projectsRepository->find((int) $value)->getName());
+                    array_push($fleet_user, $FleetsRepository->find((int) $value)->getName());
                 }
             }
         }
-        if (in_array($projects->getName(), $fleet_user)) {
-            return $this->render('alstom/projects/show-project.html.twig', [
-                'current_menu' => 'projects',
-                'project' => $projects,
+        if (in_array($fleets->getName(), $fleet_user)) {
+            return $this->render('alstom/fleets/show-fleet.html.twig', [
+                'current_menu' => 'fleets',
+                'project' => $fleets,
             ]);
         } else {
             return $this->redirectToRoute('alstom.forbidden');
         };
     }
     /**
-     * @Route("/alstom/projects/{id}", name="alstom.project-show")
+     * @Route("/alstom/fleets/{id}", name="alstom.fleet-show")
      * @return Response
      */
-    public function show_project(Projects $projects, ProjectsRepository $projectsRepository)
+    public function show_project(Fleets $fleets, FleetsRepository $FleetsRepository)
     {
         $fleet_user = [];
         $users = $this->httpClientKeycloak->getUsers();
@@ -168,10 +167,10 @@ class fleetController extends alstomController
                 }
             }
         }
-        if (in_array($projects->getId(), $fleet_user)) {
-            return $this->render('alstom/projects/show-project.html.twig', [
-                'current_menu' => 'projects',
-                'project' => $projects,
+        if (in_array($fleets->getId(), $fleet_user)) {
+            return $this->render('alstom/fleets/show-fleet.html.twig', [
+                'current_menu' => 'fleets',
+                'fleet' => $fleets,
             ]);
         } else {
             return $this->redirectToRoute('alstom.forbidden');
@@ -179,28 +178,28 @@ class fleetController extends alstomController
     }
 
 
-    //    page création projects
+    //    page création FLEET
     /**
-     * @Route("/alstom/create-project", name="alstom.create-project")
+     * @Route("/alstom/create-fleet", name="alstom.create-fleet")
      * @return Response
      */
-    public function create_project(Request $request): Response
+    public function create_fleet(Request $request): Response
     {
-        $project = new Projects();
-        $form = $this->createForm(ProjectType::class, $project);
+        $fleets = new Fleets();
+        $form = $this->createForm(FleetType::class, $fleets);
         $form->handleRequest($request);
 
         //        Validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-            $project->getAvailable(true);
-            $this->em->persist($project);
+            $fleets->getAvailable(true);
+            $this->em->persist($fleets);
             $this->em->flush();
             $this->addFlash('success', 'Project create with success');
-            return $this->redirectToRoute('alstom.projects');
+            return $this->redirectToRoute('alstom.fleets');
         }
 
-        return $this->render('alstom/projects/create-project.html.twig', [
-            'current_menu' => 'projects',
+        return $this->render('alstom/fleets/create-fleet.html.twig', [
+            'current_menu' => 'fleets',
             'button' => 'Create',
             'form' => $form->createView()
         ]);
@@ -209,44 +208,44 @@ class fleetController extends alstomController
 
     //    Page d'edit de project
     /**
-     * @Route("/alstom/edit-project/{id}", name="alstom.edit-project", methods={"GET", "POST"})
+     * @Route("/alstom/edit-fleet/{id}", name="alstom.edit-fleet", methods={"GET", "POST"})
      * @return Response
      */
-    public function edit_project(Request $request, Projects $projects): Response
+    public function edit_fleet(Request $request, Fleets $fleets): Response
     {
-        $form = $this->createForm(ProjectType::class, $projects);
+        $form = $this->createForm(FleetType::class, $fleets);
         $form->handleRequest($request);
 
         //        Validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->flush();
-            $this->addFlash('success', 'Project edit with success');
-            return $this->redirectToRoute('alstom.projects');
+            $this->addFlash('success', 'Fleet edit with success');
+            return $this->redirectToRoute('alstom.fleets');
         }
 
-        return $this->render('alstom/projects/edit-project.html.twig', [
-            'current_menu' => 'projects',
+        return $this->render('alstom/fleets/edit-project.html.twig', [
+            'current_menu' => 'fleets',
             'button' => 'Edit',
-            'project' => $projects,
+            'fleet' => $fleets,
             'form' => $form->createView()
         ]);
     }
-    //    suppresion de project
+    //    suppresion de fleet
     /**
-     * @Route("/alstom/project/{id}/delete", name="alstom.delete-project", methods={"DELETE"})
+     * @Route("/alstom/fleet/{id}/delete", name="alstom.delete-fleet", methods={"DELETE"})
      * @param Request $request
      * @return Response
      */
-    public function delete_project(Projects $projects, Request $request): Response
+    public function delete_fleet(Fleets $fleets, Request $request): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $projects->getId(), $request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $fleets->getId(), $request->get('_token'))) {
 
-            $projects->setAvailable(false);
+            $fleets->setAvailable(false);
             $this->em->flush();
-            $this->addFlash('success', 'Project delete with success');
+            $this->addFlash('success', 'Fleet delete with success');
         }
-        return $this->redirectToRoute('alstom.projects');
+        return $this->redirectToRoute('alstom.fleets');
     }
     /**
      * @Route("alstom/checkTrains", name="alstom.checkTrains")
@@ -268,12 +267,12 @@ class fleetController extends alstomController
      * @Route("alstom/addTrainToFleet/{id}", name="alstom.addTrainToFleet")
      * @return Response
      */
-    public function addTrainToFleet(Projects $project, Request $request, TrainsRepository $trainsRepository)
+    public function addTrainToFleet(Fleets $fleets, Request $request, TrainsRepository $trainsRepository)
     {
 
         $id_train = $request->request->get('train-flet');
         $trains = $trainsRepository->find($id_train);
-        $project->addTrain($trains);
+        $fleets->addTrain($trains);
         $this->em->flush();
         $jsonObjectSubtype = $this->serializer->serialize($trains, 'json', [
             'circular_reference_handler' => function ($object) {

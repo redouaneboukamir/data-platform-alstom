@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\ClientsUser;
-use App\Entity\Projects;
-use App\Repository\ProjectsRepository;
+use App\Entity\Fleets;
+use App\Repository\FleetsRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -21,7 +21,7 @@ class ClientUserType extends AbstractType
                 'attr' => [
                     'placeholder' => 'you@email.com',
                 ]
-//                'required' => false
+                //                'required' => false
             ])
             ->add('name', null, [
                 'label' => 'Name client',
@@ -29,10 +29,10 @@ class ClientUserType extends AbstractType
                     'placeholder' => 'Name',
                 ]
             ])
-            ->add('projects', EntityType::class, [
-                'class' => Projects::class,
-                'query_builder' => function(ProjectsRepository $projectsRepository){
-                    return $projectsRepository->findAvailable();
+            ->add('fleets', EntityType::class, [
+                'class' => Fleets::class,
+                'query_builder' => function (FleetsRepository $FleetsRepository) {
+                    return $FleetsRepository->findAvailable();
                 },
                 'choice_label' => 'name',
                 'multiple' => true,
@@ -40,8 +40,7 @@ class ClientUserType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Choose projects to clients',
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

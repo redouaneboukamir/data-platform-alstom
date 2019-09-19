@@ -15,7 +15,7 @@ use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
 use App\Form\EquipementType;
 use App\Repository\TrainsRepository;
-use App\Repository\ProjectsRepository;
+use App\Repository\FleetsRepository;
 use App\Repository\BaselineRepository;
 use App\Entity\Baseline;
 use App\Repository\TypeEquipementRepository;
@@ -56,14 +56,14 @@ class trainController extends alstomController
      * @return Response
      */
 
-    public function trains(TrainsRepository $trainsRepository, ProjectsRepository $projectsRepository, Request $request): Response
+    public function trains(TrainsRepository $trainsRepository, FleetsRepository $FleetsRepository, Request $request): Response
     {
 
         $search = new TrainsSearch();
         $form = $this->createForm(TrainsSearchType::class, $search);
         $form->handleRequest($request);
         $trains = $trainsRepository->findAll();
-        $fleets = $projectsRepository->findAll();
+        $fleets = $FleetsRepository->findAll();
         return $this->render('alstom/trains/trains.html.twig', [
             'current_menu' => 'trains',
             'trains' => $trains,
@@ -143,7 +143,7 @@ class trainController extends alstomController
      */
     public function checkEquipements(Request $request, Baseline $baseline): Response
     {
-
+        dump($baseline->getERTMS());
         foreach ($baseline->getERTMS() as $key => $value) {
             $equipements = $value->getEquipements();
         }

@@ -36,7 +36,7 @@ class Clients
     private $profile_picture;
 
     /**
-    * @var string|null
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
@@ -63,9 +63,9 @@ class Clients
     private $email;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Projects", inversedBy="clients")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Fleets", inversedBy="clients")
      */
-    private $Projects;
+    private $Fleets;
 
     /**
      * @ORM\Column(type="datetime",nullable=true)
@@ -76,7 +76,7 @@ class Clients
     public function __construct()
     {
         $this->countries = new ArrayCollection();
-        $this->Projects = new ArrayCollection();
+        $this->Fleets = new ArrayCollection();
     }
 
 
@@ -152,26 +152,26 @@ class Clients
     }
 
     /**
-     * @return Collection|Projects[]
+     * @return Collection|Fleets[]
      */
-    public function getProjects(): Collection
+    public function getFleets(): Collection
     {
-        return $this->Projects;
+        return $this->Fleets;
     }
 
-    public function addProject(Projects $project): self
+    public function addProject(Fleets $fleet): self
     {
-        if (!$this->Projects->contains($project)) {
-            $this->Projects[] = $project;
+        if (!$this->Fleets->contains($fleet)) {
+            $this->Fleets[] = $fleet;
         }
 
         return $this;
     }
 
-    public function removeProject(Projects $project): self
+    public function removefleets(Fleets $fleet): self
     {
-        if ($this->Projects->contains($project)) {
-            $this->Projects->removeElement($project);
+        if ($this->Fleets->contains($fleet)) {
+            $this->Fleets->removeElement($fleet);
         }
 
         return $this;
@@ -197,7 +197,6 @@ class Clients
             $this->updated_at = new \DateTime('now');
         }
         return $this;
-
     }
 
     /**
@@ -227,5 +226,4 @@ class Clients
 
         return $this;
     }
-
 }

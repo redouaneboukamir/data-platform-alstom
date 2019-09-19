@@ -4,8 +4,8 @@ namespace App\Form;
 
 use App\Entity\Clients;
 use App\Entity\Country;
-use App\Entity\Projects;
-use App\Repository\ProjectsRepository;
+use App\Entity\Fleets;
+use App\Repository\FleetsRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -26,10 +26,10 @@ class ClientsType extends AbstractType
                     'placeholder' => 'Name',
                 ]
             ])
-            ->add('projects', EntityType::class, [
-                'class' => Projects::class,
-                'query_builder' => function(ProjectsRepository $projectsRepository){
-                    return $projectsRepository->findAvailable();
+            ->add('fleets', EntityType::class, [
+                'class' => Fleets::class,
+                'query_builder' => function (FleetsRepository $FleetsRepository) {
+                    return $FleetsRepository->findAvailable();
                 },
                 'choice_label' => 'name',
                 'multiple' => true,
@@ -38,7 +38,7 @@ class ClientsType extends AbstractType
                     'placeholder' => 'Choose projects to clients',
                 ]
             ])
-            ->add('countries', EntityType::class,[
+            ->add('countries', EntityType::class, [
                 'class' => Country::class,
                 'choice_label' => 'name',
                 'multiple' => true,
@@ -52,17 +52,17 @@ class ClientsType extends AbstractType
                 'attr' => [
                     'placeholder' => 'you@email.com',
                 ]
-//                'required' => false
+                //                'required' => false
             ])
             ->add('profilePicture', FileType::class, [
                 'label' => 'Image profile (PNG, JPG, PDF)',
                 'required' => false,
-                'attr' => ['id' => 'logo-id',
+                'attr' => [
+                    'id' => 'logo-id',
                     'class' => 'text-center center-block file-upload'
                 ]
 
             ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

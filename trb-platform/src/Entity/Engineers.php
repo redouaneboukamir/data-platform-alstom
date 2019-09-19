@@ -58,9 +58,9 @@ class Engineers
     private $Num_Badge;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Projects", inversedBy="engineers")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Fleets", inversedBy="engineers")
      */
-    private $Projects;
+    private $Fleets;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -70,7 +70,7 @@ class Engineers
 
     public function __construct()
     {
-        $this->Projects = new ArrayCollection();
+        $this->Fleets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,26 +115,26 @@ class Engineers
     }
 
     /**
-     * @return Collection|Projects[]
+     * @return Collection|Fleets[]
      */
-    public function getProjects(): Collection
+    public function getFleets(): Collection
     {
-        return $this->Projects;
+        return $this->Fleets;
     }
 
-    public function addProject(Projects $project): self
+    public function addProject(Fleets $fleet): self
     {
-        if (!$this->Projects->contains($project)) {
-            $this->Projects[] = $project;
+        if (!$this->Fleets->contains($fleet)) {
+            $this->Fleets[] = $fleet;
         }
 
         return $this;
     }
 
-    public function removeProject(Projects $project): self
+    public function removefleet(Fleets $fleet): self
     {
-        if ($this->Projects->contains($project)) {
-            $this->Projects->removeElement($project);
+        if ($this->Fleets->contains($fleet)) {
+            $this->Fleets->removeElement($fleet);
         }
 
         return $this;
@@ -161,7 +161,6 @@ class Engineers
             $this->updated_at = new \DateTime('now');
         }
         return $this;
-
     }
 
     /**
@@ -191,5 +190,4 @@ class Engineers
 
         return $this;
     }
-
 }

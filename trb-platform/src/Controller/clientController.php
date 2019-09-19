@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Projects;
-use App\Entity\ProjectSearch;
+use App\Entity\Fleets;
+use App\Entity\FleetSearch;
 use App\Entity\Trains;
 use App\Entity\TrainsSearch;
 use App\Entity\User;
@@ -11,7 +11,7 @@ use App\Form\ProjectSearchType;
 use App\Form\TrainsSearchType;
 use App\Form\TrainsType;
 use App\Repository\ClientsUserRepository;
-use App\Repository\ProjectsRepository;
+use App\Repository\FleetsRepository;
 use App\Repository\TrainsRepository;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -49,29 +49,29 @@ class clientController extends AbstractController
      * @Route("/client/projects", name="client.projects")
      * @return Response
      */
-    public function projects(ProjectsRepository $projectsRepository, Request $request): Response
-    {
-        $search = new ProjectSearch();
-        $form = $this->createForm(ProjectSearchType::class, $search);
-        $form->handleRequest($request);
-        $projects = $projectsRepository->findAllProjects($search);
+    // public function projects(FleetsRepository $FleetsRepository, Request $request): Response
+    // {
+    //     $search = new Fleetsearch();
+    //     $form = $this->createForm(ProjectSearchType::class, $search);
+    //     $form->handleRequest($request);
+    //     $projects = $FleetsRepository->findAllFleets($search);
 
-        return $this->render('client\projects\project.html.twig', [
-            'current_menu' => 'projects',
-            'projects' => $projects,
-            'form' => $form->createView()
-        ]);
-    }
+    //     return $this->render('client\projects\project.html.twig', [
+    //         'current_menu' => 'projects',
+    //         'projects' => $projects,
+    //         'form' => $form->createView()
+    //     ]);
+    // }
     /**
      * @Route("/client/project/{id}", name="client.project-show")
      * @return Response
      */
-    public function show_project(Projects $projects)
+    public function show_project(Fleets $fleets)
     {
 
         return $this->render('client/projects/show-project.html.twig', [
             'current_menu' => 'projects',
-            'project' => $projects,
+            'project' => $fleets,
         ]);
     }
 

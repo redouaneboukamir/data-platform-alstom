@@ -29,13 +29,13 @@ class ClientsUser
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Projects", inversedBy="clientsUsers")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Fleets", inversedBy="clientsUsers")
      */
-    private $projects;
+    private $Fleets;
 
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
+        $this->Fleets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,26 +68,26 @@ class ClientsUser
     }
 
     /**
-     * @return Collection|Projects[]
+     * @return Collection|Fleets[]
      */
-    public function getProjects(): Collection
+    public function getFleets(): Collection
     {
-        return $this->projects;
+        return $this->Fleets;
     }
 
-    public function addProject(Projects $project): self
+    public function addProject(Fleets $fleet): self
     {
-        if (!$this->projects->contains($project)) {
-            $this->projects[] = $project;
+        if (!$this->Fleets->contains($fleet)) {
+            $this->Fleets[] = $fleet;
         }
 
         return $this;
     }
 
-    public function removeProject(Projects $project): self
+    public function removeFleet(Fleets $fleet): self
     {
-        if ($this->projects->contains($project)) {
-            $this->projects->removeElement($project);
+        if ($this->Fleets->contains($fleet)) {
+            $this->Fleets->removeElement($fleet);
         }
 
         return $this;
