@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Fleets;
+use App\Entity\Projects;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -20,6 +21,16 @@ class FleetType extends AbstractType
             ])
             ->add('available', HiddenType::class, [
                 'data' => true
+            ])
+            ->add('projects', EntityType::class, [
+                'class' => Projects::class,
+                // 'attr' => [
+                //     'id' => 'choice_trains',
+                // ],
+                'label' => 'Project',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'required' => false
             ]);
         // ->add('trains', EntityType::class, [
         //     'class' => Trains::class,

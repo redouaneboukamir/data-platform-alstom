@@ -123,7 +123,7 @@ class KeyCloakAuthController extends MainController
 		} catch (TokenAccessException $e) {
 			$users = $this->httpClientKeycloak->getUsers();
 		}
-
+		dump($users);
 		return $this->render('user/view.html.twig', [
 			KEY_ENTITY_ARRAY => $users,
 			'current_menu' => 'fleet'

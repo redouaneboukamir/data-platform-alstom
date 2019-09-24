@@ -36,6 +36,7 @@
                             <tr>
                                 <th class=" text-center">Username</th>
                                 <th class=" text-center">Email</th>
+                                <th class=" text-center">Projects</th>
                                 <th class=" text-center">Fleets</th>
                                 <th class=" text-center">User Group</th>
 
@@ -51,6 +52,19 @@
                                     {% else %}
                                         <td class=" text-center">{{ Entity.email }}</td>
                                     {% endif %}
+                                    {% if Entity.projects is not defined %}
+                                        <td></td>
+                                    {% else %}
+                                        <td
+                                            class=" text-center">
+                                            {# <select name="" id=""> #}
+                                            {% for fleet in Entity.projects %}
+                                                {# <option value="">{{fleet}}</option> #}
+                                                <a href="{{path('alstom.fleet-show',{'id':fleet})}}">{{fleet}}</a>
+                                            {% endfor %}
+                                            {# </select> #}
+                                        </td>
+                                    {% endif %}
                                     {% if Entity.fleets is not defined %}
                                         <td></td>
                                     {% else %}
@@ -59,7 +73,6 @@
                                             {# <select name="" id=""> #}
                                             {% for fleet in Entity.fleets %}
                                                 {# <option value="">{{fleet}}</option> #}
-
                                                 <a href="{{path('alstom.fleet-show',{'id':fleet})}}">{{fleet}}</a>
                                             {% endfor %}
                                             {# </select> #}

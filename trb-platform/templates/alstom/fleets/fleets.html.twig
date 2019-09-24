@@ -39,27 +39,54 @@
                                 <th class="text-center">numbers of trains</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody-fleets">
+                            {% for project in projects %}
+                                <tr class="td-table project-fleet show" id="project-{{project.id}}">
+                                    <td class="text-center text-muted">
+                                        <a href="{{ path('alstom.show-project', {id: project.id}) }}">{{  project.name }}</a>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <i class="fas fa-chevron-down" style="font-size:1.5em" id="arrow-up"></i>
+                                    </td>
+
+                                </tr>
+                                {% for fleet in project.fleets %}
+                                    {% if fleet.available %}
+                                        <tr class="td-table fleets-project fleets-project-{{project.id}}" style="border:1px solid #e0e0e0;">
+
+
+                                            <td class="text-center text-muted">
+                                                <a href="{{ path('alstom.show-fleet', {name: fleet.name}) }}" style='font-weight:500'>{{  fleet.name }}</a>
+
+                                            </td>
+                                            <td class="text-center">
+                                                {{  fleet.trains|length }}
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
                             {% for fleet in fleets %}
                                 {% if fleet.available %}
-                                    {% for id_fleet in id_fleets %}
-                                        {% if id_fleet == fleet.id %}
-                                            <tr class="td-table">
-                                                <td class="text-center text-muted">
-                                                    <a href="{{ path('alstom.show-fleet', {name: fleet.name}) }}">{{  fleet.name }}</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    {{  fleet.trains|length }}
-                                                </td>
-
-                                            </tr>
-                                        {% endif %}
-
-
-                                    {% endfor %}
+                                    {% if fleet.projects == null %}
+                                        {% for id_fleet in id_fleets %}
+                                            {% if id_fleet == fleet.id %}
+                                                <tr class="td-table">
+                                                    <td class="text-center text-muted">
+                                                        <a href="{{ path('alstom.show-fleet', {name: fleet.name}) }}">{{  fleet.name }}</a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{  fleet.trains|length }}
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
-
                         </tbody>
                     </table>
 

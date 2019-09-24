@@ -1147,6 +1147,9 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 							if (array_key_exists('fleet', $user['attributes'])) {
 								$userArray['fleets'] = $user['attributes']['fleet'];
 							}
+							if (array_key_exists('projects', $user['attributes'])) {
+								$userArray['projects'] = $user['attributes']['projects'];
+							}
 						}
 						// if (array_key_exists('lastName', $user)) {
 						// 	$userArray['lastName'] = $user['lastName'];
@@ -1312,11 +1315,14 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 	{
 		$uriGroups = GUZZLE_USERS;
 		$fleets = [];
-
+		$projects = [];
+		dump($user);
 		foreach ($user['fleets'] as $key => $value) {
 			$fleets[$key] = $value->getId();
 		}
-
+		foreach ($user['projects'] as $key => $value) {
+			$projects[$key] = $value->getId();
+		}
 
 		try {
 			/** Creation du user */
@@ -1332,6 +1338,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 						'lastName' => $user['name'],
 						'attributes' => [
 							'fleet' => $fleets,
+							'projects' => $projects
 						]
 					]),
 				]
@@ -1399,8 +1406,12 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 		$uriUsers = GUZZLE_USER_SLASH . $user['id'];
 
 		$fleets = [];
+		$projects = [];
 		foreach ($user['fleets'] as $key => $value) {
 			$fleets[$key] = $value->getId();
+		}
+		foreach ($user['projects'] as $key => $value) {
+			$projects[$key] = $value->getId();
 		}
 		try {
 			/** Creation du user */
@@ -1415,6 +1426,7 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 						'lastName' => $user['name'],
 						'attributes' => [
 							'fleet' => $fleets,
+							'projects' => $projects
 						]
 
 					]),
@@ -1796,7 +1808,6 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 		$this->logger->info('************************** Starting token refresh **************************');
 		if (Response::HTTP_UNAUTHORIZED === $exception->getCode()) {
 			$token = $this->container->get(KEY_SESSION)->get(KEY_ACCESS_TOKEN);
-			dump($token);
 			try {
 				$refreshTokenResponse = $this->refreshTokenClient()->request(
 					'POST',
@@ -1815,7 +1826,9 @@ class HttpClientKeycloak implements HttpClientKeycloakInterface
 				$this->container->get(KEY_SESSION)->set(KEY_ACCESS_TOKEN, $accessToken);
 
 				$this->logger->info('************************** Token refresh successfully *****************************');
-				header('Location: ./check');
+				header("Refresh:0");
+				exit();
+
 				throw new TokenAccessException();
 			} catch (GuzzleException $e) {
 				$this->logDevelopersErrors($e);

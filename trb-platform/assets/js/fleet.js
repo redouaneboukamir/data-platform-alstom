@@ -94,6 +94,24 @@ $(document).ready(function () {
 
 });
 
+$('#tbody-fleets').on('click', '.project-fleet', function () {
+    let id_project = extraitNombre($(this)[0]["id"]);
+    $(this).toggleClass('show');
+
+    if ($(this).hasClass('show')) {
+        $('.fleets-project-' + id_project).hide();
+        $('#arrow-up').removeClass('fa-chevron-up');
+        $('#arrow-up').addClass('fa-chevron-down');
+
+    } else {
+        $('#arrow-up').removeClass('fa-chevron-down');
+        $('#arrow-up').addClass('fa-chevron-up');
+        $('.fleets-project-' + id_project).show();
+    }
+
+
+});
+
 //Extrait le nombre d'une streing
 function extraitNombre(str) {
     return Number(str.replace(/[^\d]/g, ""))

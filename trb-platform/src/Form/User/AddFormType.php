@@ -4,6 +4,7 @@ namespace App\Form\User;
 
 use App\Constraints\PasswordCheck;
 use App\Entity\Fleets;
+use App\Entity\Projects;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,7 +26,13 @@ class AddFormType extends AbstractType
 		$listAllGroups = $options['data']['groups'];
 		array_shift($listAllGroups);
 		array_shift($listAllGroups);
+		array_shift($listAllGroups);
+		array_shift($listAllGroups);
+		array_shift($listAllGroups);
+		array_shift($listAllGroups);
+		array_shift($listAllGroups);
 		array_pop($listAllGroups);
+		dump($listAllGroups);
 
 		$currentName = isset($options['data']['lastName']) ? $options['data']['lastName'] : null;
 		$currentSurname = isset($options['data']['firstName']) ? $options['data']['firstName'] : null;
@@ -63,6 +70,20 @@ class AddFormType extends AbstractType
 				'label' => 'Email',
 				'data' => null != $currentEmail ? $currentEmail : '',
 				'required' => true,
+			])
+			->add('projects', EntityType::class, [
+				'class' => Projects::class,
+				// 'query_builder' => static function (FleetsRepository $FleetsRepository) {
+				// 	return $FleetsRepository->findAvailable();
+				// },
+				'attr' => [
+					'id' => 'choice_projects',
+				],
+				'label' => 'Projects',
+				// 'data' => null != $currentFleets ? $currentFleets : '',
+				'choice_label' => 'name',
+				'multiple' => true,
+				'required' => false
 			])
 			->add('fleets', EntityType::class, [
 				'class' => Fleets::class,

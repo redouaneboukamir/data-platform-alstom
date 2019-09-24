@@ -11,6 +11,7 @@ use App\Entity\FleetSearch;
 use App\Repository\FleetsRepository;
 use App\Form\ProjectSearchType;
 use App\Form\FleetType;
+use App\Repository\ProjectsRepository;
 use App\Repository\TrainsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,13 +64,14 @@ class fleetController extends alstomController
      * @return Response
      */
     //    Vue de la page projects
-    public function fleets(FleetsRepository $FleetsRepository, Request $request): Response
+    public function fleets(FleetsRepository $FleetsRepository, Request $request, ProjectsRepository $projectsRepository): Response
     {
         $search = new FleetSearch();
         $form = $this->createForm(ProjectSearchType::class, $search);
         $form->handleRequest($request);
 
         $fleets = $FleetsRepository->findAll();
+        $projects = $projectsRepository->findAll();
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $value) {
             if ($value['id'] == $this->getUser()->getKeycloakId()) {
@@ -81,11 +83,18 @@ class fleetController extends alstomController
         } else {
             $id_fleet = "";
         }
+        if (array_key_exists('projects', $user)) {
+            $id_project = $user['projects'];
+        } else {
+            $id_project = "";
+        }
         dump($fleets);
         return $this->render(('alstom/fleets/fleets.html.twig'), [
             'current_menu' => 'fleets',
             'fleets' => $fleets,
+            'projects' => $projects,
             'id_fleets' => $id_fleet,
+            'id_project' => $id_project,
             'form' => $form->createView()
         ]);
     }
@@ -194,7 +203,7 @@ class fleetController extends alstomController
             $fleets->getAvailable(true);
             $this->em->persist($fleets);
             $this->em->flush();
-            $this->addFlash('success', 'Project create with success');
+            $this->addFlash('success', 'Fleet create with success');
             return $this->redirectToRoute('alstom.fleets');
         }
 

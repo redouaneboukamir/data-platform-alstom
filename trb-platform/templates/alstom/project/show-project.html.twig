@@ -10,25 +10,25 @@
 
 
     {# <div class="modal fade" id="modal-form-train-fleet" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header card-header-title">
-                                        <h4 class="modal-title card-element-title">Select Fleet</h4>
-                                        <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-train-fleet" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card-content clearfix">
-                                            <form class="form-train-fleet" id="formulaire-train-fleet">
-                                                <select class="form-control col-12" id="select-train-fleet" name="train-fleet"></select>
-                                            </form>
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header card-header-title">
+                                                <h4 class="modal-title card-element-title">Select Fleet</h4>
+                                                <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-train-fleet" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card-content clearfix">
+                                                    <form class="form-train-fleet" id="formulaire-train-fleet">
+                                                        <select class="form-control col-12" id="select-train-fleet" name="train-fleet"></select>
+                                                    </form>
+                                                </div>
+                                                <button class="btn btn-success mt-4" id="valid-train-fleet">Valid</button>
+                                            </div>
                                         </div>
-                                        <button class="btn btn-success mt-4" id="valid-train-fleet">Valid</button>
                                     </div>
-                                </div>
-                            </div>
-                        </div> #}
+                                </div> #}
 
     <main class="" role="main">
         <div class="container-header container-fluid">
@@ -71,7 +71,7 @@
                             {% for fleet in project.fleets %}
                                 <tr class="col-md-12 title-table">
                                     <td class="td-table">
-                                        <a href="{{ path('alstom.fleet-show', {name: fleet.name}) }}">
+                                        <a href="{{ path('alstom.show-fleet', {name: fleet.name}) }}">
                                             {{ fleet.name }}
                                         </a>
                                     </td>

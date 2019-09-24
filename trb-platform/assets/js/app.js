@@ -32,8 +32,6 @@ $('.post-module-fleet').hover(function () {
         opacity: "toggle"
     }, 300);
 });
-
-$('.fa-chevron-down').hide();
 $(document).ready(function () {
     $('pre').remove();
     // $('.grid').masonry({
