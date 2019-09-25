@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class ProjectController extends alstomController
 {
 
@@ -23,6 +24,7 @@ class ProjectController extends alstomController
     public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
     {
         $this->em = $em;
+        $this->httpClientKeycloak = $httpClientKeycloak;
     }
 
     //    PAGE FLEET -------------------------------------------------------------
@@ -33,12 +35,24 @@ class ProjectController extends alstomController
     //    Vue de la page projects
     public function projects(ProjectsRepository $projectsRepository, Request $request): Response
     {
-
+        $projects = $projectsRepository->findAll();
+        $users = $this->httpClientKeycloak->getUsers();
+        foreach ($users as $key => $value) {
+            if ($value['id'] == $this->getUser()->getKeycloakId()) {
+                $user = ($value);
+            }
+        }
+        if (array_key_exists('projects', $user)) {
+            $id_projects = $user['projects'];
+        } else {
+            $id_projects = "";
+        }
         $projects = $projectsRepository->findAll();
         dump($projects);
 
         return $this->render(('alstom/project/projects.html.twig'), [
             'current_menu' => 'projects',
+            'id_projects' => $id_projects,
             'projects' => $projects,
         ]);
     }
@@ -73,12 +87,25 @@ class ProjectController extends alstomController
      * @Route("/alstom/projects/{id}", name="alstom.show-project")
      * @return Response
      */
-    public function show_project(Projects $project)
+    public function show_project(Projects $project, ProjectsRepository $projectsRepository)
     {
+        $project_user = [];
+        $users = $this->httpClientKeycloak->getUsers();
+        foreach ($users as $key => $value) {
+            if ($value['id'] == $this->getUser()->getKeycloakId()) {
+                foreach ($value['projects'] as $key => $value) {
+                    array_push($project_user, $projectsRepository->find((int) $value)->getName());
+                }
+            }
+        }
+        if (in_array($project->getName(), $project_user)) {
 
-        return $this->render('alstom/project/show-project.html.twig', [
-            'current_menu' => 'projects',
-            'project' => $project,
-        ]);
+            return $this->render('alstom/project/show-project.html.twig', [
+                'current_menu' => 'projects',
+                'project' => $project,
+            ]);
+        } else {
+            return $this->redirectToRoute('alstom.forbidden');
+        };
     }
 }
