@@ -9,26 +9,46 @@
     </div>
 
 
-    {# <div class="modal fade" id="modal-form-train-fleet" role="dialog">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header card-header-title">
-                                                <h4 class="modal-title card-element-title">Select Fleet</h4>
-                                                <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-train-fleet" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="card-content clearfix">
-                                                    <form class="form-train-fleet" id="formulaire-train-fleet">
-                                                        <select class="form-control col-12" id="select-train-fleet" name="train-fleet"></select>
-                                                    </form>
-                                                </div>
-                                                <button class="btn btn-success mt-4" id="valid-train-fleet">Valid</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> #}
+    <div class="modal fade" id="modal-addfleet-project" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header card-header-title">
+                    <h4 class="modal-title card-element-title">Select Fleet</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-train-fleet" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-content clearfix">
+                        <form class="form-addfleet-project" id="form-addfleet-project">
+                            <select class="form-control col-12" id="select-fleet-project" name="train-fleet"></select>
+                        </form>
+                    </div>
+                    <button class="btn btn-success mt-4" id="valid-fleet-project">Valid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-addbaseline-project" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header card-header-title">
+                    <h4 class="modal-title card-element-title">Select baseline</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" id="close-modal-form-train-fleet" style="color:red; position:absolute; right:20px; margin-top:-10px;" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-content clearfix">
+                        <form class="form-addbaseline-project" id="form-addbaseline-project">
+                            <select class="form-control col-12" id="select-baseline-project" name="train-fleet"></select>
+                        </form>
+                    </div>
+                    <button class="btn btn-success mt-4" id="valid-baseline-project">Valid</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main class="" role="main">
         <div class="container-header container-fluid">
@@ -38,7 +58,14 @@
                 <div class="col-md-12 details">
                     <h1>{{ project.name|upper }}</h1>
                     <div class="content-btn">
-                        <button class="btn-shadow-primary d-inline-flex align-items-center btn btn-primary" data-target="#modal-form-train-fleet" data-toggle="modal" id="addTrainsToFleet">
+                        <button class="btn-shadow-primary d-inline-flex align-items-center btn btn-primary" data-target="#modal-addbaseline-project" data-toggle="modal" id="addTrainsToFleet">
+                            <fa class="mr-2" name="plus" _nghost-c2="">
+                                <i _ngcontent-c2="" aria-hidden="true" class="fa fa-plus"></i>
+                            </fa>
+                            Add baseline
+                        </button>
+                        <button class="btn-shadow-primary d-inline-flex align-items-center btn btn-primary" data-target="#modal-addfleet-project" data-toggle="modal" id="addTrainsToFleet">
+
                             <fa class="mr-2" name="plus" _nghost-c2="">
                                 <i _ngcontent-c2="" aria-hidden="true" class="fa fa-plus"></i>
                             </fa>
@@ -47,6 +74,11 @@
                         <a href="{{path('alstom.create-fleet')}}">
                             <button class="btn-shadow d-inline-flex align-items-center btn btn-success" type="button">
                                 Create fleet
+                            </button>
+                        </a>
+                        <a href="{{path('alstom.create-baseline')}}">
+                            <button class="btn-shadow d-inline-flex align-items-center btn btn-success" type="button">
+                                Create baseline
                             </button>
                         </a>
 

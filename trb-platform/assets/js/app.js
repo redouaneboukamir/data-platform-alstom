@@ -1,3 +1,4 @@
+// Import de toutes les parties annexes du JS ainsi que certaines modules complémentaire
 import '../scss/app.scss';
 import './equipement';
 import './baseline';
@@ -34,12 +35,7 @@ $('.post-module-fleet').hover(function () {
 });
 $(document).ready(function () {
     $('pre').remove();
-    // $('.grid').masonry({
-    //     itemSelector: '.grid-item',
-    //     columnWidth: '.grid-sizer',
-    //     percentPosition: true
-    // });
-
+    // Sert a centrer les modal au milieu de la page
     function alignModal() {
         var modalDialog = $(this).find(".modal-dialog");
         // Applying the top margin on modal dialog to align it vertically center

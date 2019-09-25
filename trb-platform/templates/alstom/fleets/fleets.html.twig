@@ -47,15 +47,13 @@
                                     </td>
                                     <td></td>
                                     <td>
-                                        <i class="fas fa-chevron-down" style="font-size:1.5em" id="arrow-up"></i>
+                                        <i class="fas fa-chevron-down" style="font-size:1.5em" id="arrow-up-{{project.id}}"></i>
                                     </td>
 
                                 </tr>
                                 {% for fleet in project.fleets %}
                                     {% if fleet.available %}
                                         <tr class="td-table fleets-project fleets-project-{{project.id}}" style="border:1px solid #e0e0e0;">
-
-
                                             <td class="text-center text-muted">
                                                 <a href="{{ path('alstom.show-fleet', {name: fleet.name}) }}" style='font-weight:500'>{{  fleet.name }}</a>
 

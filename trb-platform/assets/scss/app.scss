@@ -21,6 +21,19 @@ body {
 
 }
 
+.sub-menu-sidebar {
+  display: none;
+}
+
+.scroll-sidebar {
+  &:hover {
+    .sub-menu-sidebar {
+      display: block;
+      transition: all 0.3s;
+    }
+  }
+}
+
 .modal {
   overflow: scroll;
 }

@@ -1,3 +1,6 @@
+// Ce fichier JS comprend entre autre tous les parties relative aux traitement de baseline, 
+// Creation - update- check  de baseline, la plupart son relié au controller baseline - train -plug - log
+
 //Masquage de certains modale de la page
 $('#formulaire-equipment').hide();
 $('#content-form-equipment').hide();
@@ -16,8 +19,11 @@ let Equipments = [],
     PresenceEVC = false,
     idEquipment = 0,
     tabIndexEquipt = []
+
 select = document.createElement("select"),
     previous = "",
+    // Tableau étant utilisé plus bas pour les type et sous type -> a modifier avec une requete ajax allant rechercher 
+    // ces élement côté PHP  --> base de données 
     tabEquipementType = ["EVC", "CARTE", "SENSOR", "DMI"],
     tabEquipementSubtype = ["CORE", "TUI", "SDMU", "SENSE", "TWINS"];
 
@@ -66,7 +72,7 @@ $('#form_equipement').on('submit', function (e) {
 
     //Empêche le chargement de la page sois fait automatiquement
     e.preventDefault();
-
+    // Apparition du chargement de page
     $('#wait-spinner').show();
     var $this = $(this);
     let data = {},
@@ -87,7 +93,7 @@ $('#form_equipement').on('submit', function (e) {
         }
 
     })
-    // Si le formulaire est pour ajouer un nouvel equipement
+    // Si le formulaire est pour ajouter un nouvel equipement
     if (action == "add") {
         //Remplis le tableau des équipements
         Equipments.push(data);
@@ -112,8 +118,9 @@ $('#form_equipement').on('submit', function (e) {
         });
         // Ou si le formulaire est pour éditer un equipement déja existant sur la page de l'ertms lié a celui-ci
     } else if (action == "edit") {
+        // extraint l'id de l'ertms a éditer
         let idErtms = extraitNombre(window.location.pathname);
-
+        // requête ajax allant chercher l'ertms et l'équipement a éditer
         $.ajax({
             url: '/alstom/edit-equipment/' + idEquipment,
             type: $this.attr('method'),
@@ -133,7 +140,7 @@ $('#form_equipement').on('submit', function (e) {
             }
         });
     }
-
+    // L'affichage ou non des élement du a ce changement d'évenement
     $('#modal-content-form-equipement').hide();
     $('.modal-footer').show();
     $('#create-equipment').show();
