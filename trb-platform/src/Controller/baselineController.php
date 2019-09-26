@@ -22,12 +22,14 @@ use App\Form\EquipementType;
 use App\Form\BaselineType;
 use App\Form\VersionType;
 use App\Entity\ConfigLogiciel;
+use App\Entity\Projects;
 use App\Form\ConfigLogicielType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Services\HttpClientKeycloakInterface;
+
 
 
 
@@ -88,11 +90,11 @@ class baselineController extends alstomController
         ]);
     }
     /**
-     * @Route("/alstom/create_baseline", name="alstom.create-baseline")
+     * @Route("/alstom/create_baseline/{id}", name="alstom.create-baseline")
      * @param Request $request
      * @return Response
      */
-    public function create_baseline(Request $request): Response
+    public function create_baseline(Projects $projects, Request $request): Response
     {
         $baseline = new Baseline;
         $form_baseline = $this->createForm(BaselineType::class, $baseline);

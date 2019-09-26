@@ -31,8 +31,9 @@ select = document.createElement("select"),
 $(document).ready(function () {
     let data = {}
     data[$type.attr('name')] = $type.val()
+    let id_project = extraitNombre(window.location.pathname);
 
-    if (window.location.pathname == '/alstom/create_baseline') {
+    if (window.location.pathname == '/alstom/create_baseline/' + id_project) {
         $.post("/alstom/checkSubtype", data).then(function (response) {
             //Vidage champ soustype
             $('#equipement_sous_type').empty();
@@ -42,6 +43,15 @@ $(document).ready(function () {
             })
 
         })
+        console.log(id_project)
+        project = {
+            'id_project': id_project
+        };
+        $.post("/alstom/checkProject", project).then(function (response) {
+            $('#baseline_projects').empty();
+            $('#baseline_projects').append(new Option(response.Name, response.id));
+        })
+
 
     }
     // $('#equipement_sous_type').empty();

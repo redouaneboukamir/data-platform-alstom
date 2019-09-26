@@ -1,6 +1,17 @@
 var searchRequest = null;
 
 $(document).ready(function () {
+    let id_project = extraitNombre(window.location.pathname);
+
+    if ((window.location.pathname) == ('/alstom/create-fleet/' + id_project)) {
+        data = {
+            'id_project': id_project
+        };
+        $.post("/alstom/checkProject", data).then(function (response) {
+            $('#fleet_projects').empty();
+            $('#fleet_projects').append(new Option(response.Name, response.id));
+        })
+    }
     // Submit du champ de recherche de fleet situé au dessus du tableau de l'onglet fleet
     $('#search-fleet').on('submit', function (e) {
         e.preventDefault();
@@ -120,6 +131,9 @@ $('#tbody-fleets').on('click', '.project-fleet', function () {
         $('.fleets-project-' + id_project).show();
     }
 });
+
+
+
 
 //Extrait le nombre d'une streing
 function extraitNombre(str) {

@@ -294,16 +294,13 @@ $('#valid-baseline-train').click(function () {
             async: true,
             dataType: 'json', // JSON
             success: function (response) {
-                console.log(response)
                 id_baseline_instance = response.idbaseline;
                 // window.location.href = "/alstom/baseline-train/" + response.idbaseline;
                 $('#title-etcsid').append('<tr><td class="text-left text-muted">' + name_baseline + '</td><td class="text-left text-muted">' + etcsId + '</td></tr>');
                 $('#no-add-baseline').hide();
                 $('#modal_baseline_equipement').hide();
-                console.log(totalEquipt);
                 totalEquipt = 0;
                 new_equipment_num = 0;
-                console.log(totalEquipt);
                 $('main').css("opacity", '1');
                 $('#wait-spinner').hide();
 

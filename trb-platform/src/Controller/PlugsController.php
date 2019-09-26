@@ -64,7 +64,7 @@ class PlugsController extends alstomController
     public function logs(LogsRepository $logsRepository): Response
     {
         $logs = $logsRepository->findAll();
-
+        dump($logs);
         return $this->render('alstom/logs/logs.html.twig', [
             'current_menu' => "logs",
             'logs' => $logs

@@ -15,6 +15,9 @@ class FleetType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // $project = isset($options['data']['project']) ? $options['data']['project'] : null;
+        // $disabled = isset($options['data']['disabled']);
+
         $builder
             ->add('name', null, [
                 'trim' => true
@@ -24,9 +27,11 @@ class FleetType extends AbstractType
             ])
             ->add('projects', EntityType::class, [
                 'class' => Projects::class,
-                // 'attr' => [
-                //     'id' => 'choice_trains',
-                // ],
+                // 'data' => null != $project ? $project : '',
+                'attr' => [
+                    'id' => 'select-project-fleet',
+                    'readonly' => true,
+                ],
                 'label' => 'Project',
                 'choice_label' => 'name',
                 'multiple' => false,

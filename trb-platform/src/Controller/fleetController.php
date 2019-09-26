@@ -8,6 +8,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use App\Entity\Fleets;
 use App\Entity\FleetSearch;
+use App\Entity\Projects;
 use App\Repository\FleetsRepository;
 use App\Form\ProjectSearchType;
 use App\Form\FleetType;
@@ -189,11 +190,12 @@ class fleetController extends alstomController
 
     //    page création FLEET
     /**
-     * @Route("/alstom/create-fleet", name="alstom.create-fleet")
+     * @Route("/alstom/create-fleet/{id}", name="alstom.create-fleet")
      * @return Response
      */
-    public function create_fleet(Request $request): Response
+    public function create_fleet(Projects $projects, Request $request): Response
     {
+
         $fleets = new Fleets();
         $form = $this->createForm(FleetType::class, $fleets);
         $form->handleRequest($request);
@@ -213,6 +215,7 @@ class fleetController extends alstomController
             'form' => $form->createView()
         ]);
     }
+
 
 
     //    Page d'edit de project

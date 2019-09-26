@@ -149,6 +149,7 @@ class KeyCloakAuthController extends MainController
 		$groups = $this->httpClientKeycloak->getGroups();
 
 		$groupsSelection = $this->utility->arrayFormatForSelection($groups);
+
 		$form = $this->createForm(AddFormType::class, [KEY_GROUPS => $groupsSelection]);
 
 		$form->handleRequest($request);

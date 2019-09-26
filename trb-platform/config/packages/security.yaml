@@ -67,7 +67,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+          - { path: ^/admin, roles: ROLE_ALSTOM_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
           - { path: ^/alstom, roles: [ROLE_ALSTOM_ADMIN, ROLE_ALSTOM_DESIGN, ROLE_ALSTOM_COMMISSIONER,
                                       ROLE_ALSTOM_MAINTENER, ROLE_ALSTOM_SERVICE] }

@@ -10,6 +10,10 @@ use App\Services\HttpClientKeycloakInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 class ProjectController extends alstomController
@@ -25,6 +29,11 @@ class ProjectController extends alstomController
     {
         $this->em = $em;
         $this->httpClientKeycloak = $httpClientKeycloak;
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $this->encoders = $encoders;
+        $serializer = new Serializer($normalizers, $encoders);
+        $this->serializer = $serializer;
     }
 
     //    PAGE FLEET -------------------------------------------------------------
@@ -89,6 +98,11 @@ class ProjectController extends alstomController
      */
     public function show_project(Projects $project, ProjectsRepository $projectsRepository)
     {
+        dump($project->getBaselines());
+        foreach ($project->getBaselines() as $key => $value) {
+            # code...
+            dump($value);
+        }
         $project_user = [];
         $users = $this->httpClientKeycloak->getUsers();
         foreach ($users as $key => $value) {
@@ -107,5 +121,22 @@ class ProjectController extends alstomController
         } else {
             return $this->redirectToRoute('alstom.forbidden');
         };
+    }
+    /**
+     * @Route("alstom/checkProject", name="alstom.checkProject")
+     * @return Response
+     */
+    public function checkProject(Request $request, ProjectsRepository $projectsRepository)
+    {
+        dump($request->request);
+        $project = $projectsRepository->find($request->request->get('id_project'));
+
+        $jsonObjectSubtype = $this->serializer->serialize($project, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
     }
 }

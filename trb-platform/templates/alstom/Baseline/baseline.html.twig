@@ -6,9 +6,7 @@
             <h2>
                 <i class="fa fa-angle-right"></i>
                 Baseline</h2>
-            <a href="{{ path('alstom.create-baseline') }}">
-                <button class="btn btn-primary">New</button>
-            </a>
+
         </div>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
@@ -29,6 +27,7 @@
                         <tr>
                             <th class="text-center">Name</th>
                             <th class="text-center">Date</th>
+                            <th class="text-center">Project</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +42,15 @@
                                     <td class="text-center">
                                         {{ baseline.date|date('d/m/Y') }}
                                     </td>
+                                    {% if baseline.projects == null %}
+                                        <td class="text-center"></td>
+                                    {% else %}
+
+                                        <td class="text-center">
+                                            {{ baseline.projects.name }}
+                                        </td>
+                                    {% endif %}
+
 
                                 </tr>
                             {% endif %}
