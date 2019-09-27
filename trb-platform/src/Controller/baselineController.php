@@ -44,11 +44,14 @@ class baselineController extends alstomController
     public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
     {
 
+        // Variable Object management pour interférer avec la Base de données pgsql
         $this->em = $em;
+        // Tableau d'équipement réutiliser plus bas
         $tabEquipt = array();
         $this->tabEquipt = $tabEquipt;
+        // Varriable servant a aller chercher les fonction spécifique a keycloak
         $this->httpClientKeycloak = $httpClientKeycloak;
-
+        // Variable servant a encore et serializer en json pour les requete ajax vers le JS
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $this->encoders = $encoders;
@@ -59,6 +62,7 @@ class baselineController extends alstomController
     // ----------------------BASELINE
 
     /**
+     * Check les baseline pour la renovyer a la requête ajax appelé en JS
      * @Route("alstom/checkBaseline", name="alstom.checkBaseline")
      * @return Response
      */
@@ -75,6 +79,8 @@ class baselineController extends alstomController
         return new Response($jsonObjectSubtype, 200, ['Content-Type' => 'application/json']);
     }
     /**
+     * Page de vue de toutes les baselines
+     * 
      * @Route("/alstom/baseline", name="alstom.baseline")
      * @param Request $request
      * @return Response
@@ -90,6 +96,8 @@ class baselineController extends alstomController
         ]);
     }
     /**
+     * Page de création de baseline ET d'équipements a voir les commentaire dans la page twig
+     * 
      * @Route("/alstom/create_baseline/{id}", name="alstom.create-baseline")
      * @param Request $request
      * @return Response
@@ -116,17 +124,24 @@ class baselineController extends alstomController
      */
     public function flush_all_equipt(Request $request, TypeEquipementRepository $typeEquipementRepository, SoustypeEquipementRepository $soustypeEquipementRepository)
     {
+        // Creer une nouvelle association d'ertms et d'équipement qui servira a définir les version de l'équipement
         $assoc_ertms_equipement = new AssociationEquiptERTMS;
+        // Ertms (version de l'équipement)
         $ertms = new ERTMSEquipement;
+        // Baseline est le réceptacle des équipements version ertms plug et de la version logiciel
         $baseline  = new Baseline;
+        // Association entre l'evc et ces carte
         $assoc_evc_carte = new AssocEvcCarte;
 
+        // Recuperer le tableau d'équipement récolter par la requête AJAXX
         $tabEquipt = $request->request->get('tabEquipts');
+        // Attribution du nom de la basleine (le premier champ )
         $baseline->setName($request->request->get('baselineName'));
-
+        // Date de l'ertms
         $ertms->setDate(new \Datetime('now'));
         $this->em->persist($ertms);
 
+        // Attribuer le statut de la baseline
         $baseline->setStatus(true);
         $baseline->setOriginal(true);
         $baseline->setDate(new \DateTime('now'));

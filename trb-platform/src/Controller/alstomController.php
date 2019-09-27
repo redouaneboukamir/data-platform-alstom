@@ -40,12 +40,14 @@ class alstomController extends MainController
 
     public function __construct(ObjectManager $em, HttpClientKeycloakInterface $httpClientKeycloak)
     {
-
+        // Variable Object management pour interférer avec la Base de données pgsql
         $this->em = $em;
+        // Tableau d'équipement réutiliser plus bas
         $tabEquipt = array();
         $this->tabEquipt = $tabEquipt;
+        // Varriable servant a aller chercher les fonction spécifique a keycloak
         $this->httpClientKeycloak = $httpClientKeycloak;
-
+        // Variable servant a encore et serializer en json pour les requete ajax vers le JS
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $this->encoders = $encoders;
@@ -73,6 +75,7 @@ class alstomController extends MainController
         ]);
     }
     /**
+     * Page 403
      * @Route("/forbidden", name="alstom.forbidden")
      * @return Response
      */
@@ -92,6 +95,7 @@ class alstomController extends MainController
 
 
     //    PAGE CLIENT -------------------------------------------------------------
+    // Les clients et la gestion des clients qui a été laisser en standby mais est opérationnel
     /**
      * @Route("/alstom/clients", name="alstom.client")
      * @return Response
@@ -100,7 +104,9 @@ class alstomController extends MainController
     public function clients(ClientsRepository $clientsRepository, Request $request): Response
     {
         $session = new Session();
-
+        // Sert a aller chercher les clients dans la barre de recherche --> optimiser a d'autre endroits notament pour 
+        // les fleets. Cette méthode est moins performante mais fonctinnel
+        // Variable expréssément créer pour la recherche
         $search = new ClientsSearch();
         $form = $this->createForm(ClientsSearchType::class, $search);
         $form->handleRequest($request);
@@ -117,6 +123,7 @@ class alstomController extends MainController
     }
 
     //    Vue de Client individuel
+    // Page de présentation du client
 
     /**
      * @Route("/alstom/clients/{id}", name="alstom.client-show")
@@ -153,6 +160,7 @@ class alstomController extends MainController
     public function create_clients(Request $request): Response
     {
         $client = new Clients();
+        // Créer un formulaire 
         $form = $this->createForm(ClientsType::class, $client);
         $form->handleRequest($request);
 
@@ -180,6 +188,7 @@ class alstomController extends MainController
      */
     public function edit_client(Request $request, Clients $clients): Response
     {
+        // Formulaire rempli avec le client passer en paramètre
 
         $form = $this->createForm(ClientsType::class, $clients);
         $form->handleRequest($request);
